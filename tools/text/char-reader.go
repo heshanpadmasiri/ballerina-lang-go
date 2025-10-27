@@ -81,6 +81,7 @@ func (cr charReaderImpl) PeekN(k int) rune {
 		r, _ := utf8.DecodeRuneInString(cr.charBuffer[n:])
 		return r
 	} else {
+		// Shouldn't this be EOF?
 		// TODO Revisit this branch
 		return unicode.MaxRune
 	}
