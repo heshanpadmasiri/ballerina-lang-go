@@ -18,8 +18,78 @@
 
 package main
 
-import "fmt"
+import (
+	debugcommon "ballerina-lang-go/common"
+	"ballerina-lang-go/parser"
+	"ballerina-lang-go/parser/common"
+	"ballerina-lang-go/tools/text"
+	"fmt"
+	"os"
+	"sync"
+)
 
 func main() {
-	fmt.Println("hello world!")
+	if len(os.Args) < 2 {
+		fmt.Fprintf(os.Stderr, "usage: %s <file.bal> [-dump-tokens]\n", os.Args[0])
+		os.Exit(1)
+	}
+
+	fileName := os.Args[1]
+	dumpTokens := false
+
+	// Check for flags
+	for _, arg := range os.Args[2:] {
+		if arg == "-dump-tokens" {
+			dumpTokens = true
+		} else if len(arg) > 0 && arg[0] == '-' {
+			panic(fmt.Sprintf("unsupported flag: %s", arg))
+		}
+	}
+
+	// Initialize DebugContext if dumpTokens is enabled
+	var debugCtx *debugcommon.DebugContext
+	var wg sync.WaitGroup
+	flags := uint16(0)
+	if dumpTokens {
+		flags |= debugcommon.DUMP_TOKENS
+	}
+	if flags != 0 {
+		debugcommon.Init(flags)
+		debugCtx = &debugcommon.DebugCtx
+
+		// Start a goroutine to listen to the channel and print to stderr
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for msg := range debugCtx.Channel {
+				fmt.Fprintf(os.Stderr, "%s\n", msg)
+			}
+		}()
+	}
+
+	// Read the file
+	content, err := os.ReadFile(fileName)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error reading file %s: %v\n", fileName, err)
+		os.Exit(1)
+	}
+
+	// Create CharReader from file content
+	reader := text.CharReaderFromText(string(content))
+
+	// Create Lexer with DebugContext
+	lexer := parser.NewLexer(reader, debugCtx)
+
+	// Tokenize the entire file
+	for {
+		token := lexer.NextToken()
+		if token.Kind() == common.EOF_TOKEN {
+			break
+		}
+	}
+
+	if debugCtx != nil {
+		close(debugCtx.Channel)
+		wg.Wait()
+	}
 }

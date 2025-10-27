@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: Tokenize with -dump-tokens",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}",
+            "args": [
+                "corpus/helloworld.bal",
+                "-dump-tokens"
+            ],
+            "showLog": true,
+            "trace": "verbose"
+        }
+    ]
+}
