@@ -57,6 +57,24 @@ func (l *Lexer) StartMode(mode ParserMode) {
 	l.context.modeStack = append(l.context.modeStack, mode)
 }
 
+func (l *Lexer) SwitchMode(mode ParserMode) {
+	l.context.modeStack = l.context.modeStack[:len(l.context.modeStack)-1]
+	l.context.mode = mode
+	l.context.modeStack = append(l.context.modeStack, mode)
+}
+
+func (l *Lexer) EndMode() {
+	if len(l.context.modeStack) == 0 {
+		panic("cannot end mode: mode stack is empty")
+	}
+	l.context.modeStack = l.context.modeStack[:len(l.context.modeStack)-1]
+	if len(l.context.modeStack) == 0 {
+		l.context.mode = DEFAULT_MODE
+	} else {
+		l.context.mode = l.context.modeStack[len(l.context.modeStack)-1]
+	}
+}
+
 func (l *Lexer) NextToken() internal.STToken {
 	var token internal.STToken
 	switch l.context.mode {
@@ -308,18 +326,6 @@ func isValidQuotedIdentifierEscapeChar(c rune) bool {
 // TODO: validate we can't use unicode
 func isUnicodePatternWhiteSpaceChar(c rune) bool {
 	return c == 0x200E || c == 0x200F || c == 0x2028 || c == 0x2029
-}
-
-func (l *Lexer) EndMode() {
-	if len(l.context.modeStack) == 0 {
-		panic("cannot end mode: mode stack is empty")
-	}
-	l.context.modeStack = l.context.modeStack[:len(l.context.modeStack)-1]
-	if len(l.context.modeStack) == 0 {
-		l.context.mode = DEFAULT_MODE
-	} else {
-		l.context.mode = l.context.modeStack[len(l.context.modeStack)-1]
-	}
 }
 
 func (l *Lexer) processIdentifierEnd() {
