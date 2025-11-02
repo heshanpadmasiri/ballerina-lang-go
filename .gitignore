@@ -25,6 +25,9 @@ go.work.sum
 .env
 ballerina-lang-go
 
+# Compiler tools executables
+tree-gen
+update-corpus
 
 # OS files
 .DS_Store
