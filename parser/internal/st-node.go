@@ -78,6 +78,11 @@ type (
 		lookaheadTokenCount int
 	}
 
+	STMissingToken struct {
+		STTokenBase
+		diagnosticList []STNodeDiagnostic
+	}
+
 	STLiteralValueToken struct {
 		STTokenBase
 		// Ideally we don't need width here and instead calculate it on the go
@@ -131,6 +136,10 @@ type (
 		args []any
 	}
 )
+
+func (s STNodeList) IsEmpty() bool {
+	return s.bucketCount == 0
+}
 
 // Shared common nodes
 var (
@@ -274,21 +283,21 @@ func (n *STNodeBase) findToken(dir direction) STToken {
 	}
 	panic("failed to find last token")
 }
-func (n *STNodeBase) FirstToken() STToken {
+func (n STNodeBase) FirstToken() STToken {
 	return n.findToken(forward)
 }
 
-func (n *STNodeBase) LastToken() STToken {
+func (n STNodeBase) LastToken() STToken {
 	return n.findToken(backward)
 }
 
-func (t *STNodeBase) ToSourceCode() string {
+func (t STNodeBase) ToSourceCode() string {
 	builder := strings.Builder{}
 	t.writeTo(&builder)
 	return builder.String()
 }
 
-func (t *STNodeBase) writeTo(builder *strings.Builder) {
+func (t STNodeBase) writeTo(builder *strings.Builder) {
 	for _, child := range t.childBuckets {
 		if IsSTNodePresent(child) {
 			child.writeTo(builder)
@@ -296,11 +305,11 @@ func (t *STNodeBase) writeTo(builder *strings.Builder) {
 	}
 }
 
-func (n *STNodeBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
+func (n STNodeBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
 	n.diagnostics = diagnostics
 }
 
-func (n *STNodeBase) ChildInBucket(bucket int) STNode {
+func (n STNodeBase) ChildInBucket(bucket int) STNode {
 	return n.childBuckets[bucket]
 }
 
@@ -324,51 +333,51 @@ func (n *STNodeBase) copy() *STNodeBase {
 	}
 }
 
-func (n *STNodeBase) Kind() common.SyntaxKind {
+func (n STNodeBase) Kind() common.SyntaxKind {
 	return n.kind
 }
 
-func (n *STNodeBase) Diagnostics() []STNodeDiagnostic {
+func (n STNodeBase) Diagnostics() []STNodeDiagnostic {
 	return n.diagnostics
 }
 
-func (n *STNodeBase) Width() uint16 {
+func (n STNodeBase) Width() uint16 {
 	return n.width
 }
 
-func (n *STNodeBase) WidthWithLeadingMinutiae() uint16 {
+func (n STNodeBase) WidthWithLeadingMinutiae() uint16 {
 	return n.widthWithLeadingMinutiae
 }
 
-func (n *STNodeBase) WidthWithTrailingMinutiae() uint16 {
+func (n STNodeBase) WidthWithTrailingMinutiae() uint16 {
 	return n.widthWithTrailingMinutiae
 }
 
-func (n *STNodeBase) WidthWithMinutiae() uint16 {
+func (n STNodeBase) WidthWithMinutiae() uint16 {
 	return n.widthWithMinutiae
 }
 
-func (n *STNodeBase) Flags() uint8 {
+func (n STNodeBase) Flags() uint8 {
 	return n.flags
 }
 
-func (n *STNodeBase) BucketCount() int {
+func (n STNodeBase) BucketCount() int {
 	return n.bucketCount
 }
 
-func (n *STNodeBase) ChildBuckets() []STNode {
+func (n STNodeBase) ChildBuckets() []STNode {
 	return n.childBuckets
 }
 
-func (n *STNodeBase) HasDiagnostics() bool {
+func (n STNodeBase) HasDiagnostics() bool {
 	return isFlagSet(n.flags, HAS_DIAGNOSTIC)
 }
 
-func (n *STNodeBase) IsMissing() bool {
+func (n STNodeBase) IsMissing() bool {
 	return isFlagSet(n.flags, IS_MISSING)
 }
 
-func (n *STNodeBase) Tokens() []STToken {
+func (n STNodeBase) Tokens() []STToken {
 	tokens := make([]STToken, 0, len(n.childBuckets))
 	for _, child := range n.childBuckets {
 		if IsSTNodePresent(child) {
@@ -378,71 +387,71 @@ func (n *STNodeBase) Tokens() []STToken {
 	return tokens
 }
 
-func (n *STTokenBase) Kind() common.SyntaxKind {
+func (n STTokenBase) Kind() common.SyntaxKind {
 	return n.kind
 }
 
-func (n *STTokenBase) Diagnostics() []STNodeDiagnostic {
+func (n STTokenBase) Diagnostics() []STNodeDiagnostic {
 	return n.diagnostics
 }
 
-func (n *STTokenBase) Width() uint16 {
+func (n STTokenBase) Width() uint16 {
 	return n.width
 }
 
-func (n *STTokenBase) WidthWithLeadingMinutiae() uint16 {
+func (n STTokenBase) WidthWithLeadingMinutiae() uint16 {
 	return n.width + n.leadingMinutiae.Width()
 }
 
-func (n *STTokenBase) WidthWithTrailingMinutiae() uint16 {
+func (n STTokenBase) WidthWithTrailingMinutiae() uint16 {
 	return n.width + n.trailingMinutiae.Width()
 }
 
-func (n *STTokenBase) WidthWithMinutiae() uint16 {
+func (n STTokenBase) WidthWithMinutiae() uint16 {
 	return n.width + n.leadingMinutiae.Width() + n.trailingMinutiae.Width()
 }
 
-func (n *STTokenBase) Flags() uint8 {
+func (n STTokenBase) Flags() uint8 {
 	return n.flags
 }
 
-func (n *STTokenBase) BucketCount() int {
+func (n STTokenBase) BucketCount() int {
 	return 0
 }
 
-func (n *STTokenBase) ChildBuckets() []STNode {
+func (n STTokenBase) ChildBuckets() []STNode {
 	return nil
 }
 
-func (n *STTokenBase) HasDiagnostics() bool {
+func (n STTokenBase) HasDiagnostics() bool {
 	return isFlagSet(n.flags, HAS_DIAGNOSTIC)
 }
 
-func (n *STTokenBase) ChildInBucket(bucket int) STNode {
+func (n STTokenBase) ChildInBucket(bucket int) STNode {
 	panic("ChildInBucket is not supported for STToken")
 }
 
-func (n *STTokenBase) IsMissing() bool {
+func (n STTokenBase) IsMissing() bool {
 	return isFlagSet(n.flags, IS_MISSING)
 }
 
-func (n *STTokenBase) Tokens() []STToken {
+func (n STTokenBase) Tokens() []STToken {
 	return nil
 }
 
-func (t *STTokenBase) Text() string {
+func (t STTokenBase) Text() string {
 	return t.kind.StrValue()
 }
 
-func (t *STTokenBase) FirstToken() STToken {
-	return t
+func (t STTokenBase) FirstToken() STToken {
+	return &t
 }
 
-func (t *STTokenBase) LastToken() STToken {
-	return t
+func (t STTokenBase) LastToken() STToken {
+	return &t
 }
 
-func (t *STTokenBase) HasTrailingNewLine() bool {
+func (t STTokenBase) HasTrailingNewLine() bool {
 	stNodeList := t.trailingMinutiae.(*STNodeList)
 	for i := 0; i < stNodeList.size(); i++ {
 		if stNodeList.get(i).Kind() == common.END_OF_LINE_MINUTIAE {
@@ -452,19 +461,19 @@ func (t *STTokenBase) HasTrailingNewLine() bool {
 	return false
 }
 
-func (t *STTokenBase) ToSourceCode() string {
+func (t STTokenBase) ToSourceCode() string {
 	builder := strings.Builder{}
 	t.writeTo(&builder)
 	return builder.String()
 }
 
-func (t *STTokenBase) writeTo(builder *strings.Builder) {
+func (t STTokenBase) writeTo(builder *strings.Builder) {
 	t.leadingMinutiae.writeTo(builder)
 	builder.WriteString(t.kind.StrValue())
 	t.trailingMinutiae.writeTo(builder)
 }
 
-func (t *STTokenBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
+func (t STTokenBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
 	t.diagnostics = diagnostics
 }
 
@@ -480,7 +489,7 @@ func (s *STNodeList) add(node STNode) *STNodeList {
 	return &STNodeList{STNodeBase: *STNodeBase}
 }
 
-func (s *STNodeList) BucketCount() int {
+func (s STNodeList) BucketCount() int {
 	return s.bucketCount
 }
 
@@ -488,7 +497,7 @@ func (s *STNodeList) size() int {
 	return s.bucketCount
 }
 
-func (s *STNodeDiagnostic) DiagnosticCode() diagnostics.DiagnosticCode {
+func (s STNodeDiagnostic) DiagnosticCode() diagnostics.DiagnosticCode {
 	return s.code
 }
 
@@ -666,4 +675,55 @@ func IsSTNodePresent(child STNode) bool {
 func isToken(node STNode) bool {
 	_, ok := node.(STToken)
 	return ok
+}
+
+func CloneWithLeadingInvalidNodeMinutiae(toClone STNode, invalidNode STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) STNode {
+	firstToken := toClone.FirstToken()
+	firstTokenWithInvalidNodeMinutiae := CloneWithLeadingInvalidNodeMinutiae(firstToken,
+		invalidNode, diagnosticCode, args)
+	return Replace(toClone, firstToken, firstTokenWithInvalidNodeMinutiae)
+}
+
+func CreateMissingTokenWithDiagnosticsFromParserRules(expectedKind common.SyntaxKind, currentCtx common.ParserRuleContext) STToken {
+	return CreateMissingTokenWithDiagnostics(expectedKind, currentCtx.GetErrorCode())
+}
+
+func CreateMissingTokenWithDiagnostics(expectedKind common.SyntaxKind, diagnosticCode diagnostics.DiagnosticCode) STToken {
+	diagnosticList := []STNodeDiagnostic{CreateDiagnosticWithArgs(diagnosticCode)}
+	return CreateMissingToken(expectedKind, diagnosticList)
+}
+
+func CreateDiagnosticWithArgs(diagnosticCode diagnostics.DiagnosticCode, args ...any) STNodeDiagnostic {
+	return STNodeDiagnostic{
+		code: diagnosticCode,
+		args: args,
+	}
+}
+
+func CreateMissingToken(expectedKind common.SyntaxKind, diagnosticList []STNodeDiagnostic) STToken {
+	return &STMissingToken{
+		STTokenBase: STTokenBase{
+			kind: expectedKind,
+		},
+		diagnosticList: diagnosticList,
+	}
+}
+
+func AddDiagnostic(node STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) STNode {
+	return AddSyntaxDiagnostic(node, CreateDiagnostic(diagnosticCode, args...))
+}
+
+func CloneWithTrailingInvalidNodeMinutiae(toClone STNode, invalidNode STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) STNode {
+	lastToken := toClone.LastToken()
+	lastTokenWithInvalidNodeMinutiae := CloneWithTrailingInvalidNodeMinutiae(lastToken,
+		invalidNode, diagnosticCode, args)
+	return Replace(toClone, lastToken, lastTokenWithInvalidNodeMinutiae)
+}
+
+func ToToken(node STNode) STToken {
+	tok, ok := node.(STToken)
+	if !ok {
+		panic("node is not a STToken")
+	}
+	return tok
 }

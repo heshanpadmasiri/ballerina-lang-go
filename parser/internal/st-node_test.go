@@ -196,7 +196,7 @@ func TestToSexpr_SimpleNode(t *testing.T) {
 	node := createTestImportDeclaration(child1, child2, nil, nil, nil)
 
 	// Convert to S-expression
-	result := toSexpr(node)
+	result := ToSexpr(node)
 
 	// Hardcoded expected output
 	expected := `(UNKNOWN_2000 0 0x00 ()
@@ -216,7 +216,7 @@ func TestToSexpr_NodeList(t *testing.T) {
 	nodeList := CreateNodeList([]STNode{child1, child2})
 
 	// Convert to S-expression (need pointer for STNode interface)
-	result := toSexpr(&nodeList)
+	result := ToSexpr(&nodeList)
 
 	// Hardcoded expected output
 	expected := `(UNKNOWN_1 0 0x00 ()

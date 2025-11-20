@@ -69,7 +69,7 @@ func (l *Lexer) EndMode() {
 	}
 	l.context.modeStack = l.context.modeStack[:len(l.context.modeStack)-1]
 	if len(l.context.modeStack) == 0 {
-		l.context.mode = DEFAULT_MODE
+		l.context.mode = PARSER_MODE_DEFAULT_MODE
 	} else {
 		l.context.mode = l.context.modeStack[len(l.context.modeStack)-1]
 	}
@@ -78,16 +78,16 @@ func (l *Lexer) EndMode() {
 func (l *Lexer) NextToken() internal.STToken {
 	var token internal.STToken
 	switch l.context.mode {
-	case TEMPLATE:
+	case PARSER_MODE_TEMPLATE:
 		token = l.readTemplateToken()
-	case PROMPT:
+	case PARSER_MODE_PROMPT:
 		token = l.readPromptToken()
-	case REGEXP:
+	case PARSER_MODE_REGEXP:
 		token = l.readRegExpTemplateToken()
-	case INTERPOLATION:
+	case PARSER_MODE_INTERPOLATION:
 		l.processLeadingTrivia()
 		token = l.readTokenInInterpolation()
-	case INTERPOLATION_BRACED_CONTENT:
+	case PARSER_MODE_INTERPOLATION_BRACED_CONTENT:
 		l.processLeadingTrivia()
 		token = l.readTokenInBracedContentInInterpolation()
 	default:
@@ -201,7 +201,7 @@ func (l *Lexer) readToken() internal.STToken {
 	case NEGATION:
 		token = l.getSyntaxToken(common.NEGATION_TOKEN)
 	case BACKTICK:
-		l.StartMode(TEMPLATE)
+		l.StartMode(PARSER_MODE_TEMPLATE)
 		token = l.getBacktickToken()
 	case SINGLE_QUOTE:
 		token = l.processQuotedIdentifier()
@@ -213,7 +213,7 @@ func (l *Lexer) readToken() internal.STToken {
 		} else {
 			invalidToken := l.processInvalidToken()
 			token = l.NextToken()
-			f := internal.CreateDiagnostic(&ERROR_INVALID_TOKEN, invalidToken)
+			f := internal.CreateDiagnostic(&common.ERROR_INVALID_TOKEN, invalidToken)
 			token = internal.AddSyntaxDiagnostic(token, f)
 		}
 	}
@@ -290,7 +290,7 @@ func (l *Lexer) processNumericEscapeWithoutBackslash() {
 
 	// Process code-point
 	if !isHexDigit(reader.Peek()) {
-		l.reportLexerError(ERROR_INVALID_STRING_NUMERIC_ESCAPE_SEQUENCE)
+		l.reportLexerError(common.ERROR_INVALID_STRING_NUMERIC_ESCAPE_SEQUENCE)
 		return
 	}
 
@@ -301,7 +301,7 @@ func (l *Lexer) processNumericEscapeWithoutBackslash() {
 
 	// Process close brace
 	if reader.Peek() != CLOSE_BRACE {
-		l.reportLexerError(ERROR_INVALID_STRING_NUMERIC_ESCAPE_SEQUENCE)
+		l.reportLexerError(common.ERROR_INVALID_STRING_NUMERIC_ESCAPE_SEQUENCE)
 		return
 	}
 
@@ -310,7 +310,7 @@ func (l *Lexer) processNumericEscapeWithoutBackslash() {
 
 func (l *Lexer) reportInvalidEscapeSequence(nextChar rune) {
 	escapeSequence := string(nextChar)
-	l.reportLexerError(ERROR_INVALID_ESCAPE_SEQUENCE, escapeSequence)
+	l.reportLexerError(common.ERROR_INVALID_ESCAPE_SEQUENCE, escapeSequence)
 }
 
 func isValidQuotedIdentifierEscapeChar(c rune) bool {
@@ -346,7 +346,7 @@ func (l *Lexer) processIdentifierEnd() {
 		switch nextChar {
 		case NEWLINE, CARRIAGE_RETURN, TAB:
 			reader.Advance()
-			l.reportLexerError(ERROR_INVALID_ESCAPE_SEQUENCE, "")
+			l.reportLexerError(common.ERROR_INVALID_ESCAPE_SEQUENCE, "")
 			break
 		case 'u':
 			// NumericEscape
@@ -645,13 +645,13 @@ func (l *Lexer) processNumericLiteral(startChar rune) internal.STToken {
 			}
 
 			// In sem-var mode, only decimal integer literals are supported
-			if l.context.mode == IMPORT_MODE {
+			if l.context.mode == PARSER_MODE_IMPORT_MODE {
 				break
 			}
 
 			// Integer part of the float cannot have a leading zero
 			if startChar == '0' && len > 1 {
-				l.reportLexerError(ERROR_LEADING_ZEROS_IN_NUMERIC_LITERALS)
+				l.reportLexerError(common.ERROR_LEADING_ZEROS_IN_NUMERIC_LITERALS)
 			}
 
 			// Code would not reach here if the floating point starts with a dot
@@ -670,7 +670,7 @@ func (l *Lexer) processNumericLiteral(startChar rune) internal.STToken {
 
 	// Integer cannot have a leading zero
 	if startChar == '0' && len > 1 {
-		l.reportLexerError(ERROR_LEADING_ZEROS_IN_NUMERIC_LITERALS)
+		l.reportLexerError(common.ERROR_LEADING_ZEROS_IN_NUMERIC_LITERALS)
 	}
 
 	return l.getLiteral(common.DECIMAL_INTEGER_LITERAL_TOKEN)
@@ -696,7 +696,7 @@ func (l *Lexer) processDecimalFloatLiteral() internal.STToken {
 		if !unicode.IsDigit(nextChar) {
 			// Make sure there is at least one digit after the dot
 			// e.g. 2., 2.e12
-			l.reportLexerError(ERROR_MISSING_DIGIT_AFTER_DOT)
+			l.reportLexerError(common.ERROR_MISSING_DIGIT_AFTER_DOT)
 		}
 	}
 
@@ -734,7 +734,7 @@ func (l *Lexer) processExponent(isHex bool) internal.STToken {
 
 	// Make sure at least one digit is present after the indicator
 	if !unicode.IsDigit(nextChar) {
-		l.reportLexerError(ERROR_MISSING_DIGIT_AFTER_EXPONENT_INDICATOR)
+		l.reportLexerError(common.ERROR_MISSING_DIGIT_AFTER_EXPONENT_INDICATOR)
 	}
 
 	for unicode.IsDigit(nextChar) {
@@ -754,7 +754,7 @@ func (l *Lexer) processExponent(isHex bool) internal.STToken {
 	}
 }
 
-func (l *Lexer) reportLexerError(errorCode DiagnosticErrorCode, args ...any) {
+func (l *Lexer) reportLexerError(errorCode common.DiagnosticErrorCode, args ...any) {
 	diagnostic := internal.CreateDiagnostic(&errorCode, args...)
 	l.context.diagnostics = append(l.context.diagnostics, diagnostic)
 }
@@ -857,7 +857,7 @@ func (l *Lexer) processHexLiteral() internal.STToken {
 		if !isHexDigit(reader.Peek()) {
 			// Make sure there is at least one hex-digit after the dot
 			// e.g. 0x., 0xAB.
-			l.reportLexerError(ERROR_MISSING_HEX_DIGIT_AFTER_DOT)
+			l.reportLexerError(common.ERROR_MISSING_HEX_DIGIT_AFTER_DOT)
 		}
 
 		nextChar = reader.Peek()
@@ -875,7 +875,7 @@ func (l *Lexer) processHexLiteral() internal.STToken {
 	case 'p':
 	case 'P':
 		if !containsHexDigit {
-			l.reportLexerError(ERROR_MISSING_HEX_NUMBER_AFTER_HEX_INDICATOR)
+			l.reportLexerError(common.ERROR_MISSING_HEX_NUMBER_AFTER_HEX_INDICATOR)
 		}
 		return l.processExponent(true)
 	default:
@@ -888,7 +888,7 @@ func (l *Lexer) processHexLiteral() internal.STToken {
 func (l *Lexer) getHexIntegerLiteral() internal.STToken {
 	lexeme := l.getLexeme()
 	if lexeme == "0x" || lexeme == "0X" {
-		l.reportLexerError(ERROR_MISSING_HEX_NUMBER_AFTER_HEX_INDICATOR)
+		l.reportLexerError(common.ERROR_MISSING_HEX_NUMBER_AFTER_HEX_INDICATOR)
 	}
 
 	return l.getLiteral(common.HEX_INTEGER_LITERAL_TOKEN)
@@ -901,7 +901,7 @@ func (l *Lexer) isHexIndicator(startChar rune, nextChar rune) bool {
 func (l *Lexer) processQuotedIdentifier() internal.STToken {
 	l.processIdentifierEnd()
 	if string(SINGLE_QUOTE) == l.getLexeme() {
-		l.reportLexerError(ERROR_INCOMPLETE_QUOTED_IDENTIFIER)
+		l.reportLexerError(common.ERROR_INCOMPLETE_QUOTED_IDENTIFIER)
 	}
 	return l.getIdentifierToken()
 }
@@ -1088,7 +1088,7 @@ func (l *Lexer) processStringLiteral() internal.STToken {
 		switch nextChar {
 		case NEWLINE:
 		case CARRIAGE_RETURN:
-			l.reportLexerError(ERROR_MISSING_DOUBLE_QUOTE)
+			l.reportLexerError(common.ERROR_MISSING_DOUBLE_QUOTE)
 			break
 		case DOUBLE_QUOTE:
 			reader.Advance()
@@ -1106,7 +1106,7 @@ func (l *Lexer) processStringLiteral() internal.STToken {
 				if reader.PeekN(2) == OPEN_BRACE {
 					l.processNumericEscape()
 				} else {
-					l.reportLexerError(ERROR_INVALID_STRING_NUMERIC_ESCAPE_SEQUENCE)
+					l.reportLexerError(common.ERROR_INVALID_STRING_NUMERIC_ESCAPE_SEQUENCE)
 					reader.AdvanceN(2)
 				}
 				continue
@@ -1159,7 +1159,7 @@ func (l *Lexer) processDot() internal.STToken {
 		return l.getSyntaxToken(common.DOT_LT_TOKEN)
 	}
 
-	if l.context.mode != IMPORT_MODE && unicode.IsDigit(nextChar) {
+	if l.context.mode != PARSER_MODE_IMPORT_MODE && unicode.IsDigit(nextChar) {
 		return l.processDecimalFloatLiteral()
 	}
 	return l.getSyntaxToken(common.DOT_TOKEN)
@@ -1281,14 +1281,14 @@ func (l *Lexer) readTokenInBracedContentInInterpolation() internal.STToken {
 	nextChar := reader.Peek()
 	switch nextChar {
 	case OPEN_BRACE:
-		l.StartMode(INTERPOLATION_BRACED_CONTENT)
+		l.StartMode(PARSER_MODE_INTERPOLATION_BRACED_CONTENT)
 		break
 	case CLOSE_BRACE:
 		l.EndMode()
 		break
 	case BACKTICK:
 		// Recursively end backtick string related contexts
-		for l.context.mode != DEFAULT_MODE {
+		for l.context.mode != PARSER_MODE_DEFAULT_MODE {
 			l.EndMode()
 		}
 		reader.Advance()
@@ -1311,7 +1311,7 @@ func (l *Lexer) readTokenInInterpolation() internal.STToken {
 		// open-brace and the corresponding close-brace. This way,
 		// those will not be mistaken as the close-brace of the
 		// interpolation end.
-		l.StartMode(INTERPOLATION_BRACED_CONTENT)
+		l.StartMode(PARSER_MODE_INTERPOLATION_BRACED_CONTENT)
 		return l.readToken()
 	case CLOSE_BRACE:
 		// Close-brace in the interpolation mode definitely means its
@@ -1357,7 +1357,7 @@ func (l *Lexer) readRegExpTemplateToken() internal.STToken {
 	case DOLLAR:
 		if reader.PeekN(1) == OPEN_BRACE {
 			// Switch to interpolation mode. Then the next token will be read in that mode.
-			l.StartMode(INTERPOLATION)
+			l.StartMode(PARSER_MODE_INTERPOLATION)
 			reader.AdvanceN(2)
 
 			return l.getSyntaxToken(common.INTERPOLATION_START_TOKEN)
@@ -1419,7 +1419,7 @@ func (l *Lexer) readPromptToken() internal.STToken {
 
 	if nextChar == DOLLAR && reader.PeekN(1) == OPEN_BRACE {
 		// Switch to interpolation mode. Then the next token will be read in that mode.
-		l.StartMode(INTERPOLATION)
+		l.StartMode(PARSER_MODE_INTERPOLATION)
 		reader.AdvanceN(2)
 
 		return l.getSyntaxToken(common.INTERPOLATION_START_TOKEN)
@@ -1461,7 +1461,7 @@ func (l *Lexer) readTemplateToken() internal.STToken {
 
 	if nextChar == DOLLAR && reader.PeekN(1) == OPEN_BRACE {
 		// Switch to interpolation mode. Then the next token will be read in that mode.
-		l.StartMode(INTERPOLATION)
+		l.StartMode(PARSER_MODE_INTERPOLATION)
 		reader.AdvanceN(2)
 
 		return l.getSyntaxToken(common.INTERPOLATION_START_TOKEN)
@@ -1483,47 +1483,47 @@ type ParserMode uint8
 
 const (
 	// Ballerina Parser
-	DEFAULT_MODE ParserMode = iota
-	IMPORT_MODE
-	TEMPLATE
-	INTERPOLATION
-	INTERPOLATION_BRACED_CONTENT
-	REGEXP
-	PROMPT
+	PARSER_MODE_DEFAULT_MODE ParserMode = iota
+	PARSER_MODE_IMPORT_MODE
+	PARSER_MODE_TEMPLATE
+	PARSER_MODE_INTERPOLATION
+	PARSER_MODE_INTERPOLATION_BRACED_CONTENT
+	PARSER_MODE_REGEXP
+	PARSER_MODE_PROMPT
 
 	// Documentation Parser
-	DOC_LINE_START_HASH
-	DOC_LINE_DIFFERENTIATOR
-	DOC_INTERNAL
-	DOC_PARAMETER
-	DOC_REFERENCE_TYPE
-	DOC_SINGLE_BACKTICK_CONTENT
-	DOC_DOUBLE_BACKTICK_CONTENT
-	DOC_TRIPLE_BACKTICK_CONTENT
-	DOC_CODE_REF_END
-	DOC_CODE_LINE_START_HASH
+	PARSER_MODE_DOC_LINE_START_HASH
+	PARSER_MODE_DOC_LINE_DIFFERENTIATOR
+	PARSER_MODE_DOC_INTERNAL
+	PARSER_MODE_DOC_PARAMETER
+	PARSER_MODE_DOC_REFERENCE_TYPE
+	PARSER_MODE_DOC_SINGLE_BACKTICK_CONTENT
+	PARSER_MODE_DOC_DOUBLE_BACKTICK_CONTENT
+	PARSER_MODE_DOC_TRIPLE_BACKTICK_CONTENT
+	PARSER_MODE_DOC_CODE_REF_END
+	PARSER_MODE_DOC_CODE_LINE_START_HASH
 
 	// XML Parser
-	XML_CONTENT
-	XML_ELEMENT_START_TAG
-	XML_ELEMENT_END_TAG
-	XML_TEXT
-	XML_ATTRIBUTES
-	XML_COMMENT
-	XML_PI
-	XML_PI_DATA
-	XML_SINGLE_QUOTED_STRING
-	XML_DOUBLE_QUOTED_STRING
-	XML_CDATA_SECTION
+	PARSER_MODE_XML_CONTENT
+	PARSER_MODE_XML_ELEMENT_START_TAG
+	PARSER_MODE_XML_ELEMENT_END_TAG
+	PARSER_MODE_XML_TEXT
+	PARSER_MODE_XML_ATTRIBUTES
+	PARSER_MODE_XML_COMMENT
+	PARSER_MODE_XML_PI
+	PARSER_MODE_XML_PI_DATA
+	PARSER_MODE_XML_SINGLE_QUOTED_STRING
+	PARSER_MODE_XML_DOUBLE_QUOTED_STRING
+	PARSER_MODE_XML_CDATA_SECTION
 
 	// RegExp Parser
-	RE_DISJUNCTION
-	RE_FLAG_EXPRESSION
-	RE_UNICODE_PROP_ESCAPE
-	RE_UNICODE_PROPERTY_VALUE
-	RE_ESCAPE
-	RE_CHAR_CLASS
-	RE_QUOTE_ESCAPE
+	PARSER_MODE_RE_DISJUNCTION
+	PARSER_MODE_RE_FLAG_EXPRESSION
+	PARSER_MODE_RE_UNICODE_PROP_ESCAPE
+	PARSER_MODE_RE_UNICODE_PROPERTY_VALUE
+	PARSER_MODE_RE_ESCAPE
+	PARSER_MODE_RE_CHAR_CLASS
+	PARSER_MODE_RE_QUOTE_ESCAPE
 )
 
 const (
