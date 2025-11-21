@@ -453,8 +453,8 @@ func (t STTokenBase) LastToken() STToken {
 
 func (t STTokenBase) HasTrailingNewLine() bool {
 	stNodeList := t.trailingMinutiae.(*STNodeList)
-	for i := 0; i < stNodeList.size(); i++ {
-		if stNodeList.get(i).Kind() == common.END_OF_LINE_MINUTIAE {
+	for i := 0; i < stNodeList.Size(); i++ {
+		if stNodeList.Get(i).Kind() == common.END_OF_LINE_MINUTIAE {
 			return true
 		}
 	}
@@ -477,9 +477,13 @@ func (t STTokenBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
 	t.diagnostics = diagnostics
 }
 
-func (s *STNodeList) get(i int) STNode {
+func (s *STNodeList) Get(i int) STNode {
 	rangeCheck(i, s.bucketCount)
 	return s.childBuckets[i]
+}
+
+func (s *STNodeList) Size() int {
+	return s.bucketCount
 }
 
 func (s *STNodeList) add(node STNode) *STNodeList {
@@ -490,10 +494,6 @@ func (s *STNodeList) add(node STNode) *STNodeList {
 }
 
 func (s STNodeList) BucketCount() int {
-	return s.bucketCount
-}
-
-func (s *STNodeList) size() int {
 	return s.bucketCount
 }
 
@@ -713,6 +713,10 @@ func AddDiagnostic(node STNode, diagnosticCode diagnostics.DiagnosticCode, args 
 	return AddSyntaxDiagnostic(node, CreateDiagnostic(diagnosticCode, args...))
 }
 
+func CloneWithTrailingInvalidNodeMinutiaeWithoutDiagnostics(toClone STNode, invalidNode STNode) STNode {
+	return CloneWithTrailingInvalidNodeMinutiae(toClone, invalidNode, nil, nil)
+}
+
 func CloneWithTrailingInvalidNodeMinutiae(toClone STNode, invalidNode STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) STNode {
 	lastToken := toClone.LastToken()
 	lastTokenWithInvalidNodeMinutiae := CloneWithTrailingInvalidNodeMinutiae(lastToken,
@@ -726,4 +730,8 @@ func ToToken(node STNode) STToken {
 		panic("node is not a STToken")
 	}
 	return tok
+}
+
+func CreateEmptyNode() STNode {
+	return nil
 }

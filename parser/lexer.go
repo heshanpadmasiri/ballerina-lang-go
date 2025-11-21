@@ -272,10 +272,6 @@ func isUnicodeIdentifierChar(c rune) bool {
 	return unicode.IsLetter(c) || unicode.IsDigit(c) || c == '_'
 }
 
-func isHexDigit(c rune) bool {
-	return unicode.IsDigit(c) || ('a' <= c && c <= 'f') || ('A' <= c && c <= 'F')
-}
-
 func (l *Lexer) processNumericEscape() {
 	// Process '\'
 	reader := l.reader
