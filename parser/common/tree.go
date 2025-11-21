@@ -817,3 +817,7 @@ func (sk SyntaxKind) Tag() int {
 	}
 	panic("Unexpected syntax kind")
 }
+
+func (sk SyntaxKind) CompareTo(other SyntaxKind) int {
+	return int(sk) - int(other)
+}

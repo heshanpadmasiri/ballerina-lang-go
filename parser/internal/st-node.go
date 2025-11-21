@@ -55,12 +55,17 @@ type STNode interface {
 	setDiagnostics(diagnostics []STNodeDiagnostic)
 	ToSourceCode() string
 	writeTo(builder *strings.Builder)
+	addChildren(children ...STNode)
+	updateDiagnostics(children []STNode)
+	updateWidth(children []STNode)
 }
 
 type STToken interface {
 	STNode
 	Text() string
 	HasTrailingNewLine() bool
+	LeadingMinutiae() STNode
+	TrailingMinutiae() STNode
 }
 
 // Actual "base" types for AST nodes. We generate most of the actual nodes in st-node-gen.go.
@@ -166,13 +171,24 @@ func CreateInvalidTokenMinutiaeNode(token STToken) *STInvalidTokenMinutiaeNode {
 func CreateLiteralValueToken(kind common.SyntaxKind,
 	text string,
 	leadingTrivia STNode,
-	trailingTrivia STNode) STToken {
+	trailingTrivia STNode,
+) STToken {
+	return CreateLiteralValueTokenWithDiagnostics(kind, text, leadingTrivia, trailingTrivia, nil)
+}
+
+func CreateLiteralValueTokenWithDiagnostics(kind common.SyntaxKind,
+	text string,
+	leadingTrivia STNode,
+	trailingTrivia STNode,
+	diagnostics []STNodeDiagnostic,
+) STToken {
 	return &STLiteralValueToken{
 		STTokenBase: STTokenBase{
 			kind:             kind,
 			width:            uint16(len(text)),
 			leadingMinutiae:  leadingTrivia,
 			trailingMinutiae: trailingTrivia,
+			diagnostics:      diagnostics,
 		},
 		text: text,
 	}
@@ -186,16 +202,26 @@ func CreateDiagnostic(code diagnostics.DiagnosticCode, args ...any) STNodeDiagno
 }
 
 func CreateTokenFrom(kind common.SyntaxKind, leadingMinutiae STNode, trailingMinutiae STNode) STToken {
+	return CreateTokenWithDiagnostics(kind, leadingMinutiae, trailingMinutiae, nil)
+}
+
+func CreateTokenWithDiagnostics(kind common.SyntaxKind, leadingMinutiae STNode, trailingMinutiae STNode, diagnostics []STNodeDiagnostic) STToken {
 	width := uint16(len(kind.StrValue()))
 	return &STTokenBase{
 		kind:             kind,
 		width:            width,
 		leadingMinutiae:  leadingMinutiae,
 		trailingMinutiae: trailingMinutiae,
+		diagnostics:      diagnostics,
 	}
 }
 
-func CreateNodeList(nodes []STNode) STNodeList {
+// FIXME: remove this
+func CreateNodeListFromNodes(nodes ...STNode) STNodeList {
+	return CreateNodeList(nodes...)
+}
+
+func CreateNodeList(nodes ...STNode) STNodeList {
 	// Return shared empty instance for empty lists
 	if len(nodes) == 0 {
 		return *emptyNodeList
@@ -247,6 +273,12 @@ func CreateIdentifierToken(text string, leadingTrivia STNode, trailingTrivia STN
 	}
 }
 
+func CreateIdentifierTokenWithDiagnostics(text string, leadingTrivia STNode, trailingTrivia STNode, diagnostics []STNodeDiagnostic) STToken {
+	token := CreateIdentifierToken(text, leadingTrivia, trailingTrivia)
+	token.setDiagnostics(diagnostics)
+	return token
+}
+
 // findToken searches for a token in the child buckets.
 // Direction determines iteration order: forward searches from first to last child,
 // backward searches from last to first child.
@@ -283,6 +315,7 @@ func (n *STNodeBase) findToken(dir direction) STToken {
 	}
 	panic("failed to find last token")
 }
+
 func (n STNodeBase) FirstToken() STToken {
 	return n.findToken(forward)
 }
@@ -387,8 +420,103 @@ func (n STNodeBase) Tokens() []STToken {
 	return tokens
 }
 
+func (n STNodeBase) addChildren(children ...STNode) {
+	n.childBuckets = append(n.childBuckets, children...)
+	n.bucketCount = len(n.childBuckets)
+	n.updateDiagnostics(children)
+	n.updateWidth(children)
+}
+
+func (n STNodeBase) updateDiagnostics(children []STNode) {
+	for _, child := range children {
+		if !IsSTNodePresent(child) {
+			continue
+		}
+		if child.HasDiagnostics() {
+			n.flags = n.flags | HAS_DIAGNOSTIC
+			return
+		}
+	}
+}
+
+func (n STNodeBase) updateWidth(children []STNode) {
+	firstChildIndex := n.getFirstChildIndex(children)
+	if firstChildIndex == -1 {
+		return
+	}
+	lastChildIndex := n.getLastChildIndex(children)
+	if lastChildIndex == -1 {
+		return
+	}
+	firstChild := children[firstChildIndex]
+	lastChild := children[lastChildIndex]
+	if firstChildIndex == lastChildIndex {
+		n.width = firstChild.Width()
+		n.widthWithLeadingMinutiae = firstChild.WidthWithLeadingMinutiae()
+		n.widthWithTrailingMinutiae = firstChild.WidthWithTrailingMinutiae()
+		n.widthWithMinutiae = firstChild.WidthWithMinutiae()
+		return
+	}
+	n.width = firstChild.WidthWithTrailingMinutiae() + lastChild.WidthWithLeadingMinutiae()
+	n.widthWithLeadingMinutiae = firstChild.WidthWithMinutiae() + lastChild.WidthWithLeadingMinutiae()
+	n.widthWithTrailingMinutiae = firstChild.WidthWithTrailingMinutiae() + lastChild.WidthWithMinutiae()
+	n.widthWithMinutiae = firstChild.WidthWithMinutiae() + lastChild.WidthWithMinutiae()
+	n.updateWidthWithIndices(children, firstChildIndex, lastChildIndex)
+}
+
+func (n STNodeBase) updateWidthWithIndices(children []STNode, firstChildIndex int, lastChildIndex int) {
+	for i := firstChildIndex + 1; i < lastChildIndex; i++ {
+		child := children[i]
+		if !IsSTNodePresent(child) {
+			continue
+		}
+		n.width += child.WidthWithMinutiae()
+		n.widthWithLeadingMinutiae += child.WidthWithMinutiae()
+		n.widthWithTrailingMinutiae += child.WidthWithMinutiae()
+		n.widthWithMinutiae += child.WidthWithMinutiae()
+	}
+}
+
+func (n STNodeBase) getFirstChildIndex(children []STNode) int {
+	for i, child := range children {
+		if IsSTNodePresent(child) && child.WidthWithMinutiae() != 0 {
+			return i
+		}
+	}
+	return -1
+}
+
+func (n STNodeBase) getLastChildIndex(children []STNode) int {
+	for i := len(children) - 1; i >= 0; i-- {
+		if IsSTNodePresent(children[i]) && children[i].WidthWithMinutiae() != 0 {
+			return i
+		}
+	}
+	return -1
+}
+
 func (n STTokenBase) Kind() common.SyntaxKind {
 	return n.kind
+}
+
+func (n STTokenBase) LeadingMinutiae() STNode {
+	return n.leadingMinutiae
+}
+
+func (n STTokenBase) TrailingMinutiae() STNode {
+	return n.trailingMinutiae
+}
+
+func (n STTokenBase) addChildren(children ...STNode) {
+	panic("addChildren is not supported for STToken")
+}
+
+func (n STTokenBase) updateDiagnostics(children []STNode) {
+	panic("updateDiagnostics is not supported for STToken")
+}
+
+func (n STTokenBase) updateWidth(children []STNode) {
+	panic("updateWidth is not supported for STToken")
 }
 
 func (n STTokenBase) Diagnostics() []STNodeDiagnostic {
@@ -441,6 +569,10 @@ func (n STTokenBase) Tokens() []STToken {
 
 func (t STTokenBase) Text() string {
 	return t.kind.StrValue()
+}
+
+func (t STIdentifierToken) Text() string {
+	return t.text
 }
 
 func (t STTokenBase) FirstToken() STToken {
@@ -709,7 +841,7 @@ func CreateMissingToken(expectedKind common.SyntaxKind, diagnosticList []STNodeD
 	}
 }
 
-func AddDiagnostic(node STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) STNode {
+func AddDiagnostic[T STNode](node T, diagnosticCode diagnostics.DiagnosticCode, args ...any) T {
 	return AddSyntaxDiagnostic(node, CreateDiagnostic(diagnosticCode, args...))
 }
 
@@ -735,3 +867,2377 @@ func ToToken(node STNode) STToken {
 func CreateEmptyNode() STNode {
 	return nil
 }
+
+func CreateMarkdownDocumentationLineNode(kind common.SyntaxKind, hashToken STNode, documentElements STNode) STNode {
+	return createNodeAndAddChildren(&STMarkdownDocumentationLineNode{
+		STDocumentationNode: STNodeBase{
+			kind: kind,
+		},
+		HashToken:        hashToken,
+		DocumentElements: documentElements,
+	}, hashToken, documentElements)
+}
+
+func CreateMarkdownDocumentationNode(documentationLines STNodeList) STNode {
+	return createNodeAndAddChildren(&STMarkdownDocumentationNode{
+		STDocumentationNode: STNodeBase{
+			kind: common.MARKDOWN_DOCUMENTATION,
+		},
+		DocumentationLines: documentationLines,
+	}, documentationLines)
+}
+
+func CreateModulePartNode(imports STNode, members STNode, eofToken STNode) STNode {
+	return createNodeAndAddChildren(&STModulePart{
+		STNode: &STNodeBase{
+			kind: common.MODULE_PART,
+		},
+		Imports:  imports,
+		Members:  members,
+		EofToken: eofToken,
+	}, imports, members, eofToken)
+}
+
+func CreateMetadataNode(documentationString STNode, annotations STNode) STNode {
+	return createNodeAndAddChildren(&STMetadataNode{
+		STNode: &STNodeBase{
+			kind: common.METADATA,
+		},
+		DocumentationString: documentationString,
+		Annotations:         annotations,
+	}, documentationString, annotations)
+}
+
+func CreateAmbiguousCollectionNode(kind common.SyntaxKind, collectionStartToken STNode, members []STNode, collectionEndToken STNode) *STAmbiguousCollectionNode {
+	children := make([]STNode, 0, len(members)+2)
+	children = append(children, collectionStartToken)
+	children = append(children, members...)
+	children = append(children, collectionEndToken)
+	return createNodeAndAddChildren(&STAmbiguousCollectionNode{
+		STNodeBase: STNodeBase{
+			kind: kind,
+		},
+		CollectionStartToken: collectionStartToken,
+		CollectionEndToken:   collectionEndToken,
+		Members:              members,
+	}, children...)
+}
+
+func createNodeAndAddChildren[T STNode](base T, children ...STNode) T {
+	base.addChildren(children...)
+	return base
+}
+
+func UpdateAllNodesInNodeListWithDiagnostic(nodeList STNodeList, diagnosticCode diagnostics.DiagnosticCode) STNode {
+	newList := make([]STNode, nodeList.Size())
+	for i := 0; i < nodeList.Size(); i++ {
+		newList[i] = AddDiagnostic(nodeList.Get(i), diagnosticCode)
+	}
+	return CreateNodeList(newList...)
+}
+
+func CreateImportOrgNameNode(orgName STNode, slashToken STNode) STNode {
+	return createNodeAndAddChildren(&STImportOrgNameNode{
+		STNode: &STNodeBase{
+			kind: common.IMPORT_ORG_NAME,
+		},
+		OrgName:    orgName,
+		SlashToken: slashToken,
+	}, orgName, slashToken)
+}
+
+func CreateImportDeclarationNode(importKeyword STNode, orgName STNode, moduleName STNode, prefix STNode, semicolon STNode) STNode {
+	return createNodeAndAddChildren(&STImportDeclarationNode{
+		STNode: &STNodeBase{
+			kind: common.IMPORT_DECLARATION,
+		},
+		ImportKeyword: importKeyword,
+		OrgName:       orgName,
+		ModuleName:    moduleName,
+		Prefix:        prefix,
+		Semicolon:     semicolon,
+	}, importKeyword, orgName, moduleName, prefix, semicolon)
+}
+
+// FIXME:
+func CreateBuiltinSimpleNameReferenceNode(kind common.SyntaxKind, name STNode) STNode {
+	return createNodeAndAddChildren(&STBuiltinSimpleNameReferenceNode{
+		STNameReferenceNode: &STNodeBase{
+			kind: kind,
+		},
+		Name: name,
+	}, name)
+}
+
+func CreateImportPrefixNode(asKeyword STNode, prefix STNode) STNode {
+	return createNodeAndAddChildren(&STImportPrefixNode{
+		STNode: &STNodeBase{
+			kind: common.IMPORT_PREFIX,
+		},
+		AsKeyword: asKeyword,
+		Prefix:    prefix,
+	}, asKeyword, prefix)
+}
+
+func CreateSpecificFieldNode(readonlyKeyword STNode, fieldName STNode, colon STNode, valueExpr STNode) STNode {
+	return createNodeAndAddChildren(&STSpecificFieldNode{
+		STMappingFieldNode: &STNodeBase{
+			kind: common.SPECIFIC_FIELD,
+		},
+		ReadonlyKeyword: readonlyKeyword,
+		FieldName:       fieldName,
+		Colon:           colon,
+		ValueExpr:       valueExpr,
+	}, readonlyKeyword, fieldName, colon, valueExpr)
+}
+
+func CreateCaptureBindingPatternNode(variableName STNode) STNode {
+	return createNodeAndAddChildren(&STCaptureBindingPatternNode{
+		STBindingPatternNode: &STNodeBase{
+			kind: common.CAPTURE_BINDING_PATTERN,
+		},
+		VariableName: variableName,
+	}, variableName)
+}
+
+func CreateTypedBindingPatternNode(typeDescriptor STNode, bindingPattern STNode) STNode {
+	return createNodeAndAddChildren(&STTypedBindingPatternNode{
+		STNode: &STNodeBase{
+			kind: common.TYPED_BINDING_PATTERN,
+		},
+		TypeDescriptor: typeDescriptor,
+		BindingPattern: bindingPattern,
+	}, typeDescriptor, bindingPattern)
+}
+
+func CreateSimpleNameReferenceNode(name STNode) STNode {
+	return createNodeAndAddChildren(&STSimpleNameReferenceNode{
+		STNameReferenceNode: STNodeBase{
+			kind: common.SIMPLE_NAME_REFERENCE,
+		},
+		Name: name,
+	}, name)
+}
+
+func CreateFieldBindingPatternFullNode(variableName STNode, colon STNode, bindingPattern STNode) STNode {
+	return createNodeAndAddChildren(&STFieldBindingPatternFullNode{
+		STFieldBindingPatternNode: &STNodeBase{
+			kind: common.FIELD_BINDING_PATTERN,
+		},
+		VariableName:   variableName,
+		Colon:          colon,
+		BindingPattern: bindingPattern,
+	}, variableName, colon, bindingPattern)
+}
+
+func CreateRestBindingPatternNode(ellipsisToken STNode, variableName STNode) STNode {
+	return createNodeAndAddChildren(&STRestBindingPatternNode{
+		STBindingPatternNode: &STNodeBase{
+			kind: common.REST_BINDING_PATTERN,
+		},
+		EllipsisToken: ellipsisToken,
+		VariableName:  variableName,
+	}, ellipsisToken, variableName)
+}
+
+func CreateSpreadFieldNode(ellipsis STNode, valueExpr STNode) STNode {
+	return createNodeAndAddChildren(&STSpreadFieldNode{
+		STMappingFieldNode: &STNodeBase{
+			kind: common.SPREAD_FIELD,
+		},
+		Ellipsis:  ellipsis,
+		ValueExpr: valueExpr,
+	}, ellipsis, valueExpr)
+}
+
+func CreateSingletonTypeDescriptorNode(simpleContExprNode STNode) STNode {
+	return createNodeAndAddChildren(&STSingletonTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.SINGLETON_TYPE_DESC,
+		},
+		SimpleContExprNode: simpleContExprNode,
+	}, simpleContExprNode)
+}
+
+func CreateListConstructorExpressionNode(openBracket STNode, expressions STNode, closeBracket STNode) STNode {
+	return createNodeAndAddChildren(&STListConstructorExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.LIST_CONSTRUCTOR,
+		},
+		OpenBracket:  openBracket,
+		Expressions:  expressions,
+		CloseBracket: closeBracket,
+	}, openBracket, expressions, closeBracket)
+}
+
+func CreateListBindingPatternNode(openBracket STNode, bindingPatterns STNode, closeBracket STNode) STNode {
+	return createNodeAndAddChildren(&STListBindingPatternNode{
+		STBindingPatternNode: &STNodeBase{
+			kind: common.LIST_BINDING_PATTERN,
+		},
+		OpenBracket:     openBracket,
+		BindingPatterns: bindingPatterns,
+		CloseBracket:    closeBracket,
+	}, openBracket, bindingPatterns, closeBracket)
+}
+
+func CreateInferredTypedescDefaultNode(ltToken STNode, gtToken STNode) STNode {
+	return createNodeAndAddChildren(&STInferredTypedescDefaultNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.INFERRED_TYPEDESC_DEFAULT,
+		},
+		LtToken: ltToken,
+		GtToken: gtToken,
+	}, ltToken, gtToken)
+}
+
+func CreateBinaryExpressionNode(kind common.SyntaxKind, lhsExpr STNode, operator STNode, rhsExpr STNode) STNode {
+	return createNodeAndAddChildren(&STBinaryExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: kind,
+		},
+		LhsExpr:  lhsExpr,
+		Operator: operator,
+		RhsExpr:  rhsExpr,
+	}, lhsExpr, operator, rhsExpr)
+}
+
+func CreateFieldAccessExpressionNode(expression STNode, dotToken STNode, fieldName STNode) STNode {
+	return createNodeAndAddChildren(&STFieldAccessExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.FIELD_ACCESS,
+		},
+		Expression: expression,
+		DotToken:   dotToken,
+		FieldName:  fieldName,
+	}, expression, dotToken, fieldName)
+}
+
+func CreateIndexedExpressionNode(containerExpression STNode, openBracket STNode, keyExpression STNode, closeBracket STNode) STNode {
+	return createNodeAndAddChildren(&STIndexedExpressionNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.INDEXED_EXPRESSION,
+		},
+		ContainerExpression: containerExpression,
+		OpenBracket:         openBracket,
+		KeyExpression:       keyExpression,
+		CloseBracket:        closeBracket,
+	}, containerExpression, openBracket, keyExpression, closeBracket)
+}
+
+func CreateTypeTestExpressionNode(expression STNode, isKeyword STNode, typeDescriptor STNode) STNode {
+	return createNodeAndAddChildren(&STTypeTestExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.TYPE_TEST_EXPRESSION,
+		},
+		Expression:     expression,
+		IsKeyword:      isKeyword,
+		TypeDescriptor: typeDescriptor,
+	}, expression, isKeyword, typeDescriptor)
+}
+
+func CreateConditionalExpressionNode(lhsExpression STNode, questionMarkToken STNode, middleExpression STNode, colonToken STNode, endExpression STNode) STNode {
+	return createNodeAndAddChildren(&STConditionalExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.CONDITIONAL_EXPRESSION,
+		},
+		LhsExpression:     lhsExpression,
+		QuestionMarkToken: questionMarkToken,
+		MiddleExpression:  middleExpression,
+		ColonToken:        colonToken,
+		EndExpression:     endExpression,
+	}, lhsExpression, questionMarkToken, middleExpression, colonToken, endExpression)
+}
+
+func CreateRemoteMethodCallActionNode(expression STNode, rightArrowToken STNode, methodName STNode, openParenToken STNode, arguments STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STRemoteMethodCallActionNode{
+		STActionNode: &STNodeBase{
+			kind: common.REMOTE_METHOD_CALL_ACTION,
+		},
+		Expression:      expression,
+		RightArrowToken: rightArrowToken,
+		MethodName:      methodName,
+		OpenParenToken:  openParenToken,
+		Arguments:       arguments,
+		CloseParenToken: closeParenToken,
+	}, expression, rightArrowToken, methodName, openParenToken, arguments, closeParenToken)
+}
+
+func CreateAsyncSendActionNode(expression STNode, rightArrowToken STNode, peerWorker STNode) STNode {
+	return createNodeAndAddChildren(&STAsyncSendActionNode{
+		STActionNode: &STNodeBase{
+			kind: common.ASYNC_SEND_ACTION,
+		},
+		Expression:      expression,
+		RightArrowToken: rightArrowToken,
+		PeerWorker:      peerWorker,
+	}, expression, rightArrowToken, peerWorker)
+}
+
+func CreateFunctionCallExpressionNode(functionName STNode, openParenToken STNode, arguments STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STFunctionCallExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.FUNCTION_CALL,
+		},
+		FunctionName:    functionName,
+		OpenParenToken:  openParenToken,
+		Arguments:       arguments,
+		CloseParenToken: closeParenToken,
+	}, functionName, openParenToken, arguments, closeParenToken)
+}
+
+func CreateArrayTypeDescriptorNode(memberTypeDesc STNode, dimensions STNode) STNode {
+	return createNodeAndAddChildren(&STArrayTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.ARRAY_TYPE_DESC,
+		},
+		MemberTypeDesc: memberTypeDesc,
+		Dimensions:     dimensions,
+	}, memberTypeDesc, dimensions)
+}
+
+func CreateOptionalTypeDescriptorNode(typeDescriptor STNode, questionMarkToken STNode) STNode {
+	return createNodeAndAddChildren(&STOptionalTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.OPTIONAL_TYPE_DESC,
+		},
+		TypeDescriptor:    typeDescriptor,
+		QuestionMarkToken: questionMarkToken,
+	}, typeDescriptor, questionMarkToken)
+}
+
+func CreateMemberTypeDescriptorNode(annotations STNode, typeDescriptor STNode) STNode {
+	return createNodeAndAddChildren(&STMemberTypeDescriptorNode{
+		STNode: &STNodeBase{
+			kind: common.MEMBER_TYPE_DESC,
+		},
+		Annotations:    annotations,
+		TypeDescriptor: typeDescriptor,
+	}, annotations, typeDescriptor)
+}
+
+func CreateNilTypeDescriptorNode(openParenToken STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STNilTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.NIL_TYPE_DESC,
+		},
+		OpenParenToken:  openParenToken,
+		CloseParenToken: closeParenToken,
+	}, openParenToken, closeParenToken)
+}
+
+func CreateParenthesisedTypeDescriptorNode(openParenToken STNode, typedesc STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STParenthesisedTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.PARENTHESISED_TYPE_DESC,
+		},
+		OpenParenToken:  openParenToken,
+		Typedesc:        typedesc,
+		CloseParenToken: closeParenToken,
+	}, openParenToken, typedesc, closeParenToken)
+}
+
+func CreateTupleTypeDescriptorNode(openBracket STNode, memberTypeDesc STNode, closeBracket STNode) STNode {
+	return createNodeAndAddChildren(&STTupleTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.TUPLE_TYPE_DESC,
+		},
+		OpenBracketToken:  openBracket,
+		MemberTypeDesc:    memberTypeDesc,
+		CloseBracketToken: closeBracket,
+	}, openBracket, memberTypeDesc, closeBracket)
+}
+
+func CreateMappingBindingPatternNode(openBrace STNode, fieldBindingPatterns STNode, closeBrace STNode) STNode {
+	return createNodeAndAddChildren(&STMappingBindingPatternNode{
+		STBindingPatternNode: &STNodeBase{
+			kind: common.MAPPING_BINDING_PATTERN,
+		},
+		OpenBrace:            openBrace,
+		FieldBindingPatterns: fieldBindingPatterns,
+		CloseBrace:           closeBrace,
+	}, openBrace, fieldBindingPatterns, closeBrace)
+}
+
+func CreateFieldBindingPatternVarnameNode(variableName STNode) STNode {
+	return createNodeAndAddChildren(&STFieldBindingPatternVarnameNode{
+		STFieldBindingPatternNode: &STNodeBase{
+			kind: common.FIELD_BINDING_PATTERN,
+		},
+		VariableName: variableName,
+	}, variableName)
+}
+
+func CreateErrorBindingPatternNode(errorKeyword STNode, typeReference STNode, openParenthesis STNode, argListBindingPatterns STNode, closeParenthesis STNode) STNode {
+	return createNodeAndAddChildren(&STErrorBindingPatternNode{
+		STBindingPatternNode: &STNodeBase{
+			kind: common.ERROR_BINDING_PATTERN,
+		},
+		ErrorKeyword:           errorKeyword,
+		TypeReference:          typeReference,
+		OpenParenthesis:        openParenthesis,
+		ArgListBindingPatterns: argListBindingPatterns,
+		CloseParenthesis:       closeParenthesis,
+	}, errorKeyword, typeReference, openParenthesis, argListBindingPatterns, closeParenthesis)
+}
+
+func CreateNamedArgBindingPatternNode(argName STNode, equalsToken STNode, bindingPattern STNode) STNode {
+	return createNodeAndAddChildren(&STNamedArgBindingPatternNode{
+		STBindingPatternNode: &STNodeBase{
+			kind: common.NAMED_ARG_BINDING_PATTERN,
+		},
+		ArgName:        argName,
+		EqualsToken:    equalsToken,
+		BindingPattern: bindingPattern,
+	}, argName, equalsToken, bindingPattern)
+}
+
+func CreateRestParameterNode(annotations STNode, typeName STNode, ellipsisToken STNode, paramName STNode) STNode {
+	return createNodeAndAddChildren(&STRestParameterNode{
+		STParameterNode: &STNodeBase{
+			kind: common.REST_PARAM,
+		},
+		Annotations:   annotations,
+		TypeName:      typeName,
+		EllipsisToken: ellipsisToken,
+		ParamName:     paramName,
+	}, annotations, typeName, ellipsisToken, paramName)
+}
+
+func CreateIncludedRecordParameterNode(annotations STNode, asteriskToken STNode, typeName STNode, paramName STNode) STNode {
+	return createNodeAndAddChildren(&STIncludedRecordParameterNode{
+		STParameterNode: &STNodeBase{
+			kind: common.INCLUDED_RECORD_PARAM,
+		},
+		Annotations:   annotations,
+		AsteriskToken: asteriskToken,
+		TypeName:      typeName,
+		ParamName:     paramName,
+	}, annotations, asteriskToken, typeName, paramName)
+}
+
+func CreateRequiredParameterNode(annotations STNode, typeName STNode, paramName STNode) STNode {
+	return createNodeAndAddChildren(&STRequiredParameterNode{
+		STParameterNode: &STNodeBase{
+			kind: common.REQUIRED_PARAM,
+		},
+		Annotations: annotations,
+		TypeName:    typeName,
+		ParamName:   paramName,
+	}, annotations, typeName, paramName)
+}
+
+func CreateDefaultableParameterNode(annotations STNode, typeName STNode, paramName STNode, equalsToken STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STDefaultableParameterNode{
+		STParameterNode: &STNodeBase{
+			kind: common.DEFAULTABLE_PARAM,
+		},
+		Annotations: annotations,
+		TypeName:    typeName,
+		ParamName:   paramName,
+		EqualsToken: equalsToken,
+		Expression:  expression,
+	}, annotations, typeName, paramName, equalsToken, expression)
+}
+
+func CreateReturnTypeDescriptorNode(returnsKeyword STNode, annotations STNode, typeNode STNode) STNode {
+	return createNodeAndAddChildren(&STReturnTypeDescriptorNode{
+		STNode: &STNodeBase{
+			kind: common.RETURN_TYPE_DESCRIPTOR,
+		},
+		ReturnsKeyword: returnsKeyword,
+		Annotations:    annotations,
+		Type:           typeNode,
+	}, returnsKeyword, annotations, typeNode)
+}
+
+func CreateFunctionDefinitionNode(kind common.SyntaxKind, metadata STNode, qualifierList STNode, functionKeyword STNode, functionName STNode, relativeResourcePath STNode, functionSignature STNode, functionBody STNode) STNode {
+	return createNodeAndAddChildren(&STFunctionDefinition{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: kind,
+		},
+		Metadata:             metadata,
+		QualifierList:        qualifierList,
+		FunctionKeyword:      functionKeyword,
+		FunctionName:         functionName,
+		RelativeResourcePath: relativeResourcePath,
+		FunctionSignature:    functionSignature,
+		FunctionBody:         functionBody,
+	}, metadata, qualifierList, functionKeyword, functionName, relativeResourcePath, functionSignature, functionBody)
+}
+
+func CreateMethodDeclarationNode(kind common.SyntaxKind, metadata STNode, qualifierList STNode, functionKeyword STNode, methodName STNode, relativeResourcePath STNode, methodSignature STNode, semicolon STNode) STNode {
+	return createNodeAndAddChildren(&STMethodDeclarationNode{
+		STNode: &STNodeBase{
+			kind: kind,
+		},
+		Metadata:             metadata,
+		QualifierList:        qualifierList,
+		FunctionKeyword:      functionKeyword,
+		MethodName:           methodName,
+		RelativeResourcePath: relativeResourcePath,
+		MethodSignature:      methodSignature,
+		Semicolon:            semicolon,
+	}, metadata, qualifierList, functionKeyword, methodName, relativeResourcePath, methodSignature, semicolon)
+}
+
+func CreateFunctionSignatureNode(openParenToken STNode, parameters STNode, closeParenToken STNode, returnTypeDesc STNode) STNode {
+	return createNodeAndAddChildren(&STFunctionSignatureNode{
+		STNode: &STNodeBase{
+			kind: common.FUNCTION_SIGNATURE,
+		},
+		OpenParenToken:  openParenToken,
+		Parameters:      parameters,
+		CloseParenToken: closeParenToken,
+		ReturnTypeDesc:  returnTypeDesc,
+	}, openParenToken, parameters, closeParenToken, returnTypeDesc)
+}
+
+func CreateFunctionTypeDescriptorNode(qualifierList STNode, functionKeyword STNode, functionSignature STNode) STNode {
+	return createNodeAndAddChildren(&STFunctionTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.FUNCTION_TYPE_DESC,
+		},
+		QualifierList:     qualifierList,
+		FunctionKeyword:   functionKeyword,
+		FunctionSignature: functionSignature,
+	}, qualifierList, functionKeyword, functionSignature)
+}
+
+func CreateDistinctTypeDescriptorNode(distinctKeyword STNode, typeDescriptor STNode) STNode {
+	return createNodeAndAddChildren(&STDistinctTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.DISTINCT_TYPE_DESC,
+		},
+		DistinctKeyword: distinctKeyword,
+		TypeDescriptor:  typeDescriptor,
+	}, distinctKeyword, typeDescriptor)
+}
+
+func CreateNamedWorkerDeclarator(workerInitStatements STNode, namedWorkerDeclarations STNode) STNode {
+	return createNodeAndAddChildren(&STNamedWorkerDeclarator{
+		STNode: &STNodeBase{
+			kind: common.NAMED_WORKER_DECLARATOR,
+		},
+		WorkerInitStatements:    workerInitStatements,
+		NamedWorkerDeclarations: namedWorkerDeclarations,
+	}, workerInitStatements, namedWorkerDeclarations)
+}
+
+func CreateFunctionBodyBlockNode(openBraceToken STNode, namedWorkerDeclarator STNode, statements STNode, closeBraceToken STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STFunctionBodyBlockNode{
+		STFunctionBodyNode: &STNodeBase{
+			kind: common.FUNCTION_BODY_BLOCK,
+		},
+		OpenBraceToken:        openBraceToken,
+		NamedWorkerDeclarator: namedWorkerDeclarator,
+		Statements:            statements,
+		CloseBraceToken:       closeBraceToken,
+		SemicolonToken:        semicolonToken,
+	}, openBraceToken, namedWorkerDeclarator, statements, closeBraceToken, semicolonToken)
+}
+
+func CreateExternalFunctionBodyNode(equalsToken STNode, annotations STNode, externalKeyword STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STExternalFunctionBodyNode{
+		STFunctionBodyNode: &STNodeBase{
+			kind: common.EXTERNAL_FUNCTION_BODY,
+		},
+		EqualsToken:     equalsToken,
+		Annotations:     annotations,
+		ExternalKeyword: externalKeyword,
+		SemicolonToken:  semicolonToken,
+	}, equalsToken, annotations, externalKeyword, semicolonToken)
+}
+
+func CreateRecordTypeDescriptorNode(recordKeyword STNode, bodyStartDelimiter STNode, fields STNode, recordRestDescriptor STNode, bodyEndDelimiter STNode) STNode {
+	return createNodeAndAddChildren(&STRecordTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.RECORD_TYPE_DESC,
+		},
+		RecordKeyword:        recordKeyword,
+		BodyStartDelimiter:   bodyStartDelimiter,
+		Fields:               fields,
+		RecordRestDescriptor: recordRestDescriptor,
+		BodyEndDelimiter:     bodyEndDelimiter,
+	}, recordKeyword, bodyStartDelimiter, fields, recordRestDescriptor, bodyEndDelimiter)
+}
+
+func CreateClassDefinitionNode(metadata STNode, visibilityQualifier STNode, classTypeQualifiers STNode, classKeyword STNode, className STNode, openBrace STNode, members STNode, closeBrace STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STClassDefinitionNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.CLASS_DEFINITION,
+		},
+		Metadata:            metadata,
+		VisibilityQualifier: visibilityQualifier,
+		ClassTypeQualifiers: classTypeQualifiers,
+		ClassKeyword:        classKeyword,
+		ClassName:           className,
+		OpenBrace:           openBrace,
+		Members:             members,
+		CloseBrace:          closeBrace,
+		SemicolonToken:      semicolonToken,
+	}, metadata, visibilityQualifier, classTypeQualifiers, classKeyword, className, openBrace, members, closeBrace, semicolonToken)
+}
+
+func CreateTypeDefinitionNode(metadata STNode, visibilityQualifier STNode, typeKeyword STNode, typeName STNode, typeDescriptor STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STTypeDefinitionNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.TYPE_DEFINITION,
+		},
+		Metadata:            metadata,
+		VisibilityQualifier: visibilityQualifier,
+		TypeKeyword:         typeKeyword,
+		TypeName:            typeName,
+		TypeDescriptor:      typeDescriptor,
+		SemicolonToken:      semicolonToken,
+	}, metadata, visibilityQualifier, typeKeyword, typeName, typeDescriptor, semicolonToken)
+}
+
+func CreateTypeReferenceNode(asteriskToken STNode, typeName STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STTypeReferenceNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.TYPE_REFERENCE,
+		},
+		AsteriskToken:  asteriskToken,
+		TypeName:       typeName,
+		SemicolonToken: semicolonToken,
+	}, asteriskToken, typeName, semicolonToken)
+}
+
+func CreateQualifiedNameReferenceNode(modulePrefix STNode, colon STNode, identifier STNode) STNode {
+	return createNodeAndAddChildren(&STQualifiedNameReferenceNode{
+		STNameReferenceNode: &STNodeBase{
+			kind: common.QUALIFIED_NAME_REFERENCE,
+		},
+		ModulePrefix: modulePrefix,
+		Colon:        colon,
+		Identifier:   identifier,
+	}, modulePrefix, colon, identifier)
+}
+
+func CreateObjectFieldNode(metadata STNode, visibilityQualifier STNode, qualifierList STNode, typeName STNode, fieldName STNode, equalsToken STNode, expression STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STObjectFieldNode{
+		STNode: &STNodeBase{
+			kind: common.OBJECT_FIELD,
+		},
+		Metadata:            metadata,
+		VisibilityQualifier: visibilityQualifier,
+		QualifierList:       qualifierList,
+		TypeName:            typeName,
+		FieldName:           fieldName,
+		EqualsToken:         equalsToken,
+		Expression:          expression,
+		SemicolonToken:      semicolonToken,
+	}, metadata, visibilityQualifier, qualifierList, typeName, fieldName, equalsToken, expression, semicolonToken)
+}
+
+func CreateWhereClauseNode(whereKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STWhereClauseNode{
+		STIntermediateClauseNode: &STNodeBase{
+			kind: common.WHERE_CLAUSE,
+		},
+		WhereKeyword: whereKeyword,
+		Expression:   expression,
+	}, whereKeyword, expression)
+}
+
+func CreateModuleVariableDeclarationNode(metadata STNode, visibilityQualifier STNode, qualifiers STNode, typedBindingPattern STNode, equalsToken STNode, initializer STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STModuleVariableDeclarationNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.MODULE_VAR_DECL,
+		},
+		Metadata:            metadata,
+		VisibilityQualifier: visibilityQualifier,
+		Qualifiers:          qualifiers,
+		TypedBindingPattern: typedBindingPattern,
+		EqualsToken:         equalsToken,
+		Initializer:         initializer,
+		SemicolonToken:      semicolonToken,
+	}, metadata, visibilityQualifier, qualifiers, typedBindingPattern, equalsToken, initializer, semicolonToken)
+}
+
+func CreateRequiredExpressionNode(questionMarkToken STNode) STNode {
+	return createNodeAndAddChildren(&STRequiredExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.REQUIRED_EXPRESSION,
+		},
+		QuestionMarkToken: questionMarkToken,
+	}, questionMarkToken)
+}
+
+func CreateVariableDeclarationNode(annotations STNode, finalKeyword STNode, typedBindingPattern STNode, equalsToken STNode, initializer STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STVariableDeclarationNode{
+		STStatementNode: &STNodeBase{
+			kind: common.LOCAL_VAR_DECL,
+		},
+		Annotations:         annotations,
+		FinalKeyword:        finalKeyword,
+		TypedBindingPattern: typedBindingPattern,
+		EqualsToken:         equalsToken,
+		Initializer:         initializer,
+		SemicolonToken:      semicolonToken,
+	}, annotations, finalKeyword, typedBindingPattern, equalsToken, initializer, semicolonToken)
+}
+
+func CreateRecordRestDescriptorNode(typeName STNode, ellipsisToken STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STRecordRestDescriptorNode{
+		STNode: &STNodeBase{
+			kind: common.RECORD_REST_TYPE,
+		},
+		TypeName:       typeName,
+		EllipsisToken:  ellipsisToken,
+		SemicolonToken: semicolonToken,
+	}, typeName, ellipsisToken, semicolonToken)
+}
+
+func CreateRecordFieldNode(metadata STNode, readonlyKeyword STNode, typeName STNode, fieldName STNode, questionMarkToken STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STRecordFieldNode{
+		STNode: &STNodeBase{
+			kind: common.RECORD_FIELD,
+		},
+		Metadata:          metadata,
+		ReadonlyKeyword:   readonlyKeyword,
+		TypeName:          typeName,
+		FieldName:         fieldName,
+		QuestionMarkToken: questionMarkToken,
+		SemicolonToken:    semicolonToken,
+	}, metadata, readonlyKeyword, typeName, fieldName, questionMarkToken, semicolonToken)
+}
+
+func CreateRecordFieldWithDefaultValueNode(metadata STNode, readonlyKeyword STNode, typeName STNode, fieldName STNode, equalsToken STNode, expression STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STRecordFieldWithDefaultValueNode{
+		STNode: &STNodeBase{
+			kind: common.RECORD_FIELD_WITH_DEFAULT_VALUE,
+		},
+		Metadata:        metadata,
+		ReadonlyKeyword: readonlyKeyword,
+		TypeName:        typeName,
+		FieldName:       fieldName,
+		EqualsToken:     equalsToken,
+		Expression:      expression,
+		SemicolonToken:  semicolonToken,
+	}, metadata, readonlyKeyword, typeName, fieldName, equalsToken, expression, semicolonToken)
+}
+
+func CreateAssignmentStatementNode(varRef STNode, equalsToken STNode, expression STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STAssignmentStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.ASSIGNMENT_STATEMENT,
+		},
+		VarRef:         varRef,
+		EqualsToken:    equalsToken,
+		Expression:     expression,
+		SemicolonToken: semicolonToken,
+	}, varRef, equalsToken, expression, semicolonToken)
+}
+
+func CreateNaturalExpressionNode(constKeyword STNode, naturalKeyword STNode, parenthesizedArgList STNode, openBraceToken STNode, prompt STNode, closeBraceToken STNode) STNode {
+	return createNodeAndAddChildren(&STNaturalExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.NATURAL_EXPRESSION,
+		},
+		ConstKeyword:         constKeyword,
+		NaturalKeyword:       naturalKeyword,
+		ParenthesizedArgList: parenthesizedArgList,
+		OpenBraceToken:       openBraceToken,
+		Prompt:               prompt,
+		CloseBraceToken:      closeBraceToken,
+	}, constKeyword, naturalKeyword, parenthesizedArgList, openBraceToken, prompt, closeBraceToken)
+}
+
+func CreateObjectConstructorExpressionNode(annotations STNode, objectTypeQualifiers STNode, objectKeyword STNode, typeReference STNode, openBraceToken STNode, members STNode, closeBraceToken STNode) STNode {
+	return createNodeAndAddChildren(&STObjectConstructorExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.OBJECT_CONSTRUCTOR,
+		},
+		Annotations:          annotations,
+		ObjectTypeQualifiers: objectTypeQualifiers,
+		ObjectKeyword:        objectKeyword,
+		TypeReference:        typeReference,
+		OpenBraceToken:       openBraceToken,
+		Members:              members,
+		CloseBraceToken:      closeBraceToken,
+	}, annotations, objectTypeQualifiers, objectKeyword, typeReference, openBraceToken, members, closeBraceToken)
+}
+
+func CreateExplicitNewExpressionNode(newKeyword STNode, typeDescriptor STNode, parenthesizedArgList STNode) STNode {
+	return createNodeAndAddChildren(&STExplicitNewExpressionNode{
+		STNewExpressionNode: &STNodeBase{
+			kind: common.EXPLICIT_NEW_EXPRESSION,
+		},
+		NewKeyword:           newKeyword,
+		TypeDescriptor:       typeDescriptor,
+		ParenthesizedArgList: parenthesizedArgList,
+	}, newKeyword, typeDescriptor, parenthesizedArgList)
+}
+
+func CreateImplicitNewExpressionNode(newKeyword STNode, parenthesizedArgList STNode) STNode {
+	return createNodeAndAddChildren(&STImplicitNewExpressionNode{
+		STNewExpressionNode: &STNodeBase{
+			kind: common.IMPLICIT_NEW_EXPRESSION,
+		},
+		NewKeyword:           newKeyword,
+		ParenthesizedArgList: parenthesizedArgList,
+	}, newKeyword, parenthesizedArgList)
+}
+
+func CreateParenthesizedArgList(openParenToken STNode, arguments STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STParenthesizedArgList{
+		STNode: &STNodeBase{
+			kind: common.PARENTHESIZED_ARG_LIST,
+		},
+		OpenParenToken:  openParenToken,
+		Arguments:       arguments,
+		CloseParenToken: closeParenToken,
+	}, openParenToken, arguments, closeParenToken)
+}
+
+func CreateMethodCallExpressionNode(expression STNode, dotToken STNode, methodName STNode, openParenToken STNode, arguments STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STMethodCallExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.METHOD_CALL,
+		},
+		Expression:      expression,
+		DotToken:        dotToken,
+		MethodName:      methodName,
+		OpenParenToken:  openParenToken,
+		Arguments:       arguments,
+		CloseParenToken: closeParenToken,
+	}, expression, dotToken, methodName, openParenToken, arguments, closeParenToken)
+}
+
+func CreateBasicLiteralNode(kind common.SyntaxKind, literalToken STNode) STNode {
+	return createNodeAndAddChildren(&STBasicLiteralNode{
+		STExpressionNode: &STNodeBase{
+			kind: kind,
+		},
+		LiteralToken: literalToken,
+	}, literalToken)
+}
+
+func CreateErrorConstructorExpressionNode(errorKeyword STNode, typeReference STNode, openParenToken STNode, arguments STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STErrorConstructorExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.ERROR_CONSTRUCTOR,
+		},
+		ErrorKeyword:    errorKeyword,
+		TypeReference:   typeReference,
+		OpenParenToken:  openParenToken,
+		Arguments:       arguments,
+		CloseParenToken: closeParenToken,
+	}, errorKeyword, typeReference, openParenToken, arguments, closeParenToken)
+}
+
+func CreateXMLStepExpressionNode(expression STNode, xmlStepStart STNode, xmlStepExtend STNode) STNode {
+	return createNodeAndAddChildren(&STXMLStepExpressionNode{
+		STXMLNavigateExpressionNode: &STNodeBase{
+			kind: common.XML_STEP_EXPRESSION,
+		},
+		Expression:    expression,
+		XmlStepStart:  xmlStepStart,
+		XmlStepExtend: xmlStepExtend,
+	}, expression, xmlStepStart, xmlStepExtend)
+}
+
+func CreateBracedExpressionNode(kind common.SyntaxKind, openParen STNode, expression STNode, closeParen STNode) STNode {
+	return createNodeAndAddChildren(&STBracedExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: kind,
+		},
+		OpenParen:  openParen,
+		Expression: expression,
+		CloseParen: closeParen,
+	}, openParen, expression, closeParen)
+}
+
+func CreateNilLiteralNode(openParenToken STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STNilLiteralNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.NIL_LITERAL,
+		},
+		OpenParenToken:  openParenToken,
+		CloseParenToken: closeParenToken,
+	}, openParenToken, closeParenToken)
+}
+
+func CreateResourcePathParameterNode(kind common.SyntaxKind, openBracketToken STNode, annotations STNode, typeDescriptor STNode, ellipsisToken STNode, paramName STNode, closeBracketToken STNode) STNode {
+	return createNodeAndAddChildren(&STResourcePathParameterNode{
+		STNode: &STNodeBase{
+			kind: kind,
+		},
+		OpenBracketToken:  openBracketToken,
+		Annotations:       annotations,
+		TypeDescriptor:    typeDescriptor,
+		EllipsisToken:     ellipsisToken,
+		ParamName:         paramName,
+		CloseBracketToken: closeBracketToken,
+	}, openBracketToken, annotations, typeDescriptor, ellipsisToken, paramName, closeBracketToken)
+}
+
+func CreateObjectTypeDescriptorNode(objectTypeQualifiers STNode, objectKeyword STNode, openBrace STNode, members STNode, closeBrace STNode) STNode {
+	return createNodeAndAddChildren(&STObjectTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.OBJECT_TYPE_DESC,
+		},
+		ObjectTypeQualifiers: objectTypeQualifiers,
+		ObjectKeyword:        objectKeyword,
+		OpenBrace:            openBrace,
+		Members:              members,
+		CloseBrace:           closeBrace,
+	}, objectTypeQualifiers, objectKeyword, openBrace, members, closeBrace)
+}
+
+func CreatePositionalArgumentNode(expression STNode) STNode {
+	return createNodeAndAddChildren(&STPositionalArgumentNode{
+		STFunctionArgumentNode: &STNodeBase{
+			kind: common.POSITIONAL_ARG,
+		},
+		Expression: expression,
+	}, expression)
+}
+
+func CreateRestArgumentNode(ellipsis STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STRestArgumentNode{
+		STFunctionArgumentNode: &STNodeBase{
+			kind: common.REST_ARG,
+		},
+		Ellipsis:   ellipsis,
+		Expression: expression,
+	}, ellipsis, expression)
+}
+
+func CreateNamedArgumentNode(argumentName STNode, equalsToken STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STNamedArgumentNode{
+		STFunctionArgumentNode: &STNodeBase{
+			kind: common.NAMED_ARG,
+		},
+		ArgumentName: argumentName,
+		EqualsToken:  equalsToken,
+		Expression:   expression,
+	}, argumentName, equalsToken, expression)
+}
+
+func CreateIfElseStatementNode(ifKeyword STNode, condition STNode, ifBody STNode, elseBody STNode) STNode {
+	return createNodeAndAddChildren(&STIfElseStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.IF_ELSE_STATEMENT,
+		},
+		IfKeyword: ifKeyword,
+		Condition: condition,
+		IfBody:    ifBody,
+		ElseBody:  elseBody,
+	}, ifKeyword, condition, ifBody, elseBody)
+}
+
+func CreateTypeCastExpressionNode(ltToken STNode, typeCastParam STNode, gtToken STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STTypeCastExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.TYPE_CAST_EXPRESSION,
+		},
+		LtToken:       ltToken,
+		TypeCastParam: typeCastParam,
+		GtToken:       gtToken,
+		Expression:    expression,
+	}, ltToken, typeCastParam, gtToken, expression)
+}
+
+func CreateSpreadMemberNode(ellipsis STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STSpreadMemberNode{
+		STNode: &STNodeBase{
+			kind: common.SPREAD_MEMBER,
+		},
+		Ellipsis:   ellipsis,
+		Expression: expression,
+	}, ellipsis, expression)
+}
+
+func CreateForEachStatementNode(forEachKeyword STNode, typedBindingPattern STNode, inKeyword STNode, actionOrExpressionNode STNode, blockStatement STNode, onFailClause STNode) STNode {
+	return createNodeAndAddChildren(&STForEachStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.FOREACH_STATEMENT,
+		},
+		ForEachKeyword:         forEachKeyword,
+		TypedBindingPattern:    typedBindingPattern,
+		InKeyword:              inKeyword,
+		ActionOrExpressionNode: actionOrExpressionNode,
+		BlockStatement:         blockStatement,
+		OnFailClause:           onFailClause,
+	}, forEachKeyword, typedBindingPattern, inKeyword, actionOrExpressionNode, blockStatement, onFailClause)
+}
+
+func CreateTrapExpressionNode(kind common.SyntaxKind, trapKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STTrapExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: kind,
+		},
+		TrapKeyword: trapKeyword,
+		Expression:  expression,
+	}, trapKeyword, expression)
+}
+
+func CreateForkStatementNode(forkKeyword STNode, openBraceToken STNode, namedWorkerDeclarations STNode, closeBraceToken STNode) STNode {
+	return createNodeAndAddChildren(&STForkStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.FORK_STATEMENT,
+		},
+		ForkKeyword:             forkKeyword,
+		OpenBraceToken:          openBraceToken,
+		NamedWorkerDeclarations: namedWorkerDeclarations,
+		CloseBraceToken:         closeBraceToken,
+	}, forkKeyword, openBraceToken, namedWorkerDeclarations, closeBraceToken)
+}
+
+func CreateUnionTypeDescriptorNode(leftTypeDesc STNode, pipeToken STNode, rightTypeDesc STNode) STNode {
+	return createNodeAndAddChildren(&STUnionTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.UNION_TYPE_DESC,
+		},
+		LeftTypeDesc:  leftTypeDesc,
+		PipeToken:     pipeToken,
+		RightTypeDesc: rightTypeDesc,
+	}, leftTypeDesc, pipeToken, rightTypeDesc)
+}
+
+func CreateLockStatementNode(lockKeyword STNode, blockStatement STNode, onFailClause STNode) STNode {
+	return createNodeAndAddChildren(&STLockStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.LOCK_STATEMENT,
+		},
+		LockKeyword:    lockKeyword,
+		BlockStatement: blockStatement,
+		OnFailClause:   onFailClause,
+	}, lockKeyword, blockStatement, onFailClause)
+}
+
+func CreateNamedWorkerDeclarationNode(annotations STNode, transactionalKeyword STNode, workerKeyword STNode, workerName STNode, returnTypeDesc STNode, workerBody STNode, onFailClause STNode) STNode {
+	return createNodeAndAddChildren(&STNamedWorkerDeclarationNode{
+		STNode: &STNodeBase{
+			kind: common.NAMED_WORKER_DECLARATION,
+		},
+		Annotations:          annotations,
+		TransactionalKeyword: transactionalKeyword,
+		WorkerKeyword:        workerKeyword,
+		WorkerName:           workerName,
+		ReturnTypeDesc:       returnTypeDesc,
+		WorkerBody:           workerBody,
+		OnFailClause:         onFailClause,
+	}, annotations, transactionalKeyword, workerKeyword, workerName, returnTypeDesc, workerBody, onFailClause)
+}
+
+func CreateModuleXMLNamespaceDeclarationNode(xmlnsKeyword STNode, namespaceuri STNode, asKeyword STNode, namespacePrefix STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STModuleXMLNamespaceDeclarationNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.MODULE_XML_NAMESPACE_DECLARATION,
+		},
+		XmlnsKeyword:    xmlnsKeyword,
+		Namespaceuri:    namespaceuri,
+		AsKeyword:       asKeyword,
+		NamespacePrefix: namespacePrefix,
+		SemicolonToken:  semicolonToken,
+	}, xmlnsKeyword, namespaceuri, asKeyword, namespacePrefix, semicolonToken)
+}
+
+func CreateXMLNamespaceDeclarationNode(xmlnsKeyword STNode, namespaceuri STNode, asKeyword STNode, namespacePrefix STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STXMLNamespaceDeclarationNode{
+		STStatementNode: &STNodeBase{
+			kind: common.XML_NAMESPACE_DECLARATION,
+		},
+		XmlnsKeyword:    xmlnsKeyword,
+		Namespaceuri:    namespaceuri,
+		AsKeyword:       asKeyword,
+		NamespacePrefix: namespacePrefix,
+		SemicolonToken:  semicolonToken,
+	}, xmlnsKeyword, namespaceuri, asKeyword, namespacePrefix, semicolonToken)
+}
+
+func CreateAnnotationAttachPointNode(sourceKeyword STNode, identifiers STNode) STNode {
+	return createNodeAndAddChildren(&STAnnotationAttachPointNode{
+		STNode: &STNodeBase{
+			kind: common.ANNOTATION_ATTACH_POINT,
+		},
+		SourceKeyword: sourceKeyword,
+		Identifiers:   identifiers,
+	}, sourceKeyword, identifiers)
+}
+
+func CreateAnnotationDeclarationNode(metadata STNode, visibilityQualifier STNode, constKeyword STNode, annotationKeyword STNode, typeDescriptor STNode, annotationTag STNode, onKeyword STNode, attachPoints STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STAnnotationDeclarationNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.ANNOTATION_DECLARATION,
+		},
+		Metadata:            metadata,
+		VisibilityQualifier: visibilityQualifier,
+		ConstKeyword:        constKeyword,
+		AnnotationKeyword:   annotationKeyword,
+		TypeDescriptor:      typeDescriptor,
+		AnnotationTag:       annotationTag,
+		OnKeyword:           onKeyword,
+		AttachPoints:        attachPoints,
+		SemicolonToken:      semicolonToken,
+	}, metadata, visibilityQualifier, constKeyword, annotationKeyword, typeDescriptor, annotationTag, onKeyword, attachPoints, semicolonToken)
+}
+
+func CreateParameterizedTypeDescriptorNode(kind common.SyntaxKind, keywordToken STNode, typeParamNode STNode) STNode {
+	return createNodeAndAddChildren(&STParameterizedTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: kind,
+		},
+		KeywordToken:  keywordToken,
+		TypeParamNode: typeParamNode,
+	}, keywordToken, typeParamNode)
+}
+
+func CreateMapTypeDescriptorNode(mapKeywordToken STNode, mapTypeParamsNode STNode) STNode {
+	return createNodeAndAddChildren(&STMapTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.MAP_TYPE_DESC,
+		},
+		MapKeywordToken:   mapKeywordToken,
+		MapTypeParamsNode: mapTypeParamsNode,
+	}, mapKeywordToken, mapTypeParamsNode)
+}
+
+func CreateClientResourceAccessActionNode(expression STNode, rightArrowToken STNode, slashToken STNode, resourceAccessPath STNode, dotToken STNode, methodName STNode, arguments STNode) STNode {
+	return createNodeAndAddChildren(&STClientResourceAccessActionNode{
+		STActionNode: &STNodeBase{
+			kind: common.CLIENT_RESOURCE_ACCESS_ACTION,
+		},
+		Expression:         expression,
+		RightArrowToken:    rightArrowToken,
+		SlashToken:         slashToken,
+		ResourceAccessPath: resourceAccessPath,
+		DotToken:           dotToken,
+		MethodName:         methodName,
+		Arguments:          arguments,
+	}, expression, rightArrowToken, slashToken, resourceAccessPath, dotToken, methodName, arguments)
+}
+
+func CreateResourceAccessRestSegmentNode(openBracketToken STNode, ellipsisToken STNode, expression STNode, closeBracketToken STNode) STNode {
+	return createNodeAndAddChildren(&STResourceAccessRestSegmentNode{
+		STNode: &STNodeBase{
+			kind: common.RESOURCE_ACCESS_REST_SEGMENT,
+		},
+		OpenBracketToken:  openBracketToken,
+		EllipsisToken:     ellipsisToken,
+		Expression:        expression,
+		CloseBracketToken: closeBracketToken,
+	}, openBracketToken, ellipsisToken, expression, closeBracketToken)
+}
+
+func CreateComputedResourceAccessSegmentNode(openBracketToken STNode, expression STNode, closeBracketToken STNode) STNode {
+	return createNodeAndAddChildren(&STComputedResourceAccessSegmentNode{
+		STNode: &STNodeBase{
+			kind: common.COMPUTED_RESOURCE_ACCESS_SEGMENT,
+		},
+		OpenBracketToken:  openBracketToken,
+		Expression:        expression,
+		CloseBracketToken: closeBracketToken,
+	}, openBracketToken, expression, closeBracketToken)
+}
+
+func CreateExpressionStatementNode(kind common.SyntaxKind, expression STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STExpressionStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: kind,
+		},
+		Expression:     expression,
+		SemicolonToken: semicolonToken,
+	}, expression, semicolonToken)
+}
+
+func CreateLocalTypeDefinitionStatementNode(annotations STNode, typeKeyword STNode, typeName STNode, typeDescriptor STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STLocalTypeDefinitionStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.LOCAL_TYPE_DEFINITION_STATEMENT,
+		},
+		Annotations:    annotations,
+		TypeKeyword:    typeKeyword,
+		TypeName:       typeName,
+		TypeDescriptor: typeDescriptor,
+		SemicolonToken: semicolonToken,
+	}, annotations, typeKeyword, typeName, typeDescriptor, semicolonToken)
+}
+
+func CreateAnnotationNode(atToken STNode, annotReference STNode, annotValue STNode) STNode {
+	return createNodeAndAddChildren(&STAnnotationNode{
+		STNode: &STNodeBase{
+			kind: common.ANNOTATION,
+		},
+		AtToken:        atToken,
+		AnnotReference: annotReference,
+		AnnotValue:     annotValue,
+	}, atToken, annotReference, annotValue)
+}
+
+func CreateArrayDimensionNode(openBracket STNode, arrayLength STNode, closeBracket STNode) STNode {
+	return createNodeAndAddChildren(&STArrayDimensionNode{
+		STNode: &STNodeBase{
+			kind: common.ARRAY_DIMENSION,
+		},
+		OpenBracket:  openBracket,
+		ArrayLength:  arrayLength,
+		CloseBracket: closeBracket,
+	}, openBracket, arrayLength, closeBracket)
+}
+
+func CreateUnaryExpressionNode(unaryOperator STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STUnaryExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.UNARY_EXPRESSION,
+		},
+		UnaryOperator: unaryOperator,
+		Expression:    expression,
+	}, unaryOperator, expression)
+}
+
+func CreateTypeofExpressionNode(typeofKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STTypeofExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.TYPEOF_EXPRESSION,
+		},
+		TypeofKeyword: typeofKeyword,
+		Expression:    expression,
+	}, typeofKeyword, expression)
+}
+
+func CreateConstantDeclarationNode(metadata STNode, visibilityQualifier STNode, constKeyword STNode, typeDescriptor STNode, variableName STNode, equalsToken STNode, initializer STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STConstantDeclarationNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.CONST_DECLARATION,
+		},
+		Metadata:            metadata,
+		VisibilityQualifier: visibilityQualifier,
+		ConstKeyword:        constKeyword,
+		TypeDescriptor:      typeDescriptor,
+		VariableName:        variableName,
+		EqualsToken:         equalsToken,
+		Initializer:         initializer,
+		SemicolonToken:      semicolonToken,
+	}, metadata, visibilityQualifier, constKeyword, typeDescriptor, variableName, equalsToken, initializer, semicolonToken)
+}
+
+func CreateListenerDeclarationNode(metadata STNode, visibilityQualifier STNode, listenerKeyword STNode, typeDescriptor STNode, variableName STNode, equalsToken STNode, initializer STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STListenerDeclarationNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.LISTENER_DECLARATION,
+		},
+		Metadata:            metadata,
+		VisibilityQualifier: visibilityQualifier,
+		ListenerKeyword:     listenerKeyword,
+		TypeDescriptor:      typeDescriptor,
+		VariableName:        variableName,
+		EqualsToken:         equalsToken,
+		Initializer:         initializer,
+		SemicolonToken:      semicolonToken,
+	}, metadata, visibilityQualifier, listenerKeyword, typeDescriptor, variableName, equalsToken, initializer, semicolonToken)
+}
+
+func CreateServiceDeclarationNode(metadata STNode, qualifiers STNode, serviceKeyword STNode, typeDescriptor STNode, absoluteResourcePath STNode, onKeyword STNode, expressions STNode, openBraceToken STNode, members STNode, closeBraceToken STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STServiceDeclarationNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.SERVICE_DECLARATION,
+		},
+		Metadata:             metadata,
+		Qualifiers:           qualifiers,
+		ServiceKeyword:       serviceKeyword,
+		TypeDescriptor:       typeDescriptor,
+		AbsoluteResourcePath: absoluteResourcePath,
+		OnKeyword:            onKeyword,
+		Expressions:          expressions,
+		OpenBraceToken:       openBraceToken,
+		Members:              members,
+		CloseBraceToken:      closeBraceToken,
+		SemicolonToken:       semicolonToken,
+	}, metadata, qualifiers, serviceKeyword, typeDescriptor, absoluteResourcePath, onKeyword, expressions, openBraceToken, members, closeBraceToken, semicolonToken)
+}
+
+func CreateCompoundAssignmentStatementNode(lhsExpression STNode, binaryOperator STNode, equalsToken STNode, rhsExpression STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STCompoundAssignmentStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.COMPOUND_ASSIGNMENT_STATEMENT,
+		},
+		LhsExpression:  lhsExpression,
+		BinaryOperator: binaryOperator,
+		EqualsToken:    equalsToken,
+		RhsExpression:  rhsExpression,
+		SemicolonToken: semicolonToken,
+	}, lhsExpression, binaryOperator, equalsToken, rhsExpression, semicolonToken)
+}
+
+func CreateComputedNameFieldNode(openBracket STNode, fieldNameExpr STNode, closeBracket STNode, colonToken STNode, valueExpr STNode) STNode {
+	return createNodeAndAddChildren(&STComputedNameFieldNode{
+		STMappingFieldNode: &STNodeBase{
+			kind: common.COMPUTED_NAME_FIELD,
+		},
+		OpenBracket:   openBracket,
+		FieldNameExpr: fieldNameExpr,
+		CloseBracket:  closeBracket,
+		ColonToken:    colonToken,
+		ValueExpr:     valueExpr,
+	}, openBracket, fieldNameExpr, closeBracket, colonToken, valueExpr)
+}
+
+func CreateContinueStatementNode(continueToken STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STContinueStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.CONTINUE_STATEMENT,
+		},
+		ContinueToken:  continueToken,
+		SemicolonToken: semicolonToken,
+	}, continueToken, semicolonToken)
+}
+
+func CreateFailStatementNode(failKeyword STNode, expression STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STFailStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.FAIL_STATEMENT,
+		},
+		FailKeyword:    failKeyword,
+		Expression:     expression,
+		SemicolonToken: semicolonToken,
+	}, failKeyword, expression, semicolonToken)
+}
+
+func CreateBreakStatementNode(breakToken STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STBreakStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.BREAK_STATEMENT,
+		},
+		BreakToken:     breakToken,
+		SemicolonToken: semicolonToken,
+	}, breakToken, semicolonToken)
+}
+
+func CreateCheckExpressionNode(kind common.SyntaxKind, checkKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STCheckExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: kind,
+		},
+		CheckKeyword: checkKeyword,
+		Expression:   expression,
+	}, checkKeyword, expression)
+}
+
+func CreateBlockStatementNode(openBraceToken STNode, statements STNode, closeBraceToken STNode) STNode {
+	return createNodeAndAddChildren(&STBlockStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.BLOCK_STATEMENT,
+		},
+		OpenBraceToken:  openBraceToken,
+		Statements:      statements,
+		CloseBraceToken: closeBraceToken,
+	}, openBraceToken, statements, closeBraceToken)
+}
+
+func CreateElseBlockNode(elseKeyword STNode, elseBody STNode) STNode {
+	return createNodeAndAddChildren(&STElseBlockNode{
+		STNode: &STNodeBase{
+			kind: common.ELSE_BLOCK,
+		},
+		ElseKeyword: elseKeyword,
+		ElseBody:    elseBody,
+	}, elseKeyword, elseBody)
+}
+
+func CreateDoStatementNode(doKeyword STNode, blockStatement STNode, onFailClause STNode) STNode {
+	return createNodeAndAddChildren(&STDoStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.DO_STATEMENT,
+		},
+		DoKeyword:      doKeyword,
+		BlockStatement: blockStatement,
+		OnFailClause:   onFailClause,
+	}, doKeyword, blockStatement, onFailClause)
+}
+
+func CreateWhileStatementNode(whileKeyword STNode, condition STNode, whileBody STNode, onFailClause STNode) STNode {
+	return createNodeAndAddChildren(&STWhileStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.WHILE_STATEMENT,
+		},
+		WhileKeyword: whileKeyword,
+		Condition:    condition,
+		WhileBody:    whileBody,
+		OnFailClause: onFailClause,
+	}, whileKeyword, condition, whileBody, onFailClause)
+}
+
+func CreatePanicStatementNode(panicKeyword STNode, expression STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STPanicStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.PANIC_STATEMENT,
+		},
+		PanicKeyword:   panicKeyword,
+		Expression:     expression,
+		SemicolonToken: semicolonToken,
+	}, panicKeyword, expression, semicolonToken)
+}
+
+func CreateReturnStatementNode(returnKeyword STNode, expression STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STReturnStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.RETURN_STATEMENT,
+		},
+		ReturnKeyword:  returnKeyword,
+		Expression:     expression,
+		SemicolonToken: semicolonToken,
+	}, returnKeyword, expression, semicolonToken)
+}
+
+func CreateMappingConstructorExpressionNode(openBrace STNode, fields STNode, closeBrace STNode) STNode {
+	return createNodeAndAddChildren(&STMappingConstructorExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.MAPPING_CONSTRUCTOR,
+		},
+		OpenBrace:  openBrace,
+		Fields:     fields,
+		CloseBrace: closeBrace,
+	}, openBrace, fields, closeBrace)
+}
+
+func CreateTypeCastParamNode(annotations STNode, typeNode STNode) STNode {
+	return createNodeAndAddChildren(&STTypeCastParamNode{
+		STNode: &STNodeBase{
+			kind: common.TYPE_CAST_PARAM,
+		},
+		Annotations: annotations,
+		Type:        typeNode,
+	}, annotations, typeNode)
+}
+
+func CreateTableConstructorExpressionNode(tableKeyword STNode, keySpecifier STNode, openBracket STNode, rows STNode, closeBracket STNode) STNode {
+	return createNodeAndAddChildren(&STTableConstructorExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.TABLE_CONSTRUCTOR,
+		},
+		TableKeyword: tableKeyword,
+		KeySpecifier: keySpecifier,
+		OpenBracket:  openBracket,
+		Rows:         rows,
+		CloseBracket: closeBracket,
+	}, tableKeyword, keySpecifier, openBracket, rows, closeBracket)
+}
+
+func CreateKeySpecifierNode(keyKeyword STNode, openParenToken STNode, fieldNames STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STKeySpecifierNode{
+		STNode: &STNodeBase{
+			kind: common.KEY_SPECIFIER,
+		},
+		KeyKeyword:      keyKeyword,
+		OpenParenToken:  openParenToken,
+		FieldNames:      fieldNames,
+		CloseParenToken: closeParenToken,
+	}, keyKeyword, openParenToken, fieldNames, closeParenToken)
+}
+
+func CreateStreamTypeDescriptorNode(streamKeywordToken STNode, streamTypeParamsNode STNode) STNode {
+	return createNodeAndAddChildren(&STStreamTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.STREAM_TYPE_DESC,
+		},
+		StreamKeywordToken:   streamKeywordToken,
+		StreamTypeParamsNode: streamTypeParamsNode,
+	}, streamKeywordToken, streamTypeParamsNode)
+}
+
+func CreateStreamTypeParamsNode(ltToken STNode, leftTypeDescNode STNode, commaToken STNode, rightTypeDescNode STNode, gtToken STNode) STNode {
+	return createNodeAndAddChildren(&STStreamTypeParamsNode{
+		STNode: &STNodeBase{
+			kind: common.STREAM_TYPE_PARAMS,
+		},
+		LtToken:           ltToken,
+		LeftTypeDescNode:  leftTypeDescNode,
+		CommaToken:        commaToken,
+		RightTypeDescNode: rightTypeDescNode,
+		GtToken:           gtToken,
+	}, ltToken, leftTypeDescNode, commaToken, rightTypeDescNode, gtToken)
+}
+
+func CreateLetExpressionNode(letKeyword STNode, letVarDeclarations STNode, inKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STLetExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.LET_EXPRESSION,
+		},
+		LetKeyword:         letKeyword,
+		LetVarDeclarations: letVarDeclarations,
+		InKeyword:          inKeyword,
+		Expression:         expression,
+	}, letKeyword, letVarDeclarations, inKeyword, expression)
+}
+
+func CreateLetVariableDeclarationNode(annotations STNode, typedBindingPattern STNode, equalsToken STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STLetVariableDeclarationNode{
+		STNode: &STNodeBase{
+			kind: common.LET_VAR_DECL,
+		},
+		Annotations:         annotations,
+		TypedBindingPattern: typedBindingPattern,
+		EqualsToken:         equalsToken,
+		Expression:          expression,
+	}, annotations, typedBindingPattern, equalsToken, expression)
+}
+
+func CreateTemplateExpressionNode(kind common.SyntaxKind, typeNode STNode, startBacktick STNode, content STNode, endBacktick STNode) STNode {
+	return createNodeAndAddChildren(&STTemplateExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: kind,
+		},
+		Type:          typeNode,
+		StartBacktick: startBacktick,
+		Content:       content,
+		EndBacktick:   endBacktick,
+	}, typeNode, startBacktick, content, endBacktick)
+}
+
+func CreateWaitActionNode(waitKeyword STNode, waitFutureExpr STNode) STNode {
+	return createNodeAndAddChildren(&STWaitActionNode{
+		STActionNode: &STNodeBase{
+			kind: common.WAIT_ACTION,
+		},
+		WaitKeyword:    waitKeyword,
+		WaitFutureExpr: waitFutureExpr,
+	}, waitKeyword, waitFutureExpr)
+}
+
+func CreateAlternateReceiveNode(workers STNode) STNode {
+	return createNodeAndAddChildren(&STAlternateReceiveNode{
+		STNode: &STNodeBase{
+			kind: common.ALTERNATE_RECEIVE,
+		},
+		Workers: workers,
+	}, workers)
+}
+
+func CreateWaitFieldsListNode(openBrace STNode, waitFields STNode, closeBrace STNode) STNode {
+	return createNodeAndAddChildren(&STWaitFieldsListNode{
+		STNode: &STNodeBase{
+			kind: common.WAIT_FIELDS_LIST,
+		},
+		OpenBrace:  openBrace,
+		WaitFields: waitFields,
+		CloseBrace: closeBrace,
+	}, openBrace, waitFields, closeBrace)
+}
+
+func CreateWaitFieldNode(fieldName STNode, colon STNode, waitFutureExpr STNode) STNode {
+	return createNodeAndAddChildren(&STWaitFieldNode{
+		STNode: &STNodeBase{
+			kind: common.WAIT_FIELD,
+		},
+		FieldName:      fieldName,
+		Colon:          colon,
+		WaitFutureExpr: waitFutureExpr,
+	}, fieldName, colon, waitFutureExpr)
+}
+
+func CreateToken(kind common.SyntaxKind, leadingMinutiae STNode, trailingMinutiae STNode) STToken {
+	// FIXME: remove this
+	return CreateTokenFrom(kind, leadingMinutiae, trailingMinutiae)
+}
+
+// ConditionalExprResolver
+func GetSimpleNameRefNode(modulePrefixIdentifier STNode) STNode {
+	identifier := ToToken(modulePrefixIdentifier)
+	var syntaxToken STToken
+	text := identifier.Text()
+	switch text {
+	case "boolean":
+		syntaxToken = CreateTokenFrom(common.BOOLEAN_KEYWORD,
+			identifier.LeadingMinutiae(), identifier.TrailingMinutiae())
+	case "decimal":
+		syntaxToken = CreateTokenFrom(common.DECIMAL_KEYWORD,
+			identifier.LeadingMinutiae(), identifier.TrailingMinutiae())
+	case "float":
+		syntaxToken = CreateTokenFrom(common.FLOAT_KEYWORD,
+			identifier.LeadingMinutiae(), identifier.TrailingMinutiae())
+	case "int":
+		syntaxToken = CreateTokenFrom(common.INT_KEYWORD,
+			identifier.LeadingMinutiae(), identifier.TrailingMinutiae())
+	case "string":
+		syntaxToken = CreateTokenFrom(common.STRING_KEYWORD,
+			identifier.LeadingMinutiae(), identifier.TrailingMinutiae())
+	default:
+		return CreateSimpleNameReferenceNode(identifier)
+	}
+	return CreateBuiltinSimpleNameReferenceNode(syntaxToken.Kind(), syntaxToken)
+}
+
+func GetQualifiedNameRefNode(parentNode STNode, leftMost bool) STNode {
+	if parentNode == nil {
+		return nil
+	}
+	if parentNode.Kind() == common.LIST {
+		listNode, ok := parentNode.(*STNodeList)
+		if !ok {
+			panic("expected STNodeList")
+		}
+		if listNode.IsEmpty() {
+			return nil
+		}
+	}
+	if parentNode.Kind() == common.QUALIFIED_NAME_REFERENCE {
+		qualifiedNameRefNode, ok := parentNode.(*STQualifiedNameReferenceNode)
+		if !ok {
+			panic("expected STQualifiedNameReferenceNode")
+		}
+		modulePrefix := qualifiedNameRefNode.ModulePrefix
+		if IsValidSimpleNameRef(ToToken(modulePrefix)) {
+			return parentNode
+		} else {
+			return nil
+		}
+	}
+	var firstOrLastChild STNode
+	if leftMost {
+		firstOrLastChild = parentNode.ChildInBucket(0)
+	} else {
+		firstOrLastChild = parentNode.ChildInBucket(parentNode.BucketCount() - 1)
+	}
+	if IsNonTerminalNode(firstOrLastChild) {
+		return GetQualifiedNameRefNode(firstOrLastChild, leftMost)
+	}
+	return nil
+}
+
+func IsValidSimpleNameRef(modulePrefixIdentifier STToken) bool {
+	switch modulePrefixIdentifier.Text() {
+	case "error", "future", "map", "object", "stream", "table", "transaction", "typedesc", "xml":
+		return false
+	default:
+		return true
+	}
+}
+
+// SyntaxUtils
+func IsNonTerminalNode(node STNode) bool {
+	return !IsToken(node)
+}
+
+func IsToken(node STNode) bool {
+	_, ok := node.(STToken)
+	return ok
+}
+
+// ========== Query Expression Methods (STNodeFactory.java:1467-1606) ==========
+
+// From STNodeFactory.java:1467-1474
+func CreateQueryConstructTypeNode(keyword STNode, keySpecifier STNode) STNode {
+	return createNodeAndAddChildren(&STQueryConstructTypeNode{
+		STNode: &STNodeBase{
+			kind: common.QUERY_CONSTRUCT_TYPE,
+		},
+		Keyword:      keyword,
+		KeySpecifier: keySpecifier,
+	}, keyword, keySpecifier)
+}
+
+// From STNodeFactory.java:1476-1487
+func CreateFromClauseNode(fromKeyword STNode, typedBindingPattern STNode, inKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STFromClauseNode{
+		STIntermediateClauseNode: &STNodeBase{
+			kind: common.FROM_CLAUSE,
+		},
+		FromKeyword:         fromKeyword,
+		TypedBindingPattern: typedBindingPattern,
+		InKeyword:           inKeyword,
+		Expression:          expression,
+	}, fromKeyword, typedBindingPattern, inKeyword, expression)
+}
+
+// From STNodeFactory.java:1498-1505
+func CreateLetClauseNode(letKeyword STNode, letVarDeclarations STNode) STNode {
+	return createNodeAndAddChildren(&STLetClauseNode{
+		STIntermediateClauseNode: &STNodeBase{
+			kind: common.LET_CLAUSE,
+		},
+		LetKeyword:         letKeyword,
+		LetVarDeclarations: letVarDeclarations,
+	}, letKeyword, letVarDeclarations)
+}
+
+// From STNodeFactory.java:1507-1522
+func CreateJoinClauseNode(outerKeyword STNode, joinKeyword STNode, typedBindingPattern STNode, inKeyword STNode, expression STNode, joinOnCondition STNode) STNode {
+	return createNodeAndAddChildren(&STJoinClauseNode{
+		STIntermediateClauseNode: &STNodeBase{
+			kind: common.JOIN_CLAUSE,
+		},
+		OuterKeyword:        outerKeyword,
+		JoinKeyword:         joinKeyword,
+		TypedBindingPattern: typedBindingPattern,
+		InKeyword:           inKeyword,
+		Expression:          expression,
+		JoinOnCondition:     joinOnCondition,
+	}, outerKeyword, joinKeyword, typedBindingPattern, inKeyword, expression, joinOnCondition)
+}
+
+// From STNodeFactory.java:1524-1535
+func CreateOnClauseNode(onKeyword STNode, lhsExpression STNode, equalsKeyword STNode, rhsExpression STNode) STNode {
+	return createNodeAndAddChildren(&STOnClauseNode{
+		STClauseNode: &STNodeBase{
+			kind: common.ON_CLAUSE,
+		},
+		OnKeyword:     onKeyword,
+		LhsExpression: lhsExpression,
+		EqualsKeyword: equalsKeyword,
+		RhsExpression: rhsExpression,
+	}, onKeyword, lhsExpression, equalsKeyword, rhsExpression)
+}
+
+// From STNodeFactory.java:1537-1544
+func CreateLimitClauseNode(limitKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STLimitClauseNode{
+		STIntermediateClauseNode: &STNodeBase{
+			kind: common.LIMIT_CLAUSE,
+		},
+		LimitKeyword: limitKeyword,
+		Expression:   expression,
+	}, limitKeyword, expression)
+}
+
+// From STNodeFactory.java:1546-1555
+func CreateOnConflictClauseNode(onKeyword STNode, conflictKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STOnConflictClauseNode{
+		STClauseNode: &STNodeBase{
+			kind: common.ON_CONFLICT_CLAUSE,
+		},
+		OnKeyword:       onKeyword,
+		ConflictKeyword: conflictKeyword,
+		Expression:      expression,
+	}, onKeyword, conflictKeyword, expression)
+}
+
+// From STNodeFactory.java:1557-1564
+func CreateQueryPipelineNode(fromClause STNode, intermediateClauses STNode) STNode {
+	return createNodeAndAddChildren(&STQueryPipelineNode{
+		STNode: &STNodeBase{
+			kind: common.QUERY_PIPELINE,
+		},
+		FromClause:          fromClause,
+		IntermediateClauses: intermediateClauses,
+	}, fromClause, intermediateClauses)
+}
+
+// From STNodeFactory.java:1566-1573
+func CreateSelectClauseNode(selectKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STSelectClauseNode{
+		STClauseNode: &STNodeBase{
+			kind: common.SELECT_CLAUSE,
+		},
+		SelectKeyword: selectKeyword,
+		Expression:    expression,
+	}, selectKeyword, expression)
+}
+
+// From STNodeFactory.java:1575-1582
+func CreateCollectClauseNode(collectKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STCollectClauseNode{
+		STClauseNode: &STNodeBase{
+			kind: common.COLLECT_CLAUSE,
+		},
+		CollectKeyword: collectKeyword,
+		Expression:     expression,
+	}, collectKeyword, expression)
+}
+
+// From STNodeFactory.java:1584-1595
+func CreateQueryExpressionNode(queryConstructType STNode, queryPipeline STNode, resultClause STNode, onConflictClause STNode) STNode {
+	return createNodeAndAddChildren(&STQueryExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.QUERY_EXPRESSION,
+		},
+		QueryConstructType: queryConstructType,
+		QueryPipeline:      queryPipeline,
+		ResultClause:       resultClause,
+		OnConflictClause:   onConflictClause,
+	}, queryConstructType, queryPipeline, resultClause, onConflictClause)
+}
+
+// From STNodeFactory.java:1597-1606
+func CreateQueryActionNode(queryPipeline STNode, doKeyword STNode, blockStatement STNode) STNode {
+	return createNodeAndAddChildren(&STQueryActionNode{
+		STActionNode: &STNodeBase{
+			kind: common.QUERY_ACTION,
+		},
+		QueryPipeline:  queryPipeline,
+		DoKeyword:      doKeyword,
+		BlockStatement: blockStatement,
+	}, queryPipeline, doKeyword, blockStatement)
+}
+
+// From STNodeFactory.java:2325-2334
+func CreateOrderByClauseNode(orderKeyword STNode, byKeyword STNode, orderKey STNode) STNode {
+	return createNodeAndAddChildren(&STOrderByClauseNode{
+		STIntermediateClauseNode: &STNodeBase{
+			kind: common.ORDER_BY_CLAUSE,
+		},
+		OrderKeyword: orderKeyword,
+		ByKeyword:    byKeyword,
+		OrderKey:     orderKey,
+	}, orderKeyword, byKeyword, orderKey)
+}
+
+// From STNodeFactory.java:2336-2343
+func CreateOrderKeyNode(expression STNode, orderDirection STNode) STNode {
+	return createNodeAndAddChildren(&STOrderKeyNode{
+		STNode: &STNodeBase{
+			kind: common.ORDER_KEY,
+		},
+		Expression:     expression,
+		OrderDirection: orderDirection,
+	}, expression, orderDirection)
+}
+
+// From STNodeFactory.java:2345-2354
+func CreateGroupByClauseNode(groupKeyword STNode, byKeyword STNode, groupingKey STNode) STNode {
+	return createNodeAndAddChildren(&STGroupByClauseNode{
+		STIntermediateClauseNode: &STNodeBase{
+			kind: common.GROUP_BY_CLAUSE,
+		},
+		GroupKeyword: groupKeyword,
+		ByKeyword:    byKeyword,
+		GroupingKey:  groupingKey,
+	}, groupKeyword, byKeyword, groupingKey)
+}
+
+// From STNodeFactory.java:2356-2367
+func CreateGroupingKeyVarDeclarationNode(typeDescriptor STNode, simpleBindingPattern STNode, equalsToken STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STGroupingKeyVarDeclarationNode{
+		STNode: &STNodeBase{
+			kind: common.GROUPING_KEY_VAR_DECLARATION,
+		},
+		TypeDescriptor:       typeDescriptor,
+		SimpleBindingPattern: simpleBindingPattern,
+		EqualsToken:          equalsToken,
+		Expression:           expression,
+	}, typeDescriptor, simpleBindingPattern, equalsToken, expression)
+}
+
+// ========== Match Statement & Pattern Methods (STNodeFactory.java:2122-2238) ==========
+
+// From STNodeFactory.java:2122-2137
+func CreateMatchStatementNode(matchKeyword STNode, condition STNode, openBrace STNode, matchClauses STNode, closeBrace STNode, onFailClause STNode) STNode {
+	return createNodeAndAddChildren(&STMatchStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.MATCH_STATEMENT,
+		},
+		MatchKeyword: matchKeyword,
+		Condition:    condition,
+		OpenBrace:    openBrace,
+		MatchClauses: matchClauses,
+		CloseBrace:   closeBrace,
+		OnFailClause: onFailClause,
+	}, matchKeyword, condition, openBrace, matchClauses, closeBrace, onFailClause)
+}
+
+// From STNodeFactory.java:2139-2150
+func CreateMatchClauseNode(matchPatterns STNode, matchGuard STNode, rightDoubleArrow STNode, blockStatement STNode) STNode {
+	return createNodeAndAddChildren(&STMatchClauseNode{
+		STNode: &STNodeBase{
+			kind: common.MATCH_CLAUSE,
+		},
+		MatchPatterns:    matchPatterns,
+		MatchGuard:       matchGuard,
+		RightDoubleArrow: rightDoubleArrow,
+		BlockStatement:   blockStatement,
+	}, matchPatterns, matchGuard, rightDoubleArrow, blockStatement)
+}
+
+// From STNodeFactory.java:2152-2159
+func CreateMatchGuardNode(ifKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STMatchGuardNode{
+		STNode: &STNodeBase{
+			kind: common.MATCH_GUARD,
+		},
+		IfKeyword:  ifKeyword,
+		Expression: expression,
+	}, ifKeyword, expression)
+}
+
+// From STNodeFactory.java:2170-2179
+func CreateListMatchPatternNode(openBracket STNode, matchPatterns STNode, closeBracket STNode) STNode {
+	return createNodeAndAddChildren(&STListMatchPatternNode{
+		STNode: &STNodeBase{
+			kind: common.LIST_MATCH_PATTERN,
+		},
+		OpenBracket:   openBracket,
+		MatchPatterns: matchPatterns,
+		CloseBracket:  closeBracket,
+	}, openBracket, matchPatterns, closeBracket)
+}
+
+// From STNodeFactory.java:2181-2190
+func CreateRestMatchPatternNode(ellipsisToken STNode, varKeywordToken STNode, variableName STNode) STNode {
+	return createNodeAndAddChildren(&STRestMatchPatternNode{
+		STNode: &STNodeBase{
+			kind: common.REST_MATCH_PATTERN,
+		},
+		EllipsisToken:   ellipsisToken,
+		VarKeywordToken: varKeywordToken,
+		VariableName:    variableName,
+	}, ellipsisToken, varKeywordToken, variableName)
+}
+
+// From STNodeFactory.java:2192-2201
+func CreateMappingMatchPatternNode(openBraceToken STNode, fieldMatchPatterns STNode, closeBraceToken STNode) STNode {
+	return createNodeAndAddChildren(&STMappingMatchPatternNode{
+		STNode: &STNodeBase{
+			kind: common.MAPPING_MATCH_PATTERN,
+		},
+		OpenBraceToken:     openBraceToken,
+		FieldMatchPatterns: fieldMatchPatterns,
+		CloseBraceToken:    closeBraceToken,
+	}, openBraceToken, fieldMatchPatterns, closeBraceToken)
+}
+
+// From STNodeFactory.java:2203-2212
+func CreateFieldMatchPatternNode(fieldNameNode STNode, colonToken STNode, matchPattern STNode) STNode {
+	return createNodeAndAddChildren(&STFieldMatchPatternNode{
+		STNode: &STNodeBase{
+			kind: common.FIELD_MATCH_PATTERN,
+		},
+		FieldNameNode: fieldNameNode,
+		ColonToken:    colonToken,
+		MatchPattern:  matchPattern,
+	}, fieldNameNode, colonToken, matchPattern)
+}
+
+// From STNodeFactory.java:2214-2227
+func CreateErrorMatchPatternNode(errorKeyword STNode, typeReference STNode, openParenthesisToken STNode, argListMatchPatternNode STNode, closeParenthesisToken STNode) STNode {
+	return createNodeAndAddChildren(&STErrorMatchPatternNode{
+		STNode: &STNodeBase{
+			kind: common.ERROR_MATCH_PATTERN,
+		},
+		ErrorKeyword:            errorKeyword,
+		TypeReference:           typeReference,
+		OpenParenthesisToken:    openParenthesisToken,
+		ArgListMatchPatternNode: argListMatchPatternNode,
+		CloseParenthesisToken:   closeParenthesisToken,
+	}, errorKeyword, typeReference, openParenthesisToken, argListMatchPatternNode, closeParenthesisToken)
+}
+
+// From STNodeFactory.java:2229-2238
+func CreateNamedArgMatchPatternNode(identifier STNode, equalToken STNode, matchPattern STNode) STNode {
+	return createNodeAndAddChildren(&STNamedArgMatchPatternNode{
+		STNode: &STNodeBase{
+			kind: common.NAMED_ARG_MATCH_PATTERN,
+		},
+		Identifier:   identifier,
+		EqualToken:   equalToken,
+		MatchPattern: matchPattern,
+	}, identifier, equalToken, matchPattern)
+}
+
+// ========== Worker Communication Methods (STNodeFactory.java:1641-1827, 1836-1843, 2747-2756) ==========
+
+// From STNodeFactory.java:1641-1650
+func CreateStartActionNode(annotations STNode, startKeyword STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STStartActionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.START_ACTION,
+		},
+		Annotations:  annotations,
+		StartKeyword: startKeyword,
+		Expression:   expression,
+	}, annotations, startKeyword, expression)
+}
+
+// From STNodeFactory.java:1652-1659
+func CreateFlushActionNode(flushKeyword STNode, peerWorker STNode) STNode {
+	return createNodeAndAddChildren(&STFlushActionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.FLUSH_ACTION,
+		},
+		FlushKeyword: flushKeyword,
+		PeerWorker:   peerWorker,
+	}, flushKeyword, peerWorker)
+}
+
+// From STNodeFactory.java:1798-1807
+func CreateSyncSendActionNode(expression STNode, syncSendToken STNode, peerWorker STNode) STNode {
+	return createNodeAndAddChildren(&STSyncSendActionNode{
+		STActionNode: &STNodeBase{
+			kind: common.SYNC_SEND_ACTION,
+		},
+		Expression:    expression,
+		SyncSendToken: syncSendToken,
+		PeerWorker:    peerWorker,
+	}, expression, syncSendToken, peerWorker)
+}
+
+// From STNodeFactory.java:1809-1816
+func CreateReceiveActionNode(leftArrow STNode, receiveWorkers STNode) STNode {
+	return createNodeAndAddChildren(&STReceiveActionNode{
+		STActionNode: &STNodeBase{
+			kind: common.RECEIVE_ACTION,
+		},
+		LeftArrow:      leftArrow,
+		ReceiveWorkers: receiveWorkers,
+	}, leftArrow, receiveWorkers)
+}
+
+// From STNodeFactory.java:1818-1827
+func CreateReceiveFieldsNode(openBrace STNode, receiveFields STNode, closeBrace STNode) STNode {
+	return createNodeAndAddChildren(&STReceiveFieldsNode{
+		STNode: &STNodeBase{
+			kind: common.RECEIVE_FIELDS,
+		},
+		OpenBrace:     openBrace,
+		ReceiveFields: receiveFields,
+		CloseBrace:    closeBrace,
+	}, openBrace, receiveFields, closeBrace)
+}
+
+// From STNodeFactory.java:1836-1843
+func CreateRestDescriptorNode(typeDescriptor STNode, ellipsisToken STNode) STNode {
+	return createNodeAndAddChildren(&STRestDescriptorNode{
+		STNode: &STNodeBase{
+			kind: common.REST_TYPE,
+		},
+		TypeDescriptor: typeDescriptor,
+		EllipsisToken:  ellipsisToken,
+	}, typeDescriptor, ellipsisToken)
+}
+
+// From STNodeFactory.java:2747-2756
+func CreateReceiveFieldNode(fieldName STNode, colon STNode, peerWorker STNode) STNode {
+	return createNodeAndAddChildren(&STReceiveFieldNode{
+		STNode: &STNodeBase{
+			kind: common.RECEIVE_FIELD,
+		},
+		FieldName:  fieldName,
+		Colon:      colon,
+		PeerWorker: peerWorker,
+	}, fieldName, colon, peerWorker)
+}
+
+// ========== Transaction Support Methods (STNodeFactory.java:1987-2036, 2369-2380) ==========
+
+// From STNodeFactory.java:1987-1996
+func CreateTransactionStatementNode(transactionKeyword STNode, blockStatement STNode, onFailClause STNode) STNode {
+	return createNodeAndAddChildren(&STTransactionStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.TRANSACTION_STATEMENT,
+		},
+		TransactionKeyword: transactionKeyword,
+		BlockStatement:     blockStatement,
+		OnFailClause:       onFailClause,
+	}, transactionKeyword, blockStatement, onFailClause)
+}
+
+// From STNodeFactory.java:1998-2007
+func CreateRollbackStatementNode(rollbackKeyword STNode, expression STNode, semicolon STNode) STNode {
+	return createNodeAndAddChildren(&STRollbackStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.ROLLBACK_STATEMENT,
+		},
+		RollbackKeyword: rollbackKeyword,
+		Expression:      expression,
+		Semicolon:       semicolon,
+	}, rollbackKeyword, expression, semicolon)
+}
+
+// From STNodeFactory.java:2009-2022
+func CreateRetryStatementNode(retryKeyword STNode, typeParameter STNode, arguments STNode, retryBody STNode, onFailClause STNode) STNode {
+	return createNodeAndAddChildren(&STRetryStatementNode{
+		STStatementNode: &STNodeBase{
+			kind: common.RETRY_STATEMENT,
+		},
+		RetryKeyword:  retryKeyword,
+		TypeParameter: typeParameter,
+		Arguments:     arguments,
+		RetryBody:     retryBody,
+		OnFailClause:  onFailClause,
+	}, retryKeyword, typeParameter, arguments, retryBody, onFailClause)
+}
+
+// From STNodeFactory.java:2024-2029
+func CreateCommitActionNode(commitKeyword STNode) STNode {
+	return createNodeAndAddChildren(&STCommitActionNode{
+		STActionNode: &STNodeBase{
+			kind: common.COMMIT_ACTION,
+		},
+		CommitKeyword: commitKeyword,
+	}, commitKeyword)
+}
+
+// From STNodeFactory.java:2031-2036
+func CreateTransactionalExpressionNode(transactionalKeyword STNode) STNode {
+	return createNodeAndAddChildren(&STTransactionalExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.TRANSACTIONAL_EXPRESSION,
+		},
+		TransactionalKeyword: transactionalKeyword,
+	}, transactionalKeyword)
+}
+
+// From STNodeFactory.java:2369-2380
+func CreateOnFailClauseNode(onKeyword STNode, failKeyword STNode, typedBindingPattern STNode, blockStatement STNode) STNode {
+	return createNodeAndAddChildren(&STOnFailClauseNode{
+		STClauseNode: &STNodeBase{
+			kind: common.ON_FAIL_CLAUSE,
+		},
+		OnKeyword:           onKeyword,
+		FailKeyword:         failKeyword,
+		TypedBindingPattern: typedBindingPattern,
+		BlockStatement:      blockStatement,
+	}, onKeyword, failKeyword, typedBindingPattern, blockStatement)
+}
+
+// ========== Anonymous Function Methods (STNodeFactory.java:1388-1412, 1619-1639) ==========
+
+// From STNodeFactory.java:1619-1628
+func CreateImplicitAnonymousFunctionParameters(openParenToken STNode, parameters STNode, closeParenToken STNode) STNode {
+	return createNodeAndAddChildren(&STImplicitAnonymousFunctionParameters{
+		STNode: &STNodeBase{
+			kind: common.INFER_PARAM_LIST,
+		},
+		OpenParenToken:  openParenToken,
+		Parameters:      parameters,
+		CloseParenToken: closeParenToken,
+	}, openParenToken, parameters, closeParenToken)
+}
+
+// From STNodeFactory.java:1630-1639
+func CreateImplicitAnonymousFunctionExpressionNode(params STNode, rightDoubleArrow STNode, expression STNode) STNode {
+	return createNodeAndAddChildren(&STImplicitAnonymousFunctionExpressionNode{
+		STAnonymousFunctionExpressionNode: &STNodeBase{
+			kind: common.IMPLICIT_ANONYMOUS_FUNCTION_EXPRESSION,
+		},
+		Params:           params,
+		RightDoubleArrow: rightDoubleArrow,
+		Expression:       expression,
+	}, params, rightDoubleArrow, expression)
+}
+
+// From STNodeFactory.java:1388-1401
+func CreateExplicitAnonymousFunctionExpressionNode(annotations STNode, qualifierList STNode, functionKeyword STNode, functionSignature STNode, functionBody STNode) STNode {
+	return createNodeAndAddChildren(&STExplicitAnonymousFunctionExpressionNode{
+		STAnonymousFunctionExpressionNode: &STNodeBase{
+			kind: common.EXPLICIT_ANONYMOUS_FUNCTION_EXPRESSION,
+		},
+		Annotations:       annotations,
+		QualifierList:     qualifierList,
+		FunctionKeyword:   functionKeyword,
+		FunctionSignature: functionSignature,
+		FunctionBody:      functionBody,
+	}, annotations, qualifierList, functionKeyword, functionSignature, functionBody)
+}
+
+// From STNodeFactory.java:1403-1412
+func CreateExpressionFunctionBodyNode(rightDoubleArrow STNode, expression STNode, semicolon STNode) STNode {
+	return createNodeAndAddChildren(&STExpressionFunctionBodyNode{
+		STFunctionBodyNode: &STNodeBase{
+			kind: common.EXPRESSION_FUNCTION_BODY,
+		},
+		RightDoubleArrow: rightDoubleArrow,
+		Expression:       expression,
+		Semicolon:        semicolon,
+	}, rightDoubleArrow, expression, semicolon)
+}
+
+// ========== Type Descriptor Methods (STNodeFactory.java:1333-1362, 1608-1617) ==========
+
+// From STNodeFactory.java:1608-1617
+func CreateIntersectionTypeDescriptorNode(leftTypeDesc STNode, bitwiseAndToken STNode, rightTypeDesc STNode) STNode {
+	return createNodeAndAddChildren(&STIntersectionTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.INTERSECTION_TYPE_DESC,
+		},
+		LeftTypeDesc:    leftTypeDesc,
+		BitwiseAndToken: bitwiseAndToken,
+		RightTypeDesc:   rightTypeDesc,
+	}, leftTypeDesc, bitwiseAndToken, rightTypeDesc)
+}
+
+// From STNodeFactory.java:1333-1342
+func CreateTableTypeDescriptorNode(tableKeywordToken STNode, rowTypeParameterNode STNode, keyConstraintNode STNode) STNode {
+	return createNodeAndAddChildren(&STTableTypeDescriptorNode{
+		STTypeDescriptorNode: &STNodeBase{
+			kind: common.TABLE_TYPE_DESC,
+		},
+		TableKeywordToken:    tableKeywordToken,
+		RowTypeParameterNode: rowTypeParameterNode,
+		KeyConstraintNode:    keyConstraintNode,
+	}, tableKeywordToken, rowTypeParameterNode, keyConstraintNode)
+}
+
+// From STNodeFactory.java:1344-1353
+func CreateTypeParameterNode(ltToken STNode, typeNode STNode, gtToken STNode) STNode {
+	return createNodeAndAddChildren(&STTypeParameterNode{
+		STNode: &STNodeBase{
+			kind: common.TYPE_PARAMETER,
+		},
+		LtToken:  ltToken,
+		TypeNode: typeNode,
+		GtToken:  gtToken,
+	}, ltToken, typeNode, gtToken)
+}
+
+// From STNodeFactory.java:1355-1362
+func CreateKeyTypeConstraintNode(keyKeywordToken STNode, typeParameterNode STNode) STNode {
+	return createNodeAndAddChildren(&STKeyTypeConstraintNode{
+		STNode: &STNodeBase{
+			kind: common.KEY_TYPE_CONSTRAINT,
+		},
+		KeyKeywordToken:   keyKeywordToken,
+		TypeParameterNode: typeParameterNode,
+	}, keyKeywordToken, typeParameterNode)
+}
+
+// ========== XML & Template Methods (STNodeFactory.java:2051-2113) ==========
+
+// From STNodeFactory.java:2051-2058
+func CreateXMLFilterExpressionNode(expression STNode, xmlPatternChain STNode) STNode {
+	return createNodeAndAddChildren(&STXMLFilterExpressionNode{
+		STXMLNavigateExpressionNode: &STNodeBase{
+			kind: common.XML_FILTER_EXPRESSION,
+		},
+		Expression:      expression,
+		XmlPatternChain: xmlPatternChain,
+	}, expression, xmlPatternChain)
+}
+
+// From STNodeFactory.java:2071-2080
+func CreateXMLNamePatternChainingNode(startToken STNode, xmlNamePattern STNode, gtToken STNode) STNode {
+	return createNodeAndAddChildren(&STXMLNamePatternChainingNode{
+		STNode: &STNodeBase{
+			kind: common.XML_NAME_PATTERN_CHAIN,
+		},
+		StartToken:     startToken,
+		XmlNamePattern: xmlNamePattern,
+		GtToken:        gtToken,
+	}, startToken, xmlNamePattern, gtToken)
+}
+
+// From STNodeFactory.java:2082-2091
+func CreateXMLStepIndexedExtendNode(openBracket STNode, expression STNode, closeBracket STNode) STNode {
+	return createNodeAndAddChildren(&STXMLStepIndexedExtendNode{
+		STNode: &STNodeBase{
+			kind: common.XML_STEP_INDEXED_EXTEND,
+		},
+		OpenBracket:  openBracket,
+		Expression:   expression,
+		CloseBracket: closeBracket,
+	}, openBracket, expression, closeBracket)
+}
+
+// From STNodeFactory.java:2093-2102
+func CreateXMLStepMethodCallExtendNode(dotToken STNode, methodName STNode, parenthesizedArgList STNode) STNode {
+	return createNodeAndAddChildren(&STXMLStepMethodCallExtendNode{
+		STNode: &STNodeBase{
+			kind: common.XML_STEP_METHOD_CALL_EXTEND,
+		},
+		DotToken:             dotToken,
+		MethodName:           methodName,
+		ParenthesizedArgList: parenthesizedArgList,
+	}, dotToken, methodName, parenthesizedArgList)
+}
+
+// From STNodeFactory.java:2104-2113
+func CreateXMLAtomicNamePatternNode(prefix STNode, colon STNode, name STNode) STNode {
+	return createNodeAndAddChildren(&STXMLAtomicNamePatternNode{
+		STNode: &STNodeBase{
+			kind: common.XML_ATOMIC_NAME_PATTERN,
+		},
+		Prefix: prefix,
+		Colon:  colon,
+		Name:   name,
+	}, prefix, colon, name)
+}
+
+// ========== Expression Extensions Methods (STNodeFactory.java:1258-1267, 1896-1916, 2038-2049) ==========
+
+// From STNodeFactory.java:1896-1905
+func CreateAnnotAccessExpressionNode(expression STNode, annotChainingToken STNode, annotTagReference STNode) STNode {
+	return createNodeAndAddChildren(&STAnnotAccessExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.ANNOT_ACCESS,
+		},
+		Expression:         expression,
+		AnnotChainingToken: annotChainingToken,
+		AnnotTagReference:  annotTagReference,
+	}, expression, annotChainingToken, annotTagReference)
+}
+
+// From STNodeFactory.java:1907-1916
+func CreateOptionalFieldAccessExpressionNode(expression STNode, optionalChainingToken STNode, fieldName STNode) STNode {
+	return createNodeAndAddChildren(&STOptionalFieldAccessExpressionNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.OPTIONAL_FIELD_ACCESS,
+		},
+		Expression:            expression,
+		OptionalChainingToken: optionalChainingToken,
+		FieldName:             fieldName,
+	}, expression, optionalChainingToken, fieldName)
+}
+
+// From STNodeFactory.java:2038-2049
+func CreateByteArrayLiteralNode(typeNode STNode, startBacktick STNode, content STNode, endBacktick STNode) STNode {
+	return createNodeAndAddChildren(&STByteArrayLiteralNode{
+		STExpressionNode: &STNodeBase{
+			kind: common.BYTE_ARRAY_LITERAL,
+		},
+		Type:          typeNode,
+		StartBacktick: startBacktick,
+		Content:       content,
+		EndBacktick:   endBacktick,
+	}, typeNode, startBacktick, content, endBacktick)
+}
+
+// From STNodeFactory.java:1258-1267
+func CreateInterpolationNode(interpolationStartToken STNode, expression STNode, interpolationEndToken STNode) STNode {
+	return createNodeAndAddChildren(&STInterpolationNode{
+		STXMLItemNode: &STNodeBase{
+			kind: common.INTERPOLATION,
+		},
+		InterpolationStartToken: interpolationStartToken,
+		Expression:              expression,
+		InterpolationEndToken:   interpolationEndToken,
+	}, interpolationStartToken, expression, interpolationEndToken)
+}
+
+// ========== Binding Pattern Methods (STNodeFactory.java:1705-1710) ==========
+
+// From STNodeFactory.java:1705-1710
+func CreateWildcardBindingPatternNode(underscoreToken STNode) STNode {
+	return createNodeAndAddChildren(&STWildcardBindingPatternNode{
+		STBindingPatternNode: &STNodeBase{
+			kind: common.WILDCARD_BINDING_PATTERN,
+		},
+		UnderscoreToken: underscoreToken,
+	}, underscoreToken)
+}
+
+// ========== Enum Support Methods (STNodeFactory.java:1933-1965) ==========
+
+// From STNodeFactory.java:1933-1952
+func CreateEnumDeclarationNode(metadata STNode, qualifier STNode, enumKeywordToken STNode, identifier STNode, openBraceToken STNode, enumMemberList STNode, closeBraceToken STNode, semicolonToken STNode) STNode {
+	return createNodeAndAddChildren(&STEnumDeclarationNode{
+		STModuleMemberDeclarationNode: &STNodeBase{
+			kind: common.ENUM_DECLARATION,
+		},
+		Metadata:         metadata,
+		Qualifier:        qualifier,
+		EnumKeywordToken: enumKeywordToken,
+		Identifier:       identifier,
+		OpenBraceToken:   openBraceToken,
+		EnumMemberList:   enumMemberList,
+		CloseBraceToken:  closeBraceToken,
+		SemicolonToken:   semicolonToken,
+	}, metadata, qualifier, enumKeywordToken, identifier, openBraceToken, enumMemberList, closeBraceToken, semicolonToken)
+}
+
+// From STNodeFactory.java:1954-1965
+func CreateEnumMemberNode(metadata STNode, identifier STNode, equalToken STNode, constExprNode STNode) STNode {
+	return createNodeAndAddChildren(&STEnumMemberNode{
+		STNode: &STNodeBase{
+			kind: common.ENUM_MEMBER,
+		},
+		Metadata:      metadata,
+		Identifier:    identifier,
+		EqualToken:    equalToken,
+		ConstExprNode: constExprNode,
+	}, metadata, identifier, equalToken, constExprNode)
+}
+
+// TODO: Go over each Create* function and make sure we set all the fields

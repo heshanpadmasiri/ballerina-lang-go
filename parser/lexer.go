@@ -75,6 +75,10 @@ func (l *Lexer) EndMode() {
 	}
 }
 
+func (l *Lexer) GetCurrentMode() ParserMode {
+	return l.context.mode
+}
+
 func (l *Lexer) NextToken() internal.STToken {
 	var token internal.STToken
 	switch l.context.mode {
@@ -285,13 +289,13 @@ func (l *Lexer) processNumericEscapeWithoutBackslash() {
 	reader.AdvanceN(2)
 
 	// Process code-point
-	if !isHexDigit(reader.Peek()) {
+	if !isHexDigit(byte(reader.Peek())) {
 		l.reportLexerError(common.ERROR_INVALID_STRING_NUMERIC_ESCAPE_SEQUENCE)
 		return
 	}
 
 	reader.Advance()
-	for isHexDigit(reader.Peek()) {
+	for isHexDigit(byte(reader.Peek())) {
 		reader.Advance()
 	}
 
@@ -806,7 +810,7 @@ func (l *Lexer) isHexIntFollowedIdentifier() bool {
 		return false
 	}
 
-	for isHexDigit(lookaheadChar) {
+	for isHexDigit(byte(lookaheadChar)) {
 		lookahead++
 		lookaheadChar = reader.PeekN(lookahead)
 	}
@@ -836,7 +840,7 @@ func (l *Lexer) processHexLiteral() internal.STToken {
 	reader.Advance() // advance for "x" or "X"
 	containsHexDigit := false
 
-	for isHexDigit(reader.Peek()) {
+	for isHexDigit(byte(reader.Peek())) {
 		reader.Advance()
 		containsHexDigit = true
 	}
@@ -850,14 +854,14 @@ func (l *Lexer) processHexLiteral() internal.STToken {
 		}
 
 		reader.Advance()
-		if !isHexDigit(reader.Peek()) {
+		if !isHexDigit(byte(reader.Peek())) {
 			// Make sure there is at least one hex-digit after the dot
 			// e.g. 0x., 0xAB.
 			l.reportLexerError(common.ERROR_MISSING_HEX_DIGIT_AFTER_DOT)
 		}
 
 		nextChar = reader.Peek()
-		for isHexDigit(nextChar) {
+		for isHexDigit(byte(nextChar)) {
 			reader.Advance()
 			nextChar = reader.Peek()
 		}
@@ -1179,7 +1183,7 @@ func (l *Lexer) getSyntaxToken(kind common.SyntaxKind) internal.STToken {
 }
 
 func (l *Lexer) getLeadingTrivia() internal.STNode {
-	trivia := internal.CreateNodeList(l.context.leadingTriviaList)
+	trivia := internal.CreateNodeList(l.context.leadingTriviaList...)
 	l.context.leadingTriviaList = make([]internal.STNode, 0, INITIAL_TRIVIA_CAPACITY)
 	return &trivia
 }
@@ -1187,7 +1191,7 @@ func (l *Lexer) getLeadingTrivia() internal.STNode {
 func (l *Lexer) processTrailingTrivia() internal.STNode {
 	triviaList := make([]internal.STNode, 0, INITIAL_TRIVIA_CAPACITY)
 	l.processSyntaxTrivia(&triviaList, false)
-	result := internal.CreateNodeList(triviaList)
+	result := internal.CreateNodeList(triviaList...)
 	return &result
 }
 

@@ -25,19 +25,19 @@ type ModulePart struct {
 	NonTerminalNode
 }
 
-func (n *ModulePart) Kind() common.SyntaxKind {
+func (n ModulePart) Kind() common.SyntaxKind {
 	return common.MODULE_PART
 }
 
-func (n *ModulePart) Imports() NodeList[*ImportDeclarationNode] {
+func (n ModulePart) Imports() NodeList[*ImportDeclarationNode] {
 	return nodeListFrom[*ImportDeclarationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *ModulePart) Members() NodeList[*DocumentMemberDeclarationNode] {
+func (n ModulePart) Members() NodeList[*DocumentMemberDeclarationNode] {
 	return nodeListFrom[*DocumentMemberDeclarationNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ModulePart) EofToken() *Token {
+func (n ModulePart) EofToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -51,11 +51,11 @@ type FunctionDefinition struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *FunctionDefinition) Kind() common.SyntaxKind {
+func (n FunctionDefinition) Kind() common.SyntaxKind {
 	return common.FUNCTION_DEFINITION
 }
 
-func (n *FunctionDefinition) Metadata() *MetadataNode {
+func (n FunctionDefinition) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -63,11 +63,11 @@ func (n *FunctionDefinition) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *FunctionDefinition) QualifierList() NodeList[*Token] {
+func (n FunctionDefinition) QualifierList() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *FunctionDefinition) FunctionKeyword() *Token {
+func (n FunctionDefinition) FunctionKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -75,7 +75,7 @@ func (n *FunctionDefinition) FunctionKeyword() *Token {
 	return val
 }
 
-func (n *FunctionDefinition) FunctionName() *IdentifierToken {
+func (n FunctionDefinition) FunctionName() *IdentifierToken {
 	val, ok := n.ChildInBucket(3).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -83,11 +83,11 @@ func (n *FunctionDefinition) FunctionName() *IdentifierToken {
 	return val
 }
 
-func (n *FunctionDefinition) RelativeResourcePath() NodeList[Node] {
+func (n FunctionDefinition) RelativeResourcePath() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(4)))
 }
 
-func (n *FunctionDefinition) FunctionSignature() *FunctionSignatureNode {
+func (n FunctionDefinition) FunctionSignature() *FunctionSignatureNode {
 	val, ok := n.ChildInBucket(5).(*FunctionSignatureNode)
 	if !ok {
 		panic("expected FunctionSignatureNode")
@@ -95,7 +95,7 @@ func (n *FunctionDefinition) FunctionSignature() *FunctionSignatureNode {
 	return val
 }
 
-func (n *FunctionDefinition) FunctionBody() *FunctionBodyNode {
+func (n FunctionDefinition) FunctionBody() *FunctionBodyNode {
 	val, ok := n.ChildInBucket(6).(*FunctionBodyNode)
 	if !ok {
 		panic("expected FunctionBodyNode")
@@ -107,11 +107,11 @@ type ImportDeclarationNode struct {
 	NonTerminalNode
 }
 
-func (n *ImportDeclarationNode) Kind() common.SyntaxKind {
+func (n ImportDeclarationNode) Kind() common.SyntaxKind {
 	return common.IMPORT_DECLARATION
 }
 
-func (n *ImportDeclarationNode) ImportKeyword() *Token {
+func (n ImportDeclarationNode) ImportKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -119,7 +119,7 @@ func (n *ImportDeclarationNode) ImportKeyword() *Token {
 	return val
 }
 
-func (n *ImportDeclarationNode) OrgName() *ImportOrgNameNode {
+func (n ImportDeclarationNode) OrgName() *ImportOrgNameNode {
 	val, ok := n.ChildInBucket(1).(*ImportOrgNameNode)
 	if !ok {
 		panic("expected ImportOrgNameNode")
@@ -127,11 +127,11 @@ func (n *ImportDeclarationNode) OrgName() *ImportOrgNameNode {
 	return val
 }
 
-func (n *ImportDeclarationNode) ModuleName() NodeList[*IdentifierToken] {
+func (n ImportDeclarationNode) ModuleName() NodeList[*IdentifierToken] {
 	return nodeListFrom[*IdentifierToken](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *ImportDeclarationNode) Prefix() *ImportPrefixNode {
+func (n ImportDeclarationNode) Prefix() *ImportPrefixNode {
 	val, ok := n.ChildInBucket(3).(*ImportPrefixNode)
 	if !ok {
 		panic("expected ImportPrefixNode")
@@ -139,7 +139,7 @@ func (n *ImportDeclarationNode) Prefix() *ImportPrefixNode {
 	return val
 }
 
-func (n *ImportDeclarationNode) Semicolon() *Token {
+func (n ImportDeclarationNode) Semicolon() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -151,11 +151,11 @@ type ListenerDeclarationNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *ListenerDeclarationNode) Kind() common.SyntaxKind {
+func (n ListenerDeclarationNode) Kind() common.SyntaxKind {
 	return common.LISTENER_DECLARATION
 }
 
-func (n *ListenerDeclarationNode) Metadata() *MetadataNode {
+func (n ListenerDeclarationNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -163,7 +163,7 @@ func (n *ListenerDeclarationNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *ListenerDeclarationNode) VisibilityQualifier() *Token {
+func (n ListenerDeclarationNode) VisibilityQualifier() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -171,7 +171,7 @@ func (n *ListenerDeclarationNode) VisibilityQualifier() *Token {
 	return val
 }
 
-func (n *ListenerDeclarationNode) ListenerKeyword() *Token {
+func (n ListenerDeclarationNode) ListenerKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -179,7 +179,7 @@ func (n *ListenerDeclarationNode) ListenerKeyword() *Token {
 	return val
 }
 
-func (n *ListenerDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
+func (n ListenerDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(3).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -187,7 +187,7 @@ func (n *ListenerDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ListenerDeclarationNode) VariableName() *Token {
+func (n ListenerDeclarationNode) VariableName() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -195,7 +195,7 @@ func (n *ListenerDeclarationNode) VariableName() *Token {
 	return val
 }
 
-func (n *ListenerDeclarationNode) EqualsToken() *Token {
+func (n ListenerDeclarationNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -203,7 +203,7 @@ func (n *ListenerDeclarationNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *ListenerDeclarationNode) Initializer() Node {
+func (n ListenerDeclarationNode) Initializer() Node {
 	val, ok := n.ChildInBucket(6).(Node)
 	if !ok {
 		panic("expected Node")
@@ -211,7 +211,7 @@ func (n *ListenerDeclarationNode) Initializer() Node {
 	return val
 }
 
-func (n *ListenerDeclarationNode) SemicolonToken() *Token {
+func (n ListenerDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(7).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -223,11 +223,11 @@ type TypeDefinitionNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *TypeDefinitionNode) Kind() common.SyntaxKind {
+func (n TypeDefinitionNode) Kind() common.SyntaxKind {
 	return common.TYPE_DEFINITION
 }
 
-func (n *TypeDefinitionNode) Metadata() *MetadataNode {
+func (n TypeDefinitionNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -235,7 +235,7 @@ func (n *TypeDefinitionNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *TypeDefinitionNode) VisibilityQualifier() *Token {
+func (n TypeDefinitionNode) VisibilityQualifier() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -243,7 +243,7 @@ func (n *TypeDefinitionNode) VisibilityQualifier() *Token {
 	return val
 }
 
-func (n *TypeDefinitionNode) TypeKeyword() *Token {
+func (n TypeDefinitionNode) TypeKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -251,7 +251,7 @@ func (n *TypeDefinitionNode) TypeKeyword() *Token {
 	return val
 }
 
-func (n *TypeDefinitionNode) TypeName() *Token {
+func (n TypeDefinitionNode) TypeName() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -259,7 +259,7 @@ func (n *TypeDefinitionNode) TypeName() *Token {
 	return val
 }
 
-func (n *TypeDefinitionNode) TypeDescriptor() Node {
+func (n TypeDefinitionNode) TypeDescriptor() Node {
 	val, ok := n.ChildInBucket(4).(Node)
 	if !ok {
 		panic("expected Node")
@@ -267,7 +267,7 @@ func (n *TypeDefinitionNode) TypeDescriptor() Node {
 	return val
 }
 
-func (n *TypeDefinitionNode) SemicolonToken() *Token {
+func (n TypeDefinitionNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -279,11 +279,11 @@ type ServiceDeclarationNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *ServiceDeclarationNode) Kind() common.SyntaxKind {
+func (n ServiceDeclarationNode) Kind() common.SyntaxKind {
 	return common.SERVICE_DECLARATION
 }
 
-func (n *ServiceDeclarationNode) Metadata() *MetadataNode {
+func (n ServiceDeclarationNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -291,11 +291,11 @@ func (n *ServiceDeclarationNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *ServiceDeclarationNode) Qualifiers() NodeList[*Token] {
+func (n ServiceDeclarationNode) Qualifiers() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ServiceDeclarationNode) ServiceKeyword() *Token {
+func (n ServiceDeclarationNode) ServiceKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -303,7 +303,7 @@ func (n *ServiceDeclarationNode) ServiceKeyword() *Token {
 	return val
 }
 
-func (n *ServiceDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
+func (n ServiceDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(3).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -311,11 +311,11 @@ func (n *ServiceDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ServiceDeclarationNode) AbsoluteResourcePath() NodeList[Node] {
+func (n ServiceDeclarationNode) AbsoluteResourcePath() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(4)))
 }
 
-func (n *ServiceDeclarationNode) OnKeyword() *Token {
+func (n ServiceDeclarationNode) OnKeyword() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -323,11 +323,11 @@ func (n *ServiceDeclarationNode) OnKeyword() *Token {
 	return val
 }
 
-func (n *ServiceDeclarationNode) Expressions() NodeList[*ExpressionNode] {
+func (n ServiceDeclarationNode) Expressions() NodeList[*ExpressionNode] {
 	return nodeListFrom[*ExpressionNode](into[*NonTerminalNode](n.ChildInBucket(6)))
 }
 
-func (n *ServiceDeclarationNode) OpenBraceToken() *Token {
+func (n ServiceDeclarationNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(7).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -335,11 +335,11 @@ func (n *ServiceDeclarationNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *ServiceDeclarationNode) Members() NodeList[Node] {
+func (n ServiceDeclarationNode) Members() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(8)))
 }
 
-func (n *ServiceDeclarationNode) CloseBraceToken() *Token {
+func (n ServiceDeclarationNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(9).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -347,7 +347,7 @@ func (n *ServiceDeclarationNode) CloseBraceToken() *Token {
 	return val
 }
 
-func (n *ServiceDeclarationNode) SemicolonToken() *Token {
+func (n ServiceDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(10).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -361,11 +361,11 @@ type AssignmentStatementNode struct {
 	StatementNode
 }
 
-func (n *AssignmentStatementNode) Kind() common.SyntaxKind {
+func (n AssignmentStatementNode) Kind() common.SyntaxKind {
 	return common.ASSIGNMENT_STATEMENT
 }
 
-func (n *AssignmentStatementNode) VarRef() Node {
+func (n AssignmentStatementNode) VarRef() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -373,7 +373,7 @@ func (n *AssignmentStatementNode) VarRef() Node {
 	return val
 }
 
-func (n *AssignmentStatementNode) EqualsToken() *Token {
+func (n AssignmentStatementNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -381,7 +381,7 @@ func (n *AssignmentStatementNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *AssignmentStatementNode) Expression() *ExpressionNode {
+func (n AssignmentStatementNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(2).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -389,7 +389,7 @@ func (n *AssignmentStatementNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *AssignmentStatementNode) SemicolonToken() *Token {
+func (n AssignmentStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -401,11 +401,11 @@ type CompoundAssignmentStatementNode struct {
 	StatementNode
 }
 
-func (n *CompoundAssignmentStatementNode) Kind() common.SyntaxKind {
+func (n CompoundAssignmentStatementNode) Kind() common.SyntaxKind {
 	return common.COMPOUND_ASSIGNMENT_STATEMENT
 }
 
-func (n *CompoundAssignmentStatementNode) LhsExpression() *ExpressionNode {
+func (n CompoundAssignmentStatementNode) LhsExpression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -413,7 +413,7 @@ func (n *CompoundAssignmentStatementNode) LhsExpression() *ExpressionNode {
 	return val
 }
 
-func (n *CompoundAssignmentStatementNode) BinaryOperator() *Token {
+func (n CompoundAssignmentStatementNode) BinaryOperator() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -421,7 +421,7 @@ func (n *CompoundAssignmentStatementNode) BinaryOperator() *Token {
 	return val
 }
 
-func (n *CompoundAssignmentStatementNode) EqualsToken() *Token {
+func (n CompoundAssignmentStatementNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -429,7 +429,7 @@ func (n *CompoundAssignmentStatementNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *CompoundAssignmentStatementNode) RhsExpression() *ExpressionNode {
+func (n CompoundAssignmentStatementNode) RhsExpression() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -437,7 +437,7 @@ func (n *CompoundAssignmentStatementNode) RhsExpression() *ExpressionNode {
 	return val
 }
 
-func (n *CompoundAssignmentStatementNode) SemicolonToken() *Token {
+func (n CompoundAssignmentStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -449,15 +449,15 @@ type VariableDeclarationNode struct {
 	StatementNode
 }
 
-func (n *VariableDeclarationNode) Kind() common.SyntaxKind {
+func (n VariableDeclarationNode) Kind() common.SyntaxKind {
 	return common.LOCAL_VAR_DECL
 }
 
-func (n *VariableDeclarationNode) Annotations() NodeList[*AnnotationNode] {
+func (n VariableDeclarationNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *VariableDeclarationNode) FinalKeyword() *Token {
+func (n VariableDeclarationNode) FinalKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -465,7 +465,7 @@ func (n *VariableDeclarationNode) FinalKeyword() *Token {
 	return val
 }
 
-func (n *VariableDeclarationNode) TypedBindingPattern() *TypedBindingPatternNode {
+func (n VariableDeclarationNode) TypedBindingPattern() *TypedBindingPatternNode {
 	val, ok := n.ChildInBucket(2).(*TypedBindingPatternNode)
 	if !ok {
 		panic("expected TypedBindingPatternNode")
@@ -473,7 +473,7 @@ func (n *VariableDeclarationNode) TypedBindingPattern() *TypedBindingPatternNode
 	return val
 }
 
-func (n *VariableDeclarationNode) EqualsToken() *Token {
+func (n VariableDeclarationNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -481,7 +481,7 @@ func (n *VariableDeclarationNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *VariableDeclarationNode) Initializer() *ExpressionNode {
+func (n VariableDeclarationNode) Initializer() *ExpressionNode {
 	val, ok := n.ChildInBucket(4).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -489,7 +489,7 @@ func (n *VariableDeclarationNode) Initializer() *ExpressionNode {
 	return val
 }
 
-func (n *VariableDeclarationNode) SemicolonToken() *Token {
+func (n VariableDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -501,11 +501,11 @@ type BlockStatementNode struct {
 	StatementNode
 }
 
-func (n *BlockStatementNode) Kind() common.SyntaxKind {
+func (n BlockStatementNode) Kind() common.SyntaxKind {
 	return common.BLOCK_STATEMENT
 }
 
-func (n *BlockStatementNode) OpenBraceToken() *Token {
+func (n BlockStatementNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -513,11 +513,11 @@ func (n *BlockStatementNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *BlockStatementNode) Statements() NodeList[*StatementNode] {
+func (n BlockStatementNode) Statements() NodeList[*StatementNode] {
 	return nodeListFrom[*StatementNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *BlockStatementNode) CloseBraceToken() *Token {
+func (n BlockStatementNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -529,11 +529,11 @@ type BreakStatementNode struct {
 	StatementNode
 }
 
-func (n *BreakStatementNode) Kind() common.SyntaxKind {
+func (n BreakStatementNode) Kind() common.SyntaxKind {
 	return common.BREAK_STATEMENT
 }
 
-func (n *BreakStatementNode) BreakToken() *Token {
+func (n BreakStatementNode) BreakToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -541,7 +541,7 @@ func (n *BreakStatementNode) BreakToken() *Token {
 	return val
 }
 
-func (n *BreakStatementNode) SemicolonToken() *Token {
+func (n BreakStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -553,11 +553,11 @@ type FailStatementNode struct {
 	StatementNode
 }
 
-func (n *FailStatementNode) Kind() common.SyntaxKind {
+func (n FailStatementNode) Kind() common.SyntaxKind {
 	return common.FAIL_STATEMENT
 }
 
-func (n *FailStatementNode) FailKeyword() *Token {
+func (n FailStatementNode) FailKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -565,7 +565,7 @@ func (n *FailStatementNode) FailKeyword() *Token {
 	return val
 }
 
-func (n *FailStatementNode) Expression() *ExpressionNode {
+func (n FailStatementNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -573,7 +573,7 @@ func (n *FailStatementNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *FailStatementNode) SemicolonToken() *Token {
+func (n FailStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -585,7 +585,7 @@ type ExpressionStatementNode struct {
 	StatementNode
 }
 
-func (n *ExpressionStatementNode) Expression() *ExpressionNode {
+func (n ExpressionStatementNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -593,7 +593,7 @@ func (n *ExpressionStatementNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *ExpressionStatementNode) SemicolonToken() *Token {
+func (n ExpressionStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -605,11 +605,11 @@ type ContinueStatementNode struct {
 	StatementNode
 }
 
-func (n *ContinueStatementNode) Kind() common.SyntaxKind {
+func (n ContinueStatementNode) Kind() common.SyntaxKind {
 	return common.CONTINUE_STATEMENT
 }
 
-func (n *ContinueStatementNode) ContinueToken() *Token {
+func (n ContinueStatementNode) ContinueToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -617,7 +617,7 @@ func (n *ContinueStatementNode) ContinueToken() *Token {
 	return val
 }
 
-func (n *ContinueStatementNode) SemicolonToken() *Token {
+func (n ContinueStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -629,11 +629,11 @@ type ExternalFunctionBodyNode struct {
 	FunctionBodyNode
 }
 
-func (n *ExternalFunctionBodyNode) Kind() common.SyntaxKind {
+func (n ExternalFunctionBodyNode) Kind() common.SyntaxKind {
 	return common.EXTERNAL_FUNCTION_BODY
 }
 
-func (n *ExternalFunctionBodyNode) EqualsToken() *Token {
+func (n ExternalFunctionBodyNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -641,11 +641,11 @@ func (n *ExternalFunctionBodyNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *ExternalFunctionBodyNode) Annotations() NodeList[*AnnotationNode] {
+func (n ExternalFunctionBodyNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ExternalFunctionBodyNode) ExternalKeyword() *Token {
+func (n ExternalFunctionBodyNode) ExternalKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -653,7 +653,7 @@ func (n *ExternalFunctionBodyNode) ExternalKeyword() *Token {
 	return val
 }
 
-func (n *ExternalFunctionBodyNode) SemicolonToken() *Token {
+func (n ExternalFunctionBodyNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -665,11 +665,11 @@ type IfElseStatementNode struct {
 	StatementNode
 }
 
-func (n *IfElseStatementNode) Kind() common.SyntaxKind {
+func (n IfElseStatementNode) Kind() common.SyntaxKind {
 	return common.IF_ELSE_STATEMENT
 }
 
-func (n *IfElseStatementNode) IfKeyword() *Token {
+func (n IfElseStatementNode) IfKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -677,7 +677,7 @@ func (n *IfElseStatementNode) IfKeyword() *Token {
 	return val
 }
 
-func (n *IfElseStatementNode) Condition() *ExpressionNode {
+func (n IfElseStatementNode) Condition() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -685,7 +685,7 @@ func (n *IfElseStatementNode) Condition() *ExpressionNode {
 	return val
 }
 
-func (n *IfElseStatementNode) IfBody() *BlockStatementNode {
+func (n IfElseStatementNode) IfBody() *BlockStatementNode {
 	val, ok := n.ChildInBucket(2).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -693,7 +693,7 @@ func (n *IfElseStatementNode) IfBody() *BlockStatementNode {
 	return val
 }
 
-func (n *IfElseStatementNode) ElseBody() Node {
+func (n IfElseStatementNode) ElseBody() Node {
 	val, ok := n.ChildInBucket(3).(Node)
 	if !ok {
 		panic("expected Node")
@@ -705,11 +705,11 @@ type ElseBlockNode struct {
 	NonTerminalNode
 }
 
-func (n *ElseBlockNode) Kind() common.SyntaxKind {
+func (n ElseBlockNode) Kind() common.SyntaxKind {
 	return common.ELSE_BLOCK
 }
 
-func (n *ElseBlockNode) ElseKeyword() *Token {
+func (n ElseBlockNode) ElseKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -717,7 +717,7 @@ func (n *ElseBlockNode) ElseKeyword() *Token {
 	return val
 }
 
-func (n *ElseBlockNode) ElseBody() *StatementNode {
+func (n ElseBlockNode) ElseBody() *StatementNode {
 	val, ok := n.ChildInBucket(1).(*StatementNode)
 	if !ok {
 		panic("expected StatementNode")
@@ -729,11 +729,11 @@ type WhileStatementNode struct {
 	StatementNode
 }
 
-func (n *WhileStatementNode) Kind() common.SyntaxKind {
+func (n WhileStatementNode) Kind() common.SyntaxKind {
 	return common.WHILE_STATEMENT
 }
 
-func (n *WhileStatementNode) WhileKeyword() *Token {
+func (n WhileStatementNode) WhileKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -741,7 +741,7 @@ func (n *WhileStatementNode) WhileKeyword() *Token {
 	return val
 }
 
-func (n *WhileStatementNode) Condition() *ExpressionNode {
+func (n WhileStatementNode) Condition() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -749,7 +749,7 @@ func (n *WhileStatementNode) Condition() *ExpressionNode {
 	return val
 }
 
-func (n *WhileStatementNode) WhileBody() *BlockStatementNode {
+func (n WhileStatementNode) WhileBody() *BlockStatementNode {
 	val, ok := n.ChildInBucket(2).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -757,7 +757,7 @@ func (n *WhileStatementNode) WhileBody() *BlockStatementNode {
 	return val
 }
 
-func (n *WhileStatementNode) OnFailClause() *OnFailClauseNode {
+func (n WhileStatementNode) OnFailClause() *OnFailClauseNode {
 	val, ok := n.ChildInBucket(3).(*OnFailClauseNode)
 	if !ok {
 		panic("expected OnFailClauseNode")
@@ -769,11 +769,11 @@ type PanicStatementNode struct {
 	StatementNode
 }
 
-func (n *PanicStatementNode) Kind() common.SyntaxKind {
+func (n PanicStatementNode) Kind() common.SyntaxKind {
 	return common.PANIC_STATEMENT
 }
 
-func (n *PanicStatementNode) PanicKeyword() *Token {
+func (n PanicStatementNode) PanicKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -781,7 +781,7 @@ func (n *PanicStatementNode) PanicKeyword() *Token {
 	return val
 }
 
-func (n *PanicStatementNode) Expression() *ExpressionNode {
+func (n PanicStatementNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -789,7 +789,7 @@ func (n *PanicStatementNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *PanicStatementNode) SemicolonToken() *Token {
+func (n PanicStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -801,11 +801,11 @@ type ReturnStatementNode struct {
 	StatementNode
 }
 
-func (n *ReturnStatementNode) Kind() common.SyntaxKind {
+func (n ReturnStatementNode) Kind() common.SyntaxKind {
 	return common.RETURN_STATEMENT
 }
 
-func (n *ReturnStatementNode) ReturnKeyword() *Token {
+func (n ReturnStatementNode) ReturnKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -813,7 +813,7 @@ func (n *ReturnStatementNode) ReturnKeyword() *Token {
 	return val
 }
 
-func (n *ReturnStatementNode) Expression() *ExpressionNode {
+func (n ReturnStatementNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -821,7 +821,7 @@ func (n *ReturnStatementNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *ReturnStatementNode) SemicolonToken() *Token {
+func (n ReturnStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -833,15 +833,15 @@ type LocalTypeDefinitionStatementNode struct {
 	StatementNode
 }
 
-func (n *LocalTypeDefinitionStatementNode) Kind() common.SyntaxKind {
+func (n LocalTypeDefinitionStatementNode) Kind() common.SyntaxKind {
 	return common.LOCAL_TYPE_DEFINITION_STATEMENT
 }
 
-func (n *LocalTypeDefinitionStatementNode) Annotations() NodeList[*AnnotationNode] {
+func (n LocalTypeDefinitionStatementNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *LocalTypeDefinitionStatementNode) TypeKeyword() *Token {
+func (n LocalTypeDefinitionStatementNode) TypeKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -849,7 +849,7 @@ func (n *LocalTypeDefinitionStatementNode) TypeKeyword() *Token {
 	return val
 }
 
-func (n *LocalTypeDefinitionStatementNode) TypeName() Node {
+func (n LocalTypeDefinitionStatementNode) TypeName() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -857,7 +857,7 @@ func (n *LocalTypeDefinitionStatementNode) TypeName() Node {
 	return val
 }
 
-func (n *LocalTypeDefinitionStatementNode) TypeDescriptor() Node {
+func (n LocalTypeDefinitionStatementNode) TypeDescriptor() Node {
 	val, ok := n.ChildInBucket(3).(Node)
 	if !ok {
 		panic("expected Node")
@@ -865,7 +865,7 @@ func (n *LocalTypeDefinitionStatementNode) TypeDescriptor() Node {
 	return val
 }
 
-func (n *LocalTypeDefinitionStatementNode) SemicolonToken() *Token {
+func (n LocalTypeDefinitionStatementNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -877,11 +877,11 @@ type LockStatementNode struct {
 	StatementNode
 }
 
-func (n *LockStatementNode) Kind() common.SyntaxKind {
+func (n LockStatementNode) Kind() common.SyntaxKind {
 	return common.LOCK_STATEMENT
 }
 
-func (n *LockStatementNode) LockKeyword() *Token {
+func (n LockStatementNode) LockKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -889,7 +889,7 @@ func (n *LockStatementNode) LockKeyword() *Token {
 	return val
 }
 
-func (n *LockStatementNode) BlockStatement() *BlockStatementNode {
+func (n LockStatementNode) BlockStatement() *BlockStatementNode {
 	val, ok := n.ChildInBucket(1).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -897,7 +897,7 @@ func (n *LockStatementNode) BlockStatement() *BlockStatementNode {
 	return val
 }
 
-func (n *LockStatementNode) OnFailClause() *OnFailClauseNode {
+func (n LockStatementNode) OnFailClause() *OnFailClauseNode {
 	val, ok := n.ChildInBucket(2).(*OnFailClauseNode)
 	if !ok {
 		panic("expected OnFailClauseNode")
@@ -909,11 +909,11 @@ type ForkStatementNode struct {
 	StatementNode
 }
 
-func (n *ForkStatementNode) Kind() common.SyntaxKind {
+func (n ForkStatementNode) Kind() common.SyntaxKind {
 	return common.FORK_STATEMENT
 }
 
-func (n *ForkStatementNode) ForkKeyword() *Token {
+func (n ForkStatementNode) ForkKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -921,7 +921,7 @@ func (n *ForkStatementNode) ForkKeyword() *Token {
 	return val
 }
 
-func (n *ForkStatementNode) OpenBraceToken() *Token {
+func (n ForkStatementNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -929,11 +929,11 @@ func (n *ForkStatementNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *ForkStatementNode) NamedWorkerDeclarations() NodeList[*NamedWorkerDeclarationNode] {
+func (n ForkStatementNode) NamedWorkerDeclarations() NodeList[*NamedWorkerDeclarationNode] {
 	return nodeListFrom[*NamedWorkerDeclarationNode](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *ForkStatementNode) CloseBraceToken() *Token {
+func (n ForkStatementNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -945,11 +945,11 @@ type ForEachStatementNode struct {
 	StatementNode
 }
 
-func (n *ForEachStatementNode) Kind() common.SyntaxKind {
+func (n ForEachStatementNode) Kind() common.SyntaxKind {
 	return common.FOREACH_STATEMENT
 }
 
-func (n *ForEachStatementNode) ForEachKeyword() *Token {
+func (n ForEachStatementNode) ForEachKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -957,7 +957,7 @@ func (n *ForEachStatementNode) ForEachKeyword() *Token {
 	return val
 }
 
-func (n *ForEachStatementNode) TypedBindingPattern() *TypedBindingPatternNode {
+func (n ForEachStatementNode) TypedBindingPattern() *TypedBindingPatternNode {
 	val, ok := n.ChildInBucket(1).(*TypedBindingPatternNode)
 	if !ok {
 		panic("expected TypedBindingPatternNode")
@@ -965,7 +965,7 @@ func (n *ForEachStatementNode) TypedBindingPattern() *TypedBindingPatternNode {
 	return val
 }
 
-func (n *ForEachStatementNode) InKeyword() *Token {
+func (n ForEachStatementNode) InKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -973,7 +973,7 @@ func (n *ForEachStatementNode) InKeyword() *Token {
 	return val
 }
 
-func (n *ForEachStatementNode) ActionOrExpressionNode() Node {
+func (n ForEachStatementNode) ActionOrExpressionNode() Node {
 	val, ok := n.ChildInBucket(3).(Node)
 	if !ok {
 		panic("expected Node")
@@ -981,7 +981,7 @@ func (n *ForEachStatementNode) ActionOrExpressionNode() Node {
 	return val
 }
 
-func (n *ForEachStatementNode) BlockStatement() *BlockStatementNode {
+func (n ForEachStatementNode) BlockStatement() *BlockStatementNode {
 	val, ok := n.ChildInBucket(4).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -989,7 +989,7 @@ func (n *ForEachStatementNode) BlockStatement() *BlockStatementNode {
 	return val
 }
 
-func (n *ForEachStatementNode) OnFailClause() *OnFailClauseNode {
+func (n ForEachStatementNode) OnFailClause() *OnFailClauseNode {
 	val, ok := n.ChildInBucket(5).(*OnFailClauseNode)
 	if !ok {
 		panic("expected OnFailClauseNode")
@@ -1003,7 +1003,7 @@ type BinaryExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *BinaryExpressionNode) LhsExpr() Node {
+func (n BinaryExpressionNode) LhsExpr() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1011,7 +1011,7 @@ func (n *BinaryExpressionNode) LhsExpr() Node {
 	return val
 }
 
-func (n *BinaryExpressionNode) Operator() *Token {
+func (n BinaryExpressionNode) Operator() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1019,7 +1019,7 @@ func (n *BinaryExpressionNode) Operator() *Token {
 	return val
 }
 
-func (n *BinaryExpressionNode) RhsExpr() Node {
+func (n BinaryExpressionNode) RhsExpr() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1031,7 +1031,7 @@ type BracedExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *BracedExpressionNode) OpenParen() *Token {
+func (n BracedExpressionNode) OpenParen() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1039,7 +1039,7 @@ func (n *BracedExpressionNode) OpenParen() *Token {
 	return val
 }
 
-func (n *BracedExpressionNode) Expression() *ExpressionNode {
+func (n BracedExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1047,7 +1047,7 @@ func (n *BracedExpressionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *BracedExpressionNode) CloseParen() *Token {
+func (n BracedExpressionNode) CloseParen() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1059,7 +1059,7 @@ type CheckExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *CheckExpressionNode) CheckKeyword() *Token {
+func (n CheckExpressionNode) CheckKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1067,7 +1067,7 @@ func (n *CheckExpressionNode) CheckKeyword() *Token {
 	return val
 }
 
-func (n *CheckExpressionNode) Expression() *ExpressionNode {
+func (n CheckExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1079,11 +1079,11 @@ type FieldAccessExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *FieldAccessExpressionNode) Kind() common.SyntaxKind {
+func (n FieldAccessExpressionNode) Kind() common.SyntaxKind {
 	return common.FIELD_ACCESS
 }
 
-func (n *FieldAccessExpressionNode) Expression() *ExpressionNode {
+func (n FieldAccessExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1091,7 +1091,7 @@ func (n *FieldAccessExpressionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *FieldAccessExpressionNode) DotToken() *Token {
+func (n FieldAccessExpressionNode) DotToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1099,7 +1099,7 @@ func (n *FieldAccessExpressionNode) DotToken() *Token {
 	return val
 }
 
-func (n *FieldAccessExpressionNode) FieldName() *NameReferenceNode {
+func (n FieldAccessExpressionNode) FieldName() *NameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*NameReferenceNode)
 	if !ok {
 		panic("expected NameReferenceNode")
@@ -1111,11 +1111,11 @@ type FunctionCallExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *FunctionCallExpressionNode) Kind() common.SyntaxKind {
+func (n FunctionCallExpressionNode) Kind() common.SyntaxKind {
 	return common.FUNCTION_CALL
 }
 
-func (n *FunctionCallExpressionNode) FunctionName() *NameReferenceNode {
+func (n FunctionCallExpressionNode) FunctionName() *NameReferenceNode {
 	val, ok := n.ChildInBucket(0).(*NameReferenceNode)
 	if !ok {
 		panic("expected NameReferenceNode")
@@ -1123,7 +1123,7 @@ func (n *FunctionCallExpressionNode) FunctionName() *NameReferenceNode {
 	return val
 }
 
-func (n *FunctionCallExpressionNode) OpenParenToken() *Token {
+func (n FunctionCallExpressionNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1131,11 +1131,11 @@ func (n *FunctionCallExpressionNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *FunctionCallExpressionNode) Arguments() NodeList[*FunctionArgumentNode] {
+func (n FunctionCallExpressionNode) Arguments() NodeList[*FunctionArgumentNode] {
 	return nodeListFrom[*FunctionArgumentNode](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *FunctionCallExpressionNode) CloseParenToken() *Token {
+func (n FunctionCallExpressionNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1147,11 +1147,11 @@ type MethodCallExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *MethodCallExpressionNode) Kind() common.SyntaxKind {
+func (n MethodCallExpressionNode) Kind() common.SyntaxKind {
 	return common.METHOD_CALL
 }
 
-func (n *MethodCallExpressionNode) Expression() *ExpressionNode {
+func (n MethodCallExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1159,7 +1159,7 @@ func (n *MethodCallExpressionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *MethodCallExpressionNode) DotToken() *Token {
+func (n MethodCallExpressionNode) DotToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1167,7 +1167,7 @@ func (n *MethodCallExpressionNode) DotToken() *Token {
 	return val
 }
 
-func (n *MethodCallExpressionNode) MethodName() *NameReferenceNode {
+func (n MethodCallExpressionNode) MethodName() *NameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*NameReferenceNode)
 	if !ok {
 		panic("expected NameReferenceNode")
@@ -1175,7 +1175,7 @@ func (n *MethodCallExpressionNode) MethodName() *NameReferenceNode {
 	return val
 }
 
-func (n *MethodCallExpressionNode) OpenParenToken() *Token {
+func (n MethodCallExpressionNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1183,11 +1183,11 @@ func (n *MethodCallExpressionNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *MethodCallExpressionNode) Arguments() NodeList[*FunctionArgumentNode] {
+func (n MethodCallExpressionNode) Arguments() NodeList[*FunctionArgumentNode] {
 	return nodeListFrom[*FunctionArgumentNode](into[*NonTerminalNode](n.ChildInBucket(4)))
 }
 
-func (n *MethodCallExpressionNode) CloseParenToken() *Token {
+func (n MethodCallExpressionNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1199,11 +1199,11 @@ type MappingConstructorExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *MappingConstructorExpressionNode) Kind() common.SyntaxKind {
+func (n MappingConstructorExpressionNode) Kind() common.SyntaxKind {
 	return common.MAPPING_CONSTRUCTOR
 }
 
-func (n *MappingConstructorExpressionNode) OpenBrace() *Token {
+func (n MappingConstructorExpressionNode) OpenBrace() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1211,11 +1211,11 @@ func (n *MappingConstructorExpressionNode) OpenBrace() *Token {
 	return val
 }
 
-func (n *MappingConstructorExpressionNode) Fields() NodeList[*MappingFieldNode] {
+func (n MappingConstructorExpressionNode) Fields() NodeList[*MappingFieldNode] {
 	return nodeListFrom[*MappingFieldNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *MappingConstructorExpressionNode) CloseBrace() *Token {
+func (n MappingConstructorExpressionNode) CloseBrace() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1227,11 +1227,11 @@ type IndexedExpressionNode struct {
 	TypeDescriptorNode
 }
 
-func (n *IndexedExpressionNode) Kind() common.SyntaxKind {
+func (n IndexedExpressionNode) Kind() common.SyntaxKind {
 	return common.INDEXED_EXPRESSION
 }
 
-func (n *IndexedExpressionNode) ContainerExpression() *ExpressionNode {
+func (n IndexedExpressionNode) ContainerExpression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1239,7 +1239,7 @@ func (n *IndexedExpressionNode) ContainerExpression() *ExpressionNode {
 	return val
 }
 
-func (n *IndexedExpressionNode) OpenBracket() *Token {
+func (n IndexedExpressionNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1247,11 +1247,11 @@ func (n *IndexedExpressionNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *IndexedExpressionNode) KeyExpression() NodeList[*ExpressionNode] {
+func (n IndexedExpressionNode) KeyExpression() NodeList[*ExpressionNode] {
 	return nodeListFrom[*ExpressionNode](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *IndexedExpressionNode) CloseBracket() *Token {
+func (n IndexedExpressionNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1263,11 +1263,11 @@ type TypeofExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *TypeofExpressionNode) Kind() common.SyntaxKind {
+func (n TypeofExpressionNode) Kind() common.SyntaxKind {
 	return common.TYPEOF_EXPRESSION
 }
 
-func (n *TypeofExpressionNode) TypeofKeyword() *Token {
+func (n TypeofExpressionNode) TypeofKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1275,7 +1275,7 @@ func (n *TypeofExpressionNode) TypeofKeyword() *Token {
 	return val
 }
 
-func (n *TypeofExpressionNode) Expression() *ExpressionNode {
+func (n TypeofExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1287,11 +1287,11 @@ type UnaryExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *UnaryExpressionNode) Kind() common.SyntaxKind {
+func (n UnaryExpressionNode) Kind() common.SyntaxKind {
 	return common.UNARY_EXPRESSION
 }
 
-func (n *UnaryExpressionNode) UnaryOperator() *Token {
+func (n UnaryExpressionNode) UnaryOperator() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1299,7 +1299,7 @@ func (n *UnaryExpressionNode) UnaryOperator() *Token {
 	return val
 }
 
-func (n *UnaryExpressionNode) Expression() *ExpressionNode {
+func (n UnaryExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1311,11 +1311,11 @@ type ComputedNameFieldNode struct {
 	MappingFieldNode
 }
 
-func (n *ComputedNameFieldNode) Kind() common.SyntaxKind {
+func (n ComputedNameFieldNode) Kind() common.SyntaxKind {
 	return common.COMPUTED_NAME_FIELD
 }
 
-func (n *ComputedNameFieldNode) OpenBracket() *Token {
+func (n ComputedNameFieldNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1323,7 +1323,7 @@ func (n *ComputedNameFieldNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *ComputedNameFieldNode) FieldNameExpr() *ExpressionNode {
+func (n ComputedNameFieldNode) FieldNameExpr() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1331,7 +1331,7 @@ func (n *ComputedNameFieldNode) FieldNameExpr() *ExpressionNode {
 	return val
 }
 
-func (n *ComputedNameFieldNode) CloseBracket() *Token {
+func (n ComputedNameFieldNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1339,7 +1339,7 @@ func (n *ComputedNameFieldNode) CloseBracket() *Token {
 	return val
 }
 
-func (n *ComputedNameFieldNode) ColonToken() *Token {
+func (n ComputedNameFieldNode) ColonToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1347,7 +1347,7 @@ func (n *ComputedNameFieldNode) ColonToken() *Token {
 	return val
 }
 
-func (n *ComputedNameFieldNode) ValueExpr() *ExpressionNode {
+func (n ComputedNameFieldNode) ValueExpr() *ExpressionNode {
 	val, ok := n.ChildInBucket(4).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1359,11 +1359,11 @@ type ConstantDeclarationNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *ConstantDeclarationNode) Kind() common.SyntaxKind {
+func (n ConstantDeclarationNode) Kind() common.SyntaxKind {
 	return common.CONST_DECLARATION
 }
 
-func (n *ConstantDeclarationNode) Metadata() *MetadataNode {
+func (n ConstantDeclarationNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -1371,7 +1371,7 @@ func (n *ConstantDeclarationNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *ConstantDeclarationNode) VisibilityQualifier() *Token {
+func (n ConstantDeclarationNode) VisibilityQualifier() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1379,7 +1379,7 @@ func (n *ConstantDeclarationNode) VisibilityQualifier() *Token {
 	return val
 }
 
-func (n *ConstantDeclarationNode) ConstKeyword() *Token {
+func (n ConstantDeclarationNode) ConstKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1387,7 +1387,7 @@ func (n *ConstantDeclarationNode) ConstKeyword() *Token {
 	return val
 }
 
-func (n *ConstantDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
+func (n ConstantDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(3).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -1395,7 +1395,7 @@ func (n *ConstantDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ConstantDeclarationNode) VariableName() *Token {
+func (n ConstantDeclarationNode) VariableName() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1403,7 +1403,7 @@ func (n *ConstantDeclarationNode) VariableName() *Token {
 	return val
 }
 
-func (n *ConstantDeclarationNode) EqualsToken() *Token {
+func (n ConstantDeclarationNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1411,7 +1411,7 @@ func (n *ConstantDeclarationNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *ConstantDeclarationNode) Initializer() Node {
+func (n ConstantDeclarationNode) Initializer() Node {
 	val, ok := n.ChildInBucket(6).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1419,7 +1419,7 @@ func (n *ConstantDeclarationNode) Initializer() Node {
 	return val
 }
 
-func (n *ConstantDeclarationNode) SemicolonToken() *Token {
+func (n ConstantDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(7).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1433,15 +1433,15 @@ type DefaultableParameterNode struct {
 	ParameterNode
 }
 
-func (n *DefaultableParameterNode) Kind() common.SyntaxKind {
+func (n DefaultableParameterNode) Kind() common.SyntaxKind {
 	return common.DEFAULTABLE_PARAM
 }
 
-func (n *DefaultableParameterNode) Annotations() NodeList[*AnnotationNode] {
+func (n DefaultableParameterNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *DefaultableParameterNode) TypeName() Node {
+func (n DefaultableParameterNode) TypeName() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1449,7 +1449,7 @@ func (n *DefaultableParameterNode) TypeName() Node {
 	return val
 }
 
-func (n *DefaultableParameterNode) ParamName() *Token {
+func (n DefaultableParameterNode) ParamName() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1457,7 +1457,7 @@ func (n *DefaultableParameterNode) ParamName() *Token {
 	return val
 }
 
-func (n *DefaultableParameterNode) EqualsToken() *Token {
+func (n DefaultableParameterNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1465,7 +1465,7 @@ func (n *DefaultableParameterNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *DefaultableParameterNode) Expression() Node {
+func (n DefaultableParameterNode) Expression() Node {
 	val, ok := n.ChildInBucket(4).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1477,15 +1477,15 @@ type RequiredParameterNode struct {
 	ParameterNode
 }
 
-func (n *RequiredParameterNode) Kind() common.SyntaxKind {
+func (n RequiredParameterNode) Kind() common.SyntaxKind {
 	return common.REQUIRED_PARAM
 }
 
-func (n *RequiredParameterNode) Annotations() NodeList[*AnnotationNode] {
+func (n RequiredParameterNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *RequiredParameterNode) TypeName() Node {
+func (n RequiredParameterNode) TypeName() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1493,7 +1493,7 @@ func (n *RequiredParameterNode) TypeName() Node {
 	return val
 }
 
-func (n *RequiredParameterNode) ParamName() *Token {
+func (n RequiredParameterNode) ParamName() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1505,15 +1505,15 @@ type IncludedRecordParameterNode struct {
 	ParameterNode
 }
 
-func (n *IncludedRecordParameterNode) Kind() common.SyntaxKind {
+func (n IncludedRecordParameterNode) Kind() common.SyntaxKind {
 	return common.INCLUDED_RECORD_PARAM
 }
 
-func (n *IncludedRecordParameterNode) Annotations() NodeList[*AnnotationNode] {
+func (n IncludedRecordParameterNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *IncludedRecordParameterNode) AsteriskToken() *Token {
+func (n IncludedRecordParameterNode) AsteriskToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1521,7 +1521,7 @@ func (n *IncludedRecordParameterNode) AsteriskToken() *Token {
 	return val
 }
 
-func (n *IncludedRecordParameterNode) TypeName() Node {
+func (n IncludedRecordParameterNode) TypeName() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1529,7 +1529,7 @@ func (n *IncludedRecordParameterNode) TypeName() Node {
 	return val
 }
 
-func (n *IncludedRecordParameterNode) ParamName() *Token {
+func (n IncludedRecordParameterNode) ParamName() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1541,15 +1541,15 @@ type RestParameterNode struct {
 	ParameterNode
 }
 
-func (n *RestParameterNode) Kind() common.SyntaxKind {
+func (n RestParameterNode) Kind() common.SyntaxKind {
 	return common.REST_PARAM
 }
 
-func (n *RestParameterNode) Annotations() NodeList[*AnnotationNode] {
+func (n RestParameterNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *RestParameterNode) TypeName() Node {
+func (n RestParameterNode) TypeName() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1557,7 +1557,7 @@ func (n *RestParameterNode) TypeName() Node {
 	return val
 }
 
-func (n *RestParameterNode) EllipsisToken() *Token {
+func (n RestParameterNode) EllipsisToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1565,7 +1565,7 @@ func (n *RestParameterNode) EllipsisToken() *Token {
 	return val
 }
 
-func (n *RestParameterNode) ParamName() *Token {
+func (n RestParameterNode) ParamName() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1577,11 +1577,11 @@ type ImportOrgNameNode struct {
 	NonTerminalNode
 }
 
-func (n *ImportOrgNameNode) Kind() common.SyntaxKind {
+func (n ImportOrgNameNode) Kind() common.SyntaxKind {
 	return common.IMPORT_ORG_NAME
 }
 
-func (n *ImportOrgNameNode) OrgName() *Token {
+func (n ImportOrgNameNode) OrgName() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1589,7 +1589,7 @@ func (n *ImportOrgNameNode) OrgName() *Token {
 	return val
 }
 
-func (n *ImportOrgNameNode) SlashToken() *Token {
+func (n ImportOrgNameNode) SlashToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1601,11 +1601,11 @@ type ImportPrefixNode struct {
 	NonTerminalNode
 }
 
-func (n *ImportPrefixNode) Kind() common.SyntaxKind {
+func (n ImportPrefixNode) Kind() common.SyntaxKind {
 	return common.IMPORT_PREFIX
 }
 
-func (n *ImportPrefixNode) AsKeyword() *Token {
+func (n ImportPrefixNode) AsKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1613,7 +1613,7 @@ func (n *ImportPrefixNode) AsKeyword() *Token {
 	return val
 }
 
-func (n *ImportPrefixNode) Prefix() *Token {
+func (n ImportPrefixNode) Prefix() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1627,11 +1627,11 @@ type SpecificFieldNode struct {
 	MappingFieldNode
 }
 
-func (n *SpecificFieldNode) Kind() common.SyntaxKind {
+func (n SpecificFieldNode) Kind() common.SyntaxKind {
 	return common.SPECIFIC_FIELD
 }
 
-func (n *SpecificFieldNode) ReadonlyKeyword() *Token {
+func (n SpecificFieldNode) ReadonlyKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1639,7 +1639,7 @@ func (n *SpecificFieldNode) ReadonlyKeyword() *Token {
 	return val
 }
 
-func (n *SpecificFieldNode) FieldName() Node {
+func (n SpecificFieldNode) FieldName() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1647,7 +1647,7 @@ func (n *SpecificFieldNode) FieldName() Node {
 	return val
 }
 
-func (n *SpecificFieldNode) Colon() *Token {
+func (n SpecificFieldNode) Colon() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1655,7 +1655,7 @@ func (n *SpecificFieldNode) Colon() *Token {
 	return val
 }
 
-func (n *SpecificFieldNode) ValueExpr() *ExpressionNode {
+func (n SpecificFieldNode) ValueExpr() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1667,11 +1667,11 @@ type SpreadFieldNode struct {
 	MappingFieldNode
 }
 
-func (n *SpreadFieldNode) Kind() common.SyntaxKind {
+func (n SpreadFieldNode) Kind() common.SyntaxKind {
 	return common.SPREAD_FIELD
 }
 
-func (n *SpreadFieldNode) Ellipsis() *Token {
+func (n SpreadFieldNode) Ellipsis() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1679,7 +1679,7 @@ func (n *SpreadFieldNode) Ellipsis() *Token {
 	return val
 }
 
-func (n *SpreadFieldNode) ValueExpr() *ExpressionNode {
+func (n SpreadFieldNode) ValueExpr() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1693,11 +1693,11 @@ type NamedArgumentNode struct {
 	FunctionArgumentNode
 }
 
-func (n *NamedArgumentNode) Kind() common.SyntaxKind {
+func (n NamedArgumentNode) Kind() common.SyntaxKind {
 	return common.NAMED_ARG
 }
 
-func (n *NamedArgumentNode) ArgumentName() *SimpleNameReferenceNode {
+func (n NamedArgumentNode) ArgumentName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(0).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -1705,7 +1705,7 @@ func (n *NamedArgumentNode) ArgumentName() *SimpleNameReferenceNode {
 	return val
 }
 
-func (n *NamedArgumentNode) EqualsToken() *Token {
+func (n NamedArgumentNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1713,7 +1713,7 @@ func (n *NamedArgumentNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *NamedArgumentNode) Expression() *ExpressionNode {
+func (n NamedArgumentNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(2).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1725,11 +1725,11 @@ type PositionalArgumentNode struct {
 	FunctionArgumentNode
 }
 
-func (n *PositionalArgumentNode) Kind() common.SyntaxKind {
+func (n PositionalArgumentNode) Kind() common.SyntaxKind {
 	return common.POSITIONAL_ARG
 }
 
-func (n *PositionalArgumentNode) Expression() *ExpressionNode {
+func (n PositionalArgumentNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1741,11 +1741,11 @@ type RestArgumentNode struct {
 	FunctionArgumentNode
 }
 
-func (n *RestArgumentNode) Kind() common.SyntaxKind {
+func (n RestArgumentNode) Kind() common.SyntaxKind {
 	return common.REST_ARG
 }
 
-func (n *RestArgumentNode) Ellipsis() *Token {
+func (n RestArgumentNode) Ellipsis() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1753,7 +1753,7 @@ func (n *RestArgumentNode) Ellipsis() *Token {
 	return val
 }
 
-func (n *RestArgumentNode) Expression() *ExpressionNode {
+func (n RestArgumentNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -1765,11 +1765,11 @@ type InferredTypedescDefaultNode struct {
 	ExpressionNode
 }
 
-func (n *InferredTypedescDefaultNode) Kind() common.SyntaxKind {
+func (n InferredTypedescDefaultNode) Kind() common.SyntaxKind {
 	return common.INFERRED_TYPEDESC_DEFAULT
 }
 
-func (n *InferredTypedescDefaultNode) LtToken() *Token {
+func (n InferredTypedescDefaultNode) LtToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1777,7 +1777,7 @@ func (n *InferredTypedescDefaultNode) LtToken() *Token {
 	return val
 }
 
-func (n *InferredTypedescDefaultNode) GtToken() *Token {
+func (n InferredTypedescDefaultNode) GtToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1789,15 +1789,15 @@ type ObjectTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *ObjectTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n ObjectTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.OBJECT_TYPE_DESC
 }
 
-func (n *ObjectTypeDescriptorNode) ObjectTypeQualifiers() NodeList[*Token] {
+func (n ObjectTypeDescriptorNode) ObjectTypeQualifiers() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *ObjectTypeDescriptorNode) ObjectKeyword() *Token {
+func (n ObjectTypeDescriptorNode) ObjectKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1805,7 +1805,7 @@ func (n *ObjectTypeDescriptorNode) ObjectKeyword() *Token {
 	return val
 }
 
-func (n *ObjectTypeDescriptorNode) OpenBrace() *Token {
+func (n ObjectTypeDescriptorNode) OpenBrace() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1813,11 +1813,11 @@ func (n *ObjectTypeDescriptorNode) OpenBrace() *Token {
 	return val
 }
 
-func (n *ObjectTypeDescriptorNode) Members() NodeList[Node] {
+func (n ObjectTypeDescriptorNode) Members() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *ObjectTypeDescriptorNode) CloseBrace() *Token {
+func (n ObjectTypeDescriptorNode) CloseBrace() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1829,19 +1829,19 @@ type ObjectConstructorExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *ObjectConstructorExpressionNode) Kind() common.SyntaxKind {
+func (n ObjectConstructorExpressionNode) Kind() common.SyntaxKind {
 	return common.OBJECT_CONSTRUCTOR
 }
 
-func (n *ObjectConstructorExpressionNode) Annotations() NodeList[*AnnotationNode] {
+func (n ObjectConstructorExpressionNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *ObjectConstructorExpressionNode) ObjectTypeQualifiers() NodeList[*Token] {
+func (n ObjectConstructorExpressionNode) ObjectTypeQualifiers() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ObjectConstructorExpressionNode) ObjectKeyword() *Token {
+func (n ObjectConstructorExpressionNode) ObjectKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1849,7 +1849,7 @@ func (n *ObjectConstructorExpressionNode) ObjectKeyword() *Token {
 	return val
 }
 
-func (n *ObjectConstructorExpressionNode) TypeReference() *TypeDescriptorNode {
+func (n ObjectConstructorExpressionNode) TypeReference() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(3).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -1857,7 +1857,7 @@ func (n *ObjectConstructorExpressionNode) TypeReference() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ObjectConstructorExpressionNode) OpenBraceToken() *Token {
+func (n ObjectConstructorExpressionNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1865,11 +1865,11 @@ func (n *ObjectConstructorExpressionNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *ObjectConstructorExpressionNode) Members() NodeList[Node] {
+func (n ObjectConstructorExpressionNode) Members() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(5)))
 }
 
-func (n *ObjectConstructorExpressionNode) CloseBraceToken() *Token {
+func (n ObjectConstructorExpressionNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(6).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1881,11 +1881,11 @@ type RecordTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *RecordTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n RecordTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.RECORD_TYPE_DESC
 }
 
-func (n *RecordTypeDescriptorNode) RecordKeyword() *Token {
+func (n RecordTypeDescriptorNode) RecordKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1893,7 +1893,7 @@ func (n *RecordTypeDescriptorNode) RecordKeyword() *Token {
 	return val
 }
 
-func (n *RecordTypeDescriptorNode) BodyStartDelimiter() *Token {
+func (n RecordTypeDescriptorNode) BodyStartDelimiter() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1901,11 +1901,11 @@ func (n *RecordTypeDescriptorNode) BodyStartDelimiter() *Token {
 	return val
 }
 
-func (n *RecordTypeDescriptorNode) Fields() NodeList[Node] {
+func (n RecordTypeDescriptorNode) Fields() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *RecordTypeDescriptorNode) RecordRestDescriptor() *RecordRestDescriptorNode {
+func (n RecordTypeDescriptorNode) RecordRestDescriptor() *RecordRestDescriptorNode {
 	val, ok := n.ChildInBucket(3).(*RecordRestDescriptorNode)
 	if !ok {
 		panic("expected RecordRestDescriptorNode")
@@ -1913,7 +1913,7 @@ func (n *RecordTypeDescriptorNode) RecordRestDescriptor() *RecordRestDescriptorN
 	return val
 }
 
-func (n *RecordTypeDescriptorNode) BodyEndDelimiter() *Token {
+func (n RecordTypeDescriptorNode) BodyEndDelimiter() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1925,11 +1925,11 @@ type ReturnTypeDescriptorNode struct {
 	NonTerminalNode
 }
 
-func (n *ReturnTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n ReturnTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.RETURN_TYPE_DESCRIPTOR
 }
 
-func (n *ReturnTypeDescriptorNode) ReturnsKeyword() *Token {
+func (n ReturnTypeDescriptorNode) ReturnsKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1937,11 +1937,11 @@ func (n *ReturnTypeDescriptorNode) ReturnsKeyword() *Token {
 	return val
 }
 
-func (n *ReturnTypeDescriptorNode) Annotations() NodeList[*AnnotationNode] {
+func (n ReturnTypeDescriptorNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ReturnTypeDescriptorNode) Type() Node {
+func (n ReturnTypeDescriptorNode) Type() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1953,11 +1953,11 @@ type NilTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *NilTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n NilTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.NIL_TYPE_DESC
 }
 
-func (n *NilTypeDescriptorNode) OpenParenToken() *Token {
+func (n NilTypeDescriptorNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1965,7 +1965,7 @@ func (n *NilTypeDescriptorNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *NilTypeDescriptorNode) CloseParenToken() *Token {
+func (n NilTypeDescriptorNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -1977,11 +1977,11 @@ type OptionalTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *OptionalTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n OptionalTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.OPTIONAL_TYPE_DESC
 }
 
-func (n *OptionalTypeDescriptorNode) TypeDescriptor() Node {
+func (n OptionalTypeDescriptorNode) TypeDescriptor() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -1989,7 +1989,7 @@ func (n *OptionalTypeDescriptorNode) TypeDescriptor() Node {
 	return val
 }
 
-func (n *OptionalTypeDescriptorNode) QuestionMarkToken() *Token {
+func (n OptionalTypeDescriptorNode) QuestionMarkToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2001,11 +2001,11 @@ type ObjectFieldNode struct {
 	NonTerminalNode
 }
 
-func (n *ObjectFieldNode) Kind() common.SyntaxKind {
+func (n ObjectFieldNode) Kind() common.SyntaxKind {
 	return common.OBJECT_FIELD
 }
 
-func (n *ObjectFieldNode) Metadata() *MetadataNode {
+func (n ObjectFieldNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -2013,7 +2013,7 @@ func (n *ObjectFieldNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *ObjectFieldNode) VisibilityQualifier() *Token {
+func (n ObjectFieldNode) VisibilityQualifier() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2021,11 +2021,11 @@ func (n *ObjectFieldNode) VisibilityQualifier() *Token {
 	return val
 }
 
-func (n *ObjectFieldNode) QualifierList() NodeList[*Token] {
+func (n ObjectFieldNode) QualifierList() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *ObjectFieldNode) TypeName() Node {
+func (n ObjectFieldNode) TypeName() Node {
 	val, ok := n.ChildInBucket(3).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2033,7 +2033,7 @@ func (n *ObjectFieldNode) TypeName() Node {
 	return val
 }
 
-func (n *ObjectFieldNode) FieldName() *Token {
+func (n ObjectFieldNode) FieldName() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2041,7 +2041,7 @@ func (n *ObjectFieldNode) FieldName() *Token {
 	return val
 }
 
-func (n *ObjectFieldNode) EqualsToken() *Token {
+func (n ObjectFieldNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2049,7 +2049,7 @@ func (n *ObjectFieldNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *ObjectFieldNode) Expression() *ExpressionNode {
+func (n ObjectFieldNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(6).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2057,7 +2057,7 @@ func (n *ObjectFieldNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *ObjectFieldNode) SemicolonToken() *Token {
+func (n ObjectFieldNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(7).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2069,11 +2069,11 @@ type RecordFieldNode struct {
 	NonTerminalNode
 }
 
-func (n *RecordFieldNode) Kind() common.SyntaxKind {
+func (n RecordFieldNode) Kind() common.SyntaxKind {
 	return common.RECORD_FIELD
 }
 
-func (n *RecordFieldNode) Metadata() *MetadataNode {
+func (n RecordFieldNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -2081,7 +2081,7 @@ func (n *RecordFieldNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *RecordFieldNode) ReadonlyKeyword() *Token {
+func (n RecordFieldNode) ReadonlyKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2089,7 +2089,7 @@ func (n *RecordFieldNode) ReadonlyKeyword() *Token {
 	return val
 }
 
-func (n *RecordFieldNode) TypeName() Node {
+func (n RecordFieldNode) TypeName() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2097,7 +2097,7 @@ func (n *RecordFieldNode) TypeName() Node {
 	return val
 }
 
-func (n *RecordFieldNode) FieldName() *Token {
+func (n RecordFieldNode) FieldName() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2105,7 +2105,7 @@ func (n *RecordFieldNode) FieldName() *Token {
 	return val
 }
 
-func (n *RecordFieldNode) QuestionMarkToken() *Token {
+func (n RecordFieldNode) QuestionMarkToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2113,7 +2113,7 @@ func (n *RecordFieldNode) QuestionMarkToken() *Token {
 	return val
 }
 
-func (n *RecordFieldNode) SemicolonToken() *Token {
+func (n RecordFieldNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2125,11 +2125,11 @@ type RecordFieldWithDefaultValueNode struct {
 	NonTerminalNode
 }
 
-func (n *RecordFieldWithDefaultValueNode) Kind() common.SyntaxKind {
+func (n RecordFieldWithDefaultValueNode) Kind() common.SyntaxKind {
 	return common.RECORD_FIELD_WITH_DEFAULT_VALUE
 }
 
-func (n *RecordFieldWithDefaultValueNode) Metadata() *MetadataNode {
+func (n RecordFieldWithDefaultValueNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -2137,7 +2137,7 @@ func (n *RecordFieldWithDefaultValueNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *RecordFieldWithDefaultValueNode) ReadonlyKeyword() *Token {
+func (n RecordFieldWithDefaultValueNode) ReadonlyKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2145,7 +2145,7 @@ func (n *RecordFieldWithDefaultValueNode) ReadonlyKeyword() *Token {
 	return val
 }
 
-func (n *RecordFieldWithDefaultValueNode) TypeName() Node {
+func (n RecordFieldWithDefaultValueNode) TypeName() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2153,7 +2153,7 @@ func (n *RecordFieldWithDefaultValueNode) TypeName() Node {
 	return val
 }
 
-func (n *RecordFieldWithDefaultValueNode) FieldName() *Token {
+func (n RecordFieldWithDefaultValueNode) FieldName() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2161,7 +2161,7 @@ func (n *RecordFieldWithDefaultValueNode) FieldName() *Token {
 	return val
 }
 
-func (n *RecordFieldWithDefaultValueNode) EqualsToken() *Token {
+func (n RecordFieldWithDefaultValueNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2169,7 +2169,7 @@ func (n *RecordFieldWithDefaultValueNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *RecordFieldWithDefaultValueNode) Expression() *ExpressionNode {
+func (n RecordFieldWithDefaultValueNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(5).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2177,7 +2177,7 @@ func (n *RecordFieldWithDefaultValueNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *RecordFieldWithDefaultValueNode) SemicolonToken() *Token {
+func (n RecordFieldWithDefaultValueNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(6).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2189,11 +2189,11 @@ type RecordRestDescriptorNode struct {
 	NonTerminalNode
 }
 
-func (n *RecordRestDescriptorNode) Kind() common.SyntaxKind {
+func (n RecordRestDescriptorNode) Kind() common.SyntaxKind {
 	return common.RECORD_REST_TYPE
 }
 
-func (n *RecordRestDescriptorNode) TypeName() Node {
+func (n RecordRestDescriptorNode) TypeName() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2201,7 +2201,7 @@ func (n *RecordRestDescriptorNode) TypeName() Node {
 	return val
 }
 
-func (n *RecordRestDescriptorNode) EllipsisToken() *Token {
+func (n RecordRestDescriptorNode) EllipsisToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2209,7 +2209,7 @@ func (n *RecordRestDescriptorNode) EllipsisToken() *Token {
 	return val
 }
 
-func (n *RecordRestDescriptorNode) SemicolonToken() *Token {
+func (n RecordRestDescriptorNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2221,11 +2221,11 @@ type TypeReferenceNode struct {
 	TypeDescriptorNode
 }
 
-func (n *TypeReferenceNode) Kind() common.SyntaxKind {
+func (n TypeReferenceNode) Kind() common.SyntaxKind {
 	return common.TYPE_REFERENCE
 }
 
-func (n *TypeReferenceNode) AsteriskToken() *Token {
+func (n TypeReferenceNode) AsteriskToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2233,7 +2233,7 @@ func (n *TypeReferenceNode) AsteriskToken() *Token {
 	return val
 }
 
-func (n *TypeReferenceNode) TypeName() Node {
+func (n TypeReferenceNode) TypeName() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2241,7 +2241,7 @@ func (n *TypeReferenceNode) TypeName() Node {
 	return val
 }
 
-func (n *TypeReferenceNode) SemicolonToken() *Token {
+func (n TypeReferenceNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2253,11 +2253,11 @@ type AnnotationNode struct {
 	NonTerminalNode
 }
 
-func (n *AnnotationNode) Kind() common.SyntaxKind {
+func (n AnnotationNode) Kind() common.SyntaxKind {
 	return common.ANNOTATION
 }
 
-func (n *AnnotationNode) AtToken() *Token {
+func (n AnnotationNode) AtToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2265,7 +2265,7 @@ func (n *AnnotationNode) AtToken() *Token {
 	return val
 }
 
-func (n *AnnotationNode) AnnotReference() Node {
+func (n AnnotationNode) AnnotReference() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2273,7 +2273,7 @@ func (n *AnnotationNode) AnnotReference() Node {
 	return val
 }
 
-func (n *AnnotationNode) AnnotValue() *MappingConstructorExpressionNode {
+func (n AnnotationNode) AnnotValue() *MappingConstructorExpressionNode {
 	val, ok := n.ChildInBucket(2).(*MappingConstructorExpressionNode)
 	if !ok {
 		panic("expected MappingConstructorExpressionNode")
@@ -2285,11 +2285,11 @@ type MetadataNode struct {
 	NonTerminalNode
 }
 
-func (n *MetadataNode) Kind() common.SyntaxKind {
+func (n MetadataNode) Kind() common.SyntaxKind {
 	return common.METADATA
 }
 
-func (n *MetadataNode) DocumentationString() Node {
+func (n MetadataNode) DocumentationString() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2297,7 +2297,7 @@ func (n *MetadataNode) DocumentationString() Node {
 	return val
 }
 
-func (n *MetadataNode) Annotations() NodeList[*AnnotationNode] {
+func (n MetadataNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
@@ -2305,11 +2305,11 @@ type ModuleVariableDeclarationNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *ModuleVariableDeclarationNode) Kind() common.SyntaxKind {
+func (n ModuleVariableDeclarationNode) Kind() common.SyntaxKind {
 	return common.MODULE_VAR_DECL
 }
 
-func (n *ModuleVariableDeclarationNode) Metadata() *MetadataNode {
+func (n ModuleVariableDeclarationNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -2317,7 +2317,7 @@ func (n *ModuleVariableDeclarationNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *ModuleVariableDeclarationNode) VisibilityQualifier() *Token {
+func (n ModuleVariableDeclarationNode) VisibilityQualifier() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2325,11 +2325,11 @@ func (n *ModuleVariableDeclarationNode) VisibilityQualifier() *Token {
 	return val
 }
 
-func (n *ModuleVariableDeclarationNode) Qualifiers() NodeList[*Token] {
+func (n ModuleVariableDeclarationNode) Qualifiers() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *ModuleVariableDeclarationNode) TypedBindingPattern() *TypedBindingPatternNode {
+func (n ModuleVariableDeclarationNode) TypedBindingPattern() *TypedBindingPatternNode {
 	val, ok := n.ChildInBucket(3).(*TypedBindingPatternNode)
 	if !ok {
 		panic("expected TypedBindingPatternNode")
@@ -2337,7 +2337,7 @@ func (n *ModuleVariableDeclarationNode) TypedBindingPattern() *TypedBindingPatte
 	return val
 }
 
-func (n *ModuleVariableDeclarationNode) EqualsToken() *Token {
+func (n ModuleVariableDeclarationNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2345,7 +2345,7 @@ func (n *ModuleVariableDeclarationNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *ModuleVariableDeclarationNode) Initializer() *ExpressionNode {
+func (n ModuleVariableDeclarationNode) Initializer() *ExpressionNode {
 	val, ok := n.ChildInBucket(5).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2353,7 +2353,7 @@ func (n *ModuleVariableDeclarationNode) Initializer() *ExpressionNode {
 	return val
 }
 
-func (n *ModuleVariableDeclarationNode) SemicolonToken() *Token {
+func (n ModuleVariableDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(6).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2365,11 +2365,11 @@ type TypeTestExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *TypeTestExpressionNode) Kind() common.SyntaxKind {
+func (n TypeTestExpressionNode) Kind() common.SyntaxKind {
 	return common.TYPE_TEST_EXPRESSION
 }
 
-func (n *TypeTestExpressionNode) Expression() *ExpressionNode {
+func (n TypeTestExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2377,7 +2377,7 @@ func (n *TypeTestExpressionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *TypeTestExpressionNode) IsKeyword() *Token {
+func (n TypeTestExpressionNode) IsKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2385,7 +2385,7 @@ func (n *TypeTestExpressionNode) IsKeyword() *Token {
 	return val
 }
 
-func (n *TypeTestExpressionNode) TypeDescriptor() Node {
+func (n TypeTestExpressionNode) TypeDescriptor() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2399,11 +2399,11 @@ type RemoteMethodCallActionNode struct {
 	ActionNode
 }
 
-func (n *RemoteMethodCallActionNode) Kind() common.SyntaxKind {
+func (n RemoteMethodCallActionNode) Kind() common.SyntaxKind {
 	return common.REMOTE_METHOD_CALL_ACTION
 }
 
-func (n *RemoteMethodCallActionNode) Expression() *ExpressionNode {
+func (n RemoteMethodCallActionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2411,7 +2411,7 @@ func (n *RemoteMethodCallActionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *RemoteMethodCallActionNode) RightArrowToken() *Token {
+func (n RemoteMethodCallActionNode) RightArrowToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2419,7 +2419,7 @@ func (n *RemoteMethodCallActionNode) RightArrowToken() *Token {
 	return val
 }
 
-func (n *RemoteMethodCallActionNode) MethodName() *SimpleNameReferenceNode {
+func (n RemoteMethodCallActionNode) MethodName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -2427,7 +2427,7 @@ func (n *RemoteMethodCallActionNode) MethodName() *SimpleNameReferenceNode {
 	return val
 }
 
-func (n *RemoteMethodCallActionNode) OpenParenToken() *Token {
+func (n RemoteMethodCallActionNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2435,11 +2435,11 @@ func (n *RemoteMethodCallActionNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *RemoteMethodCallActionNode) Arguments() NodeList[*FunctionArgumentNode] {
+func (n RemoteMethodCallActionNode) Arguments() NodeList[*FunctionArgumentNode] {
 	return nodeListFrom[*FunctionArgumentNode](into[*NonTerminalNode](n.ChildInBucket(4)))
 }
 
-func (n *RemoteMethodCallActionNode) CloseParenToken() *Token {
+func (n RemoteMethodCallActionNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2451,11 +2451,11 @@ type MapTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *MapTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n MapTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.MAP_TYPE_DESC
 }
 
-func (n *MapTypeDescriptorNode) MapKeywordToken() *Token {
+func (n MapTypeDescriptorNode) MapKeywordToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2463,7 +2463,7 @@ func (n *MapTypeDescriptorNode) MapKeywordToken() *Token {
 	return val
 }
 
-func (n *MapTypeDescriptorNode) MapTypeParamsNode() *TypeParameterNode {
+func (n MapTypeDescriptorNode) MapTypeParamsNode() *TypeParameterNode {
 	val, ok := n.ChildInBucket(1).(*TypeParameterNode)
 	if !ok {
 		panic("expected TypeParameterNode")
@@ -2475,11 +2475,11 @@ type NilLiteralNode struct {
 	ExpressionNode
 }
 
-func (n *NilLiteralNode) Kind() common.SyntaxKind {
+func (n NilLiteralNode) Kind() common.SyntaxKind {
 	return common.NIL_LITERAL
 }
 
-func (n *NilLiteralNode) OpenParenToken() *Token {
+func (n NilLiteralNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2487,7 +2487,7 @@ func (n *NilLiteralNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *NilLiteralNode) CloseParenToken() *Token {
+func (n NilLiteralNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2499,11 +2499,11 @@ type AnnotationDeclarationNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *AnnotationDeclarationNode) Kind() common.SyntaxKind {
+func (n AnnotationDeclarationNode) Kind() common.SyntaxKind {
 	return common.ANNOTATION_DECLARATION
 }
 
-func (n *AnnotationDeclarationNode) Metadata() *MetadataNode {
+func (n AnnotationDeclarationNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -2511,7 +2511,7 @@ func (n *AnnotationDeclarationNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *AnnotationDeclarationNode) VisibilityQualifier() *Token {
+func (n AnnotationDeclarationNode) VisibilityQualifier() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2519,7 +2519,7 @@ func (n *AnnotationDeclarationNode) VisibilityQualifier() *Token {
 	return val
 }
 
-func (n *AnnotationDeclarationNode) ConstKeyword() *Token {
+func (n AnnotationDeclarationNode) ConstKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2527,7 +2527,7 @@ func (n *AnnotationDeclarationNode) ConstKeyword() *Token {
 	return val
 }
 
-func (n *AnnotationDeclarationNode) AnnotationKeyword() *Token {
+func (n AnnotationDeclarationNode) AnnotationKeyword() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2535,7 +2535,7 @@ func (n *AnnotationDeclarationNode) AnnotationKeyword() *Token {
 	return val
 }
 
-func (n *AnnotationDeclarationNode) TypeDescriptor() Node {
+func (n AnnotationDeclarationNode) TypeDescriptor() Node {
 	val, ok := n.ChildInBucket(4).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2543,7 +2543,7 @@ func (n *AnnotationDeclarationNode) TypeDescriptor() Node {
 	return val
 }
 
-func (n *AnnotationDeclarationNode) AnnotationTag() *Token {
+func (n AnnotationDeclarationNode) AnnotationTag() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2551,7 +2551,7 @@ func (n *AnnotationDeclarationNode) AnnotationTag() *Token {
 	return val
 }
 
-func (n *AnnotationDeclarationNode) OnKeyword() *Token {
+func (n AnnotationDeclarationNode) OnKeyword() *Token {
 	val, ok := n.ChildInBucket(6).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2559,11 +2559,11 @@ func (n *AnnotationDeclarationNode) OnKeyword() *Token {
 	return val
 }
 
-func (n *AnnotationDeclarationNode) AttachPoints() NodeList[Node] {
+func (n AnnotationDeclarationNode) AttachPoints() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(7)))
 }
 
-func (n *AnnotationDeclarationNode) SemicolonToken() *Token {
+func (n AnnotationDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(8).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2575,11 +2575,11 @@ type AnnotationAttachPointNode struct {
 	NonTerminalNode
 }
 
-func (n *AnnotationAttachPointNode) Kind() common.SyntaxKind {
+func (n AnnotationAttachPointNode) Kind() common.SyntaxKind {
 	return common.ANNOTATION_ATTACH_POINT
 }
 
-func (n *AnnotationAttachPointNode) SourceKeyword() *Token {
+func (n AnnotationAttachPointNode) SourceKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2587,7 +2587,7 @@ func (n *AnnotationAttachPointNode) SourceKeyword() *Token {
 	return val
 }
 
-func (n *AnnotationAttachPointNode) Identifiers() NodeList[*Token] {
+func (n AnnotationAttachPointNode) Identifiers() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
@@ -2595,11 +2595,11 @@ type XMLNamespaceDeclarationNode struct {
 	StatementNode
 }
 
-func (n *XMLNamespaceDeclarationNode) Kind() common.SyntaxKind {
+func (n XMLNamespaceDeclarationNode) Kind() common.SyntaxKind {
 	return common.XML_NAMESPACE_DECLARATION
 }
 
-func (n *XMLNamespaceDeclarationNode) XmlnsKeyword() *Token {
+func (n XMLNamespaceDeclarationNode) XmlnsKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2607,7 +2607,7 @@ func (n *XMLNamespaceDeclarationNode) XmlnsKeyword() *Token {
 	return val
 }
 
-func (n *XMLNamespaceDeclarationNode) Namespaceuri() *ExpressionNode {
+func (n XMLNamespaceDeclarationNode) Namespaceuri() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2615,7 +2615,7 @@ func (n *XMLNamespaceDeclarationNode) Namespaceuri() *ExpressionNode {
 	return val
 }
 
-func (n *XMLNamespaceDeclarationNode) AsKeyword() *Token {
+func (n XMLNamespaceDeclarationNode) AsKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2623,7 +2623,7 @@ func (n *XMLNamespaceDeclarationNode) AsKeyword() *Token {
 	return val
 }
 
-func (n *XMLNamespaceDeclarationNode) NamespacePrefix() *IdentifierToken {
+func (n XMLNamespaceDeclarationNode) NamespacePrefix() *IdentifierToken {
 	val, ok := n.ChildInBucket(3).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -2631,7 +2631,7 @@ func (n *XMLNamespaceDeclarationNode) NamespacePrefix() *IdentifierToken {
 	return val
 }
 
-func (n *XMLNamespaceDeclarationNode) SemicolonToken() *Token {
+func (n XMLNamespaceDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2643,11 +2643,11 @@ type ModuleXMLNamespaceDeclarationNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *ModuleXMLNamespaceDeclarationNode) Kind() common.SyntaxKind {
+func (n ModuleXMLNamespaceDeclarationNode) Kind() common.SyntaxKind {
 	return common.MODULE_XML_NAMESPACE_DECLARATION
 }
 
-func (n *ModuleXMLNamespaceDeclarationNode) XmlnsKeyword() *Token {
+func (n ModuleXMLNamespaceDeclarationNode) XmlnsKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2655,7 +2655,7 @@ func (n *ModuleXMLNamespaceDeclarationNode) XmlnsKeyword() *Token {
 	return val
 }
 
-func (n *ModuleXMLNamespaceDeclarationNode) Namespaceuri() *ExpressionNode {
+func (n ModuleXMLNamespaceDeclarationNode) Namespaceuri() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2663,7 +2663,7 @@ func (n *ModuleXMLNamespaceDeclarationNode) Namespaceuri() *ExpressionNode {
 	return val
 }
 
-func (n *ModuleXMLNamespaceDeclarationNode) AsKeyword() *Token {
+func (n ModuleXMLNamespaceDeclarationNode) AsKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2671,7 +2671,7 @@ func (n *ModuleXMLNamespaceDeclarationNode) AsKeyword() *Token {
 	return val
 }
 
-func (n *ModuleXMLNamespaceDeclarationNode) NamespacePrefix() *IdentifierToken {
+func (n ModuleXMLNamespaceDeclarationNode) NamespacePrefix() *IdentifierToken {
 	val, ok := n.ChildInBucket(3).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -2679,7 +2679,7 @@ func (n *ModuleXMLNamespaceDeclarationNode) NamespacePrefix() *IdentifierToken {
 	return val
 }
 
-func (n *ModuleXMLNamespaceDeclarationNode) SemicolonToken() *Token {
+func (n ModuleXMLNamespaceDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2691,11 +2691,11 @@ type FunctionBodyBlockNode struct {
 	FunctionBodyNode
 }
 
-func (n *FunctionBodyBlockNode) Kind() common.SyntaxKind {
+func (n FunctionBodyBlockNode) Kind() common.SyntaxKind {
 	return common.FUNCTION_BODY_BLOCK
 }
 
-func (n *FunctionBodyBlockNode) OpenBraceToken() *Token {
+func (n FunctionBodyBlockNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2703,7 +2703,7 @@ func (n *FunctionBodyBlockNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *FunctionBodyBlockNode) NamedWorkerDeclarator() *NamedWorkerDeclarator {
+func (n FunctionBodyBlockNode) NamedWorkerDeclarator() *NamedWorkerDeclarator {
 	val, ok := n.ChildInBucket(1).(*NamedWorkerDeclarator)
 	if !ok {
 		panic("expected NamedWorkerDeclarator")
@@ -2711,11 +2711,11 @@ func (n *FunctionBodyBlockNode) NamedWorkerDeclarator() *NamedWorkerDeclarator {
 	return val
 }
 
-func (n *FunctionBodyBlockNode) Statements() NodeList[*StatementNode] {
+func (n FunctionBodyBlockNode) Statements() NodeList[*StatementNode] {
 	return nodeListFrom[*StatementNode](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *FunctionBodyBlockNode) CloseBraceToken() *Token {
+func (n FunctionBodyBlockNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2723,7 +2723,7 @@ func (n *FunctionBodyBlockNode) CloseBraceToken() *Token {
 	return val
 }
 
-func (n *FunctionBodyBlockNode) SemicolonToken() *Token {
+func (n FunctionBodyBlockNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2735,15 +2735,15 @@ type NamedWorkerDeclarationNode struct {
 	NonTerminalNode
 }
 
-func (n *NamedWorkerDeclarationNode) Kind() common.SyntaxKind {
+func (n NamedWorkerDeclarationNode) Kind() common.SyntaxKind {
 	return common.NAMED_WORKER_DECLARATION
 }
 
-func (n *NamedWorkerDeclarationNode) Annotations() NodeList[*AnnotationNode] {
+func (n NamedWorkerDeclarationNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *NamedWorkerDeclarationNode) TransactionalKeyword() *Token {
+func (n NamedWorkerDeclarationNode) TransactionalKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2751,7 +2751,7 @@ func (n *NamedWorkerDeclarationNode) TransactionalKeyword() *Token {
 	return val
 }
 
-func (n *NamedWorkerDeclarationNode) WorkerKeyword() *Token {
+func (n NamedWorkerDeclarationNode) WorkerKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2759,7 +2759,7 @@ func (n *NamedWorkerDeclarationNode) WorkerKeyword() *Token {
 	return val
 }
 
-func (n *NamedWorkerDeclarationNode) WorkerName() *IdentifierToken {
+func (n NamedWorkerDeclarationNode) WorkerName() *IdentifierToken {
 	val, ok := n.ChildInBucket(3).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -2767,7 +2767,7 @@ func (n *NamedWorkerDeclarationNode) WorkerName() *IdentifierToken {
 	return val
 }
 
-func (n *NamedWorkerDeclarationNode) ReturnTypeDesc() Node {
+func (n NamedWorkerDeclarationNode) ReturnTypeDesc() Node {
 	val, ok := n.ChildInBucket(4).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2775,7 +2775,7 @@ func (n *NamedWorkerDeclarationNode) ReturnTypeDesc() Node {
 	return val
 }
 
-func (n *NamedWorkerDeclarationNode) WorkerBody() *BlockStatementNode {
+func (n NamedWorkerDeclarationNode) WorkerBody() *BlockStatementNode {
 	val, ok := n.ChildInBucket(5).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -2783,7 +2783,7 @@ func (n *NamedWorkerDeclarationNode) WorkerBody() *BlockStatementNode {
 	return val
 }
 
-func (n *NamedWorkerDeclarationNode) OnFailClause() *OnFailClauseNode {
+func (n NamedWorkerDeclarationNode) OnFailClause() *OnFailClauseNode {
 	val, ok := n.ChildInBucket(6).(*OnFailClauseNode)
 	if !ok {
 		panic("expected OnFailClauseNode")
@@ -2795,15 +2795,15 @@ type NamedWorkerDeclarator struct {
 	NonTerminalNode
 }
 
-func (n *NamedWorkerDeclarator) Kind() common.SyntaxKind {
+func (n NamedWorkerDeclarator) Kind() common.SyntaxKind {
 	return common.NAMED_WORKER_DECLARATOR
 }
 
-func (n *NamedWorkerDeclarator) WorkerInitStatements() NodeList[*StatementNode] {
+func (n NamedWorkerDeclarator) WorkerInitStatements() NodeList[*StatementNode] {
 	return nodeListFrom[*StatementNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *NamedWorkerDeclarator) NamedWorkerDeclarations() NodeList[*NamedWorkerDeclarationNode] {
+func (n NamedWorkerDeclarator) NamedWorkerDeclarations() NodeList[*NamedWorkerDeclarationNode] {
 	return nodeListFrom[*NamedWorkerDeclarationNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
@@ -2811,7 +2811,7 @@ type BasicLiteralNode struct {
 	ExpressionNode
 }
 
-func (n *BasicLiteralNode) LiteralToken() *Token {
+func (n BasicLiteralNode) LiteralToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2827,11 +2827,11 @@ type SimpleNameReferenceNode struct {
 	NameReferenceNode
 }
 
-func (n *SimpleNameReferenceNode) Kind() common.SyntaxKind {
+func (n SimpleNameReferenceNode) Kind() common.SyntaxKind {
 	return common.SIMPLE_NAME_REFERENCE
 }
 
-func (n *SimpleNameReferenceNode) Name() *Token {
+func (n SimpleNameReferenceNode) Name() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2843,11 +2843,11 @@ type QualifiedNameReferenceNode struct {
 	NameReferenceNode
 }
 
-func (n *QualifiedNameReferenceNode) Kind() common.SyntaxKind {
+func (n QualifiedNameReferenceNode) Kind() common.SyntaxKind {
 	return common.QUALIFIED_NAME_REFERENCE
 }
 
-func (n *QualifiedNameReferenceNode) ModulePrefix() *Token {
+func (n QualifiedNameReferenceNode) ModulePrefix() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2855,7 +2855,7 @@ func (n *QualifiedNameReferenceNode) ModulePrefix() *Token {
 	return val
 }
 
-func (n *QualifiedNameReferenceNode) Colon() Node {
+func (n QualifiedNameReferenceNode) Colon() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2863,7 +2863,7 @@ func (n *QualifiedNameReferenceNode) Colon() Node {
 	return val
 }
 
-func (n *QualifiedNameReferenceNode) Identifier() *IdentifierToken {
+func (n QualifiedNameReferenceNode) Identifier() *IdentifierToken {
 	val, ok := n.ChildInBucket(2).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -2875,7 +2875,7 @@ type BuiltinSimpleNameReferenceNode struct {
 	NameReferenceNode
 }
 
-func (n *BuiltinSimpleNameReferenceNode) Name() *Token {
+func (n BuiltinSimpleNameReferenceNode) Name() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2887,7 +2887,7 @@ type TrapExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *TrapExpressionNode) TrapKeyword() *Token {
+func (n TrapExpressionNode) TrapKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2895,7 +2895,7 @@ func (n *TrapExpressionNode) TrapKeyword() *Token {
 	return val
 }
 
-func (n *TrapExpressionNode) Expression() *ExpressionNode {
+func (n TrapExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2907,11 +2907,11 @@ type ListConstructorExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *ListConstructorExpressionNode) Kind() common.SyntaxKind {
+func (n ListConstructorExpressionNode) Kind() common.SyntaxKind {
 	return common.LIST_CONSTRUCTOR
 }
 
-func (n *ListConstructorExpressionNode) OpenBracket() *Token {
+func (n ListConstructorExpressionNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2919,11 +2919,11 @@ func (n *ListConstructorExpressionNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *ListConstructorExpressionNode) Expressions() NodeList[Node] {
+func (n ListConstructorExpressionNode) Expressions() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ListConstructorExpressionNode) CloseBracket() *Token {
+func (n ListConstructorExpressionNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2935,11 +2935,11 @@ type TypeCastExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *TypeCastExpressionNode) Kind() common.SyntaxKind {
+func (n TypeCastExpressionNode) Kind() common.SyntaxKind {
 	return common.TYPE_CAST_EXPRESSION
 }
 
-func (n *TypeCastExpressionNode) LtToken() *Token {
+func (n TypeCastExpressionNode) LtToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2947,7 +2947,7 @@ func (n *TypeCastExpressionNode) LtToken() *Token {
 	return val
 }
 
-func (n *TypeCastExpressionNode) TypeCastParam() *TypeCastParamNode {
+func (n TypeCastExpressionNode) TypeCastParam() *TypeCastParamNode {
 	val, ok := n.ChildInBucket(1).(*TypeCastParamNode)
 	if !ok {
 		panic("expected TypeCastParamNode")
@@ -2955,7 +2955,7 @@ func (n *TypeCastExpressionNode) TypeCastParam() *TypeCastParamNode {
 	return val
 }
 
-func (n *TypeCastExpressionNode) GtToken() *Token {
+func (n TypeCastExpressionNode) GtToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -2963,7 +2963,7 @@ func (n *TypeCastExpressionNode) GtToken() *Token {
 	return val
 }
 
-func (n *TypeCastExpressionNode) Expression() *ExpressionNode {
+func (n TypeCastExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -2975,15 +2975,15 @@ type TypeCastParamNode struct {
 	NonTerminalNode
 }
 
-func (n *TypeCastParamNode) Kind() common.SyntaxKind {
+func (n TypeCastParamNode) Kind() common.SyntaxKind {
 	return common.TYPE_CAST_PARAM
 }
 
-func (n *TypeCastParamNode) Annotations() NodeList[*AnnotationNode] {
+func (n TypeCastParamNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *TypeCastParamNode) Type() Node {
+func (n TypeCastParamNode) Type() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -2995,11 +2995,11 @@ type UnionTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *UnionTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n UnionTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.UNION_TYPE_DESC
 }
 
-func (n *UnionTypeDescriptorNode) LeftTypeDesc() *TypeDescriptorNode {
+func (n UnionTypeDescriptorNode) LeftTypeDesc() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(0).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -3007,7 +3007,7 @@ func (n *UnionTypeDescriptorNode) LeftTypeDesc() *TypeDescriptorNode {
 	return val
 }
 
-func (n *UnionTypeDescriptorNode) PipeToken() *Token {
+func (n UnionTypeDescriptorNode) PipeToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3015,7 +3015,7 @@ func (n *UnionTypeDescriptorNode) PipeToken() *Token {
 	return val
 }
 
-func (n *UnionTypeDescriptorNode) RightTypeDesc() *TypeDescriptorNode {
+func (n UnionTypeDescriptorNode) RightTypeDesc() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(2).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -3027,11 +3027,11 @@ type TableConstructorExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *TableConstructorExpressionNode) Kind() common.SyntaxKind {
+func (n TableConstructorExpressionNode) Kind() common.SyntaxKind {
 	return common.TABLE_CONSTRUCTOR
 }
 
-func (n *TableConstructorExpressionNode) TableKeyword() *Token {
+func (n TableConstructorExpressionNode) TableKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3039,7 +3039,7 @@ func (n *TableConstructorExpressionNode) TableKeyword() *Token {
 	return val
 }
 
-func (n *TableConstructorExpressionNode) KeySpecifier() *KeySpecifierNode {
+func (n TableConstructorExpressionNode) KeySpecifier() *KeySpecifierNode {
 	val, ok := n.ChildInBucket(1).(*KeySpecifierNode)
 	if !ok {
 		panic("expected KeySpecifierNode")
@@ -3047,7 +3047,7 @@ func (n *TableConstructorExpressionNode) KeySpecifier() *KeySpecifierNode {
 	return val
 }
 
-func (n *TableConstructorExpressionNode) OpenBracket() *Token {
+func (n TableConstructorExpressionNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3055,11 +3055,11 @@ func (n *TableConstructorExpressionNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *TableConstructorExpressionNode) Rows() NodeList[Node] {
+func (n TableConstructorExpressionNode) Rows() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *TableConstructorExpressionNode) CloseBracket() *Token {
+func (n TableConstructorExpressionNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3071,11 +3071,11 @@ type KeySpecifierNode struct {
 	NonTerminalNode
 }
 
-func (n *KeySpecifierNode) Kind() common.SyntaxKind {
+func (n KeySpecifierNode) Kind() common.SyntaxKind {
 	return common.KEY_SPECIFIER
 }
 
-func (n *KeySpecifierNode) KeyKeyword() *Token {
+func (n KeySpecifierNode) KeyKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3083,7 +3083,7 @@ func (n *KeySpecifierNode) KeyKeyword() *Token {
 	return val
 }
 
-func (n *KeySpecifierNode) OpenParenToken() *Token {
+func (n KeySpecifierNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3091,11 +3091,11 @@ func (n *KeySpecifierNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *KeySpecifierNode) FieldNames() NodeList[*IdentifierToken] {
+func (n KeySpecifierNode) FieldNames() NodeList[*IdentifierToken] {
 	return nodeListFrom[*IdentifierToken](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *KeySpecifierNode) CloseParenToken() *Token {
+func (n KeySpecifierNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3107,11 +3107,11 @@ type StreamTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *StreamTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n StreamTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.STREAM_TYPE_DESC
 }
 
-func (n *StreamTypeDescriptorNode) StreamKeywordToken() *Token {
+func (n StreamTypeDescriptorNode) StreamKeywordToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3119,7 +3119,7 @@ func (n *StreamTypeDescriptorNode) StreamKeywordToken() *Token {
 	return val
 }
 
-func (n *StreamTypeDescriptorNode) StreamTypeParamsNode() Node {
+func (n StreamTypeDescriptorNode) StreamTypeParamsNode() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -3131,11 +3131,11 @@ type StreamTypeParamsNode struct {
 	NonTerminalNode
 }
 
-func (n *StreamTypeParamsNode) Kind() common.SyntaxKind {
+func (n StreamTypeParamsNode) Kind() common.SyntaxKind {
 	return common.STREAM_TYPE_PARAMS
 }
 
-func (n *StreamTypeParamsNode) LtToken() *Token {
+func (n StreamTypeParamsNode) LtToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3143,7 +3143,7 @@ func (n *StreamTypeParamsNode) LtToken() *Token {
 	return val
 }
 
-func (n *StreamTypeParamsNode) LeftTypeDescNode() Node {
+func (n StreamTypeParamsNode) LeftTypeDescNode() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -3151,7 +3151,7 @@ func (n *StreamTypeParamsNode) LeftTypeDescNode() Node {
 	return val
 }
 
-func (n *StreamTypeParamsNode) CommaToken() *Token {
+func (n StreamTypeParamsNode) CommaToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3159,7 +3159,7 @@ func (n *StreamTypeParamsNode) CommaToken() *Token {
 	return val
 }
 
-func (n *StreamTypeParamsNode) RightTypeDescNode() Node {
+func (n StreamTypeParamsNode) RightTypeDescNode() Node {
 	val, ok := n.ChildInBucket(3).(Node)
 	if !ok {
 		panic("expected Node")
@@ -3167,7 +3167,7 @@ func (n *StreamTypeParamsNode) RightTypeDescNode() Node {
 	return val
 }
 
-func (n *StreamTypeParamsNode) GtToken() *Token {
+func (n StreamTypeParamsNode) GtToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3179,11 +3179,11 @@ type LetExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *LetExpressionNode) Kind() common.SyntaxKind {
+func (n LetExpressionNode) Kind() common.SyntaxKind {
 	return common.LET_EXPRESSION
 }
 
-func (n *LetExpressionNode) LetKeyword() *Token {
+func (n LetExpressionNode) LetKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3191,11 +3191,11 @@ func (n *LetExpressionNode) LetKeyword() *Token {
 	return val
 }
 
-func (n *LetExpressionNode) LetVarDeclarations() NodeList[*LetVariableDeclarationNode] {
+func (n LetExpressionNode) LetVarDeclarations() NodeList[*LetVariableDeclarationNode] {
 	return nodeListFrom[*LetVariableDeclarationNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *LetExpressionNode) InKeyword() *Token {
+func (n LetExpressionNode) InKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3203,7 +3203,7 @@ func (n *LetExpressionNode) InKeyword() *Token {
 	return val
 }
 
-func (n *LetExpressionNode) Expression() *ExpressionNode {
+func (n LetExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -3215,15 +3215,15 @@ type LetVariableDeclarationNode struct {
 	NonTerminalNode
 }
 
-func (n *LetVariableDeclarationNode) Kind() common.SyntaxKind {
+func (n LetVariableDeclarationNode) Kind() common.SyntaxKind {
 	return common.LET_VAR_DECL
 }
 
-func (n *LetVariableDeclarationNode) Annotations() NodeList[*AnnotationNode] {
+func (n LetVariableDeclarationNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *LetVariableDeclarationNode) TypedBindingPattern() *TypedBindingPatternNode {
+func (n LetVariableDeclarationNode) TypedBindingPattern() *TypedBindingPatternNode {
 	val, ok := n.ChildInBucket(1).(*TypedBindingPatternNode)
 	if !ok {
 		panic("expected TypedBindingPatternNode")
@@ -3231,7 +3231,7 @@ func (n *LetVariableDeclarationNode) TypedBindingPattern() *TypedBindingPatternN
 	return val
 }
 
-func (n *LetVariableDeclarationNode) EqualsToken() *Token {
+func (n LetVariableDeclarationNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3239,7 +3239,7 @@ func (n *LetVariableDeclarationNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *LetVariableDeclarationNode) Expression() *ExpressionNode {
+func (n LetVariableDeclarationNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -3251,7 +3251,7 @@ type TemplateExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *TemplateExpressionNode) Type() *Token {
+func (n TemplateExpressionNode) Type() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3259,7 +3259,7 @@ func (n *TemplateExpressionNode) Type() *Token {
 	return val
 }
 
-func (n *TemplateExpressionNode) StartBacktick() *Token {
+func (n TemplateExpressionNode) StartBacktick() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3267,11 +3267,11 @@ func (n *TemplateExpressionNode) StartBacktick() *Token {
 	return val
 }
 
-func (n *TemplateExpressionNode) Content() NodeList[Node] {
+func (n TemplateExpressionNode) Content() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *TemplateExpressionNode) EndBacktick() *Token {
+func (n TemplateExpressionNode) EndBacktick() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3285,11 +3285,11 @@ type XMLElementNode struct {
 	XMLItemNode
 }
 
-func (n *XMLElementNode) Kind() common.SyntaxKind {
+func (n XMLElementNode) Kind() common.SyntaxKind {
 	return common.XML_ELEMENT
 }
 
-func (n *XMLElementNode) StartTag() *XMLStartTagNode {
+func (n XMLElementNode) StartTag() *XMLStartTagNode {
 	val, ok := n.ChildInBucket(0).(*XMLStartTagNode)
 	if !ok {
 		panic("expected XMLStartTagNode")
@@ -3297,11 +3297,11 @@ func (n *XMLElementNode) StartTag() *XMLStartTagNode {
 	return val
 }
 
-func (n *XMLElementNode) Content() NodeList[*XMLItemNode] {
+func (n XMLElementNode) Content() NodeList[*XMLItemNode] {
 	return nodeListFrom[*XMLItemNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *XMLElementNode) EndTag() *XMLEndTagNode {
+func (n XMLElementNode) EndTag() *XMLEndTagNode {
 	val, ok := n.ChildInBucket(2).(*XMLEndTagNode)
 	if !ok {
 		panic("expected XMLEndTagNode")
@@ -3315,11 +3315,11 @@ type XMLStartTagNode struct {
 	XMLElementTagNode
 }
 
-func (n *XMLStartTagNode) Kind() common.SyntaxKind {
+func (n XMLStartTagNode) Kind() common.SyntaxKind {
 	return common.XML_ELEMENT_START_TAG
 }
 
-func (n *XMLStartTagNode) LtToken() *Token {
+func (n XMLStartTagNode) LtToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3327,7 +3327,7 @@ func (n *XMLStartTagNode) LtToken() *Token {
 	return val
 }
 
-func (n *XMLStartTagNode) Name() *XMLNameNode {
+func (n XMLStartTagNode) Name() *XMLNameNode {
 	val, ok := n.ChildInBucket(1).(*XMLNameNode)
 	if !ok {
 		panic("expected XMLNameNode")
@@ -3335,11 +3335,11 @@ func (n *XMLStartTagNode) Name() *XMLNameNode {
 	return val
 }
 
-func (n *XMLStartTagNode) Attributes() NodeList[*XMLAttributeNode] {
+func (n XMLStartTagNode) Attributes() NodeList[*XMLAttributeNode] {
 	return nodeListFrom[*XMLAttributeNode](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *XMLStartTagNode) GetToken() *Token {
+func (n XMLStartTagNode) GetToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3351,11 +3351,11 @@ type XMLEndTagNode struct {
 	XMLElementTagNode
 }
 
-func (n *XMLEndTagNode) Kind() common.SyntaxKind {
+func (n XMLEndTagNode) Kind() common.SyntaxKind {
 	return common.XML_ELEMENT_END_TAG
 }
 
-func (n *XMLEndTagNode) LtToken() *Token {
+func (n XMLEndTagNode) LtToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3363,7 +3363,7 @@ func (n *XMLEndTagNode) LtToken() *Token {
 	return val
 }
 
-func (n *XMLEndTagNode) SlashToken() *Token {
+func (n XMLEndTagNode) SlashToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3371,7 +3371,7 @@ func (n *XMLEndTagNode) SlashToken() *Token {
 	return val
 }
 
-func (n *XMLEndTagNode) Name() *XMLNameNode {
+func (n XMLEndTagNode) Name() *XMLNameNode {
 	val, ok := n.ChildInBucket(2).(*XMLNameNode)
 	if !ok {
 		panic("expected XMLNameNode")
@@ -3379,7 +3379,7 @@ func (n *XMLEndTagNode) Name() *XMLNameNode {
 	return val
 }
 
-func (n *XMLEndTagNode) GetToken() *Token {
+func (n XMLEndTagNode) GetToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3393,11 +3393,11 @@ type XMLSimpleNameNode struct {
 	XMLNameNode
 }
 
-func (n *XMLSimpleNameNode) Kind() common.SyntaxKind {
+func (n XMLSimpleNameNode) Kind() common.SyntaxKind {
 	return common.XML_SIMPLE_NAME
 }
 
-func (n *XMLSimpleNameNode) Name() *Token {
+func (n XMLSimpleNameNode) Name() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3409,11 +3409,11 @@ type XMLQualifiedNameNode struct {
 	XMLNameNode
 }
 
-func (n *XMLQualifiedNameNode) Kind() common.SyntaxKind {
+func (n XMLQualifiedNameNode) Kind() common.SyntaxKind {
 	return common.XML_QUALIFIED_NAME
 }
 
-func (n *XMLQualifiedNameNode) Prefix() *XMLSimpleNameNode {
+func (n XMLQualifiedNameNode) Prefix() *XMLSimpleNameNode {
 	val, ok := n.ChildInBucket(0).(*XMLSimpleNameNode)
 	if !ok {
 		panic("expected XMLSimpleNameNode")
@@ -3421,7 +3421,7 @@ func (n *XMLQualifiedNameNode) Prefix() *XMLSimpleNameNode {
 	return val
 }
 
-func (n *XMLQualifiedNameNode) Colon() *Token {
+func (n XMLQualifiedNameNode) Colon() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3429,7 +3429,7 @@ func (n *XMLQualifiedNameNode) Colon() *Token {
 	return val
 }
 
-func (n *XMLQualifiedNameNode) Name() *XMLSimpleNameNode {
+func (n XMLQualifiedNameNode) Name() *XMLSimpleNameNode {
 	val, ok := n.ChildInBucket(2).(*XMLSimpleNameNode)
 	if !ok {
 		panic("expected XMLSimpleNameNode")
@@ -3441,11 +3441,11 @@ type XMLEmptyElementNode struct {
 	XMLItemNode
 }
 
-func (n *XMLEmptyElementNode) Kind() common.SyntaxKind {
+func (n XMLEmptyElementNode) Kind() common.SyntaxKind {
 	return common.XML_EMPTY_ELEMENT
 }
 
-func (n *XMLEmptyElementNode) LtToken() *Token {
+func (n XMLEmptyElementNode) LtToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3453,7 +3453,7 @@ func (n *XMLEmptyElementNode) LtToken() *Token {
 	return val
 }
 
-func (n *XMLEmptyElementNode) Name() *XMLNameNode {
+func (n XMLEmptyElementNode) Name() *XMLNameNode {
 	val, ok := n.ChildInBucket(1).(*XMLNameNode)
 	if !ok {
 		panic("expected XMLNameNode")
@@ -3461,11 +3461,11 @@ func (n *XMLEmptyElementNode) Name() *XMLNameNode {
 	return val
 }
 
-func (n *XMLEmptyElementNode) Attributes() NodeList[*XMLAttributeNode] {
+func (n XMLEmptyElementNode) Attributes() NodeList[*XMLAttributeNode] {
 	return nodeListFrom[*XMLAttributeNode](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *XMLEmptyElementNode) SlashToken() *Token {
+func (n XMLEmptyElementNode) SlashToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3473,7 +3473,7 @@ func (n *XMLEmptyElementNode) SlashToken() *Token {
 	return val
 }
 
-func (n *XMLEmptyElementNode) GetToken() *Token {
+func (n XMLEmptyElementNode) GetToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3485,11 +3485,11 @@ type InterpolationNode struct {
 	XMLItemNode
 }
 
-func (n *InterpolationNode) Kind() common.SyntaxKind {
+func (n InterpolationNode) Kind() common.SyntaxKind {
 	return common.INTERPOLATION
 }
 
-func (n *InterpolationNode) InterpolationStartToken() *Token {
+func (n InterpolationNode) InterpolationStartToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3497,7 +3497,7 @@ func (n *InterpolationNode) InterpolationStartToken() *Token {
 	return val
 }
 
-func (n *InterpolationNode) Expression() *ExpressionNode {
+func (n InterpolationNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -3505,7 +3505,7 @@ func (n *InterpolationNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *InterpolationNode) InterpolationEndToken() *Token {
+func (n InterpolationNode) InterpolationEndToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3517,11 +3517,11 @@ type XMLTextNode struct {
 	XMLItemNode
 }
 
-func (n *XMLTextNode) Kind() common.SyntaxKind {
+func (n XMLTextNode) Kind() common.SyntaxKind {
 	return common.XML_TEXT
 }
 
-func (n *XMLTextNode) Content() *Token {
+func (n XMLTextNode) Content() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3533,11 +3533,11 @@ type XMLAttributeNode struct {
 	NonTerminalNode
 }
 
-func (n *XMLAttributeNode) Kind() common.SyntaxKind {
+func (n XMLAttributeNode) Kind() common.SyntaxKind {
 	return common.XML_ATTRIBUTE
 }
 
-func (n *XMLAttributeNode) AttributeName() *XMLNameNode {
+func (n XMLAttributeNode) AttributeName() *XMLNameNode {
 	val, ok := n.ChildInBucket(0).(*XMLNameNode)
 	if !ok {
 		panic("expected XMLNameNode")
@@ -3545,7 +3545,7 @@ func (n *XMLAttributeNode) AttributeName() *XMLNameNode {
 	return val
 }
 
-func (n *XMLAttributeNode) EqualToken() *Token {
+func (n XMLAttributeNode) EqualToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3553,7 +3553,7 @@ func (n *XMLAttributeNode) EqualToken() *Token {
 	return val
 }
 
-func (n *XMLAttributeNode) Value() *XMLAttributeValue {
+func (n XMLAttributeNode) Value() *XMLAttributeValue {
 	val, ok := n.ChildInBucket(2).(*XMLAttributeValue)
 	if !ok {
 		panic("expected XMLAttributeValue")
@@ -3565,11 +3565,11 @@ type XMLAttributeValue struct {
 	NonTerminalNode
 }
 
-func (n *XMLAttributeValue) Kind() common.SyntaxKind {
+func (n XMLAttributeValue) Kind() common.SyntaxKind {
 	return common.XML_ATTRIBUTE_VALUE
 }
 
-func (n *XMLAttributeValue) StartQuote() *Token {
+func (n XMLAttributeValue) StartQuote() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3577,11 +3577,11 @@ func (n *XMLAttributeValue) StartQuote() *Token {
 	return val
 }
 
-func (n *XMLAttributeValue) Value() NodeList[Node] {
+func (n XMLAttributeValue) Value() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *XMLAttributeValue) EndQuote() *Token {
+func (n XMLAttributeValue) EndQuote() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3593,11 +3593,11 @@ type XMLComment struct {
 	XMLItemNode
 }
 
-func (n *XMLComment) Kind() common.SyntaxKind {
+func (n XMLComment) Kind() common.SyntaxKind {
 	return common.XML_COMMENT
 }
 
-func (n *XMLComment) CommentStart() *Token {
+func (n XMLComment) CommentStart() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3605,11 +3605,11 @@ func (n *XMLComment) CommentStart() *Token {
 	return val
 }
 
-func (n *XMLComment) Content() NodeList[Node] {
+func (n XMLComment) Content() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *XMLComment) CommentEnd() *Token {
+func (n XMLComment) CommentEnd() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3621,11 +3621,11 @@ type XMLCDATANode struct {
 	XMLItemNode
 }
 
-func (n *XMLCDATANode) Kind() common.SyntaxKind {
+func (n XMLCDATANode) Kind() common.SyntaxKind {
 	return common.XML_CDATA
 }
 
-func (n *XMLCDATANode) CdataStart() *Token {
+func (n XMLCDATANode) CdataStart() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3633,11 +3633,11 @@ func (n *XMLCDATANode) CdataStart() *Token {
 	return val
 }
 
-func (n *XMLCDATANode) Content() NodeList[Node] {
+func (n XMLCDATANode) Content() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *XMLCDATANode) CdataEnd() *Token {
+func (n XMLCDATANode) CdataEnd() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3649,11 +3649,11 @@ type XMLProcessingInstruction struct {
 	XMLItemNode
 }
 
-func (n *XMLProcessingInstruction) Kind() common.SyntaxKind {
+func (n XMLProcessingInstruction) Kind() common.SyntaxKind {
 	return common.XML_PI
 }
 
-func (n *XMLProcessingInstruction) PiStart() *Token {
+func (n XMLProcessingInstruction) PiStart() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3661,7 +3661,7 @@ func (n *XMLProcessingInstruction) PiStart() *Token {
 	return val
 }
 
-func (n *XMLProcessingInstruction) Target() *XMLNameNode {
+func (n XMLProcessingInstruction) Target() *XMLNameNode {
 	val, ok := n.ChildInBucket(1).(*XMLNameNode)
 	if !ok {
 		panic("expected XMLNameNode")
@@ -3669,11 +3669,11 @@ func (n *XMLProcessingInstruction) Target() *XMLNameNode {
 	return val
 }
 
-func (n *XMLProcessingInstruction) Data() NodeList[Node] {
+func (n XMLProcessingInstruction) Data() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *XMLProcessingInstruction) PiEnd() *Token {
+func (n XMLProcessingInstruction) PiEnd() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3685,11 +3685,11 @@ type TableTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *TableTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n TableTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.TABLE_TYPE_DESC
 }
 
-func (n *TableTypeDescriptorNode) TableKeywordToken() *Token {
+func (n TableTypeDescriptorNode) TableKeywordToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3697,7 +3697,7 @@ func (n *TableTypeDescriptorNode) TableKeywordToken() *Token {
 	return val
 }
 
-func (n *TableTypeDescriptorNode) RowTypeParameterNode() Node {
+func (n TableTypeDescriptorNode) RowTypeParameterNode() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -3705,7 +3705,7 @@ func (n *TableTypeDescriptorNode) RowTypeParameterNode() Node {
 	return val
 }
 
-func (n *TableTypeDescriptorNode) KeyConstraintNode() Node {
+func (n TableTypeDescriptorNode) KeyConstraintNode() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -3717,11 +3717,11 @@ type TypeParameterNode struct {
 	NonTerminalNode
 }
 
-func (n *TypeParameterNode) Kind() common.SyntaxKind {
+func (n TypeParameterNode) Kind() common.SyntaxKind {
 	return common.TYPE_PARAMETER
 }
 
-func (n *TypeParameterNode) LtToken() *Token {
+func (n TypeParameterNode) LtToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3729,7 +3729,7 @@ func (n *TypeParameterNode) LtToken() *Token {
 	return val
 }
 
-func (n *TypeParameterNode) TypeNode() *TypeDescriptorNode {
+func (n TypeParameterNode) TypeNode() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(1).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -3737,7 +3737,7 @@ func (n *TypeParameterNode) TypeNode() *TypeDescriptorNode {
 	return val
 }
 
-func (n *TypeParameterNode) GtToken() *Token {
+func (n TypeParameterNode) GtToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3749,11 +3749,11 @@ type KeyTypeConstraintNode struct {
 	NonTerminalNode
 }
 
-func (n *KeyTypeConstraintNode) Kind() common.SyntaxKind {
+func (n KeyTypeConstraintNode) Kind() common.SyntaxKind {
 	return common.KEY_TYPE_CONSTRAINT
 }
 
-func (n *KeyTypeConstraintNode) KeyKeywordToken() *Token {
+func (n KeyTypeConstraintNode) KeyKeywordToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3761,7 +3761,7 @@ func (n *KeyTypeConstraintNode) KeyKeywordToken() *Token {
 	return val
 }
 
-func (n *KeyTypeConstraintNode) TypeParameterNode() Node {
+func (n KeyTypeConstraintNode) TypeParameterNode() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -3773,15 +3773,15 @@ type FunctionTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *FunctionTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n FunctionTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.FUNCTION_TYPE_DESC
 }
 
-func (n *FunctionTypeDescriptorNode) QualifierList() NodeList[*Token] {
+func (n FunctionTypeDescriptorNode) QualifierList() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *FunctionTypeDescriptorNode) FunctionKeyword() *Token {
+func (n FunctionTypeDescriptorNode) FunctionKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3789,7 +3789,7 @@ func (n *FunctionTypeDescriptorNode) FunctionKeyword() *Token {
 	return val
 }
 
-func (n *FunctionTypeDescriptorNode) FunctionSignature() *FunctionSignatureNode {
+func (n FunctionTypeDescriptorNode) FunctionSignature() *FunctionSignatureNode {
 	val, ok := n.ChildInBucket(2).(*FunctionSignatureNode)
 	if !ok {
 		panic("expected FunctionSignatureNode")
@@ -3801,11 +3801,11 @@ type FunctionSignatureNode struct {
 	NonTerminalNode
 }
 
-func (n *FunctionSignatureNode) Kind() common.SyntaxKind {
+func (n FunctionSignatureNode) Kind() common.SyntaxKind {
 	return common.FUNCTION_SIGNATURE
 }
 
-func (n *FunctionSignatureNode) OpenParenToken() *Token {
+func (n FunctionSignatureNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3813,11 +3813,11 @@ func (n *FunctionSignatureNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *FunctionSignatureNode) Parameters() NodeList[*ParameterNode] {
+func (n FunctionSignatureNode) Parameters() NodeList[*ParameterNode] {
 	return nodeListFrom[*ParameterNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *FunctionSignatureNode) CloseParenToken() *Token {
+func (n FunctionSignatureNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3825,7 +3825,7 @@ func (n *FunctionSignatureNode) CloseParenToken() *Token {
 	return val
 }
 
-func (n *FunctionSignatureNode) ReturnTypeDesc() *ReturnTypeDescriptorNode {
+func (n FunctionSignatureNode) ReturnTypeDesc() *ReturnTypeDescriptorNode {
 	val, ok := n.ChildInBucket(3).(*ReturnTypeDescriptorNode)
 	if !ok {
 		panic("expected ReturnTypeDescriptorNode")
@@ -3839,19 +3839,19 @@ type ExplicitAnonymousFunctionExpressionNode struct {
 	AnonymousFunctionExpressionNode
 }
 
-func (n *ExplicitAnonymousFunctionExpressionNode) Kind() common.SyntaxKind {
+func (n ExplicitAnonymousFunctionExpressionNode) Kind() common.SyntaxKind {
 	return common.EXPLICIT_ANONYMOUS_FUNCTION_EXPRESSION
 }
 
-func (n *ExplicitAnonymousFunctionExpressionNode) Annotations() NodeList[*AnnotationNode] {
+func (n ExplicitAnonymousFunctionExpressionNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *ExplicitAnonymousFunctionExpressionNode) QualifierList() NodeList[*Token] {
+func (n ExplicitAnonymousFunctionExpressionNode) QualifierList() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ExplicitAnonymousFunctionExpressionNode) FunctionKeyword() *Token {
+func (n ExplicitAnonymousFunctionExpressionNode) FunctionKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3859,7 +3859,7 @@ func (n *ExplicitAnonymousFunctionExpressionNode) FunctionKeyword() *Token {
 	return val
 }
 
-func (n *ExplicitAnonymousFunctionExpressionNode) FunctionSignature() *FunctionSignatureNode {
+func (n ExplicitAnonymousFunctionExpressionNode) FunctionSignature() *FunctionSignatureNode {
 	val, ok := n.ChildInBucket(3).(*FunctionSignatureNode)
 	if !ok {
 		panic("expected FunctionSignatureNode")
@@ -3867,7 +3867,7 @@ func (n *ExplicitAnonymousFunctionExpressionNode) FunctionSignature() *FunctionS
 	return val
 }
 
-func (n *ExplicitAnonymousFunctionExpressionNode) FunctionBody() *FunctionBodyNode {
+func (n ExplicitAnonymousFunctionExpressionNode) FunctionBody() *FunctionBodyNode {
 	val, ok := n.ChildInBucket(4).(*FunctionBodyNode)
 	if !ok {
 		panic("expected FunctionBodyNode")
@@ -3881,11 +3881,11 @@ type ExpressionFunctionBodyNode struct {
 	FunctionBodyNode
 }
 
-func (n *ExpressionFunctionBodyNode) Kind() common.SyntaxKind {
+func (n ExpressionFunctionBodyNode) Kind() common.SyntaxKind {
 	return common.EXPRESSION_FUNCTION_BODY
 }
 
-func (n *ExpressionFunctionBodyNode) RightDoubleArrow() *Token {
+func (n ExpressionFunctionBodyNode) RightDoubleArrow() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3893,7 +3893,7 @@ func (n *ExpressionFunctionBodyNode) RightDoubleArrow() *Token {
 	return val
 }
 
-func (n *ExpressionFunctionBodyNode) Expression() *ExpressionNode {
+func (n ExpressionFunctionBodyNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -3901,7 +3901,7 @@ func (n *ExpressionFunctionBodyNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *ExpressionFunctionBodyNode) Semicolon() *Token {
+func (n ExpressionFunctionBodyNode) Semicolon() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3913,11 +3913,11 @@ type TupleTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *TupleTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n TupleTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.TUPLE_TYPE_DESC
 }
 
-func (n *TupleTypeDescriptorNode) OpenBracketToken() *Token {
+func (n TupleTypeDescriptorNode) OpenBracketToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3925,11 +3925,11 @@ func (n *TupleTypeDescriptorNode) OpenBracketToken() *Token {
 	return val
 }
 
-func (n *TupleTypeDescriptorNode) MemberTypeDesc() NodeList[Node] {
+func (n TupleTypeDescriptorNode) MemberTypeDesc() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *TupleTypeDescriptorNode) CloseBracketToken() *Token {
+func (n TupleTypeDescriptorNode) CloseBracketToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3941,11 +3941,11 @@ type ParenthesisedTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *ParenthesisedTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n ParenthesisedTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.PARENTHESISED_TYPE_DESC
 }
 
-func (n *ParenthesisedTypeDescriptorNode) OpenParenToken() *Token {
+func (n ParenthesisedTypeDescriptorNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3953,7 +3953,7 @@ func (n *ParenthesisedTypeDescriptorNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *ParenthesisedTypeDescriptorNode) Typedesc() *TypeDescriptorNode {
+func (n ParenthesisedTypeDescriptorNode) Typedesc() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(1).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -3961,7 +3961,7 @@ func (n *ParenthesisedTypeDescriptorNode) Typedesc() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ParenthesisedTypeDescriptorNode) CloseParenToken() *Token {
+func (n ParenthesisedTypeDescriptorNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3975,11 +3975,11 @@ type ExplicitNewExpressionNode struct {
 	NewExpressionNode
 }
 
-func (n *ExplicitNewExpressionNode) Kind() common.SyntaxKind {
+func (n ExplicitNewExpressionNode) Kind() common.SyntaxKind {
 	return common.EXPLICIT_NEW_EXPRESSION
 }
 
-func (n *ExplicitNewExpressionNode) NewKeyword() *Token {
+func (n ExplicitNewExpressionNode) NewKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -3987,7 +3987,7 @@ func (n *ExplicitNewExpressionNode) NewKeyword() *Token {
 	return val
 }
 
-func (n *ExplicitNewExpressionNode) TypeDescriptor() *TypeDescriptorNode {
+func (n ExplicitNewExpressionNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(1).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -3995,7 +3995,7 @@ func (n *ExplicitNewExpressionNode) TypeDescriptor() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ExplicitNewExpressionNode) ParenthesizedArgList() *ParenthesizedArgList {
+func (n ExplicitNewExpressionNode) ParenthesizedArgList() *ParenthesizedArgList {
 	val, ok := n.ChildInBucket(2).(*ParenthesizedArgList)
 	if !ok {
 		panic("expected ParenthesizedArgList")
@@ -4007,11 +4007,11 @@ type ImplicitNewExpressionNode struct {
 	NewExpressionNode
 }
 
-func (n *ImplicitNewExpressionNode) Kind() common.SyntaxKind {
+func (n ImplicitNewExpressionNode) Kind() common.SyntaxKind {
 	return common.IMPLICIT_NEW_EXPRESSION
 }
 
-func (n *ImplicitNewExpressionNode) NewKeyword() *Token {
+func (n ImplicitNewExpressionNode) NewKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4019,7 +4019,7 @@ func (n *ImplicitNewExpressionNode) NewKeyword() *Token {
 	return val
 }
 
-func (n *ImplicitNewExpressionNode) ParenthesizedArgList() *ParenthesizedArgList {
+func (n ImplicitNewExpressionNode) ParenthesizedArgList() *ParenthesizedArgList {
 	val, ok := n.ChildInBucket(1).(*ParenthesizedArgList)
 	if !ok {
 		panic("expected ParenthesizedArgList")
@@ -4031,11 +4031,11 @@ type ParenthesizedArgList struct {
 	NonTerminalNode
 }
 
-func (n *ParenthesizedArgList) Kind() common.SyntaxKind {
+func (n ParenthesizedArgList) Kind() common.SyntaxKind {
 	return common.PARENTHESIZED_ARG_LIST
 }
 
-func (n *ParenthesizedArgList) OpenParenToken() *Token {
+func (n ParenthesizedArgList) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4043,11 +4043,11 @@ func (n *ParenthesizedArgList) OpenParenToken() *Token {
 	return val
 }
 
-func (n *ParenthesizedArgList) Arguments() NodeList[*FunctionArgumentNode] {
+func (n ParenthesizedArgList) Arguments() NodeList[*FunctionArgumentNode] {
 	return nodeListFrom[*FunctionArgumentNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ParenthesizedArgList) CloseParenToken() *Token {
+func (n ParenthesizedArgList) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4063,11 +4063,11 @@ type QueryConstructTypeNode struct {
 	NonTerminalNode
 }
 
-func (n *QueryConstructTypeNode) Kind() common.SyntaxKind {
+func (n QueryConstructTypeNode) Kind() common.SyntaxKind {
 	return common.QUERY_CONSTRUCT_TYPE
 }
 
-func (n *QueryConstructTypeNode) Keyword() *Token {
+func (n QueryConstructTypeNode) Keyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4075,7 +4075,7 @@ func (n *QueryConstructTypeNode) Keyword() *Token {
 	return val
 }
 
-func (n *QueryConstructTypeNode) KeySpecifier() *KeySpecifierNode {
+func (n QueryConstructTypeNode) KeySpecifier() *KeySpecifierNode {
 	val, ok := n.ChildInBucket(1).(*KeySpecifierNode)
 	if !ok {
 		panic("expected KeySpecifierNode")
@@ -4087,11 +4087,11 @@ type FromClauseNode struct {
 	IntermediateClauseNode
 }
 
-func (n *FromClauseNode) Kind() common.SyntaxKind {
+func (n FromClauseNode) Kind() common.SyntaxKind {
 	return common.FROM_CLAUSE
 }
 
-func (n *FromClauseNode) FromKeyword() *Token {
+func (n FromClauseNode) FromKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4099,7 +4099,7 @@ func (n *FromClauseNode) FromKeyword() *Token {
 	return val
 }
 
-func (n *FromClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
+func (n FromClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
 	val, ok := n.ChildInBucket(1).(*TypedBindingPatternNode)
 	if !ok {
 		panic("expected TypedBindingPatternNode")
@@ -4107,7 +4107,7 @@ func (n *FromClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
 	return val
 }
 
-func (n *FromClauseNode) InKeyword() *Token {
+func (n FromClauseNode) InKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4115,7 +4115,7 @@ func (n *FromClauseNode) InKeyword() *Token {
 	return val
 }
 
-func (n *FromClauseNode) Expression() *ExpressionNode {
+func (n FromClauseNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4127,11 +4127,11 @@ type WhereClauseNode struct {
 	IntermediateClauseNode
 }
 
-func (n *WhereClauseNode) Kind() common.SyntaxKind {
+func (n WhereClauseNode) Kind() common.SyntaxKind {
 	return common.WHERE_CLAUSE
 }
 
-func (n *WhereClauseNode) WhereKeyword() *Token {
+func (n WhereClauseNode) WhereKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4139,7 +4139,7 @@ func (n *WhereClauseNode) WhereKeyword() *Token {
 	return val
 }
 
-func (n *WhereClauseNode) Expression() *ExpressionNode {
+func (n WhereClauseNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4151,11 +4151,11 @@ type LetClauseNode struct {
 	IntermediateClauseNode
 }
 
-func (n *LetClauseNode) Kind() common.SyntaxKind {
+func (n LetClauseNode) Kind() common.SyntaxKind {
 	return common.LET_CLAUSE
 }
 
-func (n *LetClauseNode) LetKeyword() *Token {
+func (n LetClauseNode) LetKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4163,7 +4163,7 @@ func (n *LetClauseNode) LetKeyword() *Token {
 	return val
 }
 
-func (n *LetClauseNode) LetVarDeclarations() NodeList[*LetVariableDeclarationNode] {
+func (n LetClauseNode) LetVarDeclarations() NodeList[*LetVariableDeclarationNode] {
 	return nodeListFrom[*LetVariableDeclarationNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
@@ -4171,11 +4171,11 @@ type JoinClauseNode struct {
 	IntermediateClauseNode
 }
 
-func (n *JoinClauseNode) Kind() common.SyntaxKind {
+func (n JoinClauseNode) Kind() common.SyntaxKind {
 	return common.JOIN_CLAUSE
 }
 
-func (n *JoinClauseNode) OuterKeyword() *Token {
+func (n JoinClauseNode) OuterKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4183,7 +4183,7 @@ func (n *JoinClauseNode) OuterKeyword() *Token {
 	return val
 }
 
-func (n *JoinClauseNode) JoinKeyword() *Token {
+func (n JoinClauseNode) JoinKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4191,7 +4191,7 @@ func (n *JoinClauseNode) JoinKeyword() *Token {
 	return val
 }
 
-func (n *JoinClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
+func (n JoinClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
 	val, ok := n.ChildInBucket(2).(*TypedBindingPatternNode)
 	if !ok {
 		panic("expected TypedBindingPatternNode")
@@ -4199,7 +4199,7 @@ func (n *JoinClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
 	return val
 }
 
-func (n *JoinClauseNode) InKeyword() *Token {
+func (n JoinClauseNode) InKeyword() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4207,7 +4207,7 @@ func (n *JoinClauseNode) InKeyword() *Token {
 	return val
 }
 
-func (n *JoinClauseNode) Expression() *ExpressionNode {
+func (n JoinClauseNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(4).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4215,7 +4215,7 @@ func (n *JoinClauseNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *JoinClauseNode) JoinOnCondition() *OnClauseNode {
+func (n JoinClauseNode) JoinOnCondition() *OnClauseNode {
 	val, ok := n.ChildInBucket(5).(*OnClauseNode)
 	if !ok {
 		panic("expected OnClauseNode")
@@ -4227,11 +4227,11 @@ type OnClauseNode struct {
 	ClauseNode
 }
 
-func (n *OnClauseNode) Kind() common.SyntaxKind {
+func (n OnClauseNode) Kind() common.SyntaxKind {
 	return common.ON_CLAUSE
 }
 
-func (n *OnClauseNode) OnKeyword() *Token {
+func (n OnClauseNode) OnKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4239,7 +4239,7 @@ func (n *OnClauseNode) OnKeyword() *Token {
 	return val
 }
 
-func (n *OnClauseNode) LhsExpression() *ExpressionNode {
+func (n OnClauseNode) LhsExpression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4247,7 +4247,7 @@ func (n *OnClauseNode) LhsExpression() *ExpressionNode {
 	return val
 }
 
-func (n *OnClauseNode) EqualsKeyword() *Token {
+func (n OnClauseNode) EqualsKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4255,7 +4255,7 @@ func (n *OnClauseNode) EqualsKeyword() *Token {
 	return val
 }
 
-func (n *OnClauseNode) RhsExpression() *ExpressionNode {
+func (n OnClauseNode) RhsExpression() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4267,11 +4267,11 @@ type LimitClauseNode struct {
 	IntermediateClauseNode
 }
 
-func (n *LimitClauseNode) Kind() common.SyntaxKind {
+func (n LimitClauseNode) Kind() common.SyntaxKind {
 	return common.LIMIT_CLAUSE
 }
 
-func (n *LimitClauseNode) LimitKeyword() *Token {
+func (n LimitClauseNode) LimitKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4279,7 +4279,7 @@ func (n *LimitClauseNode) LimitKeyword() *Token {
 	return val
 }
 
-func (n *LimitClauseNode) Expression() *ExpressionNode {
+func (n LimitClauseNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4291,11 +4291,11 @@ type OnConflictClauseNode struct {
 	ClauseNode
 }
 
-func (n *OnConflictClauseNode) Kind() common.SyntaxKind {
+func (n OnConflictClauseNode) Kind() common.SyntaxKind {
 	return common.ON_CONFLICT_CLAUSE
 }
 
-func (n *OnConflictClauseNode) OnKeyword() *Token {
+func (n OnConflictClauseNode) OnKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4303,7 +4303,7 @@ func (n *OnConflictClauseNode) OnKeyword() *Token {
 	return val
 }
 
-func (n *OnConflictClauseNode) ConflictKeyword() *Token {
+func (n OnConflictClauseNode) ConflictKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4311,7 +4311,7 @@ func (n *OnConflictClauseNode) ConflictKeyword() *Token {
 	return val
 }
 
-func (n *OnConflictClauseNode) Expression() *ExpressionNode {
+func (n OnConflictClauseNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(2).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4323,11 +4323,11 @@ type QueryPipelineNode struct {
 	NonTerminalNode
 }
 
-func (n *QueryPipelineNode) Kind() common.SyntaxKind {
+func (n QueryPipelineNode) Kind() common.SyntaxKind {
 	return common.QUERY_PIPELINE
 }
 
-func (n *QueryPipelineNode) FromClause() *FromClauseNode {
+func (n QueryPipelineNode) FromClause() *FromClauseNode {
 	val, ok := n.ChildInBucket(0).(*FromClauseNode)
 	if !ok {
 		panic("expected FromClauseNode")
@@ -4335,7 +4335,7 @@ func (n *QueryPipelineNode) FromClause() *FromClauseNode {
 	return val
 }
 
-func (n *QueryPipelineNode) IntermediateClauses() NodeList[*IntermediateClauseNode] {
+func (n QueryPipelineNode) IntermediateClauses() NodeList[*IntermediateClauseNode] {
 	return nodeListFrom[*IntermediateClauseNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
@@ -4343,11 +4343,11 @@ type SelectClauseNode struct {
 	ClauseNode
 }
 
-func (n *SelectClauseNode) Kind() common.SyntaxKind {
+func (n SelectClauseNode) Kind() common.SyntaxKind {
 	return common.SELECT_CLAUSE
 }
 
-func (n *SelectClauseNode) SelectKeyword() *Token {
+func (n SelectClauseNode) SelectKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4355,7 +4355,7 @@ func (n *SelectClauseNode) SelectKeyword() *Token {
 	return val
 }
 
-func (n *SelectClauseNode) Expression() *ExpressionNode {
+func (n SelectClauseNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4367,11 +4367,11 @@ type CollectClauseNode struct {
 	ClauseNode
 }
 
-func (n *CollectClauseNode) Kind() common.SyntaxKind {
+func (n CollectClauseNode) Kind() common.SyntaxKind {
 	return common.COLLECT_CLAUSE
 }
 
-func (n *CollectClauseNode) CollectKeyword() *Token {
+func (n CollectClauseNode) CollectKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4379,7 +4379,7 @@ func (n *CollectClauseNode) CollectKeyword() *Token {
 	return val
 }
 
-func (n *CollectClauseNode) Expression() *ExpressionNode {
+func (n CollectClauseNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4391,11 +4391,11 @@ type QueryExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *QueryExpressionNode) Kind() common.SyntaxKind {
+func (n QueryExpressionNode) Kind() common.SyntaxKind {
 	return common.QUERY_EXPRESSION
 }
 
-func (n *QueryExpressionNode) QueryConstructType() *QueryConstructTypeNode {
+func (n QueryExpressionNode) QueryConstructType() *QueryConstructTypeNode {
 	val, ok := n.ChildInBucket(0).(*QueryConstructTypeNode)
 	if !ok {
 		panic("expected QueryConstructTypeNode")
@@ -4403,7 +4403,7 @@ func (n *QueryExpressionNode) QueryConstructType() *QueryConstructTypeNode {
 	return val
 }
 
-func (n *QueryExpressionNode) QueryPipeline() *QueryPipelineNode {
+func (n QueryExpressionNode) QueryPipeline() *QueryPipelineNode {
 	val, ok := n.ChildInBucket(1).(*QueryPipelineNode)
 	if !ok {
 		panic("expected QueryPipelineNode")
@@ -4411,7 +4411,7 @@ func (n *QueryExpressionNode) QueryPipeline() *QueryPipelineNode {
 	return val
 }
 
-func (n *QueryExpressionNode) ResultClause() *ClauseNode {
+func (n QueryExpressionNode) ResultClause() *ClauseNode {
 	val, ok := n.ChildInBucket(2).(*ClauseNode)
 	if !ok {
 		panic("expected ClauseNode")
@@ -4419,7 +4419,7 @@ func (n *QueryExpressionNode) ResultClause() *ClauseNode {
 	return val
 }
 
-func (n *QueryExpressionNode) OnConflictClause() *OnConflictClauseNode {
+func (n QueryExpressionNode) OnConflictClause() *OnConflictClauseNode {
 	val, ok := n.ChildInBucket(3).(*OnConflictClauseNode)
 	if !ok {
 		panic("expected OnConflictClauseNode")
@@ -4431,11 +4431,11 @@ type QueryActionNode struct {
 	ActionNode
 }
 
-func (n *QueryActionNode) Kind() common.SyntaxKind {
+func (n QueryActionNode) Kind() common.SyntaxKind {
 	return common.QUERY_ACTION
 }
 
-func (n *QueryActionNode) QueryPipeline() *QueryPipelineNode {
+func (n QueryActionNode) QueryPipeline() *QueryPipelineNode {
 	val, ok := n.ChildInBucket(0).(*QueryPipelineNode)
 	if !ok {
 		panic("expected QueryPipelineNode")
@@ -4443,7 +4443,7 @@ func (n *QueryActionNode) QueryPipeline() *QueryPipelineNode {
 	return val
 }
 
-func (n *QueryActionNode) DoKeyword() *Token {
+func (n QueryActionNode) DoKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4451,7 +4451,7 @@ func (n *QueryActionNode) DoKeyword() *Token {
 	return val
 }
 
-func (n *QueryActionNode) BlockStatement() *BlockStatementNode {
+func (n QueryActionNode) BlockStatement() *BlockStatementNode {
 	val, ok := n.ChildInBucket(2).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -4463,11 +4463,11 @@ type IntersectionTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *IntersectionTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n IntersectionTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.INTERSECTION_TYPE_DESC
 }
 
-func (n *IntersectionTypeDescriptorNode) LeftTypeDesc() Node {
+func (n IntersectionTypeDescriptorNode) LeftTypeDesc() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -4475,7 +4475,7 @@ func (n *IntersectionTypeDescriptorNode) LeftTypeDesc() Node {
 	return val
 }
 
-func (n *IntersectionTypeDescriptorNode) BitwiseAndToken() *Token {
+func (n IntersectionTypeDescriptorNode) BitwiseAndToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4483,7 +4483,7 @@ func (n *IntersectionTypeDescriptorNode) BitwiseAndToken() *Token {
 	return val
 }
 
-func (n *IntersectionTypeDescriptorNode) RightTypeDesc() Node {
+func (n IntersectionTypeDescriptorNode) RightTypeDesc() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -4495,11 +4495,11 @@ type ImplicitAnonymousFunctionParameters struct {
 	NonTerminalNode
 }
 
-func (n *ImplicitAnonymousFunctionParameters) Kind() common.SyntaxKind {
+func (n ImplicitAnonymousFunctionParameters) Kind() common.SyntaxKind {
 	return common.INFER_PARAM_LIST
 }
 
-func (n *ImplicitAnonymousFunctionParameters) OpenParenToken() *Token {
+func (n ImplicitAnonymousFunctionParameters) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4507,11 +4507,11 @@ func (n *ImplicitAnonymousFunctionParameters) OpenParenToken() *Token {
 	return val
 }
 
-func (n *ImplicitAnonymousFunctionParameters) Parameters() NodeList[*SimpleNameReferenceNode] {
+func (n ImplicitAnonymousFunctionParameters) Parameters() NodeList[*SimpleNameReferenceNode] {
 	return nodeListFrom[*SimpleNameReferenceNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ImplicitAnonymousFunctionParameters) CloseParenToken() *Token {
+func (n ImplicitAnonymousFunctionParameters) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4523,11 +4523,11 @@ type ImplicitAnonymousFunctionExpressionNode struct {
 	AnonymousFunctionExpressionNode
 }
 
-func (n *ImplicitAnonymousFunctionExpressionNode) Kind() common.SyntaxKind {
+func (n ImplicitAnonymousFunctionExpressionNode) Kind() common.SyntaxKind {
 	return common.IMPLICIT_ANONYMOUS_FUNCTION_EXPRESSION
 }
 
-func (n *ImplicitAnonymousFunctionExpressionNode) Params() Node {
+func (n ImplicitAnonymousFunctionExpressionNode) Params() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -4535,7 +4535,7 @@ func (n *ImplicitAnonymousFunctionExpressionNode) Params() Node {
 	return val
 }
 
-func (n *ImplicitAnonymousFunctionExpressionNode) RightDoubleArrow() *Token {
+func (n ImplicitAnonymousFunctionExpressionNode) RightDoubleArrow() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4543,7 +4543,7 @@ func (n *ImplicitAnonymousFunctionExpressionNode) RightDoubleArrow() *Token {
 	return val
 }
 
-func (n *ImplicitAnonymousFunctionExpressionNode) Expression() *ExpressionNode {
+func (n ImplicitAnonymousFunctionExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(2).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4555,15 +4555,15 @@ type StartActionNode struct {
 	ExpressionNode
 }
 
-func (n *StartActionNode) Kind() common.SyntaxKind {
+func (n StartActionNode) Kind() common.SyntaxKind {
 	return common.START_ACTION
 }
 
-func (n *StartActionNode) Annotations() NodeList[*AnnotationNode] {
+func (n StartActionNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *StartActionNode) StartKeyword() *Token {
+func (n StartActionNode) StartKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4571,7 +4571,7 @@ func (n *StartActionNode) StartKeyword() *Token {
 	return val
 }
 
-func (n *StartActionNode) Expression() *ExpressionNode {
+func (n StartActionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(2).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4583,11 +4583,11 @@ type FlushActionNode struct {
 	ExpressionNode
 }
 
-func (n *FlushActionNode) Kind() common.SyntaxKind {
+func (n FlushActionNode) Kind() common.SyntaxKind {
 	return common.FLUSH_ACTION
 }
 
-func (n *FlushActionNode) FlushKeyword() *Token {
+func (n FlushActionNode) FlushKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4595,7 +4595,7 @@ func (n *FlushActionNode) FlushKeyword() *Token {
 	return val
 }
 
-func (n *FlushActionNode) PeerWorker() *NameReferenceNode {
+func (n FlushActionNode) PeerWorker() *NameReferenceNode {
 	val, ok := n.ChildInBucket(1).(*NameReferenceNode)
 	if !ok {
 		panic("expected NameReferenceNode")
@@ -4607,11 +4607,11 @@ type SingletonTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *SingletonTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n SingletonTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.SINGLETON_TYPE_DESC
 }
 
-func (n *SingletonTypeDescriptorNode) SimpleContExprNode() *ExpressionNode {
+func (n SingletonTypeDescriptorNode) SimpleContExprNode() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4623,7 +4623,7 @@ type MethodDeclarationNode struct {
 	NonTerminalNode
 }
 
-func (n *MethodDeclarationNode) Metadata() *MetadataNode {
+func (n MethodDeclarationNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -4631,11 +4631,11 @@ func (n *MethodDeclarationNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *MethodDeclarationNode) QualifierList() NodeList[*Token] {
+func (n MethodDeclarationNode) QualifierList() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *MethodDeclarationNode) FunctionKeyword() *Token {
+func (n MethodDeclarationNode) FunctionKeyword() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4643,7 +4643,7 @@ func (n *MethodDeclarationNode) FunctionKeyword() *Token {
 	return val
 }
 
-func (n *MethodDeclarationNode) MethodName() *IdentifierToken {
+func (n MethodDeclarationNode) MethodName() *IdentifierToken {
 	val, ok := n.ChildInBucket(3).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -4651,11 +4651,11 @@ func (n *MethodDeclarationNode) MethodName() *IdentifierToken {
 	return val
 }
 
-func (n *MethodDeclarationNode) RelativeResourcePath() NodeList[Node] {
+func (n MethodDeclarationNode) RelativeResourcePath() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(4)))
 }
 
-func (n *MethodDeclarationNode) MethodSignature() *FunctionSignatureNode {
+func (n MethodDeclarationNode) MethodSignature() *FunctionSignatureNode {
 	val, ok := n.ChildInBucket(5).(*FunctionSignatureNode)
 	if !ok {
 		panic("expected FunctionSignatureNode")
@@ -4663,7 +4663,7 @@ func (n *MethodDeclarationNode) MethodSignature() *FunctionSignatureNode {
 	return val
 }
 
-func (n *MethodDeclarationNode) Semicolon() *Token {
+func (n MethodDeclarationNode) Semicolon() *Token {
 	val, ok := n.ChildInBucket(6).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4675,11 +4675,11 @@ type TypedBindingPatternNode struct {
 	NonTerminalNode
 }
 
-func (n *TypedBindingPatternNode) Kind() common.SyntaxKind {
+func (n TypedBindingPatternNode) Kind() common.SyntaxKind {
 	return common.TYPED_BINDING_PATTERN
 }
 
-func (n *TypedBindingPatternNode) TypeDescriptor() *TypeDescriptorNode {
+func (n TypedBindingPatternNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(0).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -4687,7 +4687,7 @@ func (n *TypedBindingPatternNode) TypeDescriptor() *TypeDescriptorNode {
 	return val
 }
 
-func (n *TypedBindingPatternNode) BindingPattern() *BindingPatternNode {
+func (n TypedBindingPatternNode) BindingPattern() *BindingPatternNode {
 	val, ok := n.ChildInBucket(1).(*BindingPatternNode)
 	if !ok {
 		panic("expected BindingPatternNode")
@@ -4701,11 +4701,11 @@ type CaptureBindingPatternNode struct {
 	BindingPatternNode
 }
 
-func (n *CaptureBindingPatternNode) Kind() common.SyntaxKind {
+func (n CaptureBindingPatternNode) Kind() common.SyntaxKind {
 	return common.CAPTURE_BINDING_PATTERN
 }
 
-func (n *CaptureBindingPatternNode) VariableName() *Token {
+func (n CaptureBindingPatternNode) VariableName() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4717,11 +4717,11 @@ type WildcardBindingPatternNode struct {
 	BindingPatternNode
 }
 
-func (n *WildcardBindingPatternNode) Kind() common.SyntaxKind {
+func (n WildcardBindingPatternNode) Kind() common.SyntaxKind {
 	return common.WILDCARD_BINDING_PATTERN
 }
 
-func (n *WildcardBindingPatternNode) UnderscoreToken() *Token {
+func (n WildcardBindingPatternNode) UnderscoreToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4733,11 +4733,11 @@ type ListBindingPatternNode struct {
 	BindingPatternNode
 }
 
-func (n *ListBindingPatternNode) Kind() common.SyntaxKind {
+func (n ListBindingPatternNode) Kind() common.SyntaxKind {
 	return common.LIST_BINDING_PATTERN
 }
 
-func (n *ListBindingPatternNode) OpenBracket() *Token {
+func (n ListBindingPatternNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4745,11 +4745,11 @@ func (n *ListBindingPatternNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *ListBindingPatternNode) BindingPatterns() NodeList[*BindingPatternNode] {
+func (n ListBindingPatternNode) BindingPatterns() NodeList[*BindingPatternNode] {
 	return nodeListFrom[*BindingPatternNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ListBindingPatternNode) CloseBracket() *Token {
+func (n ListBindingPatternNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4761,11 +4761,11 @@ type MappingBindingPatternNode struct {
 	BindingPatternNode
 }
 
-func (n *MappingBindingPatternNode) Kind() common.SyntaxKind {
+func (n MappingBindingPatternNode) Kind() common.SyntaxKind {
 	return common.MAPPING_BINDING_PATTERN
 }
 
-func (n *MappingBindingPatternNode) OpenBrace() *Token {
+func (n MappingBindingPatternNode) OpenBrace() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4773,11 +4773,11 @@ func (n *MappingBindingPatternNode) OpenBrace() *Token {
 	return val
 }
 
-func (n *MappingBindingPatternNode) FieldBindingPatterns() NodeList[*BindingPatternNode] {
+func (n MappingBindingPatternNode) FieldBindingPatterns() NodeList[*BindingPatternNode] {
 	return nodeListFrom[*BindingPatternNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *MappingBindingPatternNode) CloseBrace() *Token {
+func (n MappingBindingPatternNode) CloseBrace() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4791,11 +4791,11 @@ type FieldBindingPatternFullNode struct {
 	FieldBindingPatternNode
 }
 
-func (n *FieldBindingPatternFullNode) Kind() common.SyntaxKind {
+func (n FieldBindingPatternFullNode) Kind() common.SyntaxKind {
 	return common.FIELD_BINDING_PATTERN
 }
 
-func (n *FieldBindingPatternFullNode) VariableName() *SimpleNameReferenceNode {
+func (n FieldBindingPatternFullNode) VariableName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(0).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -4803,7 +4803,7 @@ func (n *FieldBindingPatternFullNode) VariableName() *SimpleNameReferenceNode {
 	return val
 }
 
-func (n *FieldBindingPatternFullNode) Colon() *Token {
+func (n FieldBindingPatternFullNode) Colon() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4811,7 +4811,7 @@ func (n *FieldBindingPatternFullNode) Colon() *Token {
 	return val
 }
 
-func (n *FieldBindingPatternFullNode) BindingPattern() *BindingPatternNode {
+func (n FieldBindingPatternFullNode) BindingPattern() *BindingPatternNode {
 	val, ok := n.ChildInBucket(2).(*BindingPatternNode)
 	if !ok {
 		panic("expected BindingPatternNode")
@@ -4823,11 +4823,11 @@ type FieldBindingPatternVarnameNode struct {
 	FieldBindingPatternNode
 }
 
-func (n *FieldBindingPatternVarnameNode) Kind() common.SyntaxKind {
+func (n FieldBindingPatternVarnameNode) Kind() common.SyntaxKind {
 	return common.FIELD_BINDING_PATTERN
 }
 
-func (n *FieldBindingPatternVarnameNode) VariableName() *SimpleNameReferenceNode {
+func (n FieldBindingPatternVarnameNode) VariableName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(0).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -4839,11 +4839,11 @@ type RestBindingPatternNode struct {
 	BindingPatternNode
 }
 
-func (n *RestBindingPatternNode) Kind() common.SyntaxKind {
+func (n RestBindingPatternNode) Kind() common.SyntaxKind {
 	return common.REST_BINDING_PATTERN
 }
 
-func (n *RestBindingPatternNode) EllipsisToken() *Token {
+func (n RestBindingPatternNode) EllipsisToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4851,7 +4851,7 @@ func (n *RestBindingPatternNode) EllipsisToken() *Token {
 	return val
 }
 
-func (n *RestBindingPatternNode) VariableName() *SimpleNameReferenceNode {
+func (n RestBindingPatternNode) VariableName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(1).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -4863,11 +4863,11 @@ type ErrorBindingPatternNode struct {
 	BindingPatternNode
 }
 
-func (n *ErrorBindingPatternNode) Kind() common.SyntaxKind {
+func (n ErrorBindingPatternNode) Kind() common.SyntaxKind {
 	return common.ERROR_BINDING_PATTERN
 }
 
-func (n *ErrorBindingPatternNode) ErrorKeyword() *Token {
+func (n ErrorBindingPatternNode) ErrorKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4875,7 +4875,7 @@ func (n *ErrorBindingPatternNode) ErrorKeyword() *Token {
 	return val
 }
 
-func (n *ErrorBindingPatternNode) TypeReference() Node {
+func (n ErrorBindingPatternNode) TypeReference() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -4883,7 +4883,7 @@ func (n *ErrorBindingPatternNode) TypeReference() Node {
 	return val
 }
 
-func (n *ErrorBindingPatternNode) OpenParenthesis() *Token {
+func (n ErrorBindingPatternNode) OpenParenthesis() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4891,11 +4891,11 @@ func (n *ErrorBindingPatternNode) OpenParenthesis() *Token {
 	return val
 }
 
-func (n *ErrorBindingPatternNode) ArgListBindingPatterns() NodeList[*BindingPatternNode] {
+func (n ErrorBindingPatternNode) ArgListBindingPatterns() NodeList[*BindingPatternNode] {
 	return nodeListFrom[*BindingPatternNode](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *ErrorBindingPatternNode) CloseParenthesis() *Token {
+func (n ErrorBindingPatternNode) CloseParenthesis() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4907,11 +4907,11 @@ type NamedArgBindingPatternNode struct {
 	BindingPatternNode
 }
 
-func (n *NamedArgBindingPatternNode) Kind() common.SyntaxKind {
+func (n NamedArgBindingPatternNode) Kind() common.SyntaxKind {
 	return common.NAMED_ARG_BINDING_PATTERN
 }
 
-func (n *NamedArgBindingPatternNode) ArgName() *IdentifierToken {
+func (n NamedArgBindingPatternNode) ArgName() *IdentifierToken {
 	val, ok := n.ChildInBucket(0).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -4919,7 +4919,7 @@ func (n *NamedArgBindingPatternNode) ArgName() *IdentifierToken {
 	return val
 }
 
-func (n *NamedArgBindingPatternNode) EqualsToken() *Token {
+func (n NamedArgBindingPatternNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4927,7 +4927,7 @@ func (n *NamedArgBindingPatternNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *NamedArgBindingPatternNode) BindingPattern() *BindingPatternNode {
+func (n NamedArgBindingPatternNode) BindingPattern() *BindingPatternNode {
 	val, ok := n.ChildInBucket(2).(*BindingPatternNode)
 	if !ok {
 		panic("expected BindingPatternNode")
@@ -4939,11 +4939,11 @@ type AsyncSendActionNode struct {
 	ActionNode
 }
 
-func (n *AsyncSendActionNode) Kind() common.SyntaxKind {
+func (n AsyncSendActionNode) Kind() common.SyntaxKind {
 	return common.ASYNC_SEND_ACTION
 }
 
-func (n *AsyncSendActionNode) Expression() *ExpressionNode {
+func (n AsyncSendActionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4951,7 +4951,7 @@ func (n *AsyncSendActionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *AsyncSendActionNode) RightArrowToken() *Token {
+func (n AsyncSendActionNode) RightArrowToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4959,7 +4959,7 @@ func (n *AsyncSendActionNode) RightArrowToken() *Token {
 	return val
 }
 
-func (n *AsyncSendActionNode) PeerWorker() *SimpleNameReferenceNode {
+func (n AsyncSendActionNode) PeerWorker() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -4971,11 +4971,11 @@ type SyncSendActionNode struct {
 	ActionNode
 }
 
-func (n *SyncSendActionNode) Kind() common.SyntaxKind {
+func (n SyncSendActionNode) Kind() common.SyntaxKind {
 	return common.SYNC_SEND_ACTION
 }
 
-func (n *SyncSendActionNode) Expression() *ExpressionNode {
+func (n SyncSendActionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -4983,7 +4983,7 @@ func (n *SyncSendActionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *SyncSendActionNode) SyncSendToken() *Token {
+func (n SyncSendActionNode) SyncSendToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -4991,7 +4991,7 @@ func (n *SyncSendActionNode) SyncSendToken() *Token {
 	return val
 }
 
-func (n *SyncSendActionNode) PeerWorker() *SimpleNameReferenceNode {
+func (n SyncSendActionNode) PeerWorker() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -5003,11 +5003,11 @@ type ReceiveActionNode struct {
 	ActionNode
 }
 
-func (n *ReceiveActionNode) Kind() common.SyntaxKind {
+func (n ReceiveActionNode) Kind() common.SyntaxKind {
 	return common.RECEIVE_ACTION
 }
 
-func (n *ReceiveActionNode) LeftArrow() *Token {
+func (n ReceiveActionNode) LeftArrow() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5015,7 +5015,7 @@ func (n *ReceiveActionNode) LeftArrow() *Token {
 	return val
 }
 
-func (n *ReceiveActionNode) ReceiveWorkers() Node {
+func (n ReceiveActionNode) ReceiveWorkers() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -5027,11 +5027,11 @@ type ReceiveFieldsNode struct {
 	NonTerminalNode
 }
 
-func (n *ReceiveFieldsNode) Kind() common.SyntaxKind {
+func (n ReceiveFieldsNode) Kind() common.SyntaxKind {
 	return common.RECEIVE_FIELDS
 }
 
-func (n *ReceiveFieldsNode) OpenBrace() *Token {
+func (n ReceiveFieldsNode) OpenBrace() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5039,11 +5039,11 @@ func (n *ReceiveFieldsNode) OpenBrace() *Token {
 	return val
 }
 
-func (n *ReceiveFieldsNode) ReceiveFields() NodeList[Node] {
+func (n ReceiveFieldsNode) ReceiveFields() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ReceiveFieldsNode) CloseBrace() *Token {
+func (n ReceiveFieldsNode) CloseBrace() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5055,11 +5055,11 @@ type AlternateReceiveNode struct {
 	NonTerminalNode
 }
 
-func (n *AlternateReceiveNode) Kind() common.SyntaxKind {
+func (n AlternateReceiveNode) Kind() common.SyntaxKind {
 	return common.ALTERNATE_RECEIVE
 }
 
-func (n *AlternateReceiveNode) Workers() NodeList[*SimpleNameReferenceNode] {
+func (n AlternateReceiveNode) Workers() NodeList[*SimpleNameReferenceNode] {
 	return nodeListFrom[*SimpleNameReferenceNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
@@ -5067,11 +5067,11 @@ type RestDescriptorNode struct {
 	NonTerminalNode
 }
 
-func (n *RestDescriptorNode) Kind() common.SyntaxKind {
+func (n RestDescriptorNode) Kind() common.SyntaxKind {
 	return common.REST_TYPE
 }
 
-func (n *RestDescriptorNode) TypeDescriptor() *TypeDescriptorNode {
+func (n RestDescriptorNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(0).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -5079,7 +5079,7 @@ func (n *RestDescriptorNode) TypeDescriptor() *TypeDescriptorNode {
 	return val
 }
 
-func (n *RestDescriptorNode) EllipsisToken() *Token {
+func (n RestDescriptorNode) EllipsisToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5091,11 +5091,11 @@ type DoubleGTTokenNode struct {
 	NonTerminalNode
 }
 
-func (n *DoubleGTTokenNode) Kind() common.SyntaxKind {
+func (n DoubleGTTokenNode) Kind() common.SyntaxKind {
 	return common.DOUBLE_GT_TOKEN
 }
 
-func (n *DoubleGTTokenNode) OpenGTToken() *Token {
+func (n DoubleGTTokenNode) OpenGTToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5103,7 +5103,7 @@ func (n *DoubleGTTokenNode) OpenGTToken() *Token {
 	return val
 }
 
-func (n *DoubleGTTokenNode) EndGTToken() *Token {
+func (n DoubleGTTokenNode) EndGTToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5115,11 +5115,11 @@ type TrippleGTTokenNode struct {
 	NonTerminalNode
 }
 
-func (n *TrippleGTTokenNode) Kind() common.SyntaxKind {
+func (n TrippleGTTokenNode) Kind() common.SyntaxKind {
 	return common.TRIPPLE_GT_TOKEN
 }
 
-func (n *TrippleGTTokenNode) OpenGTToken() *Token {
+func (n TrippleGTTokenNode) OpenGTToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5127,7 +5127,7 @@ func (n *TrippleGTTokenNode) OpenGTToken() *Token {
 	return val
 }
 
-func (n *TrippleGTTokenNode) MiddleGTToken() *Token {
+func (n TrippleGTTokenNode) MiddleGTToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5135,7 +5135,7 @@ func (n *TrippleGTTokenNode) MiddleGTToken() *Token {
 	return val
 }
 
-func (n *TrippleGTTokenNode) EndGTToken() *Token {
+func (n TrippleGTTokenNode) EndGTToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5147,11 +5147,11 @@ type WaitActionNode struct {
 	ActionNode
 }
 
-func (n *WaitActionNode) Kind() common.SyntaxKind {
+func (n WaitActionNode) Kind() common.SyntaxKind {
 	return common.WAIT_ACTION
 }
 
-func (n *WaitActionNode) WaitKeyword() *Token {
+func (n WaitActionNode) WaitKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5159,7 +5159,7 @@ func (n *WaitActionNode) WaitKeyword() *Token {
 	return val
 }
 
-func (n *WaitActionNode) WaitFutureExpr() Node {
+func (n WaitActionNode) WaitFutureExpr() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -5171,11 +5171,11 @@ type WaitFieldsListNode struct {
 	NonTerminalNode
 }
 
-func (n *WaitFieldsListNode) Kind() common.SyntaxKind {
+func (n WaitFieldsListNode) Kind() common.SyntaxKind {
 	return common.WAIT_FIELDS_LIST
 }
 
-func (n *WaitFieldsListNode) OpenBrace() *Token {
+func (n WaitFieldsListNode) OpenBrace() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5183,11 +5183,11 @@ func (n *WaitFieldsListNode) OpenBrace() *Token {
 	return val
 }
 
-func (n *WaitFieldsListNode) WaitFields() NodeList[Node] {
+func (n WaitFieldsListNode) WaitFields() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *WaitFieldsListNode) CloseBrace() *Token {
+func (n WaitFieldsListNode) CloseBrace() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5199,11 +5199,11 @@ type WaitFieldNode struct {
 	NonTerminalNode
 }
 
-func (n *WaitFieldNode) Kind() common.SyntaxKind {
+func (n WaitFieldNode) Kind() common.SyntaxKind {
 	return common.WAIT_FIELD
 }
 
-func (n *WaitFieldNode) FieldName() *SimpleNameReferenceNode {
+func (n WaitFieldNode) FieldName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(0).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -5211,7 +5211,7 @@ func (n *WaitFieldNode) FieldName() *SimpleNameReferenceNode {
 	return val
 }
 
-func (n *WaitFieldNode) Colon() *Token {
+func (n WaitFieldNode) Colon() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5219,7 +5219,7 @@ func (n *WaitFieldNode) Colon() *Token {
 	return val
 }
 
-func (n *WaitFieldNode) WaitFutureExpr() *ExpressionNode {
+func (n WaitFieldNode) WaitFutureExpr() *ExpressionNode {
 	val, ok := n.ChildInBucket(2).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5231,11 +5231,11 @@ type AnnotAccessExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *AnnotAccessExpressionNode) Kind() common.SyntaxKind {
+func (n AnnotAccessExpressionNode) Kind() common.SyntaxKind {
 	return common.ANNOT_ACCESS
 }
 
-func (n *AnnotAccessExpressionNode) Expression() *ExpressionNode {
+func (n AnnotAccessExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5243,7 +5243,7 @@ func (n *AnnotAccessExpressionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *AnnotAccessExpressionNode) AnnotChainingToken() *Token {
+func (n AnnotAccessExpressionNode) AnnotChainingToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5251,7 +5251,7 @@ func (n *AnnotAccessExpressionNode) AnnotChainingToken() *Token {
 	return val
 }
 
-func (n *AnnotAccessExpressionNode) AnnotTagReference() *NameReferenceNode {
+func (n AnnotAccessExpressionNode) AnnotTagReference() *NameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*NameReferenceNode)
 	if !ok {
 		panic("expected NameReferenceNode")
@@ -5263,11 +5263,11 @@ type OptionalFieldAccessExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *OptionalFieldAccessExpressionNode) Kind() common.SyntaxKind {
+func (n OptionalFieldAccessExpressionNode) Kind() common.SyntaxKind {
 	return common.OPTIONAL_FIELD_ACCESS
 }
 
-func (n *OptionalFieldAccessExpressionNode) Expression() *ExpressionNode {
+func (n OptionalFieldAccessExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5275,7 +5275,7 @@ func (n *OptionalFieldAccessExpressionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *OptionalFieldAccessExpressionNode) OptionalChainingToken() *Token {
+func (n OptionalFieldAccessExpressionNode) OptionalChainingToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5283,7 +5283,7 @@ func (n *OptionalFieldAccessExpressionNode) OptionalChainingToken() *Token {
 	return val
 }
 
-func (n *OptionalFieldAccessExpressionNode) FieldName() *NameReferenceNode {
+func (n OptionalFieldAccessExpressionNode) FieldName() *NameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*NameReferenceNode)
 	if !ok {
 		panic("expected NameReferenceNode")
@@ -5295,11 +5295,11 @@ type ConditionalExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *ConditionalExpressionNode) Kind() common.SyntaxKind {
+func (n ConditionalExpressionNode) Kind() common.SyntaxKind {
 	return common.CONDITIONAL_EXPRESSION
 }
 
-func (n *ConditionalExpressionNode) LhsExpression() *ExpressionNode {
+func (n ConditionalExpressionNode) LhsExpression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5307,7 +5307,7 @@ func (n *ConditionalExpressionNode) LhsExpression() *ExpressionNode {
 	return val
 }
 
-func (n *ConditionalExpressionNode) QuestionMarkToken() *Token {
+func (n ConditionalExpressionNode) QuestionMarkToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5315,7 +5315,7 @@ func (n *ConditionalExpressionNode) QuestionMarkToken() *Token {
 	return val
 }
 
-func (n *ConditionalExpressionNode) MiddleExpression() *ExpressionNode {
+func (n ConditionalExpressionNode) MiddleExpression() *ExpressionNode {
 	val, ok := n.ChildInBucket(2).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5323,7 +5323,7 @@ func (n *ConditionalExpressionNode) MiddleExpression() *ExpressionNode {
 	return val
 }
 
-func (n *ConditionalExpressionNode) ColonToken() *Token {
+func (n ConditionalExpressionNode) ColonToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5331,7 +5331,7 @@ func (n *ConditionalExpressionNode) ColonToken() *Token {
 	return val
 }
 
-func (n *ConditionalExpressionNode) EndExpression() *ExpressionNode {
+func (n ConditionalExpressionNode) EndExpression() *ExpressionNode {
 	val, ok := n.ChildInBucket(4).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5343,11 +5343,11 @@ type EnumDeclarationNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *EnumDeclarationNode) Kind() common.SyntaxKind {
+func (n EnumDeclarationNode) Kind() common.SyntaxKind {
 	return common.ENUM_DECLARATION
 }
 
-func (n *EnumDeclarationNode) Metadata() *MetadataNode {
+func (n EnumDeclarationNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -5355,7 +5355,7 @@ func (n *EnumDeclarationNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *EnumDeclarationNode) Qualifier() *Token {
+func (n EnumDeclarationNode) Qualifier() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5363,7 +5363,7 @@ func (n *EnumDeclarationNode) Qualifier() *Token {
 	return val
 }
 
-func (n *EnumDeclarationNode) EnumKeywordToken() *Token {
+func (n EnumDeclarationNode) EnumKeywordToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5371,7 +5371,7 @@ func (n *EnumDeclarationNode) EnumKeywordToken() *Token {
 	return val
 }
 
-func (n *EnumDeclarationNode) Identifier() *IdentifierToken {
+func (n EnumDeclarationNode) Identifier() *IdentifierToken {
 	val, ok := n.ChildInBucket(3).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -5379,7 +5379,7 @@ func (n *EnumDeclarationNode) Identifier() *IdentifierToken {
 	return val
 }
 
-func (n *EnumDeclarationNode) OpenBraceToken() *Token {
+func (n EnumDeclarationNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5387,11 +5387,11 @@ func (n *EnumDeclarationNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *EnumDeclarationNode) EnumMemberList() NodeList[Node] {
+func (n EnumDeclarationNode) EnumMemberList() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(5)))
 }
 
-func (n *EnumDeclarationNode) CloseBraceToken() *Token {
+func (n EnumDeclarationNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(6).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5399,7 +5399,7 @@ func (n *EnumDeclarationNode) CloseBraceToken() *Token {
 	return val
 }
 
-func (n *EnumDeclarationNode) SemicolonToken() *Token {
+func (n EnumDeclarationNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(7).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5411,11 +5411,11 @@ type EnumMemberNode struct {
 	NonTerminalNode
 }
 
-func (n *EnumMemberNode) Kind() common.SyntaxKind {
+func (n EnumMemberNode) Kind() common.SyntaxKind {
 	return common.ENUM_MEMBER
 }
 
-func (n *EnumMemberNode) Metadata() *MetadataNode {
+func (n EnumMemberNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -5423,7 +5423,7 @@ func (n *EnumMemberNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *EnumMemberNode) Identifier() *IdentifierToken {
+func (n EnumMemberNode) Identifier() *IdentifierToken {
 	val, ok := n.ChildInBucket(1).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -5431,7 +5431,7 @@ func (n *EnumMemberNode) Identifier() *IdentifierToken {
 	return val
 }
 
-func (n *EnumMemberNode) EqualToken() *Token {
+func (n EnumMemberNode) EqualToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5439,7 +5439,7 @@ func (n *EnumMemberNode) EqualToken() *Token {
 	return val
 }
 
-func (n *EnumMemberNode) ConstExprNode() *ExpressionNode {
+func (n EnumMemberNode) ConstExprNode() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5451,11 +5451,11 @@ type ArrayTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *ArrayTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n ArrayTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.ARRAY_TYPE_DESC
 }
 
-func (n *ArrayTypeDescriptorNode) MemberTypeDesc() *TypeDescriptorNode {
+func (n ArrayTypeDescriptorNode) MemberTypeDesc() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(0).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -5463,7 +5463,7 @@ func (n *ArrayTypeDescriptorNode) MemberTypeDesc() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ArrayTypeDescriptorNode) Dimensions() NodeList[*ArrayDimensionNode] {
+func (n ArrayTypeDescriptorNode) Dimensions() NodeList[*ArrayDimensionNode] {
 	return nodeListFrom[*ArrayDimensionNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
@@ -5471,11 +5471,11 @@ type ArrayDimensionNode struct {
 	NonTerminalNode
 }
 
-func (n *ArrayDimensionNode) Kind() common.SyntaxKind {
+func (n ArrayDimensionNode) Kind() common.SyntaxKind {
 	return common.ARRAY_DIMENSION
 }
 
-func (n *ArrayDimensionNode) OpenBracket() *Token {
+func (n ArrayDimensionNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5483,7 +5483,7 @@ func (n *ArrayDimensionNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *ArrayDimensionNode) ArrayLength() Node {
+func (n ArrayDimensionNode) ArrayLength() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -5491,7 +5491,7 @@ func (n *ArrayDimensionNode) ArrayLength() Node {
 	return val
 }
 
-func (n *ArrayDimensionNode) CloseBracket() *Token {
+func (n ArrayDimensionNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5503,11 +5503,11 @@ type TransactionStatementNode struct {
 	StatementNode
 }
 
-func (n *TransactionStatementNode) Kind() common.SyntaxKind {
+func (n TransactionStatementNode) Kind() common.SyntaxKind {
 	return common.TRANSACTION_STATEMENT
 }
 
-func (n *TransactionStatementNode) TransactionKeyword() *Token {
+func (n TransactionStatementNode) TransactionKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5515,7 +5515,7 @@ func (n *TransactionStatementNode) TransactionKeyword() *Token {
 	return val
 }
 
-func (n *TransactionStatementNode) BlockStatement() *BlockStatementNode {
+func (n TransactionStatementNode) BlockStatement() *BlockStatementNode {
 	val, ok := n.ChildInBucket(1).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -5523,7 +5523,7 @@ func (n *TransactionStatementNode) BlockStatement() *BlockStatementNode {
 	return val
 }
 
-func (n *TransactionStatementNode) OnFailClause() *OnFailClauseNode {
+func (n TransactionStatementNode) OnFailClause() *OnFailClauseNode {
 	val, ok := n.ChildInBucket(2).(*OnFailClauseNode)
 	if !ok {
 		panic("expected OnFailClauseNode")
@@ -5535,11 +5535,11 @@ type RollbackStatementNode struct {
 	StatementNode
 }
 
-func (n *RollbackStatementNode) Kind() common.SyntaxKind {
+func (n RollbackStatementNode) Kind() common.SyntaxKind {
 	return common.ROLLBACK_STATEMENT
 }
 
-func (n *RollbackStatementNode) RollbackKeyword() *Token {
+func (n RollbackStatementNode) RollbackKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5547,7 +5547,7 @@ func (n *RollbackStatementNode) RollbackKeyword() *Token {
 	return val
 }
 
-func (n *RollbackStatementNode) Expression() *ExpressionNode {
+func (n RollbackStatementNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5555,7 +5555,7 @@ func (n *RollbackStatementNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *RollbackStatementNode) Semicolon() *Token {
+func (n RollbackStatementNode) Semicolon() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5567,11 +5567,11 @@ type RetryStatementNode struct {
 	StatementNode
 }
 
-func (n *RetryStatementNode) Kind() common.SyntaxKind {
+func (n RetryStatementNode) Kind() common.SyntaxKind {
 	return common.RETRY_STATEMENT
 }
 
-func (n *RetryStatementNode) RetryKeyword() *Token {
+func (n RetryStatementNode) RetryKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5579,7 +5579,7 @@ func (n *RetryStatementNode) RetryKeyword() *Token {
 	return val
 }
 
-func (n *RetryStatementNode) TypeParameter() *TypeParameterNode {
+func (n RetryStatementNode) TypeParameter() *TypeParameterNode {
 	val, ok := n.ChildInBucket(1).(*TypeParameterNode)
 	if !ok {
 		panic("expected TypeParameterNode")
@@ -5587,7 +5587,7 @@ func (n *RetryStatementNode) TypeParameter() *TypeParameterNode {
 	return val
 }
 
-func (n *RetryStatementNode) Arguments() *ParenthesizedArgList {
+func (n RetryStatementNode) Arguments() *ParenthesizedArgList {
 	val, ok := n.ChildInBucket(2).(*ParenthesizedArgList)
 	if !ok {
 		panic("expected ParenthesizedArgList")
@@ -5595,7 +5595,7 @@ func (n *RetryStatementNode) Arguments() *ParenthesizedArgList {
 	return val
 }
 
-func (n *RetryStatementNode) RetryBody() *StatementNode {
+func (n RetryStatementNode) RetryBody() *StatementNode {
 	val, ok := n.ChildInBucket(3).(*StatementNode)
 	if !ok {
 		panic("expected StatementNode")
@@ -5603,7 +5603,7 @@ func (n *RetryStatementNode) RetryBody() *StatementNode {
 	return val
 }
 
-func (n *RetryStatementNode) OnFailClause() *OnFailClauseNode {
+func (n RetryStatementNode) OnFailClause() *OnFailClauseNode {
 	val, ok := n.ChildInBucket(4).(*OnFailClauseNode)
 	if !ok {
 		panic("expected OnFailClauseNode")
@@ -5615,11 +5615,11 @@ type CommitActionNode struct {
 	ActionNode
 }
 
-func (n *CommitActionNode) Kind() common.SyntaxKind {
+func (n CommitActionNode) Kind() common.SyntaxKind {
 	return common.COMMIT_ACTION
 }
 
-func (n *CommitActionNode) CommitKeyword() *Token {
+func (n CommitActionNode) CommitKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5631,11 +5631,11 @@ type TransactionalExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *TransactionalExpressionNode) Kind() common.SyntaxKind {
+func (n TransactionalExpressionNode) Kind() common.SyntaxKind {
 	return common.TRANSACTIONAL_EXPRESSION
 }
 
-func (n *TransactionalExpressionNode) TransactionalKeyword() *Token {
+func (n TransactionalExpressionNode) TransactionalKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5647,11 +5647,11 @@ type ByteArrayLiteralNode struct {
 	ExpressionNode
 }
 
-func (n *ByteArrayLiteralNode) Kind() common.SyntaxKind {
+func (n ByteArrayLiteralNode) Kind() common.SyntaxKind {
 	return common.BYTE_ARRAY_LITERAL
 }
 
-func (n *ByteArrayLiteralNode) Type() *Token {
+func (n ByteArrayLiteralNode) Type() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5659,7 +5659,7 @@ func (n *ByteArrayLiteralNode) Type() *Token {
 	return val
 }
 
-func (n *ByteArrayLiteralNode) StartBacktick() *Token {
+func (n ByteArrayLiteralNode) StartBacktick() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5667,7 +5667,7 @@ func (n *ByteArrayLiteralNode) StartBacktick() *Token {
 	return val
 }
 
-func (n *ByteArrayLiteralNode) Content() *Token {
+func (n ByteArrayLiteralNode) Content() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5675,7 +5675,7 @@ func (n *ByteArrayLiteralNode) Content() *Token {
 	return val
 }
 
-func (n *ByteArrayLiteralNode) EndBacktick() *Token {
+func (n ByteArrayLiteralNode) EndBacktick() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5689,11 +5689,11 @@ type XMLFilterExpressionNode struct {
 	XMLNavigateExpressionNode
 }
 
-func (n *XMLFilterExpressionNode) Kind() common.SyntaxKind {
+func (n XMLFilterExpressionNode) Kind() common.SyntaxKind {
 	return common.XML_FILTER_EXPRESSION
 }
 
-func (n *XMLFilterExpressionNode) Expression() *ExpressionNode {
+func (n XMLFilterExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5701,7 +5701,7 @@ func (n *XMLFilterExpressionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *XMLFilterExpressionNode) XmlPatternChain() *XMLNamePatternChainingNode {
+func (n XMLFilterExpressionNode) XmlPatternChain() *XMLNamePatternChainingNode {
 	val, ok := n.ChildInBucket(1).(*XMLNamePatternChainingNode)
 	if !ok {
 		panic("expected XMLNamePatternChainingNode")
@@ -5713,11 +5713,11 @@ type XMLStepExpressionNode struct {
 	XMLNavigateExpressionNode
 }
 
-func (n *XMLStepExpressionNode) Kind() common.SyntaxKind {
+func (n XMLStepExpressionNode) Kind() common.SyntaxKind {
 	return common.XML_STEP_EXPRESSION
 }
 
-func (n *XMLStepExpressionNode) Expression() *ExpressionNode {
+func (n XMLStepExpressionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5725,7 +5725,7 @@ func (n *XMLStepExpressionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *XMLStepExpressionNode) XmlStepStart() Node {
+func (n XMLStepExpressionNode) XmlStepStart() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -5733,7 +5733,7 @@ func (n *XMLStepExpressionNode) XmlStepStart() Node {
 	return val
 }
 
-func (n *XMLStepExpressionNode) XmlStepExtend() NodeList[Node] {
+func (n XMLStepExpressionNode) XmlStepExtend() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
@@ -5741,11 +5741,11 @@ type XMLNamePatternChainingNode struct {
 	NonTerminalNode
 }
 
-func (n *XMLNamePatternChainingNode) Kind() common.SyntaxKind {
+func (n XMLNamePatternChainingNode) Kind() common.SyntaxKind {
 	return common.XML_NAME_PATTERN_CHAIN
 }
 
-func (n *XMLNamePatternChainingNode) StartToken() *Token {
+func (n XMLNamePatternChainingNode) StartToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5753,11 +5753,11 @@ func (n *XMLNamePatternChainingNode) StartToken() *Token {
 	return val
 }
 
-func (n *XMLNamePatternChainingNode) XmlNamePattern() NodeList[Node] {
+func (n XMLNamePatternChainingNode) XmlNamePattern() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *XMLNamePatternChainingNode) GtToken() *Token {
+func (n XMLNamePatternChainingNode) GtToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5769,11 +5769,11 @@ type XMLStepIndexedExtendNode struct {
 	NonTerminalNode
 }
 
-func (n *XMLStepIndexedExtendNode) Kind() common.SyntaxKind {
+func (n XMLStepIndexedExtendNode) Kind() common.SyntaxKind {
 	return common.XML_STEP_INDEXED_EXTEND
 }
 
-func (n *XMLStepIndexedExtendNode) OpenBracket() *Token {
+func (n XMLStepIndexedExtendNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5781,7 +5781,7 @@ func (n *XMLStepIndexedExtendNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *XMLStepIndexedExtendNode) Expression() *ExpressionNode {
+func (n XMLStepIndexedExtendNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5789,7 +5789,7 @@ func (n *XMLStepIndexedExtendNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *XMLStepIndexedExtendNode) CloseBracket() *Token {
+func (n XMLStepIndexedExtendNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5801,11 +5801,11 @@ type XMLStepMethodCallExtendNode struct {
 	NonTerminalNode
 }
 
-func (n *XMLStepMethodCallExtendNode) Kind() common.SyntaxKind {
+func (n XMLStepMethodCallExtendNode) Kind() common.SyntaxKind {
 	return common.XML_STEP_METHOD_CALL_EXTEND
 }
 
-func (n *XMLStepMethodCallExtendNode) DotToken() *Token {
+func (n XMLStepMethodCallExtendNode) DotToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5813,7 +5813,7 @@ func (n *XMLStepMethodCallExtendNode) DotToken() *Token {
 	return val
 }
 
-func (n *XMLStepMethodCallExtendNode) MethodName() *SimpleNameReferenceNode {
+func (n XMLStepMethodCallExtendNode) MethodName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(1).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -5821,7 +5821,7 @@ func (n *XMLStepMethodCallExtendNode) MethodName() *SimpleNameReferenceNode {
 	return val
 }
 
-func (n *XMLStepMethodCallExtendNode) ParenthesizedArgList() *ParenthesizedArgList {
+func (n XMLStepMethodCallExtendNode) ParenthesizedArgList() *ParenthesizedArgList {
 	val, ok := n.ChildInBucket(2).(*ParenthesizedArgList)
 	if !ok {
 		panic("expected ParenthesizedArgList")
@@ -5833,11 +5833,11 @@ type XMLAtomicNamePatternNode struct {
 	NonTerminalNode
 }
 
-func (n *XMLAtomicNamePatternNode) Kind() common.SyntaxKind {
+func (n XMLAtomicNamePatternNode) Kind() common.SyntaxKind {
 	return common.XML_ATOMIC_NAME_PATTERN
 }
 
-func (n *XMLAtomicNamePatternNode) Prefix() *Token {
+func (n XMLAtomicNamePatternNode) Prefix() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5845,7 +5845,7 @@ func (n *XMLAtomicNamePatternNode) Prefix() *Token {
 	return val
 }
 
-func (n *XMLAtomicNamePatternNode) Colon() *Token {
+func (n XMLAtomicNamePatternNode) Colon() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5853,7 +5853,7 @@ func (n *XMLAtomicNamePatternNode) Colon() *Token {
 	return val
 }
 
-func (n *XMLAtomicNamePatternNode) Name() *Token {
+func (n XMLAtomicNamePatternNode) Name() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5865,11 +5865,11 @@ type TypeReferenceTypeDescNode struct {
 	TypeDescriptorNode
 }
 
-func (n *TypeReferenceTypeDescNode) Kind() common.SyntaxKind {
+func (n TypeReferenceTypeDescNode) Kind() common.SyntaxKind {
 	return common.TYPE_REFERENCE_TYPE_DESC
 }
 
-func (n *TypeReferenceTypeDescNode) TypeRef() *NameReferenceNode {
+func (n TypeReferenceTypeDescNode) TypeRef() *NameReferenceNode {
 	val, ok := n.ChildInBucket(0).(*NameReferenceNode)
 	if !ok {
 		panic("expected NameReferenceNode")
@@ -5881,11 +5881,11 @@ type MatchStatementNode struct {
 	StatementNode
 }
 
-func (n *MatchStatementNode) Kind() common.SyntaxKind {
+func (n MatchStatementNode) Kind() common.SyntaxKind {
 	return common.MATCH_STATEMENT
 }
 
-func (n *MatchStatementNode) MatchKeyword() *Token {
+func (n MatchStatementNode) MatchKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5893,7 +5893,7 @@ func (n *MatchStatementNode) MatchKeyword() *Token {
 	return val
 }
 
-func (n *MatchStatementNode) Condition() *ExpressionNode {
+func (n MatchStatementNode) Condition() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5901,7 +5901,7 @@ func (n *MatchStatementNode) Condition() *ExpressionNode {
 	return val
 }
 
-func (n *MatchStatementNode) OpenBrace() *Token {
+func (n MatchStatementNode) OpenBrace() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5909,11 +5909,11 @@ func (n *MatchStatementNode) OpenBrace() *Token {
 	return val
 }
 
-func (n *MatchStatementNode) MatchClauses() NodeList[*MatchClauseNode] {
+func (n MatchStatementNode) MatchClauses() NodeList[*MatchClauseNode] {
 	return nodeListFrom[*MatchClauseNode](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *MatchStatementNode) CloseBrace() *Token {
+func (n MatchStatementNode) CloseBrace() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5921,7 +5921,7 @@ func (n *MatchStatementNode) CloseBrace() *Token {
 	return val
 }
 
-func (n *MatchStatementNode) OnFailClause() *OnFailClauseNode {
+func (n MatchStatementNode) OnFailClause() *OnFailClauseNode {
 	val, ok := n.ChildInBucket(5).(*OnFailClauseNode)
 	if !ok {
 		panic("expected OnFailClauseNode")
@@ -5933,15 +5933,15 @@ type MatchClauseNode struct {
 	NonTerminalNode
 }
 
-func (n *MatchClauseNode) Kind() common.SyntaxKind {
+func (n MatchClauseNode) Kind() common.SyntaxKind {
 	return common.MATCH_CLAUSE
 }
 
-func (n *MatchClauseNode) MatchPatterns() NodeList[Node] {
+func (n MatchClauseNode) MatchPatterns() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *MatchClauseNode) MatchGuard() *MatchGuardNode {
+func (n MatchClauseNode) MatchGuard() *MatchGuardNode {
 	val, ok := n.ChildInBucket(1).(*MatchGuardNode)
 	if !ok {
 		panic("expected MatchGuardNode")
@@ -5949,7 +5949,7 @@ func (n *MatchClauseNode) MatchGuard() *MatchGuardNode {
 	return val
 }
 
-func (n *MatchClauseNode) RightDoubleArrow() *Token {
+func (n MatchClauseNode) RightDoubleArrow() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5957,7 +5957,7 @@ func (n *MatchClauseNode) RightDoubleArrow() *Token {
 	return val
 }
 
-func (n *MatchClauseNode) BlockStatement() *BlockStatementNode {
+func (n MatchClauseNode) BlockStatement() *BlockStatementNode {
 	val, ok := n.ChildInBucket(3).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -5969,11 +5969,11 @@ type MatchGuardNode struct {
 	NonTerminalNode
 }
 
-func (n *MatchGuardNode) Kind() common.SyntaxKind {
+func (n MatchGuardNode) Kind() common.SyntaxKind {
 	return common.MATCH_GUARD
 }
 
-func (n *MatchGuardNode) IfKeyword() *Token {
+func (n MatchGuardNode) IfKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -5981,7 +5981,7 @@ func (n *MatchGuardNode) IfKeyword() *Token {
 	return val
 }
 
-func (n *MatchGuardNode) Expression() *ExpressionNode {
+func (n MatchGuardNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -5993,11 +5993,11 @@ type DistinctTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *DistinctTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n DistinctTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.DISTINCT_TYPE_DESC
 }
 
-func (n *DistinctTypeDescriptorNode) DistinctKeyword() *Token {
+func (n DistinctTypeDescriptorNode) DistinctKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6005,7 +6005,7 @@ func (n *DistinctTypeDescriptorNode) DistinctKeyword() *Token {
 	return val
 }
 
-func (n *DistinctTypeDescriptorNode) TypeDescriptor() *TypeDescriptorNode {
+func (n DistinctTypeDescriptorNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(1).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -6017,11 +6017,11 @@ type ListMatchPatternNode struct {
 	NonTerminalNode
 }
 
-func (n *ListMatchPatternNode) Kind() common.SyntaxKind {
+func (n ListMatchPatternNode) Kind() common.SyntaxKind {
 	return common.LIST_MATCH_PATTERN
 }
 
-func (n *ListMatchPatternNode) OpenBracket() *Token {
+func (n ListMatchPatternNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6029,11 +6029,11 @@ func (n *ListMatchPatternNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *ListMatchPatternNode) MatchPatterns() NodeList[Node] {
+func (n ListMatchPatternNode) MatchPatterns() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ListMatchPatternNode) CloseBracket() *Token {
+func (n ListMatchPatternNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6045,11 +6045,11 @@ type RestMatchPatternNode struct {
 	NonTerminalNode
 }
 
-func (n *RestMatchPatternNode) Kind() common.SyntaxKind {
+func (n RestMatchPatternNode) Kind() common.SyntaxKind {
 	return common.REST_MATCH_PATTERN
 }
 
-func (n *RestMatchPatternNode) EllipsisToken() *Token {
+func (n RestMatchPatternNode) EllipsisToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6057,7 +6057,7 @@ func (n *RestMatchPatternNode) EllipsisToken() *Token {
 	return val
 }
 
-func (n *RestMatchPatternNode) VarKeywordToken() *Token {
+func (n RestMatchPatternNode) VarKeywordToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6065,7 +6065,7 @@ func (n *RestMatchPatternNode) VarKeywordToken() *Token {
 	return val
 }
 
-func (n *RestMatchPatternNode) VariableName() *SimpleNameReferenceNode {
+func (n RestMatchPatternNode) VariableName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -6077,11 +6077,11 @@ type MappingMatchPatternNode struct {
 	NonTerminalNode
 }
 
-func (n *MappingMatchPatternNode) Kind() common.SyntaxKind {
+func (n MappingMatchPatternNode) Kind() common.SyntaxKind {
 	return common.MAPPING_MATCH_PATTERN
 }
 
-func (n *MappingMatchPatternNode) OpenBraceToken() *Token {
+func (n MappingMatchPatternNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6089,11 +6089,11 @@ func (n *MappingMatchPatternNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *MappingMatchPatternNode) FieldMatchPatterns() NodeList[Node] {
+func (n MappingMatchPatternNode) FieldMatchPatterns() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *MappingMatchPatternNode) CloseBraceToken() *Token {
+func (n MappingMatchPatternNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6105,11 +6105,11 @@ type FieldMatchPatternNode struct {
 	NonTerminalNode
 }
 
-func (n *FieldMatchPatternNode) Kind() common.SyntaxKind {
+func (n FieldMatchPatternNode) Kind() common.SyntaxKind {
 	return common.FIELD_MATCH_PATTERN
 }
 
-func (n *FieldMatchPatternNode) FieldNameNode() *IdentifierToken {
+func (n FieldMatchPatternNode) FieldNameNode() *IdentifierToken {
 	val, ok := n.ChildInBucket(0).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -6117,7 +6117,7 @@ func (n *FieldMatchPatternNode) FieldNameNode() *IdentifierToken {
 	return val
 }
 
-func (n *FieldMatchPatternNode) ColonToken() *Token {
+func (n FieldMatchPatternNode) ColonToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6125,7 +6125,7 @@ func (n *FieldMatchPatternNode) ColonToken() *Token {
 	return val
 }
 
-func (n *FieldMatchPatternNode) MatchPattern() Node {
+func (n FieldMatchPatternNode) MatchPattern() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -6137,11 +6137,11 @@ type ErrorMatchPatternNode struct {
 	NonTerminalNode
 }
 
-func (n *ErrorMatchPatternNode) Kind() common.SyntaxKind {
+func (n ErrorMatchPatternNode) Kind() common.SyntaxKind {
 	return common.ERROR_MATCH_PATTERN
 }
 
-func (n *ErrorMatchPatternNode) ErrorKeyword() *Token {
+func (n ErrorMatchPatternNode) ErrorKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6149,7 +6149,7 @@ func (n *ErrorMatchPatternNode) ErrorKeyword() *Token {
 	return val
 }
 
-func (n *ErrorMatchPatternNode) TypeReference() *NameReferenceNode {
+func (n ErrorMatchPatternNode) TypeReference() *NameReferenceNode {
 	val, ok := n.ChildInBucket(1).(*NameReferenceNode)
 	if !ok {
 		panic("expected NameReferenceNode")
@@ -6157,7 +6157,7 @@ func (n *ErrorMatchPatternNode) TypeReference() *NameReferenceNode {
 	return val
 }
 
-func (n *ErrorMatchPatternNode) OpenParenthesisToken() *Token {
+func (n ErrorMatchPatternNode) OpenParenthesisToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6165,11 +6165,11 @@ func (n *ErrorMatchPatternNode) OpenParenthesisToken() *Token {
 	return val
 }
 
-func (n *ErrorMatchPatternNode) ArgListMatchPatternNode() NodeList[Node] {
+func (n ErrorMatchPatternNode) ArgListMatchPatternNode() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *ErrorMatchPatternNode) CloseParenthesisToken() *Token {
+func (n ErrorMatchPatternNode) CloseParenthesisToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6181,11 +6181,11 @@ type NamedArgMatchPatternNode struct {
 	NonTerminalNode
 }
 
-func (n *NamedArgMatchPatternNode) Kind() common.SyntaxKind {
+func (n NamedArgMatchPatternNode) Kind() common.SyntaxKind {
 	return common.NAMED_ARG_MATCH_PATTERN
 }
 
-func (n *NamedArgMatchPatternNode) Identifier() *IdentifierToken {
+func (n NamedArgMatchPatternNode) Identifier() *IdentifierToken {
 	val, ok := n.ChildInBucket(0).(*IdentifierToken)
 	if !ok {
 		panic("expected IdentifierToken")
@@ -6193,7 +6193,7 @@ func (n *NamedArgMatchPatternNode) Identifier() *IdentifierToken {
 	return val
 }
 
-func (n *NamedArgMatchPatternNode) EqualToken() *Token {
+func (n NamedArgMatchPatternNode) EqualToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6201,7 +6201,7 @@ func (n *NamedArgMatchPatternNode) EqualToken() *Token {
 	return val
 }
 
-func (n *NamedArgMatchPatternNode) MatchPattern() Node {
+func (n NamedArgMatchPatternNode) MatchPattern() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -6215,11 +6215,11 @@ type MarkdownDocumentationNode struct {
 	DocumentationNode
 }
 
-func (n *MarkdownDocumentationNode) Kind() common.SyntaxKind {
+func (n MarkdownDocumentationNode) Kind() common.SyntaxKind {
 	return common.MARKDOWN_DOCUMENTATION
 }
 
-func (n *MarkdownDocumentationNode) DocumentationLines() NodeList[Node] {
+func (n MarkdownDocumentationNode) DocumentationLines() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
@@ -6227,7 +6227,7 @@ type MarkdownDocumentationLineNode struct {
 	DocumentationNode
 }
 
-func (n *MarkdownDocumentationLineNode) HashToken() *Token {
+func (n MarkdownDocumentationLineNode) HashToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6235,7 +6235,7 @@ func (n *MarkdownDocumentationLineNode) HashToken() *Token {
 	return val
 }
 
-func (n *MarkdownDocumentationLineNode) DocumentElements() NodeList[Node] {
+func (n MarkdownDocumentationLineNode) DocumentElements() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
@@ -6243,7 +6243,7 @@ type MarkdownParameterDocumentationLineNode struct {
 	DocumentationNode
 }
 
-func (n *MarkdownParameterDocumentationLineNode) HashToken() *Token {
+func (n MarkdownParameterDocumentationLineNode) HashToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6251,7 +6251,7 @@ func (n *MarkdownParameterDocumentationLineNode) HashToken() *Token {
 	return val
 }
 
-func (n *MarkdownParameterDocumentationLineNode) PlusToken() *Token {
+func (n MarkdownParameterDocumentationLineNode) PlusToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6259,7 +6259,7 @@ func (n *MarkdownParameterDocumentationLineNode) PlusToken() *Token {
 	return val
 }
 
-func (n *MarkdownParameterDocumentationLineNode) ParameterName() *Token {
+func (n MarkdownParameterDocumentationLineNode) ParameterName() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6267,7 +6267,7 @@ func (n *MarkdownParameterDocumentationLineNode) ParameterName() *Token {
 	return val
 }
 
-func (n *MarkdownParameterDocumentationLineNode) MinusToken() *Token {
+func (n MarkdownParameterDocumentationLineNode) MinusToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6275,7 +6275,7 @@ func (n *MarkdownParameterDocumentationLineNode) MinusToken() *Token {
 	return val
 }
 
-func (n *MarkdownParameterDocumentationLineNode) DocumentElements() NodeList[Node] {
+func (n MarkdownParameterDocumentationLineNode) DocumentElements() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(4)))
 }
 
@@ -6283,11 +6283,11 @@ type BallerinaNameReferenceNode struct {
 	DocumentationNode
 }
 
-func (n *BallerinaNameReferenceNode) Kind() common.SyntaxKind {
+func (n BallerinaNameReferenceNode) Kind() common.SyntaxKind {
 	return common.BALLERINA_NAME_REFERENCE
 }
 
-func (n *BallerinaNameReferenceNode) ReferenceType() *Token {
+func (n BallerinaNameReferenceNode) ReferenceType() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6295,7 +6295,7 @@ func (n *BallerinaNameReferenceNode) ReferenceType() *Token {
 	return val
 }
 
-func (n *BallerinaNameReferenceNode) StartBacktick() *Token {
+func (n BallerinaNameReferenceNode) StartBacktick() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6303,7 +6303,7 @@ func (n *BallerinaNameReferenceNode) StartBacktick() *Token {
 	return val
 }
 
-func (n *BallerinaNameReferenceNode) NameReference() Node {
+func (n BallerinaNameReferenceNode) NameReference() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -6311,7 +6311,7 @@ func (n *BallerinaNameReferenceNode) NameReference() Node {
 	return val
 }
 
-func (n *BallerinaNameReferenceNode) EndBacktick() *Token {
+func (n BallerinaNameReferenceNode) EndBacktick() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6323,11 +6323,11 @@ type InlineCodeReferenceNode struct {
 	DocumentationNode
 }
 
-func (n *InlineCodeReferenceNode) Kind() common.SyntaxKind {
+func (n InlineCodeReferenceNode) Kind() common.SyntaxKind {
 	return common.INLINE_CODE_REFERENCE
 }
 
-func (n *InlineCodeReferenceNode) StartBacktick() *Token {
+func (n InlineCodeReferenceNode) StartBacktick() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6335,7 +6335,7 @@ func (n *InlineCodeReferenceNode) StartBacktick() *Token {
 	return val
 }
 
-func (n *InlineCodeReferenceNode) CodeReference() *Token {
+func (n InlineCodeReferenceNode) CodeReference() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6343,7 +6343,7 @@ func (n *InlineCodeReferenceNode) CodeReference() *Token {
 	return val
 }
 
-func (n *InlineCodeReferenceNode) EndBacktick() *Token {
+func (n InlineCodeReferenceNode) EndBacktick() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6355,11 +6355,11 @@ type MarkdownCodeBlockNode struct {
 	DocumentationNode
 }
 
-func (n *MarkdownCodeBlockNode) Kind() common.SyntaxKind {
+func (n MarkdownCodeBlockNode) Kind() common.SyntaxKind {
 	return common.MARKDOWN_CODE_BLOCK
 }
 
-func (n *MarkdownCodeBlockNode) StartLineHashToken() *Token {
+func (n MarkdownCodeBlockNode) StartLineHashToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6367,7 +6367,7 @@ func (n *MarkdownCodeBlockNode) StartLineHashToken() *Token {
 	return val
 }
 
-func (n *MarkdownCodeBlockNode) StartBacktick() *Token {
+func (n MarkdownCodeBlockNode) StartBacktick() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6375,7 +6375,7 @@ func (n *MarkdownCodeBlockNode) StartBacktick() *Token {
 	return val
 }
 
-func (n *MarkdownCodeBlockNode) LangAttribute() *Token {
+func (n MarkdownCodeBlockNode) LangAttribute() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6383,11 +6383,11 @@ func (n *MarkdownCodeBlockNode) LangAttribute() *Token {
 	return val
 }
 
-func (n *MarkdownCodeBlockNode) CodeLines() NodeList[*MarkdownCodeLineNode] {
+func (n MarkdownCodeBlockNode) CodeLines() NodeList[*MarkdownCodeLineNode] {
 	return nodeListFrom[*MarkdownCodeLineNode](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *MarkdownCodeBlockNode) EndLineHashToken() *Token {
+func (n MarkdownCodeBlockNode) EndLineHashToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6395,7 +6395,7 @@ func (n *MarkdownCodeBlockNode) EndLineHashToken() *Token {
 	return val
 }
 
-func (n *MarkdownCodeBlockNode) EndBacktick() *Token {
+func (n MarkdownCodeBlockNode) EndBacktick() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6407,11 +6407,11 @@ type MarkdownCodeLineNode struct {
 	DocumentationNode
 }
 
-func (n *MarkdownCodeLineNode) Kind() common.SyntaxKind {
+func (n MarkdownCodeLineNode) Kind() common.SyntaxKind {
 	return common.MARKDOWN_CODE_LINE
 }
 
-func (n *MarkdownCodeLineNode) HashToken() *Token {
+func (n MarkdownCodeLineNode) HashToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6419,7 +6419,7 @@ func (n *MarkdownCodeLineNode) HashToken() *Token {
 	return val
 }
 
-func (n *MarkdownCodeLineNode) CodeDescription() *Token {
+func (n MarkdownCodeLineNode) CodeDescription() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6431,11 +6431,11 @@ type OrderByClauseNode struct {
 	IntermediateClauseNode
 }
 
-func (n *OrderByClauseNode) Kind() common.SyntaxKind {
+func (n OrderByClauseNode) Kind() common.SyntaxKind {
 	return common.ORDER_BY_CLAUSE
 }
 
-func (n *OrderByClauseNode) OrderKeyword() *Token {
+func (n OrderByClauseNode) OrderKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6443,7 +6443,7 @@ func (n *OrderByClauseNode) OrderKeyword() *Token {
 	return val
 }
 
-func (n *OrderByClauseNode) ByKeyword() *Token {
+func (n OrderByClauseNode) ByKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6451,7 +6451,7 @@ func (n *OrderByClauseNode) ByKeyword() *Token {
 	return val
 }
 
-func (n *OrderByClauseNode) OrderKey() NodeList[*OrderKeyNode] {
+func (n OrderByClauseNode) OrderKey() NodeList[*OrderKeyNode] {
 	return nodeListFrom[*OrderKeyNode](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
@@ -6459,11 +6459,11 @@ type OrderKeyNode struct {
 	NonTerminalNode
 }
 
-func (n *OrderKeyNode) Kind() common.SyntaxKind {
+func (n OrderKeyNode) Kind() common.SyntaxKind {
 	return common.ORDER_KEY
 }
 
-func (n *OrderKeyNode) Expression() *ExpressionNode {
+func (n OrderKeyNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -6471,7 +6471,7 @@ func (n *OrderKeyNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *OrderKeyNode) OrderDirection() *Token {
+func (n OrderKeyNode) OrderDirection() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6483,11 +6483,11 @@ type GroupByClauseNode struct {
 	IntermediateClauseNode
 }
 
-func (n *GroupByClauseNode) Kind() common.SyntaxKind {
+func (n GroupByClauseNode) Kind() common.SyntaxKind {
 	return common.GROUP_BY_CLAUSE
 }
 
-func (n *GroupByClauseNode) GroupKeyword() *Token {
+func (n GroupByClauseNode) GroupKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6495,7 +6495,7 @@ func (n *GroupByClauseNode) GroupKeyword() *Token {
 	return val
 }
 
-func (n *GroupByClauseNode) ByKeyword() *Token {
+func (n GroupByClauseNode) ByKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6503,7 +6503,7 @@ func (n *GroupByClauseNode) ByKeyword() *Token {
 	return val
 }
 
-func (n *GroupByClauseNode) GroupingKey() NodeList[Node] {
+func (n GroupByClauseNode) GroupingKey() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
@@ -6511,11 +6511,11 @@ type GroupingKeyVarDeclarationNode struct {
 	NonTerminalNode
 }
 
-func (n *GroupingKeyVarDeclarationNode) Kind() common.SyntaxKind {
+func (n GroupingKeyVarDeclarationNode) Kind() common.SyntaxKind {
 	return common.GROUPING_KEY_VAR_DECLARATION
 }
 
-func (n *GroupingKeyVarDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
+func (n GroupingKeyVarDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(0).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -6523,7 +6523,7 @@ func (n *GroupingKeyVarDeclarationNode) TypeDescriptor() *TypeDescriptorNode {
 	return val
 }
 
-func (n *GroupingKeyVarDeclarationNode) SimpleBindingPattern() *BindingPatternNode {
+func (n GroupingKeyVarDeclarationNode) SimpleBindingPattern() *BindingPatternNode {
 	val, ok := n.ChildInBucket(1).(*BindingPatternNode)
 	if !ok {
 		panic("expected BindingPatternNode")
@@ -6531,7 +6531,7 @@ func (n *GroupingKeyVarDeclarationNode) SimpleBindingPattern() *BindingPatternNo
 	return val
 }
 
-func (n *GroupingKeyVarDeclarationNode) EqualsToken() *Token {
+func (n GroupingKeyVarDeclarationNode) EqualsToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6539,7 +6539,7 @@ func (n *GroupingKeyVarDeclarationNode) EqualsToken() *Token {
 	return val
 }
 
-func (n *GroupingKeyVarDeclarationNode) Expression() *ExpressionNode {
+func (n GroupingKeyVarDeclarationNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(3).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -6551,11 +6551,11 @@ type OnFailClauseNode struct {
 	ClauseNode
 }
 
-func (n *OnFailClauseNode) Kind() common.SyntaxKind {
+func (n OnFailClauseNode) Kind() common.SyntaxKind {
 	return common.ON_FAIL_CLAUSE
 }
 
-func (n *OnFailClauseNode) OnKeyword() *Token {
+func (n OnFailClauseNode) OnKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6563,7 +6563,7 @@ func (n *OnFailClauseNode) OnKeyword() *Token {
 	return val
 }
 
-func (n *OnFailClauseNode) FailKeyword() *Token {
+func (n OnFailClauseNode) FailKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6571,7 +6571,7 @@ func (n *OnFailClauseNode) FailKeyword() *Token {
 	return val
 }
 
-func (n *OnFailClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
+func (n OnFailClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
 	val, ok := n.ChildInBucket(2).(*TypedBindingPatternNode)
 	if !ok {
 		panic("expected TypedBindingPatternNode")
@@ -6579,7 +6579,7 @@ func (n *OnFailClauseNode) TypedBindingPattern() *TypedBindingPatternNode {
 	return val
 }
 
-func (n *OnFailClauseNode) BlockStatement() *BlockStatementNode {
+func (n OnFailClauseNode) BlockStatement() *BlockStatementNode {
 	val, ok := n.ChildInBucket(3).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -6591,11 +6591,11 @@ type DoStatementNode struct {
 	StatementNode
 }
 
-func (n *DoStatementNode) Kind() common.SyntaxKind {
+func (n DoStatementNode) Kind() common.SyntaxKind {
 	return common.DO_STATEMENT
 }
 
-func (n *DoStatementNode) DoKeyword() *Token {
+func (n DoStatementNode) DoKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6603,7 +6603,7 @@ func (n *DoStatementNode) DoKeyword() *Token {
 	return val
 }
 
-func (n *DoStatementNode) BlockStatement() *BlockStatementNode {
+func (n DoStatementNode) BlockStatement() *BlockStatementNode {
 	val, ok := n.ChildInBucket(1).(*BlockStatementNode)
 	if !ok {
 		panic("expected BlockStatementNode")
@@ -6611,7 +6611,7 @@ func (n *DoStatementNode) BlockStatement() *BlockStatementNode {
 	return val
 }
 
-func (n *DoStatementNode) OnFailClause() *OnFailClauseNode {
+func (n DoStatementNode) OnFailClause() *OnFailClauseNode {
 	val, ok := n.ChildInBucket(2).(*OnFailClauseNode)
 	if !ok {
 		panic("expected OnFailClauseNode")
@@ -6623,11 +6623,11 @@ type ClassDefinitionNode struct {
 	ModuleMemberDeclarationNode
 }
 
-func (n *ClassDefinitionNode) Kind() common.SyntaxKind {
+func (n ClassDefinitionNode) Kind() common.SyntaxKind {
 	return common.CLASS_DEFINITION
 }
 
-func (n *ClassDefinitionNode) Metadata() *MetadataNode {
+func (n ClassDefinitionNode) Metadata() *MetadataNode {
 	val, ok := n.ChildInBucket(0).(*MetadataNode)
 	if !ok {
 		panic("expected MetadataNode")
@@ -6635,7 +6635,7 @@ func (n *ClassDefinitionNode) Metadata() *MetadataNode {
 	return val
 }
 
-func (n *ClassDefinitionNode) VisibilityQualifier() *Token {
+func (n ClassDefinitionNode) VisibilityQualifier() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6643,11 +6643,11 @@ func (n *ClassDefinitionNode) VisibilityQualifier() *Token {
 	return val
 }
 
-func (n *ClassDefinitionNode) ClassTypeQualifiers() NodeList[*Token] {
+func (n ClassDefinitionNode) ClassTypeQualifiers() NodeList[*Token] {
 	return nodeListFrom[*Token](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *ClassDefinitionNode) ClassKeyword() *Token {
+func (n ClassDefinitionNode) ClassKeyword() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6655,7 +6655,7 @@ func (n *ClassDefinitionNode) ClassKeyword() *Token {
 	return val
 }
 
-func (n *ClassDefinitionNode) ClassName() *Token {
+func (n ClassDefinitionNode) ClassName() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6663,7 +6663,7 @@ func (n *ClassDefinitionNode) ClassName() *Token {
 	return val
 }
 
-func (n *ClassDefinitionNode) OpenBrace() *Token {
+func (n ClassDefinitionNode) OpenBrace() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6671,11 +6671,11 @@ func (n *ClassDefinitionNode) OpenBrace() *Token {
 	return val
 }
 
-func (n *ClassDefinitionNode) Members() NodeList[Node] {
+func (n ClassDefinitionNode) Members() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(6)))
 }
 
-func (n *ClassDefinitionNode) CloseBrace() *Token {
+func (n ClassDefinitionNode) CloseBrace() *Token {
 	val, ok := n.ChildInBucket(7).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6683,7 +6683,7 @@ func (n *ClassDefinitionNode) CloseBrace() *Token {
 	return val
 }
 
-func (n *ClassDefinitionNode) SemicolonToken() *Token {
+func (n ClassDefinitionNode) SemicolonToken() *Token {
 	val, ok := n.ChildInBucket(8).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6695,7 +6695,7 @@ type ResourcePathParameterNode struct {
 	NonTerminalNode
 }
 
-func (n *ResourcePathParameterNode) OpenBracketToken() *Token {
+func (n ResourcePathParameterNode) OpenBracketToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6703,11 +6703,11 @@ func (n *ResourcePathParameterNode) OpenBracketToken() *Token {
 	return val
 }
 
-func (n *ResourcePathParameterNode) Annotations() NodeList[*AnnotationNode] {
+func (n ResourcePathParameterNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ResourcePathParameterNode) TypeDescriptor() *TypeDescriptorNode {
+func (n ResourcePathParameterNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(2).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -6715,7 +6715,7 @@ func (n *ResourcePathParameterNode) TypeDescriptor() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ResourcePathParameterNode) EllipsisToken() *Token {
+func (n ResourcePathParameterNode) EllipsisToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6723,7 +6723,7 @@ func (n *ResourcePathParameterNode) EllipsisToken() *Token {
 	return val
 }
 
-func (n *ResourcePathParameterNode) ParamName() *Token {
+func (n ResourcePathParameterNode) ParamName() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6731,7 +6731,7 @@ func (n *ResourcePathParameterNode) ParamName() *Token {
 	return val
 }
 
-func (n *ResourcePathParameterNode) CloseBracketToken() *Token {
+func (n ResourcePathParameterNode) CloseBracketToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6743,11 +6743,11 @@ type RequiredExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *RequiredExpressionNode) Kind() common.SyntaxKind {
+func (n RequiredExpressionNode) Kind() common.SyntaxKind {
 	return common.REQUIRED_EXPRESSION
 }
 
-func (n *RequiredExpressionNode) QuestionMarkToken() *Token {
+func (n RequiredExpressionNode) QuestionMarkToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6759,11 +6759,11 @@ type ErrorConstructorExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *ErrorConstructorExpressionNode) Kind() common.SyntaxKind {
+func (n ErrorConstructorExpressionNode) Kind() common.SyntaxKind {
 	return common.ERROR_CONSTRUCTOR
 }
 
-func (n *ErrorConstructorExpressionNode) ErrorKeyword() *Token {
+func (n ErrorConstructorExpressionNode) ErrorKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6771,7 +6771,7 @@ func (n *ErrorConstructorExpressionNode) ErrorKeyword() *Token {
 	return val
 }
 
-func (n *ErrorConstructorExpressionNode) TypeReference() *TypeDescriptorNode {
+func (n ErrorConstructorExpressionNode) TypeReference() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(1).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -6779,7 +6779,7 @@ func (n *ErrorConstructorExpressionNode) TypeReference() *TypeDescriptorNode {
 	return val
 }
 
-func (n *ErrorConstructorExpressionNode) OpenParenToken() *Token {
+func (n ErrorConstructorExpressionNode) OpenParenToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6787,11 +6787,11 @@ func (n *ErrorConstructorExpressionNode) OpenParenToken() *Token {
 	return val
 }
 
-func (n *ErrorConstructorExpressionNode) Arguments() NodeList[*FunctionArgumentNode] {
+func (n ErrorConstructorExpressionNode) Arguments() NodeList[*FunctionArgumentNode] {
 	return nodeListFrom[*FunctionArgumentNode](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *ErrorConstructorExpressionNode) CloseParenToken() *Token {
+func (n ErrorConstructorExpressionNode) CloseParenToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6803,7 +6803,7 @@ type ParameterizedTypeDescriptorNode struct {
 	TypeDescriptorNode
 }
 
-func (n *ParameterizedTypeDescriptorNode) KeywordToken() *Token {
+func (n ParameterizedTypeDescriptorNode) KeywordToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6811,7 +6811,7 @@ func (n *ParameterizedTypeDescriptorNode) KeywordToken() *Token {
 	return val
 }
 
-func (n *ParameterizedTypeDescriptorNode) TypeParamNode() *TypeParameterNode {
+func (n ParameterizedTypeDescriptorNode) TypeParamNode() *TypeParameterNode {
 	val, ok := n.ChildInBucket(1).(*TypeParameterNode)
 	if !ok {
 		panic("expected TypeParameterNode")
@@ -6823,11 +6823,11 @@ type SpreadMemberNode struct {
 	NonTerminalNode
 }
 
-func (n *SpreadMemberNode) Kind() common.SyntaxKind {
+func (n SpreadMemberNode) Kind() common.SyntaxKind {
 	return common.SPREAD_MEMBER
 }
 
-func (n *SpreadMemberNode) Ellipsis() *Token {
+func (n SpreadMemberNode) Ellipsis() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6835,7 +6835,7 @@ func (n *SpreadMemberNode) Ellipsis() *Token {
 	return val
 }
 
-func (n *SpreadMemberNode) Expression() *ExpressionNode {
+func (n SpreadMemberNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -6847,11 +6847,11 @@ type ClientResourceAccessActionNode struct {
 	ActionNode
 }
 
-func (n *ClientResourceAccessActionNode) Kind() common.SyntaxKind {
+func (n ClientResourceAccessActionNode) Kind() common.SyntaxKind {
 	return common.CLIENT_RESOURCE_ACCESS_ACTION
 }
 
-func (n *ClientResourceAccessActionNode) Expression() *ExpressionNode {
+func (n ClientResourceAccessActionNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(0).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -6859,7 +6859,7 @@ func (n *ClientResourceAccessActionNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *ClientResourceAccessActionNode) RightArrowToken() *Token {
+func (n ClientResourceAccessActionNode) RightArrowToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6867,7 +6867,7 @@ func (n *ClientResourceAccessActionNode) RightArrowToken() *Token {
 	return val
 }
 
-func (n *ClientResourceAccessActionNode) SlashToken() *Token {
+func (n ClientResourceAccessActionNode) SlashToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6875,11 +6875,11 @@ func (n *ClientResourceAccessActionNode) SlashToken() *Token {
 	return val
 }
 
-func (n *ClientResourceAccessActionNode) ResourceAccessPath() NodeList[Node] {
+func (n ClientResourceAccessActionNode) ResourceAccessPath() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *ClientResourceAccessActionNode) DotToken() *Token {
+func (n ClientResourceAccessActionNode) DotToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6887,7 +6887,7 @@ func (n *ClientResourceAccessActionNode) DotToken() *Token {
 	return val
 }
 
-func (n *ClientResourceAccessActionNode) MethodName() *SimpleNameReferenceNode {
+func (n ClientResourceAccessActionNode) MethodName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(5).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -6895,7 +6895,7 @@ func (n *ClientResourceAccessActionNode) MethodName() *SimpleNameReferenceNode {
 	return val
 }
 
-func (n *ClientResourceAccessActionNode) Arguments() *ParenthesizedArgList {
+func (n ClientResourceAccessActionNode) Arguments() *ParenthesizedArgList {
 	val, ok := n.ChildInBucket(6).(*ParenthesizedArgList)
 	if !ok {
 		panic("expected ParenthesizedArgList")
@@ -6907,11 +6907,11 @@ type ComputedResourceAccessSegmentNode struct {
 	NonTerminalNode
 }
 
-func (n *ComputedResourceAccessSegmentNode) Kind() common.SyntaxKind {
+func (n ComputedResourceAccessSegmentNode) Kind() common.SyntaxKind {
 	return common.COMPUTED_RESOURCE_ACCESS_SEGMENT
 }
 
-func (n *ComputedResourceAccessSegmentNode) OpenBracketToken() *Token {
+func (n ComputedResourceAccessSegmentNode) OpenBracketToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6919,7 +6919,7 @@ func (n *ComputedResourceAccessSegmentNode) OpenBracketToken() *Token {
 	return val
 }
 
-func (n *ComputedResourceAccessSegmentNode) Expression() *ExpressionNode {
+func (n ComputedResourceAccessSegmentNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -6927,7 +6927,7 @@ func (n *ComputedResourceAccessSegmentNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *ComputedResourceAccessSegmentNode) CloseBracketToken() *Token {
+func (n ComputedResourceAccessSegmentNode) CloseBracketToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6939,11 +6939,11 @@ type ResourceAccessRestSegmentNode struct {
 	NonTerminalNode
 }
 
-func (n *ResourceAccessRestSegmentNode) Kind() common.SyntaxKind {
+func (n ResourceAccessRestSegmentNode) Kind() common.SyntaxKind {
 	return common.RESOURCE_ACCESS_REST_SEGMENT
 }
 
-func (n *ResourceAccessRestSegmentNode) OpenBracketToken() *Token {
+func (n ResourceAccessRestSegmentNode) OpenBracketToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6951,7 +6951,7 @@ func (n *ResourceAccessRestSegmentNode) OpenBracketToken() *Token {
 	return val
 }
 
-func (n *ResourceAccessRestSegmentNode) EllipsisToken() *Token {
+func (n ResourceAccessRestSegmentNode) EllipsisToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6959,7 +6959,7 @@ func (n *ResourceAccessRestSegmentNode) EllipsisToken() *Token {
 	return val
 }
 
-func (n *ResourceAccessRestSegmentNode) Expression() *ExpressionNode {
+func (n ResourceAccessRestSegmentNode) Expression() *ExpressionNode {
 	val, ok := n.ChildInBucket(2).(*ExpressionNode)
 	if !ok {
 		panic("expected ExpressionNode")
@@ -6967,7 +6967,7 @@ func (n *ResourceAccessRestSegmentNode) Expression() *ExpressionNode {
 	return val
 }
 
-func (n *ResourceAccessRestSegmentNode) CloseBracketToken() *Token {
+func (n ResourceAccessRestSegmentNode) CloseBracketToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -6979,11 +6979,11 @@ type ReSequenceNode struct {
 	NonTerminalNode
 }
 
-func (n *ReSequenceNode) Kind() common.SyntaxKind {
+func (n ReSequenceNode) Kind() common.SyntaxKind {
 	return common.RE_SEQUENCE
 }
 
-func (n *ReSequenceNode) ReTerm() NodeList[*ReTermNode] {
+func (n ReSequenceNode) ReTerm() NodeList[*ReTermNode] {
 	return nodeListFrom[*ReTermNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
@@ -6993,11 +6993,11 @@ type ReAtomQuantifierNode struct {
 	ReTermNode
 }
 
-func (n *ReAtomQuantifierNode) Kind() common.SyntaxKind {
+func (n ReAtomQuantifierNode) Kind() common.SyntaxKind {
 	return common.RE_ATOM_QUANTIFIER
 }
 
-func (n *ReAtomQuantifierNode) ReAtom() Node {
+func (n ReAtomQuantifierNode) ReAtom() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7005,7 +7005,7 @@ func (n *ReAtomQuantifierNode) ReAtom() Node {
 	return val
 }
 
-func (n *ReAtomQuantifierNode) ReQuantifier() *ReQuantifierNode {
+func (n ReAtomQuantifierNode) ReQuantifier() *ReQuantifierNode {
 	val, ok := n.ChildInBucket(1).(*ReQuantifierNode)
 	if !ok {
 		panic("expected ReQuantifierNode")
@@ -7017,11 +7017,11 @@ type ReAtomCharOrEscapeNode struct {
 	NonTerminalNode
 }
 
-func (n *ReAtomCharOrEscapeNode) Kind() common.SyntaxKind {
+func (n ReAtomCharOrEscapeNode) Kind() common.SyntaxKind {
 	return common.RE_LITERAL_CHAR_DOT_OR_ESCAPE
 }
 
-func (n *ReAtomCharOrEscapeNode) ReAtomCharOrEscape() Node {
+func (n ReAtomCharOrEscapeNode) ReAtomCharOrEscape() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7033,11 +7033,11 @@ type ReQuoteEscapeNode struct {
 	NonTerminalNode
 }
 
-func (n *ReQuoteEscapeNode) Kind() common.SyntaxKind {
+func (n ReQuoteEscapeNode) Kind() common.SyntaxKind {
 	return common.RE_QUOTE_ESCAPE
 }
 
-func (n *ReQuoteEscapeNode) SlashToken() *Token {
+func (n ReQuoteEscapeNode) SlashToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7045,7 +7045,7 @@ func (n *ReQuoteEscapeNode) SlashToken() *Token {
 	return val
 }
 
-func (n *ReQuoteEscapeNode) ReSyntaxChar() Node {
+func (n ReQuoteEscapeNode) ReSyntaxChar() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7057,11 +7057,11 @@ type ReSimpleCharClassEscapeNode struct {
 	NonTerminalNode
 }
 
-func (n *ReSimpleCharClassEscapeNode) Kind() common.SyntaxKind {
+func (n ReSimpleCharClassEscapeNode) Kind() common.SyntaxKind {
 	return common.RE_SIMPLE_CHAR_CLASS_ESCAPE
 }
 
-func (n *ReSimpleCharClassEscapeNode) SlashToken() *Token {
+func (n ReSimpleCharClassEscapeNode) SlashToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7069,7 +7069,7 @@ func (n *ReSimpleCharClassEscapeNode) SlashToken() *Token {
 	return val
 }
 
-func (n *ReSimpleCharClassEscapeNode) ReSimpleCharClassCode() Node {
+func (n ReSimpleCharClassEscapeNode) ReSimpleCharClassCode() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7081,11 +7081,11 @@ type ReUnicodePropertyEscapeNode struct {
 	NonTerminalNode
 }
 
-func (n *ReUnicodePropertyEscapeNode) Kind() common.SyntaxKind {
+func (n ReUnicodePropertyEscapeNode) Kind() common.SyntaxKind {
 	return common.RE_UNICODE_PROPERTY_ESCAPE
 }
 
-func (n *ReUnicodePropertyEscapeNode) SlashToken() *Token {
+func (n ReUnicodePropertyEscapeNode) SlashToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7093,7 +7093,7 @@ func (n *ReUnicodePropertyEscapeNode) SlashToken() *Token {
 	return val
 }
 
-func (n *ReUnicodePropertyEscapeNode) Property() Node {
+func (n ReUnicodePropertyEscapeNode) Property() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7101,7 +7101,7 @@ func (n *ReUnicodePropertyEscapeNode) Property() Node {
 	return val
 }
 
-func (n *ReUnicodePropertyEscapeNode) OpenBraceToken() *Token {
+func (n ReUnicodePropertyEscapeNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7109,7 +7109,7 @@ func (n *ReUnicodePropertyEscapeNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *ReUnicodePropertyEscapeNode) ReUnicodeProperty() *ReUnicodePropertyNode {
+func (n ReUnicodePropertyEscapeNode) ReUnicodeProperty() *ReUnicodePropertyNode {
 	val, ok := n.ChildInBucket(3).(*ReUnicodePropertyNode)
 	if !ok {
 		panic("expected ReUnicodePropertyNode")
@@ -7117,7 +7117,7 @@ func (n *ReUnicodePropertyEscapeNode) ReUnicodeProperty() *ReUnicodePropertyNode
 	return val
 }
 
-func (n *ReUnicodePropertyEscapeNode) CloseBraceToken() *Token {
+func (n ReUnicodePropertyEscapeNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7131,11 +7131,11 @@ type ReUnicodeScriptNode struct {
 	ReUnicodePropertyNode
 }
 
-func (n *ReUnicodeScriptNode) Kind() common.SyntaxKind {
+func (n ReUnicodeScriptNode) Kind() common.SyntaxKind {
 	return common.RE_UNICODE_SCRIPT
 }
 
-func (n *ReUnicodeScriptNode) ScriptStart() Node {
+func (n ReUnicodeScriptNode) ScriptStart() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7143,7 +7143,7 @@ func (n *ReUnicodeScriptNode) ScriptStart() Node {
 	return val
 }
 
-func (n *ReUnicodeScriptNode) ReUnicodePropertyValue() Node {
+func (n ReUnicodeScriptNode) ReUnicodePropertyValue() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7155,11 +7155,11 @@ type ReUnicodeGeneralCategoryNode struct {
 	ReUnicodePropertyNode
 }
 
-func (n *ReUnicodeGeneralCategoryNode) Kind() common.SyntaxKind {
+func (n ReUnicodeGeneralCategoryNode) Kind() common.SyntaxKind {
 	return common.RE_UNICODE_GENERAL_CATEGORY
 }
 
-func (n *ReUnicodeGeneralCategoryNode) CategoryStart() Node {
+func (n ReUnicodeGeneralCategoryNode) CategoryStart() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7167,7 +7167,7 @@ func (n *ReUnicodeGeneralCategoryNode) CategoryStart() Node {
 	return val
 }
 
-func (n *ReUnicodeGeneralCategoryNode) ReUnicodeGeneralCategoryName() Node {
+func (n ReUnicodeGeneralCategoryNode) ReUnicodeGeneralCategoryName() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7179,11 +7179,11 @@ type ReCharacterClassNode struct {
 	NonTerminalNode
 }
 
-func (n *ReCharacterClassNode) Kind() common.SyntaxKind {
+func (n ReCharacterClassNode) Kind() common.SyntaxKind {
 	return common.RE_CHARACTER_CLASS
 }
 
-func (n *ReCharacterClassNode) OpenBracket() *Token {
+func (n ReCharacterClassNode) OpenBracket() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7191,7 +7191,7 @@ func (n *ReCharacterClassNode) OpenBracket() *Token {
 	return val
 }
 
-func (n *ReCharacterClassNode) Negation() *Token {
+func (n ReCharacterClassNode) Negation() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7199,7 +7199,7 @@ func (n *ReCharacterClassNode) Negation() *Token {
 	return val
 }
 
-func (n *ReCharacterClassNode) ReCharSet() Node {
+func (n ReCharacterClassNode) ReCharSet() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7207,7 +7207,7 @@ func (n *ReCharacterClassNode) ReCharSet() Node {
 	return val
 }
 
-func (n *ReCharacterClassNode) CloseBracket() *Token {
+func (n ReCharacterClassNode) CloseBracket() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7219,11 +7219,11 @@ type ReCharSetRangeWithReCharSetNode struct {
 	NonTerminalNode
 }
 
-func (n *ReCharSetRangeWithReCharSetNode) Kind() common.SyntaxKind {
+func (n ReCharSetRangeWithReCharSetNode) Kind() common.SyntaxKind {
 	return common.RE_CHAR_SET_RANGE_WITH_RE_CHAR_SET
 }
 
-func (n *ReCharSetRangeWithReCharSetNode) ReCharSetRange() *ReCharSetRangeNode {
+func (n ReCharSetRangeWithReCharSetNode) ReCharSetRange() *ReCharSetRangeNode {
 	val, ok := n.ChildInBucket(0).(*ReCharSetRangeNode)
 	if !ok {
 		panic("expected ReCharSetRangeNode")
@@ -7231,7 +7231,7 @@ func (n *ReCharSetRangeWithReCharSetNode) ReCharSetRange() *ReCharSetRangeNode {
 	return val
 }
 
-func (n *ReCharSetRangeWithReCharSetNode) ReCharSet() Node {
+func (n ReCharSetRangeWithReCharSetNode) ReCharSet() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7243,11 +7243,11 @@ type ReCharSetRangeNode struct {
 	NonTerminalNode
 }
 
-func (n *ReCharSetRangeNode) Kind() common.SyntaxKind {
+func (n ReCharSetRangeNode) Kind() common.SyntaxKind {
 	return common.RE_CHAR_SET_RANGE
 }
 
-func (n *ReCharSetRangeNode) LhsReCharSetAtom() Node {
+func (n ReCharSetRangeNode) LhsReCharSetAtom() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7255,7 +7255,7 @@ func (n *ReCharSetRangeNode) LhsReCharSetAtom() Node {
 	return val
 }
 
-func (n *ReCharSetRangeNode) MinusToken() *Token {
+func (n ReCharSetRangeNode) MinusToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7263,7 +7263,7 @@ func (n *ReCharSetRangeNode) MinusToken() *Token {
 	return val
 }
 
-func (n *ReCharSetRangeNode) RhsReCharSetAtom() Node {
+func (n ReCharSetRangeNode) RhsReCharSetAtom() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7275,11 +7275,11 @@ type ReCharSetAtomWithReCharSetNoDashNode struct {
 	NonTerminalNode
 }
 
-func (n *ReCharSetAtomWithReCharSetNoDashNode) Kind() common.SyntaxKind {
+func (n ReCharSetAtomWithReCharSetNoDashNode) Kind() common.SyntaxKind {
 	return common.RE_CHAR_SET_ATOM_WITH_RE_CHAR_SET_NO_DASH
 }
 
-func (n *ReCharSetAtomWithReCharSetNoDashNode) ReCharSetAtom() Node {
+func (n ReCharSetAtomWithReCharSetNoDashNode) ReCharSetAtom() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7287,7 +7287,7 @@ func (n *ReCharSetAtomWithReCharSetNoDashNode) ReCharSetAtom() Node {
 	return val
 }
 
-func (n *ReCharSetAtomWithReCharSetNoDashNode) ReCharSetNoDash() Node {
+func (n ReCharSetAtomWithReCharSetNoDashNode) ReCharSetNoDash() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7299,11 +7299,11 @@ type ReCharSetRangeNoDashWithReCharSetNode struct {
 	NonTerminalNode
 }
 
-func (n *ReCharSetRangeNoDashWithReCharSetNode) Kind() common.SyntaxKind {
+func (n ReCharSetRangeNoDashWithReCharSetNode) Kind() common.SyntaxKind {
 	return common.RE_CHAR_SET_RANGE_NO_DASH_WITH_RE_CHAR_SET
 }
 
-func (n *ReCharSetRangeNoDashWithReCharSetNode) ReCharSetRangeNoDash() *ReCharSetRangeNoDashNode {
+func (n ReCharSetRangeNoDashWithReCharSetNode) ReCharSetRangeNoDash() *ReCharSetRangeNoDashNode {
 	val, ok := n.ChildInBucket(0).(*ReCharSetRangeNoDashNode)
 	if !ok {
 		panic("expected ReCharSetRangeNoDashNode")
@@ -7311,7 +7311,7 @@ func (n *ReCharSetRangeNoDashWithReCharSetNode) ReCharSetRangeNoDash() *ReCharSe
 	return val
 }
 
-func (n *ReCharSetRangeNoDashWithReCharSetNode) ReCharSet() Node {
+func (n ReCharSetRangeNoDashWithReCharSetNode) ReCharSet() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7323,11 +7323,11 @@ type ReCharSetRangeNoDashNode struct {
 	NonTerminalNode
 }
 
-func (n *ReCharSetRangeNoDashNode) Kind() common.SyntaxKind {
+func (n ReCharSetRangeNoDashNode) Kind() common.SyntaxKind {
 	return common.RE_CHAR_SET_RANGE_NO_DASH
 }
 
-func (n *ReCharSetRangeNoDashNode) ReCharSetAtomNoDash() Node {
+func (n ReCharSetRangeNoDashNode) ReCharSetAtomNoDash() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7335,7 +7335,7 @@ func (n *ReCharSetRangeNoDashNode) ReCharSetAtomNoDash() Node {
 	return val
 }
 
-func (n *ReCharSetRangeNoDashNode) MinusToken() *Token {
+func (n ReCharSetRangeNoDashNode) MinusToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7343,7 +7343,7 @@ func (n *ReCharSetRangeNoDashNode) MinusToken() *Token {
 	return val
 }
 
-func (n *ReCharSetRangeNoDashNode) ReCharSetAtom() Node {
+func (n ReCharSetRangeNoDashNode) ReCharSetAtom() Node {
 	val, ok := n.ChildInBucket(2).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7355,11 +7355,11 @@ type ReCharSetAtomNoDashWithReCharSetNoDashNode struct {
 	NonTerminalNode
 }
 
-func (n *ReCharSetAtomNoDashWithReCharSetNoDashNode) Kind() common.SyntaxKind {
+func (n ReCharSetAtomNoDashWithReCharSetNoDashNode) Kind() common.SyntaxKind {
 	return common.RE_CHAR_SET_ATOM_NO_DASH_WITH_RE_CHAR_SET_NO_DASH
 }
 
-func (n *ReCharSetAtomNoDashWithReCharSetNoDashNode) ReCharSetAtomNoDash() Node {
+func (n ReCharSetAtomNoDashWithReCharSetNoDashNode) ReCharSetAtomNoDash() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7367,7 +7367,7 @@ func (n *ReCharSetAtomNoDashWithReCharSetNoDashNode) ReCharSetAtomNoDash() Node 
 	return val
 }
 
-func (n *ReCharSetAtomNoDashWithReCharSetNoDashNode) ReCharSetNoDash() Node {
+func (n ReCharSetAtomNoDashWithReCharSetNoDashNode) ReCharSetNoDash() Node {
 	val, ok := n.ChildInBucket(1).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7379,11 +7379,11 @@ type ReCapturingGroupsNode struct {
 	NonTerminalNode
 }
 
-func (n *ReCapturingGroupsNode) Kind() common.SyntaxKind {
+func (n ReCapturingGroupsNode) Kind() common.SyntaxKind {
 	return common.RE_CAPTURING_GROUP
 }
 
-func (n *ReCapturingGroupsNode) OpenParenthesis() *Token {
+func (n ReCapturingGroupsNode) OpenParenthesis() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7391,7 +7391,7 @@ func (n *ReCapturingGroupsNode) OpenParenthesis() *Token {
 	return val
 }
 
-func (n *ReCapturingGroupsNode) ReFlagExpression() *ReFlagExpressionNode {
+func (n ReCapturingGroupsNode) ReFlagExpression() *ReFlagExpressionNode {
 	val, ok := n.ChildInBucket(1).(*ReFlagExpressionNode)
 	if !ok {
 		panic("expected ReFlagExpressionNode")
@@ -7399,11 +7399,11 @@ func (n *ReCapturingGroupsNode) ReFlagExpression() *ReFlagExpressionNode {
 	return val
 }
 
-func (n *ReCapturingGroupsNode) ReSequences() NodeList[Node] {
+func (n ReCapturingGroupsNode) ReSequences() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(2)))
 }
 
-func (n *ReCapturingGroupsNode) CloseParenthesis() *Token {
+func (n ReCapturingGroupsNode) CloseParenthesis() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7415,11 +7415,11 @@ type ReFlagExpressionNode struct {
 	NonTerminalNode
 }
 
-func (n *ReFlagExpressionNode) Kind() common.SyntaxKind {
+func (n ReFlagExpressionNode) Kind() common.SyntaxKind {
 	return common.RE_FLAG_EXPR
 }
 
-func (n *ReFlagExpressionNode) QuestionMark() *Token {
+func (n ReFlagExpressionNode) QuestionMark() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7427,7 +7427,7 @@ func (n *ReFlagExpressionNode) QuestionMark() *Token {
 	return val
 }
 
-func (n *ReFlagExpressionNode) ReFlagsOnOff() *ReFlagsOnOffNode {
+func (n ReFlagExpressionNode) ReFlagsOnOff() *ReFlagsOnOffNode {
 	val, ok := n.ChildInBucket(1).(*ReFlagsOnOffNode)
 	if !ok {
 		panic("expected ReFlagsOnOffNode")
@@ -7435,7 +7435,7 @@ func (n *ReFlagExpressionNode) ReFlagsOnOff() *ReFlagsOnOffNode {
 	return val
 }
 
-func (n *ReFlagExpressionNode) Colon() *Token {
+func (n ReFlagExpressionNode) Colon() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7447,11 +7447,11 @@ type ReFlagsOnOffNode struct {
 	NonTerminalNode
 }
 
-func (n *ReFlagsOnOffNode) Kind() common.SyntaxKind {
+func (n ReFlagsOnOffNode) Kind() common.SyntaxKind {
 	return common.RE_FLAGS_ON_OFF
 }
 
-func (n *ReFlagsOnOffNode) LhsReFlags() *ReFlagsNode {
+func (n ReFlagsOnOffNode) LhsReFlags() *ReFlagsNode {
 	val, ok := n.ChildInBucket(0).(*ReFlagsNode)
 	if !ok {
 		panic("expected ReFlagsNode")
@@ -7459,7 +7459,7 @@ func (n *ReFlagsOnOffNode) LhsReFlags() *ReFlagsNode {
 	return val
 }
 
-func (n *ReFlagsOnOffNode) MinusToken() *Token {
+func (n ReFlagsOnOffNode) MinusToken() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7467,7 +7467,7 @@ func (n *ReFlagsOnOffNode) MinusToken() *Token {
 	return val
 }
 
-func (n *ReFlagsOnOffNode) RhsReFlags() *ReFlagsNode {
+func (n ReFlagsOnOffNode) RhsReFlags() *ReFlagsNode {
 	val, ok := n.ChildInBucket(2).(*ReFlagsNode)
 	if !ok {
 		panic("expected ReFlagsNode")
@@ -7479,11 +7479,11 @@ type ReFlagsNode struct {
 	NonTerminalNode
 }
 
-func (n *ReFlagsNode) Kind() common.SyntaxKind {
+func (n ReFlagsNode) Kind() common.SyntaxKind {
 	return common.RE_FLAGS
 }
 
-func (n *ReFlagsNode) ReFlag() NodeList[Node] {
+func (n ReFlagsNode) ReFlag() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
@@ -7491,11 +7491,11 @@ type ReAssertionNode struct {
 	ReTermNode
 }
 
-func (n *ReAssertionNode) Kind() common.SyntaxKind {
+func (n ReAssertionNode) Kind() common.SyntaxKind {
 	return common.RE_ASSERTION
 }
 
-func (n *ReAssertionNode) ReAssertion() Node {
+func (n ReAssertionNode) ReAssertion() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7507,11 +7507,11 @@ type ReQuantifierNode struct {
 	NonTerminalNode
 }
 
-func (n *ReQuantifierNode) Kind() common.SyntaxKind {
+func (n ReQuantifierNode) Kind() common.SyntaxKind {
 	return common.RE_QUANTIFIER
 }
 
-func (n *ReQuantifierNode) ReBaseQuantifier() Node {
+func (n ReQuantifierNode) ReBaseQuantifier() Node {
 	val, ok := n.ChildInBucket(0).(Node)
 	if !ok {
 		panic("expected Node")
@@ -7519,7 +7519,7 @@ func (n *ReQuantifierNode) ReBaseQuantifier() Node {
 	return val
 }
 
-func (n *ReQuantifierNode) NonGreedyChar() *Token {
+func (n ReQuantifierNode) NonGreedyChar() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7531,11 +7531,11 @@ type ReBracedQuantifierNode struct {
 	NonTerminalNode
 }
 
-func (n *ReBracedQuantifierNode) Kind() common.SyntaxKind {
+func (n ReBracedQuantifierNode) Kind() common.SyntaxKind {
 	return common.RE_BRACED_QUANTIFIER
 }
 
-func (n *ReBracedQuantifierNode) OpenBraceToken() *Token {
+func (n ReBracedQuantifierNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7543,11 +7543,11 @@ func (n *ReBracedQuantifierNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *ReBracedQuantifierNode) LeastTimesMatchedDigit() NodeList[Node] {
+func (n ReBracedQuantifierNode) LeastTimesMatchedDigit() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
 }
 
-func (n *ReBracedQuantifierNode) CommaToken() *Token {
+func (n ReBracedQuantifierNode) CommaToken() *Token {
 	val, ok := n.ChildInBucket(2).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7555,11 +7555,11 @@ func (n *ReBracedQuantifierNode) CommaToken() *Token {
 	return val
 }
 
-func (n *ReBracedQuantifierNode) MostTimesMatchedDigit() NodeList[Node] {
+func (n ReBracedQuantifierNode) MostTimesMatchedDigit() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(3)))
 }
 
-func (n *ReBracedQuantifierNode) CloseBraceToken() *Token {
+func (n ReBracedQuantifierNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(4).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7571,15 +7571,15 @@ type MemberTypeDescriptorNode struct {
 	NonTerminalNode
 }
 
-func (n *MemberTypeDescriptorNode) Kind() common.SyntaxKind {
+func (n MemberTypeDescriptorNode) Kind() common.SyntaxKind {
 	return common.MEMBER_TYPE_DESC
 }
 
-func (n *MemberTypeDescriptorNode) Annotations() NodeList[*AnnotationNode] {
+func (n MemberTypeDescriptorNode) Annotations() NodeList[*AnnotationNode] {
 	return nodeListFrom[*AnnotationNode](into[*NonTerminalNode](n.ChildInBucket(0)))
 }
 
-func (n *MemberTypeDescriptorNode) TypeDescriptor() *TypeDescriptorNode {
+func (n MemberTypeDescriptorNode) TypeDescriptor() *TypeDescriptorNode {
 	val, ok := n.ChildInBucket(1).(*TypeDescriptorNode)
 	if !ok {
 		panic("expected TypeDescriptorNode")
@@ -7591,11 +7591,11 @@ type ReceiveFieldNode struct {
 	NonTerminalNode
 }
 
-func (n *ReceiveFieldNode) Kind() common.SyntaxKind {
+func (n ReceiveFieldNode) Kind() common.SyntaxKind {
 	return common.RECEIVE_FIELD
 }
 
-func (n *ReceiveFieldNode) FieldName() *SimpleNameReferenceNode {
+func (n ReceiveFieldNode) FieldName() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(0).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -7603,7 +7603,7 @@ func (n *ReceiveFieldNode) FieldName() *SimpleNameReferenceNode {
 	return val
 }
 
-func (n *ReceiveFieldNode) Colon() *Token {
+func (n ReceiveFieldNode) Colon() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7611,7 +7611,7 @@ func (n *ReceiveFieldNode) Colon() *Token {
 	return val
 }
 
-func (n *ReceiveFieldNode) PeerWorker() *SimpleNameReferenceNode {
+func (n ReceiveFieldNode) PeerWorker() *SimpleNameReferenceNode {
 	val, ok := n.ChildInBucket(2).(*SimpleNameReferenceNode)
 	if !ok {
 		panic("expected SimpleNameReferenceNode")
@@ -7623,11 +7623,11 @@ type NaturalExpressionNode struct {
 	ExpressionNode
 }
 
-func (n *NaturalExpressionNode) Kind() common.SyntaxKind {
+func (n NaturalExpressionNode) Kind() common.SyntaxKind {
 	return common.NATURAL_EXPRESSION
 }
 
-func (n *NaturalExpressionNode) ConstKeyword() *Token {
+func (n NaturalExpressionNode) ConstKeyword() *Token {
 	val, ok := n.ChildInBucket(0).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7635,7 +7635,7 @@ func (n *NaturalExpressionNode) ConstKeyword() *Token {
 	return val
 }
 
-func (n *NaturalExpressionNode) NaturalKeyword() *Token {
+func (n NaturalExpressionNode) NaturalKeyword() *Token {
 	val, ok := n.ChildInBucket(1).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7643,7 +7643,7 @@ func (n *NaturalExpressionNode) NaturalKeyword() *Token {
 	return val
 }
 
-func (n *NaturalExpressionNode) ParenthesizedArgList() *ParenthesizedArgList {
+func (n NaturalExpressionNode) ParenthesizedArgList() *ParenthesizedArgList {
 	val, ok := n.ChildInBucket(2).(*ParenthesizedArgList)
 	if !ok {
 		panic("expected ParenthesizedArgList")
@@ -7651,7 +7651,7 @@ func (n *NaturalExpressionNode) ParenthesizedArgList() *ParenthesizedArgList {
 	return val
 }
 
-func (n *NaturalExpressionNode) OpenBraceToken() *Token {
+func (n NaturalExpressionNode) OpenBraceToken() *Token {
 	val, ok := n.ChildInBucket(3).(*Token)
 	if !ok {
 		panic("expected Token")
@@ -7659,14 +7659,38 @@ func (n *NaturalExpressionNode) OpenBraceToken() *Token {
 	return val
 }
 
-func (n *NaturalExpressionNode) Prompt() NodeList[Node] {
+func (n NaturalExpressionNode) Prompt() NodeList[Node] {
 	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(4)))
 }
 
-func (n *NaturalExpressionNode) CloseBraceToken() *Token {
+func (n NaturalExpressionNode) CloseBraceToken() *Token {
 	val, ok := n.ChildInBucket(5).(*Token)
 	if !ok {
 		panic("expected Token")
+	}
+	return val
+}
+
+type STAmbiguousCollectionNode struct {
+	NonTerminalNode
+}
+
+func (n STAmbiguousCollectionNode) CollectionStartToken() Node {
+	val, ok := n.ChildInBucket(0).(Node)
+	if !ok {
+		panic("expected Node")
+	}
+	return val
+}
+
+func (n STAmbiguousCollectionNode) Members() NodeList[Node] {
+	return nodeListFrom[Node](into[*NonTerminalNode](n.ChildInBucket(1)))
+}
+
+func (n STAmbiguousCollectionNode) CollectionEndToken() Node {
+	val, ok := n.ChildInBucket(2).(Node)
+	if !ok {
+		panic("expected Node")
 	}
 	return val
 }

@@ -199,7 +199,7 @@ func TestToSexpr_SimpleNode(t *testing.T) {
 	result := ToSexpr(node)
 
 	// Hardcoded expected output
-	expected := `(UNKNOWN_2000 0 0x00 ()
+	expected := `(2000 0 0x00 ()
   (function 8 0x00 ())
   ({ 1 0x00 ()))`
 
@@ -213,15 +213,15 @@ func TestToSexpr_NodeList(t *testing.T) {
 	child1 := CreateTokenFrom(common.FUNCTION_KEYWORD, nil, nil)
 	child2 := CreateTokenFrom(common.IDENTIFIER_TOKEN, nil, nil)
 
-	nodeList := CreateNodeList([]STNode{child1, child2})
+	nodeList := CreateNodeList(child1, child2)
 
 	// Convert to S-expression (need pointer for STNode interface)
 	result := ToSexpr(&nodeList)
 
 	// Hardcoded expected output
-	expected := `(UNKNOWN_1 0 0x00 ()
+	expected := `(1 0 0x00 ()
   (function 8 0x00 ())
-  (UNKNOWN_1000 0 0x00 ()))`
+  (ident, "UNKNOWN" 0 0x00 ()))`
 
 	if result != expected {
 		t.Errorf("Expected:\n%s\n\nGot:\n%s", expected, result)

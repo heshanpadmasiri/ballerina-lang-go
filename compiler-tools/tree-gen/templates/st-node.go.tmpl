@@ -30,7 +30,7 @@ type ST{{.Name}} struct {
 }
 {{if .Kind}}
 
-func (n *ST{{.Name}}) Kind() common.SyntaxKind {
+func (n ST{{.Name}}) Kind() common.SyntaxKind {
     return common.{{.Kind}}
 }
 {{end}}

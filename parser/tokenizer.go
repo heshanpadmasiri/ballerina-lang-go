@@ -86,6 +86,10 @@ func (t *TokenReader) EndMode() {
 	t.lexer.EndMode()
 }
 
+func (t *TokenReader) GetCurrentMode() ParserMode {
+	return t.lexer.GetCurrentMode()
+}
+
 const BUFFER_SIZE = 20
 
 type tokenBuffer struct {

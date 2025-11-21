@@ -31,7 +31,7 @@ type {{.Name}} struct {
 }
 {{if .Kind}}
 
-func (n *{{.Name}}) Kind() common.SyntaxKind {
+func (n {{.Name}}) Kind() common.SyntaxKind {
     return common.{{.Kind}}
 }
 {{end}}
@@ -39,12 +39,12 @@ func (n *{{.Name}}) Kind() common.SyntaxKind {
 {{range $index, $attr := .Attributes}}
 {{if or (eq $attr.Occurrences "MULTIPLE") (eq $attr.Occurrences "MULTIPLE_SEPARATED")}}
 
-func (n *{{$nodeName}}) {{title $attr.Name}}() NodeList[{{if eq $attr.Type "Node"}}Node{{else}}*{{$attr.Type}}{{end}}] {
+func (n {{$nodeName}}) {{title $attr.Name}}() NodeList[{{if eq $attr.Type "Node"}}Node{{else}}*{{$attr.Type}}{{end}}] {
     return nodeListFrom[{{if eq $attr.Type "Node"}}Node{{else}}*{{$attr.Type}}{{end}}](into[*NonTerminalNode](n.ChildInBucket({{$index}})))
 }
 {{else}}
 
-func (n *{{$nodeName}}) {{title $attr.Name}}() {{if eq $attr.Type "Node"}}Node{{else}}*{{$attr.Type}}{{end}} {
+func (n {{$nodeName}}) {{title $attr.Name}}() {{if eq $attr.Type "Node"}}Node{{else}}*{{$attr.Type}}{{end}} {
     val, ok := n.ChildInBucket({{$index}}).({{if eq $attr.Type "Node"}}Node{{else}}*{{$attr.Type}}{{end}})
     if !ok {
         panic("expected {{$attr.Type}}")

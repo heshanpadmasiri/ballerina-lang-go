@@ -980,7 +980,7 @@ type STMetadataNode struct {
 	Annotations STNode
 }
 
-func (n *STMetadataNode) Kind() common.SyntaxKind {
+func (n STMetadataNode) Kind() common.SyntaxKind {
 	return common.METADATA
 }
 
@@ -3416,4 +3416,12 @@ type STNaturalExpressionNode struct {
 
 func (n *STNaturalExpressionNode) Kind() common.SyntaxKind {
 	return common.NATURAL_EXPRESSION
+}
+
+// FIXME:
+type STAmbiguousCollectionNode struct {
+	STNodeBase
+	CollectionStartToken STNode
+	CollectionEndToken   STNode
+	Members              []STNode
 }
