@@ -158,12 +158,12 @@ func (this *abstractParser) peek() internal.STToken {
 	if this.insertedToken != nil {
 		return this.insertedToken
 	}
-	return this.peek()
+	return this.tokenReader.Peek()
 }
 
 func (this *abstractParser) peekN(n int) internal.STToken {
 	if this.insertedToken == nil {
-		return this.peekN(n)
+		return this.tokenReader.PeekN(n)
 	}
 	if n == 1 {
 		return this.insertedToken
@@ -171,7 +171,7 @@ func (this *abstractParser) peekN(n int) internal.STToken {
 	if n > 0 {
 		n = (n - 1)
 	}
-	return this.peekN(n)
+	return this.tokenReader.PeekN(n)
 }
 
 func (this *abstractParser) consume() internal.STToken {
