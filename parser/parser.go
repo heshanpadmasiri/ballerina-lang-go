@@ -16,6 +16,7 @@
 package parser
 
 import (
+	debugcommon "ballerina-lang-go/common"
 	"ballerina-lang-go/parser/common"
 	"ballerina-lang-go/parser/internal"
 	"ballerina-lang-go/tools/diagnostics"
@@ -315,9 +316,8 @@ func NewBallerinaParserFromTokenReader(tokenReader TokenReader) BallerinaParser 
 
 	this.abstractParser = abstractParser{
 		tokenReader: tokenReader,
-		// FIXME:
-		errorHandler: nil,
 	}
+	this.abstractParser.errorHandler = NewBallerinaParserErrorHandler(&this.abstractParser.tokenReader)
 	return this
 }
 
@@ -606,7 +606,11 @@ func isDigit(c byte) bool {
 }
 
 func (this *BallerinaParser) Parse() internal.STNode {
-	return this.parseCompUnit()
+	tree := this.parseCompUnit()
+	if debugcommon.DebugCtx.Flags&debugcommon.DUMP_AST != 0 {
+		debugcommon.DebugCtx.Channel <- internal.ToSexpr(tree)
+	}
+	return tree
 }
 
 func (this *BallerinaParser) ParseAsStatement() internal.STNode {

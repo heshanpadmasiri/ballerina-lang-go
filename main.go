@@ -21,7 +21,6 @@ package main
 import (
 	debugcommon "ballerina-lang-go/common"
 	"ballerina-lang-go/parser"
-	"ballerina-lang-go/parser/common"
 	"ballerina-lang-go/tools/text"
 	"fmt"
 	"os"
@@ -30,28 +29,34 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Fprintf(os.Stderr, "usage: %s <file.bal> [-dump-tokens]\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "usage: %s <file.bal> [-dump-tokens] [-dump-ast]\n", os.Args[0])
 		os.Exit(1)
 	}
 
 	fileName := os.Args[1]
 	dumpTokens := false
+	dumpAST := false
 
 	// Check for flags
 	for _, arg := range os.Args[2:] {
 		if arg == "-dump-tokens" {
 			dumpTokens = true
+		} else if arg == "-dump-ast" {
+			dumpAST = true
 		} else if len(arg) > 0 && arg[0] == '-' {
 			panic(fmt.Sprintf("unsupported flag: %s", arg))
 		}
 	}
 
-	// Initialize DebugContext if dumpTokens is enabled
+	// Initialize DebugContext if any dump flags are enabled
 	var debugCtx *debugcommon.DebugContext
 	var wg sync.WaitGroup
 	flags := uint16(0)
 	if dumpTokens {
 		flags |= debugcommon.DUMP_TOKENS
+	}
+	if dumpAST {
+		flags |= debugcommon.DUMP_AST
 	}
 	if flags != 0 {
 		debugcommon.Init(flags)
@@ -80,13 +85,14 @@ func main() {
 	// Create Lexer with DebugContext
 	lexer := parser.NewLexer(reader, debugCtx)
 
-	// Tokenize the entire file
-	for {
-		token := lexer.NextToken()
-		if token.Kind() == common.EOF_TOKEN {
-			break
-		}
-	}
+	// Create TokenReader from Lexer
+	tokenReader := parser.CreateTokenReader(*lexer, debugCtx)
+
+	// Create Parser from TokenReader
+	ballerinaParser := parser.NewBallerinaParserFromTokenReader(*tokenReader)
+
+	// Parse the entire file (parser will internally call tokenizer)
+	_ = ballerinaParser.Parse()
 
 	if debugCtx != nil {
 		close(debugCtx.Channel)
