@@ -317,7 +317,7 @@ func NewBallerinaParserFromTokenReader(tokenReader TokenReader) BallerinaParser 
 	this.abstractParser = abstractParser{
 		tokenReader: tokenReader,
 	}
-	this.abstractParser.errorHandler = NewBallerinaParserErrorHandler(&this.abstractParser.tokenReader)
+	// this.abstractParser.errorHandler = NewBallerinaParserErrorHandler(&this.abstractParser.tokenReader)
 	return this
 }
 
