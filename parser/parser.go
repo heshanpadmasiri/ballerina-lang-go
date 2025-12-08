@@ -23,15 +23,6 @@ import (
 	"strings"
 )
 
-// FIXME: add these
-type Solution struct {
-	action        Action
-	removedToken  internal.STToken
-	recoveredNode internal.STNode
-	tokenKind     common.SyntaxKind
-	ctx           common.ParserRuleContext
-}
-
 type OperatorPrecedence uint8
 
 const (
@@ -205,11 +196,11 @@ func (this *abstractParser) consumeWithInvalidNodesWithToken(token internal.STTo
 func (this *abstractParser) recover(token internal.STToken, currentCtx common.ParserRuleContext, isCompletion bool) Solution {
 	isCompletion = isCompletion || token.Kind() == common.EOF_TOKEN
 	sol := this.errorHandler.recover(currentCtx, token, isCompletion)
-	if sol.action == ACTION_REMOVE {
+	if sol.Action == ACTION_REMOVE {
 		this.insertedToken = nil
-		this.addInvalidTokenToNextToken(sol.removedToken)
-	} else if sol.action == ACTION_INSERT {
-		this.insertedToken = internal.ToToken(sol.recoveredNode)
+		this.addInvalidTokenToNextToken(sol.RemovedToken)
+	} else if sol.Action == ACTION_INSERT {
+		this.insertedToken = internal.ToToken(sol.RecoveredNode)
 	}
 	return sol
 }
@@ -891,7 +882,7 @@ func (this *BallerinaParser) parseTopLevelNode() internal.STNode {
 		}
 		token := this.peek()
 		solution := this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_TOP_LEVEL_NODE)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			metadata = internal.CreateEmptyNode()
 			break
 		}
@@ -947,7 +938,7 @@ func (this *BallerinaParser) parseTopLevelNodeWithMetadata(metadata internal.STN
 		}
 		token := this.peek()
 		solution := this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_TOP_LEVEL_NODE_WITHOUT_METADATA)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			publicQualifier = internal.CreateEmptyNode()
 			break
 		}
@@ -1270,7 +1261,7 @@ func (this *BallerinaParser) parseTopLevelNodeInner(metadata, publicQualifier in
 		}
 		token := this.peek()
 		solution := this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_TOP_LEVEL_NODE_WITHOUT_MODIFIER)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			return this.parseModuleVarDeclInner(metadata, publicQualifier, qualifiers)
 		}
 		return this.parseTopLevelNodeInner(metadata, publicQualifier, qualifiers)
@@ -2149,7 +2140,7 @@ func (this *BallerinaParser) parseParameter(annots internal.STNode, prevParamKin
 		}
 		token := this.peek()
 		solution := this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_PARAMETER_START_WITHOUT_ANNOTATION)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			inclusionSymbol = internal.CreateEmptyNodeList()
 			break
 		}
@@ -2177,7 +2168,7 @@ func (this *BallerinaParser) parseParameterInner(prevParamKind common.SyntaxKind
 		}
 		token := this.peek()
 		solution := this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_PARAMETER_START)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			annots = internal.CreateEmptyNodeList()
 			break
 		}
@@ -2502,7 +2493,7 @@ func (this *BallerinaParser) parseTypeDescriptorInternal(qualifiers []internal.S
 	}
 	recoveryCtx := this.getTypeDescRecoveryCtx(qualifiers)
 	solution := this.recoverWithBlockContext(this.peek(), recoveryCtx)
-	if solution.action == ACTION_KEEP {
+	if solution.Action == ACTION_KEEP {
 		this.reportInvalidQualifierList(qualifiers)
 		return this.parseSingletonTypeDesc()
 	}
@@ -2579,7 +2570,7 @@ func (this *BallerinaParser) parseQualifiedTypeRefOrTypeDesc(qualifiers []intern
 		}
 	}
 	solution := this.recoverWithBlockContext(this.peek(), context)
-	if solution.action == ACTION_KEEP {
+	if solution.Action == ACTION_KEEP {
 		this.reportInvalidQualifierList(qualifiers)
 		return this.parseQualifiedIdentifierWithPredeclPrefix(preDeclaredPrefix, isInConditionalExpr)
 	}
@@ -3647,7 +3638,7 @@ func (this *BallerinaParser) parseStatement() internal.STNode {
 		}
 		token := this.peek()
 		solution := this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_STATEMENT)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			break
 		}
 		return this.parseStatement()
@@ -3815,7 +3806,7 @@ func (this *BallerinaParser) parseStatementInner(annots internal.STNode, qualifi
 		}
 		token := this.peek()
 		solution := this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_STATEMENT_WITHOUT_ANNOTS)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			this.reportInvalidQualifierList(qualifiers)
 			finalKeyword := internal.CreateEmptyNode()
 			return this.parseVariableDecl(this.getAnnotations(annots), finalKeyword), qualifiers
@@ -4511,7 +4502,7 @@ func (this *BallerinaParser) parseQualifiedIdentifierOrExpression(isInConditiona
 		return this.parseQualifiedIdentifierWithPredeclPrefix(preDeclaredPrefix, isInConditionalExpr)
 	}
 	solution := this.recoverWithBlockContext(this.peek(), context)
-	if solution.action == ACTION_KEEP {
+	if solution.Action == ACTION_KEEP {
 		return this.parseQualifiedIdentifierWithPredeclPrefix(preDeclaredPrefix, isInConditionalExpr)
 	}
 	if preDeclaredPrefix.Kind() == common.ERROR_KEYWORD {
@@ -4792,11 +4783,11 @@ func (this *BallerinaParser) recoverExpressionRhs(currentPrecedenceLevel Operato
 	} else {
 		solution = this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_EXPRESSION_RHS)
 	}
-	if solution.action == ACTION_REMOVE {
+	if solution.Action == ACTION_REMOVE {
 		return this.parseExpressionRhsInner(currentPrecedenceLevel, lhsExpr, isRhsExpr, allowActions, isInMatchGuard,
 			isInConditionalExpr)
 	}
-	if solution.ctx == common.PARSER_RULE_CONTEXT_BINARY_OPERATOR {
+	if solution.Ctx == common.PARSER_RULE_CONTEXT_BINARY_OPERATOR {
 		binaryOpKind := this.getBinaryOperatorKindToInsert(currentPrecedenceLevel)
 		binaryOpContext := this.getMissingBinaryOperatorContext(currentPrecedenceLevel)
 		this.insertToken(binaryOpKind, binaryOpContext)
@@ -5509,7 +5500,7 @@ func (this *BallerinaParser) parseObjectMember(context common.ParserRuleContext)
 			recoveryCtx = common.PARSER_RULE_CONTEXT_CLASS_MEMBER_OR_OBJECT_MEMBER_START
 		}
 		solution := this.recoverWithBlockContext(this.peek(), recoveryCtx)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			metadata = internal.CreateEmptyNode()
 			break
 		}
@@ -5575,7 +5566,7 @@ func (this *BallerinaParser) parseObjectMemberWithoutMetaInner(metadata internal
 			return this.parseObjectField(metadata, internal.CreateEmptyNode(), qualifiers, isObjectTypeDesc)
 		}
 		solution := this.recoverWithBlockContext(this.peek(), recoveryCtx)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			return this.parseObjectField(metadata, internal.CreateEmptyNode(), qualifiers, isObjectTypeDesc)
 		}
 		return this.parseObjectMemberWithoutMetaInner(metadata, qualifiers, recoveryCtx, isObjectTypeDesc)
@@ -7257,7 +7248,7 @@ func (this *BallerinaParser) parseClientResourceAccessOrAsyncSendActionRhs(expre
 		}
 		token := this.peek()
 		solution := this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_REMOTE_OR_RESOURCE_CALL_OR_ASYNC_SEND_RHS)
-		if solution.action == ACTION_KEEP {
+		if solution.Action == ACTION_KEEP {
 			name = internal.CreateSimpleNameReferenceNode(this.parseFunctionName())
 			break
 		}
@@ -10421,7 +10412,7 @@ func (this *BallerinaParser) parseTransactionStmtOrVarDecl(annots internal.STNod
 		fallthrough
 	default:
 		solution := this.recoverWithBlockContext(this.peek(), common.PARSER_RULE_CONTEXT_TRANSACTION_STMT_RHS_OR_TYPE_REF)
-		if (solution.action == ACTION_KEEP) || ((solution.action == ACTION_INSERT) && (solution.tokenKind == common.COLON_TOKEN)) {
+		if (solution.Action == ACTION_KEEP) || ((solution.Action == ACTION_INSERT) && (solution.TokenKind == common.COLON_TOKEN)) {
 			typeDesc := this.parseQualifiedIdentifierWithPredeclPrefix(transactionKeyword, false)
 			return this.parseVarDeclTypeDescRhs(typeDesc, annots, qualifiers, true, false)
 		}
