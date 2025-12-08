@@ -21,17 +21,19 @@ import (
 )
 
 type TokenReader struct {
-	lexer        Lexer
-	dbgContext   *debugcommon.DebugContext
-	currentToken internal.STToken
-	tokenBuffer  tokenBuffer
+	lexer             Lexer
+	dbgContext        *debugcommon.DebugContext
+	currentToken      internal.STToken
+	tokenBuffer       tokenBuffer
+	currentTokenIndex int
 }
 
 func CreateTokenReader(lexer Lexer, dbgContext *debugcommon.DebugContext) *TokenReader {
 	return &TokenReader{
-		lexer:        lexer,
-		dbgContext:   dbgContext,
-		currentToken: nil,
+		lexer:             lexer,
+		dbgContext:        dbgContext,
+		currentToken:      nil,
+		currentTokenIndex: 0,
 		tokenBuffer: tokenBuffer{
 			tokens: make([]internal.STToken, BUFFER_SIZE),
 		},
@@ -44,6 +46,7 @@ func (t *TokenReader) Read() internal.STToken {
 	} else {
 		t.currentToken = t.lexer.NextToken()
 	}
+	t.currentTokenIndex++
 	return t.currentToken
 }
 
@@ -88,6 +91,10 @@ func (t *TokenReader) EndMode() {
 
 func (t *TokenReader) GetCurrentMode() ParserMode {
 	return t.lexer.GetCurrentMode()
+}
+
+func (t *TokenReader) GetCurrentTokenIndex() int {
+	return t.currentTokenIndex
 }
 
 const BUFFER_SIZE = 20

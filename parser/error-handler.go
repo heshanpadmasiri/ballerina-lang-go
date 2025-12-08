@@ -15,21 +15,70 @@
 // under the License.
 package parser
 
-import "ballerina-lang-go/parser/common"
+import (
+	"ballerina-lang-go/parser/common"
+	"ballerina-lang-go/parser/internal"
+)
 
 type Solution struct {
-	Ctx           ParserRuleContext
+	Ctx           common.ParserRuleContext
 	Action        Action
 	TokenText     string
 	TokenKind     common.SyntaxKind
-	RecoveredNode Node
-	RemovedToken  Token
+	RecoveredNode internal.STNode
+	RemovedToken  internal.STToken
 	Depth         int
 }
 
+type Result struct {
+	matches     int
+	removeFixes int
+	fixes       []*Solution
+	solution    *Solution
+}
+
+func NewResult(fixes []*Solution, matches int) *Result {
+	return &Result{
+		fixes:   fixes,
+		matches: matches,
+	}
+}
+
+func (r *Result) peekFix() *Solution {
+	if len(r.fixes) == 0 {
+		return nil
+	}
+	return r.fixes[len(r.fixes)-1]
+}
+
+func (r *Result) popFix() *Solution {
+	if len(r.fixes) == 0 {
+		return nil
+	}
+
+	sol := r.fixes[len(r.fixes)-1]
+	r.fixes = r.fixes[:len(r.fixes)-1]
+
+	if sol.Action == ACTION_REMOVE {
+		r.removeFixes--
+	}
+	return sol
+}
+
+func (r *Result) pushFix(sol *Solution) {
+	if sol.Action == ACTION_REMOVE {
+		r.removeFixes++
+	}
+	r.fixes = append(r.fixes, sol)
+}
+
+func (r *Result) fixesSize() int {
+	return len(r.fixes)
+}
+
 type AbstractParserErrorHandler struct {
-	tokenReader        TokenReader
-	ctxStack           []ParserRuleContext
+	tokenReader        *TokenReader
+	ctxStack           []common.ParserRuleContext
 	previousTokenIndex int
 	itterCount         int
 }
@@ -38,130 +87,120 @@ var LOOKAHEAD_LIMIT = 4
 var RESOLUTION_ITTER_LIMIT = 7
 var COMPLETION_ITTER_LIMIT = 15
 
-func NewSolutionFromActionCtxTokenKindTokenText(action Action, ctx ParserRuleContext, tokenKind common.SyntaxKind, tokenText string) Solution {
-	this := Solution{}
-	this(action, ctx, tokenKind, tokenText, (-1))
-	return this
+func NewSolution(action Action, ctx common.ParserRuleContext, tokenKind common.SyntaxKind, tokenText string) *Solution {
+	return NewSolutionWithDepth(action, ctx, tokenKind, tokenText, -1)
 }
 
-func NewSolutionFromActionCtxTokenKindTokenTextDepth(action Action, ctx ParserRuleContext, tokenKind common.SyntaxKind, tokenText string, depth int) Solution {
-	this := Solution{}
-	this.action = action
-	this.ctx = ctx
-	this.tokenText = tokenText
-	this.tokenKind = tokenKind
-	this.depth = depth
-	return this
+func NewSolutionWithDepth(action Action, ctx common.ParserRuleContext, tokenKind common.SyntaxKind, tokenText string, depth int) *Solution {
+	return &Solution{
+		Action:    action,
+		Ctx:       ctx,
+		TokenText: tokenText,
+		TokenKind: tokenKind,
+		Depth:     depth,
+	}
 }
 
-func NewAbstractParserErrorHandlerFromTokenReader(tokenReader TokenReader) AbstractParserErrorHandler {
-	this := AbstractParserErrorHandler{}
-	this.ctxStack = make([]interface{}, 0)
-	// Default field initializations
-
-	this.tokenReader = tokenReader
-	this.previousTokenIndex = (-1)
-	this.itterCount = 0
-	return this
+func NewAbstractParserErrorHandlerFromTokenReader(tokenReader *TokenReader) *AbstractParserErrorHandler {
+	return &AbstractParserErrorHandler{
+		tokenReader:        tokenReader,
+		ctxStack:           make([]common.ParserRuleContext, 0),
+		previousTokenIndex: -1,
+		itterCount:         0,
+	}
 }
 
 func (this *Solution) ToString() string {
-	return (((this.action.toString() + "'") + tokenText) + "'")
-}
-
-func (this *AbstractParserErrorHandler) hasAlternativePaths(context ParserRuleContext) bool {
-}
-
-func (this *AbstractParserErrorHandler) seekMatch(context ParserRuleContext, lookahead int, currentDepth int, isEntryPoint bool) Result {
-}
-
-func (this *AbstractParserErrorHandler) getNextRule(context ParserRuleContext, nextLookahead int) ParserRuleContext {
-}
-
-func (this *AbstractParserErrorHandler) getExpectedTokenKind(context ParserRuleContext) common.SyntaxKind {
-}
-
-func (this *AbstractParserErrorHandler) getInsertSolution(context ParserRuleContext) Solution {
-}
-
-func (this *AbstractParserErrorHandler) Recover(currentCtx ParserRuleContext, nextToken Token, isCompletion bool) Solution {
-	currentTokenIndex := this.this.tokenReader.getCurrentTokenIndex()
-	if currentTokenIndex == this.previousTokenIndex {
-		itterCount++
-	} else {
-		itterCount = 0
-		previousTokenIndex = currentTokenIndex
+	actionStr := "UNKNOWN"
+	switch this.Action {
+	case ACTION_INSERT:
+		actionStr = "INSERT"
+	case ACTION_REMOVE:
+		actionStr = "REMOVE"
+	case ACTION_KEEP:
+		actionStr = "KEEP"
 	}
-	fix := nil
-	if isCompletion && (itterCount < COMPLETION_ITTER_LIMIT) {
+	return actionStr + "'" + this.TokenText + "'"
+}
+
+func (this *AbstractParserErrorHandler) Recover(currentCtx common.ParserRuleContext, nextToken internal.STToken, isCompletion bool) *Solution {
+	currentTokenIndex := this.tokenReader.GetCurrentTokenIndex()
+	if currentTokenIndex == this.previousTokenIndex {
+		this.itterCount++
+	} else {
+		this.itterCount = 0
+		this.previousTokenIndex = currentTokenIndex
+	}
+	var fix *Solution
+	if isCompletion && (this.itterCount < COMPLETION_ITTER_LIMIT) {
 		fix = this.getCompletion(currentCtx, nextToken)
-	} else if itterCount < RESOLUTION_ITTER_LIMIT {
+	} else if this.itterCount < RESOLUTION_ITTER_LIMIT {
 		fix = this.getResolution(currentCtx, nextToken)
 	}
 	if fix != nil {
 		this.applyFix(currentCtx, fix)
 		return fix
 	}
+	// Fail safe. This means we can't find a path to recover.
 	if isCompletion {
-		if itterCount == COMPLETION_ITTER_LIMIT {
-			panic("assertion failed")
-		} else if itterCount == RESOLUTION_ITTER_LIMIT {
-			panic("assertion failed")
+		if this.itterCount == COMPLETION_ITTER_LIMIT {
+			panic("fail safe reached")
+		}
+	} else {
+		if this.itterCount == RESOLUTION_ITTER_LIMIT {
+			panic("fail safe reached")
 		}
 	}
 	return this.getFailSafeSolution(currentCtx, nextToken)
 }
 
-func (this *AbstractParserErrorHandler) getResolution(currentCtx ParserRuleContext, nextToken Token) Solution {
-	bestMatch := this.seekMatch(currentCtx)
+func (this *AbstractParserErrorHandler) getResolution(currentCtx common.ParserRuleContext, nextToken internal.STToken) *Solution {
+	bestMatch := this.seekMatchStart(currentCtx)
 	this.validateSolution(bestMatch, currentCtx, nextToken)
-	sol := nil
+	var sol *Solution
 	if bestMatch.matches > 0 {
 		sol = bestMatch.solution
 	}
 	return sol
 }
 
-func (this *AbstractParserErrorHandler) getFailSafeSolution(currentCtx ParserRuleContext, nextToken Token) Solution {
-	sol := nil
-	sol.removedToken = this.consumeInvalidToken()
+func (this *AbstractParserErrorHandler) getFailSafeSolution(currentCtx common.ParserRuleContext, nextToken internal.STToken) *Solution {
+	sol := NewSolution(ACTION_REMOVE, currentCtx, nextToken.Kind(), nextToken.Text())
+	sol.RemovedToken = this.ConsumeInvalidToken()
 	return sol
 }
 
-func (this *AbstractParserErrorHandler) validateSolution(bestMatch Result, currentCtx ParserRuleContext, nextToken Node) {
+func (this *AbstractParserErrorHandler) validateSolution(bestMatch *Result, currentCtx common.ParserRuleContext, nextToken internal.STNode) {
 	sol := bestMatch.solution
-	if (sol == nil) || (sol.action == Action_REMOVE) {
+	if (sol == nil) || (sol.Action == ACTION_REMOVE) {
 		return
 	}
-	if (sol.action == Action_KEEP) && (nextToken.kind == SyntaxKind_DOCUMENTATION_STRING) {
-		bestMatch.solution = nil
+	if (sol.Action == ACTION_KEEP) && (nextToken.Kind() == common.DOCUMENTATION_STRING) {
+		bestMatch.solution = NewSolution(ACTION_REMOVE, currentCtx, common.DOCUMENTATION_STRING, currentCtx.String())
 	}
-	if (sol.action != Action_INSERT) || (this.bestMatch.fixesSize() < 2) {
+	if (sol.Action != ACTION_INSERT) || (bestMatch.fixesSize() < 2) {
 		return
 	}
-	firstFix := this.bestMatch.popFix()
-	secondFix := this.bestMatch.peekFix()
-	this.bestMatch.pushFix(firstFix)
-	if (secondFix.action == Action_REMOVE) && (secondFix.depth == 1) {
+	firstFix := bestMatch.popFix()
+	secondFix := bestMatch.peekFix()
+	bestMatch.pushFix(firstFix)
+	if (secondFix.Action == ACTION_REMOVE) && (secondFix.Depth == 1) {
 		bestMatch.solution = secondFix
 	}
 }
 
-func (this *AbstractParserErrorHandler) getCompletion(context ParserRuleContext, nextToken Token) Solution {
+func (this *AbstractParserErrorHandler) getCompletion(context common.ParserRuleContext, nextToken internal.STToken) *Solution {
 	tempCtxStack := this.ctxStack
 	this.ctxStack = this.getCtxStackSnapshot()
-	var sol Solution
+	var sol *Solution
 	func() {
+		// TODO: check if we panic inside this method
 		defer func() {
 			if r := recover(); r != nil {
-				if _, ok := r.(IllegalStateException); ok {
-					if false {
-						panic("assertion failed")
-					}
-					sol = this.getResolution(context, nextToken)
-				} else {
-					panic(r) // re-panic if it's not a handled exception
+				if false {
+					panic("assertion failed")
 				}
+				sol = this.getResolution(context, nextToken)
 			}
 		}()
 		sol = this.getInsertSolution(context)
@@ -171,43 +210,41 @@ func (this *AbstractParserErrorHandler) getCompletion(context ParserRuleContext,
 	return sol
 }
 
-func (this *AbstractParserErrorHandler) ConsumeInvalidToken() Token {
-	return this.this.tokenReader.read()
+func (this *AbstractParserErrorHandler) ConsumeInvalidToken() internal.STToken {
+	return this.tokenReader.Read()
 }
 
-func (this *AbstractParserErrorHandler) applyFix(currentCtx ParserRuleContext, fix Solution) {
-	if fix.action == Action_REMOVE {
-		fix.removedToken = this.consumeInvalidToken()
-		fix.recoveredNode = this.this.tokenReader.peek()
-		fix.tokenKind = this.tokenReader.peek().kind
-	} else if fix.action == Action_INSERT {
-		fix.recoveredNode = this.handleMissingToken(currentCtx, fix)
+func (this *AbstractParserErrorHandler) applyFix(currentCtx common.ParserRuleContext, fix *Solution) {
+	if fix.Action == ACTION_REMOVE {
+		fix.RemovedToken = this.ConsumeInvalidToken()
+		fix.RecoveredNode = this.tokenReader.Peek()
+		fix.TokenKind = this.tokenReader.Peek().Kind()
+	} else if fix.Action == ACTION_INSERT {
+		fix.RecoveredNode = this.handleMissingToken(currentCtx, fix)
 	}
 }
 
-func (this *AbstractParserErrorHandler) handleMissingToken(currentCtx ParserRuleContext, fix Solution) Node {
-	return this.SyntaxErrors.createMissingTokenWithDiagnostics(fix.tokenKind, fix.ctx)
+func (this *AbstractParserErrorHandler) handleMissingToken(currentCtx common.ParserRuleContext, fix *Solution) internal.STNode {
+	return internal.CreateMissingTokenWithDiagnosticsFromParserRules(fix.TokenKind, fix.Ctx)
 }
 
-func (this *AbstractParserErrorHandler) getCtxStackSnapshot() []ParserRuleContext {
-	return this.this.ctxStack.clone()
+func (this *AbstractParserErrorHandler) getCtxStackSnapshot() []common.ParserRuleContext {
+	snapshot := make([]common.ParserRuleContext, len(this.ctxStack))
+	copy(snapshot, this.ctxStack)
+	return snapshot
 }
 
-func (this *AbstractParserErrorHandler) seekMatch(currentCtx ParserRuleContext) Result {
+func (this *AbstractParserErrorHandler) seekMatchStart(currentCtx common.ParserRuleContext) *Result {
 	tempCtxStack := this.ctxStack
-	var bestMatch Result
+	var bestMatch *Result
 	func() {
 		defer func() {
 			if r := recover(); r != nil {
-				if _, ok := r.(IllegalStateException); ok {
-					if false {
-						panic("assertion failed")
-					}
-					bestMatch = nil
-					bestMatch.solution = nil
-				} else {
-					panic(r) // re-panic if it's not a handled exception
+				if false {
+					panic("assertion failed")
 				}
+				bestMatch = NewResult(make([]*Solution, 0), LOOKAHEAD_LIMIT-1)
+				bestMatch.solution = NewSolution(ACTION_REMOVE, currentCtx, common.SyntaxKind(0), currentCtx.String())
 			}
 		}()
 		bestMatch = this.seekMatchInSubTree(currentCtx, 1, 0, true)
@@ -217,7 +254,7 @@ func (this *AbstractParserErrorHandler) seekMatch(currentCtx ParserRuleContext) 
 	return bestMatch
 }
 
-func (this *AbstractParserErrorHandler) seekMatchInSubTree(currentCtx ParserRuleContext, lookahead int, currentDepth int, isEntryPoint bool) Result {
+func (this *AbstractParserErrorHandler) seekMatchInSubTree(currentCtx common.ParserRuleContext, lookahead int, currentDepth int, isEntryPoint bool) *Result {
 	tempCtxStack := this.ctxStack
 	this.ctxStack = this.getCtxStackSnapshot()
 	result := this.seekMatch(currentCtx, lookahead, currentDepth, isEntryPoint)
@@ -225,89 +262,98 @@ func (this *AbstractParserErrorHandler) seekMatchInSubTree(currentCtx ParserRule
 	return result
 }
 
-func (this *AbstractParserErrorHandler) StartContext(context ParserRuleContext) {
-	this.this.ctxStack.push(context)
+func (this *AbstractParserErrorHandler) StartContext(context common.ParserRuleContext) {
+	this.ctxStack = append(this.ctxStack, context)
 }
 
 func (this *AbstractParserErrorHandler) EndContext() {
-	this.this.ctxStack.pop()
+	this.ctxStack = this.ctxStack[:len(this.ctxStack)-1]
 }
 
-func (this *AbstractParserErrorHandler) SwitchContext(context ParserRuleContext) {
-	this.this.ctxStack.pop()
-	this.this.ctxStack.push(context)
+func (this *AbstractParserErrorHandler) SwitchContext(context common.ParserRuleContext) {
+	this.ctxStack = this.ctxStack[:len(this.ctxStack)-1]
+	this.ctxStack = append(this.ctxStack, context)
 }
 
-func (this *AbstractParserErrorHandler) getParentContext() ParserRuleContext {
-	return this.this.ctxStack.peek()
+func (this *AbstractParserErrorHandler) getParentContext() common.ParserRuleContext {
+	return this.ctxStack[len(this.ctxStack)-1]
 }
 
-func (this *AbstractParserErrorHandler) getGrandParentContext() ParserRuleContext {
-	parent := this.this.ctxStack.pop()
-	grandParent := this.this.ctxStack.peek()
-	this.this.ctxStack.push(parent)
+func (this *AbstractParserErrorHandler) getGrandParentContext() common.ParserRuleContext {
+	parent := this.ctxStack[len(this.ctxStack)-1]
+	this.ctxStack = this.ctxStack[:len(this.ctxStack)-1]
+
+	grandParent := this.ctxStack[len(this.ctxStack)-1]
+
+	this.ctxStack = append(this.ctxStack, parent)
 	return grandParent
 }
 
-func (this *AbstractParserErrorHandler) hasAncestorContext(context ParserRuleContext) bool {
-	return this.this.ctxStack.contains(context)
+func (this *AbstractParserErrorHandler) hasAncestorContext(context common.ParserRuleContext) bool {
+	for _, ctx := range this.ctxStack {
+		if ctx == context {
+			return true
+		}
+	}
+	return false
 }
 
-func (this *AbstractParserErrorHandler) getContextStack() []ParserRuleContext {
+func (this *AbstractParserErrorHandler) getContextStack() []common.ParserRuleContext {
 	return this.ctxStack
 }
 
-func (this *AbstractParserErrorHandler) seekInAlternativesPaths(lookahead int, currentDepth int, currentMatches int, alternativeRules []ParserRuleContext, isEntryPoint bool) Result {
-	results := nil
+func (this *AbstractParserErrorHandler) seekInAlternativesPaths(lookahead int, currentDepth int, currentMatches int, alternativeRules []common.ParserRuleContext, isEntryPoint bool) *Result {
+	results := make([][]*Result, LOOKAHEAD_LIMIT)
 	bestMatchIndex := 0
+
 	for _, rule := range alternativeRules {
 		tempCtxStack := this.ctxStack
-		var result Result
+		var result *Result
+		shouldContinue := false
 		func() {
 			defer func() {
 				if r := recover(); r != nil {
-					if _, ok := r.(IllegalStateException); ok {
-						if false {
-							panic("assertion failed")
-						}
-						continue
-					} else {
-						panic(r) // re-panic if it's not a handled exception
+					if false {
+						panic("assertion failed")
 					}
+					shouldContinue = true
 				}
 			}()
 			result = this.seekMatchInSubTree(rule, lookahead, currentDepth, isEntryPoint)
 		}()
 		this.ctxStack = tempCtxStack
 
+		if shouldContinue {
+			continue
+		}
+
 		if this.hasFoundBestAlternative(result) {
 			return this.getFinalResult(currentMatches, result)
 		}
-		similarResutls := results[result.matches]
-		if similarResutls == nil {
-			similarResutls = make([]interface{}, 0)
-			results[result.matches] = similarResutls
+		similarResults := results[result.matches]
+		if similarResults == nil {
+			similarResults = make([]*Result, 0)
+			results[result.matches] = similarResults
 			if bestMatchIndex < result.matches {
 				bestMatchIndex = result.matches
 			}
 		}
-		this.similarResutls.add(result)
+		results[result.matches] = append(results[result.matches], result)
 	}
+
 	bestMatches := results[bestMatchIndex]
-	bestMatch := this.bestMatches.get(0)
-	var currentMatch Result
-	i := 1
-	for ; i < len(bestMatches); i++ {
-		currentMatch = this.bestMatches.get(i)
+	bestMatch := bestMatches[0]
+	for i := 1; i < len(bestMatches); i++ {
+		currentMatch := bestMatches[i]
 		currentMatchRemoveFixes := currentMatch.removeFixes
 		bestMatchRemoveFixes := bestMatch.removeFixes
 		if bestMatchRemoveFixes == 0 {
 			break
 		}
 		if currentMatchRemoveFixes == bestMatchRemoveFixes {
-			currentSol := this.bestMatch.peekFix()
-			foundSol := this.currentMatch.peekFix()
-			if (currentSol.action == Action_REMOVE) && (foundSol.action == Action_INSERT) {
+			currentSol := bestMatch.peekFix()
+			foundSol := currentMatch.peekFix()
+			if (currentSol.Action == ACTION_REMOVE) && (foundSol.Action == ACTION_INSERT) {
 				bestMatch = currentMatch
 			}
 		} else if currentMatchRemoveFixes < bestMatchRemoveFixes {
@@ -317,60 +363,61 @@ func (this *AbstractParserErrorHandler) seekInAlternativesPaths(lookahead int, c
 	return this.getFinalResult(currentMatches, bestMatch)
 }
 
-func (this *AbstractParserErrorHandler) hasFoundBestAlternative(result Result) bool {
+func (this *AbstractParserErrorHandler) hasFoundBestAlternative(result *Result) bool {
 	if result.matches < (LOOKAHEAD_LIMIT - 1) {
 		return false
 	}
 	if result.solution == nil {
 		return true
 	}
-	return (result.solution.action != Action_REMOVE)
+	return (result.solution.Action != ACTION_REMOVE)
 }
 
-func (this *AbstractParserErrorHandler) getFinalResult(currentMatches int, bestMatch Result) Result {
-	bestMatch.matches = currentMatches
+func (this *AbstractParserErrorHandler) getFinalResult(currentMatches int, bestMatch *Result) *Result {
+	bestMatch.matches += currentMatches
 	return bestMatch
 }
 
-func (this *AbstractParserErrorHandler) fixAndContinue(currentCtx ParserRuleContext, lookahead int, currentDepth int, matchingRulesCount int, isEntryPoint bool) Result {
-	fixedPathResult := this.fixAndContinue(currentCtx, lookahead, currentDepth)
+func (this *AbstractParserErrorHandler) fixAndContinue(currentCtx common.ParserRuleContext, lookahead int, currentDepth int, matchingRulesCount int, isEntryPoint bool) *Result {
+	fixedPathResult := this.fixAndContinueCore(currentCtx, lookahead, currentDepth)
 	if isEntryPoint {
-		fixedPathResult.solution = this.fixedPathResult.peekFix()
+		fixedPathResult.solution = fixedPathResult.peekFix()
 	} else {
-		fixedPathResult.solution = nil
+		fixedPathResult.solution = NewSolution(ACTION_KEEP, currentCtx, this.getExpectedTokenKind(currentCtx), currentCtx.String())
 	}
 	return this.getFinalResult(matchingRulesCount, fixedPathResult)
 }
 
-func (this *AbstractParserErrorHandler) fixAndContinue(currentCtx ParserRuleContext, lookahead int, currentDepth int) Result {
+func (this *AbstractParserErrorHandler) fixAndContinueCore(currentCtx common.ParserRuleContext, lookahead int, currentDepth int) *Result {
 	deletionResult := this.seekMatchInSubTree(currentCtx, lookahead+1, currentDepth+1, false)
 	nextCtx := this.getNextRule(currentCtx, lookahead)
 	insertionResult := this.seekMatchInSubTree(nextCtx, lookahead, currentDepth+1, false)
-	var fixedPathResult Result
-	var action Solution
+	var fixedPathResult *Result
+	var action *Solution
+
 	if (insertionResult.matches == 0) && (deletionResult.matches == 0) {
-		action = nil
-		this.insertionResult.pushFix(action)
+		action = NewSolutionWithDepth(ACTION_INSERT, currentCtx, this.getExpectedTokenKind(currentCtx), currentCtx.String(), currentDepth)
+		insertionResult.pushFix(action)
 		fixedPathResult = insertionResult
 	} else if insertionResult.matches == deletionResult.matches {
 		if insertionResult.removeFixes <= (deletionResult.removeFixes + 1) {
-			action = nil
-			this.insertionResult.pushFix(action)
+			action = NewSolutionWithDepth(ACTION_INSERT, currentCtx, this.getExpectedTokenKind(currentCtx), currentCtx.String(), currentDepth)
+			insertionResult.pushFix(action)
 			fixedPathResult = insertionResult
 		} else {
-			token := this.this.tokenReader.peek(lookahead)
-			action = nil
-			this.deletionResult.pushFix(action)
+			token := this.tokenReader.PeekN(lookahead)
+			action = NewSolutionWithDepth(ACTION_REMOVE, currentCtx, token.Kind(), token.Text(), currentDepth)
+			deletionResult.pushFix(action)
 			fixedPathResult = deletionResult
 		}
 	} else if insertionResult.matches > deletionResult.matches {
-		action = nil
-		this.insertionResult.pushFix(action)
+		action = NewSolutionWithDepth(ACTION_INSERT, currentCtx, this.getExpectedTokenKind(currentCtx), currentCtx.String(), currentDepth)
+		insertionResult.pushFix(action)
 		fixedPathResult = insertionResult
 	} else {
-		token := this.this.tokenReader.peek(lookahead)
-		action = nil
-		this.deletionResult.pushFix(action)
+		token := this.tokenReader.PeekN(lookahead)
+		action = NewSolutionWithDepth(ACTION_REMOVE, currentCtx, token.Kind(), token.Text(), currentDepth)
+		deletionResult.pushFix(action)
 		fixedPathResult = deletionResult
 	}
 	return fixedPathResult
