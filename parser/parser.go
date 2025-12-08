@@ -92,11 +92,11 @@ const (
 
 type ParserErrorHandler interface {
 	ReportError(errorCode common.DiagnosticErrorCode, args ...any)
-	switchContext(context common.ParserRuleContext)
-	getParentContext() common.ParserRuleContext
-	endContext()
-	startContext(context common.ParserRuleContext)
-	recover(currentCtx common.ParserRuleContext, token internal.STToken, isCompletion bool) Solution
+	SwitchContext(context common.ParserRuleContext)
+	GetParentContext() common.ParserRuleContext
+	EndContext()
+	StartContext(context common.ParserRuleContext)
+	Recover(currentCtx common.ParserRuleContext, token internal.STToken, isCompletion bool) *Solution
 	GetContextStack() []common.ParserRuleContext
 	GetGrandParentContext() common.ParserRuleContext
 	ConsumeInvalidToken() internal.STToken
@@ -193,9 +193,9 @@ func (this *abstractParser) consumeWithInvalidNodesWithToken(token internal.STTo
 	return newToken
 }
 
-func (this *abstractParser) recover(token internal.STToken, currentCtx common.ParserRuleContext, isCompletion bool) Solution {
+func (this *abstractParser) recover(token internal.STToken, currentCtx common.ParserRuleContext, isCompletion bool) *Solution {
 	isCompletion = isCompletion || token.Kind() == common.EOF_TOKEN
-	sol := this.errorHandler.recover(currentCtx, token, isCompletion)
+	sol := this.errorHandler.Recover(currentCtx, token, isCompletion)
 	if sol.Action == ACTION_REMOVE {
 		this.insertedToken = nil
 		this.addInvalidTokenToNextToken(sol.RemovedToken)
@@ -218,19 +218,19 @@ func (this *abstractParser) isInvalidNodeStackEmpty() bool {
 }
 
 func (this *abstractParser) startContext(context common.ParserRuleContext) {
-	this.errorHandler.startContext(context)
+	this.errorHandler.StartContext(context)
 }
 
 func (this *abstractParser) endContext() {
-	this.errorHandler.endContext()
+	this.errorHandler.EndContext()
 }
 
 func (this *abstractParser) getCurrentContext() common.ParserRuleContext {
-	return this.errorHandler.getParentContext()
+	return this.errorHandler.GetParentContext()
 }
 
 func (this *abstractParser) switchContext(context common.ParserRuleContext) {
-	this.errorHandler.switchContext(context)
+	this.errorHandler.SwitchContext(context)
 }
 
 func (this *abstractParser) getNextNextToken() internal.STToken {
@@ -4777,7 +4777,7 @@ func (this *BallerinaParser) parseExpressionRhsInternal(currentPrecedenceLevel O
 func (this *BallerinaParser) recoverExpressionRhs(currentPrecedenceLevel OperatorPrecedence, lhsExpr internal.STNode, isRhsExpr bool, allowActions bool, isInMatchGuard bool, isInConditionalExpr bool) internal.STNode {
 	token := this.peek()
 	lhsExprKind := lhsExpr.Kind()
-	var solution Solution
+	var solution *Solution
 	if (lhsExprKind == common.QUALIFIED_NAME_REFERENCE) || (lhsExprKind == common.SIMPLE_NAME_REFERENCE) {
 		solution = this.recoverWithBlockContext(token, common.PARSER_RULE_CONTEXT_VARIABLE_REF_RHS)
 	} else {
@@ -14716,7 +14716,7 @@ func (this *BallerinaParser) getMappingField(identifier internal.STNode, colon i
 	}
 }
 
-func (this *BallerinaParser) recoverWithBlockContext(nextToken internal.STToken, currentCtx common.ParserRuleContext) Solution {
+func (this *BallerinaParser) recoverWithBlockContext(nextToken internal.STToken, currentCtx common.ParserRuleContext) *Solution {
 	if this.isInsideABlock(nextToken) {
 		return this.abstractParser.recover(nextToken, currentCtx, true)
 	} else {
