@@ -20,7 +20,6 @@ import (
 	"ballerina-lang-go/parser/common"
 	"ballerina-lang-go/parser/internal"
 	"ballerina-lang-go/tools/diagnostics"
-	"fmt"
 	"strings"
 )
 
@@ -639,7 +638,7 @@ func (this *BallerinaParser) ParseAsStatements() internal.STNode {
 	this.startContext(common.PARSER_RULE_CONTEXT_COMP_UNIT)
 	this.startContext(common.PARSER_RULE_CONTEXT_FUNC_BODY_BLOCK)
 	stmtsNode := this.parseStatements()
-	stmtNodeList, ok := stmtsNode.(internal.STNodeList)
+	stmtNodeList, ok := stmtsNode.(*internal.STNodeList)
 	if !ok {
 		panic("stmtsNode is not a STNodeList")
 	}
@@ -953,7 +952,7 @@ func (this *BallerinaParser) addMetadataNotAttachedDiagnostic(metadata internal.
 	if docString != nil {
 		docString = internal.AddDiagnostic(docString, &common.ERROR_DOCUMENTATION_NOT_ATTACHED_TO_A_CONSTRUCT)
 	}
-	annotList, ok := metadata.Annotations.(internal.STNodeList)
+	annotList, ok := metadata.Annotations.(*internal.STNodeList)
 	if !ok {
 		panic("annotations is not a STNodeList")
 	}
@@ -961,7 +960,7 @@ func (this *BallerinaParser) addMetadataNotAttachedDiagnostic(metadata internal.
 	return internal.CreateMetadataNode(docString, annotations)
 }
 
-func (this *BallerinaParser) addAnnotNotAttachedDiagnostic(annotList internal.STNodeList) internal.STNode {
+func (this *BallerinaParser) addAnnotNotAttachedDiagnostic(annotList *internal.STNodeList) internal.STNode {
 	annotations := internal.UpdateAllNodesInNodeListWithDiagnostic(annotList, &common.ERROR_ANNOTATION_NOT_ATTACHED_TO_A_CONSTRUCT)
 	return annotations
 }
@@ -2777,9 +2776,6 @@ func (this *BallerinaParser) isEndOfModuleLevelNode(peekIndex int) bool {
 }
 
 func (this *BallerinaParser) isEndOfModuleLevelNodeInner(peekIndex int, isObject bool) bool {
-	fmt.Println("peekIndex", peekIndex)
-	fmt.Println("peekN", this.peekN(peekIndex))
-	fmt.Println("peekN Kind", this.peekN(peekIndex).Kind())
 	switch this.peekN(peekIndex).Kind() {
 	case common.EOF_TOKEN,
 		common.CLOSE_BRACE_TOKEN,
@@ -3920,7 +3916,7 @@ func (this *BallerinaParser) parseVarDeclRhsInner(metadata internal.STNode, publ
 	} else {
 		finalKeyword = varDeclQuals[0]
 	}
-	if metadata.Kind() == common.LIST {
+	if metadata.Kind() != common.LIST {
 		panic("assertion failed")
 	}
 	return internal.CreateVariableDeclarationNode(metadata, finalKeyword, typedBindingPattern, assign,
@@ -4296,7 +4292,7 @@ func (this *BallerinaParser) parseTerminalExpressionInner(annots internal.STNode
 	nextToken := this.peek()
 	annotNodeList := annots.(*internal.STNodeList)
 	if (!annotNodeList.IsEmpty()) && (!this.isAnnotAllowedExprStart(nextToken)) {
-		annots = this.addAnnotNotAttachedDiagnostic(*annotNodeList)
+		annots = this.addAnnotNotAttachedDiagnostic(annotNodeList)
 		qualifierNodeList := this.createObjectTypeQualNodeList(qualifiers)
 		return this.createMissingObjectConstructor(annots, qualifierNodeList)
 	}
@@ -8925,7 +8921,7 @@ func (this *BallerinaParser) parseTupleMember() internal.STNode {
 func (this *BallerinaParser) createMemberOrRestNode(annot internal.STNode, typeDesc internal.STNode) internal.STNode {
 	tupleMemberRhs := this.parseTypeDescInTupleRhs()
 	if tupleMemberRhs != nil {
-		annotList, ok := annot.(internal.STNodeList)
+		annotList, ok := annot.(*internal.STNodeList)
 		if !ok {
 			panic("createMemberOrRestNode: expected internal.STNodeList")
 		}
@@ -10645,7 +10641,7 @@ func (this *BallerinaParser) parseByteArrayLiteral() internal.STNode {
 func (this *BallerinaParser) parseByteArrayLiteralWithContent(typeKeyword internal.STNode, startingBackTick internal.STNode, byteArrayContent internal.STNode) internal.STNode {
 	content := internal.CreateEmptyNode()
 	newStartingBackTick := startingBackTick
-	items, ok := byteArrayContent.(internal.STNodeList)
+	items, ok := byteArrayContent.(*internal.STNodeList)
 	if !ok {
 		panic("byteArrayContent is not a STNodeList")
 	}

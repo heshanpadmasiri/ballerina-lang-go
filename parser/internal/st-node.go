@@ -217,16 +217,16 @@ func CreateTokenWithDiagnostics(kind common.SyntaxKind, leadingMinutiae STNode, 
 }
 
 // FIXME: remove this
-func CreateNodeListFromNodes(nodes ...STNode) STNodeList {
+func CreateNodeListFromNodes(nodes ...STNode) STNode {
 	return CreateNodeList(nodes...)
 }
 
-func CreateNodeList(nodes ...STNode) STNodeList {
+func CreateNodeList(nodes ...STNode) STNode {
 	// Return shared empty instance for empty lists
 	if len(nodes) == 0 {
-		return *emptyNodeList
+		return emptyNodeList
 	}
-	return STNodeList{
+	return &STNodeList{
 		STNodeBase: STNodeBase{
 			kind:         common.LIST,
 			childBuckets: nodes,
@@ -420,14 +420,14 @@ func (n STNodeBase) Tokens() []STToken {
 	return tokens
 }
 
-func (n STNodeBase) addChildren(children ...STNode) {
+func (n *STNodeBase) addChildren(children ...STNode) {
 	n.childBuckets = append(n.childBuckets, children...)
 	n.bucketCount = len(n.childBuckets)
 	n.updateDiagnostics(children)
 	n.updateWidth(children)
 }
 
-func (n STNodeBase) updateDiagnostics(children []STNode) {
+func (n *STNodeBase) updateDiagnostics(children []STNode) {
 	for _, child := range children {
 		if !IsSTNodePresent(child) {
 			continue
@@ -439,7 +439,7 @@ func (n STNodeBase) updateDiagnostics(children []STNode) {
 	}
 }
 
-func (n STNodeBase) updateWidth(children []STNode) {
+func (n *STNodeBase) updateWidth(children []STNode) {
 	firstChildIndex := n.getFirstChildIndex(children)
 	if firstChildIndex == -1 {
 		return
@@ -464,7 +464,7 @@ func (n STNodeBase) updateWidth(children []STNode) {
 	n.updateWidthWithIndices(children, firstChildIndex, lastChildIndex)
 }
 
-func (n STNodeBase) updateWidthWithIndices(children []STNode, firstChildIndex int, lastChildIndex int) {
+func (n *STNodeBase) updateWidthWithIndices(children []STNode, firstChildIndex int, lastChildIndex int) {
 	for i := firstChildIndex + 1; i < lastChildIndex; i++ {
 		child := children[i]
 		if !IsSTNodePresent(child) {
@@ -870,7 +870,7 @@ func CreateEmptyNode() STNode {
 
 func CreateMarkdownDocumentationLineNode(kind common.SyntaxKind, hashToken STNode, documentElements STNode) STNode {
 	return createNodeAndAddChildren(&STMarkdownDocumentationLineNode{
-		STDocumentationNode: STNodeBase{
+		STDocumentationNode: &STNodeBase{
 			kind: kind,
 		},
 		HashToken:        hashToken,
@@ -878,9 +878,9 @@ func CreateMarkdownDocumentationLineNode(kind common.SyntaxKind, hashToken STNod
 	}, hashToken, documentElements)
 }
 
-func CreateMarkdownDocumentationNode(documentationLines STNodeList) STNode {
+func CreateMarkdownDocumentationNode(documentationLines STNode) STNode {
 	return createNodeAndAddChildren(&STMarkdownDocumentationNode{
-		STDocumentationNode: STNodeBase{
+		STDocumentationNode: &STNodeBase{
 			kind: common.MARKDOWN_DOCUMENTATION,
 		},
 		DocumentationLines: documentationLines,
@@ -928,7 +928,7 @@ func createNodeAndAddChildren[T STNode](base T, children ...STNode) T {
 	return base
 }
 
-func UpdateAllNodesInNodeListWithDiagnostic(nodeList STNodeList, diagnosticCode diagnostics.DiagnosticCode) STNode {
+func UpdateAllNodesInNodeListWithDiagnostic(nodeList *STNodeList, diagnosticCode diagnostics.DiagnosticCode) STNode {
 	newList := make([]STNode, nodeList.Size())
 	for i := 0; i < nodeList.Size(); i++ {
 		newList[i] = AddDiagnostic(nodeList.Get(i), diagnosticCode)
@@ -1012,7 +1012,7 @@ func CreateTypedBindingPatternNode(typeDescriptor STNode, bindingPattern STNode)
 
 func CreateSimpleNameReferenceNode(name STNode) STNode {
 	return createNodeAndAddChildren(&STSimpleNameReferenceNode{
-		STNameReferenceNode: STNodeBase{
+		STNameReferenceNode: &STNodeBase{
 			kind: common.SIMPLE_NAME_REFERENCE,
 		},
 		Name: name,

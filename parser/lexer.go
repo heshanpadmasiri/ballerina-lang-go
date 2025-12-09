@@ -1185,14 +1185,14 @@ func (l *Lexer) getSyntaxToken(kind common.SyntaxKind) internal.STToken {
 func (l *Lexer) getLeadingTrivia() internal.STNode {
 	trivia := internal.CreateNodeList(l.context.leadingTriviaList...)
 	l.context.leadingTriviaList = make([]internal.STNode, 0, INITIAL_TRIVIA_CAPACITY)
-	return &trivia
+	return trivia
 }
 
 func (l *Lexer) processTrailingTrivia() internal.STNode {
 	triviaList := make([]internal.STNode, 0, INITIAL_TRIVIA_CAPACITY)
 	l.processSyntaxTrivia(&triviaList, false)
 	result := internal.CreateNodeList(triviaList...)
-	return &result
+	return result
 }
 
 func (l *Lexer) processSyntaxTrivia(triviaList *[]internal.STNode, isLeading bool) {
