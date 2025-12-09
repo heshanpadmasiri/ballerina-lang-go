@@ -107,12 +107,17 @@ type tokenBuffer struct {
 }
 
 func (t *tokenBuffer) add(token internal.STToken) {
-	t.tokens[t.insertIndex] = token
-	t.insertIndex = (t.insertIndex + 1) % BUFFER_SIZE
-	t.size++
 	if t.size == BUFFER_SIZE {
 		panic("buffer overflow")
 	}
+
+	if t.size == 0 {
+		t.cursorIndex = t.insertIndex
+	}
+
+	t.tokens[t.insertIndex] = token
+	t.insertIndex = (t.insertIndex + 1) % BUFFER_SIZE
+	t.size++
 }
 
 func (t *tokenBuffer) peek() internal.STToken {
@@ -120,10 +125,16 @@ func (t *tokenBuffer) peek() internal.STToken {
 }
 
 func (t *tokenBuffer) peekN(n int) internal.STToken {
-	if n >= BUFFER_SIZE {
+	if n > t.size {
 		panic("n is too large")
 	}
-	return t.tokens[t.cursorIndex+n]
+
+	index := t.cursorIndex + n - 1
+	if index >= BUFFER_SIZE {
+		index = index - BUFFER_SIZE
+	}
+
+	return t.tokens[index]
 }
 
 func (t *tokenBuffer) consume() internal.STToken {

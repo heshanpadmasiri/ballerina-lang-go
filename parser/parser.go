@@ -20,6 +20,7 @@ import (
 	"ballerina-lang-go/parser/common"
 	"ballerina-lang-go/parser/internal"
 	"ballerina-lang-go/tools/diagnostics"
+	"fmt"
 	"strings"
 )
 
@@ -91,7 +92,6 @@ const (
 )
 
 type ParserErrorHandler interface {
-	ReportError(errorCode common.DiagnosticErrorCode, args ...any)
 	SwitchContext(context common.ParserRuleContext)
 	GetParentContext() common.ParserRuleContext
 	EndContext()
@@ -308,7 +308,8 @@ func NewBallerinaParserFromTokenReader(tokenReader TokenReader) BallerinaParser 
 	this.abstractParser = abstractParser{
 		tokenReader: tokenReader,
 	}
-	// this.abstractParser.errorHandler = NewBallerinaParserErrorHandler(&this.abstractParser.tokenReader)
+	errorHandler := NewBallerinaParserErrorHandlerFromTokenReader(this.abstractParser.tokenReader)
+	this.abstractParser.errorHandler = &errorHandler
 	return this
 }
 
@@ -2262,8 +2263,8 @@ func (this *BallerinaParser) parseComma() internal.STNode {
 func (this *BallerinaParser) parseFuncReturnTypeDescriptor(isFuncTypeDesc bool) internal.STNode {
 	nextToken := this.peek()
 	switch nextToken.Kind() {
-	case common.OPEN_BRACE_TOKEN:
-	case common.EQUAL_TOKEN:
+	case common.OPEN_BRACE_TOKEN,
+		common.EQUAL_TOKEN:
 		return internal.CreateEmptyNode()
 	case common.RETURNS_KEYWORD:
 		break
@@ -2776,6 +2777,9 @@ func (this *BallerinaParser) isEndOfModuleLevelNode(peekIndex int) bool {
 }
 
 func (this *BallerinaParser) isEndOfModuleLevelNodeInner(peekIndex int, isObject bool) bool {
+	fmt.Println("peekIndex", peekIndex)
+	fmt.Println("peekN", this.peekN(peekIndex))
+	fmt.Println("peekN Kind", this.peekN(peekIndex).Kind())
 	switch this.peekN(peekIndex).Kind() {
 	case common.EOF_TOKEN,
 		common.CLOSE_BRACE_TOKEN,
