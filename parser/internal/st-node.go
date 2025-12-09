@@ -700,6 +700,33 @@ func getLiteralTokenName(kind common.SyntaxKind) string {
 	}
 }
 
+// kindStrValue returns a string representation of the SyntaxKind.
+// If StrValue() returns a non-empty string, it uses that.
+// Otherwise, it returns the Go constant name for known values, or falls back to the tag number.
+func kindStrValue(kind common.SyntaxKind) string {
+	strVal := kind.StrValue()
+	if strVal != "" {
+		return strVal
+	}
+
+	// For values where StrValue() returns empty, return the constant name
+	switch kind {
+	case common.INVALID:
+		return "INVALID"
+	case common.MODULE_PART:
+		return "MODULE_PART"
+	case common.EOF_TOKEN:
+		return "EOF_TOKEN"
+	case common.LIST:
+		return "LIST"
+	case common.NONE:
+		return "NONE"
+	default:
+		// Fall back to tag number for unknown values
+		return fmt.Sprintf("%d", kind.Tag())
+	}
+}
+
 // toSexpr converts an STNode to S-expression format: (Kind width flags (diagnostics) *children)
 func ToSexpr(node STNode) string {
 	return toSexprIndented(node, 0)
@@ -719,10 +746,7 @@ func toSexprIndented(node STNode, indentLevel int) string {
 
 	// Kind
 	kind := node.Kind()
-	kindStr := kind.StrValue()
-	if kindStr == "" {
-		kindStr = fmt.Sprintf("%d", kind.Tag())
-	}
+	kindStr := kindStrValue(kind)
 	// Special case for literal tokens
 	literalName := getLiteralTokenName(kind)
 	if literalName != "" {
