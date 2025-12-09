@@ -66,6 +66,7 @@ type STToken interface {
 	HasTrailingNewLine() bool
 	LeadingMinutiae() STNode
 	TrailingMinutiae() STNode
+	ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken
 }
 
 // Actual "base" types for AST nodes. We generate most of the actual nodes in st-node-gen.go.
@@ -141,6 +142,88 @@ type (
 		args []any
 	}
 )
+
+// ModifyWith implementations for all token types
+// Port from Java STToken.java:129-131 and similar methods in each token class
+
+func (t *STTokenBase) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
+	return &STTokenBase{
+		kind:                t.kind,
+		width:               t.width,
+		diagnostics:         t.diagnostics,
+		flags:               t.flags,
+		leadingMinutiae:     leadingMinutiae,
+		trailingMinutiae:    trailingMinutiae,
+		lookbackTokenCount:  t.lookbackTokenCount,
+		lookaheadTokenCount: t.lookaheadTokenCount,
+	}
+}
+
+func (t *STMissingToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
+	return &STMissingToken{
+		STTokenBase: STTokenBase{
+			kind:                t.kind,
+			width:               t.width,
+			diagnostics:         t.diagnostics,
+			flags:               t.flags,
+			leadingMinutiae:     leadingMinutiae,
+			trailingMinutiae:    trailingMinutiae,
+			lookbackTokenCount:  t.lookbackTokenCount,
+			lookaheadTokenCount: t.lookaheadTokenCount,
+		},
+		diagnosticList: t.diagnosticList,
+	}
+}
+
+func (t *STLiteralValueToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
+	return &STLiteralValueToken{
+		STTokenBase: STTokenBase{
+			kind:                t.kind,
+			width:               t.width,
+			diagnostics:         t.diagnostics,
+			flags:               t.flags,
+			leadingMinutiae:     leadingMinutiae,
+			trailingMinutiae:    trailingMinutiae,
+			lookbackTokenCount:  t.lookbackTokenCount,
+			lookaheadTokenCount: t.lookaheadTokenCount,
+		},
+		text: t.text,
+	}
+}
+
+func (t *STInvalidToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
+	return &STInvalidToken{
+		STTokenBase: STTokenBase{
+			kind:                t.kind,
+			width:               t.width,
+			diagnostics:         t.diagnostics,
+			flags:               t.flags,
+			leadingMinutiae:     leadingMinutiae,
+			trailingMinutiae:    trailingMinutiae,
+			lookbackTokenCount:  t.lookbackTokenCount,
+			lookaheadTokenCount: t.lookaheadTokenCount,
+		},
+		tokenText: t.tokenText,
+	}
+}
+
+func (t *STIdentifierToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
+	// STIdentifierToken embeds STToken interface, need to extract the base
+	base := t.STToken.(*STTokenBase)
+	return &STIdentifierToken{
+		STToken: &STTokenBase{
+			kind:                base.kind,
+			width:               base.width,
+			diagnostics:         base.diagnostics,
+			flags:               base.flags,
+			leadingMinutiae:     leadingMinutiae,
+			trailingMinutiae:    trailingMinutiae,
+			lookbackTokenCount:  base.lookbackTokenCount,
+			lookaheadTokenCount: base.lookaheadTokenCount,
+		},
+		text: t.text,
+	}
+}
 
 func (s STNodeList) IsEmpty() bool {
 	return s.bucketCount == 0
@@ -257,8 +340,8 @@ func CreateInvalidToken(tokenText string) *STInvalidToken {
 	}
 }
 
-func CreateInvalidNodeMinutiae(invalidToken STInvalidToken) STNode {
-	return CreateInvalidTokenMinutiaeNode(&invalidToken)
+func CreateInvalidNodeMinutiae(invalidToken STToken) STNode {
+	return CreateInvalidTokenMinutiaeNode(invalidToken)
 }
 
 func CreateIdentifierToken(text string, leadingTrivia STNode, trailingTrivia STNode) STToken {
@@ -625,6 +708,46 @@ func (s *STNodeList) add(node STNode) *STNodeList {
 	return &STNodeList{STNodeBase: *STNodeBase}
 }
 
+// AddAllAt inserts nodes at specified index (prepend when index=0)
+// Port from Java STNodeList.java:69-78 (Java addAll(int, Collection))
+func (s *STNodeList) AddAllAt(index int, nodes []STNode) *STNodeList {
+	// Create new array with increased capacity
+	newLength := s.bucketCount + len(nodes)
+	newBuckets := make([]STNode, newLength)
+
+	// Copy elements before insertion point
+	copy(newBuckets[0:index], s.childBuckets[0:index])
+
+	// Insert new nodes
+	copy(newBuckets[index:index+len(nodes)], nodes)
+
+	// Copy remaining elements after insertion point
+	copy(newBuckets[index+len(nodes):], s.childBuckets[index:s.bucketCount])
+
+	newBase := s.copy()
+	newBase.childBuckets = newBuckets
+	newBase.bucketCount = newLength
+	return &STNodeList{STNodeBase: *newBase}
+}
+
+// AddAll appends nodes to end of list
+// Port from Java STNodeList.java:80-88 (Java addAll(Collection))
+func (s *STNodeList) AddAll(nodes []STNode) *STNodeList {
+	newLength := s.bucketCount + len(nodes)
+	newBuckets := make([]STNode, newLength)
+
+	// Copy existing elements
+	copy(newBuckets[0:s.bucketCount], s.childBuckets[0:s.bucketCount])
+
+	// Append new nodes
+	copy(newBuckets[s.bucketCount:], nodes)
+
+	newBase := s.copy()
+	newBase.childBuckets = newBuckets
+	newBase.bucketCount = newLength
+	return &STNodeList{STNodeBase: *newBase}
+}
+
 func (s STNodeList) BucketCount() int {
 	return s.bucketCount
 }
@@ -833,11 +956,28 @@ func isToken(node STNode) bool {
 	return ok
 }
 
+// CloneWithLeadingInvalidNodeMinutiae clones a node/token with invalid node as leading minutiae
+// Port from Java SyntaxErrors.java:457-465 (STNode) and 476-484 (STToken)
 func CloneWithLeadingInvalidNodeMinutiae(toClone STNode, invalidNode STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) STNode {
+	// Check if toClone is a token - if so, handle directly (Java line 476-484)
+	if token, ok := toClone.(STToken); ok {
+		minutiaeList := convertInvalidNodeToMinutiae(invalidNode, diagnosticCode, args...)
+		leadingMinutiae := token.LeadingMinutiae().(*STNodeList)
+		leadingMinutiae = leadingMinutiae.AddAllAt(0, minutiaeList) // Prepend at index 0
+		return token.ModifyWith(leadingMinutiae, token.TrailingMinutiae())
+	}
+
+	// Otherwise it's a non-token STNode (Java line 457-465)
 	firstToken := toClone.FirstToken()
-	firstTokenWithInvalidNodeMinutiae := CloneWithLeadingInvalidNodeMinutiae(firstToken,
-		invalidNode, diagnosticCode, args)
+	firstTokenWithInvalidNodeMinutiae := CloneWithLeadingInvalidNodeMinutiae(
+		firstToken, invalidNode, diagnosticCode, args...).(STToken)
 	return Replace(toClone, firstToken, firstTokenWithInvalidNodeMinutiae)
+}
+
+// CloneWithLeadingInvalidNodeMinutiaeWithoutDiagnostics clones without adding diagnostics
+// Port from Java SyntaxErrors.java:444-446
+func CloneWithLeadingInvalidNodeMinutiaeWithoutDiagnostics(toClone STNode, invalidNode STNode) STNode {
+	return CloneWithLeadingInvalidNodeMinutiae(toClone, invalidNode, nil)
 }
 
 func CreateMissingTokenWithDiagnosticsFromParserRules(expectedKind common.SyntaxKind, currentCtx common.ParserRuleContext) STToken {
@@ -873,10 +1013,21 @@ func CloneWithTrailingInvalidNodeMinutiaeWithoutDiagnostics(toClone STNode, inva
 	return CloneWithTrailingInvalidNodeMinutiae(toClone, invalidNode, nil, nil)
 }
 
+// CloneWithTrailingInvalidNodeMinutiae clones a node/token with invalid node as trailing minutiae
+// Port from Java SyntaxErrors.java:506-514 (STNode) and 525-533 (STToken)
 func CloneWithTrailingInvalidNodeMinutiae(toClone STNode, invalidNode STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) STNode {
+	// Check if toClone is a token - if so, handle directly (Java line 525-533)
+	if token, ok := toClone.(STToken); ok {
+		minutiaeList := convertInvalidNodeToMinutiae(invalidNode, diagnosticCode, args...)
+		trailingMinutiae := token.TrailingMinutiae().(*STNodeList)
+		trailingMinutiae = trailingMinutiae.AddAll(minutiaeList) // Append to end
+		return token.ModifyWith(token.LeadingMinutiae(), trailingMinutiae)
+	}
+
+	// Otherwise it's a non-token STNode (Java line 506-514)
 	lastToken := toClone.LastToken()
-	lastTokenWithInvalidNodeMinutiae := CloneWithTrailingInvalidNodeMinutiae(lastToken,
-		invalidNode, diagnosticCode, args)
+	lastTokenWithInvalidNodeMinutiae := CloneWithTrailingInvalidNodeMinutiae(
+		lastToken, invalidNode, diagnosticCode, args...).(STToken)
 	return Replace(toClone, lastToken, lastTokenWithInvalidNodeMinutiae)
 }
 
@@ -886,6 +1037,55 @@ func ToToken(node STNode) STToken {
 		panic("node is not a STToken")
 	}
 	return tok
+}
+
+// addMinutiaeToList adds minutiae node(s) to a list
+// If minutiae is a STNodeList, adds all elements; otherwise adds single node
+// Port from Java SyntaxErrors.java:579-592
+func addMinutiaeToList(list []STNode, minutiae STNode) []STNode {
+	if !IsSTNodeList(minutiae) {
+		return append(list, minutiae)
+	}
+
+	minutiaeList := minutiae.(*STNodeList)
+	for i := 0; i < minutiaeList.Size(); i++ {
+		element := minutiaeList.Get(i)
+		if IsSTNodePresent(element) {
+			list = append(list, element)
+		}
+	}
+	return list
+}
+
+// convertInvalidNodeToMinutiae converts an invalid node to a list of minutiae nodes
+// Port from Java SyntaxErrors.java:557-577
+func convertInvalidNodeToMinutiae(invalidNode STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) []STNode {
+	minutiaeList := []STNode{}
+	tokens := invalidNode.Tokens()
+
+	for _, token := range tokens {
+		// Add leading minutiae
+		minutiaeList = addMinutiaeToList(minutiaeList, token.LeadingMinutiae())
+
+		if !token.IsMissing() {
+			// Add diagnostic to first invalid token only
+			if diagnosticCode != nil {
+				token = AddDiagnostic(token, diagnosticCode, args...)
+				diagnosticCode = nil // Only add to first token
+			}
+
+			// Create token with no minutiae and wrap as invalid node minutiae
+			tokenWithNoMinutiae := token.ModifyWith(
+				CreateEmptyNodeList(), CreateEmptyNodeList())
+			minutiaeList = append(minutiaeList,
+				CreateInvalidNodeMinutiae(tokenWithNoMinutiae))
+		}
+
+		// Add trailing minutiae
+		minutiaeList = addMinutiaeToList(minutiaeList, token.TrailingMinutiae())
+	}
+
+	return minutiaeList
 }
 
 func CreateEmptyNode() STNode {

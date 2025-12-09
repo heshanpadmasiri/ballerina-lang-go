@@ -230,10 +230,10 @@ func (l *Lexer) processInvalidToken() internal.STToken {
 		reader.Advance()
 	}
 	tokenText := l.getLexeme()
-	invalidToken := *internal.CreateInvalidToken(tokenText)
+	invalidToken := internal.CreateInvalidToken(tokenText)
 	invalidNodeMinutiae := internal.CreateInvalidNodeMinutiae(invalidToken)
 	l.context.leadingTriviaList = append(l.context.leadingTriviaList, invalidNodeMinutiae)
-	return &invalidToken
+	return invalidToken
 }
 
 func (l *Lexer) getLexeme() string {
