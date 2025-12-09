@@ -238,7 +238,7 @@ func (this *abstractParser) getNextNextToken() internal.STToken {
 }
 
 func (this *abstractParser) isNodeListEmpty(node internal.STNode) bool {
-	nodeList, ok := node.(internal.STNodeList)
+	nodeList, ok := node.(*internal.STNodeList)
 	if !ok {
 		panic("node is not a STNodeList")
 	}
@@ -4184,11 +4184,11 @@ func (this *BallerinaParser) parseAssignmentStmtRhs(lvExpr internal.STNode) inte
 }
 
 func (this *BallerinaParser) parseExpression() internal.STNode {
-	return this.parseExpressionInner(OPERATOR_PRECEDENCE_DEFAULT, internal.CreateEmptyNode(), true, false, false)
+	return this.parseExpressionWithPrecedence(OPERATOR_PRECEDENCE_DEFAULT, true, false)
 }
 
 func (this *BallerinaParser) parseActionOrExpression() internal.STNode {
-	return this.parseExpressionInner(OPERATOR_PRECEDENCE_DEFAULT, internal.CreateEmptyNode(), true, true, false)
+	return this.parseExpressionWithPrecedence(OPERATOR_PRECEDENCE_DEFAULT, true, true)
 }
 
 func (this *BallerinaParser) parseActionOrExpressionInLhs(annots internal.STNode) internal.STNode {
