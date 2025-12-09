@@ -785,9 +785,9 @@ var (
 	OPTIONAL_PARENTHESIZED_ARG_LIST                        = []common.ParserRuleContext{common.PARSER_RULE_CONTEXT_ARG_LIST_OPEN_PAREN, common.PARSER_RULE_CONTEXT_OPEN_BRACE}
 )
 
-func NewBallerinaParserErrorHandlerFromTokenReader(tokenReader TokenReader) BallerinaParserErrorHandler {
+func NewBallerinaParserErrorHandlerFromTokenReader(tokenReader *TokenReader) BallerinaParserErrorHandler {
 	this := BallerinaParserErrorHandler{}
-	this.AbstractParserErrorHandlerBase = *NewAbstractParserErrorHandlerBase(&tokenReader)
+	this.AbstractParserErrorHandlerBase = *NewAbstractParserErrorHandlerBase(tokenReader)
 	this.AbstractParserErrorHandlerMethods.Self = &this
 	return this
 }
@@ -5320,7 +5320,7 @@ func (this *BallerinaParserErrorHandler) isParameter(ctx common.ParserRuleContex
 func (this *BallerinaParserErrorHandler) GetInsertSolution(ctx common.ParserRuleContext) *Solution {
 	kind := this.GetExpectedTokenKind(ctx)
 	if kind != common.NONE {
-		return nil
+		return NewSolution(ACTION_INSERT, ctx, kind, ctx.String())
 	}
 	if this.HasAlternativePaths(ctx) {
 		ctx = this.getShortestAlternative(ctx)

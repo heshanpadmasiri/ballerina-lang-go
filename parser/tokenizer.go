@@ -35,7 +35,11 @@ func CreateTokenReader(lexer Lexer, dbgContext *debugcommon.DebugContext) *Token
 		currentToken:      nil,
 		currentTokenIndex: 0,
 		tokenBuffer: tokenBuffer{
-			tokens: make([]internal.STToken, BUFFER_SIZE),
+			capacity:   BUFFER_SIZE,
+			tokens:     make([]internal.STToken, BUFFER_SIZE),
+			endIndex:   -1,
+			startIndex: -1,
+			size:       0,
 		},
 	}
 }
@@ -100,28 +104,34 @@ func (t *TokenReader) GetCurrentTokenIndex() int {
 const BUFFER_SIZE = 20
 
 type tokenBuffer struct {
-	size        int
-	cursorIndex int
-	insertIndex int
-	tokens      []internal.STToken
+	capacity   int
+	tokens     []internal.STToken
+	endIndex   int
+	startIndex int
+	size       int
 }
 
 func (t *tokenBuffer) add(token internal.STToken) {
-	if t.size == BUFFER_SIZE {
+	if t.size == t.capacity {
 		panic("buffer overflow")
 	}
 
-	if t.size == 0 {
-		t.cursorIndex = t.insertIndex
+	if t.endIndex == t.capacity-1 {
+		t.endIndex = 0
+	} else {
+		t.endIndex++
 	}
 
-	t.tokens[t.insertIndex] = token
-	t.insertIndex = (t.insertIndex + 1) % BUFFER_SIZE
+	if t.size == 0 {
+		t.startIndex = t.endIndex
+	}
+
+	t.tokens[t.endIndex] = token
 	t.size++
 }
 
 func (t *tokenBuffer) peek() internal.STToken {
-	return t.tokens[t.cursorIndex]
+	return t.tokens[t.startIndex]
 }
 
 func (t *tokenBuffer) peekN(n int) internal.STToken {
@@ -129,20 +139,25 @@ func (t *tokenBuffer) peekN(n int) internal.STToken {
 		panic("n is too large")
 	}
 
-	index := t.cursorIndex + n - 1
-	if index >= BUFFER_SIZE {
-		index = index - BUFFER_SIZE
+	index := t.startIndex + n - 1
+	if index >= t.capacity {
+		index = index - t.capacity
 	}
 
 	return t.tokens[index]
 }
 
 func (t *tokenBuffer) consume() internal.STToken {
-	if t.size == 0 {
-		panic("no tokens to consume")
-	}
-	token := t.tokens[t.cursorIndex]
-	t.cursorIndex = (t.cursorIndex + 1) % BUFFER_SIZE
+	token := t.tokens[t.startIndex]
 	t.size--
+	if t.startIndex == t.capacity-1 {
+		t.startIndex = 0
+	} else {
+		t.startIndex++
+	}
 	return token
+}
+
+func (t *tokenBuffer) getCurrentTokenIndex() int {
+	return t.startIndex
 }

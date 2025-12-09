@@ -109,7 +109,7 @@ type invalidNodeInfo struct {
 
 type abstractParser struct {
 	errorHandler         ParserErrorHandler
-	tokenReader          TokenReader
+	tokenReader          *TokenReader
 	invalidNodeInfoStack []invalidNodeInfo
 	insertedToken        internal.STToken
 }
@@ -122,7 +122,7 @@ func NewInvalidNodeInfoFromInvalidNodeDiagnosticCodeArgs(invalidNode internal.ST
 	return this
 }
 
-func NewAbstractParserFromTokenReaderErrorHandler(tokenReader TokenReader, errorHandler ParserErrorHandler) abstractParser {
+func NewAbstractParserFromTokenReaderErrorHandler(tokenReader *TokenReader, errorHandler ParserErrorHandler) abstractParser {
 	this := abstractParser{}
 	this.invalidNodeInfoStack = make([]invalidNodeInfo, 0)
 	this.insertedToken = nil
@@ -133,7 +133,7 @@ func NewAbstractParserFromTokenReaderErrorHandler(tokenReader TokenReader, error
 	return this
 }
 
-func NewAbstractParserFromTokenReader(tokenReader TokenReader) abstractParser {
+func NewAbstractParserFromTokenReader(tokenReader *TokenReader) abstractParser {
 	this := abstractParser{}
 	this.invalidNodeInfoStack = make([]invalidNodeInfo, 0)
 	this.insertedToken = nil
@@ -300,7 +300,7 @@ type BallerinaParser struct {
 	abstractParser
 }
 
-func NewBallerinaParserFromTokenReader(tokenReader TokenReader) BallerinaParser {
+func NewBallerinaParserFromTokenReader(tokenReader *TokenReader) BallerinaParser {
 	this := BallerinaParser{}
 	// Default field initializations
 
@@ -2271,6 +2271,7 @@ func (this *BallerinaParser) parseFuncReturnTypeDescriptor(isFuncTypeDesc bool) 
 		if (!isFuncTypeDesc) || this.isSafeMissingReturnsParse() {
 			break
 		}
+		fallthrough
 	default:
 		nextNextToken := this.getNextNextToken()
 		if nextNextToken.Kind() == common.RETURNS_KEYWORD {
@@ -4764,6 +4765,8 @@ func (this *BallerinaParser) parseExpressionRhsInternal(currentPrecedenceLevel O
 			operator = this.parseSignedRightShiftToken()
 		} else if nextTokenKind == common.TRIPPLE_GT_TOKEN {
 			operator = this.parseUnsignedRightShiftToken()
+		} else {
+			operator = this.parseBinaryOperator()
 		}
 		rhsExpr := this.parseExpressionWithConditional(nextOperatorPrecedence, isRhsExpr, false, isInConditionalExpr)
 		newLhsExpr = internal.CreateBinaryExpressionNode(common.BINARY_EXPRESSION, lhsExpr, operator,

@@ -89,7 +89,7 @@ func main() {
 	tokenReader := parser.CreateTokenReader(*lexer, debugCtx)
 
 	// Create Parser from TokenReader
-	ballerinaParser := parser.NewBallerinaParserFromTokenReader(*tokenReader)
+	ballerinaParser := parser.NewBallerinaParserFromTokenReader(tokenReader)
 
 	// Parse the entire file (parser will internally call tokenizer)
 	_ = ballerinaParser.Parse()
