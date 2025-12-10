@@ -14,6 +14,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
+// Line-by-line migration from:
+// - SyntaxTreeJSONGenerator.java (ballerina-lang/compiler/ballerina-parser/src/test/java/io/ballerinalang/compiler/parser/test/SyntaxTreeJSONGenerator.java)
+// - ParserTestUtils.java (ballerina-lang/compiler/ballerina-parser/src/test/java/io/ballerinalang/compiler/parser/test/ParserTestUtils.java)
+
 package internal
 
 import (
@@ -21,9 +25,27 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
-// orderedJSONObject represents a JSON object with ordered fields
+// ========== Constants (ported from ParserTestConstants.java) ==========
+
+const (
+	KIND_FIELD         = "kind"
+	CHILDREN_FIELD     = "children"
+	DIAGNOSTICS_FIELD  = "diagnostics"
+	VALUE_FIELD        = "value"
+	INVALID_NODE_FIELD = "invalidNode"
+	IS_MISSING_FIELD   = "isMissing"
+	HAS_DIAGNOSTICS    = "hasDiagnostics"
+	LEADING_MINUTIAE   = "leadingMinutiae"
+	TRAILING_MINUTIAE  = "trailingMinutiae"
+)
+
+// ========== orderedJSONObject for maintaining field order ==========
+// Java's Gson JsonObject maintains insertion order automatically.
+// In Go, we need to explicitly maintain order since maps are unordered.
+
 type orderedJSONObject struct {
 	fields []fieldValue
 }
@@ -39,15 +61,11 @@ func newOrderedJSONObject() *orderedJSONObject {
 	}
 }
 
-func (oj *orderedJSONObject) set(key string, value interface{}) {
-	// Check if key already exists and update it
-	for i := range oj.fields {
-		if oj.fields[i].key == key {
-			oj.fields[i].value = value
-			return
-		}
-	}
-	// Add new field
+func (oj *orderedJSONObject) addProperty(key string, value interface{}) {
+	oj.fields = append(oj.fields, fieldValue{key: key, value: value})
+}
+
+func (oj *orderedJSONObject) add(key string, value interface{}) {
 	oj.fields = append(oj.fields, fieldValue{key: key, value: value})
 }
 
@@ -71,9 +89,16 @@ func (oj *orderedJSONObject) MarshalJSON() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-// GenerateJSON converts an STNode to JSON format matching the Java SyntaxTreeJSONGenerator output
-func GenerateJSON(node STNode) string {
-	jsonObj := getJSON(node)
+// ========== Main Entry Point ==========
+
+// Ported from: SyntaxTreeJSONGenerator.java:88-91
+//
+//	public static String generateJSON(STNode treeNode) {
+//	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//	    return gson.toJson(getJSON(treeNode));
+//	}
+func GenerateJSON(treeNode STNode) string {
+	jsonObj := getJSON(treeNode)
 	jsonBytes, err := json.MarshalIndent(jsonObj, "", "  ")
 	if err != nil {
 		panic(fmt.Sprintf("Failed to marshal JSON: %v", err))
@@ -81,163 +106,298 @@ func GenerateJSON(node STNode) string {
 	return string(jsonBytes)
 }
 
-// getJSON converts an STNode to a JSON-serializable map with ordered fields
-// Uses orderedJSONObject to ensure field order matches Java output
-func getJSON(node STNode) interface{} {
-	if !IsSTNodePresent(node) {
-		return nil
-	}
+// ========== Core JSON Generation ==========
 
-	// Use ordered object to ensure "kind" comes first
+// Ported from: SyntaxTreeJSONGenerator.java:103-132
+//
+//	private static JsonElement getJSON(STNode treeNode) {
+//	    JsonObject jsonNode = new JsonObject();
+//	    SyntaxKind nodeKind = treeNode.kind;
+//	    jsonNode.addProperty(KIND_FIELD, nodeKind.name());
+//
+//	    if (treeNode.isMissing()) {
+//	        jsonNode.addProperty(IS_MISSING_FIELD, treeNode.isMissing());
+//	        addDiagnostics(treeNode, jsonNode);
+//	        if (ParserTestUtils.isToken(treeNode)) {
+//	            addTrivia((STToken) treeNode, jsonNode);
+//	        }
+//	        return jsonNode;
+//	    }
+//
+//	    addDiagnostics(treeNode, jsonNode);
+//	    if (ParserTestUtils.isToken(treeNode)) {
+//	        // If the node is a terminal node with a dynamic value (i.e: non-syntax node)
+//	        // then add the value to the json.
+//	        if (!ParserTestUtils.isKeyword(nodeKind)) {
+//	            jsonNode.addProperty(VALUE_FIELD, ParserTestUtils.getTokenText((STToken) treeNode));
+//	        }
+//	        addTrivia((STToken) treeNode, jsonNode);
+//	        // else do nothing
+//	    } else {
+//	        addChildren(treeNode, jsonNode);
+//	    }
+//
+//	    return jsonNode;
+//	}
+func getJSON(treeNode STNode) interface{} {
 	jsonNode := newOrderedJSONObject()
-	kind := node.Kind()
-	jsonNode.set("kind", kindName(kind))
+	nodeKind := treeNode.Kind()
+	jsonNode.addProperty(KIND_FIELD, kindName(nodeKind))
 
-	if node.IsMissing() {
-		jsonNode.set("isMissing", true)
-		addDiagnosticsOrdered(node, jsonNode)
-		if isToken(node) {
-			token := node.(STToken)
-			addTriviaOrdered(token, jsonNode)
+	if treeNode.IsMissing() {
+		jsonNode.addProperty(IS_MISSING_FIELD, treeNode.IsMissing())
+		addDiagnostics(treeNode, jsonNode)
+		if isToken(treeNode) {
+			token := treeNode.(STToken)
+			addTrivia(token, jsonNode)
 		}
 		return jsonNode
 	}
 
-	addDiagnosticsOrdered(node, jsonNode)
-	if isToken(node) {
-		token := node.(STToken)
+	addDiagnostics(treeNode, jsonNode)
+	if isToken(treeNode) {
+		token := treeNode.(STToken)
 		// If the node is a terminal node with a dynamic value (i.e: non-syntax node)
 		// then add the value to the json.
-		// Note: "value" should come before "trailingMinutiae" in Java output
-		if !isKeyword(kind) {
-			jsonNode.set("value", getTokenText(token))
+		if !isKeyword(nodeKind) {
+			jsonNode.addProperty(VALUE_FIELD, getTokenText(token))
 		}
-		addTriviaOrdered(token, jsonNode)
+		addTrivia(token, jsonNode)
+		// else do nothing
 	} else {
-		addChildrenOrdered(node, jsonNode)
+		addChildren(treeNode, jsonNode)
 	}
 
 	return jsonNode
 }
 
-// addChildrenOrdered adds the children array to an ordered JSON object
-// Always include children array, even if empty (to match Java output)
-func addChildrenOrdered(node STNode, jsonObj *orderedJSONObject) {
+// ========== Helper Methods for Children ==========
+
+// Ported from: SyntaxTreeJSONGenerator.java:134-136
+//
+//	private static void addChildren(STNode tree, JsonObject node) {
+//	    addNodeList(tree, node, CHILDREN_FIELD);
+//	}
+func addChildren(tree STNode, node *orderedJSONObject) {
+	addNodeList(tree, node, CHILDREN_FIELD)
+}
+
+// Ported from: SyntaxTreeJSONGenerator.java:138-150
+//
+//	private static void addNodeList(STNode tree, JsonObject node, String key) {
+//	    JsonArray children = new JsonArray();
+//	    int size = tree.bucketCount();
+//	    for (int i = 0; i < size; i++) {
+//	        STNode childNode = tree.childInBucket(i);
+//	        if (childNode == null || childNode.kind == SyntaxKind.NONE) {
+//	            continue;
+//	        }
+//
+//	        children.add(getJSON(childNode));
+//	    }
+//	    node.add(key, children);
+//	}
+func addNodeList(tree STNode, node *orderedJSONObject, key string) {
 	children := make([]interface{}, 0)
-	size := node.BucketCount()
+	size := tree.BucketCount()
 	for i := 0; i < size; i++ {
-		childNode := node.ChildInBucket(i)
+		childNode := tree.ChildInBucket(i)
 		if childNode == nil || childNode.Kind() == common.NONE {
 			continue
 		}
+
 		children = append(children, getJSON(childNode))
 	}
-	// Always include children array, even if empty (Java includes empty arrays)
-	jsonObj.set("children", children)
+	node.add(key, children)
 }
 
-// addTriviaOrdered adds leading and trailing minutiae to a token's JSON representation
-func addTriviaOrdered(token STToken, jsonObj *orderedJSONObject) {
+// ========== Helper Methods for Trivia (Minutiae) ==========
+
+// Ported from: SyntaxTreeJSONGenerator.java:152-160
+//
+//	private static void addTrivia(STToken token, JsonObject jsonNode) {
+//	    if (token.leadingMinutiae().bucketCount() != 0) {
+//	        addMinutiaeList((STNodeList) token.leadingMinutiae(), jsonNode, LEADING_MINUTIAE);
+//	    }
+//
+//	    if (token.trailingMinutiae().bucketCount() != 0) {
+//	        addMinutiaeList((STNodeList) token.trailingMinutiae(), jsonNode, TRAILING_MINUTIAE);
+//	    }
+//	}
+func addTrivia(token STToken, jsonNode *orderedJSONObject) {
 	leadingMinutiae := token.LeadingMinutiae()
-	if leadingMinutiae != nil {
-		var bucketCount int
-		if IsSTNodeList(leadingMinutiae) {
-			bucketCount = leadingMinutiae.(*STNodeList).Size()
-		} else {
-			bucketCount = leadingMinutiae.BucketCount()
-		}
-		if bucketCount != 0 {
-			minutiaeList := addMinutiaeList(leadingMinutiae)
-			if len(minutiaeList) > 0 {
-				jsonObj.set("leadingMinutiae", minutiaeList)
-			}
+	if leadingMinutiae.BucketCount() != 0 {
+		minutiaeList, ok := leadingMinutiae.(*STNodeList)
+		if ok {
+			addMinutiaeList(minutiaeList, jsonNode, LEADING_MINUTIAE)
 		}
 	}
 
 	trailingMinutiae := token.TrailingMinutiae()
-	if trailingMinutiae != nil {
-		var bucketCount int
-		if IsSTNodeList(trailingMinutiae) {
-			bucketCount = trailingMinutiae.(*STNodeList).Size()
-		} else {
-			bucketCount = trailingMinutiae.BucketCount()
-		}
-		if bucketCount != 0 {
-			minutiaeList := addMinutiaeList(trailingMinutiae)
-			if len(minutiaeList) > 0 {
-				jsonObj.set("trailingMinutiae", minutiaeList)
-			}
+	if trailingMinutiae.BucketCount() != 0 {
+		minutiaeList, ok := trailingMinutiae.(*STNodeList)
+		if ok {
+			addMinutiaeList(minutiaeList, jsonNode, TRAILING_MINUTIAE)
 		}
 	}
 }
 
-// addMinutiaeList converts a minutiae list node to a JSON array
-func addMinutiaeList(minutiaeList STNode) []interface{} {
+// Ported from: SyntaxTreeJSONGenerator.java:162-187
+//
+//	private static void addMinutiaeList(STNodeList minutiaeList, JsonObject node, String key) {
+//	    JsonArray minutiaeJsonArray = new JsonArray();
+//	    int size = minutiaeList.size();
+//	    for (int i = 0; i < size; i++) {
+//	        STMinutiae minutiae = (STMinutiae) minutiaeList.get(i);
+//	        JsonObject minutiaeJson = new JsonObject();
+//	        minutiaeJson.addProperty(KIND_FIELD, minutiae.kind.name());
+//	        switch (minutiae.kind) {
+//	            case WHITESPACE_MINUTIAE:
+//	            case END_OF_LINE_MINUTIAE:
+//	            case COMMENT_MINUTIAE:
+//	                minutiaeJson.addProperty(VALUE_FIELD, minutiae.text());
+//	                break;
+//	            case INVALID_NODE_MINUTIAE:
+//	                STInvalidNodeMinutiae invalidNodeMinutiae = (STInvalidNodeMinutiae) minutiae;
+//	                STNode invalidNode = invalidNodeMinutiae.invalidNode();
+//	                minutiaeJson.add(INVALID_NODE_FIELD, getJSON(invalidNode));
+//	                break;
+//	            default:
+//	                throw new UnsupportedOperationException("Unsupported minutiae kind: '" + minutiae.kind + "'");
+//	        }
+//
+//	        minutiaeJsonArray.add(minutiaeJson);
+//	    }
+//	    node.add(key, minutiaeJsonArray);
+//	}
+func addMinutiaeList(minutiaeList *STNodeList, node *orderedJSONObject, key string) {
 	minutiaeJsonArray := make([]interface{}, 0)
-	if !IsSTNodeList(minutiaeList) {
-		return minutiaeJsonArray
-	}
-
-	nodeList := minutiaeList.(*STNodeList)
-	size := nodeList.Size()
+	size := minutiaeList.Size()
 	for i := 0; i < size; i++ {
-		minutiae := nodeList.Get(i)
-		if !IsSTNodePresent(minutiae) {
-			continue
-		}
-
+		minutiae := minutiaeList.Get(i)
 		minutiaeJson := newOrderedJSONObject()
 		minutiaeKind := minutiae.Kind()
-		minutiaeJson.set("kind", kindName(minutiaeKind))
+		minutiaeJson.addProperty(KIND_FIELD, kindName(minutiaeKind))
 
 		switch minutiaeKind {
 		case common.WHITESPACE_MINUTIAE, common.END_OF_LINE_MINUTIAE, common.COMMENT_MINUTIAE:
-			if minutiaeNode, ok := minutiae.(*STMinutiae); ok {
-				// "value" should come after "kind" in Java output
-				minutiaeJson.set("value", minutiaeNode.text)
+			// Cast to STMinutiae to get text
+			if stMinutiae, ok := minutiae.(*STMinutiae); ok {
+				minutiaeJson.addProperty(VALUE_FIELD, stMinutiae.text)
 			}
 		case common.INVALID_NODE_MINUTIAE:
 			if invalidNodeMinutiae, ok := minutiae.(*STInvalidNodeMinutiae); ok {
 				invalidNode := invalidNodeMinutiae.invalidNode
-				minutiaeJson.set("invalidNode", getJSON(invalidNode))
+				minutiaeJson.add(INVALID_NODE_FIELD, getJSON(invalidNode))
 			}
 		default:
-			panic(fmt.Sprintf("Unsupported minutiae kind: %v", minutiaeKind))
+			panic(fmt.Sprintf("Unsupported minutiae kind: '%v'", minutiaeKind))
 		}
 
 		minutiaeJsonArray = append(minutiaeJsonArray, minutiaeJson)
 	}
-	return minutiaeJsonArray
+	node.add(key, minutiaeJsonArray)
 }
 
-// addDiagnosticsOrdered adds diagnostics to an ordered JSON object
-func addDiagnosticsOrdered(node STNode, jsonObj *orderedJSONObject) {
-	if !node.HasDiagnostics() {
+// ========== Helper Methods for Diagnostics ==========
+
+// Ported from: SyntaxTreeJSONGenerator.java:189-204
+//
+//	private static void addDiagnostics(STNode treeNode, JsonObject jsonNode) {
+//	    if (!treeNode.hasDiagnostics()) {
+//	        return;
+//	    }
+//
+//	    jsonNode.addProperty(HAS_DIAGNOSTICS, treeNode.hasDiagnostics());
+//	    Collection<STNodeDiagnostic> diagnostics = treeNode.diagnostics();
+//	    if (diagnostics.isEmpty()) {
+//	        return;
+//	    }
+//
+//	    JsonArray diagnosticsJsonArray = new JsonArray();
+//	    diagnostics.forEach(syntaxDiagnostic ->
+//	            diagnosticsJsonArray.add(syntaxDiagnostic.diagnosticCode().toString()));
+//	    jsonNode.add(DIAGNOSTICS_FIELD, diagnosticsJsonArray);
+//	}
+func addDiagnostics(treeNode STNode, jsonNode *orderedJSONObject) {
+	if !treeNode.HasDiagnostics() {
 		return
 	}
 
-	jsonObj.set("hasDiagnostics", true)
-	diagnostics := node.Diagnostics()
+	jsonNode.addProperty(HAS_DIAGNOSTICS, treeNode.HasDiagnostics())
+	diagnostics := treeNode.Diagnostics()
 	if len(diagnostics) == 0 {
 		return
 	}
 
 	diagnosticsJsonArray := make([]interface{}, 0, len(diagnostics))
-	for _, diag := range diagnostics {
-		diagnosticsJsonArray = append(diagnosticsJsonArray, diag.code.DiagnosticId())
+	for _, syntaxDiagnostic := range diagnostics {
+		diagnosticsJsonArray = append(diagnosticsJsonArray, syntaxDiagnostic.code.DiagnosticId())
 	}
-	jsonObj.set("diagnostics", diagnosticsJsonArray)
+	jsonNode.add(DIAGNOSTICS_FIELD, diagnosticsJsonArray)
 }
 
-// isKeyword checks if a SyntaxKind is a keyword
-// Matches Java logic: any kind that comes before IDENTIFIER_TOKEN in enum order is a keyword
-// Also includes EOF_TOKEN
-func isKeyword(kind common.SyntaxKind) bool {
-	return kind < common.IDENTIFIER_TOKEN || kind == common.EOF_TOKEN
+// ========== Utility Methods (from ParserTestUtils.java) ==========
+
+// Ported from: ParserTestUtils.java:331-333
+//
+// public static boolean isToken(STNode node) {
+//     return SyntaxUtils.isToken(node);
+// }
+//
+// Note: isToken is already defined in st-node.go:957, so we'll just use that
+
+// Ported from: ParserTestUtils.java:335-337
+//
+//	public static boolean isKeyword(SyntaxKind syntaxKind) {
+//	    return SyntaxKind.IDENTIFIER_TOKEN.compareTo(syntaxKind) > 0 || syntaxKind == SyntaxKind.EOF_TOKEN;
+//	}
+func isKeyword(syntaxKind common.SyntaxKind) bool {
+	return syntaxKind < common.IDENTIFIER_TOKEN || syntaxKind == common.EOF_TOKEN
 }
 
-// getTokenText extracts the text value from a token
-// Matches Java ParserTestUtils.getTokenText logic
+// Ported from: ParserTestUtils.java:346-385
+//
+//	public static String getTokenText(STToken token) {
+//	    switch (token.kind) {
+//	        case IDENTIFIER_TOKEN:
+//	            return ((STIdentifierToken) token).text;
+//	        case STRING_LITERAL_TOKEN:
+//	            String val = token.text();
+//	            int stringLen = val.length();
+//	            int lastCharPosition = val.endsWith("\"") ? stringLen - 1 : stringLen;
+//	            return val.substring(1, lastCharPosition);
+//	        case DECIMAL_INTEGER_LITERAL_TOKEN:
+//	        case HEX_INTEGER_LITERAL_TOKEN:
+//	        case DECIMAL_FLOATING_POINT_LITERAL_TOKEN:
+//	        case HEX_FLOATING_POINT_LITERAL_TOKEN:
+//	        case PARAMETER_NAME:
+//	        case DEPRECATION_LITERAL:
+//	        case INVALID_TOKEN:
+//	            return token.text();
+//	        case XML_TEXT:
+//	        case XML_TEXT_CONTENT:
+//	        case TEMPLATE_STRING:
+//	        case RE_LITERAL_CHAR:
+//	        case RE_NUMERIC_ESCAPE:
+//	        case RE_CONTROL_ESCAPE:
+//	        case RE_SIMPLE_CHAR_CLASS_CODE:
+//	        case RE_PROPERTY:
+//	        case RE_UNICODE_SCRIPT_START:
+//	        case RE_UNICODE_PROPERTY_VALUE:
+//	        case RE_UNICODE_GENERAL_CATEGORY_START:
+//	        case RE_UNICODE_GENERAL_CATEGORY_NAME:
+//	        case RE_FLAGS_VALUE:
+//	        case DIGIT:
+//	        case DOCUMENTATION_DESCRIPTION:
+//	        case DOCUMENTATION_STRING:
+//	        case CODE_CONTENT:
+//	        case PROMPT_CONTENT:
+//	            return cleanupText(token.text());
+//	        default:
+//	            return token.kind.toString();
+//	    }
+//	}
 func getTokenText(token STToken) string {
 	kind := token.Kind()
 	switch kind {
@@ -245,13 +405,12 @@ func getTokenText(token STToken) string {
 		if identToken, ok := token.(*STIdentifierToken); ok {
 			return identToken.text
 		}
+		return token.Text()
 	case common.STRING_LITERAL_TOKEN:
-		// Java removes surrounding quotes: substring(1, lastCharPosition)
-		// where lastCharPosition is length-1 if ends with quote, else length
 		val := token.Text()
 		stringLen := len(val)
 		lastCharPosition := stringLen
-		if stringLen > 0 && val[stringLen-1] == '"' {
+		if stringLen > 0 && strings.HasSuffix(val, "\"") {
 			lastCharPosition = stringLen - 1
 		}
 		if stringLen > 0 && lastCharPosition > 1 {
@@ -265,19 +424,40 @@ func getTokenText(token STToken) string {
 		common.PARAMETER_NAME,
 		common.DEPRECATION_LITERAL,
 		common.INVALID_TOKEN:
-		// For these, try STLiteralValueToken first, then fall back to Text()
-		if literalToken, ok := token.(*STLiteralValueToken); ok {
-			return literalToken.text
-		}
 		return token.Text()
+	case common.XML_TEXT,
+		common.XML_TEXT_CONTENT,
+		common.TEMPLATE_STRING,
+		common.RE_LITERAL_CHAR,
+		common.RE_NUMERIC_ESCAPE,
+		common.RE_CONTROL_ESCAPE,
+		common.RE_SIMPLE_CHAR_CLASS_CODE,
+		common.RE_PROPERTY,
+		common.RE_UNICODE_SCRIPT_START,
+		common.RE_UNICODE_PROPERTY_VALUE,
+		common.RE_UNICODE_GENERAL_CATEGORY_START,
+		common.RE_UNICODE_GENERAL_CATEGORY_NAME,
+		common.RE_FLAGS_VALUE,
+		common.DIGIT,
+		common.DOCUMENTATION_DESCRIPTION,
+		common.DOCUMENTATION_STRING,
+		common.CODE_CONTENT,
+		common.PROMPT_CONTENT:
+		return cleanupText(token.Text())
 	default:
-		// For other literal tokens (XML_TEXT, TEMPLATE_STRING, etc.), use Text() method
-		if literalToken, ok := token.(*STLiteralValueToken); ok {
-			return literalToken.text
-		}
-		return token.Text()
+		return kindName(kind)
 	}
-	return token.Text()
 }
 
-// kindName is defined in ast_json_kindnames.go
+// Ported from: ParserTestUtils.java:387-389
+//
+//	private static String cleanupText(String text) {
+//	    return text.replace(System.lineSeparator(), "\n");
+//	}
+func cleanupText(text string) string {
+	// System.lineSeparator() is platform-specific: "\r\n" on Windows, "\n" on Unix
+	// To handle both, replace \r\n first, then standalone \r
+	text = strings.ReplaceAll(text, "\r\n", "\n")
+	text = strings.ReplaceAll(text, "\r", "\n")
+	return text
+}

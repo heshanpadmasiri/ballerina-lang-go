@@ -19,13 +19,12 @@ package parser
 import (
 	"ballerina-lang-go/parser/internal"
 	"ballerina-lang-go/tools/text"
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
-
-	"github.com/sergi/go-diff/diffmatchpatch"
 )
 
 func TestParseCorpusFiles(t *testing.T) {
@@ -149,49 +148,74 @@ func parseFileWithRecovery(filePath string) (err error) {
 
 	expectedJSON := string(expectedJSONBytes)
 
+	// Normalize both JSON strings by parsing and re-marshaling to handle whitespace differences
+	var expectedObj, actualObj interface{}
+	if err := json.Unmarshal([]byte(expectedJSON), &expectedObj); err == nil {
+		if normalized, err := json.MarshalIndent(expectedObj, "", "  "); err == nil {
+			expectedJSON = string(normalized)
+		}
+	}
+	if err := json.Unmarshal([]byte(actualJSON), &actualObj); err == nil {
+		if normalized, err := json.MarshalIndent(actualObj, "", "  "); err == nil {
+			actualJSON = string(normalized)
+		}
+	}
+
 	// Compare JSON strings exactly (no tolerance for formatting differences)
 	if actualJSON != expectedJSON {
-		// Generate and show diff using go-diff
-		dmp := diffmatchpatch.New()
-		diffs := dmp.DiffMain(expectedJSON, actualJSON, false)
+		// Split into lines for line-by-line comparison
+		expectedLines := strings.Split(expectedJSON, "\n")
+		actualLines := strings.Split(actualJSON, "\n")
 
-		// Build a concise diff showing only changed sections
+		// Build detailed diff showing line numbers and differences
 		var diffBuilder strings.Builder
-		diffBuilder.WriteString("Diff (expected -> actual):\n")
+		diffBuilder.WriteString("\nJSON mismatch - showing differences:\n\n")
 
-		// Process diffs and show only changes (not the entire text)
-		for _, diff := range diffs {
-			switch diff.Type {
-			case diffmatchpatch.DiffDelete:
-				// Show deleted lines with - prefix
-				lines := strings.Split(diff.Text, "\n")
-				for _, line := range lines {
-					if line != "" || len(lines) > 1 {
-						diffBuilder.WriteString(fmt.Sprintf("-%s\n", line))
-					}
+		maxLines := len(expectedLines)
+		if len(actualLines) > maxLines {
+			maxLines = len(actualLines)
+		}
+
+		diffCount := 0
+		const maxDiffsToShow = 20
+
+		// Show line-by-line differences
+		for i := 0; i < maxLines && diffCount < maxDiffsToShow; i++ {
+			lineNum := i + 1
+			expectedLine := ""
+			actualLine := ""
+
+			if i < len(expectedLines) {
+				expectedLine = expectedLines[i]
+			}
+			if i < len(actualLines) {
+				actualLine = actualLines[i]
+			}
+
+			if expectedLine != actualLine {
+				diffCount++
+				diffBuilder.WriteString(fmt.Sprintf("Line %d:\n", lineNum))
+				if expectedLine == "" {
+					diffBuilder.WriteString("  Expected: (empty)\n")
+				} else {
+					diffBuilder.WriteString(fmt.Sprintf("  Expected: %s\n", expectedLine))
 				}
-			case diffmatchpatch.DiffInsert:
-				// Show inserted lines with + prefix
-				lines := strings.Split(diff.Text, "\n")
-				for _, line := range lines {
-					if line != "" || len(lines) > 1 {
-						diffBuilder.WriteString(fmt.Sprintf("+%s\n", line))
-					}
+				if actualLine == "" {
+					diffBuilder.WriteString("  Actual:   (empty)\n\n")
+				} else {
+					diffBuilder.WriteString(fmt.Sprintf("  Actual:   %s\n\n", actualLine))
 				}
-			case diffmatchpatch.DiffEqual:
-				// Skip equal sections to keep diff concise
 			}
 		}
 
-		diffText := diffBuilder.String()
-
-		// If the diff is too long, truncate it
-		const maxDiffLength = 10000
-		if len(diffText) > maxDiffLength {
-			diffText = diffText[:maxDiffLength] + "\n... (diff truncated, use diff tool for full comparison)"
+		if diffCount >= maxDiffsToShow {
+			diffBuilder.WriteString(fmt.Sprintf("... (showing first %d differences, more exist)\n", maxDiffsToShow))
 		}
 
-		return fmt.Errorf("JSON mismatch for %s\nExpected file: %s\n\n%s", filePath, expectedJSONPath, diffText)
+		diffBuilder.WriteString(fmt.Sprintf("Total lines different: %d+\n", diffCount))
+		diffBuilder.WriteString("Use diff tool for full comparison\n")
+
+		return fmt.Errorf("JSON mismatch for %s\nExpected file: %s\n%s", filePath, expectedJSONPath, diffBuilder.String())
 	}
 
 	return nil
