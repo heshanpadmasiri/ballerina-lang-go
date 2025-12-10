@@ -17,12 +17,15 @@
 package parser
 
 import (
+	"ballerina-lang-go/parser/internal"
 	"ballerina-lang-go/tools/text"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/sergi/go-diff/diffmatchpatch"
 )
 
 func TestParseCorpusFiles(t *testing.T) {
@@ -58,24 +61,31 @@ func TestParseCorpusFiles(t *testing.T) {
 
 	// Create subtests for each file
 	// Note: Running sequentially (not in parallel) to identify which files cause crashes
-	for _, balFile := range balFiles {
+	total := len(balFiles)
+	for i, balFile := range balFiles {
 		balFile := balFile // capture loop variable
+		index := i + 1
 		t.Run(balFile, func(t *testing.T) {
 			// Run sequentially to identify failing files
 			// t.Parallel() // Commented out to run sequentially
-			parseFile(t, balFile)
+			parseFile(t, balFile, index, total)
 		})
 	}
 }
 
-func parseFile(t *testing.T, filePath string) {
-	// Print which file we're processing at the beginning (always visible)
-	fmt.Fprintf(os.Stderr, "Parsing: %s\n", filePath)
+func parseFile(t *testing.T, filePath string, index int, total int) {
+	// Print file name at the beginning (before parsing) so we can see it even if stack overflow occurs
+	fmt.Fprintf(os.Stderr, "[%d/%d] %s ... ", index, total, filePath)
 
 	// Use a helper function to catch panics completely
 	err := parseFileWithRecovery(filePath)
+
+	// Print success/failure at the end
 	if err != nil {
+		fmt.Fprintf(os.Stderr, "FAILED: %v\n", err)
 		t.Errorf("FAILED: %s - %v", filePath, err)
+	} else {
+		fmt.Fprintf(os.Stderr, "SUCCESS\n")
 	}
 }
 
@@ -104,7 +114,7 @@ func parseFileWithRecovery(filePath string) (err error) {
 	tokenReader := CreateTokenReader(*lexer, nil)
 
 	// Create Parser from TokenReader
-	ballerinaParser := NewBallerinaParserFromTokenReader(*tokenReader)
+	ballerinaParser := NewBallerinaParserFromTokenReader(tokenReader)
 
 	// Parse the entire file - this may panic
 	ast := ballerinaParser.Parse()
@@ -117,6 +127,71 @@ func parseFileWithRecovery(filePath string) (err error) {
 	// Verify it's a valid STNode by checking its Kind
 	if ast.Kind() == 0 {
 		return fmt.Errorf("Parse() returned AST with invalid Kind (0)")
+	}
+
+	// Generate JSON from the parsed AST
+	actualJSON := internal.GenerateJSON(ast)
+
+	// Determine expected JSON file path
+	// Replace .bal with .json and change directory from corpus/bal to corpus/parser
+	expectedJSONPath := strings.TrimSuffix(filePath, ".bal") + ".json"
+	expectedJSONPath = strings.Replace(expectedJSONPath, string(filepath.Separator)+"corpus"+string(filepath.Separator)+"bal"+string(filepath.Separator), string(filepath.Separator)+"corpus"+string(filepath.Separator)+"parser"+string(filepath.Separator), 1)
+
+	// Read expected JSON file
+	expectedJSONBytes, readErr := os.ReadFile(expectedJSONPath)
+	if readErr != nil {
+		// If expected JSON file doesn't exist, skip this file
+		if os.IsNotExist(readErr) {
+			return fmt.Errorf("expected JSON file not found: %s (skipping)", expectedJSONPath)
+		}
+		return fmt.Errorf("error reading expected JSON file: %w", readErr)
+	}
+
+	expectedJSON := string(expectedJSONBytes)
+
+	// Compare JSON strings exactly (no tolerance for formatting differences)
+	if actualJSON != expectedJSON {
+		// Generate and show diff using go-diff
+		dmp := diffmatchpatch.New()
+		diffs := dmp.DiffMain(expectedJSON, actualJSON, false)
+
+		// Build a concise diff showing only changed sections
+		var diffBuilder strings.Builder
+		diffBuilder.WriteString("Diff (expected -> actual):\n")
+
+		// Process diffs and show only changes (not the entire text)
+		for _, diff := range diffs {
+			switch diff.Type {
+			case diffmatchpatch.DiffDelete:
+				// Show deleted lines with - prefix
+				lines := strings.Split(diff.Text, "\n")
+				for _, line := range lines {
+					if line != "" || len(lines) > 1 {
+						diffBuilder.WriteString(fmt.Sprintf("-%s\n", line))
+					}
+				}
+			case diffmatchpatch.DiffInsert:
+				// Show inserted lines with + prefix
+				lines := strings.Split(diff.Text, "\n")
+				for _, line := range lines {
+					if line != "" || len(lines) > 1 {
+						diffBuilder.WriteString(fmt.Sprintf("+%s\n", line))
+					}
+				}
+			case diffmatchpatch.DiffEqual:
+				// Skip equal sections to keep diff concise
+			}
+		}
+
+		diffText := diffBuilder.String()
+
+		// If the diff is too long, truncate it
+		const maxDiffLength = 10000
+		if len(diffText) > maxDiffLength {
+			diffText = diffText[:maxDiffLength] + "\n... (diff truncated, use diff tool for full comparison)"
+		}
+
+		return fmt.Errorf("JSON mismatch for %s\nExpected file: %s\n\n%s", filePath, expectedJSONPath, diffText)
 	}
 
 	return nil

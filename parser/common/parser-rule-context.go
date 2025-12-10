@@ -78,7 +78,7 @@ var (
 	PARSER_RULE_CONTEXT_ARG_START                                  = ParserRuleContext{value: "argument-start"}
 	PARSER_RULE_CONTEXT_ARG_END                                    = ParserRuleContext{value: "arg-end"}
 	PARSER_RULE_CONTEXT_ARG_LIST_END                               = ParserRuleContext{value: "argument-end"}
-	PARSER_RULE_CONTEXT_ARG_LIST_CLOSE_PAREN                       = ParserRuleContext{value: "}"}
+	PARSER_RULE_CONTEXT_ARG_LIST_CLOSE_PAREN                       = ParserRuleContext{value: ")"}
 	PARSER_RULE_CONTEXT_ARG_START_OR_ARG_LIST_END                  = ParserRuleContext{value: "arg-start-or-args-list-end"}
 	PARSER_RULE_CONTEXT_NAMED_OR_POSITIONAL_ARG_RHS                = ParserRuleContext{value: "named-or-positional-arg"}
 	PARSER_RULE_CONTEXT_OBJECT_TYPE_DESCRIPTOR                     = ParserRuleContext{value: "object-type-desc"}
@@ -478,7 +478,7 @@ var (
 
 	// Syntax tokens
 	PARSER_RULE_CONTEXT_OPEN_PARENTHESIS                      = ParserRuleContext{value: "("}
-	PARSER_RULE_CONTEXT_CLOSE_PARENTHESIS                     = ParserRuleContext{value: "}"}
+	PARSER_RULE_CONTEXT_CLOSE_PARENTHESIS                     = ParserRuleContext{value: ")"}
 	PARSER_RULE_CONTEXT_OPEN_BRACE                            = ParserRuleContext{value: "{"}
 	PARSER_RULE_CONTEXT_CLOSE_BRACE                           = ParserRuleContext{value: "}"}
 	PARSER_RULE_CONTEXT_ASSIGN_OP                             = ParserRuleContext{value: "="}

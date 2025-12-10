@@ -309,12 +309,11 @@ func CreateNodeList(nodes ...STNode) STNode {
 	if len(nodes) == 0 {
 		return emptyNodeList
 	}
-	return &STNodeList{
+	return createNodeAndAddChildren(&STNodeList{
 		STNodeBase: STNodeBase{
-			kind:         common.LIST,
-			childBuckets: nodes,
+			kind: common.LIST,
 		},
-	}
+	}, nodes...)
 }
 
 func CreateEmptyNodeList() STNode {
@@ -374,7 +373,7 @@ func (n *STNodeBase) findToken(dir direction) STToken {
 	for i := start; i != end; i += step {
 		child := n.childBuckets[i]
 		if isToken(child) {
-			token, ok := child.(*STTokenBase)
+			token, ok := child.(STToken)
 			if ok {
 				return token
 			}
@@ -999,7 +998,9 @@ func CreateDiagnosticWithArgs(diagnosticCode diagnostics.DiagnosticCode, args ..
 func CreateMissingToken(expectedKind common.SyntaxKind, diagnosticList []STNodeDiagnostic) STToken {
 	return &STMissingToken{
 		STTokenBase: STTokenBase{
-			kind: expectedKind,
+			kind:             expectedKind,
+			leadingMinutiae:  CreateEmptyNodeList(),
+			trailingMinutiae: CreateEmptyNodeList(),
 		},
 		diagnosticList: diagnosticList,
 	}
