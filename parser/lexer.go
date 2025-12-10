@@ -628,13 +628,7 @@ func (l *Lexer) processNumericLiteral(startChar rune) internal.STToken {
 	len := 1
 	for !reader.IsEOF() {
 		switch nextChar {
-		case DOT:
-		case 'e':
-		case 'E':
-		case 'f':
-		case 'F':
-		case 'd':
-		case 'D':
+		case DOT, 'e', 'E', 'f', 'F', 'd', 'D':
 			nextNextChar := reader.PeekN(1)
 			if nextChar == DOT &&
 				(nextNextChar == DOT || l.isDecimalNumberFollowedIdentifier()) {
@@ -769,8 +763,7 @@ func (l *Lexer) isDecimalNumberFollowedIdentifier() bool {
 	}
 
 	switch lookaheadChar {
-	case 'e':
-	case 'E':
+	case 'e', 'E':
 		lookahead++
 
 		lookaheadChar = reader.PeekN(lookahead)
@@ -787,10 +780,7 @@ func (l *Lexer) isDecimalNumberFollowedIdentifier() bool {
 			lookahead++
 		}
 		break
-	case 'd':
-	case 'D':
-	case 'f':
-	case 'F':
+	case 'd', 'D', 'f', 'F':
 		lookahead++
 		break
 	default:
@@ -816,8 +806,7 @@ func (l *Lexer) isHexIntFollowedIdentifier() bool {
 	}
 
 	switch lookaheadChar {
-	case 'p':
-	case 'P':
+	case 'p', 'P':
 		lookahead++
 
 		lookaheadChar = reader.PeekN(lookahead)
@@ -867,13 +856,11 @@ func (l *Lexer) processHexLiteral() internal.STToken {
 		}
 
 		switch nextChar {
-		case 'p':
-		case 'P':
+		case 'p', 'P':
 			return l.processExponent(true)
 		}
 		break
-	case 'p':
-	case 'P':
+	case 'p', 'P':
 		if !containsHexDigit {
 			l.reportLexerError(common.ERROR_MISSING_HEX_NUMBER_AFTER_HEX_INDICATOR)
 		}
@@ -1039,8 +1026,7 @@ func (l *Lexer) processDocumentationString() internal.STToken {
 	nextChar := reader.Peek()
 	for !reader.IsEOF() {
 		switch nextChar {
-		case CARRIAGE_RETURN:
-		case NEWLINE:
+		case CARRIAGE_RETURN, NEWLINE:
 			// Advance reader for the new line
 			if reader.Peek() == CARRIAGE_RETURN && reader.PeekN(1) == NEWLINE {
 				reader.Advance()
@@ -1086,8 +1072,7 @@ func (l *Lexer) processStringLiteral() internal.STToken {
 	for !reader.IsEOF() {
 		nextChar = reader.Peek()
 		switch nextChar {
-		case NEWLINE:
-		case CARRIAGE_RETURN:
+		case NEWLINE, CARRIAGE_RETURN:
 			l.reportLexerError(common.ERROR_MISSING_DOUBLE_QUOTE)
 			break
 		case DOUBLE_QUOTE:
@@ -1095,11 +1080,7 @@ func (l *Lexer) processStringLiteral() internal.STToken {
 			break
 		case BACKSLASH:
 			switch reader.PeekN(1) {
-			case 'n':
-			case 't':
-			case 'r':
-			case BACKSLASH:
-			case DOUBLE_QUOTE:
+			case 't', 'n', 'r', BACKSLASH, DOUBLE_QUOTE:
 				reader.AdvanceN(2)
 				continue
 			case 'u':
@@ -1228,8 +1209,7 @@ func (l *Lexer) processComment() internal.STNode {
 	nextToken := reader.Peek()
 	for !reader.IsEOF() {
 		switch nextToken {
-		case NEWLINE:
-		case CARRIAGE_RETURN:
+		case NEWLINE, CARRIAGE_RETURN:
 			break
 		default:
 			reader.Advance()

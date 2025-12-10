@@ -6698,6 +6698,9 @@ func (this *BallerinaParser) createOptionalTypeDesc(typeDescNode internal.STNode
 		middleTypeDesc := this.createOptionalTypeDesc(intersectionTypeDesc.RightTypeDesc, questionMarkToken)
 		typeDescNode = this.mergeTypesWithIntersection(intersectionTypeDesc.LeftTypeDesc,
 			intersectionTypeDesc.BitwiseAndToken, middleTypeDesc)
+	} else {
+		typeDescNode = this.validateForUsageOfVar(typeDescNode)
+		typeDescNode = internal.CreateOptionalTypeDescriptorNode(typeDescNode, questionMarkToken)
 	}
 	return typeDescNode
 }
@@ -6798,7 +6801,7 @@ func (this *BallerinaParser) parseOptionalAnnotations() internal.STNode {
 	var annotList []internal.STNode
 	nextToken := this.peek()
 	for nextToken.Kind() == common.AT_TOKEN {
-		annotList = append(annotList, this.parseAnnotations())
+		annotList = append(annotList, this.parseAnnotation())
 		nextToken = this.peek()
 	}
 	this.endContext()
@@ -12884,6 +12887,8 @@ func (this *BallerinaParser) getArrayTypeDesc(openBracket internal.STNode, membe
 		middleTypeDesc := this.getArrayTypeDesc(openBracket, member, closeBracket, intersectionTypeDesc.RightTypeDesc)
 		lhsTypeDesc = this.mergeTypesWithIntersection(intersectionTypeDesc.LeftTypeDesc,
 			intersectionTypeDesc.BitwiseAndToken, middleTypeDesc)
+	} else {
+		lhsTypeDesc = this.createArrayTypeDesc(lhsTypeDesc, openBracket, member, closeBracket)
 	}
 	return lhsTypeDesc
 }
