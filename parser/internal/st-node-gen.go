@@ -55,7 +55,9 @@ type STFunctionDefinition struct {
 }
 
 func (n *STFunctionDefinition) Kind() common.SyntaxKind {
-	return common.FUNCTION_DEFINITION
+	// Return the kind from the embedded node instead of hardcoded value
+	// This allows the same struct to represent both FUNCTION_DEFINITION and OBJECT_METHOD_DEFINITION
+	return n.STModuleMemberDeclarationNode.Kind()
 }
 
 type STImportDeclarationNode struct {

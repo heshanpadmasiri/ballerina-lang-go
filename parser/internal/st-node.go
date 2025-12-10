@@ -657,6 +657,10 @@ func (t STIdentifierToken) Text() string {
 	return t.text
 }
 
+func (t *STLiteralValueToken) Text() string {
+	return t.text
+}
+
 func (t STTokenBase) FirstToken() STToken {
 	return &t
 }
