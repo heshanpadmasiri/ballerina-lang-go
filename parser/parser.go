@@ -5303,7 +5303,13 @@ func (this *BallerinaParser) parseArgList(firstArg internal.STNode) internal.STN
 				curArg = internal.CreateNamedArgumentNode(expr, missingEqual, nameRef)
 				curArg = internal.AddDiagnostic(curArg, errorCode)
 				argsList = append(argsList, argEnd, curArg)
+			} else {
+				argsList = this.updateLastNodeInListWithInvalidNode(argsList, argEnd, nil)
+				argsList = this.updateLastNodeInListWithInvalidNode(argsList, curArg, errorCode)
 			}
+		} else {
+			argsList = this.updateLastNodeInListWithInvalidNode(argsList, argEnd, nil)
+			argsList = this.updateLastNodeInListWithInvalidNode(argsList, curArg, errorCode)
 		}
 		nextToken = this.peek()
 	}

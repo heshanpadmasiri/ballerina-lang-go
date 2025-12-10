@@ -420,8 +420,13 @@ func (t STNodeBase) writeTo(builder *strings.Builder) {
 	}
 }
 
-func (n STNodeBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
+func (n *STNodeBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
 	n.diagnostics = diagnostics
+	if len(diagnostics) > 0 {
+		n.flags = n.flags | HAS_DIAGNOSTIC
+	} else {
+		n.flags = n.flags &^ HAS_DIAGNOSTIC
+	}
 }
 
 func (n STNodeBase) ChildInBucket(bucket int) STNode {
@@ -601,59 +606,59 @@ func (n STTokenBase) updateWidth(children []STNode) {
 	panic("updateWidth is not supported for STToken")
 }
 
-func (n STTokenBase) Diagnostics() []STNodeDiagnostic {
+func (n *STTokenBase) Diagnostics() []STNodeDiagnostic {
 	return n.diagnostics
 }
 
-func (n STTokenBase) Width() uint16 {
+func (n *STTokenBase) Width() uint16 {
 	return n.width
 }
 
-func (n STTokenBase) WidthWithLeadingMinutiae() uint16 {
+func (n *STTokenBase) WidthWithLeadingMinutiae() uint16 {
 	return n.width + n.leadingMinutiae.Width()
 }
 
-func (n STTokenBase) WidthWithTrailingMinutiae() uint16 {
+func (n *STTokenBase) WidthWithTrailingMinutiae() uint16 {
 	return n.width + n.trailingMinutiae.Width()
 }
 
-func (n STTokenBase) WidthWithMinutiae() uint16 {
+func (n *STTokenBase) WidthWithMinutiae() uint16 {
 	return n.width + n.leadingMinutiae.Width() + n.trailingMinutiae.Width()
 }
 
-func (n STTokenBase) Flags() uint8 {
+func (n *STTokenBase) Flags() uint8 {
 	return n.flags
 }
 
-func (n STTokenBase) BucketCount() int {
+func (n *STTokenBase) BucketCount() int {
 	return 0
 }
 
-func (n STTokenBase) ChildBuckets() []STNode {
+func (n *STTokenBase) ChildBuckets() []STNode {
 	return nil
 }
 
-func (n STTokenBase) HasDiagnostics() bool {
+func (n *STTokenBase) HasDiagnostics() bool {
 	return isFlagSet(n.flags, HAS_DIAGNOSTIC)
 }
 
-func (n STTokenBase) ChildInBucket(bucket int) STNode {
+func (n *STTokenBase) ChildInBucket(bucket int) STNode {
 	panic("ChildInBucket is not supported for STToken")
 }
 
-func (n STTokenBase) IsMissing() bool {
+func (n *STTokenBase) IsMissing() bool {
 	return isFlagSet(n.flags, IS_MISSING)
 }
 
-func (n STTokenBase) Tokens() []STToken {
-	return nil
+func (n *STTokenBase) Tokens() []STToken {
+	return []STToken{n}
 }
 
-func (t STTokenBase) Text() string {
+func (t *STTokenBase) Text() string {
 	return t.kind.StrValue()
 }
 
-func (t STIdentifierToken) Text() string {
+func (t *STIdentifierToken) Text() string {
 	return t.text
 }
 
@@ -661,15 +666,15 @@ func (t *STLiteralValueToken) Text() string {
 	return t.text
 }
 
-func (t STTokenBase) FirstToken() STToken {
-	return &t
+func (t *STTokenBase) FirstToken() STToken {
+	return t
 }
 
-func (t STTokenBase) LastToken() STToken {
-	return &t
+func (t *STTokenBase) LastToken() STToken {
+	return t
 }
 
-func (t STTokenBase) HasTrailingNewLine() bool {
+func (t *STTokenBase) HasTrailingNewLine() bool {
 	stNodeList := t.trailingMinutiae.(*STNodeList)
 	for i := 0; i < stNodeList.Size(); i++ {
 		if stNodeList.Get(i).Kind() == common.END_OF_LINE_MINUTIAE {
@@ -679,20 +684,25 @@ func (t STTokenBase) HasTrailingNewLine() bool {
 	return false
 }
 
-func (t STTokenBase) ToSourceCode() string {
+func (t *STTokenBase) ToSourceCode() string {
 	builder := strings.Builder{}
 	t.writeTo(&builder)
 	return builder.String()
 }
 
-func (t STTokenBase) writeTo(builder *strings.Builder) {
+func (t *STTokenBase) writeTo(builder *strings.Builder) {
 	t.leadingMinutiae.writeTo(builder)
 	builder.WriteString(t.kind.StrValue())
 	t.trailingMinutiae.writeTo(builder)
 }
 
-func (t STTokenBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
+func (t *STTokenBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
 	t.diagnostics = diagnostics
+	if len(diagnostics) > 0 {
+		t.flags = t.flags | HAS_DIAGNOSTIC
+	} else {
+		t.flags = t.flags &^ HAS_DIAGNOSTIC
+	}
 }
 
 func (s *STNodeList) Get(i int) STNode {
@@ -751,7 +761,7 @@ func (s *STNodeList) AddAll(nodes []STNode) *STNodeList {
 	return &STNodeList{STNodeBase: *newBase}
 }
 
-func (s STNodeList) BucketCount() int {
+func (s *STNodeList) BucketCount() int {
 	return s.bucketCount
 }
 
