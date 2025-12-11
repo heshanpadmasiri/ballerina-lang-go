@@ -35,14 +35,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 {{end}}
         modified := {{range $index, $attr := .Attributes}}{{if $index}} || {{end}}modified{{title $attr.Name}}{{end}}
         if modified {
-            return true, &ST{{.Name}}{
+            return true, createNodeAndAddChildren(&ST{{.Name}}{
 {{if .Base}}
                 ST{{.Base}}: n.ST{{.Base}},
 {{end}}
 {{range .Attributes}}
                 {{title .Name}}: {{.Name}}Node,
 {{end}}
-            }
+            }, {{range $index, $attr := .Attributes}}{{if $index}}, {{end}}{{$attr.Name}}Node{{end}})
         }
         return false, current
 {{end}}

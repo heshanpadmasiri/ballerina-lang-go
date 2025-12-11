@@ -1,20 +1,18 @@
-/*
- * Copyright (c) 2025, WSO2 LLC. (http://www.wso2.com).
- *
- * WSO2 LLC. licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+// Copyright (c) 2025, WSO2 LLC. (http://www.wso2.com).
+//
+// WSO2 LLC. licenses this file to you under the Apache License,
+// Version 2.0 (the "License"); you may not use this file except
+// in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
 
 package internal
 
@@ -41,7 +39,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedImports || modifiedMembers || modifiedEofToken
 		if modified {
-			return true, &STModulePart{
+			return true, createNodeAndAddChildren(&STModulePart{
 
 				STNode: n.STNode,
 
@@ -50,7 +48,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Members: membersNode,
 
 				EofToken: eofTokenNode,
-			}
+			}, importsNode, membersNode, eofTokenNode)
 		}
 		return false, current
 
@@ -72,7 +70,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedQualifierList || modifiedFunctionKeyword || modifiedFunctionName || modifiedRelativeResourcePath || modifiedFunctionSignature || modifiedFunctionBody
 		if modified {
-			return true, &STFunctionDefinition{
+			return true, createNodeAndAddChildren(&STFunctionDefinition{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -89,7 +87,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				FunctionSignature: functionSignatureNode,
 
 				FunctionBody: functionBodyNode,
-			}
+			}, metadataNode, qualifierListNode, functionKeywordNode, functionNameNode, relativeResourcePathNode, functionSignatureNode, functionBodyNode)
 		}
 		return false, current
 
@@ -107,7 +105,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedImportKeyword || modifiedOrgName || modifiedModuleName || modifiedPrefix || modifiedSemicolon
 		if modified {
-			return true, &STImportDeclarationNode{
+			return true, createNodeAndAddChildren(&STImportDeclarationNode{
 
 				STNode: n.STNode,
 
@@ -120,7 +118,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Prefix: prefixNode,
 
 				Semicolon: semicolonNode,
-			}
+			}, importKeywordNode, orgNameNode, moduleNameNode, prefixNode, semicolonNode)
 		}
 		return false, current
 
@@ -144,7 +142,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedVisibilityQualifier || modifiedListenerKeyword || modifiedTypeDescriptor || modifiedVariableName || modifiedEqualsToken || modifiedInitializer || modifiedSemicolonToken
 		if modified {
-			return true, &STListenerDeclarationNode{
+			return true, createNodeAndAddChildren(&STListenerDeclarationNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -163,7 +161,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Initializer: initializerNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, visibilityQualifierNode, listenerKeywordNode, typeDescriptorNode, variableNameNode, equalsTokenNode, initializerNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -183,7 +181,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedVisibilityQualifier || modifiedTypeKeyword || modifiedTypeName || modifiedTypeDescriptor || modifiedSemicolonToken
 		if modified {
-			return true, &STTypeDefinitionNode{
+			return true, createNodeAndAddChildren(&STTypeDefinitionNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -198,7 +196,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				TypeDescriptor: typeDescriptorNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, visibilityQualifierNode, typeKeywordNode, typeNameNode, typeDescriptorNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -228,7 +226,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedQualifiers || modifiedServiceKeyword || modifiedTypeDescriptor || modifiedAbsoluteResourcePath || modifiedOnKeyword || modifiedExpressions || modifiedOpenBraceToken || modifiedMembers || modifiedCloseBraceToken || modifiedSemicolonToken
 		if modified {
-			return true, &STServiceDeclarationNode{
+			return true, createNodeAndAddChildren(&STServiceDeclarationNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -253,7 +251,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				CloseBraceToken: closeBraceTokenNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, qualifiersNode, serviceKeywordNode, typeDescriptorNode, absoluteResourcePathNode, onKeywordNode, expressionsNode, openBraceTokenNode, membersNode, closeBraceTokenNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -269,7 +267,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedVarRef || modifiedEqualsToken || modifiedExpression || modifiedSemicolonToken
 		if modified {
-			return true, &STAssignmentStatementNode{
+			return true, createNodeAndAddChildren(&STAssignmentStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -280,7 +278,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, varRefNode, equalsTokenNode, expressionNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -298,7 +296,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLhsExpression || modifiedBinaryOperator || modifiedEqualsToken || modifiedRhsExpression || modifiedSemicolonToken
 		if modified {
-			return true, &STCompoundAssignmentStatementNode{
+			return true, createNodeAndAddChildren(&STCompoundAssignmentStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -311,7 +309,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				RhsExpression: rhsExpressionNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, lhsExpressionNode, binaryOperatorNode, equalsTokenNode, rhsExpressionNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -331,7 +329,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedFinalKeyword || modifiedTypedBindingPattern || modifiedEqualsToken || modifiedInitializer || modifiedSemicolonToken
 		if modified {
-			return true, &STVariableDeclarationNode{
+			return true, createNodeAndAddChildren(&STVariableDeclarationNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -346,7 +344,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Initializer: initializerNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, annotationsNode, finalKeywordNode, typedBindingPatternNode, equalsTokenNode, initializerNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -360,7 +358,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBraceToken || modifiedStatements || modifiedCloseBraceToken
 		if modified {
-			return true, &STBlockStatementNode{
+			return true, createNodeAndAddChildren(&STBlockStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -369,7 +367,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Statements: statementsNode,
 
 				CloseBraceToken: closeBraceTokenNode,
-			}
+			}, openBraceTokenNode, statementsNode, closeBraceTokenNode)
 		}
 		return false, current
 
@@ -381,14 +379,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedBreakToken || modifiedSemicolonToken
 		if modified {
-			return true, &STBreakStatementNode{
+			return true, createNodeAndAddChildren(&STBreakStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
 				BreakToken: breakTokenNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, breakTokenNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -402,7 +400,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedFailKeyword || modifiedExpression || modifiedSemicolonToken
 		if modified {
-			return true, &STFailStatementNode{
+			return true, createNodeAndAddChildren(&STFailStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -411,7 +409,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, failKeywordNode, expressionNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -423,14 +421,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedSemicolonToken
 		if modified {
-			return true, &STExpressionStatementNode{
+			return true, createNodeAndAddChildren(&STExpressionStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
 				Expression: expressionNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, expressionNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -442,14 +440,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedContinueToken || modifiedSemicolonToken
 		if modified {
-			return true, &STContinueStatementNode{
+			return true, createNodeAndAddChildren(&STContinueStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
 				ContinueToken: continueTokenNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, continueTokenNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -465,7 +463,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedEqualsToken || modifiedAnnotations || modifiedExternalKeyword || modifiedSemicolonToken
 		if modified {
-			return true, &STExternalFunctionBodyNode{
+			return true, createNodeAndAddChildren(&STExternalFunctionBodyNode{
 
 				STFunctionBodyNode: n.STFunctionBodyNode,
 
@@ -476,7 +474,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ExternalKeyword: externalKeywordNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, equalsTokenNode, annotationsNode, externalKeywordNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -492,7 +490,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedIfKeyword || modifiedCondition || modifiedIfBody || modifiedElseBody
 		if modified {
-			return true, &STIfElseStatementNode{
+			return true, createNodeAndAddChildren(&STIfElseStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -503,7 +501,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				IfBody: ifBodyNode,
 
 				ElseBody: elseBodyNode,
-			}
+			}, ifKeywordNode, conditionNode, ifBodyNode, elseBodyNode)
 		}
 		return false, current
 
@@ -515,14 +513,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedElseKeyword || modifiedElseBody
 		if modified {
-			return true, &STElseBlockNode{
+			return true, createNodeAndAddChildren(&STElseBlockNode{
 
 				STNode: n.STNode,
 
 				ElseKeyword: elseKeywordNode,
 
 				ElseBody: elseBodyNode,
-			}
+			}, elseKeywordNode, elseBodyNode)
 		}
 		return false, current
 
@@ -538,7 +536,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedWhileKeyword || modifiedCondition || modifiedWhileBody || modifiedOnFailClause
 		if modified {
-			return true, &STWhileStatementNode{
+			return true, createNodeAndAddChildren(&STWhileStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -549,7 +547,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				WhileBody: whileBodyNode,
 
 				OnFailClause: onFailClauseNode,
-			}
+			}, whileKeywordNode, conditionNode, whileBodyNode, onFailClauseNode)
 		}
 		return false, current
 
@@ -563,7 +561,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedPanicKeyword || modifiedExpression || modifiedSemicolonToken
 		if modified {
-			return true, &STPanicStatementNode{
+			return true, createNodeAndAddChildren(&STPanicStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -572,7 +570,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, panicKeywordNode, expressionNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -586,7 +584,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReturnKeyword || modifiedExpression || modifiedSemicolonToken
 		if modified {
-			return true, &STReturnStatementNode{
+			return true, createNodeAndAddChildren(&STReturnStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -595,7 +593,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, returnKeywordNode, expressionNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -613,7 +611,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedTypeKeyword || modifiedTypeName || modifiedTypeDescriptor || modifiedSemicolonToken
 		if modified {
-			return true, &STLocalTypeDefinitionStatementNode{
+			return true, createNodeAndAddChildren(&STLocalTypeDefinitionStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -626,7 +624,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				TypeDescriptor: typeDescriptorNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, annotationsNode, typeKeywordNode, typeNameNode, typeDescriptorNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -640,7 +638,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLockKeyword || modifiedBlockStatement || modifiedOnFailClause
 		if modified {
-			return true, &STLockStatementNode{
+			return true, createNodeAndAddChildren(&STLockStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -649,7 +647,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				BlockStatement: blockStatementNode,
 
 				OnFailClause: onFailClauseNode,
-			}
+			}, lockKeywordNode, blockStatementNode, onFailClauseNode)
 		}
 		return false, current
 
@@ -665,7 +663,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedForkKeyword || modifiedOpenBraceToken || modifiedNamedWorkerDeclarations || modifiedCloseBraceToken
 		if modified {
-			return true, &STForkStatementNode{
+			return true, createNodeAndAddChildren(&STForkStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -676,7 +674,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				NamedWorkerDeclarations: namedWorkerDeclarationsNode,
 
 				CloseBraceToken: closeBraceTokenNode,
-			}
+			}, forkKeywordNode, openBraceTokenNode, namedWorkerDeclarationsNode, closeBraceTokenNode)
 		}
 		return false, current
 
@@ -696,7 +694,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedForEachKeyword || modifiedTypedBindingPattern || modifiedInKeyword || modifiedActionOrExpressionNode || modifiedBlockStatement || modifiedOnFailClause
 		if modified {
-			return true, &STForEachStatementNode{
+			return true, createNodeAndAddChildren(&STForEachStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -711,7 +709,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				BlockStatement: blockStatementNode,
 
 				OnFailClause: onFailClauseNode,
-			}
+			}, forEachKeywordNode, typedBindingPatternNode, inKeywordNode, actionOrExpressionNodeNode, blockStatementNode, onFailClauseNode)
 		}
 		return false, current
 
@@ -725,7 +723,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLhsExpr || modifiedOperator || modifiedRhsExpr
 		if modified {
-			return true, &STBinaryExpressionNode{
+			return true, createNodeAndAddChildren(&STBinaryExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -734,7 +732,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Operator: operatorNode,
 
 				RhsExpr: rhsExprNode,
-			}
+			}, lhsExprNode, operatorNode, rhsExprNode)
 		}
 		return false, current
 
@@ -748,7 +746,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenParen || modifiedExpression || modifiedCloseParen
 		if modified {
-			return true, &STBracedExpressionNode{
+			return true, createNodeAndAddChildren(&STBracedExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -757,7 +755,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				CloseParen: closeParenNode,
-			}
+			}, openParenNode, expressionNode, closeParenNode)
 		}
 		return false, current
 
@@ -769,14 +767,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedCheckKeyword || modifiedExpression
 		if modified {
-			return true, &STCheckExpressionNode{
+			return true, createNodeAndAddChildren(&STCheckExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				CheckKeyword: checkKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, checkKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -790,7 +788,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedDotToken || modifiedFieldName
 		if modified {
-			return true, &STFieldAccessExpressionNode{
+			return true, createNodeAndAddChildren(&STFieldAccessExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -799,7 +797,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				DotToken: dotTokenNode,
 
 				FieldName: fieldNameNode,
-			}
+			}, expressionNode, dotTokenNode, fieldNameNode)
 		}
 		return false, current
 
@@ -815,7 +813,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedFunctionName || modifiedOpenParenToken || modifiedArguments || modifiedCloseParenToken
 		if modified {
-			return true, &STFunctionCallExpressionNode{
+			return true, createNodeAndAddChildren(&STFunctionCallExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -826,7 +824,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Arguments: argumentsNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, functionNameNode, openParenTokenNode, argumentsNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -846,7 +844,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedDotToken || modifiedMethodName || modifiedOpenParenToken || modifiedArguments || modifiedCloseParenToken
 		if modified {
-			return true, &STMethodCallExpressionNode{
+			return true, createNodeAndAddChildren(&STMethodCallExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -861,7 +859,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Arguments: argumentsNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, expressionNode, dotTokenNode, methodNameNode, openParenTokenNode, argumentsNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -875,7 +873,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBrace || modifiedFields || modifiedCloseBrace
 		if modified {
-			return true, &STMappingConstructorExpressionNode{
+			return true, createNodeAndAddChildren(&STMappingConstructorExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -884,7 +882,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Fields: fieldsNode,
 
 				CloseBrace: closeBraceNode,
-			}
+			}, openBraceNode, fieldsNode, closeBraceNode)
 		}
 		return false, current
 
@@ -900,7 +898,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedContainerExpression || modifiedOpenBracket || modifiedKeyExpression || modifiedCloseBracket
 		if modified {
-			return true, &STIndexedExpressionNode{
+			return true, createNodeAndAddChildren(&STIndexedExpressionNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -911,7 +909,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				KeyExpression: keyExpressionNode,
 
 				CloseBracket: closeBracketNode,
-			}
+			}, containerExpressionNode, openBracketNode, keyExpressionNode, closeBracketNode)
 		}
 		return false, current
 
@@ -923,14 +921,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTypeofKeyword || modifiedExpression
 		if modified {
-			return true, &STTypeofExpressionNode{
+			return true, createNodeAndAddChildren(&STTypeofExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				TypeofKeyword: typeofKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, typeofKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -942,14 +940,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedUnaryOperator || modifiedExpression
 		if modified {
-			return true, &STUnaryExpressionNode{
+			return true, createNodeAndAddChildren(&STUnaryExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				UnaryOperator: unaryOperatorNode,
 
 				Expression: expressionNode,
-			}
+			}, unaryOperatorNode, expressionNode)
 		}
 		return false, current
 
@@ -967,7 +965,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracket || modifiedFieldNameExpr || modifiedCloseBracket || modifiedColonToken || modifiedValueExpr
 		if modified {
-			return true, &STComputedNameFieldNode{
+			return true, createNodeAndAddChildren(&STComputedNameFieldNode{
 
 				STMappingFieldNode: n.STMappingFieldNode,
 
@@ -980,7 +978,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ColonToken: colonTokenNode,
 
 				ValueExpr: valueExprNode,
-			}
+			}, openBracketNode, fieldNameExprNode, closeBracketNode, colonTokenNode, valueExprNode)
 		}
 		return false, current
 
@@ -1004,7 +1002,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedVisibilityQualifier || modifiedConstKeyword || modifiedTypeDescriptor || modifiedVariableName || modifiedEqualsToken || modifiedInitializer || modifiedSemicolonToken
 		if modified {
-			return true, &STConstantDeclarationNode{
+			return true, createNodeAndAddChildren(&STConstantDeclarationNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -1023,7 +1021,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Initializer: initializerNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, visibilityQualifierNode, constKeywordNode, typeDescriptorNode, variableNameNode, equalsTokenNode, initializerNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1041,7 +1039,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedTypeName || modifiedParamName || modifiedEqualsToken || modifiedExpression
 		if modified {
-			return true, &STDefaultableParameterNode{
+			return true, createNodeAndAddChildren(&STDefaultableParameterNode{
 
 				STParameterNode: n.STParameterNode,
 
@@ -1054,7 +1052,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualsToken: equalsTokenNode,
 
 				Expression: expressionNode,
-			}
+			}, annotationsNode, typeNameNode, paramNameNode, equalsTokenNode, expressionNode)
 		}
 		return false, current
 
@@ -1068,7 +1066,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedTypeName || modifiedParamName
 		if modified {
-			return true, &STRequiredParameterNode{
+			return true, createNodeAndAddChildren(&STRequiredParameterNode{
 
 				STParameterNode: n.STParameterNode,
 
@@ -1077,7 +1075,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				TypeName: typeNameNode,
 
 				ParamName: paramNameNode,
-			}
+			}, annotationsNode, typeNameNode, paramNameNode)
 		}
 		return false, current
 
@@ -1093,7 +1091,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedAsteriskToken || modifiedTypeName || modifiedParamName
 		if modified {
-			return true, &STIncludedRecordParameterNode{
+			return true, createNodeAndAddChildren(&STIncludedRecordParameterNode{
 
 				STParameterNode: n.STParameterNode,
 
@@ -1104,7 +1102,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				TypeName: typeNameNode,
 
 				ParamName: paramNameNode,
-			}
+			}, annotationsNode, asteriskTokenNode, typeNameNode, paramNameNode)
 		}
 		return false, current
 
@@ -1120,7 +1118,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedTypeName || modifiedEllipsisToken || modifiedParamName
 		if modified {
-			return true, &STRestParameterNode{
+			return true, createNodeAndAddChildren(&STRestParameterNode{
 
 				STParameterNode: n.STParameterNode,
 
@@ -1131,7 +1129,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EllipsisToken: ellipsisTokenNode,
 
 				ParamName: paramNameNode,
-			}
+			}, annotationsNode, typeNameNode, ellipsisTokenNode, paramNameNode)
 		}
 		return false, current
 
@@ -1143,14 +1141,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOrgName || modifiedSlashToken
 		if modified {
-			return true, &STImportOrgNameNode{
+			return true, createNodeAndAddChildren(&STImportOrgNameNode{
 
 				STNode: n.STNode,
 
 				OrgName: orgNameNode,
 
 				SlashToken: slashTokenNode,
-			}
+			}, orgNameNode, slashTokenNode)
 		}
 		return false, current
 
@@ -1162,14 +1160,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAsKeyword || modifiedPrefix
 		if modified {
-			return true, &STImportPrefixNode{
+			return true, createNodeAndAddChildren(&STImportPrefixNode{
 
 				STNode: n.STNode,
 
 				AsKeyword: asKeywordNode,
 
 				Prefix: prefixNode,
-			}
+			}, asKeywordNode, prefixNode)
 		}
 		return false, current
 
@@ -1185,7 +1183,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReadonlyKeyword || modifiedFieldName || modifiedColon || modifiedValueExpr
 		if modified {
-			return true, &STSpecificFieldNode{
+			return true, createNodeAndAddChildren(&STSpecificFieldNode{
 
 				STMappingFieldNode: n.STMappingFieldNode,
 
@@ -1196,7 +1194,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Colon: colonNode,
 
 				ValueExpr: valueExprNode,
-			}
+			}, readonlyKeywordNode, fieldNameNode, colonNode, valueExprNode)
 		}
 		return false, current
 
@@ -1208,14 +1206,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedEllipsis || modifiedValueExpr
 		if modified {
-			return true, &STSpreadFieldNode{
+			return true, createNodeAndAddChildren(&STSpreadFieldNode{
 
 				STMappingFieldNode: n.STMappingFieldNode,
 
 				Ellipsis: ellipsisNode,
 
 				ValueExpr: valueExprNode,
-			}
+			}, ellipsisNode, valueExprNode)
 		}
 		return false, current
 
@@ -1229,7 +1227,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedArgumentName || modifiedEqualsToken || modifiedExpression
 		if modified {
-			return true, &STNamedArgumentNode{
+			return true, createNodeAndAddChildren(&STNamedArgumentNode{
 
 				STFunctionArgumentNode: n.STFunctionArgumentNode,
 
@@ -1238,7 +1236,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualsToken: equalsTokenNode,
 
 				Expression: expressionNode,
-			}
+			}, argumentNameNode, equalsTokenNode, expressionNode)
 		}
 		return false, current
 
@@ -1248,12 +1246,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression
 		if modified {
-			return true, &STPositionalArgumentNode{
+			return true, createNodeAndAddChildren(&STPositionalArgumentNode{
 
 				STFunctionArgumentNode: n.STFunctionArgumentNode,
 
 				Expression: expressionNode,
-			}
+			}, expressionNode)
 		}
 		return false, current
 
@@ -1265,14 +1263,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedEllipsis || modifiedExpression
 		if modified {
-			return true, &STRestArgumentNode{
+			return true, createNodeAndAddChildren(&STRestArgumentNode{
 
 				STFunctionArgumentNode: n.STFunctionArgumentNode,
 
 				Ellipsis: ellipsisNode,
 
 				Expression: expressionNode,
-			}
+			}, ellipsisNode, expressionNode)
 		}
 		return false, current
 
@@ -1284,14 +1282,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLtToken || modifiedGtToken
 		if modified {
-			return true, &STInferredTypedescDefaultNode{
+			return true, createNodeAndAddChildren(&STInferredTypedescDefaultNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				LtToken: ltTokenNode,
 
 				GtToken: gtTokenNode,
-			}
+			}, ltTokenNode, gtTokenNode)
 		}
 		return false, current
 
@@ -1309,7 +1307,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedObjectTypeQualifiers || modifiedObjectKeyword || modifiedOpenBrace || modifiedMembers || modifiedCloseBrace
 		if modified {
-			return true, &STObjectTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STObjectTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -1322,7 +1320,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Members: membersNode,
 
 				CloseBrace: closeBraceNode,
-			}
+			}, objectTypeQualifiersNode, objectKeywordNode, openBraceNode, membersNode, closeBraceNode)
 		}
 		return false, current
 
@@ -1344,7 +1342,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedObjectTypeQualifiers || modifiedObjectKeyword || modifiedTypeReference || modifiedOpenBraceToken || modifiedMembers || modifiedCloseBraceToken
 		if modified {
-			return true, &STObjectConstructorExpressionNode{
+			return true, createNodeAndAddChildren(&STObjectConstructorExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -1361,7 +1359,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Members: membersNode,
 
 				CloseBraceToken: closeBraceTokenNode,
-			}
+			}, annotationsNode, objectTypeQualifiersNode, objectKeywordNode, typeReferenceNode, openBraceTokenNode, membersNode, closeBraceTokenNode)
 		}
 		return false, current
 
@@ -1379,7 +1377,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedRecordKeyword || modifiedBodyStartDelimiter || modifiedFields || modifiedRecordRestDescriptor || modifiedBodyEndDelimiter
 		if modified {
-			return true, &STRecordTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STRecordTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -1392,7 +1390,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				RecordRestDescriptor: recordRestDescriptorNode,
 
 				BodyEndDelimiter: bodyEndDelimiterNode,
-			}
+			}, recordKeywordNode, bodyStartDelimiterNode, fieldsNode, recordRestDescriptorNode, bodyEndDelimiterNode)
 		}
 		return false, current
 
@@ -1406,7 +1404,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReturnsKeyword || modifiedAnnotations || modifiedType
 		if modified {
-			return true, &STReturnTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STReturnTypeDescriptorNode{
 
 				STNode: n.STNode,
 
@@ -1415,7 +1413,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Annotations: annotationsNode,
 
 				Type: typeNode,
-			}
+			}, returnsKeywordNode, annotationsNode, typeNode)
 		}
 		return false, current
 
@@ -1427,14 +1425,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenParenToken || modifiedCloseParenToken
 		if modified {
-			return true, &STNilTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STNilTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				OpenParenToken: openParenTokenNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, openParenTokenNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -1446,14 +1444,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTypeDescriptor || modifiedQuestionMarkToken
 		if modified {
-			return true, &STOptionalTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STOptionalTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				TypeDescriptor: typeDescriptorNode,
 
 				QuestionMarkToken: questionMarkTokenNode,
-			}
+			}, typeDescriptorNode, questionMarkTokenNode)
 		}
 		return false, current
 
@@ -1477,7 +1475,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedVisibilityQualifier || modifiedQualifierList || modifiedTypeName || modifiedFieldName || modifiedEqualsToken || modifiedExpression || modifiedSemicolonToken
 		if modified {
-			return true, &STObjectFieldNode{
+			return true, createNodeAndAddChildren(&STObjectFieldNode{
 
 				STNode: n.STNode,
 
@@ -1496,7 +1494,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, visibilityQualifierNode, qualifierListNode, typeNameNode, fieldNameNode, equalsTokenNode, expressionNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1516,7 +1514,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedReadonlyKeyword || modifiedTypeName || modifiedFieldName || modifiedQuestionMarkToken || modifiedSemicolonToken
 		if modified {
-			return true, &STRecordFieldNode{
+			return true, createNodeAndAddChildren(&STRecordFieldNode{
 
 				STNode: n.STNode,
 
@@ -1531,7 +1529,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				QuestionMarkToken: questionMarkTokenNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, readonlyKeywordNode, typeNameNode, fieldNameNode, questionMarkTokenNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1553,7 +1551,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedReadonlyKeyword || modifiedTypeName || modifiedFieldName || modifiedEqualsToken || modifiedExpression || modifiedSemicolonToken
 		if modified {
-			return true, &STRecordFieldWithDefaultValueNode{
+			return true, createNodeAndAddChildren(&STRecordFieldWithDefaultValueNode{
 
 				STNode: n.STNode,
 
@@ -1570,7 +1568,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, readonlyKeywordNode, typeNameNode, fieldNameNode, equalsTokenNode, expressionNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1584,7 +1582,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTypeName || modifiedEllipsisToken || modifiedSemicolonToken
 		if modified {
-			return true, &STRecordRestDescriptorNode{
+			return true, createNodeAndAddChildren(&STRecordRestDescriptorNode{
 
 				STNode: n.STNode,
 
@@ -1593,7 +1591,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EllipsisToken: ellipsisTokenNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, typeNameNode, ellipsisTokenNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1607,7 +1605,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAsteriskToken || modifiedTypeName || modifiedSemicolonToken
 		if modified {
-			return true, &STTypeReferenceNode{
+			return true, createNodeAndAddChildren(&STTypeReferenceNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -1616,7 +1614,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				TypeName: typeNameNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, asteriskTokenNode, typeNameNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1630,7 +1628,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAtToken || modifiedAnnotReference || modifiedAnnotValue
 		if modified {
-			return true, &STAnnotationNode{
+			return true, createNodeAndAddChildren(&STAnnotationNode{
 
 				STNode: n.STNode,
 
@@ -1639,7 +1637,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				AnnotReference: annotReferenceNode,
 
 				AnnotValue: annotValueNode,
-			}
+			}, atTokenNode, annotReferenceNode, annotValueNode)
 		}
 		return false, current
 
@@ -1651,14 +1649,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedDocumentationString || modifiedAnnotations
 		if modified {
-			return true, &STMetadataNode{
+			return true, createNodeAndAddChildren(&STMetadataNode{
 
 				STNode: n.STNode,
 
 				DocumentationString: documentationStringNode,
 
 				Annotations: annotationsNode,
-			}
+			}, documentationStringNode, annotationsNode)
 		}
 		return false, current
 
@@ -1680,7 +1678,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedVisibilityQualifier || modifiedQualifiers || modifiedTypedBindingPattern || modifiedEqualsToken || modifiedInitializer || modifiedSemicolonToken
 		if modified {
-			return true, &STModuleVariableDeclarationNode{
+			return true, createNodeAndAddChildren(&STModuleVariableDeclarationNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -1697,7 +1695,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Initializer: initializerNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, visibilityQualifierNode, qualifiersNode, typedBindingPatternNode, equalsTokenNode, initializerNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1711,7 +1709,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedIsKeyword || modifiedTypeDescriptor
 		if modified {
-			return true, &STTypeTestExpressionNode{
+			return true, createNodeAndAddChildren(&STTypeTestExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -1720,7 +1718,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				IsKeyword: isKeywordNode,
 
 				TypeDescriptor: typeDescriptorNode,
-			}
+			}, expressionNode, isKeywordNode, typeDescriptorNode)
 		}
 		return false, current
 
@@ -1740,7 +1738,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedRightArrowToken || modifiedMethodName || modifiedOpenParenToken || modifiedArguments || modifiedCloseParenToken
 		if modified {
-			return true, &STRemoteMethodCallActionNode{
+			return true, createNodeAndAddChildren(&STRemoteMethodCallActionNode{
 
 				STActionNode: n.STActionNode,
 
@@ -1755,7 +1753,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Arguments: argumentsNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, expressionNode, rightArrowTokenNode, methodNameNode, openParenTokenNode, argumentsNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -1767,14 +1765,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMapKeywordToken || modifiedMapTypeParamsNode
 		if modified {
-			return true, &STMapTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STMapTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				MapKeywordToken: mapKeywordTokenNode,
 
 				MapTypeParamsNode: mapTypeParamsNodeNode,
-			}
+			}, mapKeywordTokenNode, mapTypeParamsNodeNode)
 		}
 		return false, current
 
@@ -1786,14 +1784,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenParenToken || modifiedCloseParenToken
 		if modified {
-			return true, &STNilLiteralNode{
+			return true, createNodeAndAddChildren(&STNilLiteralNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				OpenParenToken: openParenTokenNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, openParenTokenNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -1819,7 +1817,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedVisibilityQualifier || modifiedConstKeyword || modifiedAnnotationKeyword || modifiedTypeDescriptor || modifiedAnnotationTag || modifiedOnKeyword || modifiedAttachPoints || modifiedSemicolonToken
 		if modified {
-			return true, &STAnnotationDeclarationNode{
+			return true, createNodeAndAddChildren(&STAnnotationDeclarationNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -1840,7 +1838,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				AttachPoints: attachPointsNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, visibilityQualifierNode, constKeywordNode, annotationKeywordNode, typeDescriptorNode, annotationTagNode, onKeywordNode, attachPointsNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1852,14 +1850,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedSourceKeyword || modifiedIdentifiers
 		if modified {
-			return true, &STAnnotationAttachPointNode{
+			return true, createNodeAndAddChildren(&STAnnotationAttachPointNode{
 
 				STNode: n.STNode,
 
 				SourceKeyword: sourceKeywordNode,
 
 				Identifiers: identifiersNode,
-			}
+			}, sourceKeywordNode, identifiersNode)
 		}
 		return false, current
 
@@ -1877,7 +1875,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedXmlnsKeyword || modifiedNamespaceuri || modifiedAsKeyword || modifiedNamespacePrefix || modifiedSemicolonToken
 		if modified {
-			return true, &STXMLNamespaceDeclarationNode{
+			return true, createNodeAndAddChildren(&STXMLNamespaceDeclarationNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -1890,7 +1888,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				NamespacePrefix: namespacePrefixNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, xmlnsKeywordNode, namespaceuriNode, asKeywordNode, namespacePrefixNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1908,7 +1906,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedXmlnsKeyword || modifiedNamespaceuri || modifiedAsKeyword || modifiedNamespacePrefix || modifiedSemicolonToken
 		if modified {
-			return true, &STModuleXMLNamespaceDeclarationNode{
+			return true, createNodeAndAddChildren(&STModuleXMLNamespaceDeclarationNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -1921,7 +1919,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				NamespacePrefix: namespacePrefixNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, xmlnsKeywordNode, namespaceuriNode, asKeywordNode, namespacePrefixNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1939,7 +1937,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBraceToken || modifiedNamedWorkerDeclarator || modifiedStatements || modifiedCloseBraceToken || modifiedSemicolonToken
 		if modified {
-			return true, &STFunctionBodyBlockNode{
+			return true, createNodeAndAddChildren(&STFunctionBodyBlockNode{
 
 				STFunctionBodyNode: n.STFunctionBodyNode,
 
@@ -1952,7 +1950,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				CloseBraceToken: closeBraceTokenNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, openBraceTokenNode, namedWorkerDeclaratorNode, statementsNode, closeBraceTokenNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -1974,7 +1972,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedTransactionalKeyword || modifiedWorkerKeyword || modifiedWorkerName || modifiedReturnTypeDesc || modifiedWorkerBody || modifiedOnFailClause
 		if modified {
-			return true, &STNamedWorkerDeclarationNode{
+			return true, createNodeAndAddChildren(&STNamedWorkerDeclarationNode{
 
 				STNode: n.STNode,
 
@@ -1991,7 +1989,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				WorkerBody: workerBodyNode,
 
 				OnFailClause: onFailClauseNode,
-			}
+			}, annotationsNode, transactionalKeywordNode, workerKeywordNode, workerNameNode, returnTypeDescNode, workerBodyNode, onFailClauseNode)
 		}
 		return false, current
 
@@ -2003,14 +2001,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedWorkerInitStatements || modifiedNamedWorkerDeclarations
 		if modified {
-			return true, &STNamedWorkerDeclarator{
+			return true, createNodeAndAddChildren(&STNamedWorkerDeclarator{
 
 				STNode: n.STNode,
 
 				WorkerInitStatements: workerInitStatementsNode,
 
 				NamedWorkerDeclarations: namedWorkerDeclarationsNode,
-			}
+			}, workerInitStatementsNode, namedWorkerDeclarationsNode)
 		}
 		return false, current
 
@@ -2020,12 +2018,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLiteralToken
 		if modified {
-			return true, &STBasicLiteralNode{
+			return true, createNodeAndAddChildren(&STBasicLiteralNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				LiteralToken: literalTokenNode,
-			}
+			}, literalTokenNode)
 		}
 		return false, current
 
@@ -2035,12 +2033,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedName
 		if modified {
-			return true, &STSimpleNameReferenceNode{
+			return true, createNodeAndAddChildren(&STSimpleNameReferenceNode{
 
 				STNameReferenceNode: n.STNameReferenceNode,
 
 				Name: nameNode,
-			}
+			}, nameNode)
 		}
 		return false, current
 
@@ -2054,7 +2052,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedModulePrefix || modifiedColon || modifiedIdentifier
 		if modified {
-			return true, &STQualifiedNameReferenceNode{
+			return true, createNodeAndAddChildren(&STQualifiedNameReferenceNode{
 
 				STNameReferenceNode: n.STNameReferenceNode,
 
@@ -2063,7 +2061,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Colon: colonNode,
 
 				Identifier: identifierNode,
-			}
+			}, modulePrefixNode, colonNode, identifierNode)
 		}
 		return false, current
 
@@ -2073,12 +2071,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedName
 		if modified {
-			return true, &STBuiltinSimpleNameReferenceNode{
+			return true, createNodeAndAddChildren(&STBuiltinSimpleNameReferenceNode{
 
 				STNameReferenceNode: n.STNameReferenceNode,
 
 				Name: nameNode,
-			}
+			}, nameNode)
 		}
 		return false, current
 
@@ -2090,14 +2088,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTrapKeyword || modifiedExpression
 		if modified {
-			return true, &STTrapExpressionNode{
+			return true, createNodeAndAddChildren(&STTrapExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				TrapKeyword: trapKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, trapKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -2111,7 +2109,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracket || modifiedExpressions || modifiedCloseBracket
 		if modified {
-			return true, &STListConstructorExpressionNode{
+			return true, createNodeAndAddChildren(&STListConstructorExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -2120,7 +2118,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expressions: expressionsNode,
 
 				CloseBracket: closeBracketNode,
-			}
+			}, openBracketNode, expressionsNode, closeBracketNode)
 		}
 		return false, current
 
@@ -2136,7 +2134,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLtToken || modifiedTypeCastParam || modifiedGtToken || modifiedExpression
 		if modified {
-			return true, &STTypeCastExpressionNode{
+			return true, createNodeAndAddChildren(&STTypeCastExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -2147,7 +2145,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				GtToken: gtTokenNode,
 
 				Expression: expressionNode,
-			}
+			}, ltTokenNode, typeCastParamNode, gtTokenNode, expressionNode)
 		}
 		return false, current
 
@@ -2159,14 +2157,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedType
 		if modified {
-			return true, &STTypeCastParamNode{
+			return true, createNodeAndAddChildren(&STTypeCastParamNode{
 
 				STNode: n.STNode,
 
 				Annotations: annotationsNode,
 
 				Type: typeNode,
-			}
+			}, annotationsNode, typeNode)
 		}
 		return false, current
 
@@ -2180,7 +2178,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLeftTypeDesc || modifiedPipeToken || modifiedRightTypeDesc
 		if modified {
-			return true, &STUnionTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STUnionTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -2189,7 +2187,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				PipeToken: pipeTokenNode,
 
 				RightTypeDesc: rightTypeDescNode,
-			}
+			}, leftTypeDescNode, pipeTokenNode, rightTypeDescNode)
 		}
 		return false, current
 
@@ -2207,7 +2205,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTableKeyword || modifiedKeySpecifier || modifiedOpenBracket || modifiedRows || modifiedCloseBracket
 		if modified {
-			return true, &STTableConstructorExpressionNode{
+			return true, createNodeAndAddChildren(&STTableConstructorExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -2220,7 +2218,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Rows: rowsNode,
 
 				CloseBracket: closeBracketNode,
-			}
+			}, tableKeywordNode, keySpecifierNode, openBracketNode, rowsNode, closeBracketNode)
 		}
 		return false, current
 
@@ -2236,7 +2234,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedKeyKeyword || modifiedOpenParenToken || modifiedFieldNames || modifiedCloseParenToken
 		if modified {
-			return true, &STKeySpecifierNode{
+			return true, createNodeAndAddChildren(&STKeySpecifierNode{
 
 				STNode: n.STNode,
 
@@ -2247,7 +2245,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				FieldNames: fieldNamesNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, keyKeywordNode, openParenTokenNode, fieldNamesNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -2259,14 +2257,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedStreamKeywordToken || modifiedStreamTypeParamsNode
 		if modified {
-			return true, &STStreamTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STStreamTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				StreamKeywordToken: streamKeywordTokenNode,
 
 				StreamTypeParamsNode: streamTypeParamsNodeNode,
-			}
+			}, streamKeywordTokenNode, streamTypeParamsNodeNode)
 		}
 		return false, current
 
@@ -2284,7 +2282,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLtToken || modifiedLeftTypeDescNode || modifiedCommaToken || modifiedRightTypeDescNode || modifiedGtToken
 		if modified {
-			return true, &STStreamTypeParamsNode{
+			return true, createNodeAndAddChildren(&STStreamTypeParamsNode{
 
 				STNode: n.STNode,
 
@@ -2297,7 +2295,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				RightTypeDescNode: rightTypeDescNodeNode,
 
 				GtToken: gtTokenNode,
-			}
+			}, ltTokenNode, leftTypeDescNodeNode, commaTokenNode, rightTypeDescNodeNode, gtTokenNode)
 		}
 		return false, current
 
@@ -2313,7 +2311,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLetKeyword || modifiedLetVarDeclarations || modifiedInKeyword || modifiedExpression
 		if modified {
-			return true, &STLetExpressionNode{
+			return true, createNodeAndAddChildren(&STLetExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -2324,7 +2322,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				InKeyword: inKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, letKeywordNode, letVarDeclarationsNode, inKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -2340,7 +2338,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedTypedBindingPattern || modifiedEqualsToken || modifiedExpression
 		if modified {
-			return true, &STLetVariableDeclarationNode{
+			return true, createNodeAndAddChildren(&STLetVariableDeclarationNode{
 
 				STNode: n.STNode,
 
@@ -2351,7 +2349,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualsToken: equalsTokenNode,
 
 				Expression: expressionNode,
-			}
+			}, annotationsNode, typedBindingPatternNode, equalsTokenNode, expressionNode)
 		}
 		return false, current
 
@@ -2367,7 +2365,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedType || modifiedStartBacktick || modifiedContent || modifiedEndBacktick
 		if modified {
-			return true, &STTemplateExpressionNode{
+			return true, createNodeAndAddChildren(&STTemplateExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -2378,7 +2376,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Content: contentNode,
 
 				EndBacktick: endBacktickNode,
-			}
+			}, typeNode, startBacktickNode, contentNode, endBacktickNode)
 		}
 		return false, current
 
@@ -2392,7 +2390,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedStartTag || modifiedContent || modifiedEndTag
 		if modified {
-			return true, &STXMLElementNode{
+			return true, createNodeAndAddChildren(&STXMLElementNode{
 
 				STXMLItemNode: n.STXMLItemNode,
 
@@ -2401,7 +2399,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Content: contentNode,
 
 				EndTag: endTagNode,
-			}
+			}, startTagNode, contentNode, endTagNode)
 		}
 		return false, current
 
@@ -2417,7 +2415,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLtToken || modifiedName || modifiedAttributes || modifiedGetToken
 		if modified {
-			return true, &STXMLStartTagNode{
+			return true, createNodeAndAddChildren(&STXMLStartTagNode{
 
 				STXMLElementTagNode: n.STXMLElementTagNode,
 
@@ -2428,7 +2426,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Attributes: attributesNode,
 
 				GetToken: getTokenNode,
-			}
+			}, ltTokenNode, nameNode, attributesNode, getTokenNode)
 		}
 		return false, current
 
@@ -2444,7 +2442,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLtToken || modifiedSlashToken || modifiedName || modifiedGetToken
 		if modified {
-			return true, &STXMLEndTagNode{
+			return true, createNodeAndAddChildren(&STXMLEndTagNode{
 
 				STXMLElementTagNode: n.STXMLElementTagNode,
 
@@ -2455,7 +2453,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Name: nameNode,
 
 				GetToken: getTokenNode,
-			}
+			}, ltTokenNode, slashTokenNode, nameNode, getTokenNode)
 		}
 		return false, current
 
@@ -2465,12 +2463,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedName
 		if modified {
-			return true, &STXMLSimpleNameNode{
+			return true, createNodeAndAddChildren(&STXMLSimpleNameNode{
 
 				STXMLNameNode: n.STXMLNameNode,
 
 				Name: nameNode,
-			}
+			}, nameNode)
 		}
 		return false, current
 
@@ -2484,7 +2482,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedPrefix || modifiedColon || modifiedName
 		if modified {
-			return true, &STXMLQualifiedNameNode{
+			return true, createNodeAndAddChildren(&STXMLQualifiedNameNode{
 
 				STXMLNameNode: n.STXMLNameNode,
 
@@ -2493,7 +2491,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Colon: colonNode,
 
 				Name: nameNode,
-			}
+			}, prefixNode, colonNode, nameNode)
 		}
 		return false, current
 
@@ -2511,7 +2509,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLtToken || modifiedName || modifiedAttributes || modifiedSlashToken || modifiedGetToken
 		if modified {
-			return true, &STXMLEmptyElementNode{
+			return true, createNodeAndAddChildren(&STXMLEmptyElementNode{
 
 				STXMLItemNode: n.STXMLItemNode,
 
@@ -2524,7 +2522,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				SlashToken: slashTokenNode,
 
 				GetToken: getTokenNode,
-			}
+			}, ltTokenNode, nameNode, attributesNode, slashTokenNode, getTokenNode)
 		}
 		return false, current
 
@@ -2538,7 +2536,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedInterpolationStartToken || modifiedExpression || modifiedInterpolationEndToken
 		if modified {
-			return true, &STInterpolationNode{
+			return true, createNodeAndAddChildren(&STInterpolationNode{
 
 				STXMLItemNode: n.STXMLItemNode,
 
@@ -2547,7 +2545,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				InterpolationEndToken: interpolationEndTokenNode,
-			}
+			}, interpolationStartTokenNode, expressionNode, interpolationEndTokenNode)
 		}
 		return false, current
 
@@ -2557,12 +2555,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedContent
 		if modified {
-			return true, &STXMLTextNode{
+			return true, createNodeAndAddChildren(&STXMLTextNode{
 
 				STXMLItemNode: n.STXMLItemNode,
 
 				Content: contentNode,
-			}
+			}, contentNode)
 		}
 		return false, current
 
@@ -2576,7 +2574,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAttributeName || modifiedEqualToken || modifiedValue
 		if modified {
-			return true, &STXMLAttributeNode{
+			return true, createNodeAndAddChildren(&STXMLAttributeNode{
 
 				STNode: n.STNode,
 
@@ -2585,7 +2583,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualToken: equalTokenNode,
 
 				Value: valueNode,
-			}
+			}, attributeNameNode, equalTokenNode, valueNode)
 		}
 		return false, current
 
@@ -2599,7 +2597,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedStartQuote || modifiedValue || modifiedEndQuote
 		if modified {
-			return true, &STXMLAttributeValue{
+			return true, createNodeAndAddChildren(&STXMLAttributeValue{
 
 				STNode: n.STNode,
 
@@ -2608,7 +2606,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Value: valueNode,
 
 				EndQuote: endQuoteNode,
-			}
+			}, startQuoteNode, valueNode, endQuoteNode)
 		}
 		return false, current
 
@@ -2622,7 +2620,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedCommentStart || modifiedContent || modifiedCommentEnd
 		if modified {
-			return true, &STXMLComment{
+			return true, createNodeAndAddChildren(&STXMLComment{
 
 				STXMLItemNode: n.STXMLItemNode,
 
@@ -2631,7 +2629,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Content: contentNode,
 
 				CommentEnd: commentEndNode,
-			}
+			}, commentStartNode, contentNode, commentEndNode)
 		}
 		return false, current
 
@@ -2645,7 +2643,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedCdataStart || modifiedContent || modifiedCdataEnd
 		if modified {
-			return true, &STXMLCDATANode{
+			return true, createNodeAndAddChildren(&STXMLCDATANode{
 
 				STXMLItemNode: n.STXMLItemNode,
 
@@ -2654,7 +2652,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Content: contentNode,
 
 				CdataEnd: cdataEndNode,
-			}
+			}, cdataStartNode, contentNode, cdataEndNode)
 		}
 		return false, current
 
@@ -2670,7 +2668,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedPiStart || modifiedTarget || modifiedData || modifiedPiEnd
 		if modified {
-			return true, &STXMLProcessingInstruction{
+			return true, createNodeAndAddChildren(&STXMLProcessingInstruction{
 
 				STXMLItemNode: n.STXMLItemNode,
 
@@ -2681,7 +2679,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Data: dataNode,
 
 				PiEnd: piEndNode,
-			}
+			}, piStartNode, targetNode, dataNode, piEndNode)
 		}
 		return false, current
 
@@ -2695,7 +2693,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTableKeywordToken || modifiedRowTypeParameterNode || modifiedKeyConstraintNode
 		if modified {
-			return true, &STTableTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STTableTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -2704,7 +2702,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				RowTypeParameterNode: rowTypeParameterNodeNode,
 
 				KeyConstraintNode: keyConstraintNodeNode,
-			}
+			}, tableKeywordTokenNode, rowTypeParameterNodeNode, keyConstraintNodeNode)
 		}
 		return false, current
 
@@ -2718,7 +2716,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLtToken || modifiedTypeNode || modifiedGtToken
 		if modified {
-			return true, &STTypeParameterNode{
+			return true, createNodeAndAddChildren(&STTypeParameterNode{
 
 				STNode: n.STNode,
 
@@ -2727,7 +2725,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				TypeNode: typeNodeNode,
 
 				GtToken: gtTokenNode,
-			}
+			}, ltTokenNode, typeNodeNode, gtTokenNode)
 		}
 		return false, current
 
@@ -2739,14 +2737,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedKeyKeywordToken || modifiedTypeParameterNode
 		if modified {
-			return true, &STKeyTypeConstraintNode{
+			return true, createNodeAndAddChildren(&STKeyTypeConstraintNode{
 
 				STNode: n.STNode,
 
 				KeyKeywordToken: keyKeywordTokenNode,
 
 				TypeParameterNode: typeParameterNodeNode,
-			}
+			}, keyKeywordTokenNode, typeParameterNodeNode)
 		}
 		return false, current
 
@@ -2760,7 +2758,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedQualifierList || modifiedFunctionKeyword || modifiedFunctionSignature
 		if modified {
-			return true, &STFunctionTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STFunctionTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -2769,7 +2767,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				FunctionKeyword: functionKeywordNode,
 
 				FunctionSignature: functionSignatureNode,
-			}
+			}, qualifierListNode, functionKeywordNode, functionSignatureNode)
 		}
 		return false, current
 
@@ -2785,7 +2783,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenParenToken || modifiedParameters || modifiedCloseParenToken || modifiedReturnTypeDesc
 		if modified {
-			return true, &STFunctionSignatureNode{
+			return true, createNodeAndAddChildren(&STFunctionSignatureNode{
 
 				STNode: n.STNode,
 
@@ -2796,7 +2794,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				CloseParenToken: closeParenTokenNode,
 
 				ReturnTypeDesc: returnTypeDescNode,
-			}
+			}, openParenTokenNode, parametersNode, closeParenTokenNode, returnTypeDescNode)
 		}
 		return false, current
 
@@ -2814,7 +2812,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedQualifierList || modifiedFunctionKeyword || modifiedFunctionSignature || modifiedFunctionBody
 		if modified {
-			return true, &STExplicitAnonymousFunctionExpressionNode{
+			return true, createNodeAndAddChildren(&STExplicitAnonymousFunctionExpressionNode{
 
 				STAnonymousFunctionExpressionNode: n.STAnonymousFunctionExpressionNode,
 
@@ -2827,7 +2825,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				FunctionSignature: functionSignatureNode,
 
 				FunctionBody: functionBodyNode,
-			}
+			}, annotationsNode, qualifierListNode, functionKeywordNode, functionSignatureNode, functionBodyNode)
 		}
 		return false, current
 
@@ -2841,7 +2839,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedRightDoubleArrow || modifiedExpression || modifiedSemicolon
 		if modified {
-			return true, &STExpressionFunctionBodyNode{
+			return true, createNodeAndAddChildren(&STExpressionFunctionBodyNode{
 
 				STFunctionBodyNode: n.STFunctionBodyNode,
 
@@ -2850,7 +2848,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				Semicolon: semicolonNode,
-			}
+			}, rightDoubleArrowNode, expressionNode, semicolonNode)
 		}
 		return false, current
 
@@ -2864,7 +2862,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracketToken || modifiedMemberTypeDesc || modifiedCloseBracketToken
 		if modified {
-			return true, &STTupleTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STTupleTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -2873,7 +2871,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MemberTypeDesc: memberTypeDescNode,
 
 				CloseBracketToken: closeBracketTokenNode,
-			}
+			}, openBracketTokenNode, memberTypeDescNode, closeBracketTokenNode)
 		}
 		return false, current
 
@@ -2887,7 +2885,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenParenToken || modifiedTypedesc || modifiedCloseParenToken
 		if modified {
-			return true, &STParenthesisedTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STParenthesisedTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -2896,7 +2894,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Typedesc: typedescNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, openParenTokenNode, typedescNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -2910,7 +2908,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedNewKeyword || modifiedTypeDescriptor || modifiedParenthesizedArgList
 		if modified {
-			return true, &STExplicitNewExpressionNode{
+			return true, createNodeAndAddChildren(&STExplicitNewExpressionNode{
 
 				STNewExpressionNode: n.STNewExpressionNode,
 
@@ -2919,7 +2917,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				TypeDescriptor: typeDescriptorNode,
 
 				ParenthesizedArgList: parenthesizedArgListNode,
-			}
+			}, newKeywordNode, typeDescriptorNode, parenthesizedArgListNode)
 		}
 		return false, current
 
@@ -2931,14 +2929,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedNewKeyword || modifiedParenthesizedArgList
 		if modified {
-			return true, &STImplicitNewExpressionNode{
+			return true, createNodeAndAddChildren(&STImplicitNewExpressionNode{
 
 				STNewExpressionNode: n.STNewExpressionNode,
 
 				NewKeyword: newKeywordNode,
 
 				ParenthesizedArgList: parenthesizedArgListNode,
-			}
+			}, newKeywordNode, parenthesizedArgListNode)
 		}
 		return false, current
 
@@ -2952,7 +2950,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenParenToken || modifiedArguments || modifiedCloseParenToken
 		if modified {
-			return true, &STParenthesizedArgList{
+			return true, createNodeAndAddChildren(&STParenthesizedArgList{
 
 				STNode: n.STNode,
 
@@ -2961,7 +2959,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Arguments: argumentsNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, openParenTokenNode, argumentsNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -2973,14 +2971,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedKeyword || modifiedKeySpecifier
 		if modified {
-			return true, &STQueryConstructTypeNode{
+			return true, createNodeAndAddChildren(&STQueryConstructTypeNode{
 
 				STNode: n.STNode,
 
 				Keyword: keywordNode,
 
 				KeySpecifier: keySpecifierNode,
-			}
+			}, keywordNode, keySpecifierNode)
 		}
 		return false, current
 
@@ -2996,7 +2994,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedFromKeyword || modifiedTypedBindingPattern || modifiedInKeyword || modifiedExpression
 		if modified {
-			return true, &STFromClauseNode{
+			return true, createNodeAndAddChildren(&STFromClauseNode{
 
 				STIntermediateClauseNode: n.STIntermediateClauseNode,
 
@@ -3007,7 +3005,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				InKeyword: inKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, fromKeywordNode, typedBindingPatternNode, inKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -3019,14 +3017,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedWhereKeyword || modifiedExpression
 		if modified {
-			return true, &STWhereClauseNode{
+			return true, createNodeAndAddChildren(&STWhereClauseNode{
 
 				STIntermediateClauseNode: n.STIntermediateClauseNode,
 
 				WhereKeyword: whereKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, whereKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -3038,14 +3036,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLetKeyword || modifiedLetVarDeclarations
 		if modified {
-			return true, &STLetClauseNode{
+			return true, createNodeAndAddChildren(&STLetClauseNode{
 
 				STIntermediateClauseNode: n.STIntermediateClauseNode,
 
 				LetKeyword: letKeywordNode,
 
 				LetVarDeclarations: letVarDeclarationsNode,
-			}
+			}, letKeywordNode, letVarDeclarationsNode)
 		}
 		return false, current
 
@@ -3065,7 +3063,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOuterKeyword || modifiedJoinKeyword || modifiedTypedBindingPattern || modifiedInKeyword || modifiedExpression || modifiedJoinOnCondition
 		if modified {
-			return true, &STJoinClauseNode{
+			return true, createNodeAndAddChildren(&STJoinClauseNode{
 
 				STIntermediateClauseNode: n.STIntermediateClauseNode,
 
@@ -3080,7 +3078,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				JoinOnCondition: joinOnConditionNode,
-			}
+			}, outerKeywordNode, joinKeywordNode, typedBindingPatternNode, inKeywordNode, expressionNode, joinOnConditionNode)
 		}
 		return false, current
 
@@ -3096,7 +3094,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOnKeyword || modifiedLhsExpression || modifiedEqualsKeyword || modifiedRhsExpression
 		if modified {
-			return true, &STOnClauseNode{
+			return true, createNodeAndAddChildren(&STOnClauseNode{
 
 				STClauseNode: n.STClauseNode,
 
@@ -3107,7 +3105,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualsKeyword: equalsKeywordNode,
 
 				RhsExpression: rhsExpressionNode,
-			}
+			}, onKeywordNode, lhsExpressionNode, equalsKeywordNode, rhsExpressionNode)
 		}
 		return false, current
 
@@ -3119,14 +3117,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLimitKeyword || modifiedExpression
 		if modified {
-			return true, &STLimitClauseNode{
+			return true, createNodeAndAddChildren(&STLimitClauseNode{
 
 				STIntermediateClauseNode: n.STIntermediateClauseNode,
 
 				LimitKeyword: limitKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, limitKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -3140,7 +3138,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOnKeyword || modifiedConflictKeyword || modifiedExpression
 		if modified {
-			return true, &STOnConflictClauseNode{
+			return true, createNodeAndAddChildren(&STOnConflictClauseNode{
 
 				STClauseNode: n.STClauseNode,
 
@@ -3149,7 +3147,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ConflictKeyword: conflictKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, onKeywordNode, conflictKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -3161,14 +3159,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedFromClause || modifiedIntermediateClauses
 		if modified {
-			return true, &STQueryPipelineNode{
+			return true, createNodeAndAddChildren(&STQueryPipelineNode{
 
 				STNode: n.STNode,
 
 				FromClause: fromClauseNode,
 
 				IntermediateClauses: intermediateClausesNode,
-			}
+			}, fromClauseNode, intermediateClausesNode)
 		}
 		return false, current
 
@@ -3180,14 +3178,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedSelectKeyword || modifiedExpression
 		if modified {
-			return true, &STSelectClauseNode{
+			return true, createNodeAndAddChildren(&STSelectClauseNode{
 
 				STClauseNode: n.STClauseNode,
 
 				SelectKeyword: selectKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, selectKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -3199,14 +3197,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedCollectKeyword || modifiedExpression
 		if modified {
-			return true, &STCollectClauseNode{
+			return true, createNodeAndAddChildren(&STCollectClauseNode{
 
 				STClauseNode: n.STClauseNode,
 
 				CollectKeyword: collectKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, collectKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -3222,7 +3220,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedQueryConstructType || modifiedQueryPipeline || modifiedResultClause || modifiedOnConflictClause
 		if modified {
-			return true, &STQueryExpressionNode{
+			return true, createNodeAndAddChildren(&STQueryExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -3233,7 +3231,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ResultClause: resultClauseNode,
 
 				OnConflictClause: onConflictClauseNode,
-			}
+			}, queryConstructTypeNode, queryPipelineNode, resultClauseNode, onConflictClauseNode)
 		}
 		return false, current
 
@@ -3247,7 +3245,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedQueryPipeline || modifiedDoKeyword || modifiedBlockStatement
 		if modified {
-			return true, &STQueryActionNode{
+			return true, createNodeAndAddChildren(&STQueryActionNode{
 
 				STActionNode: n.STActionNode,
 
@@ -3256,7 +3254,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				DoKeyword: doKeywordNode,
 
 				BlockStatement: blockStatementNode,
-			}
+			}, queryPipelineNode, doKeywordNode, blockStatementNode)
 		}
 		return false, current
 
@@ -3270,7 +3268,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLeftTypeDesc || modifiedBitwiseAndToken || modifiedRightTypeDesc
 		if modified {
-			return true, &STIntersectionTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STIntersectionTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
@@ -3279,7 +3277,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				BitwiseAndToken: bitwiseAndTokenNode,
 
 				RightTypeDesc: rightTypeDescNode,
-			}
+			}, leftTypeDescNode, bitwiseAndTokenNode, rightTypeDescNode)
 		}
 		return false, current
 
@@ -3293,7 +3291,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenParenToken || modifiedParameters || modifiedCloseParenToken
 		if modified {
-			return true, &STImplicitAnonymousFunctionParameters{
+			return true, createNodeAndAddChildren(&STImplicitAnonymousFunctionParameters{
 
 				STNode: n.STNode,
 
@@ -3302,7 +3300,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Parameters: parametersNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, openParenTokenNode, parametersNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -3316,7 +3314,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedParams || modifiedRightDoubleArrow || modifiedExpression
 		if modified {
-			return true, &STImplicitAnonymousFunctionExpressionNode{
+			return true, createNodeAndAddChildren(&STImplicitAnonymousFunctionExpressionNode{
 
 				STAnonymousFunctionExpressionNode: n.STAnonymousFunctionExpressionNode,
 
@@ -3325,7 +3323,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				RightDoubleArrow: rightDoubleArrowNode,
 
 				Expression: expressionNode,
-			}
+			}, paramsNode, rightDoubleArrowNode, expressionNode)
 		}
 		return false, current
 
@@ -3339,7 +3337,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedStartKeyword || modifiedExpression
 		if modified {
-			return true, &STStartActionNode{
+			return true, createNodeAndAddChildren(&STStartActionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -3348,7 +3346,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				StartKeyword: startKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, annotationsNode, startKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -3360,14 +3358,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedFlushKeyword || modifiedPeerWorker
 		if modified {
-			return true, &STFlushActionNode{
+			return true, createNodeAndAddChildren(&STFlushActionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				FlushKeyword: flushKeywordNode,
 
 				PeerWorker: peerWorkerNode,
-			}
+			}, flushKeywordNode, peerWorkerNode)
 		}
 		return false, current
 
@@ -3377,12 +3375,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedSimpleContExprNode
 		if modified {
-			return true, &STSingletonTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STSingletonTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				SimpleContExprNode: simpleContExprNodeNode,
-			}
+			}, simpleContExprNodeNode)
 		}
 		return false, current
 
@@ -3404,7 +3402,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedQualifierList || modifiedFunctionKeyword || modifiedMethodName || modifiedRelativeResourcePath || modifiedMethodSignature || modifiedSemicolon
 		if modified {
-			return true, &STMethodDeclarationNode{
+			return true, createNodeAndAddChildren(&STMethodDeclarationNode{
 
 				STNode: n.STNode,
 
@@ -3421,7 +3419,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MethodSignature: methodSignatureNode,
 
 				Semicolon: semicolonNode,
-			}
+			}, metadataNode, qualifierListNode, functionKeywordNode, methodNameNode, relativeResourcePathNode, methodSignatureNode, semicolonNode)
 		}
 		return false, current
 
@@ -3433,14 +3431,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTypeDescriptor || modifiedBindingPattern
 		if modified {
-			return true, &STTypedBindingPatternNode{
+			return true, createNodeAndAddChildren(&STTypedBindingPatternNode{
 
 				STNode: n.STNode,
 
 				TypeDescriptor: typeDescriptorNode,
 
 				BindingPattern: bindingPatternNode,
-			}
+			}, typeDescriptorNode, bindingPatternNode)
 		}
 		return false, current
 
@@ -3450,12 +3448,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedVariableName
 		if modified {
-			return true, &STCaptureBindingPatternNode{
+			return true, createNodeAndAddChildren(&STCaptureBindingPatternNode{
 
 				STBindingPatternNode: n.STBindingPatternNode,
 
 				VariableName: variableNameNode,
-			}
+			}, variableNameNode)
 		}
 		return false, current
 
@@ -3465,12 +3463,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedUnderscoreToken
 		if modified {
-			return true, &STWildcardBindingPatternNode{
+			return true, createNodeAndAddChildren(&STWildcardBindingPatternNode{
 
 				STBindingPatternNode: n.STBindingPatternNode,
 
 				UnderscoreToken: underscoreTokenNode,
-			}
+			}, underscoreTokenNode)
 		}
 		return false, current
 
@@ -3484,7 +3482,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracket || modifiedBindingPatterns || modifiedCloseBracket
 		if modified {
-			return true, &STListBindingPatternNode{
+			return true, createNodeAndAddChildren(&STListBindingPatternNode{
 
 				STBindingPatternNode: n.STBindingPatternNode,
 
@@ -3493,7 +3491,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				BindingPatterns: bindingPatternsNode,
 
 				CloseBracket: closeBracketNode,
-			}
+			}, openBracketNode, bindingPatternsNode, closeBracketNode)
 		}
 		return false, current
 
@@ -3507,7 +3505,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBrace || modifiedFieldBindingPatterns || modifiedCloseBrace
 		if modified {
-			return true, &STMappingBindingPatternNode{
+			return true, createNodeAndAddChildren(&STMappingBindingPatternNode{
 
 				STBindingPatternNode: n.STBindingPatternNode,
 
@@ -3516,7 +3514,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				FieldBindingPatterns: fieldBindingPatternsNode,
 
 				CloseBrace: closeBraceNode,
-			}
+			}, openBraceNode, fieldBindingPatternsNode, closeBraceNode)
 		}
 		return false, current
 
@@ -3530,7 +3528,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedVariableName || modifiedColon || modifiedBindingPattern
 		if modified {
-			return true, &STFieldBindingPatternFullNode{
+			return true, createNodeAndAddChildren(&STFieldBindingPatternFullNode{
 
 				STFieldBindingPatternNode: n.STFieldBindingPatternNode,
 
@@ -3539,7 +3537,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Colon: colonNode,
 
 				BindingPattern: bindingPatternNode,
-			}
+			}, variableNameNode, colonNode, bindingPatternNode)
 		}
 		return false, current
 
@@ -3549,12 +3547,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedVariableName
 		if modified {
-			return true, &STFieldBindingPatternVarnameNode{
+			return true, createNodeAndAddChildren(&STFieldBindingPatternVarnameNode{
 
 				STFieldBindingPatternNode: n.STFieldBindingPatternNode,
 
 				VariableName: variableNameNode,
-			}
+			}, variableNameNode)
 		}
 		return false, current
 
@@ -3566,14 +3564,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedEllipsisToken || modifiedVariableName
 		if modified {
-			return true, &STRestBindingPatternNode{
+			return true, createNodeAndAddChildren(&STRestBindingPatternNode{
 
 				STBindingPatternNode: n.STBindingPatternNode,
 
 				EllipsisToken: ellipsisTokenNode,
 
 				VariableName: variableNameNode,
-			}
+			}, ellipsisTokenNode, variableNameNode)
 		}
 		return false, current
 
@@ -3591,7 +3589,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedErrorKeyword || modifiedTypeReference || modifiedOpenParenthesis || modifiedArgListBindingPatterns || modifiedCloseParenthesis
 		if modified {
-			return true, &STErrorBindingPatternNode{
+			return true, createNodeAndAddChildren(&STErrorBindingPatternNode{
 
 				STBindingPatternNode: n.STBindingPatternNode,
 
@@ -3604,7 +3602,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ArgListBindingPatterns: argListBindingPatternsNode,
 
 				CloseParenthesis: closeParenthesisNode,
-			}
+			}, errorKeywordNode, typeReferenceNode, openParenthesisNode, argListBindingPatternsNode, closeParenthesisNode)
 		}
 		return false, current
 
@@ -3618,7 +3616,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedArgName || modifiedEqualsToken || modifiedBindingPattern
 		if modified {
-			return true, &STNamedArgBindingPatternNode{
+			return true, createNodeAndAddChildren(&STNamedArgBindingPatternNode{
 
 				STBindingPatternNode: n.STBindingPatternNode,
 
@@ -3627,7 +3625,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualsToken: equalsTokenNode,
 
 				BindingPattern: bindingPatternNode,
-			}
+			}, argNameNode, equalsTokenNode, bindingPatternNode)
 		}
 		return false, current
 
@@ -3641,7 +3639,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedRightArrowToken || modifiedPeerWorker
 		if modified {
-			return true, &STAsyncSendActionNode{
+			return true, createNodeAndAddChildren(&STAsyncSendActionNode{
 
 				STActionNode: n.STActionNode,
 
@@ -3650,7 +3648,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				RightArrowToken: rightArrowTokenNode,
 
 				PeerWorker: peerWorkerNode,
-			}
+			}, expressionNode, rightArrowTokenNode, peerWorkerNode)
 		}
 		return false, current
 
@@ -3664,7 +3662,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedSyncSendToken || modifiedPeerWorker
 		if modified {
-			return true, &STSyncSendActionNode{
+			return true, createNodeAndAddChildren(&STSyncSendActionNode{
 
 				STActionNode: n.STActionNode,
 
@@ -3673,7 +3671,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				SyncSendToken: syncSendTokenNode,
 
 				PeerWorker: peerWorkerNode,
-			}
+			}, expressionNode, syncSendTokenNode, peerWorkerNode)
 		}
 		return false, current
 
@@ -3685,14 +3683,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLeftArrow || modifiedReceiveWorkers
 		if modified {
-			return true, &STReceiveActionNode{
+			return true, createNodeAndAddChildren(&STReceiveActionNode{
 
 				STActionNode: n.STActionNode,
 
 				LeftArrow: leftArrowNode,
 
 				ReceiveWorkers: receiveWorkersNode,
-			}
+			}, leftArrowNode, receiveWorkersNode)
 		}
 		return false, current
 
@@ -3706,7 +3704,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBrace || modifiedReceiveFields || modifiedCloseBrace
 		if modified {
-			return true, &STReceiveFieldsNode{
+			return true, createNodeAndAddChildren(&STReceiveFieldsNode{
 
 				STNode: n.STNode,
 
@@ -3715,7 +3713,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ReceiveFields: receiveFieldsNode,
 
 				CloseBrace: closeBraceNode,
-			}
+			}, openBraceNode, receiveFieldsNode, closeBraceNode)
 		}
 		return false, current
 
@@ -3725,12 +3723,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedWorkers
 		if modified {
-			return true, &STAlternateReceiveNode{
+			return true, createNodeAndAddChildren(&STAlternateReceiveNode{
 
 				STNode: n.STNode,
 
 				Workers: workersNode,
-			}
+			}, workersNode)
 		}
 		return false, current
 
@@ -3742,14 +3740,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTypeDescriptor || modifiedEllipsisToken
 		if modified {
-			return true, &STRestDescriptorNode{
+			return true, createNodeAndAddChildren(&STRestDescriptorNode{
 
 				STNode: n.STNode,
 
 				TypeDescriptor: typeDescriptorNode,
 
 				EllipsisToken: ellipsisTokenNode,
-			}
+			}, typeDescriptorNode, ellipsisTokenNode)
 		}
 		return false, current
 
@@ -3761,14 +3759,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenGTToken || modifiedEndGTToken
 		if modified {
-			return true, &STDoubleGTTokenNode{
+			return true, createNodeAndAddChildren(&STDoubleGTTokenNode{
 
 				STNode: n.STNode,
 
 				OpenGTToken: openGTTokenNode,
 
 				EndGTToken: endGTTokenNode,
-			}
+			}, openGTTokenNode, endGTTokenNode)
 		}
 		return false, current
 
@@ -3782,7 +3780,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenGTToken || modifiedMiddleGTToken || modifiedEndGTToken
 		if modified {
-			return true, &STTrippleGTTokenNode{
+			return true, createNodeAndAddChildren(&STTrippleGTTokenNode{
 
 				STNode: n.STNode,
 
@@ -3791,7 +3789,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MiddleGTToken: middleGTTokenNode,
 
 				EndGTToken: endGTTokenNode,
-			}
+			}, openGTTokenNode, middleGTTokenNode, endGTTokenNode)
 		}
 		return false, current
 
@@ -3803,14 +3801,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedWaitKeyword || modifiedWaitFutureExpr
 		if modified {
-			return true, &STWaitActionNode{
+			return true, createNodeAndAddChildren(&STWaitActionNode{
 
 				STActionNode: n.STActionNode,
 
 				WaitKeyword: waitKeywordNode,
 
 				WaitFutureExpr: waitFutureExprNode,
-			}
+			}, waitKeywordNode, waitFutureExprNode)
 		}
 		return false, current
 
@@ -3824,7 +3822,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBrace || modifiedWaitFields || modifiedCloseBrace
 		if modified {
-			return true, &STWaitFieldsListNode{
+			return true, createNodeAndAddChildren(&STWaitFieldsListNode{
 
 				STNode: n.STNode,
 
@@ -3833,7 +3831,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				WaitFields: waitFieldsNode,
 
 				CloseBrace: closeBraceNode,
-			}
+			}, openBraceNode, waitFieldsNode, closeBraceNode)
 		}
 		return false, current
 
@@ -3847,7 +3845,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedFieldName || modifiedColon || modifiedWaitFutureExpr
 		if modified {
-			return true, &STWaitFieldNode{
+			return true, createNodeAndAddChildren(&STWaitFieldNode{
 
 				STNode: n.STNode,
 
@@ -3856,7 +3854,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Colon: colonNode,
 
 				WaitFutureExpr: waitFutureExprNode,
-			}
+			}, fieldNameNode, colonNode, waitFutureExprNode)
 		}
 		return false, current
 
@@ -3870,7 +3868,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedAnnotChainingToken || modifiedAnnotTagReference
 		if modified {
-			return true, &STAnnotAccessExpressionNode{
+			return true, createNodeAndAddChildren(&STAnnotAccessExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -3879,7 +3877,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				AnnotChainingToken: annotChainingTokenNode,
 
 				AnnotTagReference: annotTagReferenceNode,
-			}
+			}, expressionNode, annotChainingTokenNode, annotTagReferenceNode)
 		}
 		return false, current
 
@@ -3893,7 +3891,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedOptionalChainingToken || modifiedFieldName
 		if modified {
-			return true, &STOptionalFieldAccessExpressionNode{
+			return true, createNodeAndAddChildren(&STOptionalFieldAccessExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -3902,7 +3900,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				OptionalChainingToken: optionalChainingTokenNode,
 
 				FieldName: fieldNameNode,
-			}
+			}, expressionNode, optionalChainingTokenNode, fieldNameNode)
 		}
 		return false, current
 
@@ -3920,7 +3918,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLhsExpression || modifiedQuestionMarkToken || modifiedMiddleExpression || modifiedColonToken || modifiedEndExpression
 		if modified {
-			return true, &STConditionalExpressionNode{
+			return true, createNodeAndAddChildren(&STConditionalExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -3933,7 +3931,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ColonToken: colonTokenNode,
 
 				EndExpression: endExpressionNode,
-			}
+			}, lhsExpressionNode, questionMarkTokenNode, middleExpressionNode, colonTokenNode, endExpressionNode)
 		}
 		return false, current
 
@@ -3957,7 +3955,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedQualifier || modifiedEnumKeywordToken || modifiedIdentifier || modifiedOpenBraceToken || modifiedEnumMemberList || modifiedCloseBraceToken || modifiedSemicolonToken
 		if modified {
-			return true, &STEnumDeclarationNode{
+			return true, createNodeAndAddChildren(&STEnumDeclarationNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -3976,7 +3974,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				CloseBraceToken: closeBraceTokenNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, qualifierNode, enumKeywordTokenNode, identifierNode, openBraceTokenNode, enumMemberListNode, closeBraceTokenNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -3992,7 +3990,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedIdentifier || modifiedEqualToken || modifiedConstExprNode
 		if modified {
-			return true, &STEnumMemberNode{
+			return true, createNodeAndAddChildren(&STEnumMemberNode{
 
 				STNode: n.STNode,
 
@@ -4003,7 +4001,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualToken: equalTokenNode,
 
 				ConstExprNode: constExprNodeNode,
-			}
+			}, metadataNode, identifierNode, equalTokenNode, constExprNodeNode)
 		}
 		return false, current
 
@@ -4015,14 +4013,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMemberTypeDesc || modifiedDimensions
 		if modified {
-			return true, &STArrayTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STArrayTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				MemberTypeDesc: memberTypeDescNode,
 
 				Dimensions: dimensionsNode,
-			}
+			}, memberTypeDescNode, dimensionsNode)
 		}
 		return false, current
 
@@ -4036,7 +4034,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracket || modifiedArrayLength || modifiedCloseBracket
 		if modified {
-			return true, &STArrayDimensionNode{
+			return true, createNodeAndAddChildren(&STArrayDimensionNode{
 
 				STNode: n.STNode,
 
@@ -4045,7 +4043,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ArrayLength: arrayLengthNode,
 
 				CloseBracket: closeBracketNode,
-			}
+			}, openBracketNode, arrayLengthNode, closeBracketNode)
 		}
 		return false, current
 
@@ -4059,7 +4057,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTransactionKeyword || modifiedBlockStatement || modifiedOnFailClause
 		if modified {
-			return true, &STTransactionStatementNode{
+			return true, createNodeAndAddChildren(&STTransactionStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -4068,7 +4066,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				BlockStatement: blockStatementNode,
 
 				OnFailClause: onFailClauseNode,
-			}
+			}, transactionKeywordNode, blockStatementNode, onFailClauseNode)
 		}
 		return false, current
 
@@ -4082,7 +4080,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedRollbackKeyword || modifiedExpression || modifiedSemicolon
 		if modified {
-			return true, &STRollbackStatementNode{
+			return true, createNodeAndAddChildren(&STRollbackStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -4091,7 +4089,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				Semicolon: semicolonNode,
-			}
+			}, rollbackKeywordNode, expressionNode, semicolonNode)
 		}
 		return false, current
 
@@ -4109,7 +4107,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedRetryKeyword || modifiedTypeParameter || modifiedArguments || modifiedRetryBody || modifiedOnFailClause
 		if modified {
-			return true, &STRetryStatementNode{
+			return true, createNodeAndAddChildren(&STRetryStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -4122,7 +4120,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				RetryBody: retryBodyNode,
 
 				OnFailClause: onFailClauseNode,
-			}
+			}, retryKeywordNode, typeParameterNode, argumentsNode, retryBodyNode, onFailClauseNode)
 		}
 		return false, current
 
@@ -4132,12 +4130,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedCommitKeyword
 		if modified {
-			return true, &STCommitActionNode{
+			return true, createNodeAndAddChildren(&STCommitActionNode{
 
 				STActionNode: n.STActionNode,
 
 				CommitKeyword: commitKeywordNode,
-			}
+			}, commitKeywordNode)
 		}
 		return false, current
 
@@ -4147,12 +4145,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTransactionalKeyword
 		if modified {
-			return true, &STTransactionalExpressionNode{
+			return true, createNodeAndAddChildren(&STTransactionalExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				TransactionalKeyword: transactionalKeywordNode,
-			}
+			}, transactionalKeywordNode)
 		}
 		return false, current
 
@@ -4168,7 +4166,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedType || modifiedStartBacktick || modifiedContent || modifiedEndBacktick
 		if modified {
-			return true, &STByteArrayLiteralNode{
+			return true, createNodeAndAddChildren(&STByteArrayLiteralNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -4179,7 +4177,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Content: contentNode,
 
 				EndBacktick: endBacktickNode,
-			}
+			}, typeNode, startBacktickNode, contentNode, endBacktickNode)
 		}
 		return false, current
 
@@ -4191,14 +4189,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedXmlPatternChain
 		if modified {
-			return true, &STXMLFilterExpressionNode{
+			return true, createNodeAndAddChildren(&STXMLFilterExpressionNode{
 
 				STXMLNavigateExpressionNode: n.STXMLNavigateExpressionNode,
 
 				Expression: expressionNode,
 
 				XmlPatternChain: xmlPatternChainNode,
-			}
+			}, expressionNode, xmlPatternChainNode)
 		}
 		return false, current
 
@@ -4212,7 +4210,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedXmlStepStart || modifiedXmlStepExtend
 		if modified {
-			return true, &STXMLStepExpressionNode{
+			return true, createNodeAndAddChildren(&STXMLStepExpressionNode{
 
 				STXMLNavigateExpressionNode: n.STXMLNavigateExpressionNode,
 
@@ -4221,7 +4219,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				XmlStepStart: xmlStepStartNode,
 
 				XmlStepExtend: xmlStepExtendNode,
-			}
+			}, expressionNode, xmlStepStartNode, xmlStepExtendNode)
 		}
 		return false, current
 
@@ -4235,7 +4233,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedStartToken || modifiedXmlNamePattern || modifiedGtToken
 		if modified {
-			return true, &STXMLNamePatternChainingNode{
+			return true, createNodeAndAddChildren(&STXMLNamePatternChainingNode{
 
 				STNode: n.STNode,
 
@@ -4244,7 +4242,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				XmlNamePattern: xmlNamePatternNode,
 
 				GtToken: gtTokenNode,
-			}
+			}, startTokenNode, xmlNamePatternNode, gtTokenNode)
 		}
 		return false, current
 
@@ -4258,7 +4256,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracket || modifiedExpression || modifiedCloseBracket
 		if modified {
-			return true, &STXMLStepIndexedExtendNode{
+			return true, createNodeAndAddChildren(&STXMLStepIndexedExtendNode{
 
 				STNode: n.STNode,
 
@@ -4267,7 +4265,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				CloseBracket: closeBracketNode,
-			}
+			}, openBracketNode, expressionNode, closeBracketNode)
 		}
 		return false, current
 
@@ -4281,7 +4279,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedDotToken || modifiedMethodName || modifiedParenthesizedArgList
 		if modified {
-			return true, &STXMLStepMethodCallExtendNode{
+			return true, createNodeAndAddChildren(&STXMLStepMethodCallExtendNode{
 
 				STNode: n.STNode,
 
@@ -4290,7 +4288,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MethodName: methodNameNode,
 
 				ParenthesizedArgList: parenthesizedArgListNode,
-			}
+			}, dotTokenNode, methodNameNode, parenthesizedArgListNode)
 		}
 		return false, current
 
@@ -4304,7 +4302,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedPrefix || modifiedColon || modifiedName
 		if modified {
-			return true, &STXMLAtomicNamePatternNode{
+			return true, createNodeAndAddChildren(&STXMLAtomicNamePatternNode{
 
 				STNode: n.STNode,
 
@@ -4313,7 +4311,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Colon: colonNode,
 
 				Name: nameNode,
-			}
+			}, prefixNode, colonNode, nameNode)
 		}
 		return false, current
 
@@ -4323,12 +4321,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTypeRef
 		if modified {
-			return true, &STTypeReferenceTypeDescNode{
+			return true, createNodeAndAddChildren(&STTypeReferenceTypeDescNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				TypeRef: typeRefNode,
-			}
+			}, typeRefNode)
 		}
 		return false, current
 
@@ -4348,7 +4346,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMatchKeyword || modifiedCondition || modifiedOpenBrace || modifiedMatchClauses || modifiedCloseBrace || modifiedOnFailClause
 		if modified {
-			return true, &STMatchStatementNode{
+			return true, createNodeAndAddChildren(&STMatchStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -4363,7 +4361,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				CloseBrace: closeBraceNode,
 
 				OnFailClause: onFailClauseNode,
-			}
+			}, matchKeywordNode, conditionNode, openBraceNode, matchClausesNode, closeBraceNode, onFailClauseNode)
 		}
 		return false, current
 
@@ -4379,7 +4377,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMatchPatterns || modifiedMatchGuard || modifiedRightDoubleArrow || modifiedBlockStatement
 		if modified {
-			return true, &STMatchClauseNode{
+			return true, createNodeAndAddChildren(&STMatchClauseNode{
 
 				STNode: n.STNode,
 
@@ -4390,7 +4388,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				RightDoubleArrow: rightDoubleArrowNode,
 
 				BlockStatement: blockStatementNode,
-			}
+			}, matchPatternsNode, matchGuardNode, rightDoubleArrowNode, blockStatementNode)
 		}
 		return false, current
 
@@ -4402,14 +4400,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedIfKeyword || modifiedExpression
 		if modified {
-			return true, &STMatchGuardNode{
+			return true, createNodeAndAddChildren(&STMatchGuardNode{
 
 				STNode: n.STNode,
 
 				IfKeyword: ifKeywordNode,
 
 				Expression: expressionNode,
-			}
+			}, ifKeywordNode, expressionNode)
 		}
 		return false, current
 
@@ -4421,14 +4419,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedDistinctKeyword || modifiedTypeDescriptor
 		if modified {
-			return true, &STDistinctTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STDistinctTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				DistinctKeyword: distinctKeywordNode,
 
 				TypeDescriptor: typeDescriptorNode,
-			}
+			}, distinctKeywordNode, typeDescriptorNode)
 		}
 		return false, current
 
@@ -4442,7 +4440,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracket || modifiedMatchPatterns || modifiedCloseBracket
 		if modified {
-			return true, &STListMatchPatternNode{
+			return true, createNodeAndAddChildren(&STListMatchPatternNode{
 
 				STNode: n.STNode,
 
@@ -4451,7 +4449,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MatchPatterns: matchPatternsNode,
 
 				CloseBracket: closeBracketNode,
-			}
+			}, openBracketNode, matchPatternsNode, closeBracketNode)
 		}
 		return false, current
 
@@ -4465,7 +4463,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedEllipsisToken || modifiedVarKeywordToken || modifiedVariableName
 		if modified {
-			return true, &STRestMatchPatternNode{
+			return true, createNodeAndAddChildren(&STRestMatchPatternNode{
 
 				STNode: n.STNode,
 
@@ -4474,7 +4472,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				VarKeywordToken: varKeywordTokenNode,
 
 				VariableName: variableNameNode,
-			}
+			}, ellipsisTokenNode, varKeywordTokenNode, variableNameNode)
 		}
 		return false, current
 
@@ -4488,7 +4486,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBraceToken || modifiedFieldMatchPatterns || modifiedCloseBraceToken
 		if modified {
-			return true, &STMappingMatchPatternNode{
+			return true, createNodeAndAddChildren(&STMappingMatchPatternNode{
 
 				STNode: n.STNode,
 
@@ -4497,7 +4495,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				FieldMatchPatterns: fieldMatchPatternsNode,
 
 				CloseBraceToken: closeBraceTokenNode,
-			}
+			}, openBraceTokenNode, fieldMatchPatternsNode, closeBraceTokenNode)
 		}
 		return false, current
 
@@ -4511,7 +4509,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedFieldNameNode || modifiedColonToken || modifiedMatchPattern
 		if modified {
-			return true, &STFieldMatchPatternNode{
+			return true, createNodeAndAddChildren(&STFieldMatchPatternNode{
 
 				STNode: n.STNode,
 
@@ -4520,7 +4518,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ColonToken: colonTokenNode,
 
 				MatchPattern: matchPatternNode,
-			}
+			}, fieldNameNodeNode, colonTokenNode, matchPatternNode)
 		}
 		return false, current
 
@@ -4538,7 +4536,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedErrorKeyword || modifiedTypeReference || modifiedOpenParenthesisToken || modifiedArgListMatchPatternNode || modifiedCloseParenthesisToken
 		if modified {
-			return true, &STErrorMatchPatternNode{
+			return true, createNodeAndAddChildren(&STErrorMatchPatternNode{
 
 				STNode: n.STNode,
 
@@ -4551,7 +4549,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ArgListMatchPatternNode: argListMatchPatternNodeNode,
 
 				CloseParenthesisToken: closeParenthesisTokenNode,
-			}
+			}, errorKeywordNode, typeReferenceNode, openParenthesisTokenNode, argListMatchPatternNodeNode, closeParenthesisTokenNode)
 		}
 		return false, current
 
@@ -4565,7 +4563,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedIdentifier || modifiedEqualToken || modifiedMatchPattern
 		if modified {
-			return true, &STNamedArgMatchPatternNode{
+			return true, createNodeAndAddChildren(&STNamedArgMatchPatternNode{
 
 				STNode: n.STNode,
 
@@ -4574,7 +4572,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualToken: equalTokenNode,
 
 				MatchPattern: matchPatternNode,
-			}
+			}, identifierNode, equalTokenNode, matchPatternNode)
 		}
 		return false, current
 
@@ -4584,12 +4582,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedDocumentationLines
 		if modified {
-			return true, &STMarkdownDocumentationNode{
+			return true, createNodeAndAddChildren(&STMarkdownDocumentationNode{
 
 				STDocumentationNode: n.STDocumentationNode,
 
 				DocumentationLines: documentationLinesNode,
-			}
+			}, documentationLinesNode)
 		}
 		return false, current
 
@@ -4601,14 +4599,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedHashToken || modifiedDocumentElements
 		if modified {
-			return true, &STMarkdownDocumentationLineNode{
+			return true, createNodeAndAddChildren(&STMarkdownDocumentationLineNode{
 
 				STDocumentationNode: n.STDocumentationNode,
 
 				HashToken: hashTokenNode,
 
 				DocumentElements: documentElementsNode,
-			}
+			}, hashTokenNode, documentElementsNode)
 		}
 		return false, current
 
@@ -4626,7 +4624,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedHashToken || modifiedPlusToken || modifiedParameterName || modifiedMinusToken || modifiedDocumentElements
 		if modified {
-			return true, &STMarkdownParameterDocumentationLineNode{
+			return true, createNodeAndAddChildren(&STMarkdownParameterDocumentationLineNode{
 
 				STDocumentationNode: n.STDocumentationNode,
 
@@ -4639,7 +4637,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MinusToken: minusTokenNode,
 
 				DocumentElements: documentElementsNode,
-			}
+			}, hashTokenNode, plusTokenNode, parameterNameNode, minusTokenNode, documentElementsNode)
 		}
 		return false, current
 
@@ -4655,7 +4653,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReferenceType || modifiedStartBacktick || modifiedNameReference || modifiedEndBacktick
 		if modified {
-			return true, &STBallerinaNameReferenceNode{
+			return true, createNodeAndAddChildren(&STBallerinaNameReferenceNode{
 
 				STDocumentationNode: n.STDocumentationNode,
 
@@ -4666,7 +4664,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				NameReference: nameReferenceNode,
 
 				EndBacktick: endBacktickNode,
-			}
+			}, referenceTypeNode, startBacktickNode, nameReferenceNode, endBacktickNode)
 		}
 		return false, current
 
@@ -4680,7 +4678,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedStartBacktick || modifiedCodeReference || modifiedEndBacktick
 		if modified {
-			return true, &STInlineCodeReferenceNode{
+			return true, createNodeAndAddChildren(&STInlineCodeReferenceNode{
 
 				STDocumentationNode: n.STDocumentationNode,
 
@@ -4689,7 +4687,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				CodeReference: codeReferenceNode,
 
 				EndBacktick: endBacktickNode,
-			}
+			}, startBacktickNode, codeReferenceNode, endBacktickNode)
 		}
 		return false, current
 
@@ -4709,7 +4707,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedStartLineHashToken || modifiedStartBacktick || modifiedLangAttribute || modifiedCodeLines || modifiedEndLineHashToken || modifiedEndBacktick
 		if modified {
-			return true, &STMarkdownCodeBlockNode{
+			return true, createNodeAndAddChildren(&STMarkdownCodeBlockNode{
 
 				STDocumentationNode: n.STDocumentationNode,
 
@@ -4724,7 +4722,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EndLineHashToken: endLineHashTokenNode,
 
 				EndBacktick: endBacktickNode,
-			}
+			}, startLineHashTokenNode, startBacktickNode, langAttributeNode, codeLinesNode, endLineHashTokenNode, endBacktickNode)
 		}
 		return false, current
 
@@ -4736,14 +4734,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedHashToken || modifiedCodeDescription
 		if modified {
-			return true, &STMarkdownCodeLineNode{
+			return true, createNodeAndAddChildren(&STMarkdownCodeLineNode{
 
 				STDocumentationNode: n.STDocumentationNode,
 
 				HashToken: hashTokenNode,
 
 				CodeDescription: codeDescriptionNode,
-			}
+			}, hashTokenNode, codeDescriptionNode)
 		}
 		return false, current
 
@@ -4757,7 +4755,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOrderKeyword || modifiedByKeyword || modifiedOrderKey
 		if modified {
-			return true, &STOrderByClauseNode{
+			return true, createNodeAndAddChildren(&STOrderByClauseNode{
 
 				STIntermediateClauseNode: n.STIntermediateClauseNode,
 
@@ -4766,7 +4764,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ByKeyword: byKeywordNode,
 
 				OrderKey: orderKeyNode,
-			}
+			}, orderKeywordNode, byKeywordNode, orderKeyNode)
 		}
 		return false, current
 
@@ -4778,14 +4776,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedOrderDirection
 		if modified {
-			return true, &STOrderKeyNode{
+			return true, createNodeAndAddChildren(&STOrderKeyNode{
 
 				STNode: n.STNode,
 
 				Expression: expressionNode,
 
 				OrderDirection: orderDirectionNode,
-			}
+			}, expressionNode, orderDirectionNode)
 		}
 		return false, current
 
@@ -4799,7 +4797,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedGroupKeyword || modifiedByKeyword || modifiedGroupingKey
 		if modified {
-			return true, &STGroupByClauseNode{
+			return true, createNodeAndAddChildren(&STGroupByClauseNode{
 
 				STIntermediateClauseNode: n.STIntermediateClauseNode,
 
@@ -4808,7 +4806,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ByKeyword: byKeywordNode,
 
 				GroupingKey: groupingKeyNode,
-			}
+			}, groupKeywordNode, byKeywordNode, groupingKeyNode)
 		}
 		return false, current
 
@@ -4824,7 +4822,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedTypeDescriptor || modifiedSimpleBindingPattern || modifiedEqualsToken || modifiedExpression
 		if modified {
-			return true, &STGroupingKeyVarDeclarationNode{
+			return true, createNodeAndAddChildren(&STGroupingKeyVarDeclarationNode{
 
 				STNode: n.STNode,
 
@@ -4835,7 +4833,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				EqualsToken: equalsTokenNode,
 
 				Expression: expressionNode,
-			}
+			}, typeDescriptorNode, simpleBindingPatternNode, equalsTokenNode, expressionNode)
 		}
 		return false, current
 
@@ -4851,7 +4849,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOnKeyword || modifiedFailKeyword || modifiedTypedBindingPattern || modifiedBlockStatement
 		if modified {
-			return true, &STOnFailClauseNode{
+			return true, createNodeAndAddChildren(&STOnFailClauseNode{
 
 				STClauseNode: n.STClauseNode,
 
@@ -4862,7 +4860,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				TypedBindingPattern: typedBindingPatternNode,
 
 				BlockStatement: blockStatementNode,
-			}
+			}, onKeywordNode, failKeywordNode, typedBindingPatternNode, blockStatementNode)
 		}
 		return false, current
 
@@ -4876,7 +4874,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedDoKeyword || modifiedBlockStatement || modifiedOnFailClause
 		if modified {
-			return true, &STDoStatementNode{
+			return true, createNodeAndAddChildren(&STDoStatementNode{
 
 				STStatementNode: n.STStatementNode,
 
@@ -4885,7 +4883,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				BlockStatement: blockStatementNode,
 
 				OnFailClause: onFailClauseNode,
-			}
+			}, doKeywordNode, blockStatementNode, onFailClauseNode)
 		}
 		return false, current
 
@@ -4911,7 +4909,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedMetadata || modifiedVisibilityQualifier || modifiedClassTypeQualifiers || modifiedClassKeyword || modifiedClassName || modifiedOpenBrace || modifiedMembers || modifiedCloseBrace || modifiedSemicolonToken
 		if modified {
-			return true, &STClassDefinitionNode{
+			return true, createNodeAndAddChildren(&STClassDefinitionNode{
 
 				STModuleMemberDeclarationNode: n.STModuleMemberDeclarationNode,
 
@@ -4932,7 +4930,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				CloseBrace: closeBraceNode,
 
 				SemicolonToken: semicolonTokenNode,
-			}
+			}, metadataNode, visibilityQualifierNode, classTypeQualifiersNode, classKeywordNode, classNameNode, openBraceNode, membersNode, closeBraceNode, semicolonTokenNode)
 		}
 		return false, current
 
@@ -4952,7 +4950,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracketToken || modifiedAnnotations || modifiedTypeDescriptor || modifiedEllipsisToken || modifiedParamName || modifiedCloseBracketToken
 		if modified {
-			return true, &STResourcePathParameterNode{
+			return true, createNodeAndAddChildren(&STResourcePathParameterNode{
 
 				STNode: n.STNode,
 
@@ -4967,7 +4965,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ParamName: paramNameNode,
 
 				CloseBracketToken: closeBracketTokenNode,
-			}
+			}, openBracketTokenNode, annotationsNode, typeDescriptorNode, ellipsisTokenNode, paramNameNode, closeBracketTokenNode)
 		}
 		return false, current
 
@@ -4977,12 +4975,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedQuestionMarkToken
 		if modified {
-			return true, &STRequiredExpressionNode{
+			return true, createNodeAndAddChildren(&STRequiredExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
 				QuestionMarkToken: questionMarkTokenNode,
-			}
+			}, questionMarkTokenNode)
 		}
 		return false, current
 
@@ -5000,7 +4998,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedErrorKeyword || modifiedTypeReference || modifiedOpenParenToken || modifiedArguments || modifiedCloseParenToken
 		if modified {
-			return true, &STErrorConstructorExpressionNode{
+			return true, createNodeAndAddChildren(&STErrorConstructorExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -5013,7 +5011,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Arguments: argumentsNode,
 
 				CloseParenToken: closeParenTokenNode,
-			}
+			}, errorKeywordNode, typeReferenceNode, openParenTokenNode, argumentsNode, closeParenTokenNode)
 		}
 		return false, current
 
@@ -5025,14 +5023,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedKeywordToken || modifiedTypeParamNode
 		if modified {
-			return true, &STParameterizedTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STParameterizedTypeDescriptorNode{
 
 				STTypeDescriptorNode: n.STTypeDescriptorNode,
 
 				KeywordToken: keywordTokenNode,
 
 				TypeParamNode: typeParamNodeNode,
-			}
+			}, keywordTokenNode, typeParamNodeNode)
 		}
 		return false, current
 
@@ -5044,14 +5042,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedEllipsis || modifiedExpression
 		if modified {
-			return true, &STSpreadMemberNode{
+			return true, createNodeAndAddChildren(&STSpreadMemberNode{
 
 				STNode: n.STNode,
 
 				Ellipsis: ellipsisNode,
 
 				Expression: expressionNode,
-			}
+			}, ellipsisNode, expressionNode)
 		}
 		return false, current
 
@@ -5073,7 +5071,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedExpression || modifiedRightArrowToken || modifiedSlashToken || modifiedResourceAccessPath || modifiedDotToken || modifiedMethodName || modifiedArguments
 		if modified {
-			return true, &STClientResourceAccessActionNode{
+			return true, createNodeAndAddChildren(&STClientResourceAccessActionNode{
 
 				STActionNode: n.STActionNode,
 
@@ -5090,7 +5088,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MethodName: methodNameNode,
 
 				Arguments: argumentsNode,
-			}
+			}, expressionNode, rightArrowTokenNode, slashTokenNode, resourceAccessPathNode, dotTokenNode, methodNameNode, argumentsNode)
 		}
 		return false, current
 
@@ -5104,7 +5102,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracketToken || modifiedExpression || modifiedCloseBracketToken
 		if modified {
-			return true, &STComputedResourceAccessSegmentNode{
+			return true, createNodeAndAddChildren(&STComputedResourceAccessSegmentNode{
 
 				STNode: n.STNode,
 
@@ -5113,7 +5111,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				CloseBracketToken: closeBracketTokenNode,
-			}
+			}, openBracketTokenNode, expressionNode, closeBracketTokenNode)
 		}
 		return false, current
 
@@ -5129,7 +5127,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracketToken || modifiedEllipsisToken || modifiedExpression || modifiedCloseBracketToken
 		if modified {
-			return true, &STResourceAccessRestSegmentNode{
+			return true, createNodeAndAddChildren(&STResourceAccessRestSegmentNode{
 
 				STNode: n.STNode,
 
@@ -5140,7 +5138,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Expression: expressionNode,
 
 				CloseBracketToken: closeBracketTokenNode,
-			}
+			}, openBracketTokenNode, ellipsisTokenNode, expressionNode, closeBracketTokenNode)
 		}
 		return false, current
 
@@ -5150,12 +5148,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReTerm
 		if modified {
-			return true, &STReSequenceNode{
+			return true, createNodeAndAddChildren(&STReSequenceNode{
 
 				STNode: n.STNode,
 
 				ReTerm: reTermNode,
-			}
+			}, reTermNode)
 		}
 		return false, current
 
@@ -5167,14 +5165,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReAtom || modifiedReQuantifier
 		if modified {
-			return true, &STReAtomQuantifierNode{
+			return true, createNodeAndAddChildren(&STReAtomQuantifierNode{
 
 				STReTermNode: n.STReTermNode,
 
 				ReAtom: reAtomNode,
 
 				ReQuantifier: reQuantifierNode,
-			}
+			}, reAtomNode, reQuantifierNode)
 		}
 		return false, current
 
@@ -5184,12 +5182,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReAtomCharOrEscape
 		if modified {
-			return true, &STReAtomCharOrEscapeNode{
+			return true, createNodeAndAddChildren(&STReAtomCharOrEscapeNode{
 
 				STNode: n.STNode,
 
 				ReAtomCharOrEscape: reAtomCharOrEscapeNode,
-			}
+			}, reAtomCharOrEscapeNode)
 		}
 		return false, current
 
@@ -5201,14 +5199,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedSlashToken || modifiedReSyntaxChar
 		if modified {
-			return true, &STReQuoteEscapeNode{
+			return true, createNodeAndAddChildren(&STReQuoteEscapeNode{
 
 				STNode: n.STNode,
 
 				SlashToken: slashTokenNode,
 
 				ReSyntaxChar: reSyntaxCharNode,
-			}
+			}, slashTokenNode, reSyntaxCharNode)
 		}
 		return false, current
 
@@ -5220,14 +5218,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedSlashToken || modifiedReSimpleCharClassCode
 		if modified {
-			return true, &STReSimpleCharClassEscapeNode{
+			return true, createNodeAndAddChildren(&STReSimpleCharClassEscapeNode{
 
 				STNode: n.STNode,
 
 				SlashToken: slashTokenNode,
 
 				ReSimpleCharClassCode: reSimpleCharClassCodeNode,
-			}
+			}, slashTokenNode, reSimpleCharClassCodeNode)
 		}
 		return false, current
 
@@ -5245,7 +5243,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedSlashToken || modifiedProperty || modifiedOpenBraceToken || modifiedReUnicodeProperty || modifiedCloseBraceToken
 		if modified {
-			return true, &STReUnicodePropertyEscapeNode{
+			return true, createNodeAndAddChildren(&STReUnicodePropertyEscapeNode{
 
 				STNode: n.STNode,
 
@@ -5258,7 +5256,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ReUnicodeProperty: reUnicodePropertyNode,
 
 				CloseBraceToken: closeBraceTokenNode,
-			}
+			}, slashTokenNode, propertyNode, openBraceTokenNode, reUnicodePropertyNode, closeBraceTokenNode)
 		}
 		return false, current
 
@@ -5270,14 +5268,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedScriptStart || modifiedReUnicodePropertyValue
 		if modified {
-			return true, &STReUnicodeScriptNode{
+			return true, createNodeAndAddChildren(&STReUnicodeScriptNode{
 
 				STReUnicodePropertyNode: n.STReUnicodePropertyNode,
 
 				ScriptStart: scriptStartNode,
 
 				ReUnicodePropertyValue: reUnicodePropertyValueNode,
-			}
+			}, scriptStartNode, reUnicodePropertyValueNode)
 		}
 		return false, current
 
@@ -5289,14 +5287,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedCategoryStart || modifiedReUnicodeGeneralCategoryName
 		if modified {
-			return true, &STReUnicodeGeneralCategoryNode{
+			return true, createNodeAndAddChildren(&STReUnicodeGeneralCategoryNode{
 
 				STReUnicodePropertyNode: n.STReUnicodePropertyNode,
 
 				CategoryStart: categoryStartNode,
 
 				ReUnicodeGeneralCategoryName: reUnicodeGeneralCategoryNameNode,
-			}
+			}, categoryStartNode, reUnicodeGeneralCategoryNameNode)
 		}
 		return false, current
 
@@ -5312,7 +5310,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBracket || modifiedNegation || modifiedReCharSet || modifiedCloseBracket
 		if modified {
-			return true, &STReCharacterClassNode{
+			return true, createNodeAndAddChildren(&STReCharacterClassNode{
 
 				STNode: n.STNode,
 
@@ -5323,7 +5321,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ReCharSet: reCharSetNode,
 
 				CloseBracket: closeBracketNode,
-			}
+			}, openBracketNode, negationNode, reCharSetNode, closeBracketNode)
 		}
 		return false, current
 
@@ -5335,14 +5333,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReCharSetRange || modifiedReCharSet
 		if modified {
-			return true, &STReCharSetRangeWithReCharSetNode{
+			return true, createNodeAndAddChildren(&STReCharSetRangeWithReCharSetNode{
 
 				STNode: n.STNode,
 
 				ReCharSetRange: reCharSetRangeNode,
 
 				ReCharSet: reCharSetNode,
-			}
+			}, reCharSetRangeNode, reCharSetNode)
 		}
 		return false, current
 
@@ -5356,7 +5354,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLhsReCharSetAtom || modifiedMinusToken || modifiedRhsReCharSetAtom
 		if modified {
-			return true, &STReCharSetRangeNode{
+			return true, createNodeAndAddChildren(&STReCharSetRangeNode{
 
 				STNode: n.STNode,
 
@@ -5365,7 +5363,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MinusToken: minusTokenNode,
 
 				RhsReCharSetAtom: rhsReCharSetAtomNode,
-			}
+			}, lhsReCharSetAtomNode, minusTokenNode, rhsReCharSetAtomNode)
 		}
 		return false, current
 
@@ -5377,14 +5375,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReCharSetAtom || modifiedReCharSetNoDash
 		if modified {
-			return true, &STReCharSetAtomWithReCharSetNoDashNode{
+			return true, createNodeAndAddChildren(&STReCharSetAtomWithReCharSetNoDashNode{
 
 				STNode: n.STNode,
 
 				ReCharSetAtom: reCharSetAtomNode,
 
 				ReCharSetNoDash: reCharSetNoDashNode,
-			}
+			}, reCharSetAtomNode, reCharSetNoDashNode)
 		}
 		return false, current
 
@@ -5396,14 +5394,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReCharSetRangeNoDash || modifiedReCharSet
 		if modified {
-			return true, &STReCharSetRangeNoDashWithReCharSetNode{
+			return true, createNodeAndAddChildren(&STReCharSetRangeNoDashWithReCharSetNode{
 
 				STNode: n.STNode,
 
 				ReCharSetRangeNoDash: reCharSetRangeNoDashNode,
 
 				ReCharSet: reCharSetNode,
-			}
+			}, reCharSetRangeNoDashNode, reCharSetNode)
 		}
 		return false, current
 
@@ -5417,7 +5415,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReCharSetAtomNoDash || modifiedMinusToken || modifiedReCharSetAtom
 		if modified {
-			return true, &STReCharSetRangeNoDashNode{
+			return true, createNodeAndAddChildren(&STReCharSetRangeNoDashNode{
 
 				STNode: n.STNode,
 
@@ -5426,7 +5424,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MinusToken: minusTokenNode,
 
 				ReCharSetAtom: reCharSetAtomNode,
-			}
+			}, reCharSetAtomNoDashNode, minusTokenNode, reCharSetAtomNode)
 		}
 		return false, current
 
@@ -5438,14 +5436,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReCharSetAtomNoDash || modifiedReCharSetNoDash
 		if modified {
-			return true, &STReCharSetAtomNoDashWithReCharSetNoDashNode{
+			return true, createNodeAndAddChildren(&STReCharSetAtomNoDashWithReCharSetNoDashNode{
 
 				STNode: n.STNode,
 
 				ReCharSetAtomNoDash: reCharSetAtomNoDashNode,
 
 				ReCharSetNoDash: reCharSetNoDashNode,
-			}
+			}, reCharSetAtomNoDashNode, reCharSetNoDashNode)
 		}
 		return false, current
 
@@ -5461,7 +5459,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenParenthesis || modifiedReFlagExpression || modifiedReSequences || modifiedCloseParenthesis
 		if modified {
-			return true, &STReCapturingGroupsNode{
+			return true, createNodeAndAddChildren(&STReCapturingGroupsNode{
 
 				STNode: n.STNode,
 
@@ -5472,7 +5470,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ReSequences: reSequencesNode,
 
 				CloseParenthesis: closeParenthesisNode,
-			}
+			}, openParenthesisNode, reFlagExpressionNode, reSequencesNode, closeParenthesisNode)
 		}
 		return false, current
 
@@ -5486,7 +5484,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedQuestionMark || modifiedReFlagsOnOff || modifiedColon
 		if modified {
-			return true, &STReFlagExpressionNode{
+			return true, createNodeAndAddChildren(&STReFlagExpressionNode{
 
 				STNode: n.STNode,
 
@@ -5495,7 +5493,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				ReFlagsOnOff: reFlagsOnOffNode,
 
 				Colon: colonNode,
-			}
+			}, questionMarkNode, reFlagsOnOffNode, colonNode)
 		}
 		return false, current
 
@@ -5509,7 +5507,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedLhsReFlags || modifiedMinusToken || modifiedRhsReFlags
 		if modified {
-			return true, &STReFlagsOnOffNode{
+			return true, createNodeAndAddChildren(&STReFlagsOnOffNode{
 
 				STNode: n.STNode,
 
@@ -5518,7 +5516,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MinusToken: minusTokenNode,
 
 				RhsReFlags: rhsReFlagsNode,
-			}
+			}, lhsReFlagsNode, minusTokenNode, rhsReFlagsNode)
 		}
 		return false, current
 
@@ -5528,12 +5526,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReFlag
 		if modified {
-			return true, &STReFlagsNode{
+			return true, createNodeAndAddChildren(&STReFlagsNode{
 
 				STNode: n.STNode,
 
 				ReFlag: reFlagNode,
-			}
+			}, reFlagNode)
 		}
 		return false, current
 
@@ -5543,12 +5541,12 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReAssertion
 		if modified {
-			return true, &STReAssertionNode{
+			return true, createNodeAndAddChildren(&STReAssertionNode{
 
 				STReTermNode: n.STReTermNode,
 
 				ReAssertion: reAssertionNode,
-			}
+			}, reAssertionNode)
 		}
 		return false, current
 
@@ -5560,14 +5558,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedReBaseQuantifier || modifiedNonGreedyChar
 		if modified {
-			return true, &STReQuantifierNode{
+			return true, createNodeAndAddChildren(&STReQuantifierNode{
 
 				STNode: n.STNode,
 
 				ReBaseQuantifier: reBaseQuantifierNode,
 
 				NonGreedyChar: nonGreedyCharNode,
-			}
+			}, reBaseQuantifierNode, nonGreedyCharNode)
 		}
 		return false, current
 
@@ -5585,7 +5583,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedOpenBraceToken || modifiedLeastTimesMatchedDigit || modifiedCommaToken || modifiedMostTimesMatchedDigit || modifiedCloseBraceToken
 		if modified {
-			return true, &STReBracedQuantifierNode{
+			return true, createNodeAndAddChildren(&STReBracedQuantifierNode{
 
 				STNode: n.STNode,
 
@@ -5598,7 +5596,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				MostTimesMatchedDigit: mostTimesMatchedDigitNode,
 
 				CloseBraceToken: closeBraceTokenNode,
-			}
+			}, openBraceTokenNode, leastTimesMatchedDigitNode, commaTokenNode, mostTimesMatchedDigitNode, closeBraceTokenNode)
 		}
 		return false, current
 
@@ -5610,14 +5608,14 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedAnnotations || modifiedTypeDescriptor
 		if modified {
-			return true, &STMemberTypeDescriptorNode{
+			return true, createNodeAndAddChildren(&STMemberTypeDescriptorNode{
 
 				STNode: n.STNode,
 
 				Annotations: annotationsNode,
 
 				TypeDescriptor: typeDescriptorNode,
-			}
+			}, annotationsNode, typeDescriptorNode)
 		}
 		return false, current
 
@@ -5631,7 +5629,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedFieldName || modifiedColon || modifiedPeerWorker
 		if modified {
-			return true, &STReceiveFieldNode{
+			return true, createNodeAndAddChildren(&STReceiveFieldNode{
 
 				STNode: n.STNode,
 
@@ -5640,7 +5638,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Colon: colonNode,
 
 				PeerWorker: peerWorkerNode,
-			}
+			}, fieldNameNode, colonNode, peerWorkerNode)
 		}
 		return false, current
 
@@ -5660,7 +5658,7 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 		modified := modifiedConstKeyword || modifiedNaturalKeyword || modifiedParenthesizedArgList || modifiedOpenBraceToken || modifiedPrompt || modifiedCloseBraceToken
 		if modified {
-			return true, &STNaturalExpressionNode{
+			return true, createNodeAndAddChildren(&STNaturalExpressionNode{
 
 				STExpressionNode: n.STExpressionNode,
 
@@ -5675,7 +5673,32 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 				Prompt: promptNode,
 
 				CloseBraceToken: closeBraceTokenNode,
-			}
+			}, constKeywordNode, naturalKeywordNode, parenthesizedArgListNode, openBraceTokenNode, promptNode, closeBraceTokenNode)
+		}
+		return false, current
+
+	case *STAmbiguousCollectionNode:
+
+		modifiedCollectionStartToken, collectionStartTokenNode := replaceInner(n.CollectionStartToken, target, replacement)
+
+		modifiedMembers, membersNode := replaceAll(n.Members, target, replacement)
+
+		modifiedCollectionEndToken, collectionEndTokenNode := replaceInner(n.CollectionEndToken, target, replacement)
+
+		modified := modifiedCollectionStartToken || modifiedMembers || modifiedCollectionEndToken
+		if modified {
+			children := []STNode{collectionStartTokenNode}
+			children = append(children, membersNode...)
+			children = append(children, collectionEndTokenNode)
+			return true, createNodeAndAddChildren(&STAmbiguousCollectionNode{
+				STNodeBase: n.STNodeBase,
+
+				CollectionStartToken: collectionStartTokenNode,
+
+				Members: membersNode,
+
+				CollectionEndToken: collectionEndTokenNode,
+			}, children...)
 		}
 		return false, current
 

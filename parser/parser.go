@@ -776,7 +776,7 @@ func (this *BallerinaParser) ParseAsAnnotation() internal.STNode {
 func (this *BallerinaParser) ParseAsMarkdownDocumentation() internal.STNode {
 	this.startContext(common.PARSER_RULE_CONTEXT_COMP_UNIT)
 	markdownDoc := this.parseMarkdownDocumentation()
-	if markdownDoc.ToSourceCode() == "" {
+	if internal.ToSourceCode(markdownDoc) == "" {
 		missingHash := internal.CreateMissingTokenWithDiagnostics(common.HASH_TOKEN,
 			&common.WARNING_MISSING_HASH_TOKEN)
 		docLine := internal.CreateMarkdownDocumentationLineNode(common.MARKDOWN_DOCUMENTATION_LINE,
@@ -897,11 +897,11 @@ func (this *BallerinaParser) parseTopLevelNodeWithMetadata(metadata internal.STN
 	switch nextToken.Kind() {
 	case common.EOF_TOKEN:
 		if metadata != nil {
-			metadaNode, ok := metadata.(internal.STMetadataNode)
+			metadaNode, ok := metadata.(*internal.STMetadataNode)
 			if !ok {
 				panic("metadata is not a STMetadataNode")
 			}
-			metadata = this.addMetadataNotAttachedDiagnostic(metadaNode)
+			metadata = this.addMetadataNotAttachedDiagnostic(*metadaNode)
 			return this.createMissingSimpleVarDeclInner(metadata, true)
 		}
 		return nil
@@ -4047,12 +4047,12 @@ func (this *BallerinaParser) createMissingSimpleObjectFieldInner(metadata intern
 	objectFieldQualifiers, qualifiers := this.extractObjectFieldQualifiers(qualifiers, isObjectTypeDesc)
 	objectFieldQualNodeList := internal.CreateNodeList(objectFieldQualifiers...)
 	simpleNameRef = this.modifyNodeWithInvalidTokenList(qualifiers, simpleNameRef)
-	metadataNode, ok := metadata.(internal.STMetadataNode)
+	metadataNode, ok := metadata.(*internal.STMetadataNode)
 	if !ok {
 		panic("expected STMetadataNode")
 	}
 	if metadata != nil {
-		metadata = this.addMetadataNotAttachedDiagnostic(metadataNode)
+		metadata = this.addMetadataNotAttachedDiagnostic(*metadataNode)
 	}
 	return internal.CreateObjectFieldNode(metadata, emptyNode, objectFieldQualNodeList,
 		simpleNameRef, identifier, emptyNode, emptyNode, semicolon), qualifiers
@@ -7510,7 +7510,7 @@ func (this *BallerinaParser) parseAnnotationAttachPoints() internal.STNode {
 		attachPoints = append(attachPoints, attachPoint)
 		nextToken = this.peek()
 	}
-	if (attachPoint.LastToken().IsMissing() && (this.tokenReader.Peek().Kind() == common.IDENTIFIER_TOKEN)) && (!this.tokenReader.Head().HasTrailingNewLine()) {
+	if (internal.LastToken(attachPoint).IsMissing() && (this.tokenReader.Peek().Kind() == common.IDENTIFIER_TOKEN)) && (!this.tokenReader.Head().HasTrailingNewLine()) {
 		nextNonVirtualToken := this.tokenReader.Read()
 		this.updateLastNodeInListWithInvalidNode(attachPoints, nextNonVirtualToken,
 			&common.ERROR_INVALID_TOKEN, nextNonVirtualToken.Text())
@@ -10644,10 +10644,10 @@ func (this *BallerinaParser) parseByteArrayLiteralWithContent(typeKeyword intern
 	}
 	if items.Size() == 1 {
 		item := items.Get(0)
-		if (typeKeyword.Kind() == common.BASE16_KEYWORD) && (!isValidBase16LiteralContent(item.ToSourceCode())) {
+		if (typeKeyword.Kind() == common.BASE16_KEYWORD) && (!isValidBase16LiteralContent(internal.ToSourceCode(item))) {
 			newStartingBackTick = internal.CloneWithTrailingInvalidNodeMinutiae(startingBackTick, item,
 				&common.ERROR_INVALID_BASE16_CONTENT_IN_BYTE_ARRAY_LITERAL)
-		} else if (typeKeyword.Kind() == common.BASE64_KEYWORD) && (!isValidBase64LiteralContent(item.ToSourceCode())) {
+		} else if (typeKeyword.Kind() == common.BASE64_KEYWORD) && (!isValidBase64LiteralContent(internal.ToSourceCode(item))) {
 			newStartingBackTick = internal.CloneWithTrailingInvalidNodeMinutiae(startingBackTick, item,
 				&common.ERROR_INVALID_BASE64_CONTENT_IN_BYTE_ARRAY_LITERAL)
 		}

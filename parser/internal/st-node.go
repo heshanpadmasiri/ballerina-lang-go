@@ -47,14 +47,9 @@ type STNode interface {
 	BucketCount() int
 	HasDiagnostics() bool
 	IsMissing() bool
-	Tokens() []STToken
-	FirstToken() STToken
-	LastToken() STToken
 	ChildBuckets() []STNode
 	ChildInBucket(bucket int) STNode
 	setDiagnostics(diagnostics []STNodeDiagnostic)
-	ToSourceCode() string
-	writeTo(builder *strings.Builder)
 	addChildren(children ...STNode)
 	updateDiagnostics(children []STNode)
 	updateWidth(children []STNode)
@@ -71,7 +66,7 @@ type STToken interface {
 
 // Actual "base" types for AST nodes. We generate most of the actual nodes in st-node-gen.go.
 //
-//go:generate ../../compiler-tools/tree-gen/tree-gen -config ../nodes.json -type st-node -template ../../compiler-tools/tree-gen/templates/st-node.go.tmpl -output st-node-gen.go -util-template ../../compiler-tools/tree-gen/templates/st-node-util.go.tmpl -util-output st-node-util-gen.go
+//go:generate ../../tree-gen -config ../nodes.json -type st-node -template ../../compiler-tools/tree-gen/templates/st-node.go.tmpl -output st-node-gen.go -util-template ../../compiler-tools/tree-gen/templates/st-node-util.go.tmpl -util-output st-node-util-gen.go
 type (
 	STTokenBase struct {
 		kind                common.SyntaxKind
@@ -123,6 +118,7 @@ type (
 
 	STNodeList struct {
 		STNodeBase
+		children []STNode
 	}
 
 	STNodeBase struct {
@@ -133,8 +129,6 @@ type (
 		widthWithTrailingMinutiae uint16
 		widthWithMinutiae         uint16
 		flags                     uint8
-		bucketCount               int
-		childBuckets              []STNode
 	}
 
 	STNodeDiagnostic struct {
@@ -143,11 +137,54 @@ type (
 	}
 )
 
+func (n *STLiteralValueToken) BucketCount() int {
+	return 1
+}
+
+func (n *STLiteralValueToken) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		// token is STToken, which implements STNode
+		return n
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STInvalidTokenMinutiaeNode) BucketCount() int {
+	return 1
+}
+
+func (n *STInvalidTokenMinutiaeNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.token
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STInvalidTokenMinutiaeNode) ChildBuckets() []STNode {
+	return []STNode{n.token}
+}
+
+func (t *STNodeBase) BucketCount() int {
+	panic("BucketCount is not supported for STNodeBase")
+}
+
+func (t *STNodeBase) ChildBuckets() []STNode {
+	panic("ChildBuckets is not supported for STNodeBase")
+}
+
+func (t *STNodeBase) ChildInBucket(bucket int) STNode {
+	panic("ChildInBucket is not supported for STNodeBase")
+}
+
 // ModifyWith implementations for all token types
 // Port from Java STToken.java:129-131 and similar methods in each token class
 
 func (t *STTokenBase) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
-	return &STTokenBase{
+	return createNodeAndAddChildren(&STTokenBase{
 		kind:                t.kind,
 		width:               t.width,
 		diagnostics:         t.diagnostics,
@@ -156,11 +193,11 @@ func (t *STTokenBase) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode
 		trailingMinutiae:    trailingMinutiae,
 		lookbackTokenCount:  t.lookbackTokenCount,
 		lookaheadTokenCount: t.lookaheadTokenCount,
-	}
+	}, leadingMinutiae, trailingMinutiae).(*STTokenBase)
 }
 
 func (t *STMissingToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
-	return &STMissingToken{
+	return createNodeAndAddChildren(&STMissingToken{
 		STTokenBase: STTokenBase{
 			kind:                t.kind,
 			width:               t.width,
@@ -172,11 +209,11 @@ func (t *STMissingToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STN
 			lookaheadTokenCount: t.lookaheadTokenCount,
 		},
 		diagnosticList: t.diagnosticList,
-	}
+	}, leadingMinutiae, trailingMinutiae).(*STMissingToken)
 }
 
 func (t *STLiteralValueToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
-	return &STLiteralValueToken{
+	return createNodeAndAddChildren(&STLiteralValueToken{
 		STTokenBase: STTokenBase{
 			kind:                t.kind,
 			width:               t.width,
@@ -188,11 +225,11 @@ func (t *STLiteralValueToken) ModifyWith(leadingMinutiae STNode, trailingMinutia
 			lookaheadTokenCount: t.lookaheadTokenCount,
 		},
 		text: t.text,
-	}
+	}, leadingMinutiae, trailingMinutiae).(*STLiteralValueToken)
 }
 
 func (t *STInvalidToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
-	return &STInvalidToken{
+	return createNodeAndAddChildren(&STInvalidToken{
 		STTokenBase: STTokenBase{
 			kind:                t.kind,
 			width:               t.width,
@@ -204,13 +241,13 @@ func (t *STInvalidToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STN
 			lookaheadTokenCount: t.lookaheadTokenCount,
 		},
 		tokenText: t.tokenText,
-	}
+	}, leadingMinutiae, trailingMinutiae).(*STInvalidToken)
 }
 
 func (t *STIdentifierToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
 	// STIdentifierToken embeds STToken interface, need to extract the base
 	base := t.STToken.(*STTokenBase)
-	return &STIdentifierToken{
+	return createNodeAndAddChildren(&STIdentifierToken{
 		STToken: &STTokenBase{
 			kind:                base.kind,
 			width:               base.width,
@@ -222,11 +259,19 @@ func (t *STIdentifierToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae 
 			lookaheadTokenCount: base.lookaheadTokenCount,
 		},
 		text: t.text,
-	}
+	}, leadingMinutiae, trailingMinutiae).(*STIdentifierToken)
 }
 
 func (s STNodeList) IsEmpty() bool {
-	return s.bucketCount == 0
+	return s.BucketCount() == 0
+}
+
+func (s *STNodeList) ChildBuckets() []STNode {
+	return s.children
+}
+
+func (s *STNodeList) ChildInBucket(bucket int) STNode {
+	return s.children[bucket]
 }
 
 // Shared common nodes
@@ -240,15 +285,12 @@ var (
 
 // Methods for creating STNodes
 func CreateInvalidTokenMinutiaeNode(token STToken) *STInvalidTokenMinutiaeNode {
-	// TODO: update diagnostics
-	return &STInvalidTokenMinutiaeNode{
+	return createNodeAndAddChildren(&STInvalidTokenMinutiaeNode{
 		STNodeBase: STNodeBase{
-			kind:         common.INVALID_TOKEN_MINUTIAE_NODE,
-			childBuckets: []STNode{token},
-			bucketCount:  1,
+			kind: common.INVALID_TOKEN_MINUTIAE_NODE,
 		},
 		token: token,
-	}
+	}, token).(*STInvalidTokenMinutiaeNode)
 }
 
 func CreateLiteralValueToken(kind common.SyntaxKind,
@@ -265,7 +307,7 @@ func CreateLiteralValueTokenWithDiagnostics(kind common.SyntaxKind,
 	trailingTrivia STNode,
 	diagnostics []STNodeDiagnostic,
 ) STToken {
-	return &STLiteralValueToken{
+	return createNodeAndAddChildren(&STLiteralValueToken{
 		STTokenBase: STTokenBase{
 			kind:             kind,
 			width:            uint16(len(text)),
@@ -274,7 +316,7 @@ func CreateLiteralValueTokenWithDiagnostics(kind common.SyntaxKind,
 			diagnostics:      diagnostics,
 		},
 		text: text,
-	}
+	}, leadingTrivia, trailingTrivia).(*STLiteralValueToken)
 }
 
 func CreateDiagnostic(code diagnostics.DiagnosticCode, args ...any) STNodeDiagnostic {
@@ -290,13 +332,13 @@ func CreateTokenFrom(kind common.SyntaxKind, leadingMinutiae STNode, trailingMin
 
 func CreateTokenWithDiagnostics(kind common.SyntaxKind, leadingMinutiae STNode, trailingMinutiae STNode, diagnostics []STNodeDiagnostic) STToken {
 	width := uint16(len(kind.StrValue()))
-	return &STTokenBase{
+	return createNodeAndAddChildren(&STTokenBase{
 		kind:             kind,
 		width:            width,
 		leadingMinutiae:  leadingMinutiae,
 		trailingMinutiae: trailingMinutiae,
 		diagnostics:      diagnostics,
-	}
+	}, leadingMinutiae, trailingMinutiae).(*STTokenBase)
 }
 
 // FIXME: remove this
@@ -313,6 +355,7 @@ func CreateNodeList(nodes ...STNode) STNode {
 		STNodeBase: STNodeBase{
 			kind: common.LIST,
 		},
+		children: nodes,
 	}, nodes...)
 }
 
@@ -340,11 +383,20 @@ func CreateInvalidToken(tokenText string) *STInvalidToken {
 }
 
 func CreateInvalidNodeMinutiae(invalidToken STToken) STNode {
-	return CreateInvalidTokenMinutiaeNode(invalidToken)
+	invalidNode := CreateInvalidTokenMinutiaeNode(invalidToken)
+	return createNodeAndAddChildren(&STInvalidNodeMinutiae{
+		STMinutiae: STMinutiae{
+			STNodeBase: STNodeBase{
+				kind: common.INVALID_NODE_MINUTIAE,
+			},
+			text: ToSourceCode(invalidNode),
+		},
+		invalidNode: invalidNode,
+	}, invalidNode).(*STInvalidNodeMinutiae)
 }
 
 func CreateIdentifierToken(text string, leadingTrivia STNode, trailingTrivia STNode) STToken {
-	return &STIdentifierToken{
+	return createNodeAndAddChildren(&STIdentifierToken{
 		STToken: &STTokenBase{
 			kind:             common.IDENTIFIER_TOKEN,
 			width:            uint16(len(text)),
@@ -352,7 +404,7 @@ func CreateIdentifierToken(text string, leadingTrivia STNode, trailingTrivia STN
 			trailingMinutiae: trailingTrivia,
 		},
 		text: text,
-	}
+	}, leadingTrivia, trailingTrivia).(*STIdentifierToken)
 }
 
 func CreateIdentifierTokenWithDiagnostics(text string, leadingTrivia STNode, trailingTrivia STNode, diagnostics []STNodeDiagnostic) STToken {
@@ -364,14 +416,14 @@ func CreateIdentifierTokenWithDiagnostics(text string, leadingTrivia STNode, tra
 // findToken searches for a token in the child buckets.
 // Direction determines iteration order: forward searches from first to last child,
 // backward searches from last to first child.
-func (n *STNodeBase) findToken(dir direction) STToken {
-	start, end, step := 0, len(n.childBuckets), 1
+func findToken(n STNode, dir direction) STToken {
+	start, end, step := 0, n.BucketCount(), 1
 	if dir == backward {
-		start, end, step = len(n.childBuckets)-1, -1, -1
+		start, end, step = n.BucketCount()-1, -1, -1
 	}
 
 	for i := start; i != end; i += step {
-		child := n.childBuckets[i]
+		child := n.ChildInBucket(i)
 		if isToken(child) {
 			token, ok := child.(STToken)
 			if ok {
@@ -384,9 +436,9 @@ func (n *STNodeBase) findToken(dir direction) STToken {
 		}
 		var token STToken
 		if dir == forward {
-			token = child.FirstToken()
+			token = FirstToken(child)
 		} else {
-			token = child.LastToken()
+			token = LastToken(child)
 		}
 		if IsSTNodePresent(token) {
 			return token
@@ -398,24 +450,39 @@ func (n *STNodeBase) findToken(dir direction) STToken {
 	panic("failed to find last token")
 }
 
-func (n STNodeBase) FirstToken() STToken {
-	return n.findToken(forward)
+func FirstToken(n STNode) STToken {
+	token, ok := n.(STToken)
+	if ok {
+		return token
+	}
+	return findToken(n, forward)
 }
 
-func (n STNodeBase) LastToken() STToken {
-	return n.findToken(backward)
+func LastToken(n STNode) STToken {
+	token, ok := n.(STToken)
+	if ok {
+		return token
+	}
+	return findToken(n, backward)
 }
 
-func (t STNodeBase) ToSourceCode() string {
+func ToSourceCode(n STNode) string {
 	builder := strings.Builder{}
-	t.writeTo(&builder)
+	writeTo(n, &builder)
 	return builder.String()
 }
 
-func (t STNodeBase) writeTo(builder *strings.Builder) {
-	for _, child := range t.childBuckets {
+func writeTo(n STNode, builder *strings.Builder) {
+	tok, ok := n.(STToken)
+	if ok {
+		writeTo(tok.LeadingMinutiae(), builder)
+		builder.WriteString(tok.Kind().StrValue())
+		writeTo(tok.TrailingMinutiae(), builder)
+		return
+	}
+	for _, child := range n.ChildBuckets() {
 		if IsSTNodePresent(child) {
-			child.writeTo(builder)
+			writeTo(child, builder)
 		}
 	}
 }
@@ -429,16 +496,9 @@ func (n *STNodeBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
 	}
 }
 
-func (n STNodeBase) ChildInBucket(bucket int) STNode {
-	return n.childBuckets[bucket]
-}
-
 func (n *STNodeBase) copy() *STNodeBase {
 	diagnosticsCopy := make([]STNodeDiagnostic, len(n.diagnostics))
 	copy(diagnosticsCopy, n.diagnostics)
-
-	childBucketsCopy := make([]STNode, len(n.childBuckets))
-	copy(childBucketsCopy, n.childBuckets)
 
 	return &STNodeBase{
 		kind:                      n.kind,
@@ -448,8 +508,6 @@ func (n *STNodeBase) copy() *STNodeBase {
 		widthWithTrailingMinutiae: n.widthWithTrailingMinutiae,
 		widthWithMinutiae:         n.widthWithMinutiae,
 		flags:                     n.flags,
-		bucketCount:               n.bucketCount,
-		childBuckets:              childBucketsCopy,
 	}
 }
 
@@ -481,14 +539,6 @@ func (n STNodeBase) Flags() uint8 {
 	return n.flags
 }
 
-func (n STNodeBase) BucketCount() int {
-	return n.bucketCount
-}
-
-func (n STNodeBase) ChildBuckets() []STNode {
-	return n.childBuckets
-}
-
 func (n STNodeBase) HasDiagnostics() bool {
 	return isFlagSet(n.flags, HAS_DIAGNOSTIC)
 }
@@ -497,19 +547,21 @@ func (n STNodeBase) IsMissing() bool {
 	return isFlagSet(n.flags, IS_MISSING)
 }
 
-func (n STNodeBase) Tokens() []STToken {
-	tokens := make([]STToken, 0, len(n.childBuckets))
-	for _, child := range n.childBuckets {
+func Tokens(n STNode) []STToken {
+	token, ok := n.(STToken)
+	if ok {
+		return []STToken{token}
+	}
+	tokens := make([]STToken, 0, n.BucketCount())
+	for _, child := range n.ChildBuckets() {
 		if IsSTNodePresent(child) {
-			tokens = append(tokens, child.Tokens()...)
+			tokens = append(tokens, Tokens(child)...)
 		}
 	}
 	return tokens
 }
 
 func (n *STNodeBase) addChildren(children ...STNode) {
-	n.childBuckets = append(n.childBuckets, children...)
-	n.bucketCount = len(n.childBuckets)
 	n.updateDiagnostics(children)
 	n.updateWidth(children)
 }
@@ -594,12 +646,20 @@ func (n STTokenBase) TrailingMinutiae() STNode {
 	return n.trailingMinutiae
 }
 
-func (n STTokenBase) addChildren(children ...STNode) {
-	panic("addChildren is not supported for STToken")
+func (n *STTokenBase) addChildren(children ...STNode) {
+	n.updateDiagnostics(children)
 }
 
-func (n STTokenBase) updateDiagnostics(children []STNode) {
-	panic("updateDiagnostics is not supported for STToken")
+func (n *STTokenBase) updateDiagnostics(children []STNode) {
+	for _, child := range children {
+		if !IsSTNodePresent(child) {
+			continue
+		}
+		if child.HasDiagnostics() {
+			n.flags = n.flags | HAS_DIAGNOSTIC
+			return
+		}
+	}
 }
 
 func (n STTokenBase) updateWidth(children []STNode) {
@@ -666,14 +726,6 @@ func (t *STLiteralValueToken) Text() string {
 	return t.text
 }
 
-func (t *STTokenBase) FirstToken() STToken {
-	return t
-}
-
-func (t *STTokenBase) LastToken() STToken {
-	return t
-}
-
 func (t *STTokenBase) HasTrailingNewLine() bool {
 	stNodeList := t.trailingMinutiae.(*STNodeList)
 	for i := 0; i < stNodeList.Size(); i++ {
@@ -682,18 +734,6 @@ func (t *STTokenBase) HasTrailingNewLine() bool {
 		}
 	}
 	return false
-}
-
-func (t *STTokenBase) ToSourceCode() string {
-	builder := strings.Builder{}
-	t.writeTo(&builder)
-	return builder.String()
-}
-
-func (t *STTokenBase) writeTo(builder *strings.Builder) {
-	t.leadingMinutiae.writeTo(builder)
-	builder.WriteString(t.kind.StrValue())
-	t.trailingMinutiae.writeTo(builder)
 }
 
 func (t *STTokenBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
@@ -706,63 +746,57 @@ func (t *STTokenBase) setDiagnostics(diagnostics []STNodeDiagnostic) {
 }
 
 func (s *STNodeList) Get(i int) STNode {
-	rangeCheck(i, s.bucketCount)
-	return s.childBuckets[i]
+	rangeCheck(i, s.Size())
+	return s.children[i]
 }
 
 func (s *STNodeList) Size() int {
-	return s.bucketCount
+	return len(s.children)
 }
 
 func (s *STNodeList) add(node STNode) *STNodeList {
-	STNodeBase := s.copy()
-	STNodeBase.childBuckets = append(STNodeBase.childBuckets, node)
-	STNodeBase.bucketCount++
-	return &STNodeList{STNodeBase: *STNodeBase}
+	s.children = append(s.children, node)
+	s.updateWidth(s.children)
+	s.updateDiagnostics(s.children)
+	return s
 }
 
 // AddAllAt inserts nodes at specified index (prepend when index=0)
 // Port from Java STNodeList.java:69-78 (Java addAll(int, Collection))
 func (s *STNodeList) AddAllAt(index int, nodes []STNode) *STNodeList {
 	// Create new array with increased capacity
-	newLength := s.bucketCount + len(nodes)
+	newLength := s.Size() + len(nodes)
 	newBuckets := make([]STNode, newLength)
 
 	// Copy elements before insertion point
-	copy(newBuckets[0:index], s.childBuckets[0:index])
+	copy(newBuckets[0:index], s.children[0:index])
 
 	// Insert new nodes
 	copy(newBuckets[index:index+len(nodes)], nodes)
 
 	// Copy remaining elements after insertion point
-	copy(newBuckets[index+len(nodes):], s.childBuckets[index:s.bucketCount])
+	copy(newBuckets[index+len(nodes):], s.children[index:s.Size()])
 
-	newBase := s.copy()
-	newBase.childBuckets = newBuckets
-	newBase.bucketCount = newLength
-	return &STNodeList{STNodeBase: *newBase}
+	return createNodeAndAddChildren(&STNodeList{STNodeBase: *s.copy(), children: newBuckets}, newBuckets...).(*STNodeList)
 }
 
 // AddAll appends nodes to end of list
 // Port from Java STNodeList.java:80-88 (Java addAll(Collection))
 func (s *STNodeList) AddAll(nodes []STNode) *STNodeList {
-	newLength := s.bucketCount + len(nodes)
+	newLength := s.Size() + len(nodes)
 	newBuckets := make([]STNode, newLength)
 
 	// Copy existing elements
-	copy(newBuckets[0:s.bucketCount], s.childBuckets[0:s.bucketCount])
+	copy(newBuckets[0:s.Size()], s.children[0:s.Size()])
 
 	// Append new nodes
-	copy(newBuckets[s.bucketCount:], nodes)
+	copy(newBuckets[s.Size():], nodes)
 
-	newBase := s.copy()
-	newBase.childBuckets = newBuckets
-	newBase.bucketCount = newLength
-	return &STNodeList{STNodeBase: *newBase}
+	return createNodeAndAddChildren(&STNodeList{STNodeBase: *s.copy(), children: newBuckets}, newBuckets...).(*STNodeList)
 }
 
 func (s *STNodeList) BucketCount() int {
-	return s.bucketCount
+	return s.Size()
 }
 
 func (s STNodeDiagnostic) DiagnosticCode() diagnostics.DiagnosticCode {
@@ -774,6 +808,18 @@ func Replace(current STNode, target STNode, replacement STNode) STNode {
 	// TODO: this is doing value comparison which is super expensive, need to think of a better way to do this
 	_, result := replaceInner(current, target, replacement)
 	return result
+}
+
+func replaceAll(current []STNode, target STNode, replacement STNode) (bool, []STNode) {
+	modified := false
+	var result []STNode
+	for _, each := range current {
+		m, e := replaceInner(each, target, replacement)
+		modified = modified || m
+		result = append(result, e)
+
+	}
+	return modified, result
 }
 
 func AddSyntaxDiagnostic[T STNode](node T, diagnostic STNodeDiagnostic) T {
@@ -981,7 +1027,7 @@ func CloneWithLeadingInvalidNodeMinutiae(toClone STNode, invalidNode STNode, dia
 	}
 
 	// Otherwise it's a non-token STNode (Java line 457-465)
-	firstToken := toClone.FirstToken()
+	firstToken := FirstToken(toClone)
 	firstTokenWithInvalidNodeMinutiae := CloneWithLeadingInvalidNodeMinutiae(
 		firstToken, invalidNode, diagnosticCode, args...).(STToken)
 	return Replace(toClone, firstToken, firstTokenWithInvalidNodeMinutiae)
@@ -1040,7 +1086,7 @@ func CloneWithTrailingInvalidNodeMinutiae(toClone STNode, invalidNode STNode, di
 	}
 
 	// Otherwise it's a non-token STNode (Java line 506-514)
-	lastToken := toClone.LastToken()
+	lastToken := LastToken(toClone)
 	lastTokenWithInvalidNodeMinutiae := CloneWithTrailingInvalidNodeMinutiae(
 		lastToken, invalidNode, diagnosticCode, args...).(STToken)
 	return Replace(toClone, lastToken, lastTokenWithInvalidNodeMinutiae)
@@ -1076,7 +1122,7 @@ func addMinutiaeToList(list []STNode, minutiae STNode) []STNode {
 // Port from Java SyntaxErrors.java:557-577
 func convertInvalidNodeToMinutiae(invalidNode STNode, diagnosticCode diagnostics.DiagnosticCode, args ...any) []STNode {
 	minutiaeList := []STNode{}
-	tokens := invalidNode.Tokens()
+	tokens := Tokens(invalidNode)
 
 	for _, token := range tokens {
 		// Add leading minutiae
@@ -1159,10 +1205,10 @@ func CreateAmbiguousCollectionNode(kind common.SyntaxKind, collectionStartToken 
 		CollectionStartToken: collectionStartToken,
 		CollectionEndToken:   collectionEndToken,
 		Members:              members,
-	}, children...)
+	}, children...).(*STAmbiguousCollectionNode)
 }
 
-func createNodeAndAddChildren[T STNode](base T, children ...STNode) T {
+func createNodeAndAddChildren(base STNode, children ...STNode) STNode {
 	base.addChildren(children...)
 	return base
 }

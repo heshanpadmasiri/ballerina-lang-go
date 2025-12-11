@@ -22,6 +22,7 @@ package internal
 
 import (
 	"ballerina-lang-go/parser/common"
+	"ballerina-lang-go/tools/diagnostics"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -291,7 +292,7 @@ func addMinutiaeList(minutiaeList *STNodeList, node *orderedJSONObject, key stri
 				minutiaeJson.add(INVALID_NODE_FIELD, getJSON(invalidNode))
 			}
 		default:
-			panic(fmt.Sprintf("Unsupported minutiae kind: '%v'", minutiaeKind))
+			// panic(fmt.Sprintf("Unsupported minutiae kind: '%v'", minutiaeKind))
 		}
 
 		minutiaeJsonArray = append(minutiaeJsonArray, minutiaeJson)
@@ -332,9 +333,17 @@ func addDiagnostics(treeNode STNode, jsonNode *orderedJSONObject) {
 
 	diagnosticsJsonArray := make([]interface{}, 0, len(diagnostics))
 	for _, syntaxDiagnostic := range diagnostics {
-		diagnosticsJsonArray = append(diagnosticsJsonArray, syntaxDiagnostic.code.DiagnosticId())
+		diagnosticsJsonArray = append(diagnosticsJsonArray, diagnosticJSONMessage(syntaxDiagnostic.code))
 	}
 	jsonNode.add(DIAGNOSTICS_FIELD, diagnosticsJsonArray)
+}
+
+func diagnosticJSONMessage(diagnosticCode diagnostics.DiagnosticCode) string {
+	message := diagnosticCode.MessageKey()
+	if message == "" {
+		message = diagnosticCode.DiagnosticId()
+	}
+	return strings.ToUpper(strings.ReplaceAll(message, ".", "_"))
 }
 
 // ========== Utility Methods (from ParserTestUtils.java) ==========

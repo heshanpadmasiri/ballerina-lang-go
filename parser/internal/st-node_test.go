@@ -38,9 +38,7 @@ func createTestModulePart(imports, members, eofToken STNode) *STModulePart {
 
 	return &STModulePart{
 		STNode: &STNodeBase{
-			kind:         common.MODULE_PART,
-			childBuckets: childBuckets,
-			bucketCount:  len(childBuckets),
+			kind: common.MODULE_PART,
 		},
 		Imports:  imports,
 		Members:  members,
@@ -68,9 +66,7 @@ func createTestImportDeclaration(importKeyword, orgName, moduleName, prefix, sem
 
 	return &STImportDeclarationNode{
 		STNode: &STNodeBase{
-			kind:         common.IMPORT_DECLARATION,
-			childBuckets: childBuckets,
-			bucketCount:  len(childBuckets),
+			kind: common.IMPORT_DECLARATION,
 		},
 		ImportKeyword: importKeyword,
 		OrgName:       orgName,
@@ -83,9 +79,7 @@ func createTestImportDeclaration(importKeyword, orgName, moduleName, prefix, sem
 func createTestFunctionDefinition() *STFunctionDefinition {
 	return &STFunctionDefinition{
 		STModuleMemberDeclarationNode: &STNodeBase{
-			kind:         common.FUNCTION_DEFINITION,
-			childBuckets: []STNode{},
-			bucketCount:  0,
+			kind: common.FUNCTION_DEFINITION,
 		},
 		Metadata:             nil,
 		QualifierList:        nil,
@@ -215,8 +209,8 @@ func TestToSexpr_NodeList(t *testing.T) {
 
 	nodeList := CreateNodeList(child1, child2)
 
-	// Convert to S-expression (need pointer for STNode interface)
-	result := ToSexpr(&nodeList)
+	// Convert to S-expression
+	result := ToSexpr(nodeList)
 
 	// Hardcoded expected output
 	expected := `(1 0 0x00 ()

@@ -30,8 +30,31 @@ type ST{{.Name}} struct {
 }
 {{if .Kind}}
 
-func (n ST{{.Name}}) Kind() common.SyntaxKind {
+func (n *ST{{.Name}}) Kind() common.SyntaxKind {
     return common.{{.Kind}}
+}
+
+func (n *ST{{.Name}}) BucketCount() int {
+    return {{len .Attributes}}
+}
+
+func (n *ST{{.Name}}) ChildInBucket(bucket int) STNode {
+    switch bucket {
+    {{range $i, $attr := .Attributes}}
+    case {{$i}}:
+        return n.{{title $attr.Name}}
+    {{end}}
+    default:
+        panic("invalid bucket index")
+    }
+}
+
+func (n *ST{{.Name}}) ChildBuckets() []STNode {
+    return []STNode{
+    {{range $i, $attr := .Attributes}}
+    n.{{title $attr.Name}},
+    {{end}}
+    }
 }
 {{end}}
 {{end}}
