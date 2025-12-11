@@ -1,0 +1,136 @@
+---
+description: Migrating given java code to go
+alwaysApply: false
+---
+
+- **Objective is to migrate code line by line from java instead of trying to create a idiomatic go code**
+
+# Migrating different java constructs to go
+
+## Abstract classes
+
+- Assume we have an abstract class called Foo.
+- We generate the following Go artifacts:
+  1. FooData: interface containing getters and setters for all fields
+  2. FooBase: struct containing all the fields
+  3. FooMethods: struct containing default (non-abstract) method implementations
+  4. Foo: interface that embeds FooData
+
+````java
+abstract class Foo {
+  int a;
+  abstract int f();
+  int b() {
+    return f() + a;
+  }
+}
+```go
+// 1. Field access interface
+type FooData interface {
+  SetA(a int)
+  GetA() int
+}
+
+// 2. Base with fields
+type FooBase struct {
+  A int
+}
+
+func (b *FooBase) SetA(a int) { b.A = a }
+func (b *FooBase) GetA() int { return b.A }
+
+// 3. Foo interface = fields + abstract + default methods
+type Foo interface {
+  FooData
+  F() int // abstract
+  B() int // default implementation in FooMethods
+}
+
+// 4. Default (non-abstract) methods
+type FooMethods struct {
+  Self Foo
+}
+
+func (m *FooMethods) B() int {
+  return m.Self.F() + m.Self.GetA()
+}
+````
+
+#### Subclass
+
+```java
+class Bar extends Foo {
+  int f() {
+    return 42
+  }
+}
+```
+
+```go
+type Bar struct {
+  FooBase
+  FooMethods
+}
+
+func (b *Bar) F() int {
+  return 42
+}
+```
+
+## Overloading
+
+- Machine translation will create multiple methods with the same name for the overloaded methods. We just need to give more descriptive names (common base name with a suffix explaining the difference, example: `CreateNode`, `CreateNodeWithDiagnostics`) and update usages.
+
+## Type casts
+
+- Machine translation should properly detect these and migrate them properly but in cases this haven't done, fallow this pattern
+
+```java
+Foo a = (Foo) b;
+```
+
+```go
+a, ok := b.(Foo)
+if !ok {
+  panic("expected Foo")
+}
+```
+
+## Cyclic dependencies
+
+- When there is a cyclic dependency relevant code (ie. method, enum, etc not necessarily the whole file) should be moved to common
+
+## Enum
+
+- Where possible try to use go enum with name prefixes to avoid clashes. Example in java if there is enum `Foo` with values `Bar` and `Baz` use
+
+```go
+type Foo uint
+const (
+  FOO_BAR Foo = iota
+  FOO_BAZ Foo
+)
+```
+
+- If the enum in question has data create a struct instead. For example see `diagnostic-errors.go`. Here we will have value defined for each enum variant
+
+```go
+
+type DiagnosticErrorCode struct {
+	diagnosticId string
+	messageKey   string
+}
+
+// Constants ported from io.ballerina.compiler.internal.diagnostics.DiagnosticErrorCode
+// Generic syntax error
+var ERROR_SYNTAX_ERROR = DiagnosticErrorCode{diagnosticId: "BCE0000", messageKey: "error.syntax.error"}
+```
+
+## Mutating parameters
+
+In java code we will have cases where we mutate values passed in as parameters. _commonly we add to lists passed in_. In such cases in migrated code we need to return both the mutate list as well as the normal return value. These mutated values need to be propagated upto the level where the value being mutated was defined.
+
+## Common pitfalls
+
+- In java switch statements fallthrough by default where is in go you must explicitly fallthrough
+

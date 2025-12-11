@@ -1,0 +1,23 @@
+---
+description: Fixing cases where output from go compiler is different from java compiler
+alwaysApply: false
+---
+When you try to fix a case where the output from go compiler is different from java compiler first try to gather the current output from the go compiler to a file. For example for getting ast use
+```bash
+go run . ${path_to_bal} -dump-ast 2> new.json
+```
+
+Then get the expected output. This is typically in the corpus directly. If not prompt user on where to get this file. Then compare the difference between the two files. For this use diff. This difference will give you an idea on where to look for. For example if a particular statement node is different then most likely the bug is the method of parsing statements in parser.go
+
+Having narrowed the most likely origins of the bug then it is a good idea to add some logging methods to figure out what is being exectued. It equally a good idea to do the same in the java compiler as well. In order to run the java compiler to get those logs you can use `jBalCompTools build ${path_to_bal} -s /Users/heshanp/Projects/ballerina-native-wibe/ballerina-lang`.
+
+- For some cases there is no straight forward way to get the actual output from the java compiler so you have to depend on logs and saved output in corpus for this
+
+# Common bugs
+- In java switch statements fallthrough by default where is in go you must explicitly fallthrough
+- Mutating arrays passed in a parameters, without returning them back
+- Missing else-if and else branches
+- Using hardcoded kind instead of actual returning the value in node
+
+
+**IMPORTANT: you should make sure what ever you fix is that it is already in java version. If not that is not the fix**

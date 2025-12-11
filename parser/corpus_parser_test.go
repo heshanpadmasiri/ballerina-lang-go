@@ -113,7 +113,7 @@ func parseFileWithRecovery(filePath string) (err error) {
 	tokenReader := CreateTokenReader(*lexer, nil)
 
 	// Create Parser from TokenReader
-	ballerinaParser := NewBallerinaParserFromTokenReader(tokenReader)
+	ballerinaParser := NewBallerinaParserFromTokenReader(tokenReader, nil)
 
 	// Parse the entire file - this may panic
 	ast := ballerinaParser.Parse()

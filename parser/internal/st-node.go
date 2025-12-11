@@ -20,6 +20,7 @@ import (
 	"ballerina-lang-go/parser/common"
 	"ballerina-lang-go/tools/diagnostics"
 	"fmt"
+	"reflect"
 	"strings"
 )
 
@@ -77,11 +78,13 @@ type (
 		trailingMinutiae    STNode
 		lookbackTokenCount  int
 		lookaheadTokenCount int
+		// widthWithLeadingMinutiae  uint16
+		// widthWithTrailingMinutiae uint16
+		// widthWithMinutiae         uint16
 	}
 
 	STMissingToken struct {
 		STTokenBase
-		diagnosticList []STNodeDiagnostic
 	}
 
 	STLiteralValueToken struct {
@@ -151,6 +154,22 @@ func (n *STLiteralValueToken) ChildInBucket(bucket int) STNode {
 	}
 }
 
+func (n *STMinutiae) Width() uint16 {
+	return uint16(len(n.text))
+}
+
+func (n *STMinutiae) WidthWithLeadingMinutiae() uint16 {
+	return n.Width()
+}
+
+func (n *STMinutiae) WidthWithTrailingMinutiae() uint16 {
+	return n.Width()
+}
+
+func (n *STMinutiae) WidthWithMinutiae() uint16 {
+	return n.Width()
+}
+
 func (n *STInvalidTokenMinutiaeNode) BucketCount() int {
 	return 1
 }
@@ -184,6 +203,7 @@ func (t *STNodeBase) ChildInBucket(bucket int) STNode {
 // Port from Java STToken.java:129-131 and similar methods in each token class
 
 func (t *STTokenBase) ModifyWith(leadingMinutiae STNode, trailingMinutiae STNode) STToken {
+	// FIXME: add lenghts
 	return createNodeAndAddChildren(&STTokenBase{
 		kind:                t.kind,
 		width:               t.width,
@@ -208,7 +228,6 @@ func (t *STMissingToken) ModifyWith(leadingMinutiae STNode, trailingMinutiae STN
 			lookbackTokenCount:  t.lookbackTokenCount,
 			lookaheadTokenCount: t.lookaheadTokenCount,
 		},
-		diagnosticList: t.diagnosticList,
 	}, leadingMinutiae, trailingMinutiae).(*STMissingToken)
 }
 
@@ -476,7 +495,7 @@ func writeTo(n STNode, builder *strings.Builder) {
 	tok, ok := n.(STToken)
 	if ok {
 		writeTo(tok.LeadingMinutiae(), builder)
-		builder.WriteString(tok.Kind().StrValue())
+		builder.WriteString(tok.Text())
 		writeTo(tok.TrailingMinutiae(), builder)
 		return
 	}
@@ -647,6 +666,16 @@ func (n STTokenBase) TrailingMinutiae() STNode {
 }
 
 func (n *STTokenBase) addChildren(children ...STNode) {
+	// if (len(children) >= 1) {
+	// 	leadingMinutiae := children[0]
+	// 	n.widthWithLeadingMinutiae =  n.width + leadingMinutiae.Width()
+	// 	n.widthWithMinutiae =  n.width + leadingMinutiae.Width()
+	// }
+	// if (len(children) >= 2) {
+	// 	trailingMinutiae := children[len(children)-1]
+	// 	n.widthWithTrailingMinutiae =  n.width + trailingMinutiae.Width()
+	// 	n.widthWithMinutiae =  n.width + trailingMinutiae.Width()
+	// }
 	n.updateDiagnostics(children)
 }
 
@@ -844,9 +873,23 @@ func AddSyntaxDiagnostics[T STNode](node T, diagnostics []STNodeDiagnostic) T {
 }
 
 func modifyWithDiagnostics[T STNode](base T, diagnostics []STNodeDiagnostic) T {
-	copy := base
-	copy.setDiagnostics(diagnostics)
-	return copy
+	// Get the underlying value from the interface
+	baseValue := reflect.ValueOf(base)
+	// TODO: think of a better way to do this. We need to avoid mutating via the pointer
+	if baseValue.Kind() == reflect.Ptr {
+		// If it's a pointer, create a new instance and copy the struct
+		elemType := baseValue.Elem().Type()
+		newValue := reflect.New(elemType)
+		// Copy all fields from the original to the new instance
+		newValue.Elem().Set(baseValue.Elem())
+		// Get the new instance as STNode and set diagnostics
+		// We can't directly assert to T (type parameter), so we assert to STNode first
+		newNode := newValue.Interface().(STNode)
+		newNode.setDiagnostics(diagnostics)
+		// Convert back to T - this is safe because T is constrained to STNode
+		return any(newNode).(T)
+	}
+	panic("expected pointer")
 }
 
 // Utility functions
@@ -1056,13 +1099,19 @@ func CreateDiagnosticWithArgs(diagnosticCode diagnostics.DiagnosticCode, args ..
 }
 
 func CreateMissingToken(expectedKind common.SyntaxKind, diagnosticList []STNodeDiagnostic) STToken {
+	flags := uint8(0)
+	if len(diagnosticList) > 0 {
+		flags = flags | HAS_DIAGNOSTIC
+	}
+	flags = flags | IS_MISSING
 	return &STMissingToken{
 		STTokenBase: STTokenBase{
 			kind:             expectedKind,
 			leadingMinutiae:  CreateEmptyNodeList(),
 			trailingMinutiae: CreateEmptyNodeList(),
+			flags:            flags,
+			diagnostics:      diagnosticList,
 		},
-		diagnosticList: diagnosticList,
 	}
 }
 
@@ -1136,10 +1185,8 @@ func convertInvalidNodeToMinutiae(invalidNode STNode, diagnosticCode diagnostics
 			}
 
 			// Create token with no minutiae and wrap as invalid node minutiae
-			tokenWithNoMinutiae := token.ModifyWith(
-				CreateEmptyNodeList(), CreateEmptyNodeList())
-			minutiaeList = append(minutiaeList,
-				CreateInvalidNodeMinutiae(tokenWithNoMinutiae))
+			tokenWithNoMinutiae := token.ModifyWith(CreateEmptyNodeList(), CreateEmptyNodeList())
+			minutiaeList = append(minutiaeList, CreateInvalidNodeMinutiae(tokenWithNoMinutiae))
 		}
 
 		// Add trailing minutiae

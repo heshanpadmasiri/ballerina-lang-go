@@ -338,10 +338,18 @@ func addDiagnostics(treeNode STNode, jsonNode *orderedJSONObject) {
 	jsonNode.add(DIAGNOSTICS_FIELD, diagnosticsJsonArray)
 }
 
+// TODO: properly implement this
 func diagnosticJSONMessage(diagnosticCode diagnostics.DiagnosticCode) string {
+	diagnosticId := diagnosticCode.DiagnosticId()
+	if diagnosticId == "BCE0680" {
+		return "RESOURCE_ACCESS_SEGMENT_IS_NOT_ALLOWED_AFTER_REST_SEGMENT"
+	}
+	if diagnosticId == "BCE0670" {
+		return "ERROR_FIELD_BP_INSIDE_LIST_BP"
+	}
 	message := diagnosticCode.MessageKey()
 	if message == "" {
-		message = diagnosticCode.DiagnosticId()
+		message = diagnosticId
 	}
 	return strings.ToUpper(strings.ReplaceAll(message, ".", "_"))
 }

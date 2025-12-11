@@ -112,6 +112,7 @@ type abstractParser struct {
 	tokenReader          *TokenReader
 	invalidNodeInfoStack []invalidNodeInfo
 	insertedToken        internal.STToken
+	dbgContext           *debugcommon.DebugContext
 }
 
 func NewInvalidNodeInfoFromInvalidNodeDiagnosticCodeArgs(invalidNode internal.STNode, diagnosticCode diagnostics.DiagnosticCode, args ...interface{}) invalidNodeInfo {
@@ -122,7 +123,7 @@ func NewInvalidNodeInfoFromInvalidNodeDiagnosticCodeArgs(invalidNode internal.ST
 	return this
 }
 
-func NewAbstractParserFromTokenReaderErrorHandler(tokenReader *TokenReader, errorHandler ParserErrorHandler) abstractParser {
+func NewAbstractParserFromTokenReaderErrorHandler(tokenReader *TokenReader, errorHandler ParserErrorHandler, dbgContext *debugcommon.DebugContext) abstractParser {
 	this := abstractParser{}
 	this.invalidNodeInfoStack = make([]invalidNodeInfo, 0)
 	this.insertedToken = nil
@@ -130,10 +131,11 @@ func NewAbstractParserFromTokenReaderErrorHandler(tokenReader *TokenReader, erro
 
 	this.tokenReader = tokenReader
 	this.errorHandler = errorHandler
+	this.dbgContext = dbgContext
 	return this
 }
 
-func NewAbstractParserFromTokenReader(tokenReader *TokenReader) abstractParser {
+func NewAbstractParserFromTokenReader(tokenReader *TokenReader, dbgContext *debugcommon.DebugContext) abstractParser {
 	this := abstractParser{}
 	this.invalidNodeInfoStack = make([]invalidNodeInfo, 0)
 	this.insertedToken = nil
@@ -141,6 +143,7 @@ func NewAbstractParserFromTokenReader(tokenReader *TokenReader) abstractParser {
 
 	this.tokenReader = tokenReader
 	this.errorHandler = nil
+	this.dbgContext = dbgContext
 	return this
 }
 
@@ -168,7 +171,7 @@ func (this *abstractParser) consume() internal.STToken {
 	if this.insertedToken != nil {
 		nextToken := this.insertedToken
 		this.insertedToken = nil
-		return nextToken
+		return this.consumeWithInvalidNodesWithToken(nextToken)
 	}
 	if len(this.invalidNodeInfoStack) == 0 {
 		return this.tokenReader.Read()
@@ -300,14 +303,17 @@ type BallerinaParser struct {
 	abstractParser
 }
 
-func NewBallerinaParserFromTokenReader(tokenReader *TokenReader) BallerinaParser {
+func NewBallerinaParserFromTokenReader(tokenReader *TokenReader, dbgCtx *debugcommon.DebugContext) BallerinaParser {
 	this := BallerinaParser{}
 	// Default field initializations
 
 	this.abstractParser = abstractParser{
-		tokenReader: tokenReader,
+		tokenReader:          tokenReader,
+		dbgContext:           dbgCtx,
+		invalidNodeInfoStack: make([]invalidNodeInfo, 0),
+		insertedToken:        nil,
 	}
-	errorHandler := NewBallerinaParserErrorHandlerFromTokenReader(this.abstractParser.tokenReader)
+	errorHandler := NewBallerinaParserErrorHandlerFromTokenReader(this.abstractParser.tokenReader, dbgCtx)
 	this.abstractParser.errorHandler = &errorHandler
 	return this
 }
@@ -886,7 +892,7 @@ func (this *BallerinaParser) parseTopLevelNode() internal.STNode {
 			metadata = internal.CreateEmptyNode()
 			break
 		}
-		return this.parseTopLevelNodeWithMetadata(metadata)
+		return this.parseTopLevelNode()
 	}
 	return this.parseTopLevelNodeWithMetadata(metadata)
 }
@@ -932,6 +938,7 @@ func (this *BallerinaParser) parseTopLevelNodeWithMetadata(metadata internal.STN
 		if this.isModuleVarDeclStart(1) {
 			return this.parseModuleVarDecl(metadata)
 		}
+		fallthrough
 	default:
 		if this.isTypeStartingToken(nextToken.Kind()) && (nextToken.Kind() != common.IDENTIFIER_TOKEN) {
 			break
@@ -1310,7 +1317,7 @@ func (this *BallerinaParser) extractVarDeclQualifiers(qualifiers []internal.STNo
 					this.getInvalidQualifierError(invalidQual.Kind()), (invalidQual).Text())
 			}
 		}
-		varDeclQualList = nil
+		varDeclQualList = []internal.STNode{configurableQual}
 	}
 	return varDeclQualList, qualifiers
 }
@@ -2330,9 +2337,9 @@ func (this *BallerinaParser) parseTypeDescriptorInExpression(isInConditionalExpr
 		TYPE_PRECEDENCE_DEFAULT)
 }
 
-// func (this *BallerinaParser) parseTypeDescriptor(context common.ParserRuleContext, isTypedBindingPattern bool, isInConditionalExpr bool, precedence TypePrecedence) internal.STNode {
-// 	return this.parseTypeDescriptorInner(nil, context, isTypedBindingPattern, isInConditionalExpr, precedence)
-// }
+func (this *BallerinaParser) parseTypeDescriptorWithoutQualifiers(context common.ParserRuleContext, isTypedBindingPattern bool, isInConditionalExpr bool, precedence TypePrecedence) internal.STNode {
+	return this.parseTypeDescriptorWithinContext(nil, context, isTypedBindingPattern, isInConditionalExpr, precedence)
+}
 
 func (this *BallerinaParser) parseTypeDescriptorWithinContext(qualifiers []internal.STNode, context common.ParserRuleContext, isTypedBindingPattern bool, isInConditionalExpr bool, precedence TypePrecedence) internal.STNode {
 	this.startContext(context)
@@ -3430,6 +3437,12 @@ func (this *BallerinaParser) parseRecordFieldInner(nextToken internal.STToken, m
 	} else if nextToken.Kind() == common.ELLIPSIS_TOKEN {
 		ty = CreateBuiltinSimpleNameReference(readOnlyQualifier)
 		return this.parseFieldOrRestDescriptorRhs(metadata, ty)
+	} else if this.isTypeStartingToken(nextToken.Kind()) {
+		ty = this.parseTypeDescriptor(common.PARSER_RULE_CONTEXT_TYPE_DESC_IN_RECORD_FIELD)
+	} else {
+		readOnlyQualifier = CreateBuiltinSimpleNameReference(readOnlyQualifier)
+		ty = this.parseComplexTypeDescriptor(readOnlyQualifier, common.PARSER_RULE_CONTEXT_TYPE_DESC_IN_RECORD_FIELD, false)
+		readOnlyQualifier = internal.CreateEmptyNode()
 	}
 	return this.parseIndividualRecordField(metadata, readOnlyQualifier, ty)
 }
@@ -4252,9 +4265,10 @@ func (this *BallerinaParser) parseExpressionWithMatchGuard(precedenceLevel Opera
 }
 
 func (this *BallerinaParser) invalidateActionAndGetMissingExpr(node internal.STNode) internal.STNode {
-	identifier := internal.CreateMissingToken(common.IDENTIFIER_TOKEN, nil)
-	return internal.CreateSimpleNameReferenceNode(internal.CloneWithTrailingInvalidNodeMinutiae(identifier, node,
-		&common.ERROR_EXPRESSION_EXPECTED_ACTION_FOUND))
+	var identifier internal.STNode
+	identifier = internal.CreateMissingToken(common.IDENTIFIER_TOKEN, nil)
+	identifier = internal.CloneWithTrailingInvalidNodeMinutiae(identifier, node, &common.ERROR_EXPRESSION_EXPECTED_ACTION_FOUND)
+	return internal.CreateSimpleNameReferenceNode(identifier)
 }
 
 func (this *BallerinaParser) parseExpressionInner(precedenceLevel OperatorPrecedence, annots internal.STNode, isRhsExpr bool, allowActions bool, isInConditionalExpr bool) internal.STNode {
@@ -8809,7 +8823,7 @@ func (this *BallerinaParser) getAnonFuncParam(bracedExpression internal.STBraced
 			&common.ERROR_INVALID_PARAM_LIST_IN_INFER_ANONYMOUS_FUNCTION_EXPR)
 	}
 	return internal.CreateImplicitAnonymousFunctionParameters(openParen,
-		internal.CreateNodeList(), bracedExpression.CloseParen)
+		internal.CreateNodeList(paramList...), bracedExpression.CloseParen)
 }
 
 func (this *BallerinaParser) parseImplicitAnonFuncWithOpenParenAndFirstParam(openParen internal.STNode, firstParam internal.STNode, isRhsExpr bool) internal.STNode {
@@ -10561,7 +10575,7 @@ func (this *BallerinaParser) parseOnfailOptionalBP() internal.STNode {
 }
 
 func (this *BallerinaParser) parseTypedBindingPattern() internal.STNode {
-	typeDescriptor := this.parseTypeDescriptorInner(nil, common.PARSER_RULE_CONTEXT_TYPE_DESC_IN_TYPE_BINDING_PATTERN, true, false, TYPE_PRECEDENCE_DEFAULT)
+	typeDescriptor := this.parseTypeDescriptorWithoutQualifiers(common.PARSER_RULE_CONTEXT_TYPE_DESC_IN_TYPE_BINDING_PATTERN, true, false, TYPE_PRECEDENCE_DEFAULT)
 	bindingPattern := this.parseBindingPattern()
 	return internal.CreateTypedBindingPatternNode(typeDescriptor, bindingPattern)
 }
@@ -10650,6 +10664,11 @@ func (this *BallerinaParser) parseByteArrayLiteralWithContent(typeKeyword intern
 		} else if (typeKeyword.Kind() == common.BASE64_KEYWORD) && (!isValidBase64LiteralContent(internal.ToSourceCode(item))) {
 			newStartingBackTick = internal.CloneWithTrailingInvalidNodeMinutiae(startingBackTick, item,
 				&common.ERROR_INVALID_BASE64_CONTENT_IN_BYTE_ARRAY_LITERAL)
+		} else if item.Kind() != common.TEMPLATE_STRING {
+			newStartingBackTick = internal.CloneWithTrailingInvalidNodeMinutiae(startingBackTick, item,
+				&common.ERROR_INVALID_CONTENT_IN_BYTE_ARRAY_LITERAL)
+		} else {
+			content = item
 		}
 	} else if items.Size() > 1 {
 		clonedStartingBackTick := startingBackTick
@@ -12174,7 +12193,7 @@ func (this *BallerinaParser) parseTypedBindingPatternWithContext(context common.
 }
 
 func (this *BallerinaParser) parseTypedBindingPatternInner(qualifiers []internal.STNode, context common.ParserRuleContext) internal.STNode {
-	typeDesc := this.parseTypeDescriptorInner(qualifiers,
+	typeDesc := this.parseTypeDescriptorWithinContext(qualifiers,
 		common.PARSER_RULE_CONTEXT_TYPE_DESC_IN_TYPE_BINDING_PATTERN, true, false, TYPE_PRECEDENCE_DEFAULT)
 	typeBindingPattern := this.parseTypedBindingPatternTypeRhs(typeDesc, context)
 	return typeBindingPattern
@@ -12599,23 +12618,25 @@ func (this *BallerinaParser) parseBracketedListMember(isTypedBindingPattern bool
 		}
 	default:
 		if ((!isTypedBindingPattern) && this.isValidExpressionStart(nextToken.Kind(), 1)) || this.isQualifiedIdentifierPredeclaredPrefix(nextToken.Kind()) {
-			// break;
+			break
 		}
 		var recoverContext common.ParserRuleContext
 		if isTypedBindingPattern {
 			recoverContext = common.PARSER_RULE_CONTEXT_LIST_BINDING_MEMBER_OR_ARRAY_LENGTH
 		} else {
 			recoverContext = common.PARSER_RULE_CONTEXT_BRACKETED_LIST_MEMBER
-			this.recoverWithBlockContext(this.peek(), recoverContext)
-			return this.parseBracketedListMember(isTypedBindingPattern)
 		}
-		expr := this.parseExpression()
-		if this.isWildcardBP(expr) {
-			return this.getWildcardBindingPattern(expr)
-		}
-		return expr
+		this.recoverWithBlockContext(this.peek(), recoverContext)
+		return this.parseBracketedListMember(isTypedBindingPattern)
 	}
-	return internal.CreateEmptyNode()
+	expr := this.parseExpression()
+	if this.isWildcardBP(expr) {
+		return this.getWildcardBindingPattern(expr)
+	}
+
+	// we don't know which one
+	return expr
+
 }
 
 func (this *BallerinaParser) parseAsArrayTypeDesc(typeDesc internal.STNode, openBracket internal.STNode, member internal.STNode, context common.ParserRuleContext) internal.STNode {
@@ -13901,6 +13922,7 @@ func (this *BallerinaParser) parseMappingBindingPatternOrMappingConstructor(open
 		case common.MAPPING_BINDING_PATTERN:
 			return this.parseAsMappingBindingPattern(openBrace, memberList, member)
 		case common.MAPPING_BP_OR_MAPPING_CONSTRUCTOR:
+			fallthrough
 		default:
 			memberList = append(memberList, member)
 			break
@@ -14054,6 +14076,7 @@ func (this *BallerinaParser) parseListBindingPatternOrListConstructorInner(openB
 		case common.LIST_BINDING_PATTERN:
 			return this.parseAsListBindingPatternWithMemberAndRoot(openBracket, memberList, member, isRoot)
 		case common.LIST_BP_OR_LIST_CONSTRUCTOR:
+			fallthrough
 		default:
 			memberList = append(memberList, member)
 			break

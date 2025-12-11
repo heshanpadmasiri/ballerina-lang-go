@@ -29,20 +29,32 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Fprintf(os.Stderr, "usage: %s <file.bal> [-dump-tokens] [-dump-ast]\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "usage: %s <file.bal> [-dump-tokens] [-dump-ast] [-trace-recovery] [-log-file <path>]\n", os.Args[0])
 		os.Exit(1)
 	}
 
 	fileName := os.Args[1]
 	dumpTokens := false
 	dumpAST := false
+	traceRecovery := false
+	logFile := ""
 
 	// Check for flags
-	for _, arg := range os.Args[2:] {
+	for i := 2; i < len(os.Args); i++ {
+		arg := os.Args[i]
 		if arg == "-dump-tokens" {
 			dumpTokens = true
 		} else if arg == "-dump-ast" {
 			dumpAST = true
+		} else if arg == "-trace-recovery" {
+			traceRecovery = true
+		} else if arg == "-log-file" {
+			if i+1 >= len(os.Args) {
+				fmt.Fprintf(os.Stderr, "error: -log-file requires a file path\n")
+				os.Exit(1)
+			}
+			logFile = os.Args[i+1]
+			i++ // Skip the next argument as it's the file path
 		} else if len(arg) > 0 && arg[0] == '-' {
 			panic(fmt.Sprintf("unsupported flag: %s", arg))
 		}
@@ -58,16 +70,35 @@ func main() {
 	if dumpAST {
 		flags |= debugcommon.DUMP_AST
 	}
+	if traceRecovery {
+		flags |= debugcommon.DEBUG_ERROR_RECOVERY
+	}
 	if flags != 0 {
 		debugcommon.Init(flags)
 		debugCtx = &debugcommon.DebugCtx
 
-		// Start a goroutine to listen to the channel and print to stderr
+		// Open log file if specified, otherwise use stderr
+		var logWriter *os.File
+		var err error
+		if logFile != "" {
+			logWriter, err = os.Create(logFile)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "error creating log file %s: %v\n", logFile, err)
+				os.Exit(1)
+			}
+		} else {
+			logWriter = os.Stderr
+		}
+
+		// Start a goroutine to listen to the channel and print to log file or stderr
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
+			if logFile != "" {
+				defer logWriter.Close()
+			}
 			for msg := range debugCtx.Channel {
-				fmt.Fprintf(os.Stderr, "%s\n", msg)
+				fmt.Fprintf(logWriter, "%s\n", msg)
 			}
 		}()
 	}
@@ -89,7 +120,7 @@ func main() {
 	tokenReader := parser.CreateTokenReader(*lexer, debugCtx)
 
 	// Create Parser from TokenReader
-	ballerinaParser := parser.NewBallerinaParserFromTokenReader(tokenReader)
+	ballerinaParser := parser.NewBallerinaParserFromTokenReader(tokenReader, debugCtx)
 
 	// Parse the entire file (parser will internally call tokenizer)
 	_ = ballerinaParser.Parse()

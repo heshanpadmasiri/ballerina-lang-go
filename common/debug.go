@@ -21,6 +21,7 @@ package common
 const (
 	DUMP_TOKENS uint16 = 1 << iota
 	DUMP_AST
+	DEBUG_ERROR_RECOVERY
 )
 
 type DebugContext struct {

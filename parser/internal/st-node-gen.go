@@ -761,6 +761,32 @@ type STExpressionStatementNode struct {
 	SemicolonToken STNode
 }
 
+func (n *STExpressionStatementNode) Kind() common.SyntaxKind {
+	return n.STStatementNode.Kind()
+}
+
+func (n *STExpressionStatementNode) BucketCount() int {
+	return 2
+}
+
+func (n *STExpressionStatementNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.Expression
+	case 1:
+		return n.SemicolonToken
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STExpressionStatementNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.Expression,
+		n.SemicolonToken,
+	}
+}
+
 type STContinueStatementNode struct {
 	STStatementNode
 
@@ -1317,6 +1343,35 @@ type STBinaryExpressionNode struct {
 	RhsExpr STNode
 }
 
+func (n *STBinaryExpressionNode) Kind() common.SyntaxKind {
+	return n.STExpressionNode.Kind()
+}
+
+func (n *STBinaryExpressionNode) BucketCount() int {
+	return 3
+}
+
+func (n *STBinaryExpressionNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.LhsExpr
+	case 1:
+		return n.Operator
+	case 2:
+		return n.RhsExpr
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STBinaryExpressionNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.LhsExpr,
+		n.Operator,
+		n.RhsExpr,
+	}
+}
+
 type STBracedExpressionNode struct {
 	STExpressionNode
 
@@ -1327,12 +1382,67 @@ type STBracedExpressionNode struct {
 	CloseParen STNode
 }
 
+func (n *STBracedExpressionNode) Kind() common.SyntaxKind {
+	return n.STExpressionNode.Kind()
+}
+
+func (n *STBracedExpressionNode) BucketCount() int {
+	return 3
+}
+
+func (n *STBracedExpressionNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.OpenParen
+	case 1:
+		return n.Expression
+	case 2:
+		return n.CloseParen
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STBracedExpressionNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.OpenParen,
+		n.Expression,
+		n.CloseParen,
+	}
+}
+
 type STCheckExpressionNode struct {
 	STExpressionNode
 
 	CheckKeyword STNode
 
 	Expression STNode
+}
+
+func (n *STCheckExpressionNode) Kind() common.SyntaxKind {
+	return n.STExpressionNode.Kind()
+}
+
+func (n *STCheckExpressionNode) BucketCount() int {
+	return 2
+}
+
+func (n *STCheckExpressionNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.CheckKeyword
+	case 1:
+		return n.Expression
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STCheckExpressionNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.CheckKeyword,
+		n.Expression,
+	}
 }
 
 type STFieldAccessExpressionNode struct {
@@ -4390,6 +4500,38 @@ type STTemplateExpressionNode struct {
 	EndBacktick STNode
 }
 
+func (n *STTemplateExpressionNode) Kind() common.SyntaxKind {
+	return n.STExpressionNode.Kind()
+}
+
+func (n *STTemplateExpressionNode) BucketCount() int {
+	return 4
+}
+
+func (n *STTemplateExpressionNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.Type
+	case 1:
+		return n.StartBacktick
+	case 2:
+		return n.Content
+	case 3:
+		return n.EndBacktick
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STTemplateExpressionNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.Type,
+		n.StartBacktick,
+		n.Content,
+		n.EndBacktick,
+	}
+}
+
 type STXMLItemNode = STNode
 
 type STXMLElementNode struct {
@@ -6388,6 +6530,47 @@ type STMethodDeclarationNode struct {
 	MethodSignature STNode
 
 	Semicolon STNode
+}
+
+func (n *STMethodDeclarationNode) Kind() common.SyntaxKind {
+	return n.STNode.Kind()
+}
+
+func (n *STMethodDeclarationNode) BucketCount() int {
+	return 7
+}
+
+func (n *STMethodDeclarationNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.Metadata
+	case 1:
+		return n.QualifierList
+	case 2:
+		return n.FunctionKeyword
+	case 3:
+		return n.MethodName
+	case 4:
+		return n.RelativeResourcePath
+	case 5:
+		return n.MethodSignature
+	case 6:
+		return n.Semicolon
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STMethodDeclarationNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.Metadata,
+		n.QualifierList,
+		n.FunctionKeyword,
+		n.MethodName,
+		n.RelativeResourcePath,
+		n.MethodSignature,
+		n.Semicolon,
+	}
 }
 
 type STTypedBindingPatternNode struct {
@@ -8697,6 +8880,32 @@ type STMarkdownDocumentationLineNode struct {
 	DocumentElements STNode
 }
 
+func (n *STMarkdownDocumentationLineNode) Kind() common.SyntaxKind {
+	return n.STDocumentationNode.Kind()
+}
+
+func (n *STMarkdownDocumentationLineNode) BucketCount() int {
+	return 2
+}
+
+func (n *STMarkdownDocumentationLineNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.HashToken
+	case 1:
+		return n.DocumentElements
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STMarkdownDocumentationLineNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.HashToken,
+		n.DocumentElements,
+	}
+}
+
 type STMarkdownParameterDocumentationLineNode struct {
 	STDocumentationNode
 
@@ -8709,6 +8918,41 @@ type STMarkdownParameterDocumentationLineNode struct {
 	MinusToken STNode
 
 	DocumentElements STNode
+}
+
+func (n *STMarkdownParameterDocumentationLineNode) Kind() common.SyntaxKind {
+	return n.STDocumentationNode.Kind()
+}
+
+func (n *STMarkdownParameterDocumentationLineNode) BucketCount() int {
+	return 5
+}
+
+func (n *STMarkdownParameterDocumentationLineNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.HashToken
+	case 1:
+		return n.PlusToken
+	case 2:
+		return n.ParameterName
+	case 3:
+		return n.MinusToken
+	case 4:
+		return n.DocumentElements
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STMarkdownParameterDocumentationLineNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.HashToken,
+		n.PlusToken,
+		n.ParameterName,
+		n.MinusToken,
+		n.DocumentElements,
+	}
 }
 
 type STBallerinaNameReferenceNode struct {
@@ -9426,6 +9670,32 @@ type STParameterizedTypeDescriptorNode struct {
 	KeywordToken STNode
 
 	TypeParamNode STNode
+}
+
+func (n *STParameterizedTypeDescriptorNode) Kind() common.SyntaxKind {
+	return n.STTypeDescriptorNode.Kind()
+}
+
+func (n *STParameterizedTypeDescriptorNode) BucketCount() int {
+	return 2
+}
+
+func (n *STParameterizedTypeDescriptorNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.KeywordToken
+	case 1:
+		return n.TypeParamNode
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STParameterizedTypeDescriptorNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.KeywordToken,
+		n.TypeParamNode,
+	}
 }
 
 type STSpreadMemberNode struct {
@@ -10703,4 +10973,33 @@ type STAmbiguousCollectionNode struct {
 	Members []STNode
 
 	CollectionEndToken STNode
+}
+
+func (n *STAmbiguousCollectionNode) Kind() common.SyntaxKind {
+	return n.STNodeBase.Kind()
+}
+
+func (n *STAmbiguousCollectionNode) BucketCount() int {
+	return 3
+}
+
+func (n *STAmbiguousCollectionNode) ChildInBucket(bucket int) STNode {
+	switch bucket {
+	case 0:
+		return n.CollectionStartToken
+	case 1:
+		return CreateNodeList(n.Members...)
+	case 2:
+		return n.CollectionEndToken
+	default:
+		panic("invalid bucket index")
+	}
+}
+
+func (n *STAmbiguousCollectionNode) ChildBuckets() []STNode {
+	return []STNode{
+		n.CollectionStartToken,
+		CreateNodeList(n.Members...),
+		n.CollectionEndToken,
+	}
 }
