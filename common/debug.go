@@ -20,7 +20,7 @@ package common
 
 const (
 	DUMP_TOKENS uint16 = 1 << iota
-	DUMP_AST
+	DUMP_ST
 	DEBUG_ERROR_RECOVERY
 )
 

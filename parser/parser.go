@@ -604,7 +604,7 @@ func isDigit(c byte) bool {
 
 func (this *BallerinaParser) Parse() internal.STNode {
 	tree := this.parseCompUnit()
-	if debugcommon.DebugCtx.Flags&debugcommon.DUMP_AST != 0 {
+	if debugcommon.DebugCtx.Flags&debugcommon.DUMP_ST != 0 {
 		debugcommon.DebugCtx.Channel <- internal.GenerateJSON(tree)
 	}
 	return tree
@@ -8550,7 +8550,7 @@ func (this *BallerinaParser) createMissingTemplateExpressionNode(reKeyword inter
 
 func (this *BallerinaParser) parseTemplateContentAsRegExp() internal.STNode {
 	this.tokenReader.StartMode(PARSER_MODE_REGEXP)
-	panic("not implemented")
+	panic("Regexp parser not implemented")
 	// expressions := make([]interface{}, 0)
 	// regExpStringBuilder := nil
 	// nextToken := this.peek()

@@ -29,13 +29,13 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Fprintf(os.Stderr, "usage: %s <file.bal> [-dump-tokens] [-dump-ast] [-trace-recovery] [-log-file <path>]\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "usage: %s <file.bal> [-dump-tokens] [-dump-st] [-trace-recovery] [-log-file <path>]\n", os.Args[0])
 		os.Exit(1)
 	}
 
 	fileName := os.Args[1]
 	dumpTokens := false
-	dumpAST := false
+	dumpST := false
 	traceRecovery := false
 	logFile := ""
 
@@ -44,8 +44,8 @@ func main() {
 		arg := os.Args[i]
 		if arg == "-dump-tokens" {
 			dumpTokens = true
-		} else if arg == "-dump-ast" {
-			dumpAST = true
+		} else if arg == "-dump-st" {
+			dumpST = true
 		} else if arg == "-trace-recovery" {
 			traceRecovery = true
 		} else if arg == "-log-file" {
@@ -67,8 +67,8 @@ func main() {
 	if dumpTokens {
 		flags |= debugcommon.DUMP_TOKENS
 	}
-	if dumpAST {
-		flags |= debugcommon.DUMP_AST
+	if dumpST {
+		flags |= debugcommon.DUMP_ST
 	}
 	if traceRecovery {
 		flags |= debugcommon.DEBUG_ERROR_RECOVERY

@@ -236,7 +236,7 @@ func (n *NodeBase) Location() NodeLocation {
 }
 
 func (n *NodeBase) Diagnostics() iter.Seq[Diagnostic] {
-	panic("not implemented")
+	panic("Diagnostics() should be implemented by child types")
 }
 
 func (n *NonTerminalNode) Diagnostics() iter.Seq[Diagnostic] {
@@ -264,7 +264,7 @@ func createSyntaxDiagnostic(diagnostic internal.STNodeDiagnostic) Diagnostic {
 }
 
 func (n *NonTerminalNode) Children() []Node {
-	panic("not implemented")
+	panic("Children() should be implemented by child types")
 }
 
 func (n *NodeBase) HasDiagnostics() bool {
@@ -291,19 +291,19 @@ func (n *NodeBase) LineRange() LineRange {
 }
 
 func (n *NodeBase) LeadingMinutiae() MinutiaeList {
-	panic("not implemented")
+	panic("LeadingMinutiae() should be implemented by child types")
 }
 
 func (n *NodeBase) TrailingMinutiae() MinutiaeList {
-	panic("not implemented")
+	panic("TrailingMinutiae() should be implemented by child types")
 }
 
 func (n *NodeBase) LeadingInvalidTokens() []Token {
-	panic("not implemented")
+	panic("LeadingInvalidTokens() should be implemented by child types")
 }
 
 func (n *NodeBase) TrailingInvalidTokens() []Token {
-	panic("not implemented")
+	panic("TrailingInvalidTokens() should be implemented by child types")
 }
 
 func (n *NodeBase) InternalNode() internal.STNode {
@@ -311,7 +311,7 @@ func (n *NodeBase) InternalNode() internal.STNode {
 }
 
 func (n *NodeBase) ToSourceCode() string {
-	panic("not implemented")
+	panic("ToSourceCode() should be implemented by child types")
 }
 
 func (n *NodeBase) populateSyntaxTree() *SyntaxTree {
@@ -397,10 +397,6 @@ func (n *NonTerminalNode) ChildInBucket(bucket int) Node {
 
 }
 
-func childCount(parent internal.STNode) int {
-	panic("not implemented")
-}
-
 type Token struct {
 	NodeBase
 	leadingMinutiaeList  MinutiaeList
@@ -440,10 +436,6 @@ type TextRange struct {
 	startOffset int
 	endOffset   int
 	length      int
-}
-
-func createUnlinkedFacade[T Node](node internal.STNode) T {
-	panic("not implemented")
 }
 
 func createFacade[T Node](node internal.STNode, position int, parent NonTerminalNode) T {

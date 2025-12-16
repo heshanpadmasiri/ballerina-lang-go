@@ -2,9 +2,9 @@
 description: Fixing cases where output from go compiler is different from java compiler
 alwaysApply: false
 ---
-When you try to fix a case where the output from go compiler is different from java compiler first try to gather the current output from the go compiler to a file. For example for getting ast use
+When you try to fix a case where the output from go compiler is different from java compiler first try to gather the current output from the go compiler to a file. For example for getting st use
 ```bash
-go run . ${path_to_bal} -dump-ast 2> new.json
+go run . ${path_to_bal} -dump-st 2> new.json
 ```
 
 Then get the expected output. This is typically in the corpus directly. If not prompt user on where to get this file. Then compare the difference between the two files. For this use diff. This difference will give you an idea on where to look for. For example if a particular statement node is different then most likely the bug is the method of parsing statements in parser.go
