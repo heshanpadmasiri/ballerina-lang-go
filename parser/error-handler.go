@@ -41,7 +41,32 @@ func formatParserRuleContext(ctx common.ParserRuleContext) string {
 }
 
 func formatSTToken(token internal.STToken) string {
-	return formatSTNode(token)
+	if token == nil {
+		return "nil"
+	}
+	kindStr := token.Kind().StrValue()
+	if kindStr == "" {
+		// For tokens without StrValue (like IDENTIFIER_TOKEN), use a descriptive name
+		switch token.Kind() {
+		case common.IDENTIFIER_TOKEN:
+			kindStr = "IDENTIFIER_TOKEN"
+		case common.STRING_LITERAL_TOKEN:
+			kindStr = "STRING_LITERAL_TOKEN"
+		case common.DECIMAL_INTEGER_LITERAL_TOKEN:
+			kindStr = "DECIMAL_INTEGER_LITERAL_TOKEN"
+		case common.HEX_INTEGER_LITERAL_TOKEN:
+			kindStr = "HEX_INTEGER_LITERAL_TOKEN"
+		case common.DECIMAL_FLOATING_POINT_LITERAL_TOKEN:
+			kindStr = "DECIMAL_FLOATING_POINT_LITERAL_TOKEN"
+		case common.HEX_FLOATING_POINT_LITERAL_TOKEN:
+			kindStr = "HEX_FLOATING_POINT_LITERAL_TOKEN"
+		case common.INVALID_TOKEN:
+			kindStr = "INVALID_TOKEN"
+		default:
+			kindStr = fmt.Sprintf("TOKEN_%d", token.Kind().Tag())
+		}
+	}
+	return fmt.Sprintf("%s:%s", kindStr, token.Text())
 }
 
 func formatSTNode(node internal.STNode) string {
@@ -357,11 +382,15 @@ func (m *AbstractParserErrorHandlerMethods) Recover(currentCtx common.ParserRule
 	// Fail safe. This means we can't find a path to recover.
 	if isCompletion {
 		if m.Self.GetItterCount() == COMPLETION_ITTER_LIMIT {
-			panic("fail safe reached")
+			traceRecovery(currentCtx, func() string {
+				return "fail safe reached"
+			}, dbgCtx)
 		}
 	} else {
 		if m.Self.GetItterCount() == RESOLUTION_ITTER_LIMIT {
-			panic("fail safe reached")
+			traceRecovery(currentCtx, func() string {
+				return "fail safe reached"
+			}, dbgCtx)
 		}
 	}
 	return m.getFailSafeSolution(currentCtx, nextToken)
@@ -374,15 +403,9 @@ func (m *AbstractParserErrorHandlerMethods) getResolution(currentCtx common.Pars
 			formatParserRuleContext(currentCtx),
 			formatSTToken(nextToken))
 	}, dbgCtx)
-	var sol *Solution
-	defer traceRecovery(currentCtx, func() string {
-		return fmt.Sprintf("(getResolution end (%s %s) %s)",
-			formatParserRuleContext(currentCtx),
-			formatSTToken(nextToken),
-			formatSolution(sol))
-	}, dbgCtx)
 	bestMatch := m.seekMatchStart(currentCtx)
 	m.validateSolution(bestMatch, currentCtx, nextToken)
+	var sol *Solution
 	if bestMatch.matches > 0 {
 		sol = bestMatch.solution
 	}
