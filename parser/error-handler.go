@@ -368,9 +368,21 @@ func (m *AbstractParserErrorHandlerMethods) Recover(currentCtx common.ParserRule
 }
 
 func (m *AbstractParserErrorHandlerMethods) getResolution(currentCtx common.ParserRuleContext, nextToken internal.STToken) *Solution {
+	dbgCtx := m.Self.getDebugContext()
+	traceRecovery(currentCtx, func() string {
+		return fmt.Sprintf("(getResolution start %s %s)",
+			formatParserRuleContext(currentCtx),
+			formatSTToken(nextToken))
+	}, dbgCtx)
+	var sol *Solution
+	defer traceRecovery(currentCtx, func() string {
+		return fmt.Sprintf("(getResolution end (%s %s) %s)",
+			formatParserRuleContext(currentCtx),
+			formatSTToken(nextToken),
+			formatSolution(sol))
+	}, dbgCtx)
 	bestMatch := m.seekMatchStart(currentCtx)
 	m.validateSolution(bestMatch, currentCtx, nextToken)
-	var sol *Solution
 	if bestMatch.matches > 0 {
 		sol = bestMatch.solution
 	}

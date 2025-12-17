@@ -394,8 +394,10 @@ func CreateMinutiae(kind common.SyntaxKind, text string) *STMinutiae {
 func CreateInvalidToken(tokenText string) *STInvalidToken {
 	return &STInvalidToken{
 		STTokenBase: STTokenBase{
-			kind:  common.INVALID_TOKEN,
-			width: uint16(len(tokenText)),
+			kind:             common.INVALID_TOKEN,
+			width:            uint16(len(tokenText)),
+			leadingMinutiae:  CreateEmptyNodeList(),
+			trailingMinutiae: CreateEmptyNodeList(),
 		},
 		tokenText: tokenText,
 	}
@@ -753,6 +755,10 @@ func (t *STIdentifierToken) Text() string {
 
 func (t *STLiteralValueToken) Text() string {
 	return t.text
+}
+
+func (t *STInvalidToken) Text() string {
+	return t.tokenText
 }
 
 func (t *STTokenBase) HasTrailingNewLine() bool {
@@ -3571,5 +3577,3 @@ func CreateEnumMemberNode(metadata STNode, identifier STNode, equalToken STNode,
 		ConstExprNode: constExprNode,
 	}, metadata, identifier, equalToken, constExprNode)
 }
-
-// TODO: Go over each Create* function and make sure we set all the fields

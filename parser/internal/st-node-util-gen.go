@@ -5704,6 +5704,21 @@ func replaceInner(current STNode, target STNode, replacement STNode) (bool, STNo
 
 	case STToken:
 		return false, current
+	case *STNodeList:
+		if n.IsEmpty() {
+			return false, current
+		}
+		modified := false
+		var newSTNodes []STNode
+		for _, each := range n.children {
+			m, e := replaceInner(each, target, replacement)
+			modified = modified || m
+			newSTNodes = append(newSTNodes, e)
+		}
+		if modified {
+			return true, CreateNodeList(newSTNodes...)
+		}
+		return false, current
 	default:
 		panic("unsupported node type: " + reflect.TypeOf(current).Name())
 	}
