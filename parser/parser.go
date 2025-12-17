@@ -3978,7 +3978,7 @@ func (this *BallerinaParser) createModuleVarDeclarationInner(metadata internal.S
 			panic("expected STTypedBindingPatternNode")
 		}
 		if typedBindingPatternNode.TypeDescriptor.Kind() == common.VAR_TYPE_DESC {
-			if len(varDeclQuals) == 0 {
+			if len(varDeclQuals) != 0 {
 				this.updateFirstNodeInListWithLeadingInvalidNode(varDeclQuals, publicQualifier,
 					&common.ERROR_VARIABLE_DECLARED_WITH_VAR_CANNOT_BE_PUBLIC)
 			} else {
@@ -13227,7 +13227,7 @@ func (this *BallerinaParser) parseTupleTypeDescOrListConstructorRhs(openBracket 
 	case common.COMMA_TOKEN, common.CLOSE_BRACE_TOKEN, common.CLOSE_BRACKET_TOKEN, common.PIPE_TOKEN, common.BITWISE_AND_TOKEN:
 		if !isRoot {
 			this.endContext()
-			return nil
+			return internal.CreateAmbiguousCollectionNode(common.TUPLE_TYPE_DESC_OR_LIST_CONST, openBracket, members, closeBracket)
 		}
 	default:
 		if this.isValidExprRhsStart(this.peek().Kind(), closeBracket.Kind()) || (isRoot && (this.peek().Kind() == common.EQUAL_TOKEN)) {
@@ -14157,8 +14157,9 @@ func (this *BallerinaParser) parseListBindingPatternOrListConstructorWithCloseBr
 		common.CLOSE_BRACKET_TOKEN:
 		if !isRoot {
 			this.endContext()
-			return nil
+			return internal.CreateAmbiguousCollectionNode(common.LIST_BP_OR_LIST_CONSTRUCTOR, openBracket, members, closeBracket)
 		}
+		fallthrough
 	default:
 		nextTokenKind := this.peek().Kind()
 		if this.isValidExprRhsStart(nextTokenKind, closeBracket.Kind()) || ((nextTokenKind == common.SEMICOLON_TOKEN) && isRoot) {
