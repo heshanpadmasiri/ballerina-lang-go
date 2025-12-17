@@ -272,8 +272,39 @@ func isIdentifierInitialChar(c rune) bool {
 	return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || c == '_' || isUnicodeIdentifierChar(c)
 }
 
+// Ported from io.ballerina.compiler.internal.parser.AbstractLexer.java (line 242-255)
+// Check whether a given char is a unicode identifier char.
+//
+// UnicodeIdentifierChar := ^ ( AsciiChar | UnicodeNonIdentifierChar )
+// AsciiChar := 0x0 .. 0x7F
+// UnicodeNonIdentifierChar := UnicodePrivateUseChar | UnicodePatternWhiteSpaceChar | UnicodePatternSyntaxChar
 func isUnicodeIdentifierChar(c rune) bool {
-	return unicode.IsLetter(c) || unicode.IsDigit(c) || c == '_'
+	// check ASCII char range
+	if 0x0000 <= c && c <= 0x007F {
+		return false
+	}
+
+	// check UNICODE private use char
+	if isUnicodePrivateUseChar(c) || isUnicodePatternWhiteSpaceChar(c) {
+		return false
+	}
+
+	// Approximate Java's Character.isUnicodeIdentifierPart() using Go's unicode package:
+	// - Letters (L category: Lu, Ll, Lt, Lm, Lo)
+	// - Marks (M category: Mn, Mc, Me)
+	// - Numbers (N category: Nd, Nl, No - includes numeric letters like Roman numerals)
+	// - Connector punctuation (Pc category)
+	return unicode.IsLetter(c) ||
+		unicode.IsMark(c) ||
+		unicode.IsNumber(c) ||
+		unicode.Is(unicode.Pc, c)
+}
+
+// Ported from io.ballerina.compiler.internal.parser.AbstractLexer.java (line 265-267)
+func isUnicodePrivateUseChar(c rune) bool {
+	return (0xE000 <= c && c <= 0xF8FF) ||
+		(0xF0000 <= c && c <= 0xFFFFD) ||
+		(0x100000 <= c && c <= 0x10FFFD)
 }
 
 func (l *Lexer) processNumericEscape() {
