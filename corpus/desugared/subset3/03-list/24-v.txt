@@ -16,9 +16,7 @@
       (while
         (binary-expr <
           (simple-var-ref i)
-          (binary-expr *
-            (literal 1000)
-            (literal 1000)))
+          (numeric-literal 1000000))
         (block-stmt
           (assignment
             (index-based-access

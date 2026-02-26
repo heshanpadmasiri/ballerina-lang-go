@@ -14,8 +14,7 @@
       (invocation io println (
         (invocation mul (
           (literal 9223372036854775806)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation mul (
@@ -30,8 +29,7 @@
       (invocation io println (
         (invocation mul (
           (literal 1)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation mul (
@@ -46,46 +44,37 @@
       (invocation io println (
         (invocation mul (
           (literal 0)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation mul (
-          (unary-expr -
-            (literal 1))
+          (numeric-literal -1)
           (literal 1))))))
     (expression-stmt
       (invocation io println (
         (invocation mul (
-          (unary-expr -
-            (literal 1))
+          (numeric-literal -1)
           (literal 0))))))
     (expression-stmt
       (invocation io println (
         (invocation mul (
-          (unary-expr -
-            (literal 1))
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1)
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation mul (
-          (unary-expr -
-            (literal 9223372036854775806))
+          (numeric-literal -9223372036854775806)
           (literal 1))))))
     (expression-stmt
       (invocation io println (
         (invocation mul (
-          (unary-expr -
-            (literal 9223372036854775806))
+          (numeric-literal -9223372036854775806)
           (literal 0))))))
     (expression-stmt
       (invocation io println (
         (invocation mul (
-          (unary-expr -
-            (literal 9223372036854775806))
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -9223372036854775806)
+          (numeric-literal -1))))))
   )
 )
 (mul

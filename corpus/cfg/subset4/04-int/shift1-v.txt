@@ -17,8 +17,7 @@
     (var-def
       (variable j (type
         (value-type int)) (expr
-        (unary-expr -
-          (literal 128)))))
+        (numeric-literal -128))))
     (expression-stmt
       (invocation io println (
         (binary-expr >>

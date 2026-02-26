@@ -12,10 +12,8 @@ main<NIL>{
     %8 = println(%5) -> bb1;
   }
   bb1 {
-    %10 = ConstantLoad 
-    %11 = ConstantLoad x
-    %9 = + %10 %11;
-    %12 = println(%9) -> bb2;
+    %9 = ConstantLoad x
+    %10 = println(%9) -> bb2;
   }
   bb2 {
     return;

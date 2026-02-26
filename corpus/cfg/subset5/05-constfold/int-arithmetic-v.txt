@@ -1,0 +1,19 @@
+(main
+  (bb0 () ()
+    (expression-stmt
+      (invocation io println (
+        (numeric-literal 15))))
+    (expression-stmt
+      (invocation io println (
+        (numeric-literal 17))))
+    (expression-stmt
+      (invocation io println (
+        (numeric-literal 24))))
+    (expression-stmt
+      (invocation io println (
+        (numeric-literal 10))))
+    (expression-stmt
+      (invocation io println (
+        (numeric-literal 2))))
+  )
+)

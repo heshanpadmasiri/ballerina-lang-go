@@ -2,80 +2,24 @@
   (bb0 () ()
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (literal 3)
-          (literal 5)))))
+        (numeric-literal 8))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (literal 3)
-            (literal 5))
-          (literal 11)))))
+        (numeric-literal 19))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (literal 3)
-              (literal 5))
-            (literal 5))
-          (literal 9)))))
+        (numeric-literal 22))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (binary-expr +
-                (literal 3)
-                (literal 5))
-              (literal 5))
-            (literal 9))
-          (literal 12)))))
+        (numeric-literal 34))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (binary-expr +
-                (binary-expr +
-                  (literal 3)
-                  (literal 5))
-                (literal 5))
-              (literal 9))
-            (literal 4))
-          (literal 7)))))
+        (numeric-literal 33))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (binary-expr +
-                (binary-expr +
-                  (binary-expr +
-                    (literal 3)
-                    (literal 5))
-                  (literal 5))
-                (literal 9))
-              (literal 4))
-            (literal 7))
-          (literal 5)))))
+        (numeric-literal 38))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (binary-expr +
-                (binary-expr +
-                  (binary-expr +
-                    (binary-expr +
-                      (literal 3)
-                      (literal 5))
-                    (literal 5))
-                  (literal 9))
-                (literal 4))
-              (literal 7))
-            (literal 23))
-          (literal 50)))))
+        (numeric-literal 106))))
   )
 )

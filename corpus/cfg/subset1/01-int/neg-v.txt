@@ -15,8 +15,7 @@
     (expression-stmt
       (invocation io println (
         (invocation neg (
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation negneg (

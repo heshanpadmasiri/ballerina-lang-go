@@ -69,6 +69,7 @@ func testSemanticAnalysis(t *testing.T, testCase test_util.TestCase) {
 	// Step 1: Symbol Resolution
 	importedSymbols := ResolveImports(cx, pkg, GetImplicitImports(cx))
 	ResolveSymbols(cx, pkg, importedSymbols)
+	FoldConstants(cx, pkg)
 
 	// Step 2: Type Resolution
 	typeResolver := NewTypeResolver(cx, importedSymbols)
@@ -215,6 +216,7 @@ func testSemanticAnalysisError(t *testing.T, testCase test_util.TestCase) {
 	// Step 1: Symbol Resolution
 	importedSymbols := ResolveImports(cx, pkg, GetImplicitImports(cx))
 	ResolveSymbols(cx, pkg, importedSymbols)
+	FoldConstants(cx, pkg)
 
 	// Step 2: Type Resolution
 	typeResolver := NewTypeResolver(cx, importedSymbols)

@@ -7,8 +7,7 @@
         (list-constructor-expr
           (literal 17)
           (literal 42)
-          (unary-expr -
-            (literal 11))))))
+          (numeric-literal -11)))))
     (var-def
       (variable i (type
         (value-type int)) (expr

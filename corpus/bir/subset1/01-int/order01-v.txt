@@ -27,45 +27,43 @@ main<NIL>{
   }
   bb5 {
     %15 = ConstantLoad 2
-    %16 = ConstantLoad 1
-    %17 = unknown %16;
-    %18 = greaterThan(%15,%17) -> bb6;
+    %16 = ConstantLoad -1
+    %17 = greaterThan(%15,%16) -> bb6;
   }
   bb6 {
-    %19 = printBoolean(%18) -> bb7;
+    %18 = printBoolean(%17) -> bb7;
   }
   bb7 {
-    %20 = ConstantLoad 1
-    %21 = ConstantLoad 2
-    %22 = lessThan(%20,%21) -> bb8;
+    %19 = ConstantLoad 1
+    %20 = ConstantLoad 2
+    %21 = lessThan(%19,%20) -> bb8;
   }
   bb8 {
-    %23 = printBoolean(%22) -> bb9;
+    %22 = printBoolean(%21) -> bb9;
   }
   bb9 {
+    %23 = ConstantLoad 0
     %24 = ConstantLoad 0
-    %25 = ConstantLoad 0
-    %26 = lessThan(%24,%25) -> bb10;
+    %25 = lessThan(%23,%24) -> bb10;
   }
   bb10 {
-    %27 = printBoolean(%26) -> bb11;
+    %26 = printBoolean(%25) -> bb11;
   }
   bb11 {
-    %28 = ConstantLoad 2
-    %29 = ConstantLoad 1
-    %30 = lessThan(%28,%29) -> bb12;
+    %27 = ConstantLoad 2
+    %28 = ConstantLoad 1
+    %29 = lessThan(%27,%28) -> bb12;
   }
   bb12 {
-    %31 = printBoolean(%30) -> bb13;
+    %30 = printBoolean(%29) -> bb13;
   }
   bb13 {
-    %32 = ConstantLoad 1
-    %33 = unknown %32;
-    %34 = ConstantLoad 17
-    %35 = lessThan(%33,%34) -> bb14;
+    %31 = ConstantLoad -1
+    %32 = ConstantLoad 17
+    %33 = lessThan(%31,%32) -> bb14;
   }
   bb14 {
-    %36 = printBoolean(%35) -> bb15;
+    %34 = printBoolean(%33) -> bb15;
   }
   bb15 {
     return;

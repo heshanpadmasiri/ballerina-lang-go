@@ -1,0 +1,41 @@
+(compilation-unit  regular-source
+(package-id $anon . 0.0.0)
+  (import-package ballerina io (as io))
+  (const AND () (
+    (binary-expr &
+      (literal 12)
+      (literal 10))))
+  (const OR () (
+    (binary-expr |
+      (literal 12)
+      (literal 10))))
+  (const XOR () (
+    (binary-expr ^
+      (literal 12)
+      (literal 10))))
+  (const SHL () (
+    (binary-expr <<
+      (literal 1)
+      (literal 3))))
+  (const SHR () (
+    (binary-expr >>
+      (literal 16)
+      (literal 2))))
+  (function main () (
+    (value-type null))
+    (block-function-body
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref AND))))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref OR))))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref XOR))))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref SHL))))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref SHR)))))))

@@ -22,8 +22,7 @@
       (invocation printBoolean (
         (invocation eq (
           (literal 2)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation printBoolean (
         (invocation ne (
@@ -42,8 +41,7 @@
     (expression-stmt
       (invocation printBoolean (
         (invocation eq (
-          (unary-expr -
-            (literal 1))
+          (numeric-literal -1)
           (literal 17))))))
   )
 )

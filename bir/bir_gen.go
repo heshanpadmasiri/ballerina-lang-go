@@ -231,12 +231,12 @@ func TransformFunction(ctx *Context, astFunc *ast.BLangFunction) *BIRFunction {
 
 func TransformConstant(ctx *Context, c *ast.BLangConstant) *BIRConstant {
 	valueExpr := c.Expr
-	if literal, ok := valueExpr.(*ast.BLangLiteral); ok {
-		// FIXME: once we have constant propagation these should be propagated and no longer needed
+	if literal, ok := valueExpr.(model.LiteralNode); ok {
+		// We need to keep this so eval will work in debugger
 		return &BIRConstant{
 			Name: model.Name(c.GetName().GetValue()),
 			ConstValue: ConstValue{
-				Value: literal.Value,
+				Value: literal.GetValue(),
 			},
 		}
 	}
@@ -803,20 +803,7 @@ func simpleVariableReference(ctx *stmtContext, curBB *BIRBasicBlock, expr *ast.B
 		}
 	}
 
-	// Try constant lookup
-	// FIXME: this is a hack until we have package level variable initialization
-	if constant, ok := ctx.birCx.constantMap[symRef]; ok {
-		resultOperand := ctx.addTempVar(constant.Type)
-		constantLoad := &ConstantLoad{}
-		constantLoad.Value = constant.ConstValue.Value
-		constantLoad.LhsOp = resultOperand
-		curBB.Instructions = append(curBB.Instructions, constantLoad)
-		return expressionEffect{
-			result: resultOperand,
-			block:  curBB,
-		}
-	}
-
+	// This should never happen given we catch these at symbol resolution
 	panic(fmt.Sprintf("variable %s not found (SymbolRef: Pkg=%v Index=%d SpaceIndex=%d)",
 		varName, symRef.Package, symRef.Index, symRef.SpaceIndex))
 }

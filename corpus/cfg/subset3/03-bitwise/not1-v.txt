@@ -10,8 +10,7 @@
           (simple-var-ref i)))))
     (assignment
       (simple-var-ref i)
-      (unary-expr -
-        (literal 5)))
+      (numeric-literal -5))
     (expression-stmt
       (invocation io println (
         (unary-expr ~
@@ -25,8 +24,7 @@
           (simple-var-ref i)))))
     (assignment
       (simple-var-ref i)
-      (unary-expr -
-        (literal 1)))
+      (numeric-literal -1))
     (expression-stmt
       (invocation io println (
         (unary-expr ~
@@ -36,8 +34,7 @@
         (finite-type
           (unary-expr -
             (literal 1)))) (expr
-        (unary-expr -
-          (literal 1)))))
+        (numeric-literal -1))))
     (expression-stmt
       (invocation io println (
         (unary-expr ~

@@ -14,29 +14,28 @@ main<NIL>{
     %8 = println(%6) -> bb2;
   }
   bb2 {
-    %9 = ConstantLoad 128
-    %10 = unknown %9;
-    j = %10;
-    %13 = ConstantLoad 2
-    %12 = unknown j %13;
-    %14 = println(%12) -> bb3;
+    %9 = ConstantLoad -128
+    j = %9;
+    %12 = ConstantLoad 2
+    %11 = unknown j %12;
+    %13 = println(%11) -> bb3;
   }
   bb3 {
-    %16 = ConstantLoad 2
-    %15 = unknown j %16;
-    %17 = println(%15) -> bb4;
+    %15 = ConstantLoad 2
+    %14 = unknown j %15;
+    %16 = println(%14) -> bb4;
   }
   bb4 {
-    %18 = ConstantLoad 128
-    k = %18;
-    %21 = ConstantLoad 2
-    %20 = unknown k %21;
-    %22 = println(%20) -> bb5;
+    %17 = ConstantLoad 128
+    k = %17;
+    %20 = ConstantLoad 2
+    %19 = unknown k %20;
+    %21 = println(%19) -> bb5;
   }
   bb5 {
-    %24 = ConstantLoad 2
-    %23 = unknown k %24;
-    %25 = println(%23) -> bb6;
+    %23 = ConstantLoad 2
+    %22 = unknown k %23;
+    %24 = println(%22) -> bb6;
   }
   bb6 {
     return;

@@ -18,11 +18,8 @@ main<NIL>{
     %8 = foo(%7) -> bb4;
   }
   bb4 {
-    %10 = ConstantLoad 9223372036854775807
-    %11 = unknown %10;
-    %12 = ConstantLoad 1
-    %9 = - %11 %12;
-    %13 = foo(%9) -> bb5;
+    %9 = ConstantLoad -9223372036854775808
+    %10 = foo(%9) -> bb5;
   }
   bb5 {
     return;

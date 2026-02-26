@@ -28,5 +28,4 @@
           (return
             (simple-var-ref i))))
       (return
-        (unary-expr -
-          (literal 1))))))
+        (numeric-literal -1)))))

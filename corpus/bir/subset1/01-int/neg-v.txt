@@ -17,19 +17,18 @@ main<NIL>{
     %7 = println(%6) -> bb4;
   }
   bb4 {
-    %8 = ConstantLoad 1
-    %9 = unknown %8;
-    %10 = neg(%9) -> bb5;
+    %8 = ConstantLoad -1
+    %9 = neg(%8) -> bb5;
   }
   bb5 {
-    %11 = println(%10) -> bb6;
+    %10 = println(%9) -> bb6;
   }
   bb6 {
-    %12 = ConstantLoad 1
-    %13 = negneg(%12) -> bb7;
+    %11 = ConstantLoad 1
+    %12 = negneg(%11) -> bb7;
   }
   bb7 {
-    %14 = println(%13) -> bb8;
+    %13 = println(%12) -> bb8;
   }
   bb8 {
     return;

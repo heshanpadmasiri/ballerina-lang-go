@@ -73,6 +73,7 @@ func testDesugar(t *testing.T, testCase test_util.TestCase) {
 	// Step 2: Symbol Resolution
 	importedSymbols := semantics.ResolveImports(cx, pkg, semantics.GetImplicitImports(cx))
 	semantics.ResolveSymbols(cx, pkg, importedSymbols)
+	semantics.FoldConstants(cx, pkg)
 
 	// Step 3: Type Resolution
 	typeResolver := semantics.NewTypeResolver(cx, importedSymbols)

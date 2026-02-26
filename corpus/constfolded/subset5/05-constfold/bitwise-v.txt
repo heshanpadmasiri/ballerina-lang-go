@@ -1,0 +1,30 @@
+(package
+  (import-package ballerina io (as io))
+  (const AND () (
+    (numeric-literal 8)))
+  (const OR () (
+    (numeric-literal 14)))
+  (const XOR () (
+    (numeric-literal 6)))
+  (const SHL () (
+    (numeric-literal 8)))
+  (const SHR () (
+    (numeric-literal 4)))
+  (function main () (
+    (value-type null))
+    (block-function-body
+      (expression-stmt
+        (invocation io println (
+          (numeric-literal 8))))
+      (expression-stmt
+        (invocation io println (
+          (numeric-literal 14))))
+      (expression-stmt
+        (invocation io println (
+          (numeric-literal 6))))
+      (expression-stmt
+        (invocation io println (
+          (numeric-literal 8))))
+      (expression-stmt
+        (invocation io println (
+          (numeric-literal 4)))))))

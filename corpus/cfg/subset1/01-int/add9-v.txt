@@ -14,52 +14,29 @@
   (bb0 () ()
     (expression-stmt
       (invocation io println (
-        (binary-expr -
-          (binary-expr +
-            (literal 8)
-            (literal 5))
-          (literal 11)))))
+        (numeric-literal 2))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr -
-            (literal 8)
-            (literal 11))
-          (literal 5)))))
+        (numeric-literal 2))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr -
-            (binary-expr +
-              (literal 3)
-              (literal 5))
-            (literal 5))
-          (literal 9)))))
+        (numeric-literal 12))))
     (expression-stmt
       (invocation io println (
         (invocation add (
           (literal 3)
           (literal 5)
-          (unary-expr -
-            (literal 5))
+          (numeric-literal -5)
           (literal 9))))))
     (expression-stmt
       (invocation io println (
-        (binary-expr -
-          (binary-expr +
-            (binary-expr -
-              (literal 3)
-              (literal 5))
-            (literal 9))
-          (literal 4)))))
+        (numeric-literal 3))))
     (expression-stmt
       (invocation io println (
         (invocation add (
           (literal 3)
-          (unary-expr -
-            (literal 5))
+          (numeric-literal -5)
           (literal 9)
-          (unary-expr -
-            (literal 4)))))))
+          (numeric-literal -4))))))
   )
 )

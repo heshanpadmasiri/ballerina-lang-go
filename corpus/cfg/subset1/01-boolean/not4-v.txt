@@ -6,8 +6,7 @@
 )
 (printBoolean
   (bb0 () (bb1)
-    (unary-expr !
-      (literal false))
+    (literal true)
   )
   (bb1 (bb0) (bb2)
     (expression-stmt

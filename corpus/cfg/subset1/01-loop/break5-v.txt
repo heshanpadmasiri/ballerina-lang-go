@@ -39,8 +39,7 @@
   (bb5 (bb2) (bb1))
   (bb6 (bb3) ()
     (return
-      (unary-expr -
-        (literal 1)))
+      (numeric-literal -1))
   )
   (bb7 (bb3) ()
     (return

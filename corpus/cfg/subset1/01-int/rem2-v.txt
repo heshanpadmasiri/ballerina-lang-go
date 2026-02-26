@@ -3,16 +3,12 @@
     (var-def
       (variable INT_MIN (type
         (value-type int)) (expr
-        (binary-expr -
-          (unary-expr -
-            (literal 9223372036854775807))
-          (literal 1)))))
+        (numeric-literal -9223372036854775808))))
     (expression-stmt
       (invocation io println (
         (invocation rem (
           (simple-var-ref INT_MIN)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
   )
 )
 (rem

@@ -30,8 +30,7 @@
       (invocation printBoolean (
         (invocation gte (
           (literal 2)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation printBoolean (
         (invocation gte (
@@ -55,8 +54,7 @@
     (expression-stmt
       (invocation printBoolean (
         (invocation lte (
-          (unary-expr -
-            (literal 1))
+          (numeric-literal -1)
           (literal 17))))))
   )
 )

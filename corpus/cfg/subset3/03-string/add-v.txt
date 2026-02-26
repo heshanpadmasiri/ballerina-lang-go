@@ -17,8 +17,6 @@
           (simple-var-ref b)))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (literal )
-          (literal x)))))
+        (literal x))))
   )
 )

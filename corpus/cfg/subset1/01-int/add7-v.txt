@@ -2,150 +2,24 @@
   (bb0 () ()
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (group-expr
-            (unary-expr -
-              (literal 3)))
-          (group-expr
-            (unary-expr -
-              (literal 5)))))))
+        (numeric-literal -8))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (group-expr
-              (unary-expr -
-                (literal 3)))
-            (group-expr
-              (unary-expr -
-                (literal 5))))
-          (group-expr
-            (unary-expr -
-              (literal 11)))))))
+        (numeric-literal -19))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (group-expr
-                (unary-expr -
-                  (literal 3)))
-              (group-expr
-                (unary-expr -
-                  (literal 5))))
-            (group-expr
-              (unary-expr -
-                (literal 5))))
-          (group-expr
-            (unary-expr -
-              (literal 9)))))))
+        (numeric-literal -22))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (binary-expr +
-                (group-expr
-                  (unary-expr -
-                    (literal 3)))
-                (group-expr
-                  (unary-expr -
-                    (literal 5))))
-              (group-expr
-                (unary-expr -
-                  (literal 5))))
-            (group-expr
-              (unary-expr -
-                (literal 9))))
-          (group-expr
-            (unary-expr -
-              (literal 12)))))))
+        (numeric-literal -34))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (binary-expr +
-                (binary-expr +
-                  (group-expr
-                    (unary-expr -
-                      (literal 3)))
-                  (group-expr
-                    (unary-expr -
-                      (literal 5))))
-                (group-expr
-                  (unary-expr -
-                    (literal 5))))
-              (group-expr
-                (unary-expr -
-                  (literal 9))))
-            (group-expr
-              (unary-expr -
-                (literal 4))))
-          (group-expr
-            (unary-expr -
-              (literal 7)))))))
+        (numeric-literal -33))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (binary-expr +
-                (binary-expr +
-                  (binary-expr +
-                    (group-expr
-                      (unary-expr -
-                        (literal 3)))
-                    (group-expr
-                      (unary-expr -
-                        (literal 5))))
-                  (group-expr
-                    (unary-expr -
-                      (literal 5))))
-                (group-expr
-                  (unary-expr -
-                    (literal 9))))
-              (group-expr
-                (unary-expr -
-                  (literal 4))))
-            (group-expr
-              (unary-expr -
-                (literal 7))))
-          (group-expr
-            (unary-expr -
-              (literal 5)))))))
+        (numeric-literal -38))))
     (expression-stmt
       (invocation io println (
-        (binary-expr +
-          (binary-expr +
-            (binary-expr +
-              (binary-expr +
-                (binary-expr +
-                  (binary-expr +
-                    (binary-expr +
-                      (group-expr
-                        (unary-expr -
-                          (literal 3)))
-                      (group-expr
-                        (unary-expr -
-                          (literal 5))))
-                    (group-expr
-                      (unary-expr -
-                        (literal 5))))
-                  (group-expr
-                    (unary-expr -
-                      (literal 9))))
-                (group-expr
-                  (unary-expr -
-                    (literal 4))))
-              (group-expr
-                (unary-expr -
-                  (literal 7))))
-            (group-expr
-              (unary-expr -
-                (literal 23))))
-          (group-expr
-            (unary-expr -
-              (literal 50)))))))
+        (numeric-literal -106))))
   )
 )

@@ -89,6 +89,7 @@ func testCFGGeneration(t *testing.T, testPair test_util.TestCase) {
 	// Step 4: Resolve symbols
 	importedSymbols := ResolveImports(cx, pkg, GetImplicitImports(cx))
 	ResolveSymbols(cx, pkg, importedSymbols)
+	FoldConstants(cx, pkg)
 
 	// Step 5: Resolve types
 	typeResolver := NewTypeResolver(cx, importedSymbols)

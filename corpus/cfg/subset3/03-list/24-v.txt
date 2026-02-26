@@ -13,9 +13,7 @@
   (bb1 (bb0 bb2) (bb2 bb3)
     (binary-expr <
       (simple-var-ref i)
-      (binary-expr *
-        (literal 1000)
-        (literal 1000)))
+      (numeric-literal 1000000))
   )
   (bb2 (bb1) (bb1)
     (assignment

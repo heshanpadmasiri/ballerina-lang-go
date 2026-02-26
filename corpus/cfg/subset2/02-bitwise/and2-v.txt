@@ -26,12 +26,10 @@
           (simple-var-ref j)))))
     (assignment
       (simple-var-ref i)
-      (unary-expr -
-        (literal 1)))
+      (numeric-literal -1))
     (assignment
       (simple-var-ref j)
-      (unary-expr -
-        (literal 1)))
+      (numeric-literal -1))
     (expression-stmt
       (invocation io println (
         (binary-expr &
@@ -42,8 +40,7 @@
       (literal 9223372036854775807))
     (assignment
       (simple-var-ref j)
-      (unary-expr -
-        (literal 1)))
+      (numeric-literal -1))
     (expression-stmt
       (invocation io println (
         (binary-expr &

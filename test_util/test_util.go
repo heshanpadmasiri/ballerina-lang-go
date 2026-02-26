@@ -34,6 +34,7 @@ const (
 	BIR
 	CFG
 	Desugar
+	ConstFold
 )
 
 // TestCase represents a test case: input file and expected output file
@@ -80,6 +81,9 @@ func GetTests(t *testing.T, kind TestKind, filterFunc func(string) bool) []TestC
 		outputExt = ".txt"
 	case Desugar:
 		outputBaseDir = "desugared"
+		outputExt = ".txt"
+	case ConstFold:
+		outputBaseDir = "constfolded"
 		outputExt = ".txt"
 	}
 	resolvedInputDir, resolvedOutputDir := resolveDir(t, inputBaseDirAlt, outputBaseDir)

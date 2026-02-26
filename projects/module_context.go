@@ -238,6 +238,7 @@ func compileInternal(moduleCtx *moduleContext) {
 	// Resolve symbols (imports) before type resolution
 	importedSymbols := semantics.ResolveImports(compilerCtx, pkgNode, semantics.GetImplicitImports(compilerCtx))
 	semantics.ResolveSymbols(compilerCtx, pkgNode, importedSymbols)
+	semantics.FoldConstants(compilerCtx, pkgNode)
 
 	// Add type resolution step
 	typeResolver := semantics.NewTypeResolver(compilerCtx, importedSymbols)

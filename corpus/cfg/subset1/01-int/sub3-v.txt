@@ -33,10 +33,8 @@
     (expression-stmt
       (invocation io println (
         (invocation sub (
-          (unary-expr -
-            (literal 1))
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1)
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation sub (
@@ -55,43 +53,33 @@
     (expression-stmt
       (invocation io println (
         (invocation sub (
-          (unary-expr -
-            (literal 1))
-          (unary-expr -
-            (literal 0)))))))
+          (numeric-literal -1)
+          (numeric-literal 0))))))
     (expression-stmt
       (invocation io println (
         (invocation sub (
-          (unary-expr -
-            (literal 9223372036854775806))
-          (unary-expr -
-            (literal 0)))))))
+          (numeric-literal -9223372036854775806)
+          (numeric-literal 0))))))
     (expression-stmt
       (invocation io println (
         (invocation sub (
           (literal 9223372036854775806)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation sub (
           (literal 1)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation sub (
           (literal 0)
-          (unary-expr -
-            (literal 1)))))))
+          (numeric-literal -1))))))
     (expression-stmt
       (invocation io println (
         (invocation sub (
-          (unary-expr -
-            (literal 1))
-          (unary-expr -
-            (unary-expr -
-              (literal 1))))))))
+          (numeric-literal -1)
+          (numeric-literal 1))))))
     (expression-stmt
       (invocation io println (
         (invocation sub (

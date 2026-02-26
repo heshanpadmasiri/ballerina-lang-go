@@ -1,0 +1,25 @@
+(compilation-unit  regular-source
+(package-id $anon . 0.0.0)
+  (import-package ballerina io (as io))
+  (const X () (
+    (literal 10)))
+  (const Y () (
+    (binary-expr +
+      (simple-var-ref X)
+      (literal 5))))
+  (const Z () (
+    (binary-expr +
+      (simple-var-ref X)
+      (simple-var-ref Y))))
+  (function main () (
+    (value-type null))
+    (block-function-body
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref X))))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref Y))))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref Z)))))))

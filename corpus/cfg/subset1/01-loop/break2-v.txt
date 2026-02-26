@@ -13,8 +13,7 @@
     (expression-stmt
       (invocation printIfBetween (
         (literal 0)
-        (unary-expr -
-          (literal 1))
+        (numeric-literal -1)
         (literal 4))))
   )
 )

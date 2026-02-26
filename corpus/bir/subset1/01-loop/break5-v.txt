@@ -46,16 +46,15 @@ foo<NIL>{
     GOTO bb1;
   }
   bb7 {
-    %13 = ConstantLoad 1
-    %14 = unknown %13;
-    %0 = %14;
+    %13 = ConstantLoad -1
+    %0 = %13;
     return;
   }
   bb8 {
-    %15 = foo(i) -> bb9;
+    %14 = foo(i) -> bb9;
   }
   bb9 {
-    %0 = %15;
+    %0 = %14;
     return;
   }
 }

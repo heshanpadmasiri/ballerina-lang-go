@@ -14,8 +14,7 @@
     (expression-stmt
       (invocation io println (
         (list-constructor-expr
-          (unary-expr -
-            (literal 17))))))
+          (numeric-literal -17)))))
     (expression-stmt
       (invocation io println (
         (list-constructor-expr

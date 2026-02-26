@@ -29,9 +29,8 @@ loop<NIL>{
     return;
   }
   bb3 {
-    %6 = ConstantLoad 1
-    %7 = unknown %6;
-    %0 = %7;
+    %6 = ConstantLoad -1
+    %0 = %6;
     return;
   }
 }

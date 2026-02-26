@@ -1,0 +1,15 @@
+(package
+  (import-package ballerina io (as io))
+  (const NEG () (
+    (numeric-literal -15)))
+  (const NOT_TRUE () (
+    (literal false)))
+  (function main () (
+    (value-type null))
+    (block-function-body
+      (expression-stmt
+        (invocation io println (
+          (numeric-literal -15))))
+      (expression-stmt
+        (invocation io println (
+          (literal false)))))))

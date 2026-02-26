@@ -5,16 +5,12 @@
       (literal 100))
     (assignment
       (wildcard-binding-pattern)
-      (binary-expr +
-        (literal 100)
-        (literal 11)))
+      (numeric-literal 111))
     (assignment
       (wildcard-binding-pattern)
-      (simple-var-ref c1))
+      (literal 43))
     (assignment
       (wildcard-binding-pattern)
-      (binary-expr +
-        (simple-var-ref c1)
-        (simple-var-ref c2)))
+      (numeric-literal 87))
   )
 )

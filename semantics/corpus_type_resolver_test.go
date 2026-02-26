@@ -65,6 +65,7 @@ func testTypeResolution(t *testing.T, testCase test_util.TestCase) {
 	pkg := ast.ToPackage(compilationUnit)
 	importedSymbols := ResolveImports(cx, pkg, GetImplicitImports(cx))
 	ResolveSymbols(cx, pkg, importedSymbols)
+	FoldConstants(cx, pkg)
 	typeResolver := NewTypeResolver(cx, importedSymbols)
 	typeResolver.ResolveTypes(cx, pkg)
 	tyCtx := semtypes.ContextFrom(cx.GetTypeEnv())

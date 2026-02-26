@@ -37,8 +37,7 @@
   )
   (bb4 (bb2) ()
     (return
-      (unary-expr -
-        (literal 1)))
+      (numeric-literal -1))
   )
 )
 (main
