@@ -1,0 +1,3 @@
+-- stdout --
+panic: interface conversion: semtypes.SemType is semtypes.CellSemType, not *semtypes.CellSemType
+-- stderr --
