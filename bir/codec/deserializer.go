@@ -456,6 +456,7 @@ func (br *birReader) readBasicBlock(varMap map[string]bir.BIRVariableDcl) *bir.B
 
 func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.BIRInstruction {
 	instructionKind := br.readInstructionKind()
+	pos := br.readPosition()
 
 	switch instructionKind {
 	case bir.INSTRUCTION_KIND_MOVE:
@@ -463,7 +464,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		lhsOp := br.readOperand(varMap)
 		return &bir.Move{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			RhsOp: rhsOp,
 		}
@@ -483,7 +485,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		lhsOp := br.readOperand(varMap)
 		return &bir.BinaryOp{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			Kind:   instructionKind,
 			RhsOp1: *rhsOp1,
@@ -495,7 +498,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		lhsOp := br.readOperand(varMap)
 		return &bir.UnaryOp{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			Kind:  instructionKind,
 			RhsOp: rhsOp,
@@ -524,7 +528,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 
 		return &bir.ConstantLoad{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			Value: value,
 		}
@@ -536,7 +541,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		rhsOp := br.readOperand(varMap)
 		return &bir.FieldAccess{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			Kind:  instructionKind,
 			KeyOp: keyOp,
@@ -553,7 +559,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		}
 		return &bir.NewArray{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			Type:   ty,
 			SizeOp: sizeOp,
@@ -566,7 +573,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 
 		return &bir.TypeCast{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			RhsOp: rhsOp,
 			Type:  ty,
@@ -579,7 +587,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		br.read(&isNegation)
 		return &bir.TypeTest{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			RhsOp:      rhsOp,
 			Type:       ty,
@@ -610,7 +619,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		}
 		return &bir.NewMap{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			Type:     ty,
 			Values:   values,
@@ -635,7 +645,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		}
 		return &bir.NewError{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			Type:      ty,
 			TypeName:  string(typeName),
@@ -652,7 +663,8 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		}
 		return &bir.NewObject{
 			BIRInstructionBase: bir.BIRInstructionBase{
-				LhsOp: lhsOp,
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				LhsOp:       lhsOp,
 			},
 			ClassDef: classDef,
 		}
@@ -662,15 +674,24 @@ func (br *birReader) readInstruction(varMap map[string]bir.BIRVariableDcl) bir.B
 		lhsOp := br.readOperand(varMap)
 		var isClosure bool
 		br.read(&isClosure)
-		fpLoad := bir.NewFPLoad(string(functionLookupKey), ty, lhsOp, nil)
+		fpLoad := bir.NewFPLoad(string(functionLookupKey), ty, lhsOp, pos)
 		fpLoad.IsClosure = isClosure
 		return fpLoad
 	case bir.INSTRUCTION_KIND_PUSH_SCOPE:
 		var numLocals int32
 		br.read(&numLocals)
-		return &bir.PushScopeFrame{NumLocals: int(numLocals)}
+		return &bir.PushScopeFrame{
+			BIRInstructionBase: bir.BIRInstructionBase{
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+			},
+			NumLocals: int(numLocals),
+		}
 	case bir.INSTRUCTION_KIND_POP_SCOPE:
-		return &bir.PopScopeFrame{}
+		return &bir.PopScopeFrame{
+			BIRInstructionBase: bir.BIRInstructionBase{
+				BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+			},
+		}
 	default:
 		panic(fmt.Sprintf("unsupported instruction kind: %d", instructionKind))
 	}
@@ -685,15 +706,25 @@ func (br *birReader) readTerminator(varMap map[string]bir.BIRVariableDcl) bir.BI
 	}
 
 	termInstructionKind := bir.InstructionKind(terminatorKind)
+	pos := br.readPosition()
 
 	switch termInstructionKind {
 	case bir.INSTRUCTION_KIND_RETURN:
-		return &bir.Return{}
+		return &bir.Return{
+			BIRTerminatorBase: bir.BIRTerminatorBase{
+				BIRInstructionBase: bir.BIRInstructionBase{
+					BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				},
+			},
+		}
 
 	case bir.INSTRUCTION_KIND_GOTO:
 		id := br.readStringCPEntry()
 		return &bir.Goto{
 			BIRTerminatorBase: bir.BIRTerminatorBase{
+				BIRInstructionBase: bir.BIRInstructionBase{
+					BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				},
 				ThenBB: &bir.BIRBasicBlock{
 					Id: id,
 				},
@@ -705,6 +736,11 @@ func (br *birReader) readTerminator(varMap map[string]bir.BIRVariableDcl) bir.BI
 		falseBBId := br.readStringCPEntry()
 
 		return &bir.Branch{
+			BIRTerminatorBase: bir.BIRTerminatorBase{
+				BIRInstructionBase: bir.BIRInstructionBase{
+					BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				},
+			},
 			Op: op,
 			TrueBB: &bir.BIRBasicBlock{
 				Id: trueBBId,
@@ -756,13 +792,19 @@ func (br *birReader) readTerminator(varMap map[string]bir.BIRVariableDcl) bir.BI
 					Id: thenBBId,
 				},
 				BIRInstructionBase: bir.BIRInstructionBase{
-					LhsOp: lhsOp,
+					BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+					LhsOp:       lhsOp,
 				},
 			},
 		}
 	case bir.INSTRUCTION_KIND_PANIC:
 		errorOp := br.readOperand(varMap)
 		return &bir.Panic{
+			BIRTerminatorBase: bir.BIRTerminatorBase{
+				BIRInstructionBase: bir.BIRInstructionBase{
+					BIRNodeBase: bir.BIRNodeBase{Pos: pos},
+				},
+			},
 			ErrorOp: errorOp,
 		}
 	default:
