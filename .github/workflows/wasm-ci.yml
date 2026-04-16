@@ -8,7 +8,7 @@ on:
 
 jobs:
   ubuntu-build:
-    name: Ubuntu WASM Build
+    name: Ubuntu WASM Build (Browser)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,8 +19,19 @@ jobs:
         with:
           go-version: '1.26'
 
-      - name: Run WASM tests
+      - name: Install wasmbrowsertest
+        run: |
+          go install github.com/agnivade/wasmbrowsertest@latest
+          mv "$(go env GOPATH)/bin/wasmbrowsertest" "$(go env GOPATH)/bin/go_js_wasm_exec"
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Run WASM tests in headless Chrome
         run: |
           export GOOS=js
           export GOARCH=wasm
-          go test -skip 'TestParseCorpusFiles|TestJBalUnitTests|TestJBalUnitBIRTests' -timeout 30m ./... -exec="$(go env GOROOT)/lib/wasm/go_js_wasm_exec"
+          export PATH="$(go env GOPATH)/bin:$PATH"
+          go test -skip 'TestParseCorpusFiles|TestJBalUnitTests|TestJBalUnitBIRTests' -timeout 30m ./...
