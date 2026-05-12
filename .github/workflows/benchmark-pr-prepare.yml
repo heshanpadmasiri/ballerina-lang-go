@@ -1,0 +1,71 @@
+name: PR Benchmark Prepare
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+permissions:
+  contents: read
+
+concurrency:
+  group: benchmark-prepare-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  benchmark:
+    name: Benchmark main vs PR head (prepare)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.26"
+
+      - name: Install hyperfine
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y hyperfine
+
+      - name: Build benchmark tool
+        working-directory: compiler-tools/benchmark
+        run: go build -o ../../bin/benchmark .
+
+      - name: Run benchmark
+        run: |
+          ./bin/benchmark \
+            --runs 10 \
+            --warmup 2 \
+            --export-html compiler-tools/benchmark/output.html \
+            origin/main \
+            HEAD \
+            corpus/benchmark
+
+      - name: Create benchmark metadata
+        run: |
+          cat > benchmark-meta.json <<'EOF'
+          {
+            "pr_number": ${{ github.event.pull_request.number }},
+            "head_sha": "${{ github.event.pull_request.head.sha }}",
+            "base_ref": "${{ github.event.pull_request.base.ref }}",
+            "head_ref": "${{ github.event.pull_request.head.ref }}",
+            "head_repo_full_name": "${{ github.event.pull_request.head.repo.full_name }}"
+          }
+          EOF
+
+      - name: Upload benchmark artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-pr-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            compiler-tools/benchmark/output.html
+            benchmark-meta.json
+          if-no-files-found: error
