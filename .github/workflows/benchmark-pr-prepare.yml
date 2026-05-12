@@ -41,17 +41,18 @@ jobs:
 
       - name: Run benchmark
         run: |
+          mkdir -p benchmark-output
           ./bin/benchmark \
             --runs 10 \
             --warmup 2 \
-            --export-html compiler-tools/benchmark/output.html \
+            --export-html benchmark-output/output.html \
             origin/main \
             HEAD \
             corpus/benchmark
 
       - name: Create benchmark metadata
         run: |
-          cat > benchmark-meta.json <<'EOF'
+          cat > benchmark-output/benchmark-meta.json <<'EOF'
           {
             "pr_number": ${{ github.event.pull_request.number }},
             "head_sha": "${{ github.event.pull_request.head.sha }}",
@@ -66,6 +67,6 @@ jobs:
         with:
           name: benchmark-pr-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
           path: |
-            compiler-tools/benchmark/output.html
-            benchmark-meta.json
+            benchmark-output/output.html
+            benchmark-output/benchmark-meta.json
           if-no-files-found: error
