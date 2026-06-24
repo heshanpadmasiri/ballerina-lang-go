@@ -54,6 +54,8 @@ type Server struct {
 	snapshots                       map[string]*SnapshotManager
 	root                            string
 	shutdown                        bool
+	exited                          bool
+	exitCode                        int
 	workDoneProgress                bool
 	watchedFilesDynamicRegistration bool
 	progressCreated                 bool
@@ -112,6 +114,12 @@ func (s *Server) Run() error {
 		}
 		if len(msg.ID) == 0 {
 			s.handleNotification(msg.Method, msg.Params)
+			if s.exited {
+				if s.exitCode == 0 {
+					return nil
+				}
+				return fmt.Errorf("language server exited with code %d", s.exitCode)
+			}
 			continue
 		}
 		s.handleRequest(msg)
@@ -236,10 +244,10 @@ func (s *Server) handleNotification(method string, params json.RawMessage) {
 		}
 		return
 	case "exit":
-		if s.shutdown {
-			os.Exit(0)
+		s.exited = true
+		if !s.shutdown {
+			s.exitCode = 1
 		}
-		os.Exit(1)
 	case "textDocument/didOpen":
 		var p protocol.DidOpenTextDocumentParams
 		if decodeParams(params, &p) != nil {
@@ -450,14 +458,12 @@ func (s *Server) refreshBuildProject(root string, clean bool, source SourceFile)
 }
 
 func (s *Server) publishRemovedFileDiagnostics(old *Snapshot, snapshot *Snapshot) {
-	for uri, file := range old.Files {
+	for uri := range old.Files {
 		if _, ok := snapshot.Files[uri]; ok {
 			continue
 		}
-		version := file.Version
 		s.writeNotification("textDocument/publishDiagnostics", protocol.PublishDiagnosticsParams{
 			URI:         uri,
-			Version:     &version,
 			Diagnostics: []protocol.Diagnostic{},
 		})
 	}
@@ -499,20 +505,34 @@ func invalidateChangedDependents(old *Snapshot, snapshot *Snapshot, changedURI p
 	if changedURI == "" {
 		return
 	}
-	changedModule := ""
-	for name, module := range snapshot.Modules {
-		if _, ok := module.Files[changedURI]; ok {
-			changedModule = name
-			break
-		}
-	}
+	changedModule := moduleNameForURI(snapshot, changedURI)
 	if changedModule == "" {
 		return
 	}
-	for _, name := range dependentModuleClosure(old, changedModule) {
+	for _, name := range modulesFromTopoOrder(old, changedModule) {
 		resetModuleState(snapshot.Modules[name])
 	}
 	snapshot.TopoOrder = nil
+}
+
+func moduleNameForURI(snapshot *Snapshot, uri protocol.DocumentURI) string {
+	for name, module := range snapshot.Modules {
+		if _, ok := module.Files[uri]; ok {
+			return name
+		}
+	}
+	return ""
+}
+
+func modulesFromTopoOrder(snapshot *Snapshot, changedModule string) []string {
+	if snapshot != nil && len(snapshot.TopoOrder) > 0 {
+		for i, name := range snapshot.TopoOrder {
+			if name == changedModule {
+				return copyStringSlice(snapshot.TopoOrder[i:])
+			}
+		}
+	}
+	return dependentModuleClosure(snapshot, changedModule)
 }
 
 func dependentModuleClosure(snapshot *Snapshot, changedModule string) []string {
@@ -553,6 +573,7 @@ func resetModuleState(module *Module) {
 	if module == nil {
 		return
 	}
+	module.CompilationUnits = nil
 	module.Stage = FrontendStageNone
 	module.Imports = nil
 	module.ImportedByCU = nil
@@ -601,18 +622,35 @@ func (s *Server) publishDiagnostics(manager *SnapshotManager, snapshot *Snapshot
 		return
 	}
 	logLS(snapshot.Root, "diagnostics complete snapshotID=%d diagnosticFiles=%d", snapshot.ID, len(diagnosticsByURI))
-	for uri, file := range snapshot.Files {
+	for _, uri := range diagnosticPublishURIs(snapshot, source) {
 		diagnostics := diagnosticsByURI[uri]
 		if diagnostics == nil {
 			diagnostics = []protocol.Diagnostic{}
 		}
-		version := file.Version
 		s.writeNotification("textDocument/publishDiagnostics", protocol.PublishDiagnosticsParams{
 			URI:         uri,
-			Version:     &version,
 			Diagnostics: diagnostics,
 		})
 	}
+}
+
+func diagnosticPublishURIs(snapshot *Snapshot, source SourceFile) []protocol.DocumentURI {
+	if source.URI != "" {
+		if module := snapshot.Modules[moduleNameForURI(snapshot, source.URI)]; module != nil {
+			uris := make([]protocol.DocumentURI, 0, len(module.Files))
+			for uri := range module.Files {
+				uris = append(uris, uri)
+			}
+			sort.Slice(uris, func(i, j int) bool { return uris[i] < uris[j] })
+			return uris
+		}
+	}
+	uris := make([]protocol.DocumentURI, 0, len(snapshot.Files))
+	for uri := range snapshot.Files {
+		uris = append(uris, uri)
+	}
+	sort.Slice(uris, func(i, j int) bool { return uris[i] < uris[j] })
+	return uris
 }
 
 func (s *Server) initializeSnapshots(params protocol.InitializeParams) {

@@ -42,6 +42,9 @@ func runDiagnostics(snapshot *Snapshot, source SourceFile) map[protocol.Document
 	}()
 	if snapshot.Kind == ProjectKindBuild {
 		logLS(snapshot.Root, "project compile start snapshotID=%d modules=%d source=%s", snapshot.ID, len(snapshot.Modules), source.Path)
+		if source.URI != "" {
+			return runChangedModuleDiagnostics(cx, snapshot, source)
+		}
 		if !dispatchParseAll(cx, snapshot) || !dispatchTopoSort(cx, snapshot) || len(snapshot.TopoOrder) == 0 {
 			return convertDiagnostics(snapshot, cx.Diagnostics())
 		}
@@ -57,6 +60,18 @@ func runDiagnostics(snapshot *Snapshot, source SourceFile) map[protocol.Document
 	} else if module := snapshot.Modules[defaultModuleName]; module != nil {
 		runModuleFrontend(cx, snapshot, module, FrontendStageCFGAnalyzed)
 	}
+	return convertDiagnostics(snapshot, cx.Diagnostics())
+}
+
+func runChangedModuleDiagnostics(cx *context.CompilerContext, snapshot *Snapshot, source SourceFile) map[protocol.DocumentURI][]protocol.Diagnostic {
+	if len(snapshot.TopoOrder) == 0 && (!dispatchParseAll(cx, snapshot) || !dispatchTopoSort(cx, snapshot)) {
+		return convertDiagnostics(snapshot, cx.Diagnostics())
+	}
+	module := snapshot.Modules[moduleNameForURI(snapshot, source.URI)]
+	if module != nil {
+		runModuleFrontend(cx, snapshot, module, FrontendStageCFGAnalyzed)
+	}
+	logLS(snapshot.Root, "project compile complete snapshotID=%d", snapshot.ID)
 	return convertDiagnostics(snapshot, cx.Diagnostics())
 }
 
@@ -153,7 +168,7 @@ func prepareSymbolResolution(cx *context.CompilerContext, snapshot *Snapshot, ta
 		return langlibs, langlibs.PublicSymbols, true
 	}
 
-	if !dispatchParseAll(cx, snapshot) || !dispatchTopoSort(cx, snapshot) {
+	if len(snapshot.TopoOrder) == 0 && (!dispatchParseAll(cx, snapshot) || !dispatchTopoSort(cx, snapshot)) {
 		return nil, nil, false
 	}
 	order := snapshot.TopoOrder

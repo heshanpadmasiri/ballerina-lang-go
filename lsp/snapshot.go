@@ -16,12 +16,9 @@
 package lsp
 
 import (
-	"crypto/sha256"
-	"fmt"
 	"net/url"
 	"os"
 	"path/filepath"
-	"sort"
 	"strings"
 
 	"ballerina-lang-go/ast"
@@ -80,7 +77,6 @@ type Module struct {
 	PackageID        *model.PackageID
 	Files            map[protocol.DocumentURI]SourceFile
 	CompilationUnits map[protocol.DocumentURI]*ast.BLangCompilationUnit
-	Fingerprint      string
 	Stage            FrontendStage
 	Imports          []ModuleImport
 	ImportedByCU     []semantics.CompilationUnitImports
@@ -154,7 +150,6 @@ func newSingleFileSnapshot(id int64, file SourceFile) *Snapshot {
 		PackageID:        env.GetDefaultPackage(),
 		Files:            files,
 		CompilationUnits: make(map[protocol.DocumentURI]*ast.BLangCompilationUnit),
-		Fingerprint:      fingerprintFiles(files),
 	}
 	registerFiles(env, files)
 	return &Snapshot{
@@ -185,16 +180,7 @@ func newBuildSnapshot(id int64, old *Snapshot, root string, openFiles map[protoc
 			if oldModule == nil {
 				continue
 			}
-			reuseCompilationUnits(module, oldModule)
-			if oldModule.Fingerprint == module.Fingerprint {
-				module.Stage = oldModule.Stage
-				module.Imports = oldModule.Imports
-				module.ImportedByCU = oldModule.ImportedByCU
-				module.ImportedSymbols = oldModule.ImportedSymbols
-				module.Package = oldModule.Package
-				module.Exported = oldModule.Exported
-				module.CFG = oldModule.CFG
-			}
+			reuseModuleState(module, oldModule)
 		}
 	}
 	registerFiles(env, files)
@@ -226,7 +212,6 @@ func scanBuildProject(env *context.CompilerEnvironment, root, orgName, pkgName, 
 			PackageID:        packageID,
 			Files:            moduleFiles,
 			CompilationUnits: make(map[protocol.DocumentURI]*ast.BLangCompilationUnit),
-			Fingerprint:      fingerprintFiles(moduleFiles),
 		}
 	}
 
@@ -287,19 +272,15 @@ func scanModuleFiles(moduleRoot string, openFiles map[protocol.DocumentURI]Sourc
 	return result
 }
 
-func reuseCompilationUnits(module *Module, oldModule *Module) {
-	if oldModule.CompilationUnits == nil {
-		return
-	}
-	for uri, file := range module.Files {
-		oldFile, ok := oldModule.Files[uri]
-		if !ok || sourceFileFingerprint(file) != sourceFileFingerprint(oldFile) {
-			continue
-		}
-		if unit := oldModule.CompilationUnits[uri]; unit != nil {
-			module.CompilationUnits[uri] = unit
-		}
-	}
+func reuseModuleState(module *Module, oldModule *Module) {
+	module.CompilationUnits = oldModule.CompilationUnits
+	module.Stage = oldModule.Stage
+	module.Imports = oldModule.Imports
+	module.ImportedByCU = oldModule.ImportedByCU
+	module.ImportedSymbols = oldModule.ImportedSymbols
+	module.Package = oldModule.Package
+	module.Exported = oldModule.Exported
+	module.CFG = oldModule.CFG
 }
 
 func readPackageDescriptor(root string) (string, string, string) {
@@ -346,24 +327,6 @@ func nextSnapshotID(id int64) int64 {
 		return initialSnapshotID
 	}
 	return id + 1
-}
-
-func sourceFileFingerprint(file SourceFile) string {
-	return fmt.Sprintf("%s\x00%d\x00%s", file.Path, file.Version, file.Content)
-}
-
-func fingerprintFiles(files map[protocol.DocumentURI]SourceFile) string {
-	uris := make([]string, 0, len(files))
-	for uri := range files {
-		uris = append(uris, string(uri))
-	}
-	sort.Strings(uris)
-	h := sha256.New()
-	for _, rawURI := range uris {
-		file := files[protocol.DocumentURI(rawURI)]
-		_, _ = fmt.Fprintf(h, "%s\x00", sourceFileFingerprint(file))
-	}
-	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
 func openSnapshotFiles(snapshot *Snapshot) map[protocol.DocumentURI]SourceFile {
