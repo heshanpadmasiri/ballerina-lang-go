@@ -471,7 +471,7 @@ func singleStringValue(ty semtypes.SemType) string {
 }
 
 func addMemberCompletionItem(seen map[string]protocol.CompletionItem, labels *[]string, label string, kind int, prefix string) {
-	if label == "" || !strings.HasPrefix(label, prefix) {
+	if isGeneratedCompletionLabel(label) || label == "" || !strings.HasPrefix(label, prefix) {
 		return
 	}
 	if _, ok := seen[label]; ok {
@@ -479,6 +479,10 @@ func addMemberCompletionItem(seen map[string]protocol.CompletionItem, labels *[]
 	}
 	seen[label] = protocol.CompletionItem{Label: label, Kind: kind}
 	*labels = append(*labels, label)
+}
+
+func isGeneratedCompletionLabel(label string) bool {
+	return strings.HasPrefix(label, "$")
 }
 
 func sortedCompletionItems(seen map[string]protocol.CompletionItem, labels []string) []protocol.CompletionItem {
@@ -1247,7 +1251,7 @@ func visibleSymbolCompletionItemsWithFilter(cx *context.CompilerContext, cu *ast
 			return
 		}
 		label := cx.SymbolName(ref)
-		if label == "" || !strings.HasPrefix(label, prefix) {
+		if isGeneratedCompletionLabel(label) || label == "" || !strings.HasPrefix(label, prefix) {
 			return
 		}
 		if _, ok := seen[label]; ok {
@@ -1438,7 +1442,10 @@ func completionItemsFromExported(cx *context.CompilerContext, exported model.Exp
 	labels := make([]string, 0)
 	for ref := range exported.PublicMainSymbols() {
 		label := cx.SymbolName(ref)
-		if _, ok := seen[label]; ok || !strings.HasPrefix(label, prefix) {
+		if isGeneratedCompletionLabel(label) || !strings.HasPrefix(label, prefix) {
+			continue
+		}
+		if _, ok := seen[label]; ok {
 			continue
 		}
 		seen[label] = protocol.CompletionItem{Label: label, Kind: completionItemKind(cx.SymbolKind(ref))}

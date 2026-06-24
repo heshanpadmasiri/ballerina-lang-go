@@ -195,6 +195,13 @@ func TestCompletionAtStatementBeginPrefixExpressionStmtKeepsImportSuggestions(t 
 	assertCompletionItem(t, items, "io:")
 }
 
+func TestCompletionFiltersGeneratedSymbols(t *testing.T) {
+	items := completionItemsAtMarker(t, "function helper(int count = 1) {\n}\nfunction foo() {\n    $\n}\n")
+
+	assertCompletionItem(t, items, "helper")
+	assertNoCompletionItem(t, items, "$default$0")
+}
+
 func TestCompletionAtStatementSnippetTypePlaceholderIncludesTypesOnly(t *testing.T) {
 	items := completionItemsAtMarker(t, "type Person int;\nfunction foo() {\n}\nfunction bar() {\n    Pe$ name = 1;\n}\n")
 
