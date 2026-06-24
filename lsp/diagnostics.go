@@ -329,6 +329,7 @@ func parseModuleCompilationUnits(cx *context.CompilerContext, snapshot *Snapshot
 			continue
 		}
 		logLS(snapshot.Root, "stage start module=%s file=%s stage=parse", module.Name, file.Path)
+		diagnosticsBeforeParse := len(cx.Diagnostics())
 		syntaxTree, err := parser.GetSyntaxTree(cx, file.File, file.Content)
 		logLS(snapshot.Root, "stage complete module=%s file=%s stage=parse diagnostics=%d err=%t", module.Name, file.Path, len(cx.Diagnostics()), err != nil)
 		if err != nil {
@@ -341,7 +342,9 @@ func parseModuleCompilationUnits(cx *context.CompilerContext, snapshot *Snapshot
 			continue
 		}
 		compilationUnit.SetPackageID(module.PackageID)
-		module.CompilationUnits[file.URI] = compilationUnit
+		if len(cx.Diagnostics()) == diagnosticsBeforeParse {
+			module.CompilationUnits[file.URI] = compilationUnit
+		}
 		units = append(units, compilationUnit)
 	}
 	return units

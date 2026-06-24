@@ -15,7 +15,37 @@
 
 package lsp
 
-import "testing"
+import (
+	"testing"
+
+	"ballerina-lang-go/context"
+	"ballerina-lang-go/lsp/protocol"
+)
+
+func TestRunDiagnosticsReportsSyntaxErrorsAfterEarlierFrontendRequest(t *testing.T) {
+	content := "import ballerina/io;\nfunction foo(arr []int) {\n  io:println(arr);\n}\n"
+	path := "/tmp/main.bal"
+	source := SourceFile{
+		URI:     protocol.DocumentURI("file:///tmp/main.bal"),
+		Path:    path,
+		File:    path,
+		Content: content,
+		Open:    true,
+	}
+	snapshot := newSingleFileSnapshot(1, source)
+	module := snapshot.Modules[defaultModuleName]
+
+	cx := context.NewCompilerContext(snapshot.Env)
+	_ = runModuleFrontend(cx, snapshot, module, FrontendStageSymbolResolved)
+
+	diagnostics := runDiagnostics(snapshot, source)[source.URI]
+	if len(diagnostics) == 0 {
+		t.Fatal("expected syntax diagnostic")
+	}
+	if diagnostics[0].Code != "SYNTAX_ERROR" {
+		t.Fatalf("diagnostic code = %q, want SYNTAX_ERROR", diagnostics[0].Code)
+	}
+}
 
 func TestLSPPositionMapperPositionsMatchesSinglePosition(t *testing.T) {
 	content := "a😀b\r\nc\n𝄞d\re"
