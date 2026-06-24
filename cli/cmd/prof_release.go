@@ -27,6 +27,7 @@ func init() {
 	// Register profiler flags on the global packCmd; the createPackCmd factory
 	// intentionally omits them so test-instantiated commands stay flag-free.
 	profiler.RegisterFlags(packCmd)
+	profiler.RegisterFlags(lspCmd)
 }
 
 func (p *disabledProfiler) RegisterFlags(_ *cobra.Command) {}

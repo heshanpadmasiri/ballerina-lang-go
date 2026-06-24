@@ -17,6 +17,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"ballerina-lang-go/lsp"
@@ -28,6 +29,11 @@ var lspCmd = &cobra.Command{
 	Use:   "lsp",
 	Short: "Start the Ballerina language server",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := profiler.Start(); err != nil {
+			return fmt.Errorf("failed to start profiler: %w", err)
+		}
+		defer func() { _ = profiler.Stop() }()
+
 		server := lsp.NewServer(os.Stdin, os.Stdout)
 		return server.Run()
 	},
