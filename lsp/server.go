@@ -375,11 +375,12 @@ func (s *Server) handleWatchedFileChanges(params protocol.DidChangeWatchedFilesP
 		if root == "" || !isRelevantWatchedPath(root, path) {
 			continue
 		}
+		source := SourceFile{URI: change.URI, Path: path, File: path}
 		if change.Type == protocol.FileChangeTypeChanged && strings.HasSuffix(path, ".bal") {
 			s.refreshChangedBuildFile(root, change.URI)
 			continue
 		}
-		s.refreshBuildProject(root, true, SourceFile{URI: change.URI, Path: path, File: path})
+		s.rebuildBuildProject(root, source)
 	}
 }
 
@@ -396,7 +397,7 @@ func (s *Server) handleRenamedFiles(params protocol.RenameFilesParams) {
 		}
 	}
 	for root, source := range roots {
-		s.refreshBuildProject(root, true, source)
+		s.rebuildBuildProject(root, source)
 	}
 }
 
@@ -405,7 +406,7 @@ func (s *Server) handleCreatedFiles(params protocol.CreateFilesParams) {
 		path := pathFromURI(file.URI)
 		root := s.projectRootForWatchedPath(path)
 		if root != "" && isRelevantWatchedPath(root, path) {
-			s.refreshBuildProject(root, true, SourceFile{URI: file.URI, Path: path, File: path})
+			s.rebuildBuildProject(root, SourceFile{URI: file.URI, Path: path, File: path})
 		}
 	}
 }
@@ -415,7 +416,7 @@ func (s *Server) handleDeletedFiles(params protocol.DeleteFilesParams) {
 		path := pathFromURI(file.URI)
 		root := s.projectRootForWatchedPath(path)
 		if root != "" && isRelevantWatchedPath(root, path) {
-			s.refreshBuildProject(root, true, SourceFile{URI: file.URI, Path: path, File: path})
+			s.rebuildBuildProject(root, SourceFile{URI: file.URI, Path: path, File: path})
 		}
 	}
 }
@@ -428,10 +429,10 @@ func (s *Server) refreshChangedBuildFile(root string, uri protocol.DocumentURI) 
 	if file, ok := manager.Current().Files[uri]; ok && file.Open {
 		return
 	}
-	s.refreshBuildProject(root, false, SourceFile{URI: uri, Path: pathFromURI(uri), File: pathFromURI(uri)})
+	s.refreshBuildProject(root, SourceFile{URI: uri, Path: pathFromURI(uri), File: pathFromURI(uri)})
 }
 
-func (s *Server) refreshBuildProject(root string, clean bool, source SourceFile) {
+func (s *Server) refreshBuildProject(root string, source SourceFile) {
 	manager := s.snapshots[root]
 	if manager == nil {
 		manager = NewBuildSnapshotManager(root)
@@ -441,18 +442,27 @@ func (s *Server) refreshBuildProject(root string, clean bool, source SourceFile)
 	if old.Kind != ProjectKindBuild {
 		return
 	}
-	openFiles := openSnapshotFiles(old)
-	id := nextSnapshotID(old.ID)
-	reuseFrom := old
-	if clean || id == initialSnapshotID {
-		reuseFrom = nil
-	}
-	newSnapshot := newBuildSnapshot(id, reuseFrom, root, openFiles)
-	if !clean {
-		invalidateChangedDependents(old, newSnapshot, source.URI)
-	}
+	newSnapshot := nextBuildSnapshot(old, nil)
+	invalidateChangedDependents(old, newSnapshot, source.URI)
 	manager.Publish(newSnapshot)
-	logLS(root, "snapshot refresh published key=%s kind=%s newID=%d modules=%d files=%d clean=%t", root, projectKindString(newSnapshot.Kind), newSnapshot.ID, len(newSnapshot.Modules), len(newSnapshot.Files), clean)
+	logLS(root, "snapshot refresh published key=%s kind=%s newID=%d modules=%d files=%d source=%s", root, projectKindString(newSnapshot.Kind), newSnapshot.ID, len(newSnapshot.Modules), len(newSnapshot.Files), source.Path)
+	s.scheduleDiagnostics(manager, newSnapshot, source, diagnosticsDelay)
+	s.publishRemovedFileDiagnostics(old, newSnapshot)
+}
+
+func (s *Server) rebuildBuildProject(root string, source SourceFile) {
+	manager := s.snapshots[root]
+	if manager == nil {
+		manager = NewBuildSnapshotManager(root)
+		s.snapshots[root] = manager
+	}
+	old := manager.Current()
+	if old.Kind != ProjectKindBuild {
+		return
+	}
+	newSnapshot := newBuildSnapshot(nextSnapshotID(old.ID), nil, root, openSnapshotFiles(old))
+	manager.Publish(newSnapshot)
+	logLS(root, "snapshot rebuild published key=%s kind=%s newID=%d modules=%d files=%d source=%s", root, projectKindString(newSnapshot.Kind), newSnapshot.ID, len(newSnapshot.Modules), len(newSnapshot.Files), source.Path)
 	s.scheduleDiagnostics(manager, newSnapshot, source, diagnosticsDelay)
 	s.publishRemovedFileDiagnostics(old, newSnapshot)
 }
@@ -491,14 +501,7 @@ func (s *Server) projectRootForWatchedPath(path string) string {
 
 func isRelevantWatchedPath(root string, path string) bool {
 	path = normalizePath(path)
-	if !isUnder(path, root) {
-		return false
-	}
-	if strings.HasSuffix(path, ".bal") || filepath.Base(path) == "Ballerina.toml" {
-		return true
-	}
-	modulesDir := filepath.Join(root, "modules")
-	return isUnder(path, modulesDir) && filepath.Ext(path) == ""
+	return isUnder(path, root) && (strings.HasSuffix(path, ".bal") || filepath.Base(path) == "Ballerina.toml")
 }
 
 func invalidateChangedDependents(old *Snapshot, snapshot *Snapshot, changedURI protocol.DocumentURI) {
@@ -865,7 +868,6 @@ func (s *Server) registerWatchedFiles() {
 				Watchers: []protocol.FileSystemWatcher{
 					{GlobPattern: "**/*.bal", Kind: protocol.WatchKindCreate | protocol.WatchKindChange | protocol.WatchKindDelete},
 					{GlobPattern: "**/Ballerina.toml", Kind: protocol.WatchKindCreate | protocol.WatchKindChange | protocol.WatchKindDelete},
-					{GlobPattern: "**/modules/**", Kind: protocol.WatchKindCreate | protocol.WatchKindDelete},
 				},
 			},
 		}},

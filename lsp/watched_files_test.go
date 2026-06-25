@@ -31,6 +31,7 @@ func TestWatchedBalFileChangeRefreshesDiskContent(t *testing.T) {
 	mainPath := filepath.Join(root, "main.bal")
 	uri := uriFromPath(mainPath)
 	server := newWatchedFilesTestServer(root)
+	oldSnapshot := server.snapshots[root].Current()
 
 	updated := "public function main() { int i = 1; }"
 	if err := os.WriteFile(mainPath, []byte(updated), 0o644); err != nil {
@@ -41,8 +42,12 @@ func TestWatchedBalFileChangeRefreshesDiskContent(t *testing.T) {
 		Changes: []protocol.FileEvent{{URI: uri, Type: protocol.FileChangeTypeChanged}},
 	}))
 
-	if got := server.snapshots[root].Current().Files[uri].Content; got != updated {
+	newSnapshot := server.snapshots[root].Current()
+	if got := newSnapshot.Files[uri].Content; got != updated {
 		t.Fatalf("content = %q, want %q", got, updated)
+	}
+	if newSnapshot.Env != oldSnapshot.Env {
+		t.Fatal("compiler environment was not reused for changed .bal file")
 	}
 }
 
@@ -50,6 +55,7 @@ func TestWatchedBalFileCreateAndDeleteRefreshesProjectSnapshot(t *testing.T) {
 	root := t.TempDir()
 	writeBuildProjectFiles(t, root, "public function main() {}")
 	server := newWatchedFilesTestServer(root)
+	oldSnapshot := server.snapshots[root].Current()
 	newPath := filepath.Join(root, "util.bal")
 	newURI := uriFromPath(newPath)
 
@@ -59,8 +65,12 @@ func TestWatchedBalFileCreateAndDeleteRefreshesProjectSnapshot(t *testing.T) {
 	server.handleNotification("workspace/didChangeWatchedFiles", mustMarshalTest(t, protocol.DidChangeWatchedFilesParams{
 		Changes: []protocol.FileEvent{{URI: newURI, Type: protocol.FileChangeTypeCreated}},
 	}))
-	if _, ok := server.snapshots[root].Current().Files[newURI]; !ok {
+	createdSnapshot := server.snapshots[root].Current()
+	if _, ok := createdSnapshot.Files[newURI]; !ok {
 		t.Fatal("created file was not added to the project snapshot")
+	}
+	if createdSnapshot.Env == oldSnapshot.Env {
+		t.Fatal("compiler environment was reused after .bal file create")
 	}
 
 	if err := os.Remove(newPath); err != nil {
@@ -69,25 +79,30 @@ func TestWatchedBalFileCreateAndDeleteRefreshesProjectSnapshot(t *testing.T) {
 	server.handleNotification("workspace/didChangeWatchedFiles", mustMarshalTest(t, protocol.DidChangeWatchedFilesParams{
 		Changes: []protocol.FileEvent{{URI: newURI, Type: protocol.FileChangeTypeDeleted}},
 	}))
-	if _, ok := server.snapshots[root].Current().Files[newURI]; ok {
+	deletedSnapshot := server.snapshots[root].Current()
+	if _, ok := deletedSnapshot.Files[newURI]; ok {
 		t.Fatal("deleted file remained in the project snapshot")
+	}
+	if deletedSnapshot.Env == createdSnapshot.Env {
+		t.Fatal("compiler environment was reused after .bal file delete")
 	}
 }
 
-func TestWatchedModuleDirectoryCreateRefreshesProjectSnapshot(t *testing.T) {
+func TestWatchedModuleFileCreateRefreshesProjectSnapshot(t *testing.T) {
 	root := t.TempDir()
 	writeBuildProjectFiles(t, root, "public function main() {}")
 	server := newWatchedFilesTestServer(root)
 	moduleRoot := filepath.Join(root, "modules", "util")
+	moduleFile := filepath.Join(moduleRoot, "util.bal")
 	if err := os.MkdirAll(moduleRoot, 0o755); err != nil {
 		t.Fatal(err)
 	}
-	if err := os.WriteFile(filepath.Join(moduleRoot, "util.bal"), []byte("public function util() {}"), 0o644); err != nil {
+	if err := os.WriteFile(moduleFile, []byte("public function util() {}"), 0o644); err != nil {
 		t.Fatal(err)
 	}
 
 	server.handleNotification("workspace/didChangeWatchedFiles", mustMarshalTest(t, protocol.DidChangeWatchedFilesParams{
-		Changes: []protocol.FileEvent{{URI: uriFromPath(moduleRoot), Type: protocol.FileChangeTypeCreated}},
+		Changes: []protocol.FileEvent{{URI: uriFromPath(moduleFile), Type: protocol.FileChangeTypeCreated}},
 	}))
 
 	if _, ok := server.snapshots[root].Current().Modules["util"]; !ok {
@@ -95,10 +110,34 @@ func TestWatchedModuleDirectoryCreateRefreshesProjectSnapshot(t *testing.T) {
 	}
 }
 
+func TestWatchedModuleDirectoryCreateIsIgnored(t *testing.T) {
+	root := t.TempDir()
+	writeBuildProjectFiles(t, root, "public function main() {}")
+	server := newWatchedFilesTestServer(root)
+	oldSnapshot := server.snapshots[root].Current()
+	moduleRoot := filepath.Join(root, "modules", "util")
+	moduleFile := filepath.Join(moduleRoot, "util.bal")
+	if err := os.MkdirAll(moduleRoot, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(moduleFile, []byte("public function util() {}"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	server.handleNotification("workspace/didChangeWatchedFiles", mustMarshalTest(t, protocol.DidChangeWatchedFilesParams{
+		Changes: []protocol.FileEvent{{URI: uriFromPath(moduleRoot), Type: protocol.FileChangeTypeCreated}},
+	}))
+
+	if server.snapshots[root].Current() != oldSnapshot {
+		t.Fatal("module directory event refreshed the project snapshot")
+	}
+}
+
 func TestWatchedBallerinaTomlChangeRefreshesProjectDescriptor(t *testing.T) {
 	root := t.TempDir()
 	writeBuildProjectFiles(t, root, "public function main() {}")
 	server := newWatchedFilesTestServer(root)
+	oldSnapshot := server.snapshots[root].Current()
 	tomlPath := filepath.Join(root, "Ballerina.toml")
 	updated := `[package]
 org = "testorg"
@@ -113,8 +152,12 @@ version = "0.1.0"
 		Changes: []protocol.FileEvent{{URI: uriFromPath(tomlPath), Type: protocol.FileChangeTypeChanged}},
 	}))
 
-	if got := server.snapshots[root].Current().PkgName; got != "renamed" {
+	newSnapshot := server.snapshots[root].Current()
+	if got := newSnapshot.PkgName; got != "renamed" {
 		t.Fatalf("package name = %q, want renamed", got)
+	}
+	if newSnapshot.Env == oldSnapshot.Env {
+		t.Fatal("compiler environment was reused after Ballerina.toml change")
 	}
 }
 
@@ -142,7 +185,7 @@ func TestWatchedFileChangeKeepsOpenBufferContent(t *testing.T) {
 	}
 }
 
-func TestWatchedRenameCleansAndReanalyzesProject(t *testing.T) {
+func TestWatchedRenameRebuildsAndReanalyzesProject(t *testing.T) {
 	root := t.TempDir()
 	writeBuildProjectFiles(t, root, "public function main() {}")
 	oldPath := filepath.Join(root, "main.bal")
