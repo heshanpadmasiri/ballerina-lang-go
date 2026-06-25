@@ -195,6 +195,31 @@ func TestCompletionAtStatementBeginPrefixExpressionStmtKeepsImportSuggestions(t 
 	assertCompletionItem(t, items, "io:")
 }
 
+func TestCompletionAtLoopStatementBeginIncludesBreakAndContinue(t *testing.T) {
+	items := completionItemsAtMarker(t, "function foo() {\n    while true {\n        $\n    }\n}\n")
+
+	assertSnippetCompletionItem(t, items, "break", "break;")
+	assertSnippetCompletionItem(t, items, "continue", "continue;")
+	assertCompletionItem(t, items, "if")
+}
+
+func TestCompletionAtForeachLoopStatementBeginMatchesBreakAndContinuePrefixes(t *testing.T) {
+	breakItems := completionItemsAtMarker(t, "function foo(int[] values) {\n    foreach int value in values {\n        br$\n    }\n}\n")
+	assertSnippetCompletionItem(t, breakItems, "break", "break;")
+	assertNoCompletionItem(t, breakItems, "continue")
+
+	continueItems := completionItemsAtMarker(t, "function foo(int[] values) {\n    foreach int value in values {\n        co$\n    }\n}\n")
+	assertSnippetCompletionItem(t, continueItems, "continue", "continue;")
+	assertNoCompletionItem(t, continueItems, "break")
+}
+
+func TestCompletionAtStatementBeginOutsideLoopDoesNotIncludeBreakOrContinue(t *testing.T) {
+	items := completionItemsAtMarker(t, "function foo() {\n    $\n}\n")
+
+	assertNoCompletionItem(t, items, "break")
+	assertNoCompletionItem(t, items, "continue")
+}
+
 func TestCompletionFiltersGeneratedSymbols(t *testing.T) {
 	items := completionItemsAtMarker(t, "function helper(int count = 1) {\n}\nfunction foo() {\n    $\n}\n")
 

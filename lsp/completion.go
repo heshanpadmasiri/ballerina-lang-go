@@ -46,6 +46,7 @@ const (
 	completionKindRecordTypeDesc
 	completionKindRecordField
 	completionKindStatementBegin
+	completionKindLoopStatementBegin
 	completionKindExpression
 )
 
@@ -181,6 +182,8 @@ func completionKindString(kind completionKind) string {
 		return "record-field"
 	case completionKindStatementBegin:
 		return "statement-begin"
+	case completionKindLoopStatementBegin:
+		return "loop-statement-begin"
 	case completionKindExpression:
 		return "expression"
 	default:
@@ -267,13 +270,19 @@ func (s *Server) generalCompletionItems(snapshot *Snapshot, module *Module, sour
 	if cu == nil {
 		cu = recoveredCU
 	}
-	if completionCtx.kind == completionKindModuleVarDecl {
+	switch completionCtx.kind {
+	case completionKindModuleVarDecl:
 		for _, item := range moduleVarDeclCompletionItems(cx, cu, completionModule.Package, chain, offset, completionCtx.prefix) {
 			addItem(item)
 		}
-	} else if completionCtx.kind == completionKindType {
+	case completionKindType:
 		return typeCompletionItems(cx, cu, completionModule.Package, chain, offset, completionCtx.prefix)
-	} else if completionCtx.kind == completionKindStatementBegin {
+	case completionKindLoopStatementBegin:
+		for _, item := range loopStatementBeginCompletionItems(completionCtx.prefix) {
+			addItem(item)
+		}
+		fallthrough
+	case completionKindStatementBegin:
 		for _, item := range visibleVariableAndFunctionCompletionItems(cx, cu, completionModule.Package, chain, offset, completionCtx.prefix) {
 			addItem(item)
 		}
@@ -283,12 +292,8 @@ func (s *Server) generalCompletionItems(snapshot *Snapshot, module *Module, sour
 		for _, item := range statementBeginCompletionItems(completionCtx.prefix) {
 			addItem(item)
 		}
-	} else if completionCtx.kind == completionKindExpression {
+	case completionKindExpression:
 		for _, item := range visibleVariableAndFunctionCompletionItems(cx, cu, completionModule.Package, chain, offset, completionCtx.prefix) {
-			addItem(item)
-		}
-	} else {
-		for _, item := range visibleSymbolCompletionItems(cx, cu, completionModule.Package, chain, offset, completionCtx.prefix) {
 			addItem(item)
 		}
 	}
@@ -544,14 +549,8 @@ func completionContextFromNodeChain(offset int, prefix string, chain []ast.BLang
 	if ctx, ok := signatureCompletionContextFromNodeChain(offset, prefix, chain); ok {
 		return ctx
 	}
-	for i := len(chain) - 1; i >= 0; i-- {
-		var next ast.BLangNode
-		if i+1 < len(chain) {
-			next = chain[i+1]
-		}
-		if ctx, ok := completionContextAtChainNode(offset, prefix, chain[i], next); ok {
-			return ctx
-		}
+	if ctx, ok := completionContextAtChainNode(offset, prefix, chain); ok {
+		return ctx
 	}
 	return completionContext{kind: completionKindNone, prefix: prefix}
 }
@@ -580,59 +579,66 @@ func signatureCompletionContextFromNodeChain(offset int, prefix string, chain []
 	return completionContext{}, false
 }
 
-func completionContextAtChainNode(offset int, prefix string, node ast.BLangNode, next ast.BLangNode) (completionContext, bool) {
-	switch n := node.(type) {
-	case *ast.BLangCompilationUnit:
-		if isModuleVarDeclCompletionNode(next) {
-			return completionContext{kind: completionKindModuleVarDecl, prefix: prefix}, true
+func completionContextAtChainNode(offset int, prefix string, chain []ast.BLangNode) (completionContext, bool) {
+	for index := len(chain) - 1; index >= 0; index-- {
+		node := chain[index]
+		var next ast.BLangNode
+		if index+1 < len(chain) {
+			next = chain[index+1]
 		}
-	case *ast.BLangFunction:
-		return invokableCompletionContext(offset, prefix, n)
-	case *ast.BLangResourceMethod:
-		return invokableCompletionContext(offset, prefix, n)
-	case *ast.BLangFunctionType:
-		return functionTypeCompletionContext(offset, prefix, n)
-	case *ast.BMethodDecl:
-		return functionTypeCompletionContext(offset, prefix, &n.BLangFunctionType)
-	case *ast.BLangTypeDefinition:
-		if isRecordTypeDescriptorCompletionContext(offset, prefix, n) {
-			return completionContext{kind: completionKindRecordTypeDesc, prefix: prefix}, true
-		}
-	case *ast.BLangRecordType:
-		return recordTypeCompletionContext(offset, prefix, n)
-	case *ast.BLangFieldBaseAccess:
-		if n.Expr != nil {
-			exprPos := n.Expr.GetPosition()
-			if exprPos.EndOffset() < offset {
-				return completionContext{kind: completionKindMemberAccess}, true
+		switch n := node.(type) {
+		case *ast.BLangCompilationUnit:
+			if isModuleVarDeclCompletionNode(next) {
+				return completionContext{kind: completionKindModuleVarDecl, prefix: prefix}, true
 			}
-		}
-	case *ast.BLangSimpleVariable:
-		if typeNodeContainsOffset(n.TypeNode(), offset) {
-			return completionContext{kind: completionKindType, prefix: prefix}, true
-		}
-		if initialExpressionContainsOffset(n, offset) && prefix != "" {
-			return completionContext{kind: completionKindExpression, prefix: prefix}, true
-		}
-	case *ast.BLangExpressionStmt:
-		if isStatementBeginPrefixExpressionStmt(n, prefix) {
-			return completionContext{kind: completionKindStatementBegin, prefix: prefix}, true
-		}
-	case *ast.BLangSimpleVarRef:
-		if ctx, _, ok := importedSymbolContextFromQualifiedName(n.PkgAlias, n.VariableName, n.GetPosition(), offset); ok {
-			return ctx, true
-		}
-	case *ast.BLangInvocation:
-		if ctx, _, ok := importedSymbolContextFromQualifiedName(n.PkgAlias, n.Name, n.GetPosition(), offset); ok {
-			return ctx, true
-		}
-	case *ast.BLangBlockFunctionBody:
-		if isStatementBlockCompletionNode(next) {
-			return completionContext{kind: completionKindStatementBegin, prefix: prefix}, true
-		}
-	case *ast.BLangBlockStmt:
-		if isStatementBlockCompletionNode(next) {
-			return completionContext{kind: completionKindStatementBegin, prefix: prefix}, true
+		case *ast.BLangFunction:
+			return invokableCompletionContext(offset, prefix, n)
+		case *ast.BLangResourceMethod:
+			return invokableCompletionContext(offset, prefix, n)
+		case *ast.BLangFunctionType:
+			return functionTypeCompletionContext(offset, prefix, n)
+		case *ast.BMethodDecl:
+			return functionTypeCompletionContext(offset, prefix, &n.BLangFunctionType)
+		case *ast.BLangTypeDefinition:
+			if isRecordTypeDescriptorCompletionContext(offset, prefix, n) {
+				return completionContext{kind: completionKindRecordTypeDesc, prefix: prefix}, true
+			}
+		case *ast.BLangRecordType:
+			return recordTypeCompletionContext(offset, prefix, n)
+		case *ast.BLangFieldBaseAccess:
+			if n.Expr != nil {
+				exprPos := n.Expr.GetPosition()
+				if exprPos.EndOffset() < offset {
+					return completionContext{kind: completionKindMemberAccess}, true
+				}
+			}
+		case *ast.BLangSimpleVariable:
+			if typeNodeContainsOffset(n.TypeNode(), offset) {
+				return completionContext{kind: completionKindType, prefix: prefix}, true
+			}
+			if initialExpressionContainsOffset(n, offset) && prefix != "" {
+				return completionContext{kind: completionKindExpression, prefix: prefix}, true
+			}
+		case *ast.BLangExpressionStmt:
+			if isStatementBeginPrefixExpressionStmt(n, prefix) {
+				return statementBeginCompletionContext(prefix, chain, index), true
+			}
+		case *ast.BLangSimpleVarRef:
+			if ctx, _, ok := importedSymbolContextFromQualifiedName(n.PkgAlias, n.VariableName, n.GetPosition(), offset); ok {
+				return ctx, true
+			}
+		case *ast.BLangInvocation:
+			if ctx, _, ok := importedSymbolContextFromQualifiedName(n.PkgAlias, n.Name, n.GetPosition(), offset); ok {
+				return ctx, true
+			}
+		case *ast.BLangBlockFunctionBody:
+			if isStatementBlockCompletionNode(next) {
+				return statementBeginCompletionContext(prefix, chain, index), true
+			}
+		case *ast.BLangBlockStmt:
+			if isStatementBlockCompletionNode(next) {
+				return statementBeginCompletionContext(prefix, chain, index), true
+			}
 		}
 	}
 	return completionContext{}, false
@@ -806,6 +812,24 @@ func isStatementBlockCompletionNode(next ast.BLangNode) bool {
 	return ok
 }
 
+func statementBeginCompletionContext(prefix string, chain []ast.BLangNode, index int) completionContext {
+	kind := completionKindStatementBegin
+	if isInsideLoop(chain[:index+1]) {
+		kind = completionKindLoopStatementBegin
+	}
+	return completionContext{kind: kind, prefix: prefix}
+}
+
+func isInsideLoop(chain []ast.BLangNode) bool {
+	for i := len(chain) - 1; i >= 0; i-- {
+		switch chain[i].(type) {
+		case *ast.BLangWhile, *ast.BLangForeach:
+			return true
+		}
+	}
+	return false
+}
+
 func isStatementBeginPrefixExpressionStmt(stmt *ast.BLangExpressionStmt, prefix string) bool {
 	if prefix == "" {
 		return false
@@ -862,11 +886,14 @@ func (f *nodeChainAtOffsetFinder) Visit(node ast.BLangNode) ast.Visitor {
 		}
 		return f
 	}
-	if locationHasUsableOffsets(node.GetPosition()) && !locationContains(node.GetPosition(), f.offset) {
+	loc := node.GetPosition()
+	if locationHasUsableOffsets(loc) && !locationContains(loc, f.offset) {
 		return nil
 	}
 	f.stack = append(f.stack, node)
-	f.chain = append(f.chain[:0], f.stack...)
+	if len(f.chain) == 0 || locationHasUsableOffsets(loc) {
+		f.chain = append(f.chain[:0], f.stack...)
+	}
 	return f
 }
 
@@ -1142,6 +1169,19 @@ func statementBeginCompletionItems(prefix string) []protocol.CompletionItem {
 		{Label: "foreach", Kind: protocol.CompletionItemKindKeyword, InsertText: "foreach ${1:type} ${2:var} in ${3:collection} {\n\t${4:body}\n}", InsertTextFormat: protocol.InsertTextFormatSnippet},
 		{Label: "while", Kind: protocol.CompletionItemKindKeyword, InsertText: "while ${1:cond} {\n\t${2:body}\n}", InsertTextFormat: protocol.InsertTextFormatSnippet},
 		{Label: "if", Kind: protocol.CompletionItemKindKeyword, InsertText: "if ${1:cond} {\n\t${2:body}\n}", InsertTextFormat: protocol.InsertTextFormatSnippet},
+	} {
+		if strings.HasPrefix(item.Label, prefix) {
+			items = append(items, item)
+		}
+	}
+	return items
+}
+
+func loopStatementBeginCompletionItems(prefix string) []protocol.CompletionItem {
+	items := make([]protocol.CompletionItem, 0, 2)
+	for _, item := range []protocol.CompletionItem{
+		{Label: "break", Kind: protocol.CompletionItemKindKeyword, InsertText: "break;", InsertTextFormat: protocol.InsertTextFormatSnippet},
+		{Label: "continue", Kind: protocol.CompletionItemKindKeyword, InsertText: "continue;", InsertTextFormat: protocol.InsertTextFormatSnippet},
 	} {
 		if strings.HasPrefix(item.Label, prefix) {
 			items = append(items, item)
