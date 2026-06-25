@@ -168,8 +168,21 @@ func TestCompletionAtStatementBeginIncludesVisibleVariablesFunctionsTypesAndCont
 	assertSnippetCompletionItem(t, items, "foreach", "foreach ${1:type} ${2:var} in ${3:collection} {\n\t${4:body}\n}")
 	assertSnippetCompletionItem(t, items, "while", "while ${1:cond} {\n\t${2:body}\n}")
 	assertSnippetCompletionItem(t, items, "if", "if ${1:cond} {\n\t${2:body}\n}")
+	assertSnippetCompletionItem(t, items, "return", "return;")
 	assertNoCompletionItem(t, items, "assignment")
 	assertNoCompletionItem(t, items, "variable decl")
+}
+
+func TestCompletionAtFunctionStatementBeginReturnPrefixIncludesReturn(t *testing.T) {
+	items := completionItemsAtMarker(t, "function foo() {\n    ret$\n}\n")
+
+	assertSnippetCompletionItem(t, items, "return", "return;")
+}
+
+func TestCompletionAtTopLevelDoesNotIncludeReturn(t *testing.T) {
+	items := completionItemsAtMarker(t, "ret$\n")
+
+	assertNoCompletionItem(t, items, "return")
 }
 
 func TestCompletionAtStatementSnippetPrefixExpressionStmtIncludesMatchingSnippets(t *testing.T) {
@@ -200,6 +213,7 @@ func TestCompletionAtLoopStatementBeginIncludesBreakAndContinue(t *testing.T) {
 
 	assertSnippetCompletionItem(t, items, "break", "break;")
 	assertSnippetCompletionItem(t, items, "continue", "continue;")
+	assertSnippetCompletionItem(t, items, "return", "return;")
 	assertCompletionItem(t, items, "if")
 }
 
@@ -218,6 +232,7 @@ func TestCompletionAtStatementBeginOutsideLoopDoesNotIncludeBreakOrContinue(t *t
 
 	assertNoCompletionItem(t, items, "break")
 	assertNoCompletionItem(t, items, "continue")
+	assertCompletionItem(t, items, "return")
 }
 
 func TestCompletionFiltersGeneratedSymbols(t *testing.T) {

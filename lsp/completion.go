@@ -46,6 +46,7 @@ const (
 	completionKindRecordTypeDesc
 	completionKindRecordField
 	completionKindStatementBegin
+	completionKindFunctionStatementBegin
 	completionKindLoopStatementBegin
 	completionKindExpression
 )
@@ -182,6 +183,8 @@ func completionKindString(kind completionKind) string {
 		return "record-field"
 	case completionKindStatementBegin:
 		return "statement-begin"
+	case completionKindFunctionStatementBegin:
+		return "function-statement-begin"
 	case completionKindLoopStatementBegin:
 		return "loop-statement-begin"
 	case completionKindExpression:
@@ -234,19 +237,19 @@ func (s *Server) generalCompletionItems(snapshot *Snapshot, module *Module, sour
 		itemsByLabel[item.Label] = item
 		labels = append(labels, item.Label)
 	}
-	if completionCtx.kind == completionKindNone {
+	switch completionCtx.kind {
+	case completionKindNone:
 		return nil
-	}
-	if completionCtx.kind == completionKindReturnTypeDesc {
+	case completionKindReturnTypeDesc:
 		return []protocol.CompletionItem{{Label: "returns", Kind: protocol.CompletionItemKindKeyword, InsertText: "returns ${1:Ty}", InsertTextFormat: protocol.InsertTextFormatSnippet}}
-	}
-	if completionCtx.kind == completionKindRecordTypeDesc {
+	case completionKindRecordTypeDesc:
 		return recordTypeDescriptorCompletionItems(completionCtx.prefix)
-	}
-	if completionCtx.kind == completionKindRecordField {
+	case completionKindRecordField:
 		return recordFieldCompletionItems(completionCtx.prefix)
-	}
-	if completionCtx.kind != completionKindModuleVarDecl && completionCtx.kind != completionKindType && completionCtx.kind != completionKindExpression {
+	case completionKindModuleVarDecl:
+		recoveredCU = compilationUnitWithoutBadTopLevelNodes(recoveredCU)
+	case completionKindType, completionKindExpression:
+	default:
 		for _, imp := range compilationUnitImportsForCompletion(recoveredCU) {
 			alias := importAlias(&imp)
 			if alias == "" {
@@ -257,10 +260,6 @@ func (s *Server) generalCompletionItems(snapshot *Snapshot, module *Module, sour
 		for _, item := range autoImportModuleCompletionItems(snapshot, module, source, recoveredCU) {
 			addItem(item)
 		}
-	}
-
-	if completionCtx.kind == completionKindModuleVarDecl {
-		recoveredCU = compilationUnitWithoutBadTopLevelNodes(recoveredCU)
 	}
 
 	completionSnapshot, completionModule := snapshotWithRecoveredCU(snapshot, module, source.URI, recoveredCU)
@@ -279,6 +278,11 @@ func (s *Server) generalCompletionItems(snapshot *Snapshot, module *Module, sour
 		return typeCompletionItems(cx, cu, completionModule.Package, chain, offset, completionCtx.prefix)
 	case completionKindLoopStatementBegin:
 		for _, item := range loopStatementBeginCompletionItems(completionCtx.prefix) {
+			addItem(item)
+		}
+		fallthrough
+	case completionKindFunctionStatementBegin:
+		for _, item := range functionStatementBeginCompletionItems(completionCtx.prefix) {
 			addItem(item)
 		}
 		fallthrough
@@ -813,17 +817,29 @@ func isStatementBlockCompletionNode(next ast.BLangNode) bool {
 }
 
 func statementBeginCompletionContext(prefix string, chain []ast.BLangNode, index int) completionContext {
-	kind := completionKindStatementBegin
 	if isInsideLoop(chain[:index+1]) {
-		kind = completionKindLoopStatementBegin
+		return completionContext{kind: completionKindLoopStatementBegin, prefix: prefix}
 	}
-	return completionContext{kind: kind, prefix: prefix}
+	if isInsideFunction(chain[:index+1]) {
+		return completionContext{kind: completionKindFunctionStatementBegin, prefix: prefix}
+	}
+	return completionContext{kind: completionKindStatementBegin, prefix: prefix}
 }
 
 func isInsideLoop(chain []ast.BLangNode) bool {
 	for i := len(chain) - 1; i >= 0; i-- {
 		switch chain[i].(type) {
 		case *ast.BLangWhile, *ast.BLangForeach:
+			return true
+		}
+	}
+	return false
+}
+
+func isInsideFunction(chain []ast.BLangNode) bool {
+	for i := len(chain) - 1; i >= 0; i-- {
+		switch chain[i].(type) {
+		case *ast.BLangFunction, *ast.BLangResourceMethod:
 			return true
 		}
 	}
@@ -1175,6 +1191,12 @@ func statementBeginCompletionItems(prefix string) []protocol.CompletionItem {
 		}
 	}
 	return items
+}
+
+func functionStatementBeginCompletionItems(prefix string) []protocol.CompletionItem {
+	return snippetCompletionItems(prefix, []protocol.CompletionItem{
+		{Label: "return", Kind: protocol.CompletionItemKindKeyword, InsertText: "return;", InsertTextFormat: protocol.InsertTextFormatSnippet},
+	})
 }
 
 func loopStatementBeginCompletionItems(prefix string) []protocol.CompletionItem {
