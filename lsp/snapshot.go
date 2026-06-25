@@ -72,18 +72,20 @@ const (
 )
 
 type Module struct {
-	Name             string
-	Root             string
-	PackageID        *model.PackageID
-	Files            map[protocol.DocumentURI]SourceFile
-	CompilationUnits map[protocol.DocumentURI]*ast.BLangCompilationUnit
-	Stage            FrontendStage
-	Imports          []ModuleImport
-	ImportedByCU     []semantics.CompilationUnitImports
-	ImportedSymbols  map[string]model.ExportedSymbolSpace
-	Package          *ast.BLangPackage
-	Exported         model.ExportedSymbolSpace
-	CFG              *semantics.PackageCFG
+	Name                   string
+	Root                   string
+	PackageID              *model.PackageID
+	Files                  map[protocol.DocumentURI]SourceFile
+	ImportCompilationUnits map[protocol.DocumentURI]*ast.BLangCompilationUnit
+	CompilationUnits       map[protocol.DocumentURI]*ast.BLangCompilationUnit
+	Stage                  FrontendStage
+	Imports                []ModuleImport
+	ImportsResolved        bool
+	ImportedByCU           []semantics.CompilationUnitImports
+	ImportedSymbols        map[string]model.ExportedSymbolSpace
+	Package                *ast.BLangPackage
+	Exported               model.ExportedSymbolSpace
+	CFG                    *semantics.PackageCFG
 }
 
 type Snapshot struct {
@@ -145,11 +147,12 @@ func newSingleFileSnapshot(id int64, file SourceFile) *Snapshot {
 	file.File = file.Path
 	files := map[protocol.DocumentURI]SourceFile{file.URI: file}
 	module := &Module{
-		Name:             defaultModuleName,
-		Root:             filepath.Dir(file.Path),
-		PackageID:        env.GetDefaultPackage(),
-		Files:            files,
-		CompilationUnits: make(map[protocol.DocumentURI]*ast.BLangCompilationUnit),
+		Name:                   defaultModuleName,
+		Root:                   filepath.Dir(file.Path),
+		PackageID:              env.GetDefaultPackage(),
+		Files:                  files,
+		ImportCompilationUnits: make(map[protocol.DocumentURI]*ast.BLangCompilationUnit),
+		CompilationUnits:       make(map[protocol.DocumentURI]*ast.BLangCompilationUnit),
 	}
 	registerFiles(env, files)
 	return &Snapshot{
@@ -207,11 +210,12 @@ func scanBuildProject(env *context.CompilerEnvironment, root, orgName, pkgName, 
 			files[uri] = file
 		}
 		modules[name] = &Module{
-			Name:             name,
-			Root:             moduleRoot,
-			PackageID:        packageID,
-			Files:            moduleFiles,
-			CompilationUnits: make(map[protocol.DocumentURI]*ast.BLangCompilationUnit),
+			Name:                   name,
+			Root:                   moduleRoot,
+			PackageID:              packageID,
+			Files:                  moduleFiles,
+			ImportCompilationUnits: make(map[protocol.DocumentURI]*ast.BLangCompilationUnit),
+			CompilationUnits:       make(map[protocol.DocumentURI]*ast.BLangCompilationUnit),
 		}
 	}
 
@@ -273,9 +277,11 @@ func scanModuleFiles(moduleRoot string, openFiles map[protocol.DocumentURI]Sourc
 }
 
 func reuseModuleState(module *Module, oldModule *Module) {
+	module.ImportCompilationUnits = oldModule.ImportCompilationUnits
 	module.CompilationUnits = oldModule.CompilationUnits
 	module.Stage = oldModule.Stage
 	module.Imports = oldModule.Imports
+	module.ImportsResolved = oldModule.ImportsResolved
 	module.ImportedByCU = oldModule.ImportedByCU
 	module.ImportedSymbols = oldModule.ImportedSymbols
 	module.Package = oldModule.Package

@@ -45,7 +45,7 @@ func runDiagnostics(snapshot *Snapshot, source SourceFile) map[protocol.Document
 		if source.URI != "" {
 			return runChangedModuleDiagnostics(cx, snapshot, source)
 		}
-		if !dispatchParseAll(cx, snapshot) || !dispatchTopoSort(cx, snapshot) || len(snapshot.TopoOrder) == 0 {
+		if !dispatchParseImports(cx, snapshot) || !dispatchTopoSort(cx, snapshot) || len(snapshot.TopoOrder) == 0 {
 			return convertDiagnostics(snapshot, cx.Diagnostics())
 		}
 		last := snapshot.TopoOrder[len(snapshot.TopoOrder)-1]
@@ -64,12 +64,17 @@ func runDiagnostics(snapshot *Snapshot, source SourceFile) map[protocol.Document
 }
 
 func runChangedModuleDiagnostics(cx *context.CompilerContext, snapshot *Snapshot, source SourceFile) map[protocol.DocumentURI][]protocol.Diagnostic {
-	if len(snapshot.TopoOrder) == 0 && (!dispatchParseAll(cx, snapshot) || !dispatchTopoSort(cx, snapshot)) {
+	if !dispatchParseImports(cx, snapshot) || !dispatchTopoSort(cx, snapshot) {
 		return convertDiagnostics(snapshot, cx.Diagnostics())
 	}
-	module := snapshot.Modules[moduleNameForURI(snapshot, source.URI)]
-	if module != nil {
-		runModuleFrontend(cx, snapshot, module, FrontendStageCFGAnalyzed)
+	changedModule := moduleNameForURI(snapshot, source.URI)
+	for _, name := range snapshot.TopoOrder {
+		module := snapshot.Modules[name]
+		if name == changedModule {
+			runModuleFrontend(cx, snapshot, module, FrontendStageCFGAnalyzed)
+			break
+		}
+		runModuleFrontend(cx, snapshot, module, FrontendStageTopLevelTypeResolved)
 	}
 	logLS(snapshot.Root, "project compile complete snapshotID=%d", snapshot.ID)
 	return convertDiagnostics(snapshot, cx.Diagnostics())
@@ -140,6 +145,7 @@ func runModuleParse(cx *context.CompilerContext, snapshot *Snapshot, module *Mod
 		return false
 	}
 	module.Imports = localModuleImports(snapshot, units)
+	module.ImportsResolved = true
 	module.Stage = FrontendStageParsed
 	logLS(snapshot.Root, "module parsed snapshotID=%d module=%s files=%d units=%d imports=%d", snapshot.ID, module.Name, len(module.Files), len(units), len(module.Imports))
 	return true
@@ -168,7 +174,7 @@ func prepareSymbolResolution(cx *context.CompilerContext, snapshot *Snapshot, ta
 		return langlibs, langlibs.PublicSymbols, true
 	}
 
-	if len(snapshot.TopoOrder) == 0 && (!dispatchParseAll(cx, snapshot) || !dispatchTopoSort(cx, snapshot)) {
+	if !dispatchParseImports(cx, snapshot) || !dispatchTopoSort(cx, snapshot) {
 		return nil, nil, false
 	}
 	order := snapshot.TopoOrder
@@ -330,6 +336,56 @@ func runModuleCFGAnalysis(cx *context.CompilerContext, root string, module *Modu
 	return true
 }
 
+func parseModuleImportCompilationUnits(cx *context.CompilerContext, snapshot *Snapshot, module *Module) []*ast.BLangCompilationUnit {
+	if module.ImportsResolved {
+		return nil
+	}
+	fullUnits := moduleCompilationUnits(module)
+	if len(fullUnits) == len(module.Files) {
+		module.Imports = localModuleImports(snapshot, fullUnits)
+		module.ImportsResolved = true
+		return fullUnits
+	}
+	if module.ImportCompilationUnits == nil {
+		module.ImportCompilationUnits = make(map[protocol.DocumentURI]*ast.BLangCompilationUnit)
+	}
+	files := sortedModuleFiles(module)
+	units := make([]*ast.BLangCompilationUnit, 0, len(files))
+	for _, file := range files {
+		if compilationUnit := module.ImportCompilationUnits[file.URI]; compilationUnit != nil {
+			logLS(snapshot.Root, "stage skipped module=%s file=%s stage=parse-imports reason=reused-compilation-unit", module.Name, file.Path)
+			compilationUnit.SetPackageID(module.PackageID)
+			units = append(units, compilationUnit)
+			continue
+		}
+		logLS(snapshot.Root, "stage start module=%s file=%s stage=parse-imports", module.Name, file.Path)
+		diagnosticsBeforeParse := len(cx.Diagnostics())
+		syntaxTree, err := parser.GetImportSyntaxTree(cx, file.File, file.Content)
+		logLS(snapshot.Root, "stage complete module=%s file=%s stage=parse-imports diagnostics=%d err=%t", module.Name, file.Path, len(cx.Diagnostics()), err != nil)
+		if err != nil {
+			continue
+		}
+		logLS(snapshot.Root, "stage start module=%s file=%s stage=import-ast-build", module.Name, file.Path)
+		compilationUnit := ast.GetCompilationUnit(cx, syntaxTree)
+		logLS(snapshot.Root, "stage complete module=%s file=%s stage=import-ast-build diagnostics=%d nil=%t", module.Name, file.Path, len(cx.Diagnostics()), compilationUnit == nil)
+		if compilationUnit == nil {
+			continue
+		}
+		compilationUnit.SetPackageID(module.PackageID)
+		if len(cx.Diagnostics()) == diagnosticsBeforeParse {
+			module.ImportCompilationUnits[file.URI] = compilationUnit
+		}
+		units = append(units, compilationUnit)
+	}
+	if len(units) == 0 || cx.HasDiagnostics() {
+		return units
+	}
+	module.Imports = localModuleImports(snapshot, units)
+	module.ImportsResolved = true
+	logLS(snapshot.Root, "module imports parsed snapshotID=%d module=%s files=%d units=%d imports=%d", snapshot.ID, module.Name, len(module.Files), len(units), len(module.Imports))
+	return units
+}
+
 func parseModuleCompilationUnits(cx *context.CompilerContext, snapshot *Snapshot, module *Module) []*ast.BLangCompilationUnit {
 	if module.CompilationUnits == nil {
 		module.CompilationUnits = make(map[protocol.DocumentURI]*ast.BLangCompilationUnit)
@@ -375,8 +431,25 @@ func dispatchParseAll(cx *context.CompilerContext, snapshot *Snapshot) bool {
 	return true
 }
 
+func dispatchParseImports(cx *context.CompilerContext, snapshot *Snapshot) bool {
+	logLS(snapshot.Root, "action dispatch snapshotID=%d action=parseImports", snapshot.ID)
+	for _, moduleName := range sortedModuleNames(snapshot) {
+		module := snapshot.Modules[moduleName]
+		if module == nil || module.ImportsResolved {
+			continue
+		}
+		units := parseModuleImportCompilationUnits(cx, snapshot, module)
+		if len(units) == 0 || cx.HasDiagnostics() {
+			return false
+		}
+	}
+	return true
+}
+
 func dispatchTopoSort(cx *context.CompilerContext, snapshot *Snapshot) bool {
-	_ = cx
+	if !dispatchParseImports(cx, snapshot) {
+		return false
+	}
 	if len(snapshot.TopoOrder) > 0 {
 		logLS(snapshot.Root, "action skipped snapshotID=%d action=topoSort", snapshot.ID)
 		return true

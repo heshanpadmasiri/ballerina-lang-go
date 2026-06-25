@@ -1093,6 +1093,7 @@ func snapshotWithRecoveredCU(snapshot *Snapshot, module *Module, uri protocol.Do
 			moduleCopy.CompilationUnits[uri] = recoveredCU
 			moduleCopy.Stage = FrontendStageNone
 			moduleCopy.Imports = nil
+			moduleCopy.ImportsResolved = false
 			moduleCopy.ImportedByCU = nil
 			moduleCopy.ImportedSymbols = nil
 			moduleCopy.Package = nil

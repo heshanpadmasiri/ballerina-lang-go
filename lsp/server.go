@@ -498,7 +498,7 @@ func isRelevantWatchedPath(root string, path string) bool {
 		return true
 	}
 	modulesDir := filepath.Join(root, "modules")
-	return isUnder(path, modulesDir)
+	return isUnder(path, modulesDir) && filepath.Ext(path) == ""
 }
 
 func invalidateChangedDependents(old *Snapshot, snapshot *Snapshot, changedURI protocol.DocumentURI) {
@@ -510,7 +510,11 @@ func invalidateChangedDependents(old *Snapshot, snapshot *Snapshot, changedURI p
 		return
 	}
 	for _, name := range modulesFromTopoOrder(old, changedModule) {
-		resetModuleState(snapshot.Modules[name])
+		module := snapshot.Modules[name]
+		resetModuleState(module)
+		if name == changedModule {
+			resetModuleImportState(module)
+		}
 	}
 	snapshot.TopoOrder = nil
 }
@@ -575,12 +579,20 @@ func resetModuleState(module *Module) {
 	}
 	module.CompilationUnits = nil
 	module.Stage = FrontendStageNone
-	module.Imports = nil
 	module.ImportedByCU = nil
 	module.ImportedSymbols = nil
 	module.Package = nil
 	module.Exported = model.ExportedSymbolSpace{}
 	module.CFG = nil
+}
+
+func resetModuleImportState(module *Module) {
+	if module == nil {
+		return
+	}
+	module.ImportCompilationUnits = nil
+	module.Imports = nil
+	module.ImportsResolved = false
 }
 
 func (s *Server) scheduleDiagnostics(manager *SnapshotManager, snapshot *Snapshot, source SourceFile, delay time.Duration) {
