@@ -48,11 +48,21 @@ const (
 	diagnosticsDelay      time.Duration          = 500 * time.Millisecond
 )
 
+type ServerMode string
+
+const (
+	ServerModeProject    ServerMode = "project"
+	ServerModeSingleFile ServerMode = "single-file"
+)
+
 type Server struct {
 	in                              io.Reader
 	out                             io.Writer
+	mode                            ServerMode
 	snapshots                       map[string]*SnapshotManager
 	root                            string
+	singleFileURI                   protocol.DocumentURI
+	singleFilePath                  string
 	shutdown                        bool
 	exited                          bool
 	exitCode                        int
@@ -80,10 +90,26 @@ type diagnosticJob struct {
 }
 
 func NewServer(in io.Reader, out io.Writer) *Server {
+	return NewServerWithMode(in, out, ServerModeProject)
+}
+
+func NewServerWithMode(in io.Reader, out io.Writer, mode ServerMode) *Server {
 	return &Server{
 		in:        in,
 		out:       out,
+		mode:      mode,
 		snapshots: make(map[string]*SnapshotManager),
+	}
+}
+
+func ParseServerMode(mode string) (ServerMode, error) {
+	switch ServerMode(mode) {
+	case ServerModeProject:
+		return ServerModeProject, nil
+	case ServerModeSingleFile:
+		return ServerModeSingleFile, nil
+	default:
+		return "", fmt.Errorf("unsupported LSP mode %q", mode)
 	}
 }
 
@@ -234,7 +260,7 @@ func (s *Server) handleNotification(method string, params json.RawMessage) {
 	logLS(s.root, "notification received method=%s", method)
 	switch method {
 	case "initialized":
-		if s.root == "" {
+		if s.root == "" || s.mode != ServerModeProject {
 			return
 		}
 		s.registerWatchedFiles()
@@ -345,10 +371,17 @@ func (s *Server) handleNotification(method string, params json.RawMessage) {
 }
 
 func (s *Server) updateSnapshot(source SourceFile, update func(map[protocol.DocumentURI]SourceFile) SourceFile) {
-	key := s.snapshotKey(source)
-	if s.root != "" && s.root != key {
-		logLS(s.root, "document mapped source=%s snapshotKey=%s projectLog=%s", source.Path, key, filepath.Join(key, ".bal", "lsp.log"))
+	if s.mode == ServerModeSingleFile {
+		if s.singleFileURI != "" && source.URI != s.singleFileURI {
+			logLS(s.root, "single-file document ignored active=%s source=%s", s.singleFilePath, source.Path)
+			return
+		}
+		if s.singleFileURI == "" {
+			s.singleFileURI = source.URI
+			s.singleFilePath = source.Path
+		}
 	}
+	key := s.snapshotKey(source)
 	manager := s.snapshotManager(key, source)
 	old := manager.Current()
 	logLS(key, "snapshot update start key=%s kind=%s oldID=%d source=%s", key, projectKindString(old.Kind), old.ID, source.Path)
@@ -480,23 +513,14 @@ func (s *Server) publishRemovedFileDiagnostics(old *Snapshot, snapshot *Snapshot
 }
 
 func (s *Server) projectRootForWatchedPath(path string) string {
+	if s.mode != ServerModeProject {
+		return ""
+	}
 	path = normalizePath(path)
 	if s.root == "" || !isUnder(path, s.root) {
 		return ""
 	}
-	best := ""
-	for root, manager := range s.snapshots {
-		if manager == nil || manager.Current().Kind != ProjectKindBuild || !isUnder(path, root) {
-			continue
-		}
-		if len(root) > len(best) {
-			best = root
-		}
-	}
-	if best != "" {
-		return best
-	}
-	return s.projectRootForFile(path)
+	return s.root
 }
 
 func isRelevantWatchedPath(root string, path string) bool {
@@ -670,16 +694,15 @@ func diagnosticPublishURIs(snapshot *Snapshot, source SourceFile) []protocol.Doc
 
 func (s *Server) initializeSnapshots(params protocol.InitializeParams) {
 	root := pathFromRoot(params)
-	if root == "" {
-		return
+	if root != "" {
+		s.root = root
 	}
-	s.root = root
 	s.workDoneProgress = params.Capabilities.Window != nil && params.Capabilities.Window.WorkDoneProgress
 	s.watchedFilesDynamicRegistration = params.Capabilities.Workspace != nil &&
 		params.Capabilities.Workspace.DidChangeWatchedFiles != nil &&
 		params.Capabilities.Workspace.DidChangeWatchedFiles.DynamicRegistration
-	logLS(root, "initialize root=%s build=%t", root, isBuildProjectRoot(root))
-	if isBuildProjectRoot(root) {
+	logLS(root, "initialize root=%s mode=%s", root, s.mode)
+	if root != "" && s.mode == ServerModeProject {
 		s.snapshots[root] = NewBuildSnapshotManager(root)
 	}
 }
@@ -695,8 +718,14 @@ func pathFromRoot(params protocol.InitializeParams) string {
 }
 
 func (s *Server) snapshotKey(file SourceFile) string {
-	if root := s.projectRootForFile(file.Path); root != "" {
-		return root
+	if s.snapshots[file.Path] != nil {
+		return file.Path
+	}
+	if s.mode == ServerModeProject && s.root != "" {
+		return s.root
+	}
+	if s.mode == ServerModeSingleFile && s.singleFilePath != "" {
+		return s.singleFilePath
 	}
 	return file.Path
 }
@@ -706,7 +735,7 @@ func (s *Server) snapshotManager(key string, file SourceFile) *SnapshotManager {
 	if manager != nil {
 		return manager
 	}
-	if isBuildProjectRoot(key) {
+	if s.mode == ServerModeProject && s.root != "" {
 		manager = NewBuildSnapshotManager(key)
 	} else {
 		manager = NewSingleFileSnapshotManager(file)
@@ -724,31 +753,6 @@ func (s *Server) sourceFile(uri protocol.DocumentURI) SourceFile {
 	}
 	file := manager.Current().Files[uri]
 	return file
-}
-
-func (s *Server) projectRootForFile(path string) string {
-	path = normalizePath(path)
-	if s.root != "" && !isUnder(path, s.root) {
-		return ""
-	}
-	boundary := normalizePath(s.root)
-	dir := path
-	if filepath.Ext(path) != "" {
-		dir = filepath.Dir(path)
-	}
-	for {
-		if isBuildProjectRoot(dir) {
-			return dir
-		}
-		if dir == boundary {
-			return ""
-		}
-		parent := filepath.Dir(dir)
-		if parent == dir {
-			return ""
-		}
-		dir = parent
-	}
 }
 
 func isUnder(path, root string) bool {

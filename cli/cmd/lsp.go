@@ -25,6 +25,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var lspMode string
+
 var lspCmd = &cobra.Command{
 	Use:   "lsp",
 	Short: "Start the Ballerina language server",
@@ -34,7 +36,15 @@ var lspCmd = &cobra.Command{
 		}
 		defer func() { _ = profiler.Stop() }()
 
-		server := lsp.NewServer(os.Stdin, os.Stdout)
+		mode, err := lsp.ParseServerMode(lspMode)
+		if err != nil {
+			return err
+		}
+		server := lsp.NewServerWithMode(os.Stdin, os.Stdout, mode)
 		return server.Run()
 	},
+}
+
+func init() {
+	lspCmd.Flags().StringVar(&lspMode, "mode", string(lsp.ServerModeProject), "language server mode: project or single-file")
 }

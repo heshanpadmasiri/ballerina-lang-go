@@ -96,6 +96,52 @@ func TestBuildSnapshotResetsGenerationAndCompilerEnvironment(t *testing.T) {
 	}
 }
 
+func TestProjectModeUsesInitializedRootAsSnapshotKey(t *testing.T) {
+	root := t.TempDir()
+	writeBuildProjectFiles(t, root, "public function main() {}")
+	nested := filepath.Join(root, "nested")
+	if err := os.MkdirAll(nested, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	writeBuildProjectFiles(t, nested, "public function nested() {}")
+
+	server := NewServerWithMode(nil, nil, ServerModeProject)
+	server.root = root
+	path := filepath.Join(nested, "main.bal")
+	if got := server.snapshotKey(SourceFile{URI: uriFromPath(path), Path: path, File: path}); got != root {
+		t.Fatalf("snapshot key = %q, want %q", got, root)
+	}
+}
+
+func TestSingleFileModeMaintainsOneSnapshot(t *testing.T) {
+	root := t.TempDir()
+	firstPath := filepath.Join(root, "first.bal")
+	secondPath := filepath.Join(root, "second.bal")
+	firstURI := uriFromPath(firstPath)
+	secondURI := uriFromPath(secondPath)
+	server := NewServerWithMode(nil, nil, ServerModeSingleFile)
+
+	server.handleNotification("textDocument/didOpen", mustMarshal(protocol.DidOpenTextDocumentParams{
+		TextDocument: protocol.TextDocumentItem{URI: firstURI, Version: 1, Text: "function first() {}"},
+	}))
+	server.handleNotification("textDocument/didOpen", mustMarshal(protocol.DidOpenTextDocumentParams{
+		TextDocument: protocol.TextDocumentItem{URI: secondURI, Version: 1, Text: "function second() {}"},
+	}))
+
+	if len(server.snapshots) != 1 {
+		t.Fatalf("snapshot count = %d, want 1", len(server.snapshots))
+	}
+	if server.singleFileURI != firstURI {
+		t.Fatalf("active single file URI = %q, want %q", server.singleFileURI, firstURI)
+	}
+	if _, ok := server.snapshots[firstPath]; !ok {
+		t.Fatalf("snapshot for first file was not created")
+	}
+	if _, ok := server.snapshots[secondPath]; ok {
+		t.Fatalf("snapshot for second file was created")
+	}
+}
+
 func writeBuildProjectFiles(t *testing.T, root string, mainContent string) {
 	t.Helper()
 	if err := os.WriteFile(filepath.Join(root, "Ballerina.toml"), []byte(`[package]
