@@ -814,12 +814,6 @@ func (n *nodeBuilder) createIgnoreIdentifier(node st.Node) ast.BLangIdentifier {
 	return identifier
 }
 
-// getNextAnonymousTypeKey generates the next anonymous type key
-// Placeholder function - to be implemented
-func (n *nodeBuilder) getNextAnonymousTypeKey(packageID *model.PackageID, suffixes []string) string {
-	return n.cx.GetNextAnonymousTypeKey(packageID)
-}
-
 // createTypeNode creates a type node from a syntax tree node
 // This delegates to the appropriate Transform method based on the node type
 func (n *nodeBuilder) createTypeNode(typeNode st.Node) ast.TypeDescriptor {
