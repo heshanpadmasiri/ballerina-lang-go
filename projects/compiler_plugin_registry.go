@@ -100,13 +100,21 @@ type compilerPluginResolver struct {
 	registry     *compilerPluginRegistry
 	moduleOwners map[moduleIdentity]string
 	providers    map[string]compilerPluginProvider
+	rootPackage  PackageDescriptor
+	injected     []compilerplugin.InjectedPlugin
 }
 
-func newCompilerPluginResolver(modules []*moduleContext) *compilerPluginResolver {
+func newCompilerPluginResolver(
+	modules []*moduleContext,
+	rootPackage PackageDescriptor,
+	injected []compilerplugin.InjectedPlugin,
+) *compilerPluginResolver {
 	resolver := &compilerPluginResolver{
 		registry:     getLinkedCompilerPluginRegistry(),
 		moduleOwners: make(map[moduleIdentity]string),
 		providers:    make(map[string]compilerPluginProvider),
+		rootPackage:  rootPackage,
+		injected:     injected,
 	}
 	for _, module := range modules {
 		descriptor := module.getDescriptor()
@@ -146,7 +154,12 @@ type resolvedCompilerPlugin struct {
 	declaration compilerPluginDeclaration
 	plugin      compilerplugin.CompilerPlugin
 	position    moduleImport
+	injected    bool
 }
+
+// injectedPluginFunctionName stands in for the manifest-declared Go function
+// name in diagnostics about host-injected plugins, which have none.
+const injectedPluginFunctionName = "<injected>"
 
 func (r *compilerPluginResolver) pluginsFor(module *moduleContext) ([]resolvedCompilerPlugin, error) {
 	providers := make(map[string]moduleImport)
@@ -189,7 +202,47 @@ func (r *compilerPluginResolver) pluginsFor(module *moduleContext) ([]resolvedCo
 			})
 		}
 	}
-	return result, nil
+	return append(result, r.injectedPluginsFor(module, modulePackage)...), nil
+}
+
+// injectedPluginsFor returns the host-injected plugins that apply to module:
+// those whose provider package is explicitly imported by a root-package module.
+func (r *compilerPluginResolver) injectedPluginsFor(
+	module *moduleContext, modulePackage PackageDescriptor,
+) []resolvedCompilerPlugin {
+	if len(r.injected) == 0 || !modulePackage.Equals(r.rootPackage) {
+		return nil
+	}
+	var result []resolvedCompilerPlugin
+	for _, injected := range r.injected {
+		imported, ok := explicitImportOf(module, injected.Provider)
+		if !ok {
+			continue
+		}
+		provider, ok := r.providers[providerKey(injected.Provider.Org, injected.Provider.Package)]
+		if !ok {
+			continue
+		}
+		result = append(result, resolvedCompilerPlugin{
+			provider: provider,
+			declaration: compilerPluginDeclaration{
+				after: injected.Plugin.After, function: injectedPluginFunctionName,
+			},
+			plugin:   injected.Plugin,
+			position: imported,
+			injected: true,
+		})
+	}
+	return result
+}
+
+func explicitImportOf(module *moduleContext, provider compilerplugin.Provider) (moduleImport, bool) {
+	for _, imported := range module.explicitImports {
+		if imported.org == provider.Org && imported.moduleName == provider.Package {
+			return imported, true
+		}
+	}
+	return moduleImport{}, false
 }
 
 func parseCompilerPluginManifest(content string) ([]compilerPluginDeclaration, error) {

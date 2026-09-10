@@ -254,3 +254,121 @@ func mustParseCompilerPluginManifest(t *testing.T, content string) []compilerPlu
 	}
 	return declarations
 }
+
+func TestInjectedCompilerPluginsApplyOnlyToImportingRootPackageModules(t *testing.T) {
+	version, err := NewPackageVersionFromString("1.0.0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	rootPackage := NewPackageDescriptor(NewPackageOrg("acme"), NewPackageName("app"), version)
+	dependencyPackage := NewPackageDescriptor(NewPackageOrg("acme"), NewPackageName("dep"), version)
+	testProvider := compilerPluginProvider{
+		org: "ballerina", pkg: "test",
+		exported: semantics.PackageIdentifier{OrgName: "ballerina", ModuleName: "test"},
+	}
+	injected := []compilerplugin.InjectedPlugin{{
+		Provider: compilerplugin.Provider{Org: "ballerina", Package: "test"},
+		Plugin: compilerplugin.CompilerPlugin{
+			After: compilerplugin.AfterSemantics,
+			PackageTransformer: func(_ *compilercontext.CompilerContext, _ model.ExportedSymbolSpace, pkg *ast.BLangPackage) (*ast.BLangPackage, error) {
+				return pkg, nil
+			},
+		},
+	}}
+	newResolver := func() *compilerPluginResolver {
+		return &compilerPluginResolver{
+			registry: newCompilerPluginRegistry(),
+			moduleOwners: map[moduleIdentity]string{
+				{org: "ballerina", moduleName: "test"}: "ballerina/test",
+			},
+			providers:   map[string]compilerPluginProvider{"ballerina/test": testProvider},
+			rootPackage: rootPackage,
+			injected:    injected,
+		}
+	}
+	testImport := []moduleImport{{org: "ballerina", moduleName: "test"}}
+
+	rootModule := &moduleContext{
+		moduleDescriptor: NewModuleDescriptorForDefaultModule(rootPackage),
+		explicitImports:  testImport,
+	}
+	plugins, err := newResolver().pluginsFor(rootModule)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(plugins) != 1 || !plugins[0].injected {
+		t.Fatalf("root-package module plugins = %#v, want one injected plugin", plugins)
+	}
+
+	rootModuleWithoutImport := &moduleContext{
+		moduleDescriptor: NewModuleDescriptorForDefaultModule(rootPackage),
+	}
+	plugins, err = newResolver().pluginsFor(rootModuleWithoutImport)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(plugins) != 0 {
+		t.Fatalf("module without the provider import activated plugins: %#v", plugins)
+	}
+
+	dependencyModule := &moduleContext{
+		moduleDescriptor: NewModuleDescriptorForDefaultModule(dependencyPackage),
+		explicitImports:  testImport,
+	}
+	plugins, err = newResolver().pluginsFor(dependencyModule)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(plugins) != 0 {
+		t.Fatalf("dependency-package module activated injected plugins: %#v", plugins)
+	}
+}
+
+func TestInjectedCompilerPluginsRunAfterManifestPlugins(t *testing.T) {
+	version, err := NewPackageVersionFromString("1.0.0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	rootPackage := NewPackageDescriptor(NewPackageOrg("acme"), NewPackageName("app"), version)
+	resolver := &compilerPluginResolver{
+		registry: newCompilerPluginRegistry(),
+		moduleOwners: map[moduleIdentity]string{
+			{org: "ballerina", moduleName: "http"}: "ballerina/http",
+			{org: "ballerina", moduleName: "test"}: "ballerina/test",
+		},
+		providers: map[string]compilerPluginProvider{
+			"ballerina/http": {
+				org: "ballerina", pkg: "http",
+				declarations: []compilerPluginDeclaration{{
+					after: compilerplugin.AfterSemantics, function: "ValidateService",
+				}},
+			},
+			"ballerina/test": {org: "ballerina", pkg: "test"},
+		},
+		rootPackage: rootPackage,
+		injected: []compilerplugin.InjectedPlugin{{
+			Provider: compilerplugin.Provider{Org: "ballerina", Package: "test"},
+		}},
+	}
+	module := &moduleContext{
+		moduleDescriptor: NewModuleDescriptorForDefaultModule(rootPackage),
+		explicitImports: []moduleImport{
+			{org: "ballerina", moduleName: "test"},
+			{org: "ballerina", moduleName: "http"},
+		},
+	}
+
+	plugins, err := resolver.pluginsFor(module)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(plugins) != 2 {
+		t.Fatalf("plugins = %#v, want a manifest plugin followed by an injected one", plugins)
+	}
+	if plugins[0].injected || plugins[0].declaration.function != "ValidateService" {
+		t.Fatalf("first plugin = %#v, want the manifest-declared plugin", plugins[0])
+	}
+	if !plugins[1].injected || plugins[1].declaration.function != injectedPluginFunctionName {
+		t.Fatalf("second plugin = %#v, want the injected plugin", plugins[1])
+	}
+}
