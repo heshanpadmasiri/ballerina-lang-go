@@ -62,12 +62,6 @@ func (sr *symbolReader) deserialize() (result model.ExportedSymbolSpace, err err
 		panic(fmt.Sprintf("invalid symbol magic: %x", magic))
 	}
 
-	var version int32
-	read(sr.r, &version)
-	if version != symVersion {
-		panic(fmt.Sprintf("unsupported symbol version: %d", version))
-	}
-
 	var tpSize int64
 	read(sr.r, &tpSize)
 	tpBytes := make([]byte, tpSize)
@@ -97,6 +91,32 @@ func (sr *symbolReader) readResourceMethodSymbol(space *model.SymbolSpace) {
 	rm.SetTypedSignature(typedSig)
 	rm.SetPathListType(pathType)
 	ref := addDeserializedSymbol(space, name, rm)
+	if sigHandle >= 0 {
+		sr.env.AssociateFunctionSignature(ref, sr.sigHandles[sigHandle])
+	}
+}
+
+func (sr *symbolReader) readDependentlyTypedResourceMethodSymbol(space *model.SymbolSpace) {
+	name := sr.readStringCP()
+	var isPublic bool
+	read(sr.r, &isPublic)
+	methodName := sr.readStringCP()
+	pathType := sr.readType()
+	var paramCount int64
+	read(sr.r, &paramCount)
+	paramTypes := make([]semtypes.SemType, paramCount)
+	for i := int64(0); i < paramCount; i++ {
+		paramTypes[i] = sr.readType()
+	}
+	var flags uint8
+	read(sr.r, &flags)
+	sym := model.NewDependentlyTypedResourceMethodSymbol(name, methodName, model.FuncSymbolFlags(flags), isPublic, diagnostics.NewBuiltinLocation())
+	sym.SetPathListType(pathType)
+	sym.SetParamTypes(paramTypes)
+	var sigHandle int64
+	read(sr.r, &sigHandle)
+	sym.SetReturnType(sr.readTypeOp())
+	ref := addDeserializedSymbol(space, name, sym)
 	if sigHandle >= 0 {
 		sr.env.AssociateFunctionSignature(ref, sr.sigHandles[sigHandle])
 	}
@@ -239,6 +259,8 @@ func (sr *symbolReader) readSymbol(space *model.SymbolSpace, opaque []model.Symb
 		sr.readDependentlyTypedFunctionSymbol(space)
 	case symTagResourceMethod:
 		sr.readResourceMethodSymbol(space)
+	case symTagDependentlyTypedResourceMethod:
+		sr.readDependentlyTypedResourceMethodSymbol(space)
 	default:
 		panic(fmt.Sprintf("unknown symbol tag: %d", tag))
 	}
