@@ -25,7 +25,7 @@
           (type-test-expr is
             (simple-var-ref node)
             (user-defined-type Node)))))))
-  (function $desugar$0 () ()
+  (function $default$0 () ()
     (block-function-body
       (return
         (lambda
