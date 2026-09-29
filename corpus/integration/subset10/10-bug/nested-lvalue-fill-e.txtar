@@ -1,0 +1,13 @@
+-- stdout --
+-- stderr --
+error[SEMANTIC_ERROR]: unsupported container type for index based access
+  --> nested-lvalue-fill-e.bal:24:5
+   |
+24 |     s.rs[0]["x"] = 1; // @error declared nil is not dropped by filling
+   |     ^^^^^^^
+
+error[SEMANTIC_ERROR]: unsupported container type for index based access
+  --> nested-lvalue-fill-e.bal:26:5
+   |
+26 |     ms["a"][1]["x"] = 1; // @error declared nil is not dropped by filling
+   |     ^^^^^^^^^^

@@ -6448,9 +6448,10 @@ func resolveIndexBasedAccess(t typeResolver, chain *binding, expr *ast.BLangInde
 			mappingTy = semtypes.Diff(containerExprTy, semtypes.Nil)
 		}
 		memberTy := semtypes.MappingMemberTypeInner(t.typeContext(), mappingTy, keyExprTy)
-		maybeMissing := semtypes.ContainsUndef(memberTy) || containerNilable
-		if maybeMissing {
-			memberTy = semtypes.Union(semtypes.Diff(memberTy, semtypes.Undef), semtypes.Nil)
+		maybeMissing := semtypes.ContainsUndef(memberTy) && !expr.IsFillingRead()
+		memberTy = semtypes.Diff(memberTy, semtypes.Undef)
+		if maybeMissing || containerNilable {
+			memberTy = semtypes.Union(memberTy, semtypes.Nil)
 		}
 		if expr.IsLexpr() {
 			singletonStringKey := func(keyTy semtypes.SemType) (string, bool) {
@@ -6571,7 +6572,11 @@ func resolveFieldBaseAccess(t typeResolver, chain *binding, expr *ast.BLangField
 			mappingTy = semtypes.Diff(containerExprTy, semtypes.Nil)
 		}
 		var ok bool
-		memberTy, ok = fieldBaseAccessMappingType(tyCtx, mappingTy, key, expr.IsLexpr())
+		if expr.IsFillingRead() {
+			memberTy, ok = fillingReadFieldType(tyCtx, mappingTy, key)
+		} else {
+			memberTy, ok = fieldBaseAccessMappingType(tyCtx, mappingTy, key, expr.IsLexpr())
+		}
 		if !ok {
 			t.semanticError("field base access is only possible for declared fields", expr.GetPosition())
 			return semtypes.SemType{}, expressionEffect{}, false
@@ -6710,6 +6715,20 @@ func fieldBaseAccessMappingType(tyCtx semtypes.Context, containerExprTy semtypes
 		return result, true
 	}
 	return semtypes.SemType{}, false
+}
+
+// fillingReadFieldType is the type of a field access used as the container of an lvexpr. A missing
+// field is filled with its filler value before the access completes, so unlike a read the field
+// being optional does not add () to the type.
+func fillingReadFieldType(tyCtx semtypes.Context, containerExprTy semtypes.SemType, key string) (semtypes.SemType, bool) {
+	memberTy := semtypes.MappingMemberTypeInner(tyCtx, containerExprTy, semtypes.StringConst(key))
+	if !semtypes.ContainsUndef(memberTy) {
+		return memberTy, true
+	}
+	if !semtypes.AllMappingAtomHasFieldByName(tyCtx, containerExprTy, key) {
+		return semtypes.SemType{}, false
+	}
+	return semtypes.Diff(memberTy, semtypes.Undef), true
 }
 
 func resolveInvocation(t typeResolver, chain *binding, expr *ast.BLangInvocation, expectedType semtypes.SemType) (semtypes.SemType, expressionEffect, bool) {

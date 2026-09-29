@@ -1,0 +1,87 @@
+(package
+  (import-package ballerina io (as io))
+  (type-definition Outer
+    (record-type
+      (field i optional
+        (user-defined-type Inner))))
+  (type-definition OpenOuter
+    (record-type
+      (field i optional
+        (user-defined-type Inner))))
+  (type-definition Inner
+    (record-type
+      (field y optional
+        (value-type int))
+      (field zs optional
+        (array-type
+          (value-type int) dimensions: 1 ([])))))
+  (function main () (
+    (value-type null))
+    (block-function-body
+      (var-def
+        (variable o (type
+          (user-defined-type Outer)) (expr
+          (mapping-constructor-expr))))
+      (assignment
+        (index-based-access
+          (index-based-access
+            (simple-var-ref o)
+            (literal i))
+          (literal y))
+        (literal 3))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref o))))
+      (var-def
+        (variable oo (type
+          (user-defined-type OpenOuter)) (expr
+          (mapping-constructor-expr))))
+      (assignment
+        (index-based-access
+          (index-based-access
+            (index-based-access
+              (simple-var-ref oo)
+              (literal i))
+            (literal zs))
+          (literal 1))
+        (literal 4))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref oo))))
+      (var-def
+        (variable mo (type
+          (constrained-type
+            (builtin-ref-type map)
+            (user-defined-type Outer))) (expr
+          (mapping-constructor-expr))))
+      (assignment
+        (index-based-access
+          (index-based-access
+            (index-based-access
+              (simple-var-ref mo)
+              (literal a))
+            (literal i))
+          (literal y))
+        (literal 5))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref mo))))
+      (var-def
+        (variable os (type
+          (array-type
+            (user-defined-type Outer) dimensions: 1 ([]))) (expr
+          (list-constructor-expr))))
+      (assignment
+        (index-based-access
+          (index-based-access
+            (index-based-access
+              (index-based-access
+                (simple-var-ref os)
+                (literal 1))
+              (literal i))
+            (literal zs))
+          (literal 0))
+        (literal 6))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref os)))))))

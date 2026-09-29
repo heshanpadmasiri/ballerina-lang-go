@@ -1,0 +1,71 @@
+module $anon.. v 0.0.0;
+main() -> nil{
+  bb0 {
+    %1 = newMap {| rs: [......], x: int, never... |}{}
+    s = %1;
+    %3 = ConstantLoad 1
+    %5 = ConstantLoad 0
+    %7 = ConstantLoad rs
+    %6 = s[%7] (fill);
+    %4 = %6[%5] (fill);
+    %8 = ConstantLoad x
+    %4[%8] = %3;
+    %9 = println(s) -> bb1;
+  }
+  bb1 {
+    %10 = newMap {| [{| rs: [......], x: int, never... |}...]... |}{}
+    ms = %10;
+    %12 = ConstantLoad 1
+    %14 = ConstantLoad 1
+    %16 = ConstantLoad a
+    %15 = ms[%16] (fill);
+    %13 = %15[%14] (fill);
+    %17 = ConstantLoad x
+    %13[%17] = %12;
+    %18 = println(ms) -> bb2;
+  }
+  bb2 {
+    %19 = newMap {| [{| int... |}...]... |}{}
+    ml = %19;
+    %21 = ConstantLoad 1
+    %23 = ConstantLoad 1
+    %25 = ConstantLoad a
+    %24 = ml[%25] (fill);
+    %22 = %24[%23] (fill);
+    %26 = ConstantLoad k
+    %22[%26] = %21;
+    %27 = println(ml) -> bb3;
+  }
+  bb3 {
+    %28 = newMap {| xs: [{| int... |}...], never... |}{}
+    r = %28;
+    %30 = ConstantLoad 1
+    %32 = ConstantLoad 1
+    %34 = ConstantLoad xs
+    %33 = r[%34] (fill);
+    %31 = %33[%32] (fill);
+    %35 = ConstantLoad k
+    %31[%35] = %30;
+    %36 = println(r) -> bb4;
+  }
+  bb4 {
+    %37 = ConstantLoad 2
+    %39 = ConstantLoad 0
+    %41 = ConstantLoad xs
+    %40 = r[%41] (fill);
+    %38 = %40[%39] (fill);
+    %42 = ConstantLoad j
+    %38[%42] = %37;
+    %43 = ConstantLoad 3
+    %45 = ConstantLoad 1
+    %47 = ConstantLoad xs
+    %46 = r[%47] (fill);
+    %44 = %46[%45] (fill);
+    %48 = ConstantLoad k
+    %44[%48] = %43;
+    %49 = println(r) -> bb5;
+  }
+  bb5 {
+    return;
+  }
+}

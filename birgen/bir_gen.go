@@ -1786,7 +1786,7 @@ func assignmentContainerReference(ctx context, bb *bir.BIRBasicBlock, expr ast.B
 	case semtypes.IsSubtype(tyCtx, containerType, semtypes.Mapping):
 		fillingKind = bir.InstructionKindMapFillingLoad
 		tyCx := semtypes.TypeCheckContext(ctx.typeEnv())
-		valueType := semtypes.MappingMemberTypeInnerVal(tyCx, containerType, semtypes.String)
+		valueType := semtypes.MappingMemberTypeInnerVal(tyCx, containerType, inner.IndexExpr.GetDeterminedType())
 		filler, _ = values.FillerFactoryFor(tyCx, valueType)
 	default:
 		return handleActionOrExpression(ctx, bb, expr)

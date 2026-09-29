@@ -1,0 +1,55 @@
+module $anon.. v 0.0.0;
+main() -> nil{
+  bb0 {
+    %1 = newMap {| i: {| y: int, zs: [int...], never... |}, never... |}{}
+    o = %1;
+    %3 = ConstantLoad 3
+    %5 = ConstantLoad i
+    %4 = o[%5] (fill);
+    %6 = ConstantLoad y
+    %4[%6] = %3;
+    %7 = println(o) -> bb1;
+  }
+  bb1 {
+    %8 = newMap {| i: {| y: int, zs: [int...], never... |}, anydata... |}{}
+    oo = %8;
+    %10 = ConstantLoad 4
+    %12 = ConstantLoad zs
+    %14 = ConstantLoad i
+    %13 = oo[%14] (fill);
+    %11 = %13[%12] (fill);
+    %15 = ConstantLoad 1
+    %11[%15] = %10;
+    %16 = println(oo) -> bb2;
+  }
+  bb2 {
+    %17 = newMap {| {| i: {| y: int, zs: [int...], never... |}, never... |}... |}{}
+    mo = %17;
+    %19 = ConstantLoad 5
+    %21 = ConstantLoad i
+    %23 = ConstantLoad a
+    %22 = mo[%23] (fill);
+    %20 = %22[%21] (fill);
+    %24 = ConstantLoad y
+    %20[%24] = %19;
+    %25 = println(mo) -> bb3;
+  }
+  bb3 {
+    %26 = ConstantLoad 0
+    %27 = newArray [{| i: {| y: int, zs: [int...], never... |}, never... |}...][%26]{}
+    os = %27;
+    %29 = ConstantLoad 6
+    %31 = ConstantLoad zs
+    %33 = ConstantLoad i
+    %35 = ConstantLoad 1
+    %34 = os[%35] (fill);
+    %32 = %34[%33] (fill);
+    %30 = %32[%31] (fill);
+    %36 = ConstantLoad 0
+    %30[%36] = %29;
+    %37 = println(os) -> bb4;
+  }
+  bb4 {
+    return;
+  }
+}

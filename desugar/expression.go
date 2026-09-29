@@ -418,7 +418,7 @@ func createFieldIndexAccess(expr ast.BLangExpression, fieldName string, ty semty
 		OriginalValue: fieldName,
 	}
 	lit.SetPosition(pos)
-	lit.SetDeterminedType(semtypes.String)
+	lit.SetDeterminedType(semtypes.StringConst(fieldName))
 
 	indexAccess := &ast.BLangIndexBasedAccess{
 		IndexExpr: lit,

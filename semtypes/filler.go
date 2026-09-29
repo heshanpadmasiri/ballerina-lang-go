@@ -163,7 +163,7 @@ func initFnFillerCompatible(cx Context, initFnTy SemType) bool {
 func mappingFiller(cx Context, t SemType) (Filler, bool) {
 	mat := ToMappingAtomicType(cx, t)
 	// NOTE: this don't take into account default fields (Which is not a part of type)
-	if mat == nil || len(mat.names) != 0 {
+	if mat == nil || !allFieldsOptional(mat) {
 		return nil, false
 	}
 	if filler, memoized := cx._fillerMemo[mat]; memoized {
@@ -172,6 +172,15 @@ func mappingFiller(cx Context, t SemType) (Filler, bool) {
 	filler := MappingFiller{Atomic: mat, Type: t}
 	cx._fillerMemo[mat] = filler
 	return filler, true
+}
+
+func allFieldsOptional(mat *MappingAtomicType) bool {
+	for _, ty := range mat.types {
+		if !ContainsUndef(cellInner(ty)) {
+			return false
+		}
+	}
+	return true
 }
 
 func listFiller(cx Context, t SemType) (Filler, bool) {

@@ -1,0 +1,63 @@
+(main
+  (bb0 () ()
+    (var-def
+      (variable o (type
+        (user-defined-type Outer)) (expr
+        (mapping-constructor-expr))))
+    (assignment
+      (field-based-access y
+        (field-based-access i
+          (simple-var-ref o)))
+      (literal 3))
+    (expression-stmt
+      (invocation io println (
+        (simple-var-ref o))))
+    (var-def
+      (variable oo (type
+        (user-defined-type OpenOuter)) (expr
+        (mapping-constructor-expr))))
+    (assignment
+      (index-based-access
+        (field-based-access zs
+          (field-based-access i
+            (simple-var-ref oo)))
+        (literal 1))
+      (literal 4))
+    (expression-stmt
+      (invocation io println (
+        (simple-var-ref oo))))
+    (var-def
+      (variable mo (type
+        (constrained-type
+          (builtin-ref-type map)
+          (user-defined-type Outer))) (expr
+        (mapping-constructor-expr))))
+    (assignment
+      (field-based-access y
+        (field-based-access i
+          (index-based-access
+            (simple-var-ref mo)
+            (literal a))))
+      (literal 5))
+    (expression-stmt
+      (invocation io println (
+        (simple-var-ref mo))))
+    (var-def
+      (variable os (type
+        (array-type
+          (user-defined-type Outer) dimensions: 1 ([]))) (expr
+        (list-constructor-expr))))
+    (assignment
+      (index-based-access
+        (field-based-access zs
+          (field-based-access i
+            (index-based-access
+              (simple-var-ref os)
+              (literal 1))))
+        (literal 0))
+      (literal 6))
+    (expression-stmt
+      (invocation io println (
+        (simple-var-ref os))))
+  )
+)

@@ -166,10 +166,12 @@ func NewBLangAssignmentLExpr(expr BLangExpression, compound bool) LExpr {
 	case *BLangFieldBaseAccess:
 		clone := *expr
 		clone.flags |= valueExpressionFlagLexpr
+		clone.Expr = markFillingReadContainer(clone.Expr)
 		result = &clone
 	case *BLangIndexBasedAccess:
 		clone := *expr
 		clone.flags |= valueExpressionFlagLexpr
+		clone.Expr = markFillingReadContainer(clone.Expr)
 		result = &clone
 	default:
 		return expr.(LExpr)
@@ -185,12 +187,40 @@ func NewBLangAssignmentLExpr(expr BLangExpression, compound bool) LExpr {
 	return result
 }
 
+// markFillingReadContainer marks the sub-lvexprs of an lvexpr. At runtime a filling-read is
+// performed on them, so a missing member is replaced by its filler value instead of reading as ().
+func markFillingReadContainer(expr BLangExpression) BLangExpression {
+	switch expr := expr.(type) {
+	case *BLangFieldBaseAccess:
+		if expr.IsOptionalAccess() {
+			return expr
+		}
+		clone := *expr
+		clone.flags |= valueExpressionFlagFillingRead
+		clone.Expr = markFillingReadContainer(clone.Expr)
+		return &clone
+	case *BLangIndexBasedAccess:
+		clone := *expr
+		clone.flags |= valueExpressionFlagFillingRead
+		clone.Expr = markFillingReadContainer(clone.Expr)
+		return &clone
+	default:
+		return expr
+	}
+}
+
 func (b *BLangValueExpressionBase) IsCompoundAssignmentLValue() bool {
 	return b.flags.Has(valueExpressionFlagCompoundAssignmentLValue)
 }
 
 func (b *BLangValueExpressionBase) IsLexpr() bool {
 	return b.flags.Has(valueExpressionFlagLexpr)
+}
+
+// IsFillingRead reports whether this access is a sub-lvexpr of an assignment target, whose value
+// is obtained by a filling-read.
+func (b *BLangValueExpressionBase) IsFillingRead() bool {
+	return b.flags.Has(valueExpressionFlagFillingRead)
 }
 
 func (b *BLangValueExpressionBase) IsOptionalAccess() bool {
@@ -235,6 +265,7 @@ const (
 	valueExpressionFlagLexpr
 	valueExpressionFlagOptionalAccess
 	valueExpressionFlagLax
+	valueExpressionFlagFillingRead
 )
 
 const bLangLambdaFunctionFlagInferredParams bLangLambdaFunctionFlags = 1 << iota
