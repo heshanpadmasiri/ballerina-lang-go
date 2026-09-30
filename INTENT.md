@@ -19,15 +19,17 @@
   + bodies and clauses of control flow statements: `if`, `while`, `foreach`, `match`, `do`, `lock`, nested blocks `{}`
   + query expressions (any clause, e.g. `from int i in l select <- a`, `from int i in <- a select i`)
   + a lambda / anonymous function / object constructor between the action and the worker group that owns the peer (e.g. a lambda inside worker `a` sending to sibling `b`). A lambda's own named workers can exchange messages among themselves
+  + compound assignment RHS (`x += <- a;`, `x += v -> a;`): the parser accepts an action there but it becomes a binary operand; reported by the node builder
 + Allowed positions: action statement, variable initializer, assignment right hand side, `return`, `check`, `trap`, parentheses, `match` subject, `foreach` collection (the last two are evaluated once, unconditionally), e.g. `int x = check <- a;`, `return <- a;`, `match <- a { ... }`, `foreach int i in <- a { ... }`
-  + The parser never accepts an action as an operand (`foo(<- a)`, `(<- a) -> b`, `c ? <- a : 1`, `let ... in <- a`, `[<- a]` are syntax errors today), so a statement outside a query contains at most one message action
+  + Apart from compound assignment, the parser never accepts an action as an operand (`foo(<- a)`, `(<- a) -> b`, `c ? <- a : 1`, `let ... in <- a`, `[<- a]` are syntax errors today), so a statement outside a query contains at most one message action
 + Alternate receive (`<- a | b`): unimplemented error
 + Fork statement workers (already unimplemented)
 + Narrowing soundness for variables captured by workers beyond what #1020 plus the worker adaptation commit give ([#956](https://github.com/ballerina-nutcracker/ballerina/issues/956), [#967](https://github.com/ballerina-nutcracker/ballerina/issues/967)). With them, worker bodies follow the lambda capture policy: a mutable variable captured by any worker can't be narrowed in any worker body or in the default worker statements after the workers
   + This is a user visible change (e.g. `worker w { if v is int { int y = v; } }` is now an error). The PR description must call it out
 
 ## Limitation
-+ Pairing models only unconditional waits whose operand is a direct worker reference. Deadlocks through a wait in control flow or a wait on an alias of a worker (`future<int> f = w; wait f`) are not detected
++ Pairing models only unconditional waits whose operand is a direct worker reference. Deadlocks through a wait in control flow, a wait inside a lambda (called or not) or a wait on an alias of a worker (`future<int> f = w; wait f`) are not detected
++ Existing bug, out of scope (file an issue): `desugarNestedFunction` doesn't copy `defaultClosureVars`, so calling a local function-typed variable that relies on its default args (declared in init stmts) from a worker body or a lambda crashes with a nil deref. The default worker refactor doesn't use `desugarNestedFunction`, so it doesn't add to this
 + Deadlocks that only happen when a worker fails (a `check` or an error `return` fires) are not detected. The failing worker's termination waits for its undelivered messages while the receiver waits on something the failing worker would have done later
 ```ballerina
 worker w { 1 -> r; check f(); 2 -> s; }
@@ -42,7 +44,9 @@ worker a { [1, "x"] -> b; }            // (int|string)[]
 worker b { [int, string] t = <- a; }   // error, needs `<[int, string]>[1, "x"] -> b;`
 ```
 + Multiple receive result type is built without the contextually expected type (closed record of the send types) ([#1055](https://github.com/ballerina-nutcracker/ballerina/issues/1055))
-+ Flush deviates from the spec to keep its static type sound. The spec types a flush as `()` after an intervening sync send or flush, but at runtime a flush returns the receiver's error whenever the queue is not empty, e.g. a second `flush b` after the first returned `b`'s error. Here a flush only checks the async sends since the last sync send / flush to that peer, so the second flush returns `()`. The ignored error still surfaces as a panic at termination delivery
++ Flush deviates from the spec to keep its static type sound. The spec types a flush as `()` after an intervening sync send or flush, but at runtime a flush returns the receiver's error whenever the queue is not empty, e.g. a second `flush b` after the first returned `b`'s error. Here a flush only checks the async sends since the last sync send / flush to that peer, so the second flush returns `()`
++ Following 7.8.1, a worker terminating normally with an unreceived async message panics with the receiver's termination value, whether or not an earlier flush error for that receiver was handled (e.g. `1 -> b; check flush b;` panics when `b` fails before receiving)
++ Diagnostic order across workers of one function is nondeterministic after concurrent type resolution (as across functions today)
 
 ## Design
 + Since symbol resolution proves that every send/receive lines up, no runtime queue is needed to dispatch messages dynamically. Each send/receive pair gets its own `WorkerMessage` at runtime
@@ -50,10 +54,10 @@ worker b { [int, string] t = <- a; }   // error, needs `<[int, string]>[1, "x"] 
 ### Runtime (`lang.__internal`)
 + `WorkerMessage` holds a clonable value and two latches: `set` (value is available) and `received` (value was taken by the receiver)
   + Must be goroutine safe, workers of an isolated function run in parallel
-  + All blocking functions poll the latch and yield (`<-ctx.Yield()`) like `waitOnLatch`
+  + All blocking functions poll the latch and yield (`<-ctx.Yield()`) like `waitOnLatch`. In an isolated function each worker is alone on its thread, so this busy-yields, as `waitOnLatch` does today (accepted)
     + never block on a Go channel; that would stall siblings sharing a non-isolated thread
 + A `WorkerMessage` alone can't tell whether the peer terminated without sending/receiving, so every blocking function also takes the peer's future
-  + `IsComplete()` to check (non blocking) and `GetClaimed()` to get the outcome. `GetClaimed` doesn't claim the future so a later `wait` on the worker still works
+  + `IsComplete()` to check (non blocking) and `GetClaimed()` to get the outcome, called only after `IsComplete()` is true since it blocks the goroutine. `GetClaimed` doesn't claim the future so a later `wait` on the worker still works
   + This should be documented in the code
   + `GetClaimed()` re-panics with the stored `panicWithStack`, so re-panic through it to keep the peer's stack. Panicking with the bare error value loses it
 + The runtime already captures a worker's return value, error and panic in its future (`startFuture`), so panics anywhere in the peer are observed without codegen support
@@ -65,7 +69,7 @@ worker b { [int, string] t = <- a; }   // error, needs `<[int, string]>[1, "x"] 
     + clones the value (`values.Clone`), sets it and releases `set`
   + `getWorkerMessageValue(WorkerMessage m, future<any|error> sender) returns any|error`
     + loop: if `set` is released take the value, release `received` and return it; else if sender is complete (recheck `set` first) return the sender's error or re-panic with its panic value
-  + `getWorkerMessageValues(WorkerMessage[] ms, future<any|error>[] senders) returns any[]|error` (multiple receive)
+  + `getWorkerMessageValues(WorkerMessage[] ms, future<any|error>[] senders) returns (any|error)[]|error` (multiple receive; a message can itself be an error)
     + waits until every message is `set` and only then takes all of them and releases all `received`. If a sender terminates before its value is set, releases `received` on every message (the receive action was executed, so their sync senders and flushes complete with `()`) and returns its error / re-panics
   + `waitWorkerMessageReceived(WorkerMessage m, future<any|error> receiver) returns error?` (sync send)
     + waits until `received` is released or the receiver terminates; returns the receiver's error or re-panics
@@ -73,8 +77,10 @@ worker b { [int, string] t = <- a; }   // error, needs `<[int, string]>[1, "x"] 
     + waits for every receiver until all its messages are `received` or it terminates. Then: if any receiver panicked, re-panic with the first in declaration order; else return the first error in declaration order; else `()`
   + `awaitWorkerMessageDelivery(WorkerMessage[] ms, future<any|error>[] receivers)` (worker termination, 7.8.1)
     + same as flush but panics with the receiver's termination value instead of returning an error
+    + skips messages whose `set` was never released: a worker that fails (`check`) before a later async send never sets that message, and waiting on it would deadlock (the receiver waits for the sender to terminate)
       + this also applies when an earlier flush already returned that receiver's error and the worker ignored it (follows the spec, intentional)
-  + A receiver that completed normally without receiving is unreachable given the compile time checks; treat the message as delivered
+  + Outcomes are decided per message: check the message latch first and consult the peer's future only while it is unreleased (recheck after seeing it complete), so a peer that received and then failed doesn't fail the sender. Flush / delivery report a receiver only if one of its messages was never received
+  + A peer that completed with success without doing its matching action is unreachable given the compile time checks: internal-error panic
 + Desugared calls are not type checked, so desugar sets the determined type of each call directly (as `createLangMapGetInvocation` does)
 
 ### AST / node builder
@@ -87,7 +93,7 @@ worker b { [int, string] t = <- a; }   // error, needs `<[int, string]>[1, "x"] 
       - store the peer as a symbol, not a `BLangSimpleVarRef`, so the worker reference rule (`checkWorkerReference`) never sees it. e.g. `1 -> w; int x = <- w; int y = wait w;` has one worker reference (the `wait`)
   + Async send also holds `Covered bool` (a later sync send or flush to the peer exists). Flush holds an optional peer and `Covered []{Peer, Messages}` (see Flush coverage)
 + `function` as a peer is a `SimpleNameReferenceNode` whose token is `FUNCTION_KEYWORD`; the node builder records the name `function`
-+ Async send and sync send are both actions, but an async send can only be used as a statement (`v -> w;`); unlike sync send (`F(w)|()`) its result can't be used as a value. The parser accepts it in other positions; reject each in the node builder with "async send action can only be used as a statement": `x = v -> w;`, `int y = v -> w;`, `check v -> w;`, `trap v -> w`, `return v -> w;`, `match v -> w {}`, `foreach int i in v -> w {}`
++ Async send and sync send are both actions, but an async send can only be used as a statement (`v -> w;`); unlike sync send (`F(w)|()`) its result can't be used as a value. The parser accepts it in other positions; reject each in the node builder with "async send action can only be used as a statement": `x = v -> w;`, `int y = v -> w;`, `check v -> w;`, `trap v -> w`, `return v -> w;`, `match v -> w {}`, `foreach int i in v -> w {}`, and inside parentheses `x = (v -> w);` (the parser accepts it; `(v -> w);` as a statement is already a syntax error)
 + `<- a | b` reports unimplemented "alternate receive is not supported"
 + Fix parser `mergeQualifiedNameWithExpr` turning `m:x ->> w;` into an async send (`SYNC_SEND_ACTION` case calls `CreateAsyncSendActionNode`)
   + only fires for a statement starting with `{` whose first member is `m:x ->> w` (e.g. `{ io:x ->> w; }`), not for a plain `m:x ->> w;`
@@ -101,7 +107,7 @@ worker b { [int, string] t = <- a; }   // error, needs `<[int, string]>[1, "x"] 
 + The `WorkerMessage` variable of each handle is desugar-local state (`functionContext.workerMessages`), not in the env
 
 ### Symbol resolution
-+ Default worker symbol: `declareNamedWorkers` also declares a worker symbol named `function` (a keyword, so it never collides with a source name) and records it on the body (`BLangBlockFunctionBody.DefaultWorker`). Its type is `future<R>` where `R` is the enclosing function's (or lambda's) declared return type. It is never referenced as a value
++ Default worker symbol: `declareNamedWorkers` also declares a worker symbol with an internal name source code can't produce (`$function`) and records it on the body. It is added without the `isShadowed` check (a lambda with workers nested in a body with workers declares its own). `function` can't be used as the symbol name: `worker 'function {}` compiles today and stores the name `function`. The peer keyword `function` resolves through `DefaultWorker`; a peer `'function` refers to the user's named worker (`BLangBlockFunctionBody.DefaultWorker`). Its type is `future<R>` where `R` is the enclosing function's (or lambda's) declared return type. It is never referenced as a value
   + refactor 1 (desugar) already introduces it, without any message passing
 + Validate peers
   + peer must be a worker of the same group (the named workers of the body and its default worker)
@@ -109,11 +115,14 @@ worker b { [int, string] t = <- a; }   // error, needs `<[int, string]>[1, "x"] 
     + no such worker is "undefined worker"
   + `function` used from the default worker is a self send/receive error (named worker self reference is already unknown symbol)
   + a peer can appear only once in a multiple receive
-  + placement: walk from the action's resolver to the nearest block resolver (seeing through `workerSymbolResolver`); if it is not a function resolver the position is conditional/repeated → unimplemented. No new resolver or marker is needed: `if`, `while`, `foreach`, `do`, `lock`, `{}`, match clause bodies (block statements) and query clauses already have their own block resolvers, while a `match` subject and a `foreach` collection are walked on the enclosing resolver
+  + a lambda's top level has its own function resolver, so placement alone accepts it; peer validation rejects a peer outside the current group
++ placement: walk from the action's resolver to the nearest block resolver (seeing through `workerSymbolResolver`); if it is not a function resolver the position is conditional/repeated → unimplemented. No new resolver or marker is needed: `if`, `while`, `foreach`, `do`, `lock`, `{}`, match clause bodies (block statements) and query clauses already have their own block resolvers, while a `match` subject and a `foreach` collection are walked on the enclosing resolver
 + Every send allocates its message handle, stores it on its node and in its queue element, and appends it to its worker's send list (`BLangNamedWorkerDeclaration.SendMessages`, `BLangBlockFunctionBody.DefaultWorkerSendMessages`; the type resolver uses these to publish poison)
 + Every receive registers a callback that sets the handle on its node (one per field for a multiple receive)
 + While resolving each worker body (and the default worker statements after the worker declarations) build that worker's queue in evaluation order: message actions and unconditional waits (`wait w`, `wait a | b`, `wait {x: a, y: b}`) whose operands are direct references to workers of the group. Waits in control flow are left out
 + At the end of each function body with workers (`resolveBlockFunctionBody`) run the pairing algorithm once with every worker including `function`. Lambdas with workers run it for their own body
++ Before simulating, check per ordered pair that send and receive counts match ("no matching send/receive" at the first excess action), so missing actions aren't reported as deadlocks
++ Skip pairing for a group where any message action failed peer/placement validation (no second unrelated error)
 + Pairing reports the first error it detects, with a position, deterministically (default worker first, then declaration order)
 + Any error here stops the pipeline before stage 5, so type resolution only sees lined up programs
 
@@ -164,7 +173,7 @@ for each message action a of the worker, in source order:
   + `snapshotArgumentState` restore writes back only the symbols the trial wrote (today it writes every symbol the arguments reference, racing with siblings reading outer variables). Invariant: a trial only writes symbols declared inside the argument subtree
 + Receives block until the send publishes
   + The symbol resolver proved that message passing can always complete without a deadlock, so this can't deadlock either
-  + Every send must publish exactly once on every path out of its worker's resolution (failure, skipped/unreachable statements, early return on a failed worker return type, panics). Each goroutine defers `PublishPoisonIfUnset` for every send of its worker, so a receiver never waits forever. A poisoned receive fails without a new diagnostic. On an internal error, stop the sibling goroutines
+  + Every send must publish exactly once on every path out of its worker's resolution (failure, skipped/unreachable statements, early return on a failed worker return type, panics). Each goroutine defers `PublishPoisonIfUnset` for every send of its worker, so a receiver never waits forever. A poisoned receive fails without a new diagnostic. On a Go panic (internal error) the goroutine recovers it, the poison defer still runs so siblings finish, and the parent re-raises it after the join
   + Candidate trials (the multi-alternative `new` path, the only `enterEphemeral` site) resolve their arguments once per candidate and again for the winner, e.g. `A|B x = new (function () returns int { worker w { 1 -> function; } return <- w; });` resolves `1 -> function` three times. `enterEphemeral` installs a fresh message type store for the trial, inherited by child resolvers built during it and discarded with it. Every send/receive resolved during a trial pairs within the trial
 
 ### Semantic analysis
@@ -172,7 +181,7 @@ for each message action a of the worker, in source order:
 + An async send to a receiver with non-empty `F` is an error unless a later sync send or flush to that receiver in the same worker covers it (`Covered`, 7.8.1)
 
 ### CFG analysis
-+ It is an error if a worker can terminate with success before executing all its message actions (7.8.4). With the non-goals the only way is a reachable `return` inside control flow followed by a message action of the same worker; it is an error unless the static type of the returned value is a subtype of error (failure termination is allowed)
++ It is an error if a worker can terminate with success before executing all its message actions (7.8.4). Message actions here are sends, receives and flushes (stricter than the spec, which only requires sends and receives). With the non-goals the only way is a reachable `return` inside control flow followed by a message action of the same worker; it is an error unless the static type of the returned value is a subtype of error (failure termination is allowed)
   + applies to named workers and to the default worker, including a `return` in `InitStmts` when the default worker has message actions after the worker declarations
 
 ### Desugar
@@ -180,9 +189,10 @@ for each message action a of the worker, in source order:
 + Default worker: refactor it to be just like another worker, and the function blocks on it
   + only for function bodies with named workers
   + lower the trailing statements in the outer function context, then wrap them in a lambda. Don't use `desugarNestedFunction` (doesn't copy `defaultClosureVars`, restarts `desugarSymbolCounter`). BIR gen resolves captures lexically, so the wrapped statements work unchanged
-  + closure name `$worker:<owner>:function` (hidden from stack traces). Return type is the function's final return type; the function body becomes `return wait $default;`
+  + closure name `$worker:<owner>:$function` (hidden from stack traces; `$worker:<owner>:function` is taken by a user worker `'function`). Return type is the function's final return type; the function body becomes `return wait $default;`
   + start the default closure first, waiting on the startup latch like the others, so output order doesn't change
-  + give its start a position spanning the trailing statements so `-p` stack traces don't change; re-check `lock1-p`
+  + give its start a position spanning the trailing statements so `-p` stack traces don't change (the default strand's stack is seeded with the parent's frames and the spawn frame collapses when it encloses the panic line)
++ `lock1-p` changes: the default worker now starts first, so the "attempted strand start while holding a lock" panic is reported at the default worker's start. Move its `@panic` marker to `return wait w;` and update the golden
   + its slot lives in `workerFutureSlots` under the `DefaultWorker` symbol like any named worker
   + receives from `function` never claim its future (`GetClaimed` only)
 ```ballerina
@@ -230,7 +240,7 @@ var $c1 = function () returns T1 {
 | `flush p` | every message sent to `p` so far is received |
 | `flush` | every queue to every peer is empty |
 | `wait p` | `p` terminated |
-| `wait a \| b` | any of them terminated (optimistic, so never a false deadlock) |
+| `wait a \| b` | any terminated with success, or all terminated (modelled optimistically as any terminated, so never a false deadlock) |
 | `wait {a, b}` | all of them terminated |
 | end of worker (7.8.1) | every async message it sent is received |
 
@@ -296,7 +306,7 @@ for _, worker := range order { // default worker first, then declaration order
     waited := set[model.SymbolRef]{}
     for _, e := range states[worker].queue {
         switch e.kind {
-        case waitAll, waitAny: // waitAny adds all: which one finished is unknown
+        case waitAll: // waitAny is left to the simulation (`wait a | b; 1 -> b;` can be valid)
             waited.addAll(e.peers)
         case asyncSend, syncSend, singleRecv, multipleRecv:
             if containsAny(e.peers, waited) {
@@ -478,7 +488,7 @@ func blockedPos(state *workerMessageState) diagnostics.Location
 1. Refactor desugar to treat the default worker section as a worker, including the default worker symbol (commit, all tests pass)
 2. Refactor the type resolver to resolve worker bodies, including the default worker, concurrently. Each item below is a separate commit that passes `make lint test`
    1. Merge `implicitImports` of worker/lambda resolvers into the function's
-   2. Make XML-step function names unique across workers (two workers' `y/<b>` collide today)
+   2. Make XML-step function names unique across workers (worker resolvers have `xmlStepOwner == ""` today, so `worker A {return x/<b>;} worker B {return x/<c>;}` prints `<c>2</c><c>2</c>`)
    3. Fix the `snapshotArgumentState` restore race (restore only the symbols the trial wrote)
    4. Per-goroutine `ephemeralState`
    5. Resolve the default worker's trailing statements with their own child resolver; parent atom side tables are read-only while workers resolve
