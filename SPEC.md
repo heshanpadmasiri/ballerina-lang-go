@@ -24,9 +24,12 @@ Issue: https://github.com/ballerina-nutcracker/ballerina/issues/932. Refined int
   - any query clause (`from int i in <- a select i`, `from int i in l select <- a`)
   - a lambda / anonymous function / object constructor between the action and the worker group that owns the peer. A lambda's own workers can exchange messages among themselves.
   - compound assignment RHS (`x += <- a;`, `x += v -> a;`): the parser accepts an action there (`parseCompoundAssignmentStmtRhs`), but it becomes a binary operand, so the node builder reports this unimplemented error
+  - a send under `trap` (`trap (v ->> w)`): a trapped panic in the value would skip the send while the worker carries on (agreed with the user). `trap <- w` is allowed
+  - any statement after an `if` without `else`: the node builder moves the statements that follow such an `if` into a block it adds, so they count as nested `{}` (agreed with the user; follow-up issue). `if c { return; } else { ... } 1 -> a;` keeps `1 -> a` a worker statement
 - Allowed positions: action statement, variable initializer, assignment RHS, `return`, `check`, `trap`, parentheses, `match` subject, `foreach` collection. Apart from compound assignment, the parser rejects actions as operands (verified), so a statement outside a query holds at most one message action.
 - Alternate receive `<- a | b` reports unimplemented "alternate receive is not supported".
 - Fork statement workers (already unimplemented).
+- Message actions (send, receive, flush) in a body with workers that is outside a module-level function or a class or service method report unimplemented "worker message send/receive is not supported outside a module-level function or method": a lambda that is (or is nested in) a module variable initializer, a parameter default, or a class or record field default. These bodies are type resolved with module-level nodes by `ResolvePublicNodes`, whose lazily resolved state isn't safe for concurrent use, so their workers are resolved one after another (agreed with the user). Named workers without message actions there keep working.
 - Narrowing soundness for captured variables beyond #1020 plus the worker adaptation commit (#956, #967). Worker bodies follow the lambda capture policy. This is user visible (`worker w { if v is int { int y = v; } }` is now an error) and must be called out in the PR description.
 - The existing `desugarNestedFunction` bug (it doesn't copy `defaultClosureVars`, so a function-typed local with default args called from a worker body or lambda crashes). File an issue; not fixed here.
 
@@ -335,7 +338,7 @@ func unmatched(states workerStateMap, worker model.SymbolRef) (diagnostics.Locat
   4. resolve each child in its own goroutine. Each goroutine defers `PublishPoisonIfUnset` for its worker's sends (so siblings blocked on a receive finish) and recovers a Go panic (internal error), which the parent re-raises after the join (precedent: `projects/package_compilation.go:159`). The poison defer runs on panic too, so blocked siblings are released and the join completes; siblings are not otherwise stopped. Join.
   5. merge each child's `implicitImports` into the parent and OR its `refusedDependent` into the parent's
 - While children run, the parent's atom side table is only read.
-- Module-level nodes (resolved by `ResolvePublicNodes`) are resolved lazily, and `packageTypeResolver` state (`lazyResolutionStatus`, deferred emptiness checks, ...) isn't safe for concurrent use. So while they are resolved, the worker goroutines of a module-level function body (e.g. `var f = function () { worker a { ... } ... };`) take turns on `packageTypeResolver.serialResolution`. A goroutine resolving types holds the lock unless it is waiting: the parent releases it while joining its children, and (step 4) a receive releases it while blocked in `Type(ref)`. Function bodies resolved by `ResolvePrivateNodes` run truly concurrently (the lock is nil).
+- Module-level nodes (resolved by `ResolvePublicNodes`) are resolved lazily, and `packageTypeResolver` state (`lazyResolutionStatus`, deferred emptiness checks, ...) isn't safe for concurrent use. `packageTypeResolver.resolvingPublicNodes` is set while `ResolvePublicNodes` runs, and then the children of a body with workers (e.g. `var f = function () { worker a { ... } ... };`) are resolved one after another on the resolving goroutine. Symbol resolution rejects message actions in such bodies (see Non-goals), so no child waits on a receive. Function bodies resolved by `ResolvePrivateNodes` run concurrently.
 - `snapshotArgumentState` restore writes back only the symbols declared inside the argument subtree.
 - Types:
   - send expression: resolved with no expected type from the receive
@@ -477,7 +480,8 @@ type BLangWorkerFlushAction struct {
 
 - `declareNamedWorkers(resolver *blockSymbolResolver, body *ast.BLangBlockFunctionBody)` (private)
   - Current: takes `workers []*ast.BLangNamedWorkerDeclaration` and declares their symbols.
-  - New: also declares the default worker symbol, sets `body.DefaultWorker`, and creates the body's `workerMessageGroup`.
+  - New: also declares the default worker symbol, sets `body.DefaultWorker`, and creates the body's `workerMessageGroup`, marked `withModuleLevelNodes` when `inModuleLevelFunction(resolver)` is false. `messageOwner` reports unimplemented for message actions of such a group.
+- New private `inModuleLevelFunction(resolver *blockSymbolResolver) bool`: walks the resolver chain; false through a default-expression resolver, otherwise true when the outermost function resolver (whose parent is the compilation unit, or a class or service) is a named function or method.
 - `resolveBlockFunctionBody(resolver *blockSymbolResolver, body *ast.BLangBlockFunctionBody)`: after resolving everything, runs `pairWorkerMessages(resolver, group)` when the body has workers.
 - `blockSymbolResolver` gains `messageGroup *workerMessageGroup` (set on the resolver of a body with workers) and `messageWorker model.SymbolRef` (the worker whose statements it resolves).
 - New private file `worker_messages.go`:
@@ -541,9 +545,9 @@ type BLangWorkerFlushAction struct {
 - Refactor 2:
   - `-v`: two workers with different XML steps print `<b>1</b><c>2</c>`
   - `-v`: a lambda with workers passed to a multi-candidate `new`, at function and module level
-  - after step 4: `A|B x = new (function () returns int { worker w { 1 -> function; } return <- w; });` at function and module level (the send is resolved three times without a double-publish error)
+  - after step 4: `A|B x = new (function () returns int { worker w { 1 -> function; } return <- w; });` at function level (the send is resolved three times without a double-publish error)
   - `make test-race` passes
-- Parser: `{ io:x ->> w; }` is a sync send (AST golden).
+- Parser: `{ io:x ->> w; }` is a sync send. A message action in `{}` is a non-goal, so this is a `-fe` test; the parser corpus output shows the sync send (AST goldens only exist for `-v`/`-p` tests). A committed regression check is a follow-up issue (agreed with the user).
 - Node builder `-e`:
   - `x += <- a;` and `x += v -> a;` unimplemented
   - async send as var initializer, assignment RHS, `check`, `trap`, `return`, `match` subject, `foreach` collection, parenthesized
@@ -554,6 +558,7 @@ type BLangWorkerFlushAction struct {
   - `<- w` / `-> function` in `InitStmts`
   - duplicate multiple-receive peer
   - unimplemented in `if`, `while`, `foreach` body, `match` clause, `lock`, `{}`, query `from` and `select`
+  - `-fv`: send, receive and flush in a module variable initializer lambda (passed to a multi-candidate `new`), a parameter default, a class field default and a record field default (`message-module-level1-fv`)
   - peer through a lambda boundary
   - extra send (no matching receive, async and sync)
   - extra receive (no matching send, single and multiple)
@@ -568,7 +573,6 @@ type BLangWorkerFlushAction struct {
 - Symbol resolution `-v`: `worker 'function` exchanging messages with the default worker, `function` in a multiple receive (`r.'function`).
 - Type `-e`:
   - receive assigned to an incompatible type
-  - the #1055 tuple example
   - `v ->> w;` and `flush w;` unassigned with non-empty `F`
   - multiple receive into an incompatible record
 - Semantic `-e`: non-Cloneable send (object value), uncovered async send to an error-returning receiver.
@@ -577,6 +581,8 @@ type BLangWorkerFlushAction struct {
   - success `return` in `if` before a send, a receive and a flush (named and default workers)
   - `return` in `InitStmts` with trailing message actions
 - CFG `-v`: error-typed `return` before a message action.
+- CFG tests put the `return` in an `if` with an `else` (see Non-goals).
+- `-v`: the #1055 tuple example `[1, "x"] -> function; [int, string] t = <- a;` type checks, since a list constructor without an expected type already gets the tuple type (agreed with the user).
 - `-v` runtime:
   - async send + receive
   - an error value sent as a message, received by single and multiple receive
