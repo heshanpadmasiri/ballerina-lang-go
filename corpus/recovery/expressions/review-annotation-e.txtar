@@ -1,3 +1,4 @@
+-- review-annotation-e.bal --
 // Copyright (c) 2026, WSO2 LLC. (http://www.wso2.com).
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
@@ -14,8 +15,23 @@
 // specific language governing permissions and limitations
 // under the License.
 
-function foo() {
-    if true int inner = 1; } else { int other = 2; } // @error
-    int later = 3;
+function probe() {
+    typedesc<int> t = int;
+    _ = t.@missing; // @error undefined annotation must not panic
 }
-function valid() {}
+-- ast --
+(package
+  (function probe () (
+    (value-type null))
+    (block-function-body
+      (var-def
+        (variable t (type
+          (constrained-type
+            (value-type typedesc)
+            (value-type int))) (expr
+          (typedesc-expr
+            (value-type int)))))
+      (assignment
+        (wildcard-binding-pattern)
+        (annot-access-expr missing
+          (simple-var-ref t))))))
