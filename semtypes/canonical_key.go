@@ -43,13 +43,23 @@ type bddNodeKey struct {
 // are immutable. We give each bdd node at construction a unique id. That means by definition lowest nodes should
 // get a key before parents. Then by induction we can prove this is uniquely capturing the tree structure
 // (assuming we don't overflow)
-var bddKeyInterner = struct {
+const bddKeyShardCount = 64
+
+type bddKeyShard struct {
 	sync.Mutex
 	next bddKey
 	keys map[bddNodeKey]bddKey
-}{
-	next: bddKeyAll + 1,
-	keys: make(map[bddNodeKey]bddKey),
+}
+
+var bddKeyInterner = newBddKeyShards()
+
+func newBddKeyShards() *[bddKeyShardCount]bddKeyShard {
+	var shards [bddKeyShardCount]bddKeyShard
+	for i := range shards {
+		shards[i].next = bddKeyAll + 1 + bddKey(i)
+		shards[i].keys = make(map[bddNodeKey]bddKey)
+	}
+	return &shards
 }
 
 func typeAtomKey(index int, gen uint64) atomKey {
@@ -60,14 +70,30 @@ func recAtomKey(index int) atomKey {
 	return atomKey{index: index, rec: true}
 }
 
+// Each shard hands out keys from a distinct residue class modulo bddKeyShardCount, so keys from different shards
+// never collide.
 func internBddNodeKey(key bddNodeKey) bddKey {
-	bddKeyInterner.Lock()
-	defer bddKeyInterner.Unlock()
-	if existing, ok := bddKeyInterner.keys[key]; ok {
+	shard := &bddKeyInterner[key.shardIndex()]
+	shard.Lock()
+	defer shard.Unlock()
+	if existing, ok := shard.keys[key]; ok {
 		return existing
 	}
-	result := bddKeyInterner.next
-	bddKeyInterner.next++
-	bddKeyInterner.keys[key] = result
+	result := shard.next
+	shard.next += bddKeyShardCount
+	shard.keys[key] = result
 	return result
+}
+
+func (key bddNodeKey) shardIndex() int {
+	h := uint64(key.atom.index)*0x9E3779B97F4A7C15 ^
+		key.atom.gen*0xC2B2AE3D27D4EB4F ^
+		uint64(key.left)*0x165667B19E3779F9 ^
+		uint64(key.middle)*0x27D4EB2F165667C5 ^
+		uint64(key.right)*0x94D049BB133111EB
+	if key.atom.rec {
+		h ^= 0xFF51AFD7ED558CCD
+	}
+	h ^= h >> 29
+	return int(h % bddKeyShardCount)
 }
