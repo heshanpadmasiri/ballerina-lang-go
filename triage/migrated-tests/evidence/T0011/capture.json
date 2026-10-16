@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: arithmetic overflow\n        at overflowByAddition(add-operation-overflow-p.bal:4)\n           main(add-operation-overflow-p.bal:8)\n","Diagnostics":null}

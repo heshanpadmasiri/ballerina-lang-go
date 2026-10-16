@@ -1,0 +1,17 @@
+{
+  "id": "T1511",
+  "name": "var-ignore-test-d8823af21d/var-ignore-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Destructuring assignment statement](https://ballerina.io/spec/lang/master/#destructuring-assignment-stmt)\"; \"Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)\"",
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"; \"[Return](https://ballerina.io/spec/lang/master/#return-stmt)\"",
+    "## Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\"; \"[`Call`](https://ballerina.io/spec/lang/master/#call-expr)\""
+  ],
+  "reason": "The expected output 3 depends on list destructuring assignment [_, x, y] = abc(), assigning tuple elements to x and y. Although destructuring assignment is listed, it is explicitly restricted to wildcard-binding-pattern; this list pattern with variable targets exceeds that restriction.",
+  "unsupported_constructs": [
+    "List destructuring assignment [_, x, y] = abc() with variable targets x and y."
+  ],
+  "test_design_notes": [
+    "The @output 3 marker checks the assigned y value; io:println is instrumentation. No obvious marker issue."
+  ]
+}

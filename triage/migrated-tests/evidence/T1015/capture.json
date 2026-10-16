@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'gJ'\n  --\u003e null_literal_usage-v.bal:19:1\n   |\n19 | json gJ = null;\n   | ^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"null_literal_usage-v.bal","StartLine":19,"EndLine":19}]}

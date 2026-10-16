@@ -1,0 +1,15 @@
+{
+  "id": "T0133",
+  "name": "array-destructure-test-4a8c5609c2/array-destructure-test-4a8c5609c2-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern"
+  ],
+  "reason": "The negative case requires diagnostics for list destructuring assignments, including size/type mismatches and a rest binding. These assignments use list binding patterns, whereas subset 10 limits destructuring assignments to wildcard binding patterns, so the essential tested construct is outside the supported subset.",
+  "unsupported_constructs": [
+    "List binding patterns in destructuring assignments: [a, b, c, d, e], [a, b, c, f], [a, ...g], [h], and [i, j]."
+  ],
+  "test_design_notes": [
+    "Five @error markers assert compile-time rejection; no @args, @panic, or @output directives occur. The trailing panic guard does not make unsupported list destructuring a supported negative test."
+  ]
+}

@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at object_documentation_negative-e.bal:46-46 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object_documentation_negative-e.bal:87-87 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object_documentation_negative-e.bal:87-87 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object_documentation_negative-e.bal:118-118 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object_documentation_negative-e.bal:118-118 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object_documentation_negative-e.bal:122-122 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:4 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:6 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:10 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:39 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:44 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:45 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:69 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:70 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:77 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:83 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:84 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:99 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:103 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:107 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object_documentation_negative-e.bal:110 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

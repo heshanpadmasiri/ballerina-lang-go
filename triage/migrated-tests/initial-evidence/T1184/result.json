@@ -1,0 +1,17 @@
+{
+  "Name": "option-test-1b0c555df9/repeated_option_equals-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/repeated_option_equals-p.bal",
+  "Project": false,
+  "Id": "T1184",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/repeated_option_equals-p.bal"
+  ],
+  "Args": [
+    "--stringVal=val1",
+    "--stringVal=val2"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.072
+}

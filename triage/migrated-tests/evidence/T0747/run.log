@@ -1,0 +1,17 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:2 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:44 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:58 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:60 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:61 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:67 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:69 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:79 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:85 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:87 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:89 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at lvalue-semantics-negative-e.bal:91 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

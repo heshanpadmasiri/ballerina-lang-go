@@ -1,0 +1,14 @@
+{
+  "Name": "init-function-test-d2ccfe8a95/init-function-nil-union-return-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/init-function-test-d2ccfe8a95/init-function-nil-union-return-v.bal",
+  "Project": false,
+  "Id": "T0646",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/init-function-test-d2ccfe8a95/init-function-nil-union-return-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.026
+}

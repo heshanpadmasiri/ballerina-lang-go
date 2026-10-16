@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	error("{ballerina}TypeCastError",message="incompatible types: 'pkg.org_foo:user' cannot be cast to 'pkg:userB'")
+        	
+        
+        got:
+        	error("bad type cast")
+        	
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

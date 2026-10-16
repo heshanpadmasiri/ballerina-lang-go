@@ -1,0 +1,18 @@
+{
+  "id": "T1085",
+  "name": "object-type-reference-test-19fd51d776/object-inclusion-with-private-members-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)\" is listed; object-constructor expressions are not listed.",
+    "## Module-level declarations: \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\" for class definitions.",
+    "## Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\"."
+  ],
+  "reason": "The negative case requires rejection of private-member inclusion in classes, object type descriptors, and anonymous object constructors. Anonymous object-constructor expressions (`object ClassWithPrivateField { ... }` and `client object ...`) are essential marked-error sites but are not covered by the supported expression list. Class inclusion support alone does not cover the whole case.",
+  "unsupported_constructs": [
+    "Object-constructor expressions, including client object constructors.",
+    "Object type inclusions in object type descriptors are not included in the listed supported descriptor members."
+  ],
+  "test_design_notes": [
+    "The @error markers assert compile-time rejection; supported class inclusion rejection remains in scope, but does not make the entire case supported."
+  ]
+}

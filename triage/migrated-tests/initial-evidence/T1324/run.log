@@ -1,0 +1,21 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	true
+        	5
+        	{callableName:externGetStackTrace, moduleName:ballerina.lang.runtime.0, fileName:runtime.bal, lineNumber:121}
+        	{callableName:getStackTrace, moduleName:ballerina.lang.runtime.0, fileName:runtime.bal, lineNumber:111}
+        	{callableName:level2Function, moduleName:null, fileName:runtime-error.bal, lineNumber:12}
+        	{callableName:level1Function, moduleName:null, fileName:runtime-error.bal, lineNumber:8}
+        	{callableName:testGetCallStack, moduleName:null, fileName:runtime-error.bal, lineNumber:4}
+        	true
+        	3
+        	{callableName:level2Error, moduleName:null, fileName:runtime-error.bal, lineNumber:30}
+        	{callableName:level1Error, moduleName:null, fileName:runtime-error.bal, lineNumber:25}
+        	{callableName:testErrorCallStack, moduleName:null, fileName:runtime-error.bal, lineNumber:16}
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (1.61s)
+FAIL

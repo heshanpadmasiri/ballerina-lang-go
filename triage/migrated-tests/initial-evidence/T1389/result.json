@@ -1,0 +1,14 @@
+{
+  "Name": "struct-negative-test-2ccd0a79e0/structs-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/structs-negative-e.bal",
+  "Project": false,
+  "Id": "T1389",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/structs-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

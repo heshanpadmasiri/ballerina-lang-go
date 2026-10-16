@@ -1,0 +1,19 @@
+{
+  "id": "T1522",
+  "name": "variable-scope-test-6a8d57db07/scope-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"If/else\", \"While\", \"Local variable declarations\", \"Return\"",
+    "## Expressions: \"Variable reference\"; \"New expression\" (object-constructor expressions are not listed)",
+    "## Module-level declarations: \"Service declarations\"; \"Supports ... resource-method-defn for service classes\"",
+    "## Object/class definitions: \"Only client, service and isolated object-type-quals / class-type-quals are supported\"; \"Supports object-field-descriptor, method-decl, remote-method-decl and resource-method-decl members\""
+  ],
+  "reason": "The whole case includes a service object constructor expression (service object { ... }), which is not covered by the supported expression list. Support for service declarations, service object qualifiers and resource members does not establish support for object constructor expressions. The ordinary if/else and while out-of-scope variable rejection cases are within supported statements and variable references.",
+  "unsupported_constructs": [
+    "Service object constructor expression initializing myService."
+  ],
+  "test_design_notes": [
+    "Mixed scope: three supported block-scope negative cases are combined with service-object resource-method scope cases requiring an unlisted constructor expression.",
+    "Five @error markers assert unresolved out-of-scope names (k, b, b, a, b); there are no @args, @panic or @output assertions."
+  ]
+}

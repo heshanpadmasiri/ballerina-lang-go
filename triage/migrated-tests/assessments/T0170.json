@@ -1,0 +1,14 @@
+{
+  "id": "T0170",
+  "name": "array-mutability-test-f73ad51ac1/array-mutability-object-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Statements: Assignment; See supported [`lvexpr`](#expressions)",
+    "Statements: Local variable declarations",
+    "Expressions: New expression; List constructor; Member access expression"
+  ],
+  "reason": "The whole case uses supported classes with public fields, inferred new expressions, array construction, local declarations and indexed assignment. Dog structurally satisfies Animal, so its array can be viewed as Animal[]; the underlying array retains Dog as its member type. The asserted panic when storing an Animal lacking Dog.age tests the runtime member-type check inherent in supported indexed assignment.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic assertion is on the incompatible store through the widened array reference; there are no @args or @output protocols."]
+}

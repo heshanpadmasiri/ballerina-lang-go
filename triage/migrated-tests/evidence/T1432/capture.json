@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: invalid binding pattern\n  --\u003e tuple-destructure-invalid-syntax-e.bal:18:7\n   |\n18 |     [1] = \"Programming\"; // @error // @error\n   |       \n\n","Diagnostics":[{"File":"tuple-destructure-invalid-syntax-e.bal","StartLine":18,"EndLine":18}]}

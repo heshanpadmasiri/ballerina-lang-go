@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "mapping-constructor-expr-test-833706cb84/mapping-constructor-duplicate-fields-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> mapping-constructor-duplicate-fields-e.bal:33:19
+           |
+        33 |     map<int> _ = {...recVar1, "field[": 543}; // @error
+           |                   ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> mapping-constructor-duplicate-fields-e.bal:34:34
+           |
+        34 |     map<int> _ = {"field[": 543, ...recVar1}; // @error
+           |                                  ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

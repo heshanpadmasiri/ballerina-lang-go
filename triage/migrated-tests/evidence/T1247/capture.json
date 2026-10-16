@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 0\n        at testGetNonInitArrayAttribute(record-access-with-index-get-non-init-array-field-p.bal:16)\n           main(record-access-with-index-get-non-init-array-field-p.bal:20)\n","Diagnostics":null}

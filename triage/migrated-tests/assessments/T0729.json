@@ -1,0 +1,17 @@
+{
+  "id": "T0729",
+  "name": "locks-in-main-test-617c6c002d/locks-imports-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Lock statement](https://ballerina.io/spec/lang/master/#lock-stmt)\" is supported; named worker declarations are absent from the supported statements.",
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are listed, but named workers are not.",
+    "## Import declarations: \"ballerina/lang.runtime\" includes \"sleep\"."
+  ],
+  "reason": "The assertion relies on two named workers with @strand {thread: \"any\"} running lock-protected recursive call chains that mutate imported-module globals. Named worker declarations and their concurrent execution behavior are not covered by the subset positive lists, although locks and runtime:sleep are supported.",
+  "unsupported_constructs": [
+    "Named worker declarations w1 and w2 and their concurrent execution under @strand {thread: \"any\"}."
+  ],
+  "test_design_notes": [
+    "The check panics when either imported-module counter equals 20; timing relies on sleeps rather than explicit waits for worker completion."
+  ]
+}

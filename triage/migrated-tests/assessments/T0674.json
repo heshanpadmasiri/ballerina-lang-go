@@ -1,0 +1,20 @@
+{
+  "id": "T0674",
+  "name": "isolated-worker-test-8e649817ff/isolated-named-worker-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports the isolated function qualifier",
+    "## Statements: supported statement list does not include fork statements or named worker declarations",
+    "## Expressions: lists Start action and Wait action, but does not list worker send or receive actions"
+  ],
+  "reason": "The asserted strings require named workers to exchange messages with each other and the default function worker, including workers declared inside fork blocks. Named workers, fork statements, and worker send/receive actions are not covered by subset 10's positive feature lists. Support for isolated functions and start/wait actions does not establish support for these worker communication semantics.",
+  "unsupported_constructs": [
+    "Named worker declarations",
+    "Worker message send and receive actions (-> worker and <- worker)",
+    "fork statements"
+  ],
+  "test_design_notes": [
+    "io:println is unreachable instrumentation and does not determine classification.",
+    "The worker communication results are directly asserted by main's test calls."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "bstring-json-test-3ed3e5c6d1/bstring-json-test-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstring-json-test-3ed3e5c6d1/bstring-json-test-v.bal",
+  "Project": false,
+  "Id": "T0280",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstring-json-test-3ed3e5c6d1/bstring-json-test-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.067
+}

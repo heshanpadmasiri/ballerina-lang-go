@@ -1,0 +1,14 @@
+{
+  "Name": "constant-assignment-test-2d63b3eb49/constant-assignment-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-assignment-test-2d63b3eb49/constant-assignment-negative-e.bal",
+  "Project": false,
+  "Id": "T0376",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constant-assignment-test-2d63b3eb49/constant-assignment-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.037
+}

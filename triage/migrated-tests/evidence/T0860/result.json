@@ -1,0 +1,14 @@
+{
+  "Name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-negative-e.bal",
+  "Project": false,
+  "Id": "T0860",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.066
+}

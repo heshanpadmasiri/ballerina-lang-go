@@ -1,0 +1,16 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/invalid-int-array-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-array-p.bal",
+  "Project": false,
+  "Id": "T0084",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-array-p.bal"
+  ],
+  "Args": [
+    "[true, \"hi\", 5]"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

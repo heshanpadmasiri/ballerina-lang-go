@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 's'\n  --\u003e incorrect-array-access-e.bal:12:5\n   |\n12 |     string s =  animals[x]; // @error\n   |     ^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"incorrect-array-access-e.bal","StartLine":12,"EndLine":12}]}

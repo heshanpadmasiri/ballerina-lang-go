@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented\n   --\u003e mapping-constructor-infer-record-negative-e.bal:116:9\n    |\n116 |         ...rec1,\n    |         ^^^^^^^\n\n","Diagnostics":[{"File":"mapping-constructor-infer-record-negative-e.bal","StartLine":116,"EndLine":116}]}

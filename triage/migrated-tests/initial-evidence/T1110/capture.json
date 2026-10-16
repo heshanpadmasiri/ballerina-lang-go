@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at testRestFieldToRestField2(open-to-open-invalid-rest-p.bal:14)\n           main(open-to-open-invalid-rest-p.bal:19)\n","Diagnostics":null}

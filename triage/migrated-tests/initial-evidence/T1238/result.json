@@ -1,0 +1,14 @@
+{
+  "Name": "reachability-analysis-test-a8532630b8/reachability2-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/reachability-analysis-test-a8532630b8/reachability2-v.bal",
+  "Project": false,
+  "Id": "T1238",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/reachability-analysis-test-a8532630b8/reachability2-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.079
+}

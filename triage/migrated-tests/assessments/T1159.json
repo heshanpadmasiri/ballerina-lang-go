@@ -1,0 +1,16 @@
+{
+  "id": "T1159",
+  "name": "option-test-1b0c555df9/boolean_option_value-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition \u2014 Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition"
+  ],
+  "reason": "The record type and included-record parameter are supported, but the asserted panic depends on command-line option binding: passing --bool=false to a boolean field of main's included record. Subset 10 does not cover command-line option parsing or its boolean-option rejection behavior; signature support alone does not establish that runtime behavior.",
+  "unsupported_constructs": [
+    "Command-line boolean option binding/rejection for main's included-record parameter (--bool=false)"
+  ],
+  "test_design_notes": [
+    "The empty main body cannot itself panic; @args and @panic make command-line processing the essential asserted behavior."
+  ]
+}

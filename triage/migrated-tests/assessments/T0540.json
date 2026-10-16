@@ -1,0 +1,13 @@
+{
+  "id": "T0540",
+  "name": "func-invocation-expr-test-adcfe7c191/function-call-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString and fromHexString (no sum).",
+    "Module-level declarations: Function definition supports required-params, defaultable-params, included-record-param and rest-param in the signature.",
+    "Subset restrictions > Invocations > Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.\""
+  ],
+  "reason": "The whole case includes asserted named-argument validation for int:sum in invalidNamedArg1. That lang.int function is outside the explicit supported-method list, so this case requires an unsupported feature even though its other invalid calls exercise supported invocation grammar and type checking.",
+  "unsupported_constructs": ["int:sum(ns=y) and int:sum(ss=y): named-argument diagnostics for the unlisted ballerina/lang.int sum function"],
+  "test_design_notes": ["This is a negative compilation case with @error assertions. Illegal calls alone do not make a case unsupported; the unlisted langlib function is the decisive dependency."]
+}

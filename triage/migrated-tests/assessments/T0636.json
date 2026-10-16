@@ -1,0 +1,17 @@
+{
+  "id": "T0636",
+  "name": "identifier-test-a7ab8ef694/underscore_as_unquoted_identifier_negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: [Match statement] — Currently only supports [const-pattern] and [wildcard-match-pattern]",
+    "Module-level declarations: [Function definition], [Module variable declarations], [Type definition]",
+    "Statements: [Local variable declarations]"
+  ],
+  "reason": "The case asserts underscore rejection both in supported declarations and in `var error (message, ..._)` within a match clause. The latter requires an error binding match pattern, outside the explicitly supported constant and wildcard match patterns, so the whole case includes an essential unsupported construct.",
+  "unsupported_constructs": [
+    "Error binding match pattern `var error (message, ..._)`, including rejection of `_` as its rest binding identifier"
+  ],
+  "test_design_notes": [
+    "Negative identifier and initialization diagnostics in module/local declarations alone are within supported declaration grammar; the match-pattern assertion makes the whole case a feature."
+  ]
+}

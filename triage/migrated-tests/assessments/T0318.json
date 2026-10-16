@@ -1,0 +1,18 @@
+{
+  "id": "T0318",
+  "name": "checked-expression-operator-test-30b071e6cd/checked-expr-with-no-error-type-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"Check expression\", \"Conditional expression\", \"Error constructor\", \"Equality expression\"",
+    "Module-level declarations: \"Type definition\", \"Constant declarations\", \"Function definition\"",
+    "Statements: \"If/else\", \"Local variable declarations\", \"Return\", \"Panic\"",
+    "Other invocation restrictions: \"error:message\" and \"value:toString\" are listed as supported langlib method calls"
+  ],
+  "reason": "The case exercises supported check expressions on boolean operands without error members, including boolean singleton aliases and unions, and their use as conditional-expression conditions. Successful execution must return from the first check-true branch and preserve each selected error value for message equality assertions. All essential constructs and invoked langlib methods are covered, with no applicable restriction excluding this behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args, @panic or @output directives occur. main runs both test functions and should complete without panic or output.",
+    "In check b1 ? err : err and its variants, check applies to the boolean condition; the selected error is asserted via message(), rather than propagated by check.",
+    "The io:println call is disabled instrumentation under a false flag. Assertion failures and the unreachable branch panic explicitly."
+  ]
+}

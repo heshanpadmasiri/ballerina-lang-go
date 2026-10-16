@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	attr-with-ns-val
+        	error("{ballerina/lang.xml}XMLOperationError",message="invalid xml attribute access on xml sequence")
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

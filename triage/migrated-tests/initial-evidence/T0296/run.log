@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+         --> capture-binding-pattern-negative-e.bal:3:9
+          |
+        3 |         var a => { // @error
+          |         ^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,64 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "function-with-included-record-param-4dd158ffbe/included-record-params-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'anyVal'
+           --> included-record-params-v.bal:331:5
+            |
+        331 |     anydata anyVal = ();
+            |     ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'bar'
+           --> included-record-params-v.bal:119:73
+            |
+        119 | function functionOfFunctionTypedParamWithIncludedRecordParam4(*Foo foo, *Bar bar) returns anydata {
+            |                                                                         ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'bar'
+           --> included-record-params-v.bal:127:73
+            |
+        127 | function functionOfFunctionTypedParamWithIncludedRecordParam6(*Foo foo, *Bar bar) returns anydata {
+            |                                                                         ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'bar'
+           --> included-record-params-v.bal:176:76
+            |
+        176 | function functionOfFunctionTypedParamWithIncludedRecordParam16(*Bar2 bar2, *Bar bar) returns anydata {
+            |                                                                            ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'foo'
+           --> included-record-params-v.bal:168:82
+            |
+        168 | function functionOfFunctionTypedParamWithIncludedRecordParam14(int a, int b = 5, *Foo3 foo, *Foo4 foo2) returns int {
+            |                                                                                  ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'foo2'
+           --> included-record-params-v.bal:157:64
+            |
+        157 | function functionOfFunctionTypedParamWithIncludedRecordParam11(*Foo2 foo2) {
+            |                                                                ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'foo2'
+           --> included-record-params-v.bal:168:93
+            |
+        168 | function functionOfFunctionTypedParamWithIncludedRecordParam14(int a, int b = 5, *Foo3 foo, *Foo4 foo2) returns int {
+            |                                                                                             ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'grades'
+           --> included-record-params-v.bal:160:108
+            |
+        160 | function functionOfFunctionTypedParamWithIncludedRecordParam12(string email, int tel, *NewStudent student, *Grades grades) returns string {
+            |                                                                                                            ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'student'
+           --> included-record-params-v.bal:160:87
+            |
+        160 | function functionOfFunctionTypedParamWithIncludedRecordParam12(string email, int tel, *NewStudent student, *Grades grades) returns string {
+            |                                                                                       ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'tel'
+           --> included-record-params-v.bal:160:78
+            |
+        160 | function functionOfFunctionTypedParamWithIncludedRecordParam12(string email, int tel, *NewStudent student, *Grades grades) returns string {
+            |                                                                              ^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

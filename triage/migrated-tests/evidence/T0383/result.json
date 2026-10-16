@@ -1,0 +1,14 @@
+{
+  "Name": "constant-type-test-27d6dffc1c/constant-type-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-type-test-27d6dffc1c/constant-type-v.bal",
+  "Project": false,
+  "Id": "T0383",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constant-type-test-27d6dffc1c/constant-type-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.082
+}

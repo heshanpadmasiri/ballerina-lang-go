@@ -1,0 +1,15 @@
+{
+  "Name": "basic-tuple-test-df3c24eedf/tuples-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-tuple-test-df3c24eedf/tuples-e",
+  "Project": true,
+  "Id": "T0214",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/basic-tuple-test-df3c24eedf/tuples-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/basic-tuple-test-df3c24eedf/tuples-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

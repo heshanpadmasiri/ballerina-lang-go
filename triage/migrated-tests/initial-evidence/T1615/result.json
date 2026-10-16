@@ -1,0 +1,15 @@
+{
+  "Name": "xmlaccess-test-873756d6ae/nav-access-negative-filter-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-negative-filter-e",
+  "Project": true,
+  "Id": "T1615",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-negative-filter-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-negative-filter-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.035
+}

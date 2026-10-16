@@ -1,0 +1,1 @@
+{"Stdout":"Jack\nUSA\nCA\n25\nJane\nUSA\nemily\nemily\ndefault first name\n\n999\n","Stderr":"error: no filler value\n        at testNestedFieldDefaultVal(record-access-with-index-v.bal:74)\n           main(record-access-with-index-v.bal:365)\n","Diagnostics":null}

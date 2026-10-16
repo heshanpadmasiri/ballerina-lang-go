@@ -1,0 +1,14 @@
+{
+  "Name": "record-default-functions-test-5c734f9983/record_default_functions-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-default-functions-test-5c734f9983/record_default_functions-v.bal",
+  "Project": false,
+  "Id": "T1260",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-default-functions-test-5c734f9983/record_default_functions-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n --\u003e frozen-inner-json-modification-p.bal:4:20\n  |\n4 |     map\u003cjson\u003e j4 = j2.cloneReadOnly();\n  |                    ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-inner-json-modification-p.bal","StartLine":4,"EndLine":4}]}

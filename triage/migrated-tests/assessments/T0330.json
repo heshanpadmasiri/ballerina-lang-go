@@ -1,0 +1,13 @@
+{
+  "id": "T0330",
+  "name": "client-object-test-cc3f260977/remote-basic-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists New expression, but does not list object-constructor-expr (anonymous object constructors).",
+    "## Module-level declarations: Class definition — Supports remote-method-defn for client classes and resource-method-defn for service classes",
+    "## Expressions: Client remote method call action"
+  ],
+  "reason": "The case includes three anonymous client object constructors in clientFunc and asserts rejection of duplicate ordinary/remote methods inside them. Object constructor expressions are not covered by the supported expression list; support for class definitions and new expressions does not establish support for anonymous client object expressions. This essential portion makes the whole case a feature request.",
+  "unsupported_constructs": ["Anonymous client object constructor expressions: var x/y/z = client object { ... }, including duplicate-method diagnostics within those expressions"],
+  "test_design_notes": ["This is a compile-negative case with @error assertions; no @args, @panic, or @output directives occur.", "Illegal remote declarations/calls and duplicate class methods alone do not make this a feature case: negative rejection within supported grammar/type checking is in scope."]
+}

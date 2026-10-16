@@ -1,0 +1,18 @@
+{
+  "id": "T1410",
+  "name": "tables-as-func-args-53418aff8c/tables-as-func-args-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list includes \"List constructor\" and \"Mapping constructor\" but does not include table constructors.",
+    "## Module-level declarations: \"Type definition\" and function definitions with \"required-params\" are supported.",
+    "### Other invocation restrictions: \"value:toString\" and \"value:toBalString\" are supported in method call syntax."
+  ],
+  "reason": "All eight output assertions require constructing table values and passing tables with key specifiers or key constraints through function parameters. Table constructor expressions are absent from the supported expression list, which is a decisive unsupported essential construct. The supported toString method and function signatures do not establish support for table construction or its exact serialized output.",
+  "unsupported_constructs": [
+    "Table constructor expressions: table [...] and table key(name) [...], including keyed table values."
+  ],
+  "test_design_notes": [
+    "Eight @output true markers exercise table argument compatibility and exact table toString serialization together; the case therefore combines type compatibility with runtime formatting.",
+    "io:println is output instrumentation; no obvious marker mismatch."
+  ]
+}

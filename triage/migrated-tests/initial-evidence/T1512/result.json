@@ -1,0 +1,14 @@
+{
+  "Name": "var-mutability-with-workers-test-9792f76954/var-mutability-with-workers-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/var-mutability-with-workers-test-9792f76954/var-mutability-with-workers-v.bal",
+  "Project": false,
+  "Id": "T1512",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/var-mutability-with-workers-test-9792f76954/var-mutability-with-workers-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.073
+}

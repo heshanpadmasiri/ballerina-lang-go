@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "freeze-and-is-frozen-test-c0f3b0e88b/frozen-xml-set-children-deep-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: method not found: cloneReadOnly
+         --> frozen-xml-set-children-deep-p.bal:6:52
+          |
+        6 |     xmllib:Element x3 = <xmllib:Element & readonly>x1.cloneReadOnly();
+          |                                                    ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+         --> frozen-xml-set-children-deep-p.bal:7:18
+          |
+        7 |     xml author = x3.getChildren().strip()[1];
+          |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

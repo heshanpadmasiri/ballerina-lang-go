@@ -1,0 +1,25 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	100:int:string_value:string:true:boolean::()
+        	10:object:8:function:str:string|json:json:string|json:
+        	string
+        	9.0
+        	true
+        	true
+        	2
+        	true
+        	true
+        	12
+        	true
+        	6.6
+        	string:str:boolean:true
+        	stringtruestring
+        	true
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

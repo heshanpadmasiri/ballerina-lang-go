@@ -1,0 +1,17 @@
+{
+  "id": "T1413",
+  "name": "ternary-expression-test-915619b7bf/ternary-type-narrow-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Function definition]; [Type definition]",
+    "Statements: [Destructuring assignment statement] — Only supports wildcard-binding-pattern; [If/else]; [While]; [Local variable declarations]",
+    "Expressions: [Conditional expression]; [Type test expression]; [Equality expression]; [Unary logical expression]; Nested expressions (`(expression)`); [Type cast expression]; [Mapping constructor]; [`Call`]",
+    "Operators: Equality ops `==`, `!=`, `===`, `!==`; Unary operators — logical `!`"
+  ],
+  "reason": "The case checks type narrowing through ternary conditions, nested type tests and equality/nil tests, including narrowing inherited from if/while conditions and record unions with readonly intersections. Its expressions, declarations, calls and control flow are supported, with no applicable subset restriction excluding this narrowing behavior or these record types. Expected negative diagnostics are within the supported type system and therefore remain in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixed positive and negative compile-time cases: only selected expressions carry @error; unmarked expressions and explicit OK comments require successful checking.",
+    "No @args, @panic or @output markers and no runtime entry point; this is a compile-time diagnostic/narrowing case."
+  ]
+}

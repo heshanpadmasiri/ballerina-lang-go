@@ -1,0 +1,12 @@
+{
+  "id": "T0526",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-json-modification-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; value:cloneReadOnly is absent."
+  ],
+  "reason": "The expected panic on updating j3 depends on j2.cloneReadOnly() producing a frozen JSON map. cloneReadOnly is outside the supported lang.value functions and langlib method-call list, so this essential behavior is unsupported.",
+  "unsupported_constructs": ["lang.value cloneReadOnly invoked as j2.cloneReadOnly(), including its frozen-clone semantics"],
+  "test_design_notes": ["The @panic assertion exercises mutation of the cloned map; ordinary mapping construction and member assignment alone do not establish support for freezing."]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'args'\n  --\u003e ignore-values-negative-e.bal:17:22\n   |\n17 | public function main(string... args) {\n   |                      ^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"ignore-values-negative-e.bal","StartLine":17,"EndLine":17}]}

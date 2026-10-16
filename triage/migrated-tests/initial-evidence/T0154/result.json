@@ -1,0 +1,14 @@
+{
+  "Name": "array-length-access-expr-test-55e280906c/array-length-access-expr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-length-access-expr-test-55e280906c/array-length-access-expr-v.bal",
+  "Project": false,
+  "Id": "T0154",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-length-access-expr-test-55e280906c/array-length-access-expr-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.07
+}

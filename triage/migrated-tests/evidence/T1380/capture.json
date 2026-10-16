@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '0' value cannot be converted to 'string'\n        at testorg/equivalencynegative:testEqOfStructsInSamePackage02(main.bal:15)\n           testorg/equivalencynegative:main(main.bal:20)\n","Diagnostics":null}

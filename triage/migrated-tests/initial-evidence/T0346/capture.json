@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: invalid token\n --\u003e closed_record_optional_fields_negatives-e.bal:6:19\n  |\n6 |     int age? = 999; // @error // @error\n  |                   ^\n\n","Diagnostics":[{"File":"closed_record_optional_fields_negatives-e.bal","StartLine":6,"EndLine":6}]}

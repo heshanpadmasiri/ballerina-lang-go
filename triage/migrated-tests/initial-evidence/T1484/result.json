@@ -1,0 +1,14 @@
+{
+  "Name": "type-guard-test-74355f2266/type-test-type-narrowing-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-test-type-narrowing-negative-e.bal",
+  "Project": false,
+  "Id": "T1484",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-test-type-narrowing-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

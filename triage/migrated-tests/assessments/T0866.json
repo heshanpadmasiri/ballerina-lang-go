@@ -1,0 +1,17 @@
+{
+  "id": "T0866",
+  "name": "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"Match statement\" \u2014 \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\""
+  ],
+  "reason": "The assertions require list match patterns, including nested patterns, captured variables, guards, and rest captures. For example, listMatchPattern12 returns the variable bound by alternate list patterns, and listMatchPattern21 sums elements captured by [var a, var b, ...var c]. These essential behaviors exceed the explicit restriction to const and wildcard match patterns.",
+  "unsupported_constructs": [
+    "List match patterns with nested patterns, variable captures and rest captures",
+    "Mapping and error match patterns nested inside list match patterns (testListMatchPattern30)"
+  ],
+  "test_design_notes": [
+    "Several early no-match assertions compare the literal \"No match\" with itself and do not exercise a fallback; other assertions do exercise fallback behavior.",
+    "io:println is incidental instrumentation."
+  ]
+}

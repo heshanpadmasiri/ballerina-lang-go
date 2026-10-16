@@ -1,0 +1,18 @@
+{
+  "id": "T0913",
+  "name": "module-public-variable-test-5b1954009d/module-public-var-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "Expressions / Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Statements / Destructuring assignment statement: Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)"
+  ],
+  "reason": "The case declares public module variables, including a tuple-typed declaration with a list binding pattern initialized by numeric literals. Module variable declarations and list constructors are supported without a binding-pattern restriction. The wildcard-only restriction applies to destructuring assignment statements, not module variable declarations. No essential unsupported behavior appears.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The empty main provides no runtime assertions; this case primarily exercises acceptance and initialization of public module variable declarations.",
+    "The unused retainIoImport function contains only io:println instrumentation and does not establish an unsupported feature dependency."
+  ]
+}

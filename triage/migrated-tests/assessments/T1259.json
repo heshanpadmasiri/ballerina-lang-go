@@ -1,0 +1,19 @@
+{
+  "id": "T1259",
+  "name": "record-def-negative-test-2a404858e4/record-field-default-value-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' and 'Anonymous function expression', but does not list object constructor expressions.",
+    "## Module-level declarations: 'Class definition' with support for 'object-field', 'method-defn' and 'object-type-inclusion' members.",
+    "## Expressions: 'Check expression' and 'Trap expression'.",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; 'ballerina/lang.int' includes 'fromString'."
+  ],
+  "reason": "The negative case includes an object constructor expression, `object { any|error a = check f1(); }`, as a record field default and asserts rejection of check in that object's field initializer. Object constructor expressions are absent from the supported expression list; support for class definitions and new expressions does not establish support for this separate constructor form. This essential asserted context makes the whole case a feature case, although check/trap expressions and int:fromString are supported.",
+  "unsupported_constructs": [
+    "Object constructor expression used as a record field default, including check in its object field initializer."
+  ],
+  "test_design_notes": [
+    "The @error markers assert static rejection in record defaults and nested initialization contexts; negative code alone does not make the case unsupported.",
+    "Other assertions exercise check in record field defaults, anonymous function boundaries, and check applied to a non-error-returning call."
+  ]
+}

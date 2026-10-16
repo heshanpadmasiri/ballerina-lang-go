@@ -1,0 +1,17 @@
+{
+  "id": "T0544",
+  "name": "function-nil-return-test-762593be2f/function-nil-return-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: positive supported-statement list includes Return and Match statement, but does not include named worker declarations or worker message passing.",
+    "## Expressions: \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" is supported; worker send and receive actions are not listed."
+  ],
+  "reason": "The case asserts nil-return behavior inside named workers and requires a message exchange between w1 and w2. Named workers and worker send/receive actions are outside the subset's positive lists, so the whole case is a feature even though ordinary nil returns and wait actions are supported.",
+  "unsupported_constructs": [
+    "Named worker declarations: worker w1 and worker w2",
+    "Worker message send hello -> w2 and receive <- w1"
+  ],
+  "test_design_notes": [
+    "testPrintInWorkers is called from main and asserts Hello, a blank nil output, and Ballerina after worker communication; this is executable asserted behavior."
+  ]
+}

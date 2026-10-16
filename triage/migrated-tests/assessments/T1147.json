@@ -1,0 +1,12 @@
+{
+  "id": "T1147",
+  "name": "operand-test-0e6612016b/operand_int_and_default_explicit-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Invocations > Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The asserted output John depends on command-line operand binding: parsing 2 as the required int main parameter and binding John explicitly to the defaultable string parameter. The subset supports these parameter signatures and ordinary function invocation arguments, but does not cover command-line main operand parsing or binding.",
+  "unsupported_constructs": ["Command-line operand conversion and binding to required and defaultable main parameters"],
+  "test_design_notes": ["The default Riyafa is overridden, so this case asserts explicit CLI argument binding rather than evaluation of an omitted default.", "io:println is output instrumentation only."]
+}

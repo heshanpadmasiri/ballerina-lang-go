@@ -1,0 +1,17 @@
+{
+  "id": "T0093",
+  "name": "argument-parser-positive-test-e41e5b8a0a/defaultable-functions-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Invocations / Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.\""
+  ],
+  "reason": "The asserted execution passes CLI argument \"1\" to main, converts it to int, and applies chained dependent defaults to produce \"1, a: 6, b: 11, c: 22\". The subset supports defaultable signatures and ordinary omitted-default function calls, but does not cover the external command-line argument parsing and main invocation protocol required by @args. Thus the complete asserted behavior is not covered.",
+  "unsupported_constructs": [
+    "External CLI argument-to-main binding and conversion, including application of omitted main defaults."
+  ],
+  "test_design_notes": [
+    "@args [\"1\"] is essential to the assertion; signature and ordinary call support alone do not establish CLI execution support.",
+    "io:println and @output are instrumentation; value:toString method syntax is explicitly supported."
+  ]
+}

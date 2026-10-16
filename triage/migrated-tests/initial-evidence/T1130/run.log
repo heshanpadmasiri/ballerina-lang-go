@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field2-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+          --> open_record_optional_fields_optional_non_def_field2-p.bal:13:5
+           |
+        13 |     Address3 a = <Address3>p?.adrs; // @panic
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> open_record_optional_fields_optional_non_def_field2-p.bal:14:5
+           |
+        14 |     Address3 b = <Address3>p.get("adrs");
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

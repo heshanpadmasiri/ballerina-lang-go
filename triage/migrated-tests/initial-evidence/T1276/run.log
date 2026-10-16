@@ -1,0 +1,291 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "record-variable-definition-test-0c506ca119/record-variable-definition-warnings-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> record-variable-definition-warnings-e.bal:177:5
+            |
+        177 |     {s: s, i: i, ...rest} = recordReturningFunc(20);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> record-variable-definition-warnings-e.bal:193:5
+            |
+        193 |     {name: stdName, age, ...details} = <Emp>{name: "Jane Doe", age: 10, "foo": "bar"};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> record-variable-definition-warnings-e.bal:240:5
+            |
+        240 |     {name: fullName, married: isMarried, ...rest1} = p;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> record-variable-definition-warnings-e.bal:243:5
+            |
+        243 |     {name: fullName, married: isMarried, ...rest2} = p;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> record-variable-definition-warnings-e.bal:244:5
+            |
+        244 |     {name: fullName, ...rest3} = p;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:117:16
+            |
+        117 |     UnionThree {var1, var2, var3, ...rest} = u3; // @error
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:123:19
+            |
+        123 |     PersonWithAge {name, age: {age, format: _, ...rest1}, married: _, ...rest2} = p; // @error // @error
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:152:19
+            |
+        152 |     IntRestRecord {name: name1, ...other1} = rec1; // @error
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:153:9
+            |
+        153 |     var {name: name2, ...other2} = rec1; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:155:36
+            |
+        155 |     IntRestRecord|ObjectRestRecord {name: name5, ...other5} = rec3; // @error
+            |                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:158:28
+            |
+        158 |     IntStringMap|ObjectMap {name: name8, ...other9} = map2; // @error
+            |                            ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:173:9
+            |
+        173 |     var {s: s, i: i, ...rest} = recordReturningFunc(10); // @error // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:202:7
+            |
+        202 |     } {Id, ...studentDetail} = getStudentRecord(1); // @error
+            |       ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:226:21
+            |
+        226 |     SchemaA|SchemaB {name, ...rest} = recA; // @error
+            |                     ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> record-variable-definition-warnings-e.bal:261:9
+            |
+        261 |     var {a, c} = topt; // @error
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:33:19
+           |
+        33 |     PersonWithAge {name: fName1, age: {age: theAge1, format: format1}, married: married1} = p1; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:34:19
+           |
+        34 |     PersonWithAge {name: fName2, age: {age: theAge2, format: format2}, married: married2} = p2; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:35:19
+           |
+        35 |     PersonWithAge {name: fName3, age: {age: theAge3, format: format3}, married: married3} = p3; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:40:12
+           |
+        40 |     Person {name: fName, married} = getPersonRecord(); // @error
+           |            ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:46:19
+           |
+        46 |     PersonWithAge {name: fName, age: {age: theAge, format}, married} = person; // @error // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:52:19
+           |
+        52 |     PersonWithAge {name, age: {age, format}, married, ...rest} = p; // @error // @error // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:58:19
+           |
+        58 |     PersonWithAge {name, age: {age, format, ...rest1}, married, ...rest2} = p; // @error // @error // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:81:12
+           |
+        81 |     Parent {namesOfChildren, children, child: {name, yearAndAge: [yearInt, {age, format}]}} = parent; // @error // @error
+           |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-definition-warnings-e.bal:93:9
+           |
+        93 |     var {namesOfChildren, children, child: {name, yearAndAge: [yearInt, {age, format}]}} = parent; // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:117:16
+            |
+        117 |     UnionThree {var1, var2, var3, ...rest} = u3; // @error
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:123:19
+            |
+        123 |     PersonWithAge {name, age: {age, format: _, ...rest1}, married: _, ...rest2} = p; // @error // @error
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:152:19
+            |
+        152 |     IntRestRecord {name: name1, ...other1} = rec1; // @error
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:153:9
+            |
+        153 |     var {name: name2, ...other2} = rec1; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:155:36
+            |
+        155 |     IntRestRecord|ObjectRestRecord {name: name5, ...other5} = rec3; // @error
+            |                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:158:28
+            |
+        158 |     IntStringMap|ObjectMap {name: name8, ...other9} = map2; // @error
+            |                            ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:173:9
+            |
+        173 |     var {s: s, i: i, ...rest} = recordReturningFunc(10); // @error // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:202:7
+            |
+        202 |     } {Id, ...studentDetail} = getStudentRecord(1); // @error
+            |       ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:226:21
+            |
+        226 |     SchemaA|SchemaB {name, ...rest} = recA; // @error
+            |                     ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> record-variable-definition-warnings-e.bal:261:9
+            |
+        261 |     var {a, c} = topt; // @error
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:33:19
+           |
+        33 |     PersonWithAge {name: fName1, age: {age: theAge1, format: format1}, married: married1} = p1; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:34:19
+           |
+        34 |     PersonWithAge {name: fName2, age: {age: theAge2, format: format2}, married: married2} = p2; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:35:19
+           |
+        35 |     PersonWithAge {name: fName3, age: {age: theAge3, format: format3}, married: married3} = p3; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:40:12
+           |
+        40 |     Person {name: fName, married} = getPersonRecord(); // @error
+           |            ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:46:19
+           |
+        46 |     PersonWithAge {name: fName, age: {age: theAge, format}, married} = person; // @error // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:52:19
+           |
+        52 |     PersonWithAge {name, age: {age, format}, married, ...rest} = p; // @error // @error // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:58:19
+           |
+        58 |     PersonWithAge {name, age: {age, format, ...rest1}, married, ...rest2} = p; // @error // @error // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:81:12
+           |
+        81 |     Parent {namesOfChildren, children, child: {name, yearAndAge: [yearInt, {age, format}]}} = parent; // @error // @error
+           |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-definition-warnings-e.bal:93:9
+           |
+        93 |     var {namesOfChildren, children, child: {name, yearAndAge: [yearInt, {age, format}]}} = parent; // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> record-variable-definition-warnings-e.bal:177:5
+            |
+        177 |     {s: s, i: i, ...rest} = recordReturningFunc(20);
+            |     ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> record-variable-definition-warnings-e.bal:193:5
+            |
+        193 |     {name: stdName, age, ...details} = <Emp>{name: "Jane Doe", age: 10, "foo": "bar"};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> record-variable-definition-warnings-e.bal:240:5
+            |
+        240 |     {name: fullName, married: isMarried, ...rest1} = p;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> record-variable-definition-warnings-e.bal:243:5
+            |
+        243 |     {name: fullName, married: isMarried, ...rest2} = p;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> record-variable-definition-warnings-e.bal:244:5
+            |
+        244 |     {name: fullName, ...rest3} = p;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,843 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "let-expression-test-6fab6108d2/let-expression-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+           --> let-expression-v.bal:377:42
+            |
+        377 |     xml x = xml `<Books>${xml `<Book><!--${let int y = 5 in y}--></Book>`}</Books>`;
+            |                                          ^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+           --> let-expression-v.bal:381:42
+            |
+        381 |     xml z = xml `<Books>${xml `<Book><!--${let function () returns int y = (() => i) in y()}--></Book>`}</Books>`;
+            |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:108:14
+            |
+        108 |     b = x ?: let int y = 5, int z = 5 in z + y;
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:113:20
+            |
+        113 |     int|string x = let int y = 5, int z = 5 in z + y;
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:146:46
+            |
+        146 |     json j = {fname:"Jhon", lname:"Doe", age:let int x = 4 in 2 * x * globalVar};
+            |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:149:52
+            |
+        149 |     json k = {fname:"Jhon", lname:"Doe", age:check let json x = {age: 16} in x.age};
+            |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:154:16
+            |
+        154 |     int[] b = [let int x = globalVar*2, int z = 5 in z * x * globalVar, 2, 3, 4];
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:157:16
+            |
+        157 |     int[] c = [let int[] x = [2, 3], int z = 5 in z*x[0], 2, 3, 4];
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:162:24
+            |
+        162 |     [int, string] a = [let int x = globalVar*2, int z = 5 in z * x * globalVar, "John"];
+            |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:165:24
+            |
+        165 |     [int, string] b = [let [int, string] x = [1, "hello"], int z = x[0] + 1 in z * x[0] * globalVar, "John"];
+            |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:170:36
+            |
+        170 |     map<string> addrMap = { line1: let string no = "No, ", string twenty = "20" in no+twenty,
+            |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:174:35
+            |
+        174 |     map<string> student = {fname: let map<string> person = {name: "Irshad"} in person.get("name"), lname: "Nilam"};
+            |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:180:13
+            |
+        180 |     int b = let [boolean, int] t = [true, 4], int x = 2 in t[1] * x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:185:13
+            |
+        185 |     int b = let [boolean, int] [a1, a2] = [true, 4], int y = a2 * 2 in a2 + y;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:190:13
+            |
+        190 |     int b = let [[string, [int, [boolean, byte]]], [float, int]] v1 =
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        191 |             [["Ballerina", [3, [true, 34]]], [5.6, 45]], int x = 2 in v1[0][1][0] + x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:196:13
+            |
+        196 |     int b = let [[string, int], [boolean, float]] [[c1, c2],[c3, c4]] =
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        197 |             [["Ballerina", 34], [true, 6.7]], int x = 2 in c2 + x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:203:13
+            |
+        203 |     int b = let [[string, [int, [boolean, byte]]], [float, int]] [[d1, [d2, [d3, d4]]], [d5, d6]] = v1, int x = 2
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        204 |             in  d2 + d4 + x;
+            |             ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:209:13
+            |
+        209 |     int b = let Person { name: firstName, age: personAge, ...otherDetails } = getPerson(), int x = 1 in personAge + x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:214:19
+            |
+        214 |     string city = let var { name: countryName, capital: { name: capitalName } } = getCountry(), string comma = ", "
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        215 |         in capitalName + comma + countryName;
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:220:12
+            |
+        220 |    int k = let SampleError error(reason, info = info, fatal = fatal) = getSampleError(), int x = 1
+            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        221 |        in reason.length() + x;
+            |        ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:226:37
+            |
+        226 |    boolean k = <boolean> checkpanic let var error(reasonTwo, ...params) = getSampleError() in params["fatal"];
+            |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:231:18
+            |
+        231 |     string msg = let var error(_, detailMsg = detailMsg, isFatal = isFatal) = getRecordConstrainedError() in detailMsg;
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:256:12
+            |
+        256 |     return let int x = 4, int z = 5 in z+x;
+            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:326:13
+            |
+        326 |     } rec = let int v = 1 in {i: v};
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:340:16
+            |
+        340 |     Rec rec1 = let int v = 160 in {i: v};
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:344:16
+            |
+        344 |     Rec rec2 = let int v = 161 in {i: v, j: v};
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:358:20
+            |
+        358 |     FooClass foo = let int m = 5 in new (m);
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:361:26
+            |
+        361 |     FooClass foo2 = new (let var arr = [1, 2, 3] in arr.reduce(function(int sum, int x) returns int {
+            |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        362 |                                                                                 return sum + x;
+            |                                                                                 ^^^^^^^^^^^^^^^
+        363 |                                                                             }, 0));
+            |                                                                             ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:368:41
+            |
+        368 |     xml x = xml `<Books>${xml `<Book>"${let int y = 5 in y}"</Book>`}</Books>`;
+            |                                         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:372:41
+            |
+        372 |     xml z = xml `<Books>${xml `<Book>"${let function () returns int y = (() => i) in y()}"</Book>`}</Books>`;
+            |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:386:28
+            |
+        386 |     xml x = xml `<Book x="${let int y = 5 in y}"></Book>`;
+            |                            ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:389:24
+            |
+        389 |     xml z = xml `<Book x="${let function () returns int y = (() => i) in y()}"></Book>`;
+            |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:394:5
+            |
+        394 |     var a = let int n = 2
+            |     ^^^^^^^^^^^^^^^^^^^^^
+        395 |         in from var i in [1, 2, 3]
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        396 |             where i == n
+            |             ^^^^^^^^^^^^
+        397 |             select n + i;
+            |             ^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:400:7
+            |
+        400 |     int[] b = let int n = 2
+            |       ^^^^^^^^^^^^^^^^^^^^^
+        401 |         in from var i in [1, 2, 3, 4]
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        402 |             let int x = n + 1
+            |             ^^^^^^^^^^^^^^^^^
+        403 |             where i > n
+            |             ^^^^^^^^^^^
+        404 |             select n + i + x;
+            |             ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:407:7
+            |
+        407 |     int[] c = let int[] n = [2, 4, 6]
+            |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        408 |         in from var i in [1, 2, 3, 4]
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        409 |             from int j in n
+            |             ^^^^^^^^^^^^^^^
+        410 |             let int x = n[0] + 1
+            |             ^^^^^^^^^^^^^^^^^^^^
+        411 |             where i < n[1]
+            |             ^^^^^^^^^^^^^^
+        412 |             select i + x + j;
+            |             ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:417:8
+            |
+        417 |     var func = let null n = null
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+        418 |         in function() returns boolean {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        419 |             return n == ();
+            |             ^^^^^^^^^^^^^^^
+        420 |         };
+            |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:424:9
+            |
+        424 |     var func3 = let int n = 2 in function () returns int => n * 10;
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:428:31
+            |
+        428 |     function () returns (int) func5 = let int n = 2
+            |                               ^^^^^^^^^^^^^^^^^^^^^
+        429 |         in function() returns int {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        430 |             function () returns (int) v = let int m = 4 in function () returns int => n * 10 * m;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        431 |             return v();
+            |             ^^^^^^^^^^^
+        432 |         };
+            |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:437:7
+            |
+        437 |     var obj = let null n = () in object {
+            |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        438 |         null nx = n;
+            |         ^^^^^^^^^^^^
+        439 |         function getValue() returns boolean {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        440 |             return self.nx == ();
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        441 |         }
+            |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:447:33
+            |
+        447 |     object { public boolean b; } obj2 = let boolean b1 = true in object { public boolean b = b1; };
+            |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:481:8
+            |
+        481 |     var obj1 = let null n = () in new NilClass(n);
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:484:13
+            |
+        484 |     NilClass obj2 = let null n = () in new (n);
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:487:14
+            |
+        487 |     BoolClass obj3 = let boolean b1 = true, boolean b2 = false in new BoolClass(b1, b2);
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:491:10
+            |
+        491 |     assert(true, let null n = () in obj4.isNil(n));
+            |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:20:9
+           |
+        20 | int k = let int x = 4 in 2 * x * globalVar;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:23:13
+           |
+        23 |     int b = let int x = 4 in 2 * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:24:13
+           |
+        24 |     int c = let int x = 4 in 3 * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:30:13
+           |
+        30 |     int b = let var x = 4 in 2 * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:35:13
+           |
+        35 |     int b = let int x = globalVar*2, int z = 5 in z * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:40:13
+           |
+        40 |     int b = let int x = 2, int z = 5+x in z * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:50:13
+           |
+        50 |     int b = let int x = 4, int z = func(y + y*2 + globalVar) in z * (x + globalVar + y);
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:56:13
+           |
+        56 |     int b = let int x = 4, int z = 10 in func(x * z);
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:61:19
+           |
+        61 |     int b = func2(let string x = "aaa", string y = "bbb" in x+y);
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:67:9
+           |
+        67 |     if((let int x = 4, int z = 5 in z*x) == 20) {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:68:13
+           |
+        68 |         a = let int x = 4, int z = 5+a in z + x + a + globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:75:13
+           |
+        75 |     while(((let int x = 4, int z = 5 in z*x) == 20) && a == 1) {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:76:13
+           |
+        76 |         a = let int x = 4, int z = 5+a in z + x + a + globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:83:10
+           |
+        83 |     a -= let int x = 4, int z = 5 in z + x;
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> let-expression-v.bal:89:11
+           |
+        89 |     match let int x = 4, int z = 5 in z + x {
+           |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:498:26
+            |
+        498 |         typedesc<anydata> expT = typeof expected;
+            |                          ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> let-expression-v.bal:499:26
+            |
+        499 |         typedesc<anydata> actT = typeof actual;
+            |                          ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:108:14
+            |
+        108 |     b = x ?: let int y = 5, int z = 5 in z + y;
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:113:20
+            |
+        113 |     int|string x = let int y = 5, int z = 5 in z + y;
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:146:46
+            |
+        146 |     json j = {fname:"Jhon", lname:"Doe", age:let int x = 4 in 2 * x * globalVar};
+            |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:149:52
+            |
+        149 |     json k = {fname:"Jhon", lname:"Doe", age:check let json x = {age: 16} in x.age};
+            |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:154:16
+            |
+        154 |     int[] b = [let int x = globalVar*2, int z = 5 in z * x * globalVar, 2, 3, 4];
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:157:16
+            |
+        157 |     int[] c = [let int[] x = [2, 3], int z = 5 in z*x[0], 2, 3, 4];
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:162:24
+            |
+        162 |     [int, string] a = [let int x = globalVar*2, int z = 5 in z * x * globalVar, "John"];
+            |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:165:24
+            |
+        165 |     [int, string] b = [let [int, string] x = [1, "hello"], int z = x[0] + 1 in z * x[0] * globalVar, "John"];
+            |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:170:36
+            |
+        170 |     map<string> addrMap = { line1: let string no = "No, ", string twenty = "20" in no+twenty,
+            |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:174:35
+            |
+        174 |     map<string> student = {fname: let map<string> person = {name: "Irshad"} in person.get("name"), lname: "Nilam"};
+            |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:180:13
+            |
+        180 |     int b = let [boolean, int] t = [true, 4], int x = 2 in t[1] * x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:185:13
+            |
+        185 |     int b = let [boolean, int] [a1, a2] = [true, 4], int y = a2 * 2 in a2 + y;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:190:13
+            |
+        190 |     int b = let [[string, [int, [boolean, byte]]], [float, int]] v1 =
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        191 |             [["Ballerina", [3, [true, 34]]], [5.6, 45]], int x = 2 in v1[0][1][0] + x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:196:13
+            |
+        196 |     int b = let [[string, int], [boolean, float]] [[c1, c2],[c3, c4]] =
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        197 |             [["Ballerina", 34], [true, 6.7]], int x = 2 in c2 + x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:203:13
+            |
+        203 |     int b = let [[string, [int, [boolean, byte]]], [float, int]] [[d1, [d2, [d3, d4]]], [d5, d6]] = v1, int x = 2
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        204 |             in  d2 + d4 + x;
+            |             ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:209:13
+            |
+        209 |     int b = let Person { name: firstName, age: personAge, ...otherDetails } = getPerson(), int x = 1 in personAge + x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:214:19
+            |
+        214 |     string city = let var { name: countryName, capital: { name: capitalName } } = getCountry(), string comma = ", "
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        215 |         in capitalName + comma + countryName;
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:220:12
+            |
+        220 |    int k = let SampleError error(reason, info = info, fatal = fatal) = getSampleError(), int x = 1
+            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        221 |        in reason.length() + x;
+            |        ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:226:37
+            |
+        226 |    boolean k = <boolean> checkpanic let var error(reasonTwo, ...params) = getSampleError() in params["fatal"];
+            |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:231:18
+            |
+        231 |     string msg = let var error(_, detailMsg = detailMsg, isFatal = isFatal) = getRecordConstrainedError() in detailMsg;
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:256:12
+            |
+        256 |     return let int x = 4, int z = 5 in z+x;
+            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:326:13
+            |
+        326 |     } rec = let int v = 1 in {i: v};
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:340:16
+            |
+        340 |     Rec rec1 = let int v = 160 in {i: v};
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:344:16
+            |
+        344 |     Rec rec2 = let int v = 161 in {i: v, j: v};
+            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:358:20
+            |
+        358 |     FooClass foo = let int m = 5 in new (m);
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:361:26
+            |
+        361 |     FooClass foo2 = new (let var arr = [1, 2, 3] in arr.reduce(function(int sum, int x) returns int {
+            |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        362 |                                                                                 return sum + x;
+            |                                                                                 ^^^^^^^^^^^^^^^
+        363 |                                                                             }, 0));
+            |                                                                             ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:368:41
+            |
+        368 |     xml x = xml `<Books>${xml `<Book>"${let int y = 5 in y}"</Book>`}</Books>`;
+            |                                         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:372:41
+            |
+        372 |     xml z = xml `<Books>${xml `<Book>"${let function () returns int y = (() => i) in y()}"</Book>`}</Books>`;
+            |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:386:28
+            |
+        386 |     xml x = xml `<Book x="${let int y = 5 in y}"></Book>`;
+            |                            ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:389:24
+            |
+        389 |     xml z = xml `<Book x="${let function () returns int y = (() => i) in y()}"></Book>`;
+            |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:394:5
+            |
+        394 |     var a = let int n = 2
+            |     ^^^^^^^^^^^^^^^^^^^^^
+        395 |         in from var i in [1, 2, 3]
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        396 |             where i == n
+            |             ^^^^^^^^^^^^
+        397 |             select n + i;
+            |             ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:400:7
+            |
+        400 |     int[] b = let int n = 2
+            |       ^^^^^^^^^^^^^^^^^^^^^
+        401 |         in from var i in [1, 2, 3, 4]
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        402 |             let int x = n + 1
+            |             ^^^^^^^^^^^^^^^^^
+        403 |             where i > n
+            |             ^^^^^^^^^^^
+        404 |             select n + i + x;
+            |             ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:407:7
+            |
+        407 |     int[] c = let int[] n = [2, 4, 6]
+            |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        408 |         in from var i in [1, 2, 3, 4]
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        409 |             from int j in n
+            |             ^^^^^^^^^^^^^^^
+        410 |             let int x = n[0] + 1
+            |             ^^^^^^^^^^^^^^^^^^^^
+        411 |             where i < n[1]
+            |             ^^^^^^^^^^^^^^
+        412 |             select i + x + j;
+            |             ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:417:8
+            |
+        417 |     var func = let null n = null
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+        418 |         in function() returns boolean {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        419 |             return n == ();
+            |             ^^^^^^^^^^^^^^^
+        420 |         };
+            |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:424:9
+            |
+        424 |     var func3 = let int n = 2 in function () returns int => n * 10;
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:428:31
+            |
+        428 |     function () returns (int) func5 = let int n = 2
+            |                               ^^^^^^^^^^^^^^^^^^^^^
+        429 |         in function() returns int {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        430 |             function () returns (int) v = let int m = 4 in function () returns int => n * 10 * m;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        431 |             return v();
+            |             ^^^^^^^^^^^
+        432 |         };
+            |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:437:7
+            |
+        437 |     var obj = let null n = () in object {
+            |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        438 |         null nx = n;
+            |         ^^^^^^^^^^^^
+        439 |         function getValue() returns boolean {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        440 |             return self.nx == ();
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        441 |         }
+            |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:447:33
+            |
+        447 |     object { public boolean b; } obj2 = let boolean b1 = true in object { public boolean b = b1; };
+            |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:481:8
+            |
+        481 |     var obj1 = let null n = () in new NilClass(n);
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:484:13
+            |
+        484 |     NilClass obj2 = let null n = () in new (n);
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:487:14
+            |
+        487 |     BoolClass obj3 = let boolean b1 = true, boolean b2 = false in new BoolClass(b1, b2);
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> let-expression-v.bal:491:10
+            |
+        491 |     assert(true, let null n = () in obj4.isNil(n));
+            |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:20:9
+           |
+        20 | int k = let int x = 4 in 2 * x * globalVar;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:23:13
+           |
+        23 |     int b = let int x = 4 in 2 * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:24:13
+           |
+        24 |     int c = let int x = 4 in 3 * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:30:13
+           |
+        30 |     int b = let var x = 4 in 2 * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:35:13
+           |
+        35 |     int b = let int x = globalVar*2, int z = 5 in z * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:40:13
+           |
+        40 |     int b = let int x = 2, int z = 5+x in z * x * globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:50:13
+           |
+        50 |     int b = let int x = 4, int z = func(y + y*2 + globalVar) in z * (x + globalVar + y);
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:56:13
+           |
+        56 |     int b = let int x = 4, int z = 10 in func(x * z);
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:61:19
+           |
+        61 |     int b = func2(let string x = "aaa", string y = "bbb" in x+y);
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:67:9
+           |
+        67 |     if((let int x = 4, int z = 5 in z*x) == 20) {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:68:13
+           |
+        68 |         a = let int x = 4, int z = 5+a in z + x + a + globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:75:13
+           |
+        75 |     while(((let int x = 4, int z = 5 in z*x) == 20) && a == 1) {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:76:13
+           |
+        76 |         a = let int x = 4, int z = 5+a in z + x + a + globalVar;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:83:10
+           |
+        83 |     a -= let int x = 4, int z = 5 in z + x;
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> let-expression-v.bal:89:11
+           |
+        89 |     match let int x = 4, int z = 5 in z + x {
+           |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> let-expression-v.bal:498:26
+            |
+        498 |         typedesc<anydata> expT = typeof expected;
+            |                          ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> let-expression-v.bal:499:26
+            |
+        499 |         typedesc<anydata> actT = typeof actual;
+            |                          ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

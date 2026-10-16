@@ -1,0 +1,14 @@
+{
+  "Name": "type-descriptor-test-d6260bd9fd/typedesc-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-descriptor-test-d6260bd9fd/typedesc-v.bal",
+  "Project": false,
+  "Id": "T1468",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-descriptor-test-d6260bd9fd/typedesc-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.071
+}

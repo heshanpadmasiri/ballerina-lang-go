@@ -1,0 +1,21 @@
+{
+  "id": "T1540",
+  "name": "while-stmt-test-8fe83cda27/while-stmt-on-fail-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[While]\" is listed; fail statements and on-fail clauses/error binding patterns are not explicitly covered.",
+    "## Expressions: \"[Error constructor]\" and \"[Check expression]\" are listed.",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.string lists length, indexOf, includes, substring, equalsIgnoreCaseAscii, toLowerAscii, toUpperAscii, trim, toBytes, fromBytes, but not concat.",
+    "### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists string methods without string:concat."
+  ],
+  "reason": "Essential string concat method calls (str.concat) used to produce asserted output are outside the explicitly allowed lang.string methods. This alone makes the whole case feature scope. The case also exercises fail/on fail and nested error binding patterns beyond explicit coverage of plain while, error construction and check.",
+  "unsupported_constructs": [
+    "string:concat via method syntax",
+    "fail statements and on fail handlers with nested error/list/record binding patterns (not explicitly covered)"
+  ],
+  "test_design_notes": [
+    "Mixed scope: ordinary while/control flow and supported error/check expressions are combined with unsupported string:concat and uncovered failure-handling patterns.",
+    "Five @output markers assert failure-handler control flow and exact concatenated strings; the remaining called functions assert error binding behavior internally. No @args or @panic markers.",
+    "io:println is output instrumentation."
+  ]
+}

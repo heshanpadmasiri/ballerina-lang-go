@@ -1,0 +1,14 @@
+{
+  "Name": "builtin-operations-test-357c94d6b5/builtin-operations-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/builtin-operations-test-357c94d6b5/builtin-operations-e.bal",
+  "Project": false,
+  "Id": "T0287",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/builtin-operations-test-357c94d6b5/builtin-operations-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.038
+}

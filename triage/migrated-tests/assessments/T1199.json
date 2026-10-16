@@ -1,0 +1,19 @@
+{
+  "id": "T1199",
+  "name": "package-init-test-6480e3dbbc/init-order-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\"",
+    "Module-level declarations: \"Module variable declarations\"",
+    "Module-level declarations: \"Function definition\"",
+    "Expressions: \"Call\" and \"Variable reference\"",
+    "Statements: \"Assignment\", \"Return\"; destructuring assignment \"Only supports wildcard-binding-pattern\"",
+    "Operators: \"Additive ops `+`, `-`\""
+  ],
+  "reason": "The case uses supported imports (including a side-effect-only import), module variable initializers, cross-module function calls, integer addition, assignment and return. Its observable expectation is that shared dependency module a initializes once and prints PackageA during initialization; this is ordinary initialization behavior of supported imports and module variables. No applicable restriction excludes it.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The only explicit output assertion is PackageA. The increments in modules b and the root affect a1, but main discards getA1(), so the supplied code does not independently assert the final value or distinguish the relative order of those increments.",
+    "io:println is output instrumentation; the lang-library whitelist concerns ballerina/lang.*."
+  ]
+}

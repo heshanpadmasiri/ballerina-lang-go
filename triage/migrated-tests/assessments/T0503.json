@@ -1,0 +1,16 @@
+{
+  "id": "T0503",
+  "name": "forward-referencing-global-definition-test-c1122b914e/multi-file-reference-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"; \"Type definition\"; \"Function definition\"",
+    "Expressions: \"Variable reference\"; \"Field access expression\"; \"Mapping constructor\"; \"List constructor\"; \"Call\"",
+    "Statements: \"Local variable declarations\"; \"Return\""
+  ],
+  "reason": "The case requires cross-file module variable dependency initialization: employee reads person.name and person.age from another source file, and getEmployee().name must print Sumedha. Module variables, type definitions, record mapping constructors, tuple list constructors, variable references, field access and function calls are covered by the positive lists, with no restriction excluding forward references or multi-file module initialization. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The output asserts employee initialization from person across source files. The unused pp and pp2 tuple globals also reference those globals.",
+    "io:println serves only as output instrumentation."
+  ]
+}

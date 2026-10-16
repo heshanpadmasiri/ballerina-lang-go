@@ -1,0 +1,14 @@
+{
+  "Name": "match-structured-patterns-test-076cef5d9b/structured-match-patterns-unreachable-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-structured-patterns-test-076cef5d9b/structured-match-patterns-unreachable-negative-e.bal",
+  "Project": false,
+  "Id": "T0880",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-structured-patterns-test-076cef5d9b/structured-match-patterns-unreachable-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.031
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "multiply-operation-test-50bdc62cff/multiply-operation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/multiply-operation-test-50bdc62cff/multiply-operation-v.bal",
+  "Project": false,
+  "Id": "T0934",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/multiply-operation-test-50bdc62cff/multiply-operation-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.099
+}

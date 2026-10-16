@@ -1,0 +1,57 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: stderr does not contain a runtime error message for @panic at frozen-table-addition-p.bal:14
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> frozen-table-addition-p.bal:7:41
+           |
+         7 |     table<Employee1> key(id) empTable = table [
+           |                                         ^^^^^^^
+         8 |         {id: 1, name: "Mary"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+         9 |         {id: 2, name: "John"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        10 |         {id: 3, name: "Jim"}
+           |         ^^^^^^^^^^^^^^^^^^^^
+        11 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> frozen-table-addition-p.bal:7:41
+           |
+         7 |     table<Employee1> key(id) empTable = table [
+           |                                         ^^^^^^^
+         8 |         {id: 1, name: "Mary"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+         9 |         {id: 2, name: "John"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        10 |         {id: 3, name: "Jim"}
+           |         ^^^^^^^^^^^^^^^^^^^^
+        11 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+         --> frozen-table-addition-p.bal:7:5
+          |
+        7 |     table<Employee1> key(id) empTable = table [
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+         --> frozen-table-addition-p.bal:7:5
+          |
+        7 |     table<Employee1> key(id) empTable = table [
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> frozen-table-addition-p.bal:13:5
+           |
+        13 |     table<Employee1> key(id) empTable2 = empTable.cloneReadOnly();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> frozen-table-addition-p.bal:13:5
+           |
+        13 |     table<Employee1> key(id) empTable2 = empTable.cloneReadOnly();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

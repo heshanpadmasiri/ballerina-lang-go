@@ -1,0 +1,15 @@
+{
+  "id": "T0588",
+  "name": "functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Function definition\" supports \"required-params\", \"defaultable-params\", \"included-record-param\" and \"rest-param\" in the signature.",
+    "Expressions: \"Call\"; \"Mapping constructor\" with restriction \"Currently spread-field not supported\".",
+    "Invocations / Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.\""
+  ],
+  "reason": "The case asserts compile-time rejection of invalid record-valued rest arguments: optional fields cannot supply required parameters, extra fields cannot supply absent parameters, named arguments cannot precede a rest argument in the asserted form, and records cannot satisfy an int rest parameter. These are negative checks of supported calls and record types. All callees have directly known signatures. No invocation restriction excludes mapping-valued rest arguments; the spread-field exclusion applies to mapping constructors, not the call rest arguments used here.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation case with six @error markers across five calls; assess diagnostic rejection rather than runtime arithmetic."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "worker-conditional-send-test-60862305bc/worker-conditional-send-test-60862305bc-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-conditional-send-test-60862305bc/worker-conditional-send-test-60862305bc-v.bal",
+  "Project": false,
+  "Id": "T1548",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-conditional-send-test-60862305bc/worker-conditional-send-test-60862305bc-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.111
+}

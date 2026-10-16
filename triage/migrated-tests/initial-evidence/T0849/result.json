@@ -1,0 +1,14 @@
+{
+  "Name": "match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-negative-e.bal",
+  "Project": false,
+  "Id": "T0849",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.031
+}

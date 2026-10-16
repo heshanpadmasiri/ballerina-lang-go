@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @error annotation at global-variable-negative-e.bal:6 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at global-variable-negative-e.bal:15 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.14s)
+FAIL

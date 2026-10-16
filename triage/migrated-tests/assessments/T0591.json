@@ -1,0 +1,17 @@
+{
+  "id": "T0591",
+  "name": "future-negative-tests-7e2663cfde/cases/future_multiple_wait-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\"",
+    "## Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"",
+    "## Expressions: \"Error constructor\" and \"Field access expression\"",
+    "## Statements: \"Local variable declarations\" and \"Return\""
+  ],
+  "reason": "The case asserts repeated-wait runtime errors for single, multiple and alternate waits, including overlapping future sets and futures returning errors. Start and wait actions are explicitly supported without restrictions on these forms or repeated-wait behavior. Annotation attachments cover the strand annotations; no listed restriction excludes the exercised behavior. The remaining function, record, union, error and arithmetic operations introduce no unsupported essential construct.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Despite the negative-tests name, this is an executable runtime-output case asserting error values rather than compile-time rejection.",
+    "io:println is output instrumentation."
+  ]
+}

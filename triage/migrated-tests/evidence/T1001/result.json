@@ -1,0 +1,14 @@
+{
+  "Name": "nested-queries-with-encl-func-params-b1d65d2cdb/nested-queries-with-encl-func-params-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/nested-queries-with-encl-func-params-b1d65d2cdb/nested-queries-with-encl-func-params-v.bal",
+  "Project": false,
+  "Id": "T1001",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/nested-queries-with-encl-func-params-b1d65d2cdb/nested-queries-with-encl-func-params-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.058
+}

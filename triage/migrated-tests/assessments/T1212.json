@@ -1,0 +1,19 @@
+{
+  "id": "T1212",
+  "name": "query-expr-with-anon-function-exprs-8c49262154/query-expr-with-anon-function-exprs-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: 'Anonymous function expression'",
+    "Expressions: 'Query expressions' — 'Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses'",
+    "Expressions: 'Call', 'Conditional expression', 'Type test expression', 'Equality expression', 'List constructor', 'Mapping constructor'",
+    "Module-level declarations: 'Module variable declarations', 'Function definition', 'Type definition'",
+    "Operators: 'Equality ops `==`, `!=`, `===`, `!==`'",
+    "Subset restrictions / Invocations / Other invocation restrictions: '`array:length`' and '`value:toString` and `value:toBalString`'"
+  ],
+  "reason": "The assertions exercise supported anonymous functions and closure capture inside array-producing queries, including nested closures/queries, let and select capture, function identity comparisons, ordering, limits, and module initialization. All query clauses and essential expressions are explicitly supported. Calling the returned functions must preserve each query row's captured values, including nested returned functions and globals initialized before invocation. Array length and value toString calls are allowed langlib methods; no applicable restriction excludes this behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mapping binding patterns appear in query from clauses; the wildcard-only restriction concerns destructuring assignment statements, which this case does not use.",
+    "io:println is assertion-failure instrumentation only."
+  ]
+}

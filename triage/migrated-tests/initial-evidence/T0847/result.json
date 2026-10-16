@@ -1,0 +1,14 @@
+{
+  "Name": "match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-negative-e.bal",
+  "Project": false,
+  "Id": "T0847",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.052
+}

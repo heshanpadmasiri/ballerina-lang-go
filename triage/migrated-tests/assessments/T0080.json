@@ -1,0 +1,15 @@
+{
+  "id": "T0080",
+  "name": "argument-parser-negative-test-706c373f17/invalid-int-12-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\""
+  ],
+  "reason": "The function signature is supported, but the complete case requires CLI argument conversion and rejection of invalid integer input, which subset10 does not cover.",
+  "unsupported_constructs": [
+    "Command-line argument parsing for main(int i)"
+  ],
+  "test_design_notes": [
+    "@args supplies \"0XFSF1\"; @panic expects argument-validation failure before the empty body runs."
+  ]
+}

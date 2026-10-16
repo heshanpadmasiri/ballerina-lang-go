@@ -1,0 +1,16 @@
+{
+  "id": "T0381",
+  "name": "constant-type-test-27d6dffc1c/constant-code-analysis-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Constant declarations\"; \"Function definition\"",
+    "Statements: \"Local variable declarations\"; \"If/else\"",
+    "Expressions: \"Type test expression\"; \"Variable reference\"; \"Logical expression\"",
+    "Operators: \"Additive ops `+`, `-`\"; \"Logical ops `&&`, `||`\""
+  ],
+  "reason": "The case expects three errors for impossible type tests of singleton-typed x (value 1) against constants A and B (123) and C (-1). Constant declarations and references, constant subtraction, local declarations, type tests and logical disjunction are supported, with no applicable restriction excluding this negative type analysis.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Three @error markers assert rejection of the three type tests; no @args, @panic or @output behavior is asserted."
+  ]
+}

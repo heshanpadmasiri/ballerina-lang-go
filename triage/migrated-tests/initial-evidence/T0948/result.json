@@ -1,0 +1,18 @@
+{
+  "Name": "native-conversion-test-4a94bbda4e/native-conversion-package-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-package-v",
+  "Project": true,
+  "Id": "T0948",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-package-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-package-v/Dependencies.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-package-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-package-v/modules/c.d/structs.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-package-v/modules/e.f/structs.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.071
+}

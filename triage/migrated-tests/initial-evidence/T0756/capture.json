@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: 'main' function must be public\n --\u003e main-without-public-e.bal:1:1\n  |\n1 | function main() { // @error\n  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n2 | }\n  | ^\n\n","Diagnostics":[{"File":"main-without-public-e.bal","StartLine":1,"EndLine":2}]}

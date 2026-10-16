@@ -1,0 +1,14 @@
+{
+  "Name": "anonymous-object-test-5197ee0f89/anonymous-object-undefaultable-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-object-test-5197ee0f89/anonymous-object-undefaultable-e.bal",
+  "Project": false,
+  "Id": "T0022",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anonymous-object-test-5197ee0f89/anonymous-object-undefaultable-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

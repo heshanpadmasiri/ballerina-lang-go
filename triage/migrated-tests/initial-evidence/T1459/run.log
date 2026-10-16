@@ -1,0 +1,42 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:2-2 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:2-2 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:10-10 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:10-10 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:14-14 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:14-14 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:18-18 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:18-18 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:19-19 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:19-19 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:23-23 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:23-23 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:30-30 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:30-30 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:34-34 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:34-34 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:45-45 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:45-45 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:50-50 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:50-50 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:55-55 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:55-55 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:59-59 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:59-59 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:65-65 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:65-65 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:82-82 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:82-82 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:84-84 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at tuple-variable-reference-semantics-negative-e.bal:84-84 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at tuple-variable-reference-semantics-negative-e.bal:24 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at tuple-variable-reference-semantics-negative-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at tuple-variable-reference-semantics-negative-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at tuple-variable-reference-semantics-negative-e.bal:36 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at tuple-variable-reference-semantics-negative-e.bal:83 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at tuple-variable-reference-semantics-negative-e.bal:85 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at tuple-variable-reference-semantics-negative-e.bal:99 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

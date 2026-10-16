@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "map-initializer-expr-test-3c385ec88b/map-initializer-expr-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'm'
+          --> map-initializer-expr-v.bal:91:22
+           |
+        91 | function mapFunction(map<any> m) {
+           |                      ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

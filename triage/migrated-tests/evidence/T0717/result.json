@@ -1,0 +1,14 @@
+{
+  "Name": "list-constant-test-204a1e5727/list-constant-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/list-constant-test-204a1e5727/list-constant-v.bal",
+  "Project": false,
+  "Id": "T0717",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/list-constant-test-204a1e5727/list-constant-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

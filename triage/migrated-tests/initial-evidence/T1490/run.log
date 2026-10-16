@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "type-test-expr-test-746fc24e41/type-test-expr-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'y'
+          --> type-test-expr-v.bal:51:5
+           |
+        51 |     int y = 10;
+           |     ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

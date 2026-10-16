@@ -1,0 +1,22 @@
+{
+  "id": "T0403",
+  "name": "cyclic-type-definitions-test-3fce5ad632/tuple-type-definitions-cyclic-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; the value entries are value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString.",
+    "Statements / Foreach: \"Currently only supports range, list, map, string and XML subtypes, and [iterable objects](https://ballerina.io/spec/lang/master/#section_5.8.2)\""
+  ],
+  "reason": "The invoked tests require unsupported lang.value cloneReadOnly, clone and toJsonString methods, including asserted recursive clone equality, distinct identity and readonly typing. These are absent from the explicit supported langlib and method-call lists. Table iteration also falls outside the stated foreach collection list. One of these essential behaviors suffices to classify the whole case as feature.",
+  "unsupported_constructs": [
+    "cloneReadOnly() in immutable cyclic tuple casts, recursive tuple-array cloning and recursive tuple cloning",
+    "clone() with cyclic graph equality and distinct identity assertions",
+    "toJsonString() with an asserted exact serialized recursive-union value",
+    "error.detail() used to assert the trapped cast diagnostic; only error:message is listed",
+    "foreach over table<map<CTTDC>> and table<map<ITTDC>>"
+  ],
+  "test_design_notes": [
+    "main invokes all relevant test functions; unsupported calls are essential to their assertions.",
+    "No @args, @panic or @output directives appear in the supplied file. The empty io:print call is instrumentation."
+  ]
+}

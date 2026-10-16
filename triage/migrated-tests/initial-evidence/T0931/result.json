@@ -1,0 +1,14 @@
+{
+  "Name": "multiple-where-clause-with-var-type-test-98909c64ee/multiple-where-clauses-with-var-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/multiple-where-clause-with-var-type-test-98909c64ee/multiple-where-clauses-with-var-v.bal",
+  "Project": false,
+  "Id": "T0931",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/multiple-where-clause-with-var-type-test-98909c64ee/multiple-where-clauses-with-var-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.065
+}

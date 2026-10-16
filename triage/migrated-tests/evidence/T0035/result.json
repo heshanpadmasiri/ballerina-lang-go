@@ -1,0 +1,14 @@
+{
+  "Name": "anydata-stamp-inbuilt-function-test-0c98e8d6c8/anydata-stamp-inbuilt-function-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anydata-stamp-inbuilt-function-test-0c98e8d6c8/anydata-stamp-inbuilt-function-v.bal",
+  "Project": false,
+  "Id": "T0035",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anydata-stamp-inbuilt-function-test-0c98e8d6c8/anydata-stamp-inbuilt-function-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.079
+}

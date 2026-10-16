@@ -1,0 +1,16 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/incorrect-named-arg-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/incorrect-named-arg-p.bal",
+  "Project": false,
+  "Id": "T0039",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/incorrect-named-arg-p.bal"
+  ],
+  "Args": [
+    "-j=1"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.068
+}

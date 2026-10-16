@@ -1,0 +1,19 @@
+{
+  "id": "T1544",
+  "name": "worker-alternate-receive-test-a1a9b89ec6/alternate-receive-type-checking-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, including 'If/else' and 'Local variable declarations', but does not list named worker declarations or worker sends.",
+    "## Expressions: '[Start action](https://ballerina.io/spec/lang/master/#start-action)' and '[Wait action](https://ballerina.io/spec/lang/master/#wait-action)' are listed; alternate worker receive actions are not listed."
+  ],
+  "reason": "The negative assertions require named workers, worker message sends, and alternate receive type checking, none of which is covered by the supported feature lists. Supported wait actions and ordinary declarations do not establish support for worker communication.",
+  "unsupported_constructs": [
+    "Named worker declarations (worker w1 / worker w2)",
+    "Worker send statements (value -> w2)",
+    "Alternate receive actions (<- w1|w1 and repeated alternatives) and their inferred message/error types"
+  ],
+  "test_design_notes": [
+    "Seven @error markers assert rejection of string bindings for alternate receives; no @args, @panic, or @output markers occur.",
+    "No obvious mixed-scope or marker-placement issue; the negative checks all depend on unsupported worker communication."
+  ]
+}

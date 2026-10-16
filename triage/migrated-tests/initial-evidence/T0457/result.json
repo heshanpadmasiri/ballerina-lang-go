@@ -1,0 +1,14 @@
+{
+  "Name": "error-variable-reference-test-ab01ceefa3/error-binding-pattern-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-variable-reference-test-ab01ceefa3/error-binding-pattern-negative-e.bal",
+  "Project": false,
+  "Id": "T0457",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-variable-reference-test-ab01ceefa3/error-binding-pattern-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

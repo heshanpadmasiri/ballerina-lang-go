@@ -1,0 +1,14 @@
+{
+  "Name": "map-constant-test-c580ec2dc9/map-constant-test-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-constant-test-c580ec2dc9/map-constant-test-v.bal",
+  "Project": false,
+  "Id": "T0810",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-constant-test-c580ec2dc9/map-constant-test-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.093
+}

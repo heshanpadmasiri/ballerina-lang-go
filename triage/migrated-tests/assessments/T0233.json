@@ -1,0 +1,17 @@
+{
+  "id": "T0233",
+  "name": "bdecimal-usage-test-a056295732/bdecimal-usage-test-a056295732-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params ... in the signature; Class definition ... Supports object-field, method-defn and object-type-inclusion members",
+    "Expressions: Literal ... numeric-literal ...; New expression; List constructor; Mapping constructor; Field access expression; Member access expression",
+    "Operators: Multiplicative ops `*`, `%`, `/`; Additive ops `+`, `-`",
+    "Other invocation restrictions: `array:length`, `map:length`, `map:keys`, `map:get`",
+    "Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.; Object constructor calls support named and default arguments while selecting a unique class from an object union"
+  ],
+  "reason": "The case uses supported decimal literals/arithmetic, arrays, maps, records, class fields and initialization, tuple results, and supported langlib methods. Direct calls have known signatures, so the named discountRate argument and omitted defaults (including Student initialization defaults) are supported. The asserted decimal values, map keys and collection output follow these operations; the price assertion is arithmetically correct (540.5 + 10.28 - 54.05 = 496.73). No essential unsupported behavior was identified.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args or @panic annotations. @output checks collection contents/order and decimal formatting as well as scalar results. test:assertEquals checks the defaultable-parameter calculation; ballerina/test is not covered by the restriction specifically on lang libraries."
+  ]
+}

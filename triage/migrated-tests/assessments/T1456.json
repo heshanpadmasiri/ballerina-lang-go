@@ -1,0 +1,20 @@
+{
+  "id": "T1456",
+  "name": "tuple-variable-definition-test-6b1e019355/tuple-variable-definition-warning-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition]",
+    "Module-level declarations: [Function definition]",
+    "Statements: [Local variable declarations]",
+    "Statements: [Return]",
+    "Statements: [Destructuring assignment statement] — Only supports wildcard-binding-pattern",
+    "Expressions: [Error constructor]",
+    "Expressions: [List constructor]"
+  ],
+  "reason": "The case uses a typed local tuple variable declaration with nested tuple and error binding patterns, a record error-detail type, error/list constructors, and a tuple return. Local variable declarations are supported without a binding-pattern restriction. The wildcard-only restriction applies to destructuring assignment statements, whereas this declaration has an explicit type. Expected negative diagnostics within this supported grammar are in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The filename and function name describe an unused error rest-binding warning, but the declaration is marked @error. The unused rest variable k makes this an obvious warning-versus-error marker concern; the supplied file provides no explicit expected diagnostic text.",
+    "No @args, @panic, or @output assertions are present."
+  ]
+}

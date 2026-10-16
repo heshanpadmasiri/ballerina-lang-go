@@ -1,0 +1,14 @@
+{
+  "Name": "map-constant-panic-test-a85ed20eb1/nested-string-existing-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-constant-panic-test-a85ed20eb1/nested-string-existing-p.bal",
+  "Project": false,
+  "Id": "T0794",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-constant-panic-test-a85ed20eb1/nested-string-existing-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.033
+}

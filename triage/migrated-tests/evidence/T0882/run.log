@@ -1,0 +1,48 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	Matched Values : S, 23, 5.6
+        	Matched Values : S, 23, 5.6, 12
+        	Matched Values : 12, {"s":"S","i":23,"f":5.6}
+        	Matched Values : {"b":12,"f":{"s":"S","i":23,"f":5.6}}
+        	Matched with two vars : Hello, 150
+        	Matched with two vars : 12.4, true
+        	Matched with three vars : Hello, 150, true
+        	Matched with single var : Hello
+        	Matched with two vars : Ballerina, 500
+        	Matched with three vars : Language, Ballerina, 500
+        	Matched with single var : bar2
+        	Matched with five vars : S, 23, 5.6, 50, true
+        	Matched with three vars : S, 23, 5.6
+        	Matched with four vars : S, 23, 5.6, 12
+        	Matched with five vars : S, 23, 5.6, 50, true
+        	Matched with three vars : S, 23, 5.6
+        	Matched with four vars : S, 23, 5.6, 12
+        	Matched with string : Hello added text with 45
+        	Matched with record int : Ballerina with 512
+        	Matched with record with ClosedBar1 : Language with Ballerina
+        	Matched with boolean : 455, true
+        	Matched with default type - float : 5.6
+        	Matched with string and int : Ballerina
+        	Matched with string and ClosedBar1 : Ballerina
+        	Matched with Default
+        	Matched with foo : 18.6
+        	Matched with bar : 17
+        	Matched with default : true
+        	Matched with restparam : {}
+        	Matched with restparam : {"var2":true}
+        	Matched with restparam : {"var2":true,"var3":true}
+        	Matched with closed pattern
+        	Matched with opened pattern
+        	Matched with empty record
+        	Matched with a: 1
+        	Matched with a: 1, b: 2
+        	Matched with a: 1, b: 2, c: 3
+        	Matched with a: 1, b: 2, c: 3
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

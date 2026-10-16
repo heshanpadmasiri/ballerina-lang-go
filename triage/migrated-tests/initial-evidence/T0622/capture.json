@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'f'\n  --\u003e group-by-negative-semantic-e.bal:22:26\n   |\n22 | function testErrorReturn(stream\u003cFoo\u003e f) {\n   |                          ^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"group-by-negative-semantic-e.bal","StartLine":22,"EndLine":22}]}

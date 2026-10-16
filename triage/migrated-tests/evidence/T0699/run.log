@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "jsontest-d8d6aef1f4/json-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> json-v.bal:102:20
+            |
+        102 |         io:println(malformedResult.detail()["message"]); // @output unrecognized token 'some' at line: 1 column: 6
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: fromJsonString
+          --> json-v.bal:15:12
+           |
+        15 |     return jsonStr.fromJsonString();
+           |            ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: fromJsonString
+          --> json-v.bal:26:12
+           |
+        26 |     return s.fromJsonString();
+           |            ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: toJsonString
+          --> json-v.bal:11:12
+           |
+        11 |     return msg.toJsonString();
+           |            ^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

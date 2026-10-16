@@ -1,0 +1,112 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:121-124 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:121-124 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:121-121 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:121-121 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:125-125 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:694-694 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:694-694 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:694-694 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:769-769 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at isolated-objects-isolation-e.bal:769-769 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:47 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:71 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:74 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:81 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:118 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:131 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:134 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:179 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:180 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:181 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:190 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:191 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:194 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:195 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:196 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:243 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:247 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:248 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:249 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:250 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:255 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:260 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:263 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:264 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:309 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:310 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:312 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:334 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:356 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:368 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:370 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:371 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:372 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:375 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:378 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:386 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:408 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:409 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:418 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:419 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:422 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:438 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:459 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:460 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:475 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:487 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:498 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:501 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:505 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:509 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:513 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:517 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:522 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:523 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:560 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:563 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:567 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:571 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:575 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:579 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:584 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:585 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:591 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:592 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:614 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:621 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:628 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:642 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:643 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:644 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:652 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:683 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:686 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:687 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:688 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:700 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:702 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:724 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:759 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:764 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:768 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:774 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:783 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:792 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:808 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:817 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:822 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:835 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:836 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:864 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:865 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:893 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:899 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:926 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:934 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:963 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at isolated-objects-isolation-e.bal:970 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

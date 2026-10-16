@@ -1,0 +1,14 @@
+{
+  "Name": "custom-function-test-2824786169/assign-value-to-function-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/custom-function-test-2824786169/assign-value-to-function-negative-e.bal",
+  "Project": false,
+  "Id": "T0398",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/custom-function-test-2824786169/assign-value-to-function-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.026
+}

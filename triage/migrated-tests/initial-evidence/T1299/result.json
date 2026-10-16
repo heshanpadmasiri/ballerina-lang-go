@@ -1,0 +1,14 @@
+{
+  "Name": "return-stmt-in-branch-test-e1184eec8b/return-stmt-in-branch-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/return-stmt-in-branch-test-e1184eec8b/return-stmt-in-branch-v.bal",
+  "Project": false,
+  "Id": "T1299",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/return-stmt-in-branch-test-e1184eec8b/return-stmt-in-branch-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.072
+}

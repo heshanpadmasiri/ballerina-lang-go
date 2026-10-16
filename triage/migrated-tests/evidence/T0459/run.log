@@ -1,0 +1,124 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "error-variable-reference-test-ab01ceefa3/error-variable-reference-semantics-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:12:5
+           |
+        12 |     error(reason11, ...detail11) = err1; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:13:5
+           |
+        13 |     error(reason12, message = message12, detail = detail12) = err1;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:20:5
+           |
+        20 |     error(reason21, ...detail21) = err2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:21:5
+           |
+        21 |     error(reason22, message = message22, fatal = fatal22) = err2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:22:5
+           |
+        22 |     error(reason22, message = message22, fatal = fatal22, extra = extra22) = error("reason", a = detail11["a"]); // @error // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:36:5
+           |
+        36 |     error(res1, ...rec) = err1;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:37:5
+           |
+        37 |     error(res2, message = message, fatal = fatal) = err2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:48:5
+           |
+        48 |     [intVar, stringVar, errorVar, [errorVar2, fooVar]] = t1; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:60:5
+           |
+        60 |     error(_, message = messageX, ...rest2) = e; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-semantics-negative-e.bal:68:5
+           |
+        68 |     error(reason, message = message, other = other) = e; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:12:5
+           |
+        12 |     error(reason11, ...detail11) = err1; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:13:5
+           |
+        13 |     error(reason12, message = message12, detail = detail12) = err1;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:20:5
+           |
+        20 |     error(reason21, ...detail21) = err2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:21:5
+           |
+        21 |     error(reason22, message = message22, fatal = fatal22) = err2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:22:5
+           |
+        22 |     error(reason22, message = message22, fatal = fatal22, extra = extra22) = error("reason", a = detail11["a"]); // @error // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:36:5
+           |
+        36 |     error(res1, ...rec) = err1;
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:37:5
+           |
+        37 |     error(res2, message = message, fatal = fatal) = err2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:48:5
+           |
+        48 |     [intVar, stringVar, errorVar, [errorVar2, fooVar]] = t1; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:60:5
+           |
+        60 |     error(_, message = messageX, ...rest2) = e; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-semantics-negative-e.bal:68:5
+           |
+        68 |     error(reason, message = message, other = other) = e; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

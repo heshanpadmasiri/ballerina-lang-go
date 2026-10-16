@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at testInherentTypeViolationForArray(byte-as-json-array-inherent-type-violation-p.bal:8)\n           main(byte-as-json-array-inherent-type-violation-p.bal:2)\n","Diagnostics":null}

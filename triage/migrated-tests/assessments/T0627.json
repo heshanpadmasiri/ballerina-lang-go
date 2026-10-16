@@ -1,0 +1,19 @@
+{
+  "id": "T0627",
+  "name": "identifier-literal-test-7d241978d7/identifier-literal-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\" (ballerina/lang.table is absent).",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (table:length, table:get and table:add are absent).",
+    "Supported language features (subset 10) / Expressions: \"Wait action\" is listed, but worker declarations and worker send/receive actions are not listed under Statements or Expressions."
+  ],
+  "reason": "The whole case requires unsupported table langlib operations: testILInTableType asserts table length, keyed get and add behavior. It also executes named workers with message sends and receives, which are not covered by the supported construct lists; listed wait support does not establish worker messaging support. Either dependency suffices for feature classification.",
+  "unsupported_constructs": [
+    "Table langlib method calls empTable.length(), empTable.get(2), and empTable.add(jack)",
+    "Named worker declarations and worker message send/receive actions"
+  ],
+  "test_design_notes": [
+    "main executes both the table assertions and worker interaction assertions.",
+    "io:println calls are output instrumentation and do not determine this classification."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T1356",
+  "name": "start-action-test-c3596ca55b/start-type-cast-project-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive list includes \"Start action\", \"Wait action\" and \"Check expression\", but does not include typeof expression.",
+    "### Other invocation restrictions: \"value:toString\" and \"value:toBalString\" are supported in method call syntax."
+  ],
+  "reason": "The start/wait calls and asserted list/map stringification use supported constructs, but the assertion helper contains typeof expected and typeof actual. typeof expressions are absent from the supported expressions list, so the whole case requires an unsupported construct.",
+  "unsupported_constructs": [
+    "typeof expressions in the assertion helper"
+  ],
+  "test_design_notes": [
+    "The typeof expressions occur in assertion-failure diagnostics, but are still part of the compiled test source. The asserted toString behavior itself is within the listed lang.value support."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "identifier-test-a7ab8ef694/error_as_identifier-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-test-a7ab8ef694/error_as_identifier-v.bal",
+  "Project": false,
+  "Id": "T0632",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/identifier-test-a7ab8ef694/error_as_identifier-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.084
+}

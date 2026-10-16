@@ -1,0 +1,14 @@
+{
+  "Name": "constrained-map-test-60915d9ec9/constrained-map-nil-insertion-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constrained-map-test-60915d9ec9/constrained-map-nil-insertion-p.bal",
+  "Project": false,
+  "Id": "T0388",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constrained-map-test-60915d9ec9/constrained-map-nil-insertion-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.051
+}

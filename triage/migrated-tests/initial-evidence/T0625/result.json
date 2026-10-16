@@ -1,0 +1,16 @@
+{
+  "Name": "identifier-literal-package-test-b56346be0a/identifier-literal-package-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-package-test-b56346be0a/identifier-literal-package-v",
+  "Project": true,
+  "Id": "T0625",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-package-test-b56346be0a/identifier-literal-package-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-package-test-b56346be0a/identifier-literal-package-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-package-test-b56346be0a/identifier-literal-package-v/modules/variable/variable.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.072
+}

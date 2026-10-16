@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n --\u003e frozen-boolean-array-modification-p.bal:3:19\n  |\n3 |     boolean[] b = a.cloneReadOnly();\n  |                   ^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-boolean-array-modification-p.bal","StartLine":3,"EndLine":3}]}

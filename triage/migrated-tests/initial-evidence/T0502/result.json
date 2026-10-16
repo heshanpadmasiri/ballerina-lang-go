@@ -1,0 +1,16 @@
+{
+  "Name": "forward-referencing-global-definition-test-c1122b914e/module-var-reordering-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/module-var-reordering-v",
+  "Project": true,
+  "Id": "T0502",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/module-var-reordering-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/module-var-reordering-v/file01.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/module-var-reordering-v/file02.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.069
+}

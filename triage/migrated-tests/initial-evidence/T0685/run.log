@@ -1,0 +1,55 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "isolation-analysis-test-71231d7fc4/semantic-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> semantic-negative-e.bal:26:13
+           |
+        26 |     } obj = object {
+           |             ^^^^^^^^
+        27 |         int i;
+           |         ^^^^^^
+        28 | 
+           | 
+        29 |         function init() {
+           |         ^^^^^^^^^^^^^^^^^
+        30 |             self.i = 123;
+           |             ^^^^^^^^^^^^^
+        31 |         }
+           |         ^
+        32 | 
+           | 
+        33 |         function qux() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |             return self.i;
+           |             ^^^^^^^^^^^^^^
+        35 |         }
+           |         ^
+        36 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> semantic-negative-e.bal:26:13
+           |
+        26 |     } obj = object {
+           |             ^^^^^^^^
+        27 |         int i;
+           |         ^^^^^^
+        28 | 
+           | 
+        29 |         function init() {
+           |         ^^^^^^^^^^^^^^^^^
+        30 |             self.i = 123;
+           |             ^^^^^^^^^^^^^
+        31 |         }
+           |         ^
+        32 | 
+           | 
+        33 |         function qux() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |             return self.i;
+           |             ^^^^^^^^^^^^^^
+        35 |         }
+           |         ^
+        36 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

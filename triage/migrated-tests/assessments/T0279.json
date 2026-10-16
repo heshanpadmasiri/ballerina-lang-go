@@ -1,0 +1,17 @@
+{
+  "id": "T0279",
+  "name": "bstring-annotation-test-342883e77f/bstring-annotation-test-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[Annotation access expression](https://ballerina.io/spec/lang/master/#annot-access-expr)\" is listed, but typeof expressions are not listed.",
+    "## Module-level declarations: \"Supports source-only, runtime, marker and repeated annotations\"",
+    "### Other invocation restrictions: \"`string:length`\" and \"`value:toString` and `value:toBalString`\""
+  ],
+  "reason": "The essential `typeof rec` expression used to obtain the annotated type descriptor is not covered by the supported Expressions list. Thus the whole case is outside subset 10 even though annotation attachment/access and the invoked langlib methods are supported.",
+  "unsupported_constructs": [
+    "typeof expression: `typeof rec`"
+  ],
+  "test_design_notes": [
+    "The asserted output 8 checks Unicode code-point length of the annotation salutation after optional field access and toString; io:println is instrumentation. No @args or @panic assertions occur."
+  ]
+}

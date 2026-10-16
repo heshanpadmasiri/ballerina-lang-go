@@ -1,0 +1,21 @@
+{
+  "id": "T1593",
+  "name": "worker-test-0f3493dd03/08-receive-default-before-default-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: supported statement list does not include named worker declarations or worker send statements.",
+    "Expressions: \"[Start action]\" and \"[Wait action]\" are listed, but worker receive actions are not listed.",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.runtime lists \"sleep\", \"onGracefulStop\", \"StopHandler\".",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (list does not include future:cancel)."
+  ],
+  "reason": "The executed scenario declares a named worker receiving from the default worker, then panics in the default worker before sending. Named workers, worker message passing, and panic propagation through blocked worker communication are not covered by subset10; supported panic/start/wait alone do not establish these semantics. This suffices for feature classification.",
+  "unsupported_constructs": [
+    "Named worker declarations and asynchronous/synchronous worker sends and worker receives.",
+    "Worker communication failure and panic propagation when the default worker panics before sending.",
+    "Retained helper cases also call future.cancel(), absent from the supported langlib methods."
+  ],
+  "test_design_notes": [
+    "Whole file retains many unrelated worker scenarios, cancellation helpers, and lock interactions; main invokes only receiveFromDefaultWithPanicBeforeSendInDefault.",
+    "The sole @panic marker is attached to the error-constructor assignment preceding panic err; intended runtime panic is clear, but marker location may be fragile. No @args or @output markers appear."
+  ]
+}

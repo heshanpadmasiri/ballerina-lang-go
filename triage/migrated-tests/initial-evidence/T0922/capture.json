@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: variable decl having bp must be initialized\n --\u003e uninitialized-module-tuple-variable-e.bal:1:18\n  |\n1 | [int, int] [a, b]; // @error\n  |                  \n\n","Diagnostics":[{"File":"uninitialized-module-tuple-variable-e.bal","StartLine":1,"EndLine":1}]}

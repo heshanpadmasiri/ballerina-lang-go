@@ -1,0 +1,18 @@
+{
+  "id": "T0344",
+  "name": "closed-record-iteration-test-6ab07291d1/closed-record-iteration-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.map lists only length, keys, hasKey, get, remove.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists map:length, map:keys, map:hasKey, map:get and map:remove."
+  ],
+  "reason": "The case requires mapping/record langlib operations entries, forEach, map, filter and reduce, none of which is in the supported map langlib or method-call lists. These operations are essential to the asserted iteration, transformed/filtered contents, reductions and preservation of the original record, so the whole case exceeds subset 10.",
+  "unsupported_constructs": [
+    "Record entries() and forEach() calls",
+    "Record/map map(), filter() and reduce() calls, including chained operations"
+  ],
+  "test_design_notes": [
+    "The main function asserts these operations through @output annotations; no @args or @panic annotations occur.",
+    "io:println is output instrumentation and is not the basis of this classification."
+  ]
+}

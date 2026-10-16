@@ -1,0 +1,14 @@
+{
+  "Name": "module-error-variable-test-718d21c637/uninitialized-module-error-variable-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-error-variable-test-718d21c637/uninitialized-module-error-variable-e.bal",
+  "Project": false,
+  "Id": "T0907",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-error-variable-test-718d21c637/uninitialized-module-error-variable-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.042
+}

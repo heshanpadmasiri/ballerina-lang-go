@@ -1,0 +1,14 @@
+{
+  "id": "T0085",
+  "name": "argument-parser-negative-test-706c373f17/invalid-multiple-float-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Module-level declarations",
+      "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"
+    }
+  ],
+  "reason": "The function signature uses supported required and rest parameters, but the complete case depends on command-line argument parsing and rejection of the supplied arguments. subset10.md does not cover main-entry command-line argument conversion, arity checking, or its panic behavior. This is an essential runtime entry-point feature beyond the listed function-signature support.",
+  "unsupported_constructs": ["Command-line argument validation/conversion for public main, including malformed float input and missing required string argument"],
+  "test_design_notes": ["The @args marker supplies only 10 and 5.5s for three required parameters; the inline @panic marker expects entry-point failure.", "This mixes malformed float input with a missing required string argument, so the expected panic does not isolate float conversion.", "The function body is empty; the markers are test instrumentation, not Ballerina annotations."]
+}

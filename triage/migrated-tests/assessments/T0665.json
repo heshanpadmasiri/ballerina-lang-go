@@ -1,0 +1,17 @@
+{
+  "id": "T0665",
+  "name": "isolated-object-test-4801b67a5e/isolated-objects-semantic-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' but does not list object constructor expressions",
+    "## Module-level declarations: 'Supports `client`, `service`, `isolated`, `readonly` and `distinct` ... `class-type-quals`'",
+    "## Object/class definitions: 'Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported'"
+  ],
+  "reason": "The case essentially relies on anonymous object constructor expressions (`object { ... }`) and their inferred isolation/readonly status, including rejection of assigning non-isolated constructed objects to isolated object types. Object constructor expressions are absent from the supported expression list; support for class declarations and new expressions does not cover these constructors. This unsupported construct suffices to classify the whole case as feature.",
+  "unsupported_constructs": [
+    "Anonymous object constructor expressions and inference of their isolation/readonly status"
+  ],
+  "test_design_notes": [
+    "Negative @error assertions exercise object compatibility, implicit isolation and bound non-isolated method access; illegal assignments alone are not a reason to classify this as feature."
+  ]
+}

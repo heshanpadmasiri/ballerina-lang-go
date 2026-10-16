@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'a'\n  --\u003e global-variable-init-with-invocation-negative-e.bal:20:19\n   |\n20 |     t = function (int a) {};\n   |                   ^^^^^\n\n","Diagnostics":[{"File":"global-variable-init-with-invocation-negative-e.bal","StartLine":20,"EndLine":20}]}

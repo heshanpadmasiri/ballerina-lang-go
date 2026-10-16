@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at testComplexSubtyping2(complex-subtyping-inherent-type-violation-p.bal:19)\n           main(complex-subtyping-inherent-type-violation-p.bal:23)\n","Diagnostics":null}

@@ -1,0 +1,12 @@
+{
+  "id": "T0508",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/addition-to-frozen-json-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not cloneReadOnly.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; value:cloneReadOnly is absent."
+  ],
+  "reason": "The asserted panic when adding a field to a frozen JSON map depends on j2.cloneReadOnly(), an unsupported lang.value function and langlib method invocation. Mapping construction and indexed assignment do not make the essential freezing operation supported.",
+  "unsupported_constructs": ["value:cloneReadOnly invoked as j2.cloneReadOnly()"],
+  "test_design_notes": ["The @panic annotation asserts that adding newField to the readonly clone fails at runtime."]
+}

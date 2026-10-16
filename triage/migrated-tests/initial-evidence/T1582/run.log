@@ -1,0 +1,77 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: stderr does not contain a runtime error message for @panic at panic-test-p.bal:32
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> panic-test-p.bal:4:5
+           |
+         4 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+         5 |     worker w1 returns error? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+         6 |         int a = 10;
+           |         ^^^^^^^^^^^
+         7 |         a -> w2;
+           |         ^^^^^^^^
+         8 |         var result = a ->> w3;
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+         9 |         a -> w2;
+           |         ^^^^^^^^
+        10 |         result = a ->> w3;
+           |         ^^^^^^^^^^^^^^^^^^
+        11 |         return result;
+           |         ^^^^^^^^^^^^^^
+        12 |     }
+           |     ^
+        13 | 
+           | 
+        14 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+        15 |     worker w2 {
+           |     ^^^^^^^^^^^
+        16 |         int b = 15;
+           |         ^^^^^^^^^^^
+        17 |         runtime:sleep(0.01);
+           |         ^^^^^^^^^^^^^^^^^^^^
+        18 |         b -> w3;
+           |         ^^^^^^^^
+        19 |         b = <- w1;
+           |         ^^^^^^^^^^
+        20 |         var result = b ->> w3;
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        21 |         error? res = result;
+           |         ^^^^^^^^^^^^^^^^^^^^
+        22 |         b = <- w1;
+           |         ^^^^^^^^^^
+        23 |     }
+           |     ^
+        24 | 
+           | 
+        25 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+        26 |     worker w3 returns string|error {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        27 |         int b;
+           |         ^^^^^^
+        28 |         b = <- w2;
+           |         ^^^^^^^^^^
+        29 |         b = <- w1;
+           |         ^^^^^^^^^^
+        30 |         b = <- w2;
+           |         ^^^^^^^^^^
+        31 |         if b > 0 {
+           |         ^^^^^^^^^^
+        32 |             error er3 = error("error3", message = "msg3"); // @panic
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |             panic er3;
+           |             ^^^^^^^^^^
+        34 |         }
+           |         ^
+        35 |         b = <- w1;
+           |         ^^^^^^^^^^
+        36 |         return "success";
+           |         ^^^^^^^^^^^^^^^^^
+        37 |     }
+           |     ^
+        
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

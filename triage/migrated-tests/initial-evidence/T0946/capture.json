@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '[string...]' value cannot be converted to 'nil|[int...]'\n        at trigger(map-incompatible-array-p.bal:21)\n           main(map-incompatible-array-p.bal:25)\n","Diagnostics":null}

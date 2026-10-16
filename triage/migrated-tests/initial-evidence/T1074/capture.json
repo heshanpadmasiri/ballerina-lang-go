@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'GLB'\n --\u003e value-behaviors-v.bal:3:1\n  |\n3 | int GLB = 0;\n  | ^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"value-behaviors-v.bal","StartLine":3,"EndLine":3}]}

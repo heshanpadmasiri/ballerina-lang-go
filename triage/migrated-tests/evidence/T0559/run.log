@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at fps-hiding-block-scope-symbols-e.bal:1-1 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fps-hiding-block-scope-symbols-e.bal:7-7 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fps-hiding-block-scope-symbols-e.bal:7-7 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fps-hiding-block-scope-symbols-e.bal:21-21 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fps-hiding-block-scope-symbols-e.bal:20-20 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fps-hiding-block-scope-symbols-e.bal:28-28 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fps-hiding-block-scope-symbols-e.bal:32-32 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fps-hiding-block-scope-symbols-e.bal:11-11 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at fps-hiding-block-scope-symbols-e.bal:5 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

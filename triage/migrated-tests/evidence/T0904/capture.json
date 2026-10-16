@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented\n --\u003e module-error-variable-annotation-negative-e.bal:5:7\n  |\n5 | error error(message) = error(\"CCE\");\n  |       ^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"module-error-variable-annotation-negative-e.bal","StartLine":5,"EndLine":5}]}

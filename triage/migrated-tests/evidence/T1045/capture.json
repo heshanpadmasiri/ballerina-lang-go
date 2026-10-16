@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'converted'\n --\u003e invalid-int-as-byte-union-negative-255-p.bal:3:5\n  |\n3 |     byte|boolean converted = \u003cbyte|boolean\u003e boxed; // @panic\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"invalid-int-as-byte-union-negative-255-p.bal","StartLine":3,"EndLine":3}]}

@@ -1,0 +1,14 @@
+{
+  "Name": "struct-test-5119d420d4/nested-struct-inline-init-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-test-5119d420d4/nested-struct-inline-init-v.bal",
+  "Project": false,
+  "Id": "T1390",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-test-5119d420d4/nested-struct-inline-init-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.089
+}

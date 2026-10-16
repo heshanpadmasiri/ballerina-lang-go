@@ -1,0 +1,14 @@
+{
+  "Name": "map-to-record-assignability-test-c5ae90a3ca/inclusive-record-inherent-type-violation-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/inclusive-record-inherent-type-violation-p.bal",
+  "Project": false,
+  "Id": "T0820",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/inclusive-record-inherent-type-violation-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.067
+}

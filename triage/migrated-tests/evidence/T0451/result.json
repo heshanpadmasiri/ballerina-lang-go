@@ -1,0 +1,14 @@
+{
+  "Name": "error-optimization-test-1dfdfc39cb/error-optimization-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-optimization-test-1dfdfc39cb/error-optimization-v.bal",
+  "Project": false,
+  "Id": "T0451",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-optimization-test-1dfdfc39cb/error-optimization-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.061
+}

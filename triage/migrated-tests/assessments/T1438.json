@@ -1,0 +1,20 @@
+{
+  "id": "T1438",
+  "name": "tuple-lvalue-fill-test-201b212a3c/tuple-lvalue-fill-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions including \"Type cast expression\" and \"Type test expression\", but does not list typeof expression.",
+    "## Statements: \"Assignment\" \u2014 \"See supported lvexpr\".",
+    "## Expressions: \"lvexpr\", \"List constructor\", \"Member access expression\", and \"Field access expression\".",
+    "## Invocations / ### Other invocation restrictions: \"array:push\" and \"value:toString\" are supported with method call syntax."
+  ],
+  "reason": "The shared assert helper contains typeof expected and typeof actual. typeof expressions are not included in the supported expression list, so the whole case includes an unsupported construct regardless of whether its assertion-failure branch executes. The tuple fill checks otherwise exercise listed assignments, list constructors, member/field access, casts and type tests; allowed push/toString calls do not remove the typeof gap.",
+  "unsupported_constructs": [
+    "typeof expressions in assert: typeof expected and typeof actual."
+  ],
+  "test_design_notes": [
+    "Mixed scope: tuple filling, rest-member record defaults, and optional/union tuple narrowing share an assertion helper with unsupported typeof diagnostics.",
+    "No @args, @panic, or @output markers are present; main executes all four checks and failures panic through assert.",
+    "The unused io:println call only preserves the import and is instrumentation."
+  ]
+}

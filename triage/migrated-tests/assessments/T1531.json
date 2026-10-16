@@ -1,0 +1,16 @@
+{
+  "id": "T1531",
+  "name": "wait-for-all-actions-test-ef2703e247/wait-test-15-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"Start action\"; \"Wait action\"; \"Error constructor\"",
+    "Statements: \"Panic\"; \"While\"; \"Compound Assignment\"; \"Local variable declarations\"; \"Return\"",
+    "Module-level declarations: \"Function definition\"",
+    "Operators: \"Relational ops `<`, `<=`, `>`, `>=`\"; \"Additive ops `+`, `-`\""
+  ],
+  "reason": "The case starts four functions, waits for all their futures using wait {f1, f2, f3, f4}, and expects the panic from one asynchronous function to propagate. Start, wait, panic, error construction, function definitions, arithmetic and the delay loop are expressly supported, with no applicable restriction on wait-all or panic propagation. No restricted langlib is used.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is on the asynchronous panic statement; the observable expectation is panic propagation through wait to main. The returned map is assigned but its keys and successful values are not asserted. No obvious mixed-scope issue."
+  ]
+}

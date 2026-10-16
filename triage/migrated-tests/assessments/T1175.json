@@ -1,0 +1,17 @@
+{
+  "id": "T1175",
+  "name": "option-test-1b0c555df9/option_with_array_type_spaced_one-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Expressions: Field access expression; Member access expression"
+  ],
+  "reason": "The assertion requires command-line option binding: --array followed by e-fac must populate the string array field of the included Student record passed to main. The subset supports included-record parameter signatures and field/member access, but does not cover command-line option parsing or main argument binding. This essential asserted behavior makes the case a feature.",
+  "unsupported_constructs": [
+    "Command-line --array option binding into an included-record main parameter's string[] field"
+  ],
+  "test_design_notes": [
+    "The @args directive and expected e-fac output test runtime CLI binding, beyond acceptance of the function signature.",
+    "io:println is output instrumentation alone."
+  ]
+}

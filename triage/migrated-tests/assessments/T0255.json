@@ -1,0 +1,16 @@
+{
+  "id": "T0255",
+  "name": "bjsonvalue-test-248ac7be19/json-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\" and \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\" are listed; table constructor expressions are not covered.",
+    "## Expressions: \"Supports `list` and `map` as `query-constructor-type`\""
+  ],
+  "reason": "The first two negative cases require constructing a table with `table []` before asserting that its value is incompatible with json. Table constructor expressions are absent from the supported expression list, so the whole case requires an uncovered feature even though its intended assertions are compile-time rejections.",
+  "unsupported_constructs": [
+    "Table constructor expression `table []` in both testJsonArrayWithUnsupportedtypes and testJsonInitWithUnsupportedtypes."
+  ],
+  "test_design_notes": [
+    "Assertions use @error diagnostics; there are no @args, @panic or @output directives. Negative tests within supported grammar remain in scope, but these table initializers require an uncovered expression form."
+  ]
+}

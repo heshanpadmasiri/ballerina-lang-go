@@ -1,0 +1,14 @@
+{
+  "Name": "iterable-arrow-expr-test-93e224d1ac/iterable-arrow-expr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/iterable-arrow-expr-test-93e224d1ac/iterable-arrow-expr-v.bal",
+  "Project": false,
+  "Id": "T0687",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/iterable-arrow-expr-test-93e224d1ac/iterable-arrow-expr-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.043
+}

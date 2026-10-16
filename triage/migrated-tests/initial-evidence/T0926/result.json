@@ -1,0 +1,14 @@
+{
+  "Name": "multiple-from-clause-with-var-type-test-bff9b2c5d7/multiple-from-clause-with-var-type-test-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/multiple-from-clause-with-var-type-test-bff9b2c5d7/multiple-from-clause-with-var-type-test-v.bal",
+  "Project": false,
+  "Id": "T0926",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/multiple-from-clause-with-var-type-test-bff9b2c5d7/multiple-from-clause-with-var-type-test-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

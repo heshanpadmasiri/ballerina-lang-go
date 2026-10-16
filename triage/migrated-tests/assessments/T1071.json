@@ -1,0 +1,19 @@
+{
+  "id": "T1071",
+  "name": "object-field-function-pointer-start-action-test-f45c4a8f77/object-field-function-pointer-start-action-test-f45c4a8f77-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition \u2014 Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "Expressions: Start action; Wait action; New expression; Anonymous function expression; Field access expression; Method call",
+    "Statements: Lock statement",
+    "Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The assertions exercise starting and waiting for calls through function-valued object fields, including anonymous functions, module-function references, bound methods, structural object typing, and freshly constructed receivers. These use supported object fields, calls, start/wait actions, and construction. The mutable-state assertions use supported isolated classes/methods and locks and verify that bound methods retain their receiver state. No invocation restriction excludes these positional, zero-argument calls.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Assertions check results 1, module foo() = 222, bound F.foo() = 333, and state transitions 11, 10, 5.",
+    "io:print is empty instrumentation; assertion formatting uses the supported value:toString method."
+  ],
+  "reviewer_name": "object-field-function-pointer-start-action-test-f45c4a8f77"
+}

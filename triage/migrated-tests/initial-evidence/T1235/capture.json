@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: expression expected action found\n --\u003e raw-template-negative-code-analyzer-e.bal:5:34\n  |\n5 |     ob:RawTemplate rt = `Hello ${start fn()}!`; // @error\n  |                                  \n\n","Diagnostics":[{"File":"raw-template-negative-code-analyzer-e.bal","StartLine":5,"EndLine":5}]}

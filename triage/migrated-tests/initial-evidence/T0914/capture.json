@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented\n --\u003e module-record-variable-test-a0b146279e-annotation-negative-e.bal:5:17\n  |\n5 | record {int a;} {a: myA} = {a: 5};\n  |                 ^^^^^^^^\n\n","Diagnostics":[{"File":"module-record-variable-test-a0b146279e-annotation-negative-e.bal","StartLine":5,"EndLine":5}]}

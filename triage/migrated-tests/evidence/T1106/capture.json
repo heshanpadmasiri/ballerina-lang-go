@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at testClosedToOpenAssignment3(closed-to-open-invalid-rest-p.bal:14)\n           main(closed-to-open-invalid-rest-p.bal:18)\n","Diagnostics":null}

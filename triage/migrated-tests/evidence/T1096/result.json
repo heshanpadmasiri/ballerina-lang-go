@@ -1,0 +1,14 @@
+{
+  "Name": "object-with-function-invocation-using-self-keyword-3ef2bbabcc/object-self-function-invocation-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-with-function-invocation-using-self-keyword-3ef2bbabcc/object-self-function-invocation-negative-e.bal",
+  "Project": false,
+  "Id": "T1096",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-with-function-invocation-using-self-keyword-3ef2bbabcc/object-self-function-invocation-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

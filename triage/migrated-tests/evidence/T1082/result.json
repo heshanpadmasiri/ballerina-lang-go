@@ -1,0 +1,14 @@
+{
+  "Name": "object-subtyping-test-6d097e853f/object-subtyping-cast-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtyping-cast-p.bal",
+  "Project": false,
+  "Id": "T1082",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtyping-cast-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.049
+}

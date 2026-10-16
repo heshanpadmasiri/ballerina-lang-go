@@ -1,0 +1,20 @@
+{
+  "id": "T1086",
+  "name": "object-type-reference-test-19fd51d776/object-inclusion-with-qualifiers-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "## Expressions: [New expression](https://ballerina.io/spec/lang/master/#section_6.8.2) (object constructor expressions are not listed)",
+    "## Module-level declarations: Supports `client`, `service`, `isolated`, `readonly` and `distinct` `class-type-quals`"
+  ],
+  "reason": "The whole negative case includes distinct object type descriptors (Obj0, Obj1, Obj2 and FooObj), excluded by the object-type qualifier restriction, and object constructor expressions whose qualifier/inclusion diagnostics are asserted but which are absent from the supported expression list. These essential unsupported constructs suffice for feature classification.",
+  "unsupported_constructs": [
+    "distinct object type descriptors",
+    "Object constructor expressions such as object Foo, object Bar, object Qux and object Corge"
+  ],
+  "test_design_notes": [
+    "Negative qualifier/inclusion and visibility diagnostics are asserted; illegality alone does not make a case unsupported.",
+    "Readonly/distinct class qualifier coverage conflicts between the positive class list and the restrictions; classification does not depend on resolving that conflict.",
+    "arr.toStream() and start actions are explicitly supported."
+  ]
+}

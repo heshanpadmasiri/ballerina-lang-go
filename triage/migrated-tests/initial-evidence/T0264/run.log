@@ -1,0 +1,14 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:9 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:46 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:60 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:71 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:81 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:83 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:123 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:133 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at block-stmt-negative-e.bal:140 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

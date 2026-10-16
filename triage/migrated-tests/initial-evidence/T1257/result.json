@@ -1,0 +1,14 @@
+{
+  "Name": "record-def-negative-test-2a404858e4/field-ref-in-own-record-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-def-negative-test-2a404858e4/field-ref-in-own-record-e.bal",
+  "Project": false,
+  "Id": "T1257",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-def-negative-test-2a404858e4/field-ref-in-own-record-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

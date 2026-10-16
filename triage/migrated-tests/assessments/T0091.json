@@ -1,0 +1,16 @@
+{
+  "id": "T0091",
+  "name": "argument-parser-positive-test-e41e5b8a0a/decimal-03-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Subset restrictions / Import declarations: \"`ballerina/lang.decimal`\" includes \"`fromString`\""
+  ],
+  "reason": "The assertion requires the executable entry-point argument parser to convert CLI text \"10.123e1423\" to a decimal and produce 1.0123E+1424. Subset 10 supports required parameter signatures and decimal fromString, but does not cover CLI argument binding/conversion for main; those entries do not establish this external execution protocol.",
+  "unsupported_constructs": [
+    "Command-line decimal argument parsing and binding to main(decimal d)."
+  ],
+  "test_design_notes": [
+    "@args [\"10.123e1423\"] and @output 1.0123E+1424 assert successful CLI conversion and normalized decimal output; io:println is instrumentation."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-with-rest-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-with-rest-v.bal",
+  "Project": false,
+  "Id": "T0827",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-with-rest-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.053
+}

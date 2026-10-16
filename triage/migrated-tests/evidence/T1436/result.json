@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-lvalue-fill-test-201b212a3c/records-without-filler-values-2-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-lvalue-fill-test-201b212a3c/records-without-filler-values-2-p.bal",
+  "Project": false,
+  "Id": "T1436",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-lvalue-fill-test-201b212a3c/records-without-filler-values-2-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.08
+}

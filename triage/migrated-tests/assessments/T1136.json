@@ -1,0 +1,22 @@
+{
+  "id": "T1136",
+  "name": "open-record-test-d43d4bfeae/open-record-v",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Mapping constructor — Currently spread-field not supported",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.map lists length, keys, hasKey, get, remove",
+    "Subset restrictions / Import declarations: ballerina/lang.string lists Char, length, indexOf, includes, substring, equalsIgnoreCaseAscii, toLowerAscii, toUpperAscii, trim, toBytes, fromBytes",
+    "Subset restrictions / Import declarations: ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString"
+  ],
+  "reason": "The executed testSpreadOperatorWithOpenRecord uses unsupported mapping spread fields to assert copying optional fields and evaluating record defaults only when absent. Executed tests also require lang.map removeIfHasKey, lang.string join, and lang.value toJson, which are absent from the supported langlib lists. Any one of these essential behaviors makes the whole case a feature request.",
+  "unsupported_constructs": [
+    "Mapping constructor spread fields such as Foo4 f = {...r} and Mat2 m2 = {...r6}",
+    "Student.removeIfHasKey for optional and rest fields",
+    "string:'join in javaAnimalArrayString, used by asserted animal array output",
+    "Teacher.toJson in testLangFuncOnRecord, whose result is asserted as 44"
+  ],
+  "test_design_notes": [
+    "io:println is output instrumentation and does not drive this classification.",
+    "The unsupported spread behavior is explicitly asserted, including default-expression side effects (gVal5 remains 145 when x is supplied and becomes 150 when absent)."
+  ]
+}

@@ -1,0 +1,210 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "object-type-reference-test-19fd51d776/object-inclusion-with-qualifiers-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> object-inclusion-with-qualifiers-negative-e.bal:104:59
+            |
+        104 | } invalidReadOnlyReferenceInObjectConstructorExpression = isolated object Corge {
+            |                                                           ^^^^^^^^^^^^^^^^^^^^^^^
+        105 |     int x = 1;
+            |     ^^^^^^^^^^
+        106 |     private stream<int> y; // @error
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        107 | 
+            | 
+        108 |     function init() {
+            |     ^^^^^^^^^^^^^^^^^
+        109 |         int[] arr = [1, 2];
+            |         ^^^^^^^^^^^^^^^^^^^
+        110 |         self.y = arr.toStream();
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        111 |     }
+            |     ^
+        112 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> object-inclusion-with-qualifiers-negative-e.bal:117:12
+            |
+        117 |     } ob = object Corge {
+            |            ^^^^^^^^^^^^^^
+        118 |         int x = 1;
+            |         ^^^^^^^^^^
+        119 |         stream<int> y; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        120 |         future<()> z; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        121 | 
+            | 
+        122 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+        123 |             int[] arr = [1, 2];
+            |             ^^^^^^^^^^^^^^^^^^^
+        124 |             self.y = arr.toStream();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        125 |             self.z = start testInvalidReadOnlyReferenceInObjectConstructorExpression();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        126 |         }
+            |         ^
+        127 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-inclusion-with-qualifiers-negative-e.bal:54:33
+           |
+        54 |     final isolated object{} l = object {};
+           |                                 ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-inclusion-with-qualifiers-negative-e.bal:66:33
+           |
+        66 |     final isolated object{} l = object {};
+           |                                 ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-inclusion-with-qualifiers-negative-e.bal:80:11
+           |
+        80 | Foo foo = object Foo { // @error
+           |           ^^^^^^^^^^^^^^^^^^^^^^
+        81 |     final int i = 20;
+           |     ^^^^^^^^^^^^^^^^^
+        82 | };
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-inclusion-with-qualifiers-negative-e.bal:84:17
+           |
+        84 | object {} bar = object Bar { // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^
+        85 |     int j = 2;
+           |     ^^^^^^^^^^
+        86 | 
+           | 
+        87 |     remote function bar() { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        88 | 
+           | 
+        89 |     }
+           |     ^
+        90 | };
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-inclusion-with-qualifiers-negative-e.bal:93:14
+           |
+        93 |     var ob = object Qux { // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^
+        94 |         final isolated object{} l = object {};
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        95 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+           --> object-inclusion-with-qualifiers-negative-e.bal:213:31
+            |
+        213 | public type FooObj readonly & distinct service object {
+            |                               ^^^^^^^^^^^^^^^^^^^^^^^^^
+        214 |     isolated remote function execute(string aVar, int bVar) returns int;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        215 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> object-inclusion-with-qualifiers-negative-e.bal:104:59
+            |
+        104 | } invalidReadOnlyReferenceInObjectConstructorExpression = isolated object Corge {
+            |                                                           ^^^^^^^^^^^^^^^^^^^^^^^
+        105 |     int x = 1;
+            |     ^^^^^^^^^^
+        106 |     private stream<int> y; // @error
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        107 | 
+            | 
+        108 |     function init() {
+            |     ^^^^^^^^^^^^^^^^^
+        109 |         int[] arr = [1, 2];
+            |         ^^^^^^^^^^^^^^^^^^^
+        110 |         self.y = arr.toStream();
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        111 |     }
+            |     ^
+        112 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> object-inclusion-with-qualifiers-negative-e.bal:117:12
+            |
+        117 |     } ob = object Corge {
+            |            ^^^^^^^^^^^^^^
+        118 |         int x = 1;
+            |         ^^^^^^^^^^
+        119 |         stream<int> y; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        120 |         future<()> z; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        121 | 
+            | 
+        122 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+        123 |             int[] arr = [1, 2];
+            |             ^^^^^^^^^^^^^^^^^^^
+        124 |             self.y = arr.toStream();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        125 |             self.z = start testInvalidReadOnlyReferenceInObjectConstructorExpression();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        126 |         }
+            |         ^
+        127 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-inclusion-with-qualifiers-negative-e.bal:54:33
+           |
+        54 |     final isolated object{} l = object {};
+           |                                 ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-inclusion-with-qualifiers-negative-e.bal:66:33
+           |
+        66 |     final isolated object{} l = object {};
+           |                                 ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-inclusion-with-qualifiers-negative-e.bal:80:11
+           |
+        80 | Foo foo = object Foo { // @error
+           |           ^^^^^^^^^^^^^^^^^^^^^^
+        81 |     final int i = 20;
+           |     ^^^^^^^^^^^^^^^^^
+        82 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-inclusion-with-qualifiers-negative-e.bal:84:17
+           |
+        84 | object {} bar = object Bar { // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^
+        85 |     int j = 2;
+           |     ^^^^^^^^^^
+        86 | 
+           | 
+        87 |     remote function bar() { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        88 | 
+           | 
+        89 |     }
+           |     ^
+        90 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-inclusion-with-qualifiers-negative-e.bal:93:14
+           |
+        93 |     var ob = object Qux { // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^
+        94 |         final isolated object{} l = object {};
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        95 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,12 @@
+{
+  "id": "T1302",
+  "name": "return-stmt-negative-test-c1f15d4b97/missing-return-forkjoin-2-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements including 'Local variable declarations' and 'Return', but does not list fork statements or named worker declarations.",
+    "## Expressions: 'Start action' and 'Wait action' are listed; fork statements and named workers are not listed."
+  ],
+  "reason": "The test asserts missing-return errors for two int-returning named workers inside a fork and for their enclosing function. Fork statements and named worker declarations, essential to the worker return-path assertions, are not covered by the subset's supported constructs. Support for start/wait actions does not establish support for fork workers.",
+  "unsupported_constructs": ["fork statement", "named worker declarations with explicit return types"],
+  "test_design_notes": ["Negative missing-return checks are in scope for supported constructs, but this whole case requires unsupported fork/worker constructs."]
+}

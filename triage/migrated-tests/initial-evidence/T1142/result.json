@@ -1,0 +1,14 @@
+{
+  "Name": "operand-compilation-test-fbca3afc7e/invalid-signature-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-compilation-test-fbca3afc7e/invalid-signature-e.bal",
+  "Project": false,
+  "Id": "T1142",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operand-compilation-test-fbca3afc7e/invalid-signature-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.019
+}

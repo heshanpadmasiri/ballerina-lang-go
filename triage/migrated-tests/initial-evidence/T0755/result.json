@@ -1,0 +1,14 @@
+{
+  "Name": "main-functions-test-f228557f7d/main-with-stack-overflow-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/main-with-stack-overflow-p.bal",
+  "Project": false,
+  "Id": "T0755",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/main-with-stack-overflow-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.019
+}

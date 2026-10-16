@@ -1,0 +1,17 @@
+{
+  "id": "T1276",
+  "name": "record-variable-definition-test-0c506ca119/record-variable-definition-warnings-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern",
+    "Statements: Local variable declarations"
+  ],
+  "reason": "The whole case includes record destructuring assignments with field capture and rest bindings, explicitly outside the wildcard-only restriction. These assignments are essential to the unused-variable diagnostic scenarios in testRecordDestructuring1Warnings, testRecordDestructuring2Warnings, and testClosedRecordDefinedRestFieldWarnings. Support for local variable declarations does not override the separate assignment restriction.",
+  "unsupported_constructs": [
+    "Record destructuring assignment with named and rest bindings, e.g. {s: s, i: i, ...rest} = recordReturningFunc(20).",
+    "Record destructuring assignment into previously declared variables, e.g. {name: fullName, married: isMarried, ...rest1} = p."
+  ],
+  "test_design_notes": [
+    "The @error markers assert diagnostics on unused bindings; this is a diagnostic case rather than runtime-output assertions. An explicit unsupported assignment construct suffices for whole-case feature classification."
+  ]
+}

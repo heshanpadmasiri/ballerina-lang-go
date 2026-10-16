@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "numeric-conversion-test-6b3e1e5e00/out-of-range-positive-float-union-as-int-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+         --> out-of-range-positive-float-union-as-int-p.bal:3:5
+          |
+        3 |     int i = <int> f; // @panic
+          |     ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

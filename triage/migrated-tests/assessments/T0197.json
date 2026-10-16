@@ -1,0 +1,17 @@
+{
+  "id": "T0197",
+  "name": "assignment-to-narrowed-vars-in-loops-test-df0ab3d5c6/assignment_to_narrowed_vars_in_loops_positive-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Destructuring assignment statement\" \u2014 \"Only supports wildcard-binding-pattern\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.map lists length, keys, hasKey, get, remove."
+  ],
+  "reason": "The whole case requires non-wildcard destructuring assignments in f21, including list, mapping, and error patterns. These exceed the explicit wildcard-only restriction. Additionally f24/f25 call logRecord.entries(), which is absent from supported map langlib methods. These decisive unsupported constructs prevent whole-case bug classification.",
+  "unsupported_constructs": [
+    "f21: [a, b, f, c, d, ...w] = [1, 2, 3, 4, 5] and other list/mapping/error destructuring assignments",
+    "f24/f25: record/map entries() langlib method"
+  ],
+  "test_design_notes": [
+    "Contains @error markers but no @args, @panic, or @output execution directives. Assessment concerns the complete source, including its compile-time assertions."
+  ]
+}

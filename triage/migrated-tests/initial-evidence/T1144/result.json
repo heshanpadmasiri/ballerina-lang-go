@@ -1,0 +1,19 @@
+{
+  "Name": "operand-compilation-test-fbca3afc7e/successful-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-compilation-test-fbca3afc7e/successful-v.bal",
+  "Project": false,
+  "Id": "T1144",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operand-compilation-test-fbca3afc7e/successful-v.bal"
+  ],
+  "Args": [
+    "1",
+    "2.0",
+    "3.0",
+    "value"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.076
+}

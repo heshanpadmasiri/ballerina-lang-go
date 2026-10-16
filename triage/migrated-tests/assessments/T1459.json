@@ -1,0 +1,18 @@
+{
+  "id": "T1459",
+  "name": "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Destructuring assignment statement\" \u2014 \"Only supports wildcard-binding-pattern\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions: \"List constructor\"; \"Variable reference\"; \"New expression\""
+  ],
+  "reason": "The case essentially exercises tuple/list destructuring assignments with variable and nested list patterns, such as [s, i, f] = [...]. These exceed the explicit wildcard-only restriction on destructuring assignment, so the whole case is feature scope even though ordinary type-mismatch rejection and local declarations are supported.",
+  "unsupported_constructs": [
+    "Tuple/list destructuring assignment using named variable patterns, nested list patterns, and indexed map targets."
+  ],
+  "test_design_notes": [
+    "Mixed scope: ordinary assignment type errors and self-reference/redeclaration errors occur alongside unsupported destructuring assignments.",
+    "The file uses @error markers only; there are no @args, @panic, or @output assertions."
+  ]
+}

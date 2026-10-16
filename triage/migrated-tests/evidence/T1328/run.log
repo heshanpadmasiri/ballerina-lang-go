@@ -1,0 +1,292 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "sealed-array-test-916de22362/sealed-array-code-analysis-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:18:8
+           |
+        18 |    int[*] x = [1]; // @error
+           |        ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:21:20
+           |
+        21 | function value(int[*] a = [1]) returns int[] { // @error
+           |                    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:26:19
+           |
+        26 |     function (int[*] a = [1]) returns int[] _ = value; // @error
+           |                   ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:27:47
+           |
+        27 |     var _ = function(int b) returns int {[int[*]] _ = [[1]]; int[*] _ = [32]; return b;}; // @error
+           |                                               ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:27:66
+           |
+        27 |     var _ = function(int b) returns int {[int[*]] _ = [[1]]; int[*] _ = [32]; return b;}; // @error
+           |                                                                  ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:28:44
+           |
+        28 |     var _ = function(int[3] b) returns int[*] {return [2, 3];}; // @error
+           |                                            ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:32:13
+           |
+        32 |         int[*] _ = [12,12];
+           |             ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:36:28
+           |
+        36 | function fn1() returns int[*] & readonly { // @error
+           |                            ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:40:31
+           |
+        40 | function fn2() returns string[*]|string[1] { // @error
+           |                               ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:44:48
+           |
+        44 | function fn3() returns int[] & readonly|string[*]|int[*] { // @error @error
+           |                                                ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:44:55
+           |
+        44 | function fn3() returns int[] & readonly|string[*]|int[*] { // @error @error
+           |                                                       ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:48:18
+           |
+        48 | function fn4(int[*] x = [1]) { // @error
+           |                  ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:51:6
+           |
+        51 | [int[*]] a2 = [[1]]; // @error
+           |      ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:52:13
+           |
+        52 | [string|int[*], float] a3 = [[1], 1.2]; // @error
+           |             ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:53:6
+           |
+        53 | [int[*] & readonly, float] a4 = [[1], 1.2]; // @error
+           |      ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:55:9
+           |
+        55 | map<int[*]> a5 = {"1" : [3]}; // @error
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:56:15
+           |
+        56 | map<float|int[*]> a6 = {"1" : [3]}; // @error
+           |               ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:57:9
+           |
+        57 | map<int[*]> a7 = {}; // @error
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:58:15
+           |
+        58 | function (int[*] b = [1]) returns int[] _ = function(int[*] b = [1]) returns int[*] {return [2, 3];}; // @error @error @error
+           |               ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:58:58
+           |
+        58 | function (int[*] b = [1]) returns int[] _ = function(int[*] b = [1]) returns int[*] {return [2, 3];}; // @error @error @error
+           |                                                          ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:58:82
+           |
+        58 | function (int[*] b = [1]) returns int[] _ = function(int[*] b = [1]) returns int[*] {return [2, 3];}; // @error @error @error
+           |                                                                                  ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:59:43
+           |
+        59 | var _ = function(int b) returns int {[int[*]] _ = [[1]]; int[*] _ = [32]; return b;}; // @error
+           |                                           ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:59:62
+           |
+        59 | var _ = function(int b) returns int {[int[*]] _ = [[1]]; int[*] _ = [32]; return b;}; // @error
+           |                                                              ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-code-analysis-e.bal:60:40
+           |
+        60 | var _ = function(int[3] b) returns int[*] {return [2, 3];}; // @error
+           |                                        ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:18:8
+           |
+        18 |    int[*] x = [1]; // @error
+           |        ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:21:20
+           |
+        21 | function value(int[*] a = [1]) returns int[] { // @error
+           |                    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:26:19
+           |
+        26 |     function (int[*] a = [1]) returns int[] _ = value; // @error
+           |                   ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:27:47
+           |
+        27 |     var _ = function(int b) returns int {[int[*]] _ = [[1]]; int[*] _ = [32]; return b;}; // @error
+           |                                               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:27:66
+           |
+        27 |     var _ = function(int b) returns int {[int[*]] _ = [[1]]; int[*] _ = [32]; return b;}; // @error
+           |                                                                  ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:28:44
+           |
+        28 |     var _ = function(int[3] b) returns int[*] {return [2, 3];}; // @error
+           |                                            ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:32:13
+           |
+        32 |         int[*] _ = [12,12];
+           |             ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:36:28
+           |
+        36 | function fn1() returns int[*] & readonly { // @error
+           |                            ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:40:31
+           |
+        40 | function fn2() returns string[*]|string[1] { // @error
+           |                               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:44:48
+           |
+        44 | function fn3() returns int[] & readonly|string[*]|int[*] { // @error @error
+           |                                                ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:44:55
+           |
+        44 | function fn3() returns int[] & readonly|string[*]|int[*] { // @error @error
+           |                                                       ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:48:18
+           |
+        48 | function fn4(int[*] x = [1]) { // @error
+           |                  ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:51:6
+           |
+        51 | [int[*]] a2 = [[1]]; // @error
+           |      ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:52:13
+           |
+        52 | [string|int[*], float] a3 = [[1], 1.2]; // @error
+           |             ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:53:6
+           |
+        53 | [int[*] & readonly, float] a4 = [[1], 1.2]; // @error
+           |      ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:55:9
+           |
+        55 | map<int[*]> a5 = {"1" : [3]}; // @error
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:56:15
+           |
+        56 | map<float|int[*]> a6 = {"1" : [3]}; // @error
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:57:9
+           |
+        57 | map<int[*]> a7 = {}; // @error
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:58:15
+           |
+        58 | function (int[*] b = [1]) returns int[] _ = function(int[*] b = [1]) returns int[*] {return [2, 3];}; // @error @error @error
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:58:58
+           |
+        58 | function (int[*] b = [1]) returns int[] _ = function(int[*] b = [1]) returns int[*] {return [2, 3];}; // @error @error @error
+           |                                                          ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:58:82
+           |
+        58 | function (int[*] b = [1]) returns int[] _ = function(int[*] b = [1]) returns int[*] {return [2, 3];}; // @error @error @error
+           |                                                                                  ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:59:43
+           |
+        59 | var _ = function(int b) returns int {[int[*]] _ = [[1]]; int[*] _ = [32]; return b;}; // @error
+           |                                           ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:59:62
+           |
+        59 | var _ = function(int b) returns int {[int[*]] _ = [[1]]; int[*] _ = [32]; return b;}; // @error
+           |                                                              ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-code-analysis-e.bal:60:40
+           |
+        60 | var _ = function(int[3] b) returns int[*] {return [2, 3];}; // @error
+           |                                        ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,14 @@
+{
+  "id": "T0323",
+  "name": "class-test-31d1ee9eb5/class-def-field-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Expressions: \"Variable reference\"; \"Type cast expression\"; \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\""
+  ],
+  "reason": "All four expected errors concern bare references to class fields in field initializers, including a reference inside an int cast and a forward reference. Class fields, initializer literals, variable references, casts, and initializer methods are supported; rejecting these invalid references is within the supported class name-resolution/type system. No essential unsupported construct occurs.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Four @error annotations assert compile-time rejection; no @args, @panic, or @output behavior is present."
+  ]
+}

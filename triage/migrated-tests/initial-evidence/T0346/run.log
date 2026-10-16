@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at closed_record_optional_fields_negatives-e.bal:17 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

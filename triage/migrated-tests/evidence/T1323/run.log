@@ -1,0 +1,70 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "return-stmt-test-af437eb847/return-stmt-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+           --> return-stmt-v.bal:102:14
+            |
+        102 | function bar(int a, string s, int b) returns (int) {
+            |              ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'a'
+          --> return-stmt-v.bal:17:29
+           |
+        17 | function testReturnOneParam(int a) {
+           |                             ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'a'
+          --> return-stmt-v.bal:98:14
+           |
+        98 | function foo(int a, int b) returns (string) {
+           |              ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> return-stmt-v.bal:102:31
+            |
+        102 | function bar(int a, string s, int b) returns (int) {
+            |                               ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> return-stmt-v.bal:98:21
+           |
+        98 | function foo(int a, int b) returns (string) {
+           |                     ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> return-stmt-v.bal:102:21
+            |
+        102 | function bar(int a, string s, int b) returns (int) {
+            |                     ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+          --> return-stmt-v.bal:53:20
+           |
+        53 | function splitUtil(string s) returns [string, string, string] {
+           |                    ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+          --> return-stmt-v.bal:62:26
+           |
+        62 | function testToUpperUtil(string s) returns (string) {
+           |                          ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's1'
+          --> return-stmt-v.bal:66:32
+           |
+        66 | function testToUpperUtilDouble(string s1, string s2) returns [string, string] {
+           |                                ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's2'
+          --> return-stmt-v.bal:66:43
+           |
+        66 | function testToUpperUtilDouble(string s1, string s2) returns [string, string] {
+           |                                           ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+         --> return-stmt-v.bal:8:5
+          |
+        8 |     int x = 0;
+          |     ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

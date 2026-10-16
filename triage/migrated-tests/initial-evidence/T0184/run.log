@@ -1,0 +1,35 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	3
+        	3
+        	3
+        	4
+        	2
+        	5
+        	3
+        	2
+        	3
+        	["abc","d",null,"s"]
+        	["aaa","bbb","ccc"]
+        	[6,3,8,4]
+        	[6.4,3.7,8.8,7.4]
+        	[true,true,false]
+        	[`<foo> </foo>`,`<bar>hello</bar>`]
+        	true
+        	[1,2]
+        	true
+        	[1,2]
+        	true
+        	[1,2]
+        	true
+        	[1,3]
+        	[{"b":{"b1":"B1"}},{"b":{"b1":"B1"}},{"b":{"b1":"B1"}},{"b":{"b1":"B1"},"a1":"A1"}]
+        	[{"b1":"B1"},{"b1":"B1"},{"b1":"B1"},{"b1":"B1"}]
+        	4
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

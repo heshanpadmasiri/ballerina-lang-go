@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "nullable-type-test-a38c1ec2a3/nullable-type-basics-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> nullable-type-basics-v.bal:123:54
+            |
+        123 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+            |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> nullable-type-basics-v.bal:124:50
+            |
+        124 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+            |                                                  ^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,17 @@
+{
+  "id": "T0909",
+  "name": "module-listener-decl-test-9b9489d763/module-listener-declaration-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module listener declarations\"",
+    "Module-level declarations: \"Module variable declarations\" and \"Class definition\"",
+    "Expressions: \"New expression\" and \"Error constructor\"",
+    "Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\"",
+    "Object/class definitions: \"Supports `included-record-param`, `rest-param` and `defaultable-param` in methods\""
+  ],
+  "reason": "The case asserts rejection of module listener declarations whose inferred union includes a non-listener class, and of explicit or inferred Listener2 declarations because Listener2 lacks attach. Module listener declarations and class definitions are explicitly supported; the service object parameter qualifier, defaultable method parameter, constructors and error return are covered and do not invoke a restriction. Invalid listener types are negative checks within the supported declaration/type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Three declarations carry @error markers; the initial union-typed module variable supplies the type for the first negative assertion."
+  ]
+}

@@ -1,0 +1,99 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:52:5
+           |
+        52 |     "a" -> first; // @error
+           |     ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:53:16
+           |
+        53 |     string k = <- first; // @error // @error
+           |                ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> main.bal:18:5
+           |
+        18 |     fork {
+           |     ^^^^^^
+        19 |         worker first returns string {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |             string d = <- function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        21 |             d -> function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |             "a" -> sampleWorker;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        23 |             string result = "";
+           |             ^^^^^^^^^^^^^^^^^^^
+        24 |             result = <- sampleWorker;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |             return result;
+           |             ^^^^^^^^^^^^^^
+        26 |         }
+           |         ^
+        27 | 
+           | 
+        28 |         worker sampleWorker {
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        29 |             string m = ""; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        30 |             m = <- first;
+           |             ^^^^^^^^^^^^^
+        31 |             msg -> first;
+           |             ^^^^^^^^^^^^^
+        32 |             msg -> first1; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |         }
+           |         ^
+        34 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> main.bal:36:5
+           |
+        36 |     fork {
+           |     ^^^^^^
+        37 |         worker first1 returns string {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |             "a" -> sampleWorker1;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        39 |             string result = "";
+           |             ^^^^^^^^^^^^^^^^^^^
+        40 |             result = <- sampleWorker1;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        41 |             string s = <- sampleWorker; // @error // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |             return result;
+           |             ^^^^^^^^^^^^^^
+        43 |         }
+           |         ^
+        44 | 
+           | 
+        45 |         worker sampleWorker1 {
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        46 |             string m = ""; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        47 |             m = <- first1;
+           |             ^^^^^^^^^^^^^^
+        48 |             msg -> first1;
+           |             ^^^^^^^^^^^^^^
+        49 |         }
+           |         ^
+        50 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:52:5
+           |
+        52 |     "a" -> first; // @error
+           |     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:53:16
+           |
+        53 |     string k = <- first; // @error // @error
+           |                ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

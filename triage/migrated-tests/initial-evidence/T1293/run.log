@@ -1,0 +1,43 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "retry-stmt-test-5faabda7b4/retry-manager-negative-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:14:5
+           |
+        14 |     retry<MyRetryManager> (value) { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |         // do nothing
+           |         ^^^^^^^^^^^^^
+        16 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:8:5
+           |
+         8 |     retry<MyRetryMgr> ("test") { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         // do nothing
+           |         ^^^^^^^^^^^^^
+        10 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:14:5
+           |
+        14 |     retry<MyRetryManager> (value) { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |         // do nothing
+           |         ^^^^^^^^^^^^^
+        16 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:8:5
+           |
+         8 |     retry<MyRetryMgr> ("test") { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         // do nothing
+           |         ^^^^^^^^^^^^^
+        10 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

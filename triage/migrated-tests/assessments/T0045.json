@@ -1,0 +1,18 @@
+{
+  "id": "T0045",
+  "name": "argument-parser-negative-test-706c373f17/invalid-decimal-03-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Expressions → Literal: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "Subset restrictions → Import declarations: \"Only following lang libraries with given methods/types are supported\" (includes ballerina/lang.decimal and fromString)"
+  ],
+  "reason": "The complete source declares an empty public main function with one required decimal parameter and supplies the external argument 0x1ef.a2 through a comment directive. The function signature is supported, but the expected rejection occurs during command-line argument conversion, before its empty body runs. Subset 10 does not cover main-entry argument parsing, conversion rules for decimal command-line values, or its failure behavior. Numeric-literal support concerns source expressions; the supplied text is not a source numeric literal. Likewise, support for decimal fromString does not establish command-line parsing behavior, and this source never calls it. The whole case therefore exercises an uncovered runtime entry mechanism.",
+  "unsupported_constructs": [
+    "Command-line argument conversion to a decimal main parameter and rejection of malformed decimal input"
+  ],
+  "test_design_notes": [
+    "The @args and @panic comments are harness markers, not Ballerina syntax or an explicit panic statement.",
+    "No obvious migration defect is visible; the expected panic depends entirely on argument processing. Supported function syntax is mixed with an uncovered entry mechanism."
+  ]
+}

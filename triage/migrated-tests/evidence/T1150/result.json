@@ -1,0 +1,14 @@
+{
+  "Name": "operand-test-0e6612016b/operand_rest_param_without_value_second-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operand_rest_param_without_value_second-v.bal",
+  "Project": false,
+  "Id": "T1150",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operand_rest_param_without_value_second-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.061
+}

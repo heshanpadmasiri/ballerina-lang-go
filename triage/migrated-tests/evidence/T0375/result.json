@@ -1,0 +1,16 @@
+{
+  "Name": "constant-access-test-53bc132680/constant-access-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-access-test-53bc132680/constant-access-v",
+  "Project": true,
+  "Id": "T0375",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constant-access-test-53bc132680/constant-access-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/constant-access-test-53bc132680/constant-access-v/constant-pkg.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/constant-access-test-53bc132680/constant-access-v/modules/variable/constant-def.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.087
+}

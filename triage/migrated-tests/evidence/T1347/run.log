@@ -1,0 +1,22 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	John Doe
+        	Name in object
+        	{"name":"Person","age":20}
+        	Inside first if block
+        	Inside second if block
+        	Inside else block
+        	Inside a lambda function
+        	This is a function param
+        	var after nested if-else
+        	<ns:greeting xmlns:ns="http://sample.com/wso2/a2">Hello World!</ns:greeting>
+        	<ns:greeting xmlns:ns="http://sample.com/wso2/a2">Hello World!</ns:greeting>
+        	<ns:greeting xmlns:ns="http://sample.com/wso2/a3">Hello World!</ns:greeting>
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

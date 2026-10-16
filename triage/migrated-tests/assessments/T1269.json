@@ -1,0 +1,16 @@
+{
+  "id": "T1269",
+  "name": "record-type-inclusion-test-10e02d3ce3/cyclic-inclusion-via-field-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Statements: [Assignment](https://ballerina.io/spec/lang/master/#assignment-stmt)",
+    "Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr); Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported",
+    "Expressions: [Field access expression](https://ballerina.io/spec/lang/master/#section_6.10)"
+  ],
+  "reason": "The case checks rejection of missing required recursively typed record fields and incompatible integer values in records formed by inclusion through named and anonymous record fields. Type definitions, mapping constructors, local declarations, assignment and field access are supported; no restriction excludes recursive record types or record inclusion. These negative type-checking expectations therefore fall within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Compile-negative case: the @error annotations assert diagnostics, not successful execution. The final unannotated assignment from the inferred innerError value to int also exercises recursive record assignability."]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "symbol-exposure-test-b4b7c6dd97/symbol_exposure-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/symbol-exposure-test-b4b7c6dd97/symbol_exposure-v.bal",
+  "Project": false,
+  "Id": "T1396",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/symbol-exposure-test-b4b7c6dd97/symbol_exposure-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.084
+}

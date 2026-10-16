@@ -1,0 +1,14 @@
+{
+  "Name": "collect-clause-test-c0e4163727/cases/collect-clause-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/collect-clause-test-c0e4163727/cases/collect-clause-negative-e.bal",
+  "Project": false,
+  "Id": "T0366",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/collect-clause-test-c0e4163727/cases/collect-clause-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

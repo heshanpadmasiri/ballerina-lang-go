@@ -1,0 +1,16 @@
+{
+  "id": "T1158",
+  "name": "option-test-1b0c555df9/boolean_array_option_true_value-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition"
+  ],
+  "reason": "The declarations use supported included-record parameter syntax, but the asserted panic depends on command-line option parsing of --array=true into a boolean-array main parameter. The subset does not specify command-line option binding or rejection behavior; signature support does not cover this assertion.",
+  "unsupported_constructs": [
+    "Command-line option parsing and rejection of --array=true for an included record's boolean[] field"
+  ],
+  "test_design_notes": [
+    "The empty main body cannot itself panic; @args and @panic make command-line processing the essential tested behavior."
+  ]
+}

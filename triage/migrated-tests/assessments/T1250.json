@@ -1,0 +1,19 @@
+{
+  "id": "T1250",
+  "name": "record-access-with-index-test-496b8706b7/record-access-with-index-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Class definition — Supports object-field, method-defn and object-type-inclusion members",
+    "Expressions: Member access expression; Field access expression; Type test expression; Conditional expression; Anonymous function expression; Mapping constructor; List constructor; New expression",
+    "Statements: Assignment — See supported lvexpr; Compound Assignment; Foreach — Currently only supports range, list, map, string and XML subtypes, and iterable objects",
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions / Import declarations: ballerina/lang.value — toString",
+    "Subset restrictions / Invocations / Other invocation restrictions: value:toString and value:toBalString"
+  ],
+  "reason": "The case exercises supported record member access and mutation with constant, computed, dynamic and finite-union string indices, nested records/maps/arrays, record defaults and optional/rest fields. Its asserted results also use supported casts, type narrowing, arithmetic, conditional expressions, class construction and methods, function values, list iteration and constant/wildcard match arms. The toString calls are explicitly allowed, and no stated restriction excludes the exercised access/default/filler behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Assertions include default-initialized records and extending initially empty arrays by indexed assignment, as well as missing optional/rest-field reads yielding nil.",
+    "io:println calls are output instrumentation."
+  ]
+}

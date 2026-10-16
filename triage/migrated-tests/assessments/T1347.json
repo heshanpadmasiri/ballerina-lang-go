@@ -1,0 +1,20 @@
+{
+  "id": "T1347",
+  "name": "shadowing-test-c0d314524b/shadowing-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: positive list includes Import declarations, Function definition, Constant declarations, Module variable declarations, Type definition and Class definition, but no XML namespace declarations.",
+    "## Statements: positive list includes Local variable declarations, If/else and Return, but no XML namespace declaration statements.",
+    "## Expressions: XML template expression — Supports interpolation in XML content and attributes; the expression list does not include typeof expressions."
+  ],
+  "reason": "The case essentially asserts lexical shadowing of XML namespace bindings: module-level xmlns ns is replaced by function/block-local xmlns declarations, and three expected XML outputs verify the selected namespace URI. Namespace declarations and their scoping behavior are not covered by the subset's positive declaration/statement lists; support for XML templates alone does not establish this behavior. The case also contains typeof expressions, absent from the supported expression list.",
+  "unsupported_constructs": [
+    "Module-level and local xmlns declarations and namespace-binding shadowing",
+    "typeof expressions in assertion failure paths"
+  ],
+  "test_design_notes": [
+    "The XML namespace behavior is executed and checked by explicit output assertions.",
+    "typeof occurs only in failure diagnostics; namespace shadowing alone suffices for the whole-case feature classification.",
+    "io:println is output instrumentation; value:toString is explicitly supported."
+  ]
+}

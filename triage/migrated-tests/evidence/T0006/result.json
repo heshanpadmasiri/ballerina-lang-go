@@ -1,0 +1,17 @@
+{
+  "Name": "access-levels-negative-test-4f8066db20/private-type-access-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-type-access-e",
+  "Project": true,
+  "Id": "T0006",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-type-access-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-type-access-e/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-type-access-e/modules/A/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-type-access-e/modules/B/functions.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.028
+}

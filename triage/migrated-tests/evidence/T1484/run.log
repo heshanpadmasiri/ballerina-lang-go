@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at type-test-type-narrowing-negative-e.bal:54-54 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at type-test-type-narrowing-negative-e.bal:60-60 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at type-test-type-narrowing-negative-e.bal:72-72 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at type-test-type-narrowing-negative-e.bal:76-76 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at type-test-type-narrowing-negative-e.bal:80-80 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at type-test-type-narrowing-negative-e.bal:84-84 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at type-test-type-narrowing-negative-e.bal:100-100 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at type-test-type-narrowing-negative-e.bal:101-101 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at type-test-type-narrowing-negative-e.bal:49 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-test-type-narrowing-negative-e.bal:52 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-test-type-narrowing-negative-e.bal:62 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-test-type-narrowing-negative-e.bal:68 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

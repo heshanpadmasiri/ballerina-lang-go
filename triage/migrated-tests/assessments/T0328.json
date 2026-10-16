@@ -1,0 +1,17 @@
+{
+  "id": "T0328",
+  "name": "class-test-31d1ee9eb5/simple-class-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Expressions: New expression; Mapping constructor; Field access expression; Type test expression; Conditional expression",
+    "Operators: Equality ops `==`, `!=`, `===`, `!==`; Logical ops `&&`, `||`; Additive ops `+`, `-`",
+    "Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `value:toString` and `value:toBalString`",
+    "Statements: Assignment; Call; If/else; Local variable declarations; Return; Panic"
+  ],
+  "reason": "The case checks class field defaults, explicit and contextually inferred construction, class inclusion with inherited fields, initializer assignments, and class-valued record fields. These constructs are covered by the supported declarations and expressions. The assertion helper uses supported equality, type tests, conditionals, value:toString, and error construction/panic. Successful main execution requires every field assertion to pass; no unsupported behavior is essential.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "main invokes all four tests; there are no @args, @panic, or @output directives. Assertion failure panics; successful execution has no output."
+  ]
+}

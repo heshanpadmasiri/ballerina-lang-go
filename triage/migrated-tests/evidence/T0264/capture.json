@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: break statement not allowed outside loop\n  --\u003e block-stmt-negative-e.bal:89:9\n   |\n89 |         break; // @error break cannot be used outside of a loop // @error unreachable code\n   |         ^^^^^^\n\n","Diagnostics":[{"File":"block-stmt-negative-e.bal","StartLine":89,"EndLine":89}]}

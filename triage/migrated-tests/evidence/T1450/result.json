@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-index-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-index-p.bal",
+  "Project": false,
+  "Id": "T1450",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-index-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.027
+}

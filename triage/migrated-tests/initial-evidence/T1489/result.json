@@ -1,0 +1,15 @@
+{
+  "Name": "type-test-expr-test-70ad51e586/type-test-expr-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-v",
+  "Project": true,
+  "Id": "T1489",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.107
+}

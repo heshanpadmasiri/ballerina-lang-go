@@ -1,0 +1,14 @@
+{
+  "Name": "annotation-expression-code-analysis-negative-4f892de7fb/annotation-expression-code-analysis-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/annotation-expression-code-analysis-negative-4f892de7fb/annotation-expression-code-analysis-negative-e.bal",
+  "Project": false,
+  "Id": "T0018",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/annotation-expression-code-analysis-negative-4f892de7fb/annotation-expression-code-analysis-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.064
+}

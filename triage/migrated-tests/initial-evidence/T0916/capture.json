@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: variable decl having bp must be initialized\n --\u003e module-record-variable-test-a0b146279e-uninitialized-e.bal:6:33\n  |\n6 | Car {id: carId, color: carColor}; // @error\n  |                                 \n\n","Diagnostics":[{"File":"module-record-variable-test-a0b146279e-uninitialized-e.bal","StartLine":6,"EndLine":6}]}

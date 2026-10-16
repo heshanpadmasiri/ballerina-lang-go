@@ -1,0 +1,14 @@
+{
+  "Name": "bjsonvalue-test-248ac7be19/map-json-to-json-array-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/map-json-to-json-array-p.bal",
+  "Project": false,
+  "Id": "T0257",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/map-json-to-json-array-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

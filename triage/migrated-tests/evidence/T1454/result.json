@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-variable-definition-test-6b1e019355/tuple-variable-definition-syntax-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-definition-test-6b1e019355/tuple-variable-definition-syntax-negative-e.bal",
+  "Project": false,
+  "Id": "T1454",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-definition-test-6b1e019355/tuple-variable-definition-syntax-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.871
+}

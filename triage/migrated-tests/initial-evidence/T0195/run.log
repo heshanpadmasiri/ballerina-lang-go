@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at var-negative-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at var-negative-e.bal:16-16 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at var-negative-e.bal:34-34 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at var-negative-e.bal:44-44 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at var-negative-e.bal:64-64 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at var-negative-e.bal:69-69 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at var-negative-e.bal:74-74 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

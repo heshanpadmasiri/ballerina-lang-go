@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'm'\n  --\u003e map-initializer-expr-v.bal:91:22\n   |\n91 | function mapFunction(map\u003cany\u003e m) {\n   |                      ^^^^^^^^^^\n\n","Diagnostics":[{"File":"map-initializer-expr-v.bal","StartLine":91,"EndLine":91}]}

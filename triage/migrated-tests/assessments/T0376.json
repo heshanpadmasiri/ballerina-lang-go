@@ -1,0 +1,12 @@
+{
+  "id": "T0376",
+  "name": "constant-assignment-test-2d63b3eb49/constant-assignment-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Module-level declarations: Constant declarations"
+  ],
+  "reason": "The whole negative case includes three base16 byte-array literals whose assignment compatibility must be checked. Byte-array literals are outside the explicitly supported literal kinds and are not otherwise listed as supported expressions, making this a feature case even though ordinary invalid constant and variable assignments are in scope.",
+  "unsupported_constructs": ["base16 `aabb` byte-array literals in the initializers of Y, Z and Z1"],
+  "test_design_notes": ["The @error markers assert compile-time rejection; there are no @args, @panic or @output assertions."]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal",
+  "Project": false,
+  "Id": "T0841",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.081
+}

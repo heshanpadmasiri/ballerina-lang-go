@@ -1,0 +1,22 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "unary-expr-test-6a6cdd6e72/unary-operations-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a3'
+          --> unary-operations-v.bal:52:5
+           |
+        52 |     int:Unsigned16 a3 = 0;
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'a4'
+          --> unary-operations-v.bal:55:5
+           |
+        55 |     int:Unsigned32 a4 = 0;
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x11'
+          --> unary-operations-v.bal:94:5
+           |
+        94 |     int:Unsigned32 x11 = 7;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

@@ -1,0 +1,14 @@
+{
+  "Name": "operand-test-0e6612016b/operands_with_defaultable_values-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operands_with_defaultable_values-e.bal",
+  "Project": false,
+  "Id": "T1151",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operands_with_defaultable_values-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.019
+}

@@ -1,0 +1,13 @@
+{
+  "id": "T1233",
+  "name": "raw-template-literal-test-73d1c4c5ea/raw-template-literal-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[String template expression](https://ballerina.io/spec/lang/master/#string-template-expr)\" is listed; raw-template expressions are not listed.",
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\".",
+    "# Subset restrictions / ## Import declarations: \"`ballerina/lang.object`\" includes \"`RawTemplate`\"."
+  ],
+  "reason": "The case requires raw-template expression construction and contextual type checking, including insertion counts/types, object shape compatibility, ambiguity, and readonly template values. Raw-template expressions are absent from the supported expression list. Support for importing lang.object:RawTemplate does not establish support for constructing raw-template literals or their diagnostic rules.",
+  "unsupported_constructs": ["Raw-template expressions (bare backtick templates) and their contextual typing/validation"],
+  "test_design_notes": ["Negative rejection tests remain in scope when their underlying grammar and behavior are supported; here raw-template construction itself is not covered."]
+}

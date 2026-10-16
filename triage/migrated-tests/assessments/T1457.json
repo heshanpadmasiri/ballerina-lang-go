@@ -1,0 +1,19 @@
+{
+  "id": "T1457",
+  "name": "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-dataflow-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Destructuring assignment statement\" \u2014 \"Only supports wildcard-binding-pattern\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions: \"List constructor\"; \"Variable reference\""
+  ],
+  "reason": "The negative final-variable checks rely on list destructuring assignments, including nested and rest targets. These are outside the explicit wildcard-only destructuring assignment support, regardless of whether final-variable reassignment should be rejected. This decisive restriction makes the whole case feature scope.",
+  "unsupported_constructs": [
+    "Non-wildcard list destructuring assignments [s1, f1] = t1 and [f2, b2] = [2.0, false]",
+    "Nested/rest destructuring assignment [s2, [f2, b2], ...n2] = t2"
+  ],
+  "test_design_notes": [
+    "Mixed scope: ordinary assignment to final s2 is combined with unsupported destructuring assignments.",
+    "The final binding declarations themselves carry @error markers, as do subsequent reassignments; the supplied file does not explain what declaration diagnostics are intended. No @args, @panic, or @output assertions occur."
+  ]
+}

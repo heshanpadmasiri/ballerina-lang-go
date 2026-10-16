@@ -1,0 +1,148 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "match-stmt-type-narrowing-test-2f777af370/match-stmt-type-narrow-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:94:9
+           |
+        94 |         {name: var a, ...var b} if a is "John" => { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:96:9
+           |
+        96 |         {name: var a, ...var b} if a is "John" => { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-stmt-type-narrow-negative-e.bal:101:9
+            |
+        101 |         var {name, age, ...rest} if age is A => { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-stmt-type-narrow-negative-e.bal:103:9
+            |
+        103 |         var {name, age, ...rest} if age is B => { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-stmt-type-narrow-negative-e.bal:114:9
+            |
+        114 |         var a if a is C => {
+            |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-stmt-type-narrow-negative-e.bal:116:9
+            |
+        116 |         var a if a is D => { // @error
+            |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-stmt-type-narrow-negative-e.bal:121:9
+            |
+        121 |         var a if a is int|string => {
+            |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-stmt-type-narrow-negative-e.bal:123:9
+            |
+        123 |         var a if a is string|int|string => { // @error
+            |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:19:9
+           |
+        19 |         var a if a is ONE => {
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:21:9
+           |
+        21 |         var a if a is ONE => { // @error
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:29:9
+           |
+        29 |         var a if a is ONE2 => {
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:31:9
+           |
+        31 |         var a if a is ONE => { // @error
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:39:9
+           |
+        39 |         var a if a is 1|2 => {
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:41:9
+           |
+        41 |         var a if a is 1|2 => { // @error
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:52:9
+           |
+        52 |         var a if a is A => {
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:54:9
+           |
+        54 |         var a if a is B => { // @error
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:62:9
+           |
+        62 |         var a if a is int|string => {
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:64:9
+           |
+        64 |         var a if a is int|string => { // @error
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:72:9
+           |
+        72 |         var a if a is [1, 2, 3] => {
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:74:9
+           |
+        74 |         var a if a is [1, 2, 3] => { // @error
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:79:9
+           |
+        79 |         var a if a is int[] => {
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-stmt-type-narrow-negative-e.bal:81:9
+           |
+        81 |         var a if a is int[] => { // @error
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+         --> match-stmt-type-narrow-negative-e.bal:7:9
+          |
+        7 |         var {op} if op is "+" => { return "+"; }
+          |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+         --> match-stmt-type-narrow-negative-e.bal:8:9
+          |
+        8 |         var {op} if op is "+" => { return "-"; } // @error
+          |         ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

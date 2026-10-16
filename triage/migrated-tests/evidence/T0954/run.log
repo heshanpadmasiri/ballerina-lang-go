@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want struct-incompatible-info-p.bal:10, got struct-incompatible-info-p.bal:14
+        stderr:
+        error: '{| foo: {| anydata... |}, never... |}' value cannot be converted to 'json'
+                at trigger(struct-incompatible-info-p.bal:14)
+                   main(struct-incompatible-info-p.bal:18)
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

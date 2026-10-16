@@ -1,0 +1,18 @@
+{
+  "id": "T0362",
+  "name": "closure-negative-test-a955baa186/closure-semantic-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Anonymous function expression](https://ballerina.io/spec/lang/master/#anonymous-function-expr)",
+    "## Expressions: [Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)",
+    "## Statements: Assignment; If/else; Local variable declarations; Return",
+    "## Module-level declarations: Function definition; Module variable declarations",
+    "### Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The case checks semantic rejection of undefined or out-of-scope variables, illegal parameter assignment, and variable redeclaration inside nested anonymous functions. Anonymous functions, variable references, assignments, local/module declarations, calls, casts, and the operators used are supported. The toString method calls are explicitly supported as value:toString. No essential unsupported construct or asserted behavior is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case with @error markers; no @args, @panic, or @output assertions.",
+    "Invalid references and assignments are negative checks within supported closure grammar and type/scoping rules."
+  ]
+}

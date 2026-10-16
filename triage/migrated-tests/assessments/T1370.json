@@ -1,0 +1,21 @@
+{
+  "id": "T1370",
+  "name": "string-value-xml-test-f2ac2e01f3/string-value-xml-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements — lists supported statements, including Local variable declarations, but does not list XML namespace declarations.",
+    "## Module-level declarations — does not list XML namespace declarations.",
+    "## Expressions — XML template expression: 'Supports interpolation in XML content and attributes'; 'XML sequence interpolation from a query result is not supported'.",
+    "## Expressions — Variable reference: 'Currently `xml-qualified-names` not supported'.",
+    "## Import declarations — ballerina/lang.value includes `toString`; ballerina/lang.string includes `length`; ballerina/lang.xml includes `length` and `fromString`.",
+    "### Other invocation restrictions — permits `string:length`, `value:toString` and `xml:length` method syntax."
+  ],
+  "reason": "The namespace tests require local xmlns declarations (both default and prefixed), a declaration/statement construct not covered by the supported lists. This suffices to classify the whole mixed case as feature. The remaining XML templates, Unicode string lengths, serialization via value:toString, XML parsing via xml:fromString and XML length use listed facilities. The xml-qualified-names restriction concerns variable references and does not by itself exclude prefixed XML template tags/attributes.",
+  "unsupported_constructs": [
+    "Local XML namespace declarations: xmlns \"http://ballerina.com/\"; and xmlns \"http://ballerina.com/💯aa\" as ns0;"
+  ],
+  "test_design_notes": [
+    "Mixed scope: main asserts ordinary comment, element, text, processing-instruction, parsing and interpolation behavior alongside namespace declaration cases.",
+    "The @output markers assert exact Unicode-aware serialized string lengths and xml:fromString result length; they are behavioral assertions, not just signature checks. No obvious marker-format issue."
+  ]
+}

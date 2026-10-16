@@ -1,0 +1,14 @@
+{
+  "Name": "function-nil-return-test-762593be2f/function-nil-return-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-nil-return-test-762593be2f/function-nil-return-v.bal",
+  "Project": false,
+  "Id": "T0544",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-nil-return-test-762593be2f/function-nil-return-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.058
+}

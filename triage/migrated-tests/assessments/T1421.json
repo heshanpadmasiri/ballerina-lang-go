@@ -1,0 +1,17 @@
+{
+  "id": "T1421",
+  "name": "trap-operator-test-ec322bfc54/trap-operator-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Trap expression], [Check expression], [Conditional expression], [Logical expression], [Relational expression], [`Call`], [Literal], [Variable reference]",
+    "## Operators: Multiplicative ops `*`, `%`, `/`; Relational ops `<`, `<=`, `>`, `>=`; Additive ops `+`, `-`; Logical ops `&&`, `||`",
+    "## Statements: [If/else]; [Local variable declarations]",
+    "## Module-level declarations: [Function definition]"
+  ],
+  "reason": "This negative case exercises trap/check typing and precedence within arithmetic, conditional, relational and logical expressions. All essential constructs are explicitly supported, and no subset restriction excludes their use here. Rejection of invalid assignments, boolean conditions or check operands is within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Contains both valid-looking trap/conditional declarations and marked negative expressions; these share supported scope.",
+    "Five @error markers are present; there are no @args, @panic or @output assertions. The unmarked conditional using a trapped condition may also require a diagnostic depending on trap precedence/type rules; the supplied subset document does not specify diagnostic locations or marker completeness."
+  ]
+}

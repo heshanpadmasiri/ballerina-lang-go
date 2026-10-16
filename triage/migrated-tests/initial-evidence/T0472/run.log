@@ -1,0 +1,14 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at field-access-e.bal:335-335 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:39 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:138 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:337 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:369 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:371 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:373 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:375 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at field-access-e.bal:377 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

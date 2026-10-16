@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:50: map-access-expr-test-6a04afad0c/map-access-remove-missing-p: expected non-zero exit code, got 0
+    migration_triage_test.go:52: -p test "map-access-expr-test-6a04afad0c/map-access-remove-missing-p" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

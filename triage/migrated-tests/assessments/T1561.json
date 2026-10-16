@@ -1,0 +1,12 @@
+{
+  "id": "T1561",
+  "name": "worker-fail-test-278d4f50a4/invalid-send-with-error-return-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists Assignment, If/else, Local variable declarations and Return; does not list named worker declarations or worker send statements.",
+    "## Expressions: lists 'Start action' and 'Wait action'; does not list worker receive actions."
+  ],
+  "reason": "The essential negative test concerns receiving a value from a named worker whose return type includes error. Named workers and worker message send/receive actions are not covered by subset 10's positive lists, so this is a feature case even though rejection tests within supported constructs would be in scope.",
+  "unsupported_constructs": ["Named worker declarations, including worker return types", "Worker message send (i -> w2) and receive (<- w1), including error propagation into the receive type"],
+  "test_design_notes": ["The sole @error marker is on the receive assignment; there are no @args, @panic or @output assertions.", "io:println is instrumentation and does not determine scope."]
+}

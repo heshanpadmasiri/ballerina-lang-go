@@ -1,0 +1,18 @@
+{
+  "id": "T0232",
+  "name": "bdecimal-type-conversion-test-184c9f7b27/decimal-type-conversion-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)",
+    "Expressions: [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)",
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "Import declarations: ballerina/lang.decimal includes fromString",
+    "Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The case exercises supported numeric casts between decimal, int and float, decimal assignment to any/json, the explicitly supported decimal:fromString function and value:toString method, with supported tuples, indexing and check expressions. Its asserted conversion and printed values are within that supported behavior; no essential unsupported construct was identified.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The eight @output assertions exercise numeric conversion and decimal string rendering, including int-to-decimal output 12.0. There are no @args or @panic directives.",
+    "io:println is output instrumentation."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "T0917",
+  "name": "module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions, including [Annotation access expression], but does not list typeof expressions.",
+    "## Module-level declarations: [Module variable declarations]",
+    "## Module-level declarations: [Annotation declarations and attachments]; Supports annotation values evaluated from constant and runtime expressions",
+    "## Statements: [Destructuring assignment statement] \u2014 Only supports wildcard-binding-pattern"
+  ],
+  "reason": "The annotation-value assertion requires `typeof testVariableDeclaredInRecordAsAnnotationValue` to obtain a function typedesc before `td.@x` reads the annotation. Although annotation access and runtime annotation values are supported, typeof expressions are absent from the supported expression list, making this whole case feature-dependent.",
+  "unsupported_constructs": [
+    "typeof expression used to obtain the function typedesc for runtime annotation access"
+  ],
+  "test_design_notes": [
+    "Record, tuple, error, and rest binding patterns occur in module variable declarations; the wildcard-only restriction applies to destructuring assignment statements, not these declarations.",
+    "The case also asserts module initialization forward references, nested and rest bindings, and optional-field behavior; io:println serves as instrumentation."
+  ],
+  "reviewer_name": "module-record-variable-test-a0b146279e-v.bal"
+}

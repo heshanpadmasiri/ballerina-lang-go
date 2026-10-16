@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'person1'\n  --\u003e invalid-assignment-p.bal:15:1\n   |\n15 | Person person1 = {name: \"John\"};\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"invalid-assignment-p.bal","StartLine":15,"EndLine":15}]}

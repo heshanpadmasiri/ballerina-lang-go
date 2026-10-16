@@ -1,0 +1,22 @@
+{
+  "id": "T1237",
+  "name": "reachability-analysis-test-a8532630b8/reachability-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes If/else, While, Return, Panic and Foreach, but does not include do, fail or on-fail handlers.",
+    "## Expressions: \"[Query expressions]\"; \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"; \"Supports `group by` and `collect` clauses\". Query actions with `do` are not listed.",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.error` lists only `message`.",
+    "### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes `error:message`, but not `error:detail`."
+  ],
+  "reason": "The whole case requires unsupported control-flow features: fail propagation and on-fail recovery determine the asserted foo4 loop trace, and query actions with do bodies assert nil results, escaping returns and trapped panics. Error-detail extraction is also essential to asserted panic messages in testTypeNarrowingWithEqualityInCondition; error.detail is excluded by the langlib positive list. These exceed otherwise supported reachability/type-narrowing constructs.",
+  "unsupported_constructs": [
+    "do statements, fail statements and on fail clauses",
+    "query actions with do clauses, including returns from query-action bodies",
+    "error.detail() langlib calls",
+    "typeof expressions (not listed among supported expressions)"
+  ],
+  "test_design_notes": [
+    "io:println is instrumentation only and is not used to classify the case.",
+    "The assertions exercise runtime results and panic messages as well as compile-time reachability acceptance."
+  ]
+}

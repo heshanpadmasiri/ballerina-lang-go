@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "array-fill-test-runtime-5e01b269f4/array-fill-runtime-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: missing required member at index 0: type '[{| i: int, j: int, anydata... |}, {| i: int, j: int, anydata... |}, never...]' has no filler value
+           --> array-fill-runtime-v.bal:142:19
+            |
+        142 |     Rec[2][2] z = [];
+            |                   ^^
+        
+        error[SEMANTIC_ERROR]: missing required member at index 0: type 'object { public int age; public function init(int) returns nil }' has no filler value
+          --> array-fill-runtime-v.bal:74:16
+           |
+        74 |     Age[2] y = [];
+           |                ^^
+        
+        error[SEMANTIC_ERROR]: missing required member at index 0: type '{| i: int, j: int, anydata... |}' has no filler value
+           --> array-fill-runtime-v.bal:122:16
+            |
+        122 |     Rec[2] x = [];
+            |                ^^
+        
+        error[SEMANTIC_ERROR]: missing required member at index 0: type '{| i: int, never... |}' has no filler value
+           --> array-fill-runtime-v.bal:186:46
+            |
+        186 |     record {| int i = 101; |}[3] testArray = [];
+            |                                              ^^
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

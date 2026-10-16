@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at object-subtype-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at object-subtype-negative-e.bal:12 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

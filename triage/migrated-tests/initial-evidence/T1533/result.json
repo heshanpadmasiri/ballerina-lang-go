@@ -1,0 +1,14 @@
+{
+  "Name": "wait-for-any-actions-test-def2fb9aaa/wait-for-any-actions-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-for-any-actions-test-def2fb9aaa/wait-for-any-actions-v.bal",
+  "Project": false,
+  "Id": "T1533",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/wait-for-any-actions-test-def2fb9aaa/wait-for-any-actions-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.065
+}

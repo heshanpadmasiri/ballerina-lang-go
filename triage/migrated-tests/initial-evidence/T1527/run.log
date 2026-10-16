@@ -1,0 +1,169 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "wait-actions-negative-test-f93f239821/wait-deadlock-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> wait-deadlock-negative-e.bal:59:5
+           |
+        59 |     fork {
+           |     ^^^^^^
+        60 |         worker w {
+           |         ^^^^^^^^^^
+        61 |             wait v; // @error
+           |             ^^^^^^^^^^^^^^^^^
+        62 |         }
+           |         ^
+        63 | 
+           | 
+        64 |         worker x {
+           |         ^^^^^^^^^^
+        65 |             wait w;
+           |             ^^^^^^^
+        66 |         }
+           |         ^
+        67 | 
+           | 
+        68 |         worker v {
+           |         ^^^^^^^^^^
+        69 |             wait x;
+           |             ^^^^^^^
+        70 |         }
+           |         ^
+        71 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+           --> wait-deadlock-negative-e.bal:93:5
+            |
+         93 |     worker w1 {
+            |     ^^^^^^^^^^^
+         94 |         11 -> w3; // @error
+            |         ^^^^^^^^^^^^^^^^^^^
+         95 |         string _ = <- w3; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         96 |     }
+            |     ^
+         97 |     worker w3 {
+            |     ^^^^^^^^^^^
+         98 |         "tow1-1" -> w2;
+            |         ^^^^^^^^^^^^^^^
+         99 |         int _ = <- w2;
+            |         ^^^^^^^^^^^^^^
+        100 |     }
+            |     ^
+        101 |     worker w2 {
+            |     ^^^^^^^^^^^
+        102 |         string _ = <- w3;
+            |         ^^^^^^^^^^^^^^^^^
+        103 |         24 -> w3;
+            |         ^^^^^^^^^
+        104 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> wait-deadlock-negative-e.bal:19:5
+           |
+        19 |     worker w {
+           |     ^^^^^^^^^^
+        20 |         wait v; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        21 |     }
+           |     ^
+        22 | 
+           | 
+        23 |     worker v {
+           |     ^^^^^^^^^^
+        24 |         wait w;
+           |         ^^^^^^^
+        25 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> wait-deadlock-negative-e.bal:29:5
+           |
+        29 |     worker w {
+           |     ^^^^^^^^^^
+        30 |         wait v; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        31 |     }
+           |     ^
+        32 | 
+           | 
+        33 |     worker x {
+           |     ^^^^^^^^^^
+        34 |         wait w;
+           |         ^^^^^^^
+        35 |     }
+           |     ^
+        36 | 
+           | 
+        37 |     worker v {
+           |     ^^^^^^^^^^
+        38 |         wait x;
+           |         ^^^^^^^
+        39 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> wait-deadlock-negative-e.bal:43:5
+           |
+        43 |     worker w {
+           |     ^^^^^^^^^^
+        44 |         int j = 0;
+           |         ^^^^^^^^^^
+        45 |         wait w2;
+           |         ^^^^^^^^
+        46 |         j -> w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^
+        47 |     }
+           |     ^
+        48 | 
+           | 
+        49 |     worker w1 {
+           |     ^^^^^^^^^^^
+        50 |         int _ = <- w; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        51 |     }
+           |     ^
+        52 | 
+           | 
+        53 |     worker w2 {
+           |     ^^^^^^^^^^^
+        54 |         wait w1;
+           |         ^^^^^^^^
+        55 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> wait-deadlock-negative-e.bal:75:5
+           |
+        75 |     worker wi {
+           |     ^^^^^^^^^^^
+        76 |         fork {
+           |         ^^^^^^
+        77 |             worker wi {
+           |             ^^^^^^^^^^^
+        78 |                 wait vi; // @error
+           |                 ^^^^^^^^^^^^^^^^^^
+        79 |             }
+           |             ^
+        80 | 
+           | 
+        81 |             worker xi {
+           |             ^^^^^^^^^^^
+        82 |                 wait wi;
+           |                 ^^^^^^^^
+        83 |             }
+           |             ^
+        84 | 
+           | 
+        85 |             worker vi {
+           |             ^^^^^^^^^^^
+        86 |                 wait xi;
+           |                 ^^^^^^^^
+        87 |             }
+           |             ^
+        88 |         }
+           |         ^
+        89 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

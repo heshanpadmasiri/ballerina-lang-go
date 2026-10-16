@@ -1,0 +1,14 @@
+{
+  "Name": "type-definitions-negative-test-4cffd2ad3d/type-definitions-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-definitions-negative-test-4cffd2ad3d/type-definitions-negative-e.bal",
+  "Project": false,
+  "Id": "T1464",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-definitions-negative-test-4cffd2ad3d/type-definitions-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.047
+}

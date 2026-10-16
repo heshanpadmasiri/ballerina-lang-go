@@ -1,0 +1,16 @@
+{
+  "id": "T1355",
+  "name": "start-action-test-c3596ca55b/start-action-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions, including 'Start action', 'Wait action', 'Anonymous function expression' and 'Type cast expression', but does not include typeof expressions.",
+    "## Module-level declarations: 'Supports remote-method-defn for client classes and resource-method-defn for service classes'.",
+    "### Other invocation restrictions: 'value:toString and value:toBalString' are supported using method call syntax."
+  ],
+  "reason": "The async function-pointer, ordinary method and remote method calls and their returned values use listed supported features, as does the asserted list/map stringification. However, the assertion helper contains typeof expected and typeof actual, an expression form absent from the subset's positive expression list; the whole case therefore requires an uncovered feature.",
+  "unsupported_constructs": ["typeof expressions in the assertion helper"],
+  "test_design_notes": [
+    "typeof is evaluated only on an assertion failure, but its syntax and typing are still required to compile the complete case.",
+    "The second record-field async check retrieves fr.fn again rather than fr2.fn, so it does not actually verify invocation through the cast nested record."
+  ]
+}

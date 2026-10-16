@@ -1,0 +1,12 @@
+{
+  "id": "T1301",
+  "name": "return-stmt-negative-test-c1f15d4b97/missing-return-forkjoin-1-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes Local variable declarations and Return, but does not include fork statements or named worker declarations.",
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are listed; fork and named workers are not listed."
+  ],
+  "reason": "The case asserts missing-return errors both in an int-returning named worker inside a fork and in the enclosing tuple-returning function. Fork statements and named workers are essential to the worker-return assertion and are absent from the subset's positive support lists. Support for start and wait actions does not cover fork workers.",
+  "unsupported_constructs": ["fork statement", "named worker declarations, including a worker with an explicit return type"],
+  "test_design_notes": ["Negative missing-return checks remain in scope for supported constructs, but the worker-specific assertion depends on unsupported constructs."]
+}

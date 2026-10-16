@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:57: -e test "constant-type-test-27d6dffc1c/constant-code-analysis-negative-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,57 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "block-stmt-test-58e33229dc/block-stmt-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+           --> block-stmt-v.bal:104:9
+            |
+        104 |         int a = 5;
+            |         ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's1'
+          --> block-stmt-v.bal:50:9
+           |
+        50 |         string s1 = "hello if";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's1'
+          --> block-stmt-v.bal:60:9
+           |
+        60 |         string s1 = "hello if";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's1'
+          --> block-stmt-v.bal:70:9
+           |
+        70 |         string s1 = "hello if";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's1'
+          --> block-stmt-v.bal:90:9
+           |
+        90 |         string s1 = "hello if";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's2'
+          --> block-stmt-v.bal:52:9
+           |
+        52 |         string s2 = "hello else";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's2'
+          --> block-stmt-v.bal:62:9
+           |
+        62 |         string s2 = "hello else";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's2'
+          --> block-stmt-v.bal:73:9
+           |
+        73 |         string s2 = "hello else";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's2'
+          --> block-stmt-v.bal:94:9
+           |
+        94 |         string s2 = "hello else";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

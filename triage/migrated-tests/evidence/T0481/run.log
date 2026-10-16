@@ -1,0 +1,72 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "final-object-field-test-de73e9a2aa/final-object-fields-semantics-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> final-object-fields-semantics-negative-e.bal:95:14
+            |
+         95 |     var ob = object {
+            |              ^^^^^^^^
+         96 |         final string id;
+            |         ^^^^^^^^^^^^^^^^
+         97 |         final map<int> config;
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+         98 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+         99 |             self.id = "inline";
+            |             ^^^^^^^^^^^^^^^^^^^
+        100 |             self.config = {};
+            |             ^^^^^^^^^^^^^^^^^
+        101 |         }
+            |         ^
+        102 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> final-object-fields-semantics-negative-e.bal:75:13
+           |
+        75 |     var b = object {
+           |             ^^^^^^^^
+        76 |         final int i = 2;
+           |         ^^^^^^^^^^^^^^^^
+        77 |         string s = "world";
+           |         ^^^^^^^^^^^^^^^^^^^
+        78 |         final boolean b = false;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> final-object-fields-semantics-negative-e.bal:95:14
+            |
+         95 |     var ob = object {
+            |              ^^^^^^^^
+         96 |         final string id;
+            |         ^^^^^^^^^^^^^^^^
+         97 |         final map<int> config;
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+         98 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+         99 |             self.id = "inline";
+            |             ^^^^^^^^^^^^^^^^^^^
+        100 |             self.config = {};
+            |             ^^^^^^^^^^^^^^^^^
+        101 |         }
+            |         ^
+        102 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> final-object-fields-semantics-negative-e.bal:75:13
+           |
+        75 |     var b = object {
+           |             ^^^^^^^^
+        76 |         final int i = 2;
+           |         ^^^^^^^^^^^^^^^^
+        77 |         string s = "world";
+           |         ^^^^^^^^^^^^^^^^^^^
+        78 |         final boolean b = false;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

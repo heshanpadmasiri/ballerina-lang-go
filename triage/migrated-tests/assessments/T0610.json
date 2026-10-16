@@ -1,0 +1,15 @@
+{
+  "id": "T0610",
+  "name": "global-var-negative-test-2de21d931c/global-variable-init-with-invocation-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"; \"Function definition\"; \"Class definition\" and \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Statements: \"Assignment\"; \"Call\"; \"Local variable declarations\"; \"Return\"",
+    "Expressions: \"`Call`\"; \"Method call\"; \"New expression\"; \"Anonymous function expression\"; \"Variable reference\""
+  ],
+  "reason": "The negative assertions concern definite initialization: reads of uninitialized local/module variables and invocations during module initialization before module variables are initialized. These are rejection checks within supported variable declarations, assignments, function calls, method calls, classes, object construction and anonymous functions. No applicable subset restriction excludes this behavior or any essential construct.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The repeated @error markers assert negative diagnostics, including calls before initialization; assess rejection behavior rather than successful execution."
+  ]
+}

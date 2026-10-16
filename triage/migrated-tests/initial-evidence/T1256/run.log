@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at duplicate-key-negative-e.bal:15 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

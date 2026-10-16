@@ -1,0 +1,12 @@
+{
+  "id": "T1182",
+  "name": "option-test-1b0c555df9/option_with_types_spaced-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Expressions: [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)"
+  ],
+  "reason": "The test requires command-line option binding into an included record parameter: spaced --union, --name, --age, --score and --value options must convert strings to the declared field types, including nullable string and decimal exponent input. The subset supports included-record parameter signatures and member access, but does not cover command-line option parsing or entry-point argument conversion. That essential asserted behavior makes the whole case a feature.",
+  "unsupported_constructs": ["Command-line spaced option parsing and typed conversion into an included record main parameter"],
+  "test_design_notes": ["The @args and @output annotations assert CLI conversion results, including decimal 1e10 rendered as 1E+10; io:println is instrumentation."]
+}

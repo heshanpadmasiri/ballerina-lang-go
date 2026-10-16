@@ -1,0 +1,16 @@
+{
+  "id": "T1333",
+  "name": "sealed-array-test-916de22362/sealed-array-map-index-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params",
+    "Statements: Assignment — See supported lvexpr",
+    "Statements: Local variable declarations",
+    "Expressions: List constructor",
+    "Expressions: Mapping constructor — Currently spread-field not supported",
+    "Expressions: Member access expression"
+  ],
+  "reason": "The case uses supported function calls, local declarations, list and mapping constructors, and indexed assignment. It checks that an int[3] array stored in a map<int[]> retains its fixed length and panics when index 3 is assigned through the map lookup. No stated subset restriction excludes fixed-length arrays or this member-assignment bounds behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The // @panic marker asserts a runtime panic at the final indexed assignment; the preceding map insertion uses the existing key v1 for the subsequent lookup."]
+}

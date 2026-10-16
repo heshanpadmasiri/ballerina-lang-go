@@ -1,0 +1,24 @@
+{
+  "id": "T1634",
+  "name": "xmlquery-expression-test-448a9347b5/xmlquery-expression-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > XML template expression: Supports interpolation in XML content and attributes",
+    "Expressions > XML template expression: XML sequence interpolation from a query result is not supported",
+    "Expressions > Query expressions: Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions > Query expressions: Supports `list` and `map` as `query-constructor-type`",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions"
+  ],
+  "reason": "The executed testXMLTemplateWithQueryExpression functions interpolate XML sequences produced directly by queries into enclosing XML templates, and main asserts their serialized content through @output. This behavior is expressly unsupported, decisively making the whole case feature despite support for ordinary XML templates, navigation, and query clauses. The readonly tests also require unlisted cloneReadOnly langlib calls, and simpleQueryExprForXML9 uses the unsupported stream query constructor.",
+  "unsupported_constructs": [
+    "XML sequence interpolation from query results (testXMLTemplateWithQueryExpression and variants, readonly variants, and testQueryExpressionXmlStartWithWhiteSpace)",
+    "cloneReadOnly langlib method calls",
+    "stream query-constructor-type"
+  ],
+  "test_design_notes": [
+    "Mixed scope: many ordinary XML queries share main with explicitly unsupported query-result interpolation and readonly cloning tests.",
+    "Two @output markers contain literal \\u2702\\u2705 while their XML source text uses Unicode escapes; literal marker comparison would require the decoded characters.",
+    "No @args or @panic markers; assertions require successful execution and XML serialization, not merely valid signatures. io:println is instrumentation."
+  ]
+}

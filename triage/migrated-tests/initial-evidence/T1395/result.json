@@ -1,0 +1,14 @@
+{
+  "Name": "subtract-operation-test-d3a1c9ca4b/subtract-operation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/subtract-operation-test-d3a1c9ca4b/subtract-operation-v.bal",
+  "Project": false,
+  "Id": "T1395",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/subtract-operation-test-d3a1c9ca4b/subtract-operation-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.094
+}

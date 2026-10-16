@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at check-in-parameter-default-e.bal:3 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at check-in-parameter-default-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at check-in-parameter-default-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at check-in-parameter-default-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at check-in-parameter-default-e.bal:36 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

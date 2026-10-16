@@ -1,0 +1,23 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at main.bal:2-2 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:8-8 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:28-28 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:34-34 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:48-48 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:65-65 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:69-69 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:82-82 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at main.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:40 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:41 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:42 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:43 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:62 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:66 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

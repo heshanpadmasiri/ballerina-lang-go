@@ -1,0 +1,14 @@
+{
+  "Name": "binteger-value-negative-test-42e975fe65/integer-value-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/binteger-value-negative-test-42e975fe65/integer-value-negative-e.bal",
+  "Project": false,
+  "Id": "T0248",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/binteger-value-negative-test-42e975fe65/integer-value-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'title'\n  --\u003e object-type-reference-1-negative-e.bal:68:29\n   |\n68 |     public function getName(string? title) returns string {\n   |                             ^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"object-type-reference-1-negative-e.bal","StartLine":68,"EndLine":68}]}

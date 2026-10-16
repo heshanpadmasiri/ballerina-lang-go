@@ -1,0 +1,14 @@
+{
+  "Name": "constant-in-type-definition-test-acba54132a/constant-in-type-definition-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-in-type-definition-test-acba54132a/constant-in-type-definition-v.bal",
+  "Project": false,
+  "Id": "T0380",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constant-in-type-definition-test-acba54132a/constant-in-type-definition-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.071
+}

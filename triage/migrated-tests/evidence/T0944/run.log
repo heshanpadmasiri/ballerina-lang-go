@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want json-map-constrained-fail-p.bal:9, got json-map-constrained-fail-p.bal:13
+        stderr:
+        error: '"non-convertible"' value cannot be converted to 'int'
+                at trigger(json-map-constrained-fail-p.bal:13)
+                   main(json-map-constrained-fail-p.bal:17)
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

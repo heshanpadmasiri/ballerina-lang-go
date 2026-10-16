@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "anonymous-record-negative-test-493ce47c85/anon-record-isolation-analysis-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+         --> anon-record-isolation-analysis-negative-e.bal:7:40
+          |
+        7 |     table<record {| int i = j; |}> _ = table []; // @error
+          |                                        ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> anon-record-isolation-analysis-negative-e.bal:24:5
+           |
+        24 |     table<record {| int i = j; |}> a4; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> anon-record-isolation-analysis-negative-e.bal:58:5
+           |
+        58 |     table<record {| int i = j; |} & readonly> a6; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+         --> anon-record-isolation-analysis-negative-e.bal:7:5
+          |
+        7 |     table<record {| int i = j; |}> _ = table []; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+         --> anon-record-isolation-analysis-negative-e.bal:7:40
+          |
+        7 |     table<record {| int i = j; |}> _ = table []; // @error
+          |                                        ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> anon-record-isolation-analysis-negative-e.bal:24:5
+           |
+        24 |     table<record {| int i = j; |}> a4; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> anon-record-isolation-analysis-negative-e.bal:58:5
+           |
+        58 |     table<record {| int i = j; |} & readonly> a6; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+         --> anon-record-isolation-analysis-negative-e.bal:7:5
+          |
+        7 |     table<record {| int i = j; |}> _ = table []; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

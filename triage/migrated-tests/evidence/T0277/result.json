@@ -1,0 +1,15 @@
+{
+  "Name": "bstream-value-test-dc50cbbb1f/stream-super-stream-cast-p",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-super-stream-cast-p",
+  "Project": true,
+  "Id": "T0277",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-super-stream-cast-p/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-super-stream-cast-p/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.052
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T0888",
+  "name": "member-access-test-10fc9644e0/member-access-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported'; `ballerina/lang.error` lists only `message`.",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes `error:message`, but not `error:detail`.",
+    "Supported language features (subset 10) > Expressions: '[Member access expression]' and '[Trap expression]' are listed; table constructor expressions are absent from the positive list."
+  ],
+  "reason": "The executed out-of-range array/tuple tests require error:detail() to inspect and assert exact error-detail messages. This langlib method is excluded by both the supported library and method-call lists. The executed structural-construct tests also construct a keyed table and assert lookup of James yields id 2; table construction is not listed among supported expressions. Either essential unsupported construct makes the whole case feature.",
+  "unsupported_constructs": [
+    "error:detail() calls in range-error assertions",
+    "Keyed table constructor `table key(name) [...]` in testMemberAccessOnTableConstruct"
+  ],
+  "test_design_notes": [
+    "main invokes the unsupported error-detail assertions and the table lookup test through testMemberAccessOnStructuralConstructs; these are asserted behavior, not unused signatures.",
+    "io:println is output instrumentation and is not a classification reason."
+  ]
+}

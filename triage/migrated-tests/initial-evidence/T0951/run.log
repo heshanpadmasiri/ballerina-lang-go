@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: top stack frame mismatch for @panic: want null-json-array-to-array-p.bal:7, got null-json-array-to-array-p.bal:11
+        stderr:
+        error: 'nil' value cannot be converted to '[string...]'
+                at trigger(null-json-array-to-array-p.bal:11)
+                   main(null-json-array-to-array-p.bal:15)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

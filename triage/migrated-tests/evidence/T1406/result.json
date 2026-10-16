@@ -1,0 +1,14 @@
+{
+  "Name": "table-value-assign-test-98960d90ac/table-value-assign-test-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/table-value-assign-test-98960d90ac/table-value-assign-test-v.bal",
+  "Project": false,
+  "Id": "T1406",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/table-value-assign-test-98960d90ac/table-value-assign-test-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.055
+}

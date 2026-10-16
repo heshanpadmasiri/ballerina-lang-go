@@ -1,0 +1,15 @@
+{
+  "id": "T1205",
+  "name": "printable-stack-trace-test-bd6e523221/printable-stack-trace-p",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Import declarations]; [Function definition]",
+    "## Statements: [Local variable declarations]; [Return]; [Panic]",
+    "## Expressions: [Literal] — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only; [`Call`]; [Error constructor]; [Variable reference]"
+  ],
+  "reason": "The program constructs an error with a cause returned by another module and panics with that error. Imports, function calls, error constructors and panic statements are explicitly supported without a relevant restriction. The supplied source contains no unsupported langlib calls or separate stack-trace API.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The supplied source marks the outer error construction with @panic and ultimately panics in main; no expected diagnostic text is supplied. Exact printable stack-trace formatting assertions cannot be established from these files alone."
+  ]
+}

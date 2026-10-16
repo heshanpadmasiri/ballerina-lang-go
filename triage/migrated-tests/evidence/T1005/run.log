@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want never-method-call-p.bal:14, got never-method-call-p.bal:15
+        stderr:
+        error: Bad Sad!!
+                at Bar.barFunc(never-method-call-p.bal:15)
+                   main(never-method-call-p.bal:3)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

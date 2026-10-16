@@ -1,0 +1,12 @@
+{
+  "id": "T0524",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-int-array-modification-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; value:cloneReadOnly is absent."
+  ],
+  "reason": "The asserted panic depends on obtaining a frozen array through a.cloneReadOnly(), an unsupported lang.value function and unsupported langlib method invocation. Supported list construction and indexed assignment do not make this whole case supported.",
+  "unsupported_constructs": ["lang.value cloneReadOnly invoked as a.cloneReadOnly()"],
+  "test_design_notes": ["The write uses index 4 on an initial three-element array; the only explicit expectation is @panic, with no asserted panic reason."]
+}

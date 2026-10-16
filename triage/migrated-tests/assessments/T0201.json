@@ -1,0 +1,16 @@
+{
+  "id": "T0201",
+  "name": "bany-type-success-scenarios-test-dd79d857fe/any-type-success-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: positive list includes \"List constructor\" and \"Mapping constructor\", but no table constructor expression.",
+    "Expressions / Query expressions: \"Supports `list` and `map` as `query-constructor-type`\"."
+  ],
+  "reason": "The executed tableReturnFunction constructs a table<Employee> using table [...]. Table constructor expressions are absent from the supported expression list. Both table tests also require table values passed through any and their exact string rendering; supported value:toString alone does not establish table-construction support. This essential construct makes the whole case a feature case.",
+  "unsupported_constructs": [
+    "Table constructor expression table [...] in tableReturnFunction."
+  ],
+  "test_design_notes": [
+    "main executes both table tests; assertEquality checks exact table string contents. Other @output assertions exercise JSON rendering, any values, numeric casts, and tuple returns. No @args or @panic protocol is specified. io:println is instrumentation."
+  ]
+}

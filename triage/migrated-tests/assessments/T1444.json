@@ -1,0 +1,16 @@
+{
+  "id": "T1444",
+  "name": "tuple-mutability-test-4a07e00b3d/invalid-assignment-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Module variable declarations\"; \"Function definition\"",
+    "Statements: \"Assignment\" / \"See supported lvexpr\"; \"Local variable declarations\"",
+    "Expressions: \"List constructor\"; \"Mapping constructor\"; \"Member access expression\"; \"Variable reference\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\""
+  ],
+  "reason": "The case uses record and tuple types, mapping/list constructors, module/local variables, and indexed assignment, all covered by the positive lists with no applicable restriction. Assigning an Employee tuple to a Person tuple preserves the inherent Employee element type, so storing Student must panic with the asserted InherentTypeViolation. This is supported assignment/type-system behavior; the lang.array error identifier in the panic marker is not a langlib invocation or import.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker asserts the runtime inherent-type check and its error text. The invalid-assignment filename does not make this a compile-time rejection test. No obvious mixed-scope or marker issue."
+  ]
+}

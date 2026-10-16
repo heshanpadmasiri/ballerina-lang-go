@@ -1,0 +1,17 @@
+{
+  "id": "T0248",
+  "name": "binteger-value-negative-test-42e975fe65/integer-value-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Type definition\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions > Literal: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "Operators > Unary operators: \"numeric ops `+`, `-`\"",
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.int`: `Signed8`, `Signed16`, `Signed32`"
+  ],
+  "reason": "The whole case exercises supported integer literals, local declarations, type aliases, signed integer subtypes, variable references and unary minus. Its expected compile-time errors concern out-of-range literals, malformed leading-zero literals, missing semicolons and unary-minus results that cannot fit the target signed subtype. Negative rejection within these supported constructs is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Only @error expectations occur; there are no @args, @panic or @output expectations. Missing-semicolon cases also exercise parser recovery and continued diagnostic reporting."
+  ]
+}

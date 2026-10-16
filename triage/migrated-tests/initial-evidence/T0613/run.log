@@ -1,0 +1,339 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "global-var-test-297b184697/configurable_var_positive-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:11:35
+           |
+        11 | configurable anydata[] arrayVar = ?;
+           |                                   ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:13:31
+           |
+        13 | configurable UserInfo admin = ?;
+           |                               ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:14:30
+           |
+        14 | configurable Person person = ?;
+           |                              ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:16:47
+           |
+        16 | configurable map<anydata> & readonly mapVar = ?;
+           |                                               ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:18:46
+           |
+        18 | configurable table<map<anydata>> tableVar1 = ?;
+           |                                              ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:19:50
+           |
+        19 | configurable table<Person> key(user) tableVar2 = ?;
+           |                                                  ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:21:44
+           |
+        21 | configurable string|int|Person unionVar1 = ?;
+           |                                            ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:22:41
+           |
+        22 | configurable anydata|Person unionVar2 = ?;
+           |                                         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:34:52
+           |
+        34 | configurable table<ClientConfiguration> tableVar = ?;
+           |                                                    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:41:25
+           |
+        41 | configurable Parent p = ?;
+           |                         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:45:37
+           |
+        45 | configurable CyclicUnion unionVar = ?;
+           |                                     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:47:57
+           |
+        47 | configurable [int, string, float, decimal, anydata] a = ?;
+           |                                                         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RequiredExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:58:35
+           |
+        58 | configurable Student nilRecord1 = ?;
+           |                                   ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> configurable_var_positive-e.bal:60:40
+           |
+        60 | configurable table<map<()>> nilTable = table [];
+           |                                        ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> configurable_var_positive-e.bal:18:14
+           |
+        18 | configurable table<map<anydata>> tableVar1 = ?;
+           |              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> configurable_var_positive-e.bal:19:14
+           |
+        19 | configurable table<Person> key(user) tableVar2 = ?;
+           |              ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> configurable_var_positive-e.bal:34:14
+           |
+        34 | configurable table<ClientConfiguration> tableVar = ?;
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> configurable_var_positive-e.bal:60:14
+           |
+        60 | configurable table<map<()>> nilTable = table [];
+           |              ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:10:1
+           |
+        10 | configurable anydata var1 = 2;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:11:1
+           |
+        11 | configurable anydata[] arrayVar = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:13:1
+           |
+        13 | configurable UserInfo admin = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:14:1
+           |
+        14 | configurable Person person = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:16:1
+           |
+        16 | configurable map<anydata> & readonly mapVar = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:18:1
+           |
+        18 | configurable table<map<anydata>> tableVar1 = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:19:1
+           |
+        19 | configurable table<Person> key(user) tableVar2 = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:21:1
+           |
+        21 | configurable string|int|Person unionVar1 = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:22:1
+           |
+        22 | configurable anydata|Person unionVar2 = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:34:1
+           |
+        34 | configurable table<ClientConfiguration> tableVar = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:41:1
+           |
+        41 | configurable Parent p = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:45:1
+           |
+        45 | configurable CyclicUnion unionVar = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:47:1
+           |
+        47 | configurable [int, string, float, decimal, anydata] a = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:54:1
+           |
+        54 | configurable () nilVar = ();
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:55:1
+           |
+        55 | configurable ()[] nilArr = [];
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:56:1
+           |
+        56 | configurable string? nilUnion = "abc";
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:57:1
+           |
+        57 | configurable map<()> nilMap = {};
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:58:1
+           |
+        58 | configurable Student nilRecord1 = ?;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:59:1
+           |
+        59 | configurable Student nilRecord2 = {field1: (), field2: "abc"};
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable_var_positive-e.bal:60:1
+           |
+        60 | configurable table<map<()>> nilTable = table [];
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:11:35
+           |
+        11 | configurable anydata[] arrayVar = ?;
+           |                                   ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:13:31
+           |
+        13 | configurable UserInfo admin = ?;
+           |                               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:14:30
+           |
+        14 | configurable Person person = ?;
+           |                              ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:16:47
+           |
+        16 | configurable map<anydata> & readonly mapVar = ?;
+           |                                               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:18:46
+           |
+        18 | configurable table<map<anydata>> tableVar1 = ?;
+           |                                              ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:19:50
+           |
+        19 | configurable table<Person> key(user) tableVar2 = ?;
+           |                                                  ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:21:44
+           |
+        21 | configurable string|int|Person unionVar1 = ?;
+           |                                            ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:22:41
+           |
+        22 | configurable anydata|Person unionVar2 = ?;
+           |                                         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:34:52
+           |
+        34 | configurable table<ClientConfiguration> tableVar = ?;
+           |                                                    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:41:25
+           |
+        41 | configurable Parent p = ?;
+           |                         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:45:37
+           |
+        45 | configurable CyclicUnion unionVar = ?;
+           |                                     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:47:57
+           |
+        47 | configurable [int, string, float, decimal, anydata] a = ?;
+           |                                                         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRequiredExpression unimplemented
+          --> configurable_var_positive-e.bal:58:35
+           |
+        58 | configurable Student nilRecord1 = ?;
+           |                                   ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> configurable_var_positive-e.bal:60:40
+           |
+        60 | configurable table<map<()>> nilTable = table [];
+           |                                        ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> configurable_var_positive-e.bal:18:14
+           |
+        18 | configurable table<map<anydata>> tableVar1 = ?;
+           |              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> configurable_var_positive-e.bal:19:14
+           |
+        19 | configurable table<Person> key(user) tableVar2 = ?;
+           |              ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> configurable_var_positive-e.bal:34:14
+           |
+        34 | configurable table<ClientConfiguration> tableVar = ?;
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> configurable_var_positive-e.bal:60:14
+           |
+        60 | configurable table<map<()>> nilTable = table [];
+           |              ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

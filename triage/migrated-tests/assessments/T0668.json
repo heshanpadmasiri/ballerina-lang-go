@@ -1,0 +1,21 @@
+{
+  "id": "T0668",
+  "name": "isolated-variable-test-68724717b2/isolated-variables-isolation-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: (lists array:push and array:map, but not array:pop or value:clone)",
+    "Supported language features (subset 10) > Statements: positive list includes Lock statement, While, Foreach and Match statement, but does not include do/on fail",
+    "Supported language features (subset 10) > Expressions: positive list does not include object constructor expressions"
+  ],
+  "reason": "This negative isolation-analysis case includes essential constructs beyond the supported subset: clone() calls used to establish copy boundaries and i.pop() in an asserted invalid isolated-variable access are excluded from the langlib allowlists. The final function also asserts isolation errors within do/on fail and on fail clauses, which the statement positive list does not cover. One such unsupported behavior suffices to classify the whole case as feature.",
+  "unsupported_constructs": [
+    "value:clone via f.clone() and boolMaps[0].clone()",
+    "array:pop via i.pop()",
+    "do statement and on fail clauses on do, match, foreach, while and lock",
+    "object constructor expression initializing d"
+  ],
+  "test_design_notes": [
+    "Compile-negative case with @error expectations; negative isolation diagnostics within supported constructs remain in scope, but unsupported constructs are integral to this whole case."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "query-expression-iterable-object-test-a42b42138e/query-expression-iterable-object-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-expression-iterable-object-test-a42b42138e/query-expression-iterable-object-v.bal",
+  "Project": false,
+  "Id": "T1218",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-expression-iterable-object-test-a42b42138e/query-expression-iterable-object-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.079
+}

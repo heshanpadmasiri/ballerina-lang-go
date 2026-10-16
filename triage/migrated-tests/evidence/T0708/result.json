@@ -1,0 +1,14 @@
+{
+  "Name": "let-expression-test-6fab6108d2/let-expression-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/let-expression-test-6fab6108d2/let-expression-v.bal",
+  "Project": false,
+  "Id": "T0708",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/let-expression-test-6fab6108d2/let-expression-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

@@ -1,0 +1,34 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:123-123 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:51-51 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:52-52 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:53-53 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:54-54 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:62-62 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:63-63 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:77-77 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at wait-actions-negative-e.bal:157-157 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:56 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:57 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:66 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:67 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:68 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:70 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:71 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:80 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:81 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:82 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:83 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:84 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:85 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:86 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:87 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:88 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:89 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:135 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:136 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at wait-actions-negative-e.bal:137 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (1.60s)
+FAIL

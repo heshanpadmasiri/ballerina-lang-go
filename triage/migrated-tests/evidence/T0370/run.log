@@ -1,0 +1,25 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:48: CLI exit: exit status 1
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: -v test leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: ballerina/test
+         --> option-rest-param-v.bal:1:1
+          |
+        1 | import ballerina/test;
+          | ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+         --> option-rest-param-v.bal:9:5
+          |
+        9 |     test:assertEquals(student.name, "Riyafa");
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+          --> option-rest-param-v.bal:10:5
+           |
+        10 |     test:assertEquals(ratings, [5, 3]);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

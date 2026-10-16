@@ -1,0 +1,52 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "record-variable-reference-test-d23ea5efdc/record-variable-reference-assignment-to-final-var-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-variable-reference-assignment-to-final-var-negative-e.bal:28:5
+           |
+        28 |     {s, i, f} = rec1; // @error
+           |     ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-variable-reference-assignment-to-final-var-negative-e.bal:46:5
+           |
+        46 |     {s2, r2: {i3: iv, b3}, ...m2} = rec2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-reference-assignment-to-final-var-negative-e.bal:27:15
+           |
+        27 |     final Baz {s, i, f} = rec1; // @error
+           |               ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> record-variable-reference-assignment-to-final-var-negative-e.bal:45:15
+           |
+        45 |     final var {s2, r2: {i3: iv, b3}, ...m2} = rec2; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-reference-assignment-to-final-var-negative-e.bal:27:15
+           |
+        27 |     final Baz {s, i, f} = rec1; // @error
+           |               ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> record-variable-reference-assignment-to-final-var-negative-e.bal:45:15
+           |
+        45 |     final var {s2, r2: {i3: iv, b3}, ...m2} = rec2; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-variable-reference-assignment-to-final-var-negative-e.bal:28:5
+           |
+        28 |     {s, i, f} = rec1; // @error
+           |     ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-variable-reference-assignment-to-final-var-negative-e.bal:46:5
+           |
+        46 |     {s2, r2: {i3: iv, b3}, ...m2} = rec2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

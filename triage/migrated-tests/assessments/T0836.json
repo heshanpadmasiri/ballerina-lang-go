@@ -1,0 +1,12 @@
+{
+  "id": "T0836",
+  "name": "mapping-constructor-expr-test-833706cb84/spread-op-field-code-analysis-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)",
+    "## Expressions / Mapping constructor: Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported"
+  ],
+  "reason": "The asserted duplicate-key diagnostics depend on mapping-constructor spread fields, including overlaps with optional/rest record fields, inclusive records and maps. Spread fields are explicitly excluded from subset 10, so these negative assertions exercise unsupported behavior.",
+  "unsupported_constructs": ["Mapping-constructor spread fields (...f, ...b, ...alpha, ...m1, ...m2 and nested mapping spreads) and duplicate-key analysis involving them"],
+  "test_design_notes": ["The @error annotations assert rejection of overlapping spread keys; negative code is classified by the underlying construct, which is explicitly unsupported here."]
+}

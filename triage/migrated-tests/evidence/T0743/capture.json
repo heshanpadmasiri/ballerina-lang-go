@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at main(inherent-type-violating-update-3-p.bal:4)\n","Diagnostics":null}

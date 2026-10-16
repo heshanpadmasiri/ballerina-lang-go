@@ -1,0 +1,14 @@
+{
+  "Name": "bmap-value-test-f47b95ec2c/bmap-value-validator-1-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bmap-value-test-f47b95ec2c/bmap-value-validator-1-e.bal",
+  "Project": false,
+  "Id": "T0268",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bmap-value-test-f47b95ec2c/bmap-value-validator-1-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.042
+}

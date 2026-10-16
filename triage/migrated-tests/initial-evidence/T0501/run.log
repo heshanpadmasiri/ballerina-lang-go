@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "forward-referencing-global-definition-test-c1122b914e/module-let-expression-cycle-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> file01.bal:11:17
+           |
+        11 | string modVar = let string[] ar = [letRef] in ar[0];
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> file01.bal:14:16
+           |
+        14 |     int code = let int m = moduleCode in m + 1; // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+         --> file01.bal:5:19
+          |
+        5 | string fieldOne = let string? f1 = conf1.field1 in f1 is string ? f1 : "default-value-1"; // @error
+          |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> file01.bal:11:17
+           |
+        11 | string modVar = let string[] ar = [letRef] in ar[0];
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> file01.bal:14:16
+           |
+        14 |     int code = let int m = moduleCode in m + 1; // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+         --> file01.bal:5:19
+          |
+        5 | string fieldOne = let string? f1 = conf1.field1 in f1 is string ? f1 : "default-value-1"; // @error
+          |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

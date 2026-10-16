@@ -1,0 +1,12 @@
+{
+  "id": "T0482",
+  "name": "final-object-field-test-de73e9a2aa/final-object-fields-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message."
+  ],
+  "reason": "The executed final-field update tests call err.detail() and inspect its message to assert the precise runtime rejection. error:detail is absent from both the supported lang.error functions and supported langlib method-call list, so essential asserted behavior requires an unsupported operation.",
+  "unsupported_constructs": ["ballerina/lang.error detail invoked as err.detail()"],
+  "test_design_notes": ["No @args, @panic, or @output directives occur. main invokes the assertions directly; error-detail checks are reached in ordinary test execution. io:println in the unused printValues helper is instrumentation and does not determine this classification."]
+}

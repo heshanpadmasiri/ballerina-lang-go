@@ -1,0 +1,15 @@
+{
+  "id": "T0222",
+  "name": "bbyte-array-value-negative-test-585d57db0d/byte-array-with-nil-literal-e",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "## Expressions: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only"
+  ],
+  "reason": "The case asserts compile-time rejection of a local optional inferred-length array declaration initialized with nil (`int[*]? _ = ();`). Function definitions, local declarations and nil literals are supported, with no subset restriction excluding this declaration/type-checking rule. A negative test of this supported grammar is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The sole assertion is @error on the declaration; there are no @args, @panic or @output assertions."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "stack-overflow-test-7d9240c754/stack_overflow_in_worker-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/stack-overflow-test-7d9240c754/stack_overflow_in_worker-v.bal",
+  "Project": false,
+  "Id": "T1352",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/stack-overflow-test-7d9240c754/stack_overflow_in_worker-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.024
+}

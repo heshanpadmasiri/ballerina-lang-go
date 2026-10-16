@@ -1,0 +1,227 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> match-guard-function-method-call-negative-e.bal:237:21
+            |
+        237 |         var {x} if (let Foo f = new (r) in f.nonIsolatedFn()) => { // @error // @error // @error // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> match-guard-function-method-call-negative-e.bal:230:23
+            |
+        230 |         var {x, z} if object { // @error // @error // @error
+            |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        231 |                             int i = 1;
+            |                             ^^^^^^^^^^
+        232 | 
+            | 
+        233 |                             function init() {
+            |                             ^^^^^^^^^^^^^^^^^
+        234 |                             }
+            |                             ^
+        235 |                         } is isolated object { int i; } => {
+            |                         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> match-guard-function-method-call-negative-e.bal:154:30
+            |
+        154 |         [] if c1.isolatedFn2(...anydataArr) => { // @error
+            |                              ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+          --> match-guard-function-method-call-negative-e.bal:64:27
+           |
+        64 |         [] if isolatedFn2(...anydataArr) => { // @error
+           |                           ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:132:9
+            |
+        132 |         [1, 2] => {
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:134:9
+            |
+        134 |         [1, 2, 3] if c1.isolatedFn(arr) => { // @error
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:136:9
+            |
+        136 |         [1, 2, 4] if c2.isolatedFn(arr.cloneReadOnly()) => { // @error
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:138:9
+            |
+        138 |         [2, 2] => {
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:152:9
+            |
+        152 |         [1, 2] if c1.isolatedFn2(1, arr, value:clone(arr)) => { // @error // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:154:9
+            |
+        154 |         [] if c1.isolatedFn2(...anydataArr) => { // @error
+            |         ^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:156:9
+            |
+        156 |         [1, 2, 3] if c1.isolatedFn(arr) => { // @error
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:158:9
+            |
+        158 |         [1, 2, 3, 4] if c1.isolatedFn3(a = anydataArr) => { // @error
+            |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:160:9
+            |
+        160 |         [2, 3] if c2.isolatedFn(arr.cloneReadOnly()) => { // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:162:9
+            |
+        162 |         [2, 4] if c2.nonIsolatedFn(arr.cloneReadOnly()) || c1.nonIsolatedFn() => { // @error // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:219:9
+            |
+        219 |         [1, ...var r] if (new Baz(x)).isolatedFn() => { // @error // @error
+            |         ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:47:9
+           |
+        47 |         [1, 2] => {
+           |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:49:9
+           |
+        49 |         [1, 2, 3] if nonIsolatedFn(arr.cloneReadOnly()) => { // @error
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:51:9
+           |
+        51 |         [1, 2, 4] if nonIsolatedFn(arr) => { // @error // @error
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:62:9
+           |
+        62 |         [1, 2] if isolatedFn2(1, arr, arr) => { // @error // @error
+           |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:64:9
+           |
+        64 |         [] if isolatedFn2(...anydataArr) => { // @error
+           |         ^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:66:9
+           |
+        66 |         [1, 2, 3] if isolatedFn(arr) => { // @error
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:68:9
+           |
+        68 |         [1, 2, 3, 4] if isolatedFn3(a = anydataArr) => { // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:70:9
+           |
+        70 |         [1, 2, 3, 4] if arr.indexOf(1) == 0 => { // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-function-method-call-negative-e.bal:72:9
+           |
+        72 |         [1, 2, 3, 4] if arr.cloneReadOnly() == <readonly> [] => { // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:228:9
+            |
+        228 |         var {x, y} if <any> new Bar(r) is Bar|int => { // @error // @error // @error // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:230:9
+            |
+        230 |         var {x, z} if object { // @error // @error // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:237:9
+            |
+        237 |         var {x} if (let Foo f = new (r) in f.nonIsolatedFn()) => { // @error // @error // @error // @error
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:239:9
+            |
+        239 |         var {y} if (new Foo(r)).nonIsolatedFn() => { // @error // @error // @error // @error
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:241:9
+            |
+        241 |         var {z} if (new Bar(r)).nonIsolatedFn() => { // @error // @error // @error // @error
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> match-guard-function-method-call-negative-e.bal:243:9
+            |
+        243 |         var {} if new stream<int>(new IntStreamImplementor()) is stream<byte> => { // @error // @error
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> match-guard-function-method-call-negative-e.bal:237:21
+            |
+        237 |         var {x} if (let Foo f = new (r) in f.nonIsolatedFn()) => { // @error // @error // @error // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> match-guard-function-method-call-negative-e.bal:230:23
+            |
+        230 |         var {x, z} if object { // @error // @error // @error
+            |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        231 |                             int i = 1;
+            |                             ^^^^^^^^^^
+        232 | 
+            | 
+        233 |                             function init() {
+            |                             ^^^^^^^^^^^^^^^^^
+        234 |                             }
+            |                             ^
+        235 |                         } is isolated object { int i; } => {
+            |                         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> match-guard-function-method-call-negative-e.bal:154:30
+            |
+        154 |         [] if c1.isolatedFn2(...anydataArr) => { // @error
+            |                              ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+          --> match-guard-function-method-call-negative-e.bal:64:27
+           |
+        64 |         [] if isolatedFn2(...anydataArr) => { // @error
+           |                           ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

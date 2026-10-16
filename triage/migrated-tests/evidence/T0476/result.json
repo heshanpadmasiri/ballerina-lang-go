@@ -1,0 +1,16 @@
+{
+  "Name": "final-access-test-b8abe5c420/final-access-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-access-v",
+  "Project": true,
+  "Id": "T0476",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-access-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-access-v/final-field-test.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-access-v/modules/org.bar/final-fields.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

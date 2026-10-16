@@ -1,0 +1,14 @@
+{
+  "Name": "closed-record-equivalency-rules-test-e5443827da/closed-record-equivalency-rules-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-rules-test-e5443827da/closed-record-equivalency-rules-v.bal",
+  "Project": false,
+  "Id": "T0341",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-rules-test-e5443827da/closed-record-equivalency-rules-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.102
+}

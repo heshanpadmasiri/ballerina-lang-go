@@ -1,0 +1,112 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "assign-stmt-test-4075ad6286/assign-stmt-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-stmt-negative-e.bal:10:5
+           |
+        10 |     [a, name] = testMultiReturnValid(); // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-stmt-negative-e.bal:19:5
+           |
+        19 |     [a, name, b, c] = testMultiReturnValid(); // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-stmt-negative-e.bal:27:5
+           |
+        27 |     [a, name, b] = testMultiReturnInvalid(); // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-stmt-negative-e.bal:39:5
+           |
+        39 |     [a, name, b] = testMultiReturnValid(); // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> assign-stmt-negative-e.bal:133:11
+            |
+        133 |     b.a = table[]; // @error
+            |           ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> assign-stmt-negative-e.bal:135:12
+            |
+        135 |     a[0] = table[]; // @error
+            |            ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> assign-stmt-negative-e.bal:44:9
+           |
+        44 |     var [a, name, a] = testMultiReturnValid(); // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> assign-stmt-negative-e.bal:49:9
+           |
+        49 |     var [a, name, name] = testMultiReturnValid(); // @error
+           |         ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> assign-stmt-negative-e.bal:75:9
+           |
+        75 |     var {a: d} = c->foo2(); // @error // @error
+           |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> assign-stmt-negative-e.bal:44:9
+           |
+        44 |     var [a, name, a] = testMultiReturnValid(); // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> assign-stmt-negative-e.bal:49:9
+           |
+        49 |     var [a, name, name] = testMultiReturnValid(); // @error
+           |         ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> assign-stmt-negative-e.bal:75:9
+           |
+        75 |     var {a: d} = c->foo2(); // @error // @error
+           |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-stmt-negative-e.bal:10:5
+           |
+        10 |     [a, name] = testMultiReturnValid(); // @error
+           |     ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-stmt-negative-e.bal:19:5
+           |
+        19 |     [a, name, b, c] = testMultiReturnValid(); // @error
+           |     ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-stmt-negative-e.bal:27:5
+           |
+        27 |     [a, name, b] = testMultiReturnInvalid(); // @error
+           |     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-stmt-negative-e.bal:39:5
+           |
+        39 |     [a, name, b] = testMultiReturnValid(); // @error
+           |     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> assign-stmt-negative-e.bal:133:11
+            |
+        133 |     b.a = table[]; // @error
+            |           ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> assign-stmt-negative-e.bal:135:12
+            |
+        135 |     a[0] = table[]; // @error
+            |            ^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,18 @@
+{
+  "id": "T0879",
+  "name": "match-structured-patterns-test-076cef5d9b/structured-match-patterns-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted rejection behavior depends on structured record/list binding match patterns and a capture binding match pattern, which are outside the explicitly supported match-pattern forms. This essential unsupported behavior makes the whole case a feature case.",
+  "unsupported_constructs": [
+    "Record binding match patterns such as var {s, i: integer, f: [a, b, c]}",
+    "List binding match patterns such as var [a, b, c] and nested structured patterns",
+    "Capture binding match pattern var x"
+  ],
+  "test_design_notes": [
+    "The file marks structured-pattern incompatibility and reachability diagnostics with @error; negative testing does not bring unsupported pattern forms into scope.",
+    "String constant match patterns also occur, but supported portions do not change the whole-case classification."
+  ]
+}

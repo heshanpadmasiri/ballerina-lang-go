@@ -1,0 +1,17 @@
+{
+  "Name": "record-fields-access-negative-test-bbfa6baecd/record-project-access-2-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-2-e",
+  "Project": true,
+  "Id": "T1262",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-2-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-2-e/modules/org.foo.baz/baz1.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-2-e/modules/org.foo.baz/baz2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-2-e/record_fields_negative2.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.043
+}

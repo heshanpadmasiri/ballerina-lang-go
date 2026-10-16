@@ -1,0 +1,12 @@
+{
+  "id": "T0361",
+  "name": "closure-negative-test-a955baa186/closure-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"Local variable declarations\", \"Assignment\", \"Compound Assignment\" (named worker declarations are absent from the supported list).",
+    "## Expressions: \"Anonymous function expression\""
+  ],
+  "reason": "The whole case includes a named worker declaration (worker w1) and definite-assignment assertions involving variables captured by that worker. Named workers are not covered by subset 10's supported constructs, so the whole case is a feature gap even though anonymous functions and ordinary local-variable operations are supported.",
+  "unsupported_constructs": ["Named worker declaration worker w1 and its captured-variable definite-assignment behavior"],
+  "test_design_notes": ["The file asserts compile-time errors using @error; it contains no @args, @panic, or @output assertions. Closure-only uninitialized-variable rejection can be assessed separately within supported grammar."]
+}

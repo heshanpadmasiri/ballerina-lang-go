@@ -1,0 +1,17 @@
+{
+  "id": "T1484",
+  "name": "type-guard-test-74355f2266/type-test-type-narrowing-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition; Type definition",
+    "Statements: Assignment; Call; If/else; Local variable declarations",
+    "Expressions: Type test expression; Logical expression; Mapping constructor; Nested expressions (`(expression)`)",
+    "Operators: Logical ops `&&`, `||`"
+  ],
+  "reason": "The negative case exercises flow-sensitive type narrowing and its reset after assignments across nested if/else branches, with record, union and optional types and function-argument/local-variable assignability. These use supported declarations, assignments, conditionals, type tests and logical expressions; no listed restriction excludes the asserted rejection behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Six @error markers assert compile-time rejection; there are no @args, @panic or @output expectations.",
+    "All marked and surrounding statements remain in the same supported narrowing/assignability scope; no obvious mixed-scope or marker-placement issue."
+  ]
+}

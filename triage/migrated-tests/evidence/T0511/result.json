@@ -1,0 +1,14 @@
+{
+  "Name": "freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-v.bal",
+  "Project": false,
+  "Id": "T0511",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.077
+}

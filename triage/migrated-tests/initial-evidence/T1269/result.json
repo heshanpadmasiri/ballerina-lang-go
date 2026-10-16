@@ -1,0 +1,14 @@
+{
+  "Name": "record-type-inclusion-test-10e02d3ce3/cyclic-inclusion-via-field-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-type-inclusion-test-10e02d3ce3/cyclic-inclusion-via-field-negative-e.bal",
+  "Project": false,
+  "Id": "T1269",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-type-inclusion-test-10e02d3ce3/cyclic-inclusion-via-field-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.03
+}

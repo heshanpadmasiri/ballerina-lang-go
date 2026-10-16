@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: top stack frame mismatch for @panic: want main.bal:15, got main.bal:7
+        stderr:
+        error: My Error
+                at migration/checkpanic_custom_error_p:testBasicCheckpanic(main.bal:7)
+                   migration/checkpanic_custom_error_p:main(main.bal:2)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

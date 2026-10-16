@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 's6'\n --\u003e invalid-float-as-byte-union-256-p.bal:4:5\n  |\n4 |     byte s6 = \u003cbyte\u003e f2; // @panic\n  |     ^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"invalid-float-as-byte-union-256-p.bal","StartLine":4,"EndLine":4}]}

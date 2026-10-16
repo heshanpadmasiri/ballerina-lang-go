@@ -1,0 +1,406 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "reachability-analysis-test-a8532630b8/unreachability_test2-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+            --> unreachability_test2-e.bal:1277:5
+             |
+        1277 |     do {
+             |     ^^^^
+        1278 |         return 10;
+             |         ^^^^^^^^^^
+        1279 |     }
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+            --> unreachability_test2-e.bal:1285:5
+             |
+        1285 |     do {
+             |     ^^^^
+        1286 |         if a > 10 {
+             |         ^^^^^^^^^^^
+        1287 |             if a > 12 {
+             |             ^^^^^^^^^^^
+        1288 |                 return a + 1;
+             |                 ^^^^^^^^^^^^^
+        1289 |             }
+             |             ^
+        1290 |             return a - 1;
+             |             ^^^^^^^^^^^^^
+        1291 |         } else {
+             |         ^^^^^^^^
+        1292 |             return -a;
+             |             ^^^^^^^^^^
+        1293 |         }
+             |         ^
+        1294 |     }
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+            --> unreachability_test2-e.bal:1300:5
+             |
+        1300 |     do {
+             |     ^^^^
+        1301 |         check functionReturnsNilOrError();
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1302 |         return 10;
+             |         ^^^^^^^^^^
+        1303 |     } on fail {
+             |     ^^^^^^^^^^^
+        1304 |         return -1;
+             |         ^^^^^^^^^^
+        1305 |     }
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+            --> unreachability_test2-e.bal:1341:9
+             |
+        1341 |         do {
+             |         ^^^^
+        1342 |             if a > 10 {
+             |             ^^^^^^^^^^^
+        1343 |                 if a > 12 {
+             |                 ^^^^^^^^^^^
+        1344 |                     check functionReturnsNilOrError();
+             |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1345 |                     return 10;
+             |                     ^^^^^^^^^^
+        1346 |                 }
+             |                 ^
+        1347 |                 return a - 1;
+             |                 ^^^^^^^^^^^^^
+        1348 |             } else {
+             |             ^^^^^^^^
+        1349 |                 return -a;
+             |                 ^^^^^^^^^^
+        1350 |             }
+             |             ^
+        1351 |         } on fail {
+             |         ^^^^^^^^^^^
+        1352 |             return -1;
+             |             ^^^^^^^^^^
+        1353 |         }
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+            --> unreachability_test2-e.bal:1029:9
+             |
+        1029 |         fail error("fail msg");
+             |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+            --> unreachability_test2-e.bal:1037:9
+             |
+        1037 |         fail error("fail msg");
+             |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+           --> unreachability_test2-e.bal:645:5
+            |
+        645 |     fail error("fail msg");
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+           --> unreachability_test2-e.bal:651:9
+            |
+        651 |         fail error("fail msg");
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+           --> unreachability_test2-e.bal:659:9
+            |
+        659 |         fail error("fail msg");
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test2-e.bal:1063:26
+             |
+        1063 |     error? unionResult = from var item in stringArray
+             |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1064 |         where item == "Hello"
+             |         ^^^^^^^^^^^^^^^^^^^^^
+        1065 |         do {
+             |         ^^^^
+        1066 |             if item != "Hello" {
+             |             ^^^^^^^^^^^^^^^^^^^^
+        1067 |                 string _ = "ballerina"; // unreachable code // @error
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1068 |             }
+             |             ^
+        1069 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test2-e.bal:1081:26
+             |
+        1081 |     error? unionResult = from var item in stringArray
+             |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1082 |         where item == "Hello"
+             |         ^^^^^^^^^^^^^^^^^^^^^
+        1083 |         do {
+             |         ^^^^
+        1084 |             if item == "Hello" {
+             |             ^^^^^^^^^^^^^^^^^^^^
+        1085 |                 return;
+             |                 ^^^^^^^
+        1086 |             }
+             |             ^
+        1087 |             string _ = "ballerina"; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1088 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test2-e.bal:1100:26
+             |
+        1100 |     error? unionResult = from var item in stringArray
+             |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1101 |         where item == "Hello"
+             |         ^^^^^^^^^^^^^^^^^^^^^
+        1102 |         do {
+             |         ^^^^
+        1103 |             if item == "Hello" {
+             |             ^^^^^^^^^^^^^^^^^^^^
+        1104 | 
+             | 
+        1105 |             } else {
+             |             ^^^^^^^^
+        1106 |                 string _ = "ballerina"; // unreachable code // @error
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1107 |             }
+             |             ^
+        1108 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test2-e.bal:1120:26
+             |
+        1120 |     error? unionResult = from var item in stringArray
+             |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1121 |         where item == "Hello"
+             |         ^^^^^^^^^^^^^^^^^^^^^
+        1122 |         do {
+             |         ^^^^
+        1123 |             while item == "Hello" {
+             |             ^^^^^^^^^^^^^^^^^^^^^^^
+        1124 | 
+             | 
+        1125 |             }
+             |             ^
+        1126 | 
+             | 
+        1127 |             string _ = "ballerina"; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1128 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+            --> unreachability_test2-e.bal:1140:9
+             |
+        1140 |         var a if a is int => {
+             |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+            --> unreachability_test2-e.bal:1151:9
+             |
+        1151 |         var a if a is int => {
+             |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+            --> unreachability_test2-e.bal:1246:9
+             |
+        1246 |         var x if a > 10 => {
+             |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+            --> unreachability_test2-e.bal:1277:5
+             |
+        1277 |     do {
+             |     ^^^^
+        1278 |         return 10;
+             |         ^^^^^^^^^^
+        1279 |     }
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+            --> unreachability_test2-e.bal:1285:5
+             |
+        1285 |     do {
+             |     ^^^^
+        1286 |         if a > 10 {
+             |         ^^^^^^^^^^^
+        1287 |             if a > 12 {
+             |             ^^^^^^^^^^^
+        1288 |                 return a + 1;
+             |                 ^^^^^^^^^^^^^
+        1289 |             }
+             |             ^
+        1290 |             return a - 1;
+             |             ^^^^^^^^^^^^^
+        1291 |         } else {
+             |         ^^^^^^^^
+        1292 |             return -a;
+             |             ^^^^^^^^^^
+        1293 |         }
+             |         ^
+        1294 |     }
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+            --> unreachability_test2-e.bal:1300:5
+             |
+        1300 |     do {
+             |     ^^^^
+        1301 |         check functionReturnsNilOrError();
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1302 |         return 10;
+             |         ^^^^^^^^^^
+        1303 |     } on fail {
+             |     ^^^^^^^^^^^
+        1304 |         return -1;
+             |         ^^^^^^^^^^
+        1305 |     }
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+            --> unreachability_test2-e.bal:1341:9
+             |
+        1341 |         do {
+             |         ^^^^
+        1342 |             if a > 10 {
+             |             ^^^^^^^^^^^
+        1343 |                 if a > 12 {
+             |                 ^^^^^^^^^^^
+        1344 |                     check functionReturnsNilOrError();
+             |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1345 |                     return 10;
+             |                     ^^^^^^^^^^
+        1346 |                 }
+             |                 ^
+        1347 |                 return a - 1;
+             |                 ^^^^^^^^^^^^^
+        1348 |             } else {
+             |             ^^^^^^^^
+        1349 |                 return -a;
+             |                 ^^^^^^^^^^
+        1350 |             }
+             |             ^
+        1351 |         } on fail {
+             |         ^^^^^^^^^^^
+        1352 |             return -1;
+             |             ^^^^^^^^^^
+        1353 |         }
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+            --> unreachability_test2-e.bal:1029:9
+             |
+        1029 |         fail error("fail msg");
+             |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+            --> unreachability_test2-e.bal:1037:9
+             |
+        1037 |         fail error("fail msg");
+             |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+           --> unreachability_test2-e.bal:645:5
+            |
+        645 |     fail error("fail msg");
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+           --> unreachability_test2-e.bal:651:9
+            |
+        651 |         fail error("fail msg");
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+           --> unreachability_test2-e.bal:659:9
+            |
+        659 |         fail error("fail msg");
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test2-e.bal:1063:26
+             |
+        1063 |     error? unionResult = from var item in stringArray
+             |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1064 |         where item == "Hello"
+             |         ^^^^^^^^^^^^^^^^^^^^^
+        1065 |         do {
+             |         ^^^^
+        1066 |             if item != "Hello" {
+             |             ^^^^^^^^^^^^^^^^^^^^
+        1067 |                 string _ = "ballerina"; // unreachable code // @error
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1068 |             }
+             |             ^
+        1069 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test2-e.bal:1081:26
+             |
+        1081 |     error? unionResult = from var item in stringArray
+             |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1082 |         where item == "Hello"
+             |         ^^^^^^^^^^^^^^^^^^^^^
+        1083 |         do {
+             |         ^^^^
+        1084 |             if item == "Hello" {
+             |             ^^^^^^^^^^^^^^^^^^^^
+        1085 |                 return;
+             |                 ^^^^^^^
+        1086 |             }
+             |             ^
+        1087 |             string _ = "ballerina"; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1088 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test2-e.bal:1100:26
+             |
+        1100 |     error? unionResult = from var item in stringArray
+             |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1101 |         where item == "Hello"
+             |         ^^^^^^^^^^^^^^^^^^^^^
+        1102 |         do {
+             |         ^^^^
+        1103 |             if item == "Hello" {
+             |             ^^^^^^^^^^^^^^^^^^^^
+        1104 | 
+             | 
+        1105 |             } else {
+             |             ^^^^^^^^
+        1106 |                 string _ = "ballerina"; // unreachable code // @error
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1107 |             }
+             |             ^
+        1108 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test2-e.bal:1120:26
+             |
+        1120 |     error? unionResult = from var item in stringArray
+             |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1121 |         where item == "Hello"
+             |         ^^^^^^^^^^^^^^^^^^^^^
+        1122 |         do {
+             |         ^^^^
+        1123 |             while item == "Hello" {
+             |             ^^^^^^^^^^^^^^^^^^^^^^^
+        1124 | 
+             | 
+        1125 |             }
+             |             ^
+        1126 | 
+             | 
+        1127 |             string _ = "ballerina"; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1128 |         };
+             |         ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

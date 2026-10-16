@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: local type definition not allowed\n  --\u003e type-definitions-semantics-negative-e.bal:24:1\n   |\n24 | }\n   | ^\n\n","Diagnostics":[{"File":"type-definitions-semantics-negative-e.bal","StartLine":24,"EndLine":24}]}

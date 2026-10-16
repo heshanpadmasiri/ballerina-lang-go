@@ -1,0 +1,14 @@
+{
+  "id": "T1322",
+  "name": "return-stmt-test-af437eb847/return-in-resource-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' but does not list object-constructor-expr",
+    "## Statements: '[Return](https://ballerina.io/spec/lang/master/#return-stmt)'",
+    "## Object/class definitions: 'Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported'",
+    "## Module-level declarations: 'Supports [`remote-method-defn`](https://ballerina.io/spec/lang/master/#remote-method-defn) for client classes and `resource-method-defn` for service classes'"
+  ],
+  "reason": "The module initializes helloWorld using a service object constructor expression, which is absent from the supported expression list. Support for service qualifiers and resource methods does not establish support for object constructor expressions. The return forms themselves use supported return statements and an error constructor.",
+  "unsupported_constructs": ["Service object constructor expression: service object { ... }"],
+  "test_design_notes": ["main is empty; the resource methods are never invoked, so this case exercises acceptance of the declarations and return forms rather than runtime return behavior."]
+}

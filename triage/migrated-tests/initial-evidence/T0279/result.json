@@ -1,0 +1,14 @@
+{
+  "Name": "bstring-annotation-test-342883e77f/bstring-annotation-test-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstring-annotation-test-342883e77f/bstring-annotation-test-v.bal",
+  "Project": false,
+  "Id": "T0279",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstring-annotation-test-342883e77f/bstring-annotation-test-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

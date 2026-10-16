@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at typedesc-e.bal:7 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at typedesc-e.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at typedesc-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at typedesc-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at typedesc-e.bal:24 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at typedesc-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at typedesc-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at typedesc-e.bal:27 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

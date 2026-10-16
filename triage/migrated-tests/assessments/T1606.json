@@ -1,0 +1,22 @@
+{
+  "id": "T1606",
+  "name": "worker-test-0f3493dd03/workers-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, including 'Lock statement', 'Local variable declarations', 'Return' and 'Panic', but does not list named worker declarations or worker message sends.",
+    "## Expressions: '[Start action](https://ballerina.io/spec/lang/master/#start-action)' and '[Wait action](https://ballerina.io/spec/lang/master/#wait-action)' are supported; worker receive actions are not listed.",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.runtime lists 'sleep', 'onGracefulStop', 'StopHandler'.",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; the list does not include future:cancel."
+  ],
+  "reason": "Named workers and inter-worker/default-worker message passing (->, ->>, <-) are essential throughout main and its asserted outputs, but are not covered by subset 10's supported statements/actions. Start and wait support does not establish support for named workers, communication, worker error propagation, or message-copy behavior (complex.k is asserted as 10). The file also calls future cancellation, which is outside the langlib allowlists. One of these exclusions suffices to classify the whole case as feature.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker send/receive actions, including synchronous sends",
+    "Worker communication error/panic propagation and message-copy semantics",
+    "future:cancel via f1.cancel()"
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported start/wait, lock, query, anonymous functions, runtime:sleep and ordinary error handling appear alongside unsupported worker communication and future cancellation.",
+    "The main function has @output assertions but no @args or @panic markers. Numerous panic and cancellation helpers are declared without being invoked by main; receiveWithCheckpanic and workerWithFutureTest1/3 are examples.",
+    "io:println is instrumentation; runtime:sleep and the used string/value/error langlib methods are allowlisted."
+  ]
+}

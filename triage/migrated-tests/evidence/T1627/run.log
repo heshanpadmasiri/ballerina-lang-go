@@ -1,0 +1,40 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "xmlliteral-with-namespaces-test-6e799d0572/xml-literals-with-namespaces-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> xml-literals-with-namespaces-e.bal:6:5
+           |
+         6 |     from int i in [1] // @error unused variable 'i'
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         7 |     do {
+           |     ^^^^
+         8 |         from int j in [1]
+           |         ^^^^^^^^^^^^^^^^^
+         9 |         do {
+           |         ^^^^
+        10 |             x9 = xml `<empRecord employeeId="${j}"><localNS:id>${j}</localNS:id></empRecord>`;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |         };
+           |         ^^
+        12 |     };
+           |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> xml-literals-with-namespaces-e.bal:6:5
+           |
+         6 |     from int i in [1] // @error unused variable 'i'
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         7 |     do {
+           |     ^^^^
+         8 |         from int j in [1]
+           |         ^^^^^^^^^^^^^^^^^
+         9 |         do {
+           |         ^^^^
+        10 |             x9 = xml `<empRecord employeeId="${j}"><localNS:id>${j}</localNS:id></empRecord>`;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |         };
+           |         ^^
+        12 |     };
+           |
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

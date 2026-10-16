@@ -1,0 +1,15 @@
+{
+  "Name": "variable-definition-test-ff080c840f/variable-definition-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/variable-definition-v",
+  "Project": true,
+  "Id": "T1521",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/variable-definition-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/variable-definition-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.075
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0724",
+  "name": "list-constructor-spread-operator-test-ae223889d2/spread-operator-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "## Expressions: [Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "## Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)"
+  ],
+  "reason": "The case asserts compile-time rejection of undefined spread operands, non-list operands, incompatible array/tuple element types, and incompatible fixed or varying list lengths, including aliases and missing required tuple members. These are type-checking behaviors of supported list constructors, variable references, declarations and type definitions. The specification places no restriction on spread members of list constructors; its spread-field exclusion applies specifically to mapping constructors. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation case: @error annotations assert rejection; the two // OK initializers provide valid alias-based spread contexts.",
+    "Covers open, fixed-length and inferred-length arrays, tuple rest members, unions, singleton types, filler constraints and type aliases."
+  ]
+}

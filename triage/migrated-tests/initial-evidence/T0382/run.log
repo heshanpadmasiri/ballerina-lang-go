@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "constant-type-test-27d6dffc1c/constant-type-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> constant-type-negative-e.bal:46:33
+           |
+        46 | const map<string> CMS1_CLONE = {...CMS1};
+           |                                 ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> constant-type-negative-e.bal:47:34
+           |
+        47 | const map<string> CMS12_CLONE = {...CMS1, ...CMS2}; // @error
+           |                                  ^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

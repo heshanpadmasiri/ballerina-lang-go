@@ -1,0 +1,14 @@
+{
+  "Name": "inherently-immutable-type-test-40f84f2e68/inherently-immutable-type-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/inherently-immutable-type-test-40f84f2e68/inherently-immutable-type-e.bal",
+  "Project": false,
+  "Id": "T0642",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/inherently-immutable-type-test-40f84f2e68/inherently-immutable-type-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.05
+}

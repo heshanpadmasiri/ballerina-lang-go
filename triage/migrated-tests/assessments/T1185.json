@@ -1,0 +1,16 @@
+{
+  "id": "T1185",
+  "name": "option-test-1b0c555df9/repeated_option_spaced-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition"
+  ],
+  "reason": "The record type and included-record parameter are supported, but the assertion requires command-line entry-point option parsing to reject repeated --stringVal options supplied as separate arguments. The subset does not cover command-line option binding or duplicate-option rejection; signature support alone does not establish this behavior.",
+  "unsupported_constructs": [
+    "Command-line binding of spaced --stringVal options to an included-record main parameter and panic on a repeated option"
+  ],
+  "test_design_notes": [
+    "The empty main body makes the @args and @panic directives the essential asserted behavior."
+  ]
+}

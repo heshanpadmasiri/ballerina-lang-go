@@ -1,0 +1,18 @@
+{
+  "id": "T0634",
+  "name": "identifier-test-a7ab8ef694/self_as_identifier-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Module-level declarations: \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Expressions: \"Variable reference\", \"Field access expression\", \"New expression\", \"Method call\"",
+    "Statements: \"Compound Assignment\", \"Local variable declarations\", \"Return\"",
+    "Operators: \"Additive ops `+`, `-`\"",
+    "Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.\""
+  ],
+  "reason": "The assertions exercise self as required/defaultable parameter and local identifier, quoted self as a parameter identifier, and class self field access. These use supported function definitions, variable references, class fields/methods, construction, arithmetic and compound assignment; no restriction excludes these identifier spellings. The direct defaultable-function call has a known signature. Expected values 7, abc and 20 follow supported behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "ballerina/test assertions validate the identifier and class behavior; unreachable io:println is instrumentation."
+  ]
+}

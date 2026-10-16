@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "class-test-31d1ee9eb5/distinct-class-def-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> distinct-class-def-v.bal:156:54
+            |
+        156 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+            |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> distinct-class-def-v.bal:157:50
+            |
+        157 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+            |                                                  ^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

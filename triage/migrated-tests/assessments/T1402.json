@@ -1,0 +1,23 @@
+{
+  "id": "T1402",
+  "name": "table-negative-test-f923667200/table-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: the positive expression list includes List constructor and Mapping constructor, but does not include table constructor expressions.",
+    "Expressions → Mapping constructor: \"Currently spread-field not supported\"",
+    "Subset restrictions → Import declarations: \"Only following lang libraries with given methods/types are supported\" (ballerina/lang.table is absent).",
+    "Subset restrictions → Invocations → Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (table:put and table:remove are absent)."
+  ],
+  "reason": "The case depends throughout on table constructors and table key/type semantics not covered by the positive feature list. Independently decisive, it uses explicitly unsupported mapping spread fields and unsupported table langlib put/remove calls. Thus the whole mixed negative case is feature scope even though many ordinary declarations, operators, casts and member accesses are listed as supported.",
+  "unsupported_constructs": [
+    "Table constructor expressions and table-specific key constraint/inference behavior are not covered by the positive list.",
+    "Mapping spread fields, including {...m}, {...f} and {...spreadField1}.",
+    "Table langlib method calls customerTable.put(...) and keyTable.remove(...)."
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported ordinary grammar/type errors are combined with unsupported constructs in one file.",
+    "CusTable in the first declaration has no declaration in this file, so its @error may reflect an undefined type as well as table validation.",
+    "Several lines repeat @error markers; marker multiplicity may assert multiple diagnostics on one line.",
+    "Only @error markers occur; there are no @args, @panic or @output assertions to assess."
+  ]
+}

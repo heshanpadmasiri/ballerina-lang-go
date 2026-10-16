@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "global-var-test-297b184697/global_variable_init-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: clone
+          --> global_variable_init-v.bal:21:9
+           |
+        21 |     n = value:clone(la);
+           |         ^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

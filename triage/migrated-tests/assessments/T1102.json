@@ -1,0 +1,15 @@
+{
+  "id": "T1102",
+  "name": "object-with-private-fields-negative-test-2196e80b05/runtime-object-equivalence-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\"; \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Expressions: \"Check expression\", \"Trap expression\", \"Type cast expression\", \"New expression\", \"Field access expression\"",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\""
+  ],
+  "reason": "The case exercises supported class fields and cross-module object typing: a public-field object is widened to userA and any, then casting it to userB must fail because userB has a non-public zipcode field. Trapping the cast panic and propagating its error are supported expressions. No restriction excludes field visibility or this runtime object cast behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The expected output asserts a TypeCastError for pkg.org_foo:user to pkg:userB; io:println only exposes the trapped error."
+  ]
+}

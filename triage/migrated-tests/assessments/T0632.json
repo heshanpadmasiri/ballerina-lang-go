@@ -1,0 +1,17 @@
+{
+  "id": "T0632",
+  "name": "identifier-test-a7ab8ef694/error_as_identifier-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; \"ballerina/lang.error\" lists only \"message\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists \"error:message\" but not error:detail.",
+    "Supported language features (subset 10) > Expressions: \"Error constructor\", \"Field access expression\", \"Member access expression\" and \"Type cast expression\"."
+  ],
+  "reason": "The case asserts error detail retrieval through .detail(), including the message detail and an error-valued detail named 'error. error:detail is absent from both the supported lang.error methods and the allowed langlib method-call list, so essential asserted behavior falls outside subset 10 despite support for the surrounding constructors and accesses.",
+  "unsupported_constructs": [
+    "error.detail() langlib calls in testErrorAsObjectField, testErrorDataWithErrorField and testErrorConstructorWithErrorField"
+  ],
+  "test_design_notes": [
+    "The dead io:println branch is instrumentation and does not determine classification."
+  ]
+}

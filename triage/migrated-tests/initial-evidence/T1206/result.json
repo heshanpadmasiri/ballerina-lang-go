@@ -1,0 +1,14 @@
+{
+  "Name": "query-action-or-expr-test-cc451d1303/match-stmt-in-do-clause-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-action-or-expr-test-cc451d1303/match-stmt-in-do-clause-v.bal",
+  "Project": false,
+  "Id": "T1206",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-action-or-expr-test-cc451d1303/match-stmt-in-do-clause-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.06
+}

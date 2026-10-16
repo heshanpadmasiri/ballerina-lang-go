@@ -1,0 +1,70 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	false
+        	true
+        	true
+        	freeze successful
+        	true
+        	freeze successful
+        	true
+        	freeze successful
+        	true
+        	freeze successful
+        	true
+        	freeze successful
+        	true
+        	freeze successful
+        	true
+        	true
+        	modification not allowed on readonly value
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

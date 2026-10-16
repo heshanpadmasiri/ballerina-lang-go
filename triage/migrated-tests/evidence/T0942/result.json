@@ -1,0 +1,14 @@
+{
+  "Name": "native-conversion-test-4a94bbda4e/json-incompatible-struct-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/json-incompatible-struct-p.bal",
+  "Project": false,
+  "Id": "T0942",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/json-incompatible-struct-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.049
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0203",
+  "name": "barray-value-test-74cb9876d7/array-value-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Statements: \"Assignment\"; \"Compound Assignment\"; \"While\"; \"Local variable declarations\"; \"Return\"",
+    "Expressions: \"lvexpr\"; \"Type cast expression\"; \"List constructor\"; \"Mapping constructor\"; \"Member access expression\"",
+    "Operators: \"Multiplicative ops `*`, `%`, `/`\"; \"Relational ops `<`, `<=`, `>`, `>=`\"; \"Additive ops `+`, `-`\"; \"numeric ops `+`, `-`\"",
+    "Subset restrictions / Import declarations: \"`ballerina/lang.array`\" includes \"`length`\"",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"`array:length`\""
+  ],
+  "reason": "All essential operations are covered: empty list construction, indexed array assignment and growth with filler values, numeric expressions, float-to-int casts, tuple/list and JSON mapping construction, loops, and array length method calls. The assertions exercise these supported operations, including zero/nil fillers and growth to length 2390725; no execution protocol beyond ordinary main invocation is required.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println is output instrumentation. @output assertions include float rendering and empty output for nil JSON filler values; there are no @args or @panic directives."
+  ]
+}

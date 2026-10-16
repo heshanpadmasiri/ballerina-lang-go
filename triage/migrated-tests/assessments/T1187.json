@@ -1,0 +1,18 @@
+{
+  "id": "T1187",
+  "name": "optional-field-access-test-22573a3d33/optional-field-access-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Optional field access expression](https://ballerina.io/spec/lang/master/#optional-field-access-expr)",
+    "Expressions: [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)",
+    "Expressions: [Method call](https://ballerina.io/spec/lang/master/#method-call-expr); [New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)",
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn); [Class definition](https://ballerina.io/spec/lang/master/#section_8.6)",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported"
+  ],
+  "reason": "This negative test asserts static rejection of invalid optional field accesses and incompatible result assignments across objects, records, maps, JSON, unions, invocation results and readonly record intersections. Optional field access and the surrounding declarations, constructors, calls and member accesses are supported. No listed restriction excludes these checks; readonly here qualifies record intersections, not classes or objects.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error annotations assert compile-time diagnostics; illegal optional accesses remain tests of the supported grammar and type system.",
+    "No diagnostic text or runtime behavior is asserted in this supplied file."
+  ]
+}

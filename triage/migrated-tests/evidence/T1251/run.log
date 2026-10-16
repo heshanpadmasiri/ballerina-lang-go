@@ -1,0 +1,14 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:4 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:14 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:44 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:47 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:50 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:51 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-assignability-negative-e.bal:54 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at map-to-record-negative-e.bal:37-40 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

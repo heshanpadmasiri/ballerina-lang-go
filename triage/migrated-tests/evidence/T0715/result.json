@@ -1,0 +1,14 @@
+{
+  "Name": "list-binding-pattern-test-b87d28a686/list-binding-pattern-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/list-binding-pattern-test-b87d28a686/list-binding-pattern-v.bal",
+  "Project": false,
+  "Id": "T0715",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/list-binding-pattern-test-b87d28a686/list-binding-pattern-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.086
+}

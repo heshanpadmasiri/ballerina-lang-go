@@ -1,0 +1,14 @@
+{
+  "Name": "array-test-774a6d4802/array-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-test-774a6d4802/array-v.bal",
+  "Project": false,
+  "Id": "T0184",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-test-774a6d4802/array-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

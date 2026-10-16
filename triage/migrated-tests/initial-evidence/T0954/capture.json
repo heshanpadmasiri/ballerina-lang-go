@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '{| foo: {| anydata... |}, never... |}' value cannot be converted to 'json'\n        at trigger(struct-incompatible-info-p.bal:14)\n           main(struct-incompatible-info-p.bal:18)\n","Diagnostics":null}

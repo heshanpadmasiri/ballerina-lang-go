@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at while-stmt-negative-e.bal:3-3 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at while-stmt-negative-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at while-stmt-negative-e.bal:9-9 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at while-stmt-negative-e.bal:12-12 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at while-stmt-negative-e.bal:2 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at while-stmt-negative-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at while-stmt-negative-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at while-stmt-negative-e.bal:11 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

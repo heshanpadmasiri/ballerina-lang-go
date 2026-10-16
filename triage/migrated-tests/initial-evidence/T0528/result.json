@@ -1,0 +1,14 @@
+{
+  "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-map-removal-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-map-removal-p.bal",
+  "Project": false,
+  "Id": "T0528",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-map-removal-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.035
+}

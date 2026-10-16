@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "error-stack-trace-test-7110040e22/stacktrace-elements-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: StackFrame
+         --> modules/stacktrace/stacktrace.bal:1:41
+          |
+        1 | public function getStackTrace() returns error:StackFrame[] {
+          |                                         ^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: StackFrame
+         --> modules/stacktrace/stacktrace.bal:1:41
+          |
+        1 | public function getStackTrace() returns error:StackFrame[] {
+          |                                         ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

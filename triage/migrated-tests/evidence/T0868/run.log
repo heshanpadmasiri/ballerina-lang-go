@@ -1,0 +1,46 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-semantic-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-semantic-e.bal:19:9
+           |
+        19 |         {x: var p, ...var oth} if p is anydata => {
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-semantic-e.bal:28:9
+           |
+        28 |         {x: var x, ...var y} => {
+           |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-semantic-e.bal:31:9
+           |
+        31 |         {a: var z} => {
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-semantic-e.bal:46:9
+           |
+        46 |         {id: var x, ...var rest} => {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-semantic-e.bal:62:9
+           |
+        62 |         {i: var x, ...var rest} => {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-semantic-e.bal:66:9
+           |
+        66 |         {...var rest} => {
+           |         ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-semantic-e.bal:93:9
+           |
+        93 |         {x: 1, z: 3, y1: var val1, y2: var val2, y3: var val3} => {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

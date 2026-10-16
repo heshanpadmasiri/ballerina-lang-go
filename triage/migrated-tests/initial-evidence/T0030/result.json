@@ -1,0 +1,14 @@
+{
+  "Name": "any-function-type-test-d439f10943/any-function-type-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/any-function-type-test-d439f10943/any-function-type-e.bal",
+  "Project": false,
+  "Id": "T0030",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/any-function-type-test-d439f10943/any-function-type-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.022
+}

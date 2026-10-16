@@ -1,0 +1,14 @@
+{
+  "Name": "worker-test-0f3493dd03/10-receive-default-after-worker-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/10-receive-default-after-worker-p.bal",
+  "Project": false,
+  "Id": "T1595",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/10-receive-default-after-worker-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.052
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Unknown symbol: concat\n --\u003e constant-assignment-v.bal:7:30\n  |\n7 | final string varNativeFunc = strings:concat(str, \"awesome\");\n  |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"constant-assignment-v.bal","StartLine":7,"EndLine":7}]}

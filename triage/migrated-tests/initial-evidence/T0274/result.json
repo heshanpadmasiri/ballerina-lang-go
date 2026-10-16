@@ -1,0 +1,15 @@
+{
+  "Name": "bstream-value-test-dc50cbbb1f/stream-incomplete-type-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-incomplete-type-e",
+  "Project": true,
+  "Id": "T0274",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-incomplete-type-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-incomplete-type-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.053
+}

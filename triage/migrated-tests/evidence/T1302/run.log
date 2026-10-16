@@ -1,0 +1,26 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "return-stmt-negative-test-c1f15d4b97/missing-return-forkjoin-2-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> missing-return-forkjoin-2-e.bal:3:5
+           |
+         3 |     fork {
+           |     ^^^^^^
+         4 |         worker foo returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+         5 |             string _ = "";
+           |             ^^^^^^^^^^^^^^
+         6 |         } // @error
+           |         ^^^^^^^^^^^
+         7 | 
+           | 
+         8 |         worker bar returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |             string _ = "";
+           |             ^^^^^^^^^^^^^^
+        10 |         } // @error
+           |         ^^^^^^^^^^^
+        11 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

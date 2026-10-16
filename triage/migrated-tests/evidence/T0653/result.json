@@ -1,0 +1,14 @@
+{
+  "Name": "integer-range-operator-test-d441b901c6/integer-range-operators-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/integer-range-operator-test-d441b901c6/integer-range-operators-negative-e.bal",
+  "Project": false,
+  "Id": "T0653",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/integer-range-operator-test-d441b901c6/integer-range-operators-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.03
+}

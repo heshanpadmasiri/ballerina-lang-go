@@ -1,0 +1,12 @@
+{
+  "id": "T0186",
+  "name": "arrays-of-arrays-test-253b35e6d5/arrays-of-arrays-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)"
+  ],
+  "reason": "testByteArrayIterator uses the byte-array literal base16 `aa`, which is not covered by the supported expression/literal list. This is essential to the asserted byte output 170, so the whole case requires an unsupported feature.",
+  "unsupported_constructs": ["Byte-array literal: base16 `aa`"],
+  "test_design_notes": ["The @output 170 assertion depends on constructing and retrieving the byte supplied by the unsupported literal; io:println is only instrumentation."]
+}

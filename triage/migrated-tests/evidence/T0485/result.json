@@ -1,0 +1,15 @@
+{
+  "Name": "finite-type-negative-test-02a1012607/finite-type-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/finite-type-negative-test-02a1012607/finite-type-negative-e",
+  "Project": true,
+  "Id": "T0485",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/finite-type-negative-test-02a1012607/finite-type-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/finite-type-negative-test-02a1012607/finite-type-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.052
+}

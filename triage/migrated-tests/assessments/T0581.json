@@ -1,0 +1,18 @@
+{
+  "id": "T0581",
+  "name": "function-with-included-record-param-4dd158ffbe/included-record-params-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.",
+    "Invocations / Named and default arguments: Object constructor calls support named and default arguments while selecting a unique class from an object union; they do not have the atomic-target restriction above.",
+    "Object/class definitions: Supports included-record-param, rest-param and defaultable-param in methods",
+    "Expressions: Type cast expression; New expression; List constructor; Mapping constructor; Field access expression; Member access expression; Type test expression",
+    "Other invocation restrictions: value:toString and value:toBalString"
+  ],
+  "reason": "The case exercises supported included-record parameters in direct function calls and a class initializer. Assertions cover named-field distribution across multiple included records, positional and named whole-record arguments, default and optional fields, omitted rest fields yielding nil, never fields excluding names, typed record rest fields, and interaction with ordinary/defaultable parameters. Direct callees have known signatures and the constructor selects TestClass. These behaviors fall within the positive included-record parameter support without an applicable restriction. Casts, record/list construction and access, equality and the assertion helper's toString calls are supported.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "main invokes all 24 test functions; the final io:println is output instrumentation."
+  ]
+}

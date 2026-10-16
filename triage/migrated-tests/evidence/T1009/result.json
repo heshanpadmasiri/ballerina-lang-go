@@ -1,0 +1,14 @@
+{
+  "Name": "never-type-test-35205a329e/never-type-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-type-negative-e.bal",
+  "Project": false,
+  "Id": "T1009",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-type-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.053
+}

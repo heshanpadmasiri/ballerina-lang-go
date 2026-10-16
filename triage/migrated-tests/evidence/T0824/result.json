@@ -1,0 +1,14 @@
+{
+  "Name": "mapping-binding-pattern-negative-test-66fc85fc17/mapping-binding-pattern-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-binding-pattern-negative-test-66fc85fc17/mapping-binding-pattern-negative-e.bal",
+  "Project": false,
+  "Id": "T0824",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mapping-binding-pattern-negative-test-66fc85fc17/mapping-binding-pattern-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.037
+}

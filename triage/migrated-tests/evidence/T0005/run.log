@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "access-levels-negative-test-4f8066db20/private-access-level-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> private-access-level-e.bal:17:13
+           |
+        17 | } anonObj = object { public string s = ""; public Baz z = 1; public Foo foo1 = new; };
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> private-access-level-e.bal:17:13
+           |
+        17 | } anonObj = object { public string s = ""; public Baz z = 1; public Foo foo1 = new; };
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

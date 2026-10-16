@@ -1,0 +1,17 @@
+{
+  "id": "T0414",
+  "name": "deprecation-annotation-test-5a4ffa9c53/deprecated-construct-usage-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Annotation declarations and attachments — Supports source-only, runtime, marker and repeated annotations",
+    "Module-level declarations: Type definition; Module variable declarations; Function definition",
+    "Expressions: Mapping constructor; Field access expression; Equality expression; Error constructor",
+    "Statements: If/else; Return; Panic; Call",
+    "Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "All constructs and asserted runtime behavior are supported: a deprecated record type is instantiated in a module variable, and its integer fields are checked through equality assertions. The assertion failure path uses supported panic, error construction, string addition and value:toString method calls.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The function name mentions a warning, but the supplied file contains no diagnostic expectation or @args, @panic or @output directives; its observable assertion is successful runtime access to both record fields."
+  ]
+}

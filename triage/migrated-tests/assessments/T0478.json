@@ -1,0 +1,18 @@
+{
+  "id": "T0478",
+  "name": "final-access-test-b8abe5c420/final-var-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Statements: [Assignment](https://ballerina.io/spec/lang/master/#assignment-stmt)",
+    "Statements: [If/else](https://ballerina.io/spec/lang/master/#section_7.18); [While](https://ballerina.io/spec/lang/master/#while-stmt)",
+    "Expressions: [Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)"
+  ],
+  "reason": "The case exercises final module/local variable declarations, inferred local types, reassignment rejection, and definite-initialization analysis across branches and loops. These fall within the supported variable declarations, assignments, references and control-flow constructs; the specification gives no final-variable restriction. Negative rejection remains in scope. Function calls, literals, returns and equality are also supported, and no restricted library behavior is required.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Several @error markers are attached to apparently legal reads or initialized final declarations, and the final read has two markers. These placements may reflect diagnostic attribution or migration expectations; they do not establish an unsupported language feature.",
+    "No @args, @panic or @output assertions are present."
+  ]
+}

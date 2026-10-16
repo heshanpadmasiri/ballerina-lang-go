@@ -1,0 +1,11 @@
+{
+  "id": "T0345",
+  "name": "closed-record-optional-fields-test-39abbdf876/closed_record_optional_fields-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions, including 'Type test expression' and 'Type cast expression', but does not list typeof expression."
+  ],
+  "reason": "The test requires typeof optionalNonDefField4[0] and typeof optionalNonDefField4[1] to print 'typedesc Address3'. typeof expressions and their asserted typedesc behavior are not covered by the supported expression list, so the whole case is outside the subset.",
+  "unsupported_constructs": ["typeof expressions and the asserted typedesc Address3 output"],
+  "test_design_notes": ["The decisive unsupported behavior is asserted by two @output annotations; io:println itself is only instrumentation. map:get and map:hasKey are explicitly supported."]
+}

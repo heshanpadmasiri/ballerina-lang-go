@@ -1,0 +1,18 @@
+{
+  "id": "T0118",
+  "name": "argument-parser-positive-test-e41e5b8a0a/params-first-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"",
+    "Expressions: \"Conditional expression\"",
+    "Operators: \"Relational ops `<`, `<=`, `>`, `>=`\"; \"Additive ops `+`, `-`\""
+  ],
+  "reason": "The asserted output 4 depends on interpreting @args [\"1\", \"1.0\"] as command-line arguments, converting them to int and float, and invoking main with those values. Subset 10 supports required parameter signatures and the body expressions, but does not cover this command-line entry-point argument parsing/execution protocol. Signature support alone does not establish it.",
+  "unsupported_constructs": [
+    "Command-line argument conversion and binding to typed main parameters (int i, float f)."
+  ],
+  "test_design_notes": [
+    "@output 4 is consistent with i=1 and f=1.0, but requires the uncovered @args execution protocol.",
+    "io:println is output instrumentation; no @panic assertion is present."
+  ]
+}

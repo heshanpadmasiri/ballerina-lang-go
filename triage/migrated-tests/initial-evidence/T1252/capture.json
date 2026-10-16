@@ -1,0 +1,1 @@
+{"Stdout":"\n","Stderr":"error: expected true, found false\n        at assertEquality(record-assignability-v.bal:100)\n           assertTrue(record-assignability-v.bal:91)\n           testRecordToRecordWithOptionalFieldTypingRuntimePositive(record-assignability-v.bal:87)\n           main(record-assignability-v.bal:107)\n","Diagnostics":null}

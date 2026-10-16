@@ -1,0 +1,99 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "record-variable-reference-test-d23ea5efdc/record-bp-in-list-and-record-destructuring-assignment-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:22:5
+           |
+        22 |     [{a, b}]= l1; // @error
+           |     ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:24:5
+           |
+        24 |     [a, [{b}]] = l2; // @error
+           |     ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:32:5
+           |
+        32 |     [{a, b, c}]= l1; // @error
+           |     ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:34:5
+           |
+        34 |     [a, [{b, c}]] = l2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:41:5
+           |
+        41 |     {a, b} = r1; // @error
+           |     ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:43:5
+           |
+        43 |     {a, bb: {b}} = r2; // @error
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:50:5
+           |
+        50 |     {a, b} = r1; // @error
+           |     ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:52:5
+           |
+        52 |     {a, bb: {b}} = r2; // @error
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:22:5
+           |
+        22 |     [{a, b}]= l1; // @error
+           |     ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:24:5
+           |
+        24 |     [a, [{b}]] = l2; // @error
+           |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:32:5
+           |
+        32 |     [{a, b, c}]= l1; // @error
+           |     ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:34:5
+           |
+        34 |     [a, [{b, c}]] = l2; // @error
+           |     ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:41:5
+           |
+        41 |     {a, b} = r1; // @error
+           |     ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:43:5
+           |
+        43 |     {a, bb: {b}} = r2; // @error
+           |     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:50:5
+           |
+        50 |     {a, b} = r1; // @error
+           |     ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-bp-in-list-and-record-destructuring-assignment-negative-e.bal:52:5
+           |
+        52 |     {a, bb: {b}} = r2; // @error
+           |     ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

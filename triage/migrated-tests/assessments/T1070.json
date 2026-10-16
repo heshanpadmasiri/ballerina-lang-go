@@ -1,0 +1,17 @@
+{
+  "id": "T1070",
+  "name": "object-field-function-pointer-start-action-test-f45c4a8f77/object-field-function-pointer-start-action-test-f45c4a8f77-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition \u2014 Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Module-level declarations: Function definition \u2014 Supports `required-params`, `defaultable-params`, `included-record-param` and `rest-param` in the signature",
+    "Expressions: Start action; Anonymous function expression; Method call; New expression; Member access expression",
+    "Statements: Assignment; Local variable declarations; Return"
+  ],
+  "reason": "The case checks static rejection of missing or wrongly typed arguments and an incompatible future result type when starting function-valued object fields. Classes with function fields, anonymous functions, required/rest parameters, field invocations and start actions are supported, with no applicable invocation restriction excluding these positional calls. All asserted diagnostics concern supported argument and result typing.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation case: four @error annotations assert rejection; the zero-argument rest call is permitted and is not executed by this diagnostic test."
+  ],
+  "reviewer_name": "object-field-function-pointer-start-action-test-f45c4a8f77-e.bal"
+}

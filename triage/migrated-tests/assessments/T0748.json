@@ -1,0 +1,16 @@
+{
+  "id": "T0748",
+  "name": "lvalue-test-e2785cbb54/lvalue-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; \"ballerina/lang.error\" lists only \"message\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\" but not error:detail."
+  ],
+  "reason": "The case asserts exact runtime error detail messages through err.detail()[\"message\"] for failed list expansion and record field updates. error:detail is absent from both the supported lang.error methods and the permitted langlib method-call list, so this essential asserted behavior makes the whole case a feature request.",
+  "unsupported_constructs": [
+    "err.detail() (ballerina/lang.error:detail) in runtime error-detail assertions"
+  ],
+  "test_design_notes": [
+    "io:println is output instrumentation. Supported assignment/lvalue syntax and integer/string subtypes do not remove the unsupported error-detail dependency."
+  ]
+}

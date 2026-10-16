@@ -1,0 +1,21 @@
+{
+  "id": "T1637",
+  "name": "xmltest-76e9a224a5/xml-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Variable reference: \"Currently `xml-qualified-names` not supported\"",
+    "Expressions > XML template expression: \"Supports interpolation in XML content and attributes\"",
+    "Expressions: \"XML navigation expression\"",
+    "Subset restrictions > Import declarations > ballerina/lang.xml: \"Element\", \"getAttributes\"",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"xml:iterator`, `xml:length`, `xml:getName`, `xml:setName`, `xml:getAttributes`\""
+  ],
+  "reason": "testXML uses the XML-qualified-name expression ns0:b as the map key in attrMap[ns0:b]. This is explicitly unsupported, and its namespace-expanded key and resulting attribute mutation are essential to the asserted XML, attribute-map, and attribute-access outputs. Supported XML templates, navigation, Element and getAttributes do not override that restriction.",
+  "unsupported_constructs": [
+    "XML-qualified-name variable reference ns0:b in attrMap[ns0:b]."
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported XML template interpolation/navigation and lang.xml APIs are combined with an explicitly unsupported XML-qualified-name expression.",
+    "The @output markers additionally assert XML serialization (including namespace declarations), attribute-map contents, navigation/indexing results, dollar interpolation, and literal preservation of numeric-escape-looking XML text; these are runtime expectations, not merely signatures.",
+    "io:println is output instrumentation. No @args or @panic markers occur."
+  ]
+}

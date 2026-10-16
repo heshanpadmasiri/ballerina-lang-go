@@ -1,0 +1,20 @@
+{
+  "id": "T1245",
+  "name": "readonly-object-test-9dae9381ef/readonly-objects-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\"; ballerina/lang.value lists \"cloneWithType\", \"fromJsonWithType\", \"toString\", \"toBalString\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\" but neither error:detail nor value:cloneReadOnly.",
+    "Module-level declarations > Class definition: \"Supports `client`, `service`, `isolated`, `readonly` and `distinct` ...\".",
+    "Subset restrictions > Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\"."
+  ],
+  "reason": "Essential assertions inspect runtime error details through err.detail() and clone a recursive object array with v.cloneReadOnly(); both langlib operations are outside the explicit supported lists. These independently establish feature classification, even though readonly class qualifier coverage is contradictory between the positive list and restriction.",
+  "unsupported_constructs": [
+    "error:detail method calls used to assert exact readonly-update diagnostic details",
+    "value:cloneReadOnly method call used to assert recursive readonly object-array cloning"
+  ],
+  "test_design_notes": [
+    "Readonly class qualifier coverage is conflicting in the supplied specification, but is not needed to decide classification.",
+    "The empty io:print call is instrumentation and does not determine classification."
+  ]
+}

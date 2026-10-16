@@ -1,0 +1,18 @@
+{
+  "id": "T1345",
+  "name": "shadowing-negative-test-3ca8e22261/shadowing-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: lists Import declarations, Function definition, Constant declarations, Module variable declarations, Service declarations, Type definition, Enum declarations and Class definition; XML namespace declarations are not listed.",
+    "## Statements: lists Local variable declarations and other supported statements; XML namespace declaration statements are not listed.",
+    "## Expressions: lists Anonymous function expression and New expression; object constructor expressions are not listed."
+  ],
+  "reason": "The negative case explicitly tests duplicate and shadowed XML namespace prefixes through module-level and local xmlns declarations, a declaration/statement form outside the supported positive lists. It also initializes a service object with an object constructor expression, which is not listed. Although ordinary variable, parameter, type and function shadowing diagnostics involve supported constructs, these essential unsupported constructs make the whole case a feature case.",
+  "unsupported_constructs": [
+    "XML namespace declarations and their duplicate/shadowing diagnostics",
+    "Service object constructor expression (service object { ... })"
+  ],
+  "test_design_notes": [
+    "The @error annotations assert compile-time rejection; illegal declarations alone do not make a supported negative test out of scope. Here the namespace diagnostics themselves depend on an unlisted declaration form."
+  ]
+}

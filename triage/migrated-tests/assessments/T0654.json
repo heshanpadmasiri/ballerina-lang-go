@@ -1,0 +1,20 @@
+{
+  "id": "T0654",
+  "name": "integer-range-operator-test-d441b901c6/integer-range-operators-runtime-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Range expression](https://ballerina.io/spec/lang/master/#section_6.26)",
+    "Statements: Foreach — Currently only supports range, list, map, string and XML subtypes, and iterable objects",
+    "Statements: Assignment; Compound Assignment; Local variable declarations",
+    "Expressions: List constructor; Member access expression; Equality expression; Type test expression; Conditional expression; Error constructor",
+    "Operators: Equality ops `==`, `!=`, `===`, `!==`; Additive ops `+`, `-`; Logical ops `&&`, `||`",
+    "Other invocation restrictions: `array:length`; `value:toString` and `value:toBalString`",
+    "Module-level declarations: Type definition; Constant declarations; Function definition"
+  ],
+  "reason": "The case asserts that the closed integer range 1 ... 5 iterates inclusively in ascending order, populates an expandable int array, and yields length 5 and elements 1 through 5. Range expressions, range foreach, array construction/member assignment, compound addition and the assertion helper's constructs and langlib methods are covered by the positive lists without an applicable restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println is output instrumentation; the test function returns nil and its assertions validate the range behavior internally.",
+    "The unused Label alias does not add an unsupported requirement."
+  ]
+}

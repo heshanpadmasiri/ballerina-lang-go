@@ -1,0 +1,3301 @@
+[
+  {
+    "Id": "T0005",
+    "Name": "access-levels-negative-test-4f8066db20/private-access-level-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-access-level-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-access-level-e.bal"
+    ]
+  },
+  {
+    "Id": "T0009",
+    "Name": "access-test-42f7c8c3ea/access-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/access-test-42f7c8c3ea/access-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/access-test-42f7c8c3ea/access-v.bal"
+    ]
+  },
+  {
+    "Id": "T0013",
+    "Name": "annotation-attachment-negative-test-eefa0f3f86/annotation-attachment-negative-test-eefa0f3f86-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/annotation-attachment-negative-test-eefa0f3f86/annotation-attachment-negative-test-eefa0f3f86-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/annotation-attachment-negative-test-eefa0f3f86/annotation-attachment-negative-test-eefa0f3f86-e.bal"
+    ]
+  },
+  {
+    "Id": "T0019",
+    "Name": "anonymous-closed-record-test-dd78432cc7/anonymous-closed-record-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-closed-record-test-dd78432cc7/anonymous-closed-record-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/anonymous-closed-record-test-dd78432cc7/anonymous-closed-record-v.bal"
+    ]
+  },
+  {
+    "Id": "T0022",
+    "Name": "anonymous-object-test-5197ee0f89/anonymous-object-undefaultable-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-object-test-5197ee0f89/anonymous-object-undefaultable-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/anonymous-object-test-5197ee0f89/anonymous-object-undefaultable-e.bal"
+    ]
+  },
+  {
+    "Id": "T0026",
+    "Name": "anonymous-record-negative-test-493ce47c85/anon-record-isolation-analysis-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-record-negative-test-493ce47c85/anon-record-isolation-analysis-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/anonymous-record-negative-test-493ce47c85/anon-record-isolation-analysis-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0031",
+    "Name": "any-function-type-test-d439f10943/any-function-type-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/any-function-type-test-d439f10943/any-function-type-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/any-function-type-test-d439f10943/any-function-type-v.bal"
+    ]
+  },
+  {
+    "Id": "T0036",
+    "Name": "anydata-ternary-conv-test-63ef110d27/anydata-ternary-conv-test-63ef110d27-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/anydata-ternary-conv-test-63ef110d27/anydata-ternary-conv-test-63ef110d27-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/anydata-ternary-conv-test-63ef110d27/anydata-ternary-conv-test-63ef110d27-v.bal"
+    ]
+  },
+  {
+    "Id": "T0039",
+    "Name": "argument-parser-negative-test-706c373f17/incorrect-named-arg-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/incorrect-named-arg-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/incorrect-named-arg-p.bal"
+    ]
+  },
+  {
+    "Id": "T0042",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-char-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-char-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-char-p.bal"
+    ]
+  },
+  {
+    "Id": "T0045",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-decimal-03-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-03-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-03-p.bal"
+    ]
+  },
+  {
+    "Id": "T0048",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-decimal-06-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-06-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-06-p.bal"
+    ]
+  },
+  {
+    "Id": "T0051",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-decimal-09-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-09-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-09-p.bal"
+    ]
+  },
+  {
+    "Id": "T0054",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-decimal-12-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-12-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-12-p.bal"
+    ]
+  },
+  {
+    "Id": "T0057",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-float-02-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-02-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-02-p.bal"
+    ]
+  },
+  {
+    "Id": "T0060",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-float-05-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-05-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-05-p.bal"
+    ]
+  },
+  {
+    "Id": "T0063",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-float-08-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-08-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-08-p.bal"
+    ]
+  },
+  {
+    "Id": "T0066",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-float-11-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-11-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-11-p.bal"
+    ]
+  },
+  {
+    "Id": "T0069",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-int-01-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-01-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-01-p.bal"
+    ]
+  },
+  {
+    "Id": "T0072",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-int-04-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-04-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-04-p.bal"
+    ]
+  },
+  {
+    "Id": "T0075",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-int-07-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-07-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-07-p.bal"
+    ]
+  },
+  {
+    "Id": "T0078",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-int-10-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-10-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-10-p.bal"
+    ]
+  },
+  {
+    "Id": "T0081",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-int-13-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-13-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-13-p.bal"
+    ]
+  },
+  {
+    "Id": "T0084",
+    "Name": "argument-parser-negative-test-706c373f17/invalid-int-array-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-array-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-array-p.bal"
+    ]
+  },
+  {
+    "Id": "T0087",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/byte-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/byte-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/byte-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/byte-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0090",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/decimal-02-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/decimal-02-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/decimal-02-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/decimal-02-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0093",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/defaultable-functions-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/defaultable-functions-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/defaultable-functions-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/defaultable-functions-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0096",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/float-02-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-02-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-02-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-02-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0099",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/float-05-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-05-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-05-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-05-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0102",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/float-08-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-08-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-08-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-08-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0105",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/float-11-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-11-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-11-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-11-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0108",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/int-negative-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int-negative-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int-negative-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int-negative-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0111",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/int32-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int32-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int32-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int32-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0115",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/optional-none-first-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/optional-none-first-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/optional-none-first-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/optional-none-first-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0118",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/params-first-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/params-first-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/params-first-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/params-first-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0121",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/rest-provided-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/rest-provided-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/rest-provided-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/rest-provided-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0124",
+    "Name": "argument-parser-positive-test-e41e5b8a0a/uint8-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/uint8-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/uint8-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/uint8-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0131",
+    "Name": "array-access-expr-test-36e8f0c67c/unary-const-index-access-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/array-access-expr-test-36e8f0c67c/unary-const-index-access-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/array-access-expr-test-36e8f0c67c/unary-const-index-access-p.bal"
+    ]
+  },
+  {
+    "Id": "T0146",
+    "Name": "array-fill-test-6c34de832c/array-fill-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/array-fill-test-6c34de832c/array-fill-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/array-fill-test-6c34de832c/array-fill-v.bal"
+    ]
+  },
+  {
+    "Id": "T0160",
+    "Name": "array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-v.bal"
+    ]
+  },
+  {
+    "Id": "T0170",
+    "Name": "array-mutability-test-f73ad51ac1/array-mutability-object-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/array-mutability-test-f73ad51ac1/array-mutability-object-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/array-mutability-test-f73ad51ac1/array-mutability-object-p.bal"
+    ]
+  },
+  {
+    "Id": "T0176",
+    "Name": "array-size-definition-test-a34088ca39/array-size-scope-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/array-size-definition-test-a34088ca39/array-size-scope-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/array-size-definition-test-a34088ca39/array-size-scope-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0180",
+    "Name": "array-stamp-inbuilt-function-test-9aeaf1be1a/array-stamp-inbuilt-function-test-9aeaf1be1a-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/array-stamp-inbuilt-function-test-9aeaf1be1a/array-stamp-inbuilt-function-test-9aeaf1be1a-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/array-stamp-inbuilt-function-test-9aeaf1be1a/array-stamp-inbuilt-function-test-9aeaf1be1a-v.bal"
+    ]
+  },
+  {
+    "Id": "T0184",
+    "Name": "array-test-774a6d4802/array-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/array-test-774a6d4802/array-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/array-test-774a6d4802/array-v.bal"
+    ]
+  },
+  {
+    "Id": "T0190",
+    "Name": "arrow-expr-test-733bf0507c/arrow-expressions-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/arrow-expr-test-733bf0507c/arrow-expressions-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/arrow-expr-test-733bf0507c/arrow-expressions-v.bal"
+    ]
+  },
+  {
+    "Id": "T0194",
+    "Name": "assign-stmt-test-4075ad6286/assign-stmt-values-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/assign-stmt-test-4075ad6286/assign-stmt-values-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/assign-stmt-test-4075ad6286/assign-stmt-values-v.bal"
+    ]
+  },
+  {
+    "Id": "T0197",
+    "Name": "assignment-to-narrowed-vars-in-loops-test-df0ab3d5c6/assignment_to_narrowed_vars_in_loops_positive-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/assignment-to-narrowed-vars-in-loops-test-df0ab3d5c6/assignment_to_narrowed_vars_in_loops_positive-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/assignment-to-narrowed-vars-in-loops-test-df0ab3d5c6/assignment_to_narrowed_vars_in_loops_positive-e.bal"
+    ]
+  },
+  {
+    "Id": "T0203",
+    "Name": "barray-value-test-74cb9876d7/array-value-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/barray-value-test-74cb9876d7/array-value-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/barray-value-test-74cb9876d7/array-value-v.bal"
+    ]
+  },
+  {
+    "Id": "T0207",
+    "Name": "basic-async-operations-test-5353eae739/async-non-native-basic7-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-async-operations-test-5353eae739/async-non-native-basic7-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/basic-async-operations-test-5353eae739/async-non-native-basic7-p.bal"
+    ]
+  },
+  {
+    "Id": "T0212",
+    "Name": "basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0216",
+    "Name": "basic-worker-actions-negative-test-a7033898c7/actions-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-worker-actions-negative-test-a7033898c7/actions-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/basic-worker-actions-negative-test-a7033898c7/actions-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/basic-worker-actions-negative-test-a7033898c7/actions-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0221",
+    "Name": "bbyte-array-value-negative-test-585d57db0d/byte-array-value-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bbyte-array-value-negative-test-585d57db0d/byte-array-value-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bbyte-array-value-negative-test-585d57db0d/byte-array-value-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/bbyte-array-value-negative-test-585d57db0d/byte-array-value-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0228",
+    "Name": "bbyte-value-test-94ec1c259b/byte-value-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bbyte-value-test-94ec1c259b/byte-value-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bbyte-value-test-94ec1c259b/byte-value-e.bal"
+    ]
+  },
+  {
+    "Id": "T0231",
+    "Name": "bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v/Dependencies.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0235",
+    "Name": "bdecimal-value-negative-test-562a56cce5/decimal-value-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-value-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-value-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-value-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0238",
+    "Name": "bfloat-value-test-b01a6e05bd/bfloat-type-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bfloat-value-test-b01a6e05bd/bfloat-type-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bfloat-value-test-b01a6e05bd/bfloat-type-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0246",
+    "Name": "binary-expr-eval-precedence-test-6ce454d67b/binary-expr-eval-precedence-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/binary-expr-eval-precedence-test-6ce454d67b/binary-expr-eval-precedence-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/binary-expr-eval-precedence-test-6ce454d67b/binary-expr-eval-precedence-v.bal"
+    ]
+  },
+  {
+    "Id": "T0250",
+    "Name": "birmodel-test-b91e99ce19/bir_model-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/birmodel-test-b91e99ce19/bir_model-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/birmodel-test-b91e99ce19/bir_model-e.bal"
+    ]
+  },
+  {
+    "Id": "T0256",
+    "Name": "bjsonvalue-test-248ac7be19/json-values-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/json-values-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/json-values-v.bal"
+    ]
+  },
+  {
+    "Id": "T0259",
+    "Name": "bjsonvalue-test-248ac7be19/null-json-to-boolean-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/null-json-to-boolean-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/null-json-to-boolean-p.bal"
+    ]
+  },
+  {
+    "Id": "T0262",
+    "Name": "bjsonvalue-test-248ac7be19/null-json-to-map-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/null-json-to-map-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/null-json-to-map-p.bal"
+    ]
+  },
+  {
+    "Id": "T0265",
+    "Name": "block-stmt-test-58e33229dc/block-stmt-semantics-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/block-stmt-test-58e33229dc/block-stmt-semantics-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/block-stmt-test-58e33229dc/block-stmt-semantics-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0271",
+    "Name": "bnull-value-test-edd6349666/null-value-semantics-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bnull-value-test-edd6349666/null-value-semantics-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bnull-value-test-edd6349666/null-value-semantics-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0276",
+    "Name": "bstream-value-test-dc50cbbb1f/stream-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0279",
+    "Name": "bstring-annotation-test-342883e77f/bstring-annotation-test-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/bstring-annotation-test-342883e77f/bstring-annotation-test-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/bstring-annotation-test-342883e77f/bstring-annotation-test-v.bal"
+    ]
+  },
+  {
+    "Id": "T0285",
+    "Name": "builtin-loading-test-f8091e705a/builtin-loading-test-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/builtin-loading-test-f8091e705a/builtin-loading-test-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/builtin-loading-test-f8091e705a/builtin-loading-test-e.bal"
+    ]
+  },
+  {
+    "Id": "T0289",
+    "Name": "byte-as-int-test-3342351ff8/byte-as-int-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/byte-as-int-test-3342351ff8/byte-as-int-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/byte-as-int-test-3342351ff8/byte-as-int-v.bal"
+    ]
+  },
+  {
+    "Id": "T0296",
+    "Name": "capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0302",
+    "Name": "check-panic-expression-operator-test-baa47123b9/checkpanic-generic-detail-p",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-generic-detail-p",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-generic-detail-p/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-generic-detail-p/main.bal"
+    ]
+  },
+  {
+    "Id": "T0305",
+    "Name": "check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0308",
+    "Name": "checked-expr-error-return-type-test-2972bca8c1/checked-expr-error-return-type-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/checked-expr-error-return-type-test-2972bca8c1/checked-expr-error-return-type-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/checked-expr-error-return-type-test-2972bca8c1/checked-expr-error-return-type-v.bal"
+    ]
+  },
+  {
+    "Id": "T0312",
+    "Name": "checked-expr-negative-test-764bc995e0/checked-expr-resource-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/checked-expr-negative-test-764bc995e0/checked-expr-resource-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/checked-expr-negative-test-764bc995e0/checked-expr-resource-e.bal"
+    ]
+  },
+  {
+    "Id": "T0316",
+    "Name": "checked-expression-operator-test-30b071e6cd/checked-expr-operator-basics-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/checked-expression-operator-test-30b071e6cd/checked-expr-operator-basics-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/checked-expression-operator-test-30b071e6cd/checked-expr-operator-basics-v.bal"
+    ]
+  },
+  {
+    "Id": "T0321",
+    "Name": "checking-stmt-test-a7188c6c31/checking-stmt-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/checking-stmt-test-a7188c6c31/checking-stmt-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/checking-stmt-test-a7188c6c31/checking-stmt-v.bal"
+    ]
+  },
+  {
+    "Id": "T0324",
+    "Name": "class-test-31d1ee9eb5/class-def-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/class-test-31d1ee9eb5/class-def-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/class-test-31d1ee9eb5/class-def-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0328",
+    "Name": "class-test-31d1ee9eb5/simple-class-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/class-test-31d1ee9eb5/simple-class-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/class-test-31d1ee9eb5/simple-class-v.bal"
+    ]
+  },
+  {
+    "Id": "T0331",
+    "Name": "client-object-test-cc3f260977/remote-basic-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/client-object-test-cc3f260977/remote-basic-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/client-object-test-cc3f260977/remote-basic-v.bal"
+    ]
+  },
+  {
+    "Id": "T0334",
+    "Name": "client-resource-access-action-negative-test-1519220005/client-resource-path-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/client-resource-access-action-negative-test-1519220005/client-resource-path-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/client-resource-access-action-negative-test-1519220005/client-resource-path-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0337",
+    "Name": "client-resource-access-action-test-f2b4b23dd8/client_resource_access_action-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/client-resource-access-action-test-f2b4b23dd8/client_resource_access_action-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/client-resource-access-action-test-f2b4b23dd8/client_resource_access_action-v.bal"
+    ]
+  },
+  {
+    "Id": "T0344",
+    "Name": "closed-record-iteration-test-6ab07291d1/closed-record-iteration-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-iteration-test-6ab07291d1/closed-record-iteration-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/closed-record-iteration-test-6ab07291d1/closed-record-iteration-v.bal"
+    ]
+  },
+  {
+    "Id": "T0347",
+    "Name": "closed-record-optional-fields-test-39abbdf876/optional_non_defaultable_field_cast-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-optional-fields-test-39abbdf876/optional_non_defaultable_field_cast-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/closed-record-optional-fields-test-39abbdf876/optional_non_defaultable_field_cast-p.bal"
+    ]
+  },
+  {
+    "Id": "T0356",
+    "Name": "closed-record-test-6f9046ad8a/cyclic-record-via-fields-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/cyclic-record-via-fields-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/cyclic-record-via-fields-v.bal"
+    ]
+  },
+  {
+    "Id": "T0361",
+    "Name": "closure-negative-test-a955baa186/closure-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/closure-negative-test-a955baa186/closure-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/closure-negative-test-a955baa186/closure-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0365",
+    "Name": "code-annotation-test-df355339be/code-annotation-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/code-annotation-test-df355339be/code-annotation-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/code-annotation-test-df355339be/code-annotation-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/code-annotation-test-df355339be/code-annotation-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0369",
+    "Name": "common-test-37d14c64be/operand-option-rest-param-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/common-test-37d14c64be/operand-option-rest-param-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/common-test-37d14c64be/operand-option-rest-param-v.bal"
+    ]
+  },
+  {
+    "Id": "T0373",
+    "Name": "compound-assignment-test-dfbd0a78b0/compound-assignment-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/compound-assignment-test-dfbd0a78b0/compound-assignment-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/compound-assignment-test-dfbd0a78b0/compound-assignment-v.bal"
+    ]
+  },
+  {
+    "Id": "T0376",
+    "Name": "constant-assignment-test-2d63b3eb49/constant-assignment-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-assignment-test-2d63b3eb49/constant-assignment-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/constant-assignment-test-2d63b3eb49/constant-assignment-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0379",
+    "Name": "constant-expression-test-2596be1ac5/constant-expression-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-expression-test-2596be1ac5/constant-expression-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/constant-expression-test-2596be1ac5/constant-expression-v.bal"
+    ]
+  },
+  {
+    "Id": "T0383",
+    "Name": "constant-type-test-27d6dffc1c/constant-type-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-type-test-27d6dffc1c/constant-type-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/constant-type-test-27d6dffc1c/constant-type-v.bal"
+    ]
+  },
+  {
+    "Id": "T0393",
+    "Name": "constrained-map-test-60915d9ec9/constrained-map-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/constrained-map-test-60915d9ec9/constrained-map-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/constrained-map-test-60915d9ec9/constrained-map-v.bal"
+    ]
+  },
+  {
+    "Id": "T0399",
+    "Name": "custom-function-test-2824786169/assign-value-to-object-method-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/custom-function-test-2824786169/assign-value-to-object-method-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/custom-function-test-2824786169/assign-value-to-object-method-e.bal"
+    ]
+  },
+  {
+    "Id": "T0409",
+    "Name": "dataflow-analysis-test-00b490139e/uninitialized-semantics-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/uninitialized-semantics-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/uninitialized-semantics-e.bal"
+    ]
+  },
+  {
+    "Id": "T0412",
+    "Name": "deprecation-annotation-negative-test-3198403fd2/deprecation-annotation-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/deprecation-annotation-negative-test-3198403fd2/deprecation-annotation-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/deprecation-annotation-negative-test-3198403fd2/deprecation-annotation-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0415",
+    "Name": "deprecation-annotation-test-5a4ffa9c53/deprecation-annotation-crlf-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/deprecation-annotation-test-5a4ffa9c53/deprecation-annotation-crlf-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/deprecation-annotation-test-5a4ffa9c53/deprecation-annotation-crlf-e.bal"
+    ]
+  },
+  {
+    "Id": "T0419",
+    "Name": "distinct-object-test-d9a03dbe83/distinct-object-assignability-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/distinct-object-test-d9a03dbe83/distinct-object-assignability-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/distinct-object-test-d9a03dbe83/distinct-object-assignability-e.bal"
+    ]
+  },
+  {
+    "Id": "T0423",
+    "Name": "division-operation-test-be1b8193ad/division-operation-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/division-operation-test-be1b8193ad/division-operation-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/division-operation-test-be1b8193ad/division-operation-v.bal"
+    ]
+  },
+  {
+    "Id": "T0427",
+    "Name": "do-stmts-test-54fb85fbab/do-stmt-negative-2-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/do-stmts-test-54fb85fbab/do-stmt-negative-2-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/do-stmts-test-54fb85fbab/do-stmt-negative-2-e.bal"
+    ]
+  },
+  {
+    "Id": "T0431",
+    "Name": "elvis-expression-test-1c927d1f30/elvis-expression-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/elvis-expression-test-1c927d1f30/elvis-expression-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/elvis-expression-test-1c927d1f30/elvis-expression-e.bal"
+    ]
+  },
+  {
+    "Id": "T0436",
+    "Name": "enum-test-f69b0643c8/enums-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enums-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enums-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0440",
+    "Name": "equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-warning-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-warning-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-warning-e.bal"
+    ]
+  },
+  {
+    "Id": "T0446",
+    "Name": "error-constructor-expr-test-5e913979ca/error-constructor-expr-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/error-constructor-expr-test-5e913979ca/error-constructor-expr-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/error-constructor-expr-test-5e913979ca/error-constructor-expr-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/error-constructor-expr-test-5e913979ca/error-constructor-expr-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0449",
+    "Name": "error-destructure-negetive-test-6c1d1c393d/error_destructure_field_binding_negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/error-destructure-negetive-test-6c1d1c393d/error_destructure_field_binding_negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/error-destructure-negetive-test-6c1d1c393d/error_destructure_field_binding_negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0453",
+    "Name": "error-stack-trace-test-7110040e22/stacktrace-elements-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/error-stack-trace-test-7110040e22/stacktrace-elements-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/error-stack-trace-test-7110040e22/stacktrace-elements-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/error-stack-trace-test-7110040e22/stacktrace-elements-v/main.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/error-stack-trace-test-7110040e22/stacktrace-elements-v/modules/stacktrace/stacktrace.bal"
+    ]
+  },
+  {
+    "Id": "T0457",
+    "Name": "error-variable-reference-test-ab01ceefa3/error-binding-pattern-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/error-variable-reference-test-ab01ceefa3/error-binding-pattern-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/error-variable-reference-test-ab01ceefa3/error-binding-pattern-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0460",
+    "Name": "error-variable-reference-test-ab01ceefa3/error-variable-reference-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/error-variable-reference-test-ab01ceefa3/error-variable-reference-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/error-variable-reference-test-ab01ceefa3/error-variable-reference-v.bal"
+    ]
+  },
+  {
+    "Id": "T0463",
+    "Name": "expr-bodied-function-test-d60970291b/expr-bodied-functions-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/expr-bodied-function-test-d60970291b/expr-bodied-functions-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/expr-bodied-function-test-d60970291b/expr-bodied-functions-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0470",
+    "Name": "fail-stmt-test-0645288b01/fail-stmt-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/fail-stmt-test-0645288b01/fail-stmt-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/fail-stmt-test-0645288b01/fail-stmt-v.bal"
+    ]
+  },
+  {
+    "Id": "T0474",
+    "Name": "field-lock-test-031a81a52d/locks-in-object-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/field-lock-test-031a81a52d/locks-in-object-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/field-lock-test-031a81a52d/locks-in-object-v.bal"
+    ]
+  },
+  {
+    "Id": "T0477",
+    "Name": "final-access-test-b8abe5c420/final-local-no-init-var-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-local-no-init-var-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-local-no-init-var-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-local-no-init-var-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0480",
+    "Name": "final-object-field-test-de73e9a2aa/final-object-fields-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/final-object-field-test-de73e9a2aa/final-object-fields-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/final-object-field-test-de73e9a2aa/final-object-fields-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0484",
+    "Name": "finite-type-negative-test-02a1012607/finite-type-labeling-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/finite-type-negative-test-02a1012607/finite-type-labeling-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/finite-type-negative-test-02a1012607/finite-type-labeling-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/finite-type-negative-test-02a1012607/finite-type-labeling-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0487",
+    "Name": "finite-type-test-02d418a48f/finite-type-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/finite-type-test-02d418a48f/finite-type-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/finite-type-test-02d418a48f/finite-type-v.bal"
+    ]
+  },
+  {
+    "Id": "T0492",
+    "Name": "foreach-map-tests-ae9e081fa6/foreach-map-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/foreach-map-tests-ae9e081fa6/foreach-map-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/foreach-map-tests-ae9e081fa6/foreach-map-v.bal"
+    ]
+  },
+  {
+    "Id": "T0495",
+    "Name": "fork-in-function-test-c76a219e5a/fork-within-if-condition-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/fork-in-function-test-c76a219e5a/fork-within-if-condition-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/fork-in-function-test-c76a219e5a/fork-within-if-condition-v.bal"
+    ]
+  },
+  {
+    "Id": "T0498",
+    "Name": "forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e/file01.bal"
+    ]
+  },
+  {
+    "Id": "T0501",
+    "Name": "forward-referencing-global-definition-test-c1122b914e/module-let-expression-cycle-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/module-let-expression-cycle-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/module-let-expression-cycle-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/module-let-expression-cycle-e/file01.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/module-let-expression-cycle-e/file02.bal"
+    ]
+  },
+  {
+    "Id": "T0504",
+    "Name": "forward-referencing-global-definition-test-c1122b914e/record-field-default-cycle-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/record-field-default-cycle-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/record-field-default-cycle-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/record-field-default-cycle-e/file01.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/record-field-default-cycle-e/file02.bal"
+    ]
+  },
+  {
+    "Id": "T0507",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/addition-to-frozen-inner-json-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/addition-to-frozen-inner-json-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/addition-to-frozen-inner-json-p.bal"
+    ]
+  },
+  {
+    "Id": "T0511",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-v.bal"
+    ]
+  },
+  {
+    "Id": "T0514",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-any-array-update-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-any-array-update-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-any-array-update-p.bal"
+    ]
+  },
+  {
+    "Id": "T0517",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-decimal-array-modification-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-decimal-array-modification-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-decimal-array-modification-p.bal"
+    ]
+  },
+  {
+    "Id": "T0520",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-inner-map-clear-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-inner-map-clear-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-inner-map-clear-p.bal"
+    ]
+  },
+  {
+    "Id": "T0523",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-inner-record-update-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-inner-record-update-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-inner-record-update-p.bal"
+    ]
+  },
+  {
+    "Id": "T0526",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-json-modification-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-json-modification-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-json-modification-p.bal"
+    ]
+  },
+  {
+    "Id": "T0529",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-map-update-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-map-update-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-map-update-p.bal"
+    ]
+  },
+  {
+    "Id": "T0532",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-table-addition-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-table-addition-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-table-addition-p.bal"
+    ]
+  },
+  {
+    "Id": "T0535",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-xml-set-children-deep-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-xml-set-children-deep-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/frozen-xml-set-children-deep-p.bal"
+    ]
+  },
+  {
+    "Id": "T0538",
+    "Name": "freeze-and-is-frozen-test-c0f3b0e88b/removal-from-frozen-inner-json-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/removal-from-frozen-inner-json-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/removal-from-frozen-inner-json-p.bal"
+    ]
+  },
+  {
+    "Id": "T0541",
+    "Name": "func-invocation-expr-test-adcfe7c191/function-invocation-expr-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/func-invocation-expr-test-adcfe7c191/function-invocation-expr-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/func-invocation-expr-test-adcfe7c191/function-invocation-expr-v.bal"
+    ]
+  },
+  {
+    "Id": "T0544",
+    "Name": "function-nil-return-test-762593be2f/function-nil-return-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/function-nil-return-test-762593be2f/function-nil-return-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/function-nil-return-test-762593be2f/function-nil-return-v.bal"
+    ]
+  },
+  {
+    "Id": "T0547",
+    "Name": "function-overload-test-133208fdef/invalid-function-overloading-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/function-overload-test-133208fdef/invalid-function-overloading-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/function-overload-test-133208fdef/invalid-function-overloading-e.bal"
+    ]
+  },
+  {
+    "Id": "T0554",
+    "Name": "function-pointers-negative-test-87e21adb7c/fp-type-mismatch1-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-negative-test-87e21adb7c/fp-type-mismatch1-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/function-pointers-negative-test-87e21adb7c/fp-type-mismatch1-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0562",
+    "Name": "function-pointers-test-229c021698/function-pointers-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/function-pointers-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/function-pointers-v.bal"
+    ]
+  },
+  {
+    "Id": "T0569",
+    "Name": "function-pointers-with-rest-args-negative-test-efafc56779/function-pointers-with-rest-args-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-with-rest-args-negative-test-efafc56779/function-pointers-with-rest-args-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/function-pointers-with-rest-args-negative-test-efafc56779/function-pointers-with-rest-args-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0572",
+    "Name": "function-signature-negative-test-2746ef5bfb/different-function-signatures-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/function-signature-negative-test-2746ef5bfb/different-function-signatures-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/function-signature-negative-test-2746ef5bfb/different-function-signatures-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0575",
+    "Name": "function-signature-negative-test-2746ef5bfb/function-with-two-rest-params-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/function-signature-negative-test-2746ef5bfb/function-with-two-rest-params-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/function-signature-negative-test-2746ef5bfb/function-with-two-rest-params-e.bal"
+    ]
+  },
+  {
+    "Id": "T0579",
+    "Name": "function-test-6bfd4d1e14/function-stmt-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/function-test-6bfd4d1e14/function-stmt-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/function-test-6bfd4d1e14/function-stmt-v.bal"
+    ]
+  },
+  {
+    "Id": "T0582",
+    "Name": "functions-and-nil-test-b8a729fc06/functions_with_nil_basics-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/functions-and-nil-test-b8a729fc06/functions_with_nil_basics-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/functions-and-nil-test-b8a729fc06/functions_with_nil_basics-v.bal"
+    ]
+  },
+  {
+    "Id": "T0588",
+    "Name": "functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0592",
+    "Name": "future-negative-tests-7e2663cfde/cases/future_strand-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/future-negative-tests-7e2663cfde/cases/future_strand-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/future-negative-tests-7e2663cfde/cases/future_strand-v.bal"
+    ]
+  },
+  {
+    "Id": "T0595",
+    "Name": "global-query-test-49deff6295/global-query-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/global-query-test-49deff6295/global-query-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/global-query-test-49deff6295/global-query-e.bal"
+    ]
+  },
+  {
+    "Id": "T0603",
+    "Name": "global-var-function-with-pkg-test-24ccb66686/project1-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project1-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project1-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project1-v/main.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project1-v/modules/variable/variable-def.bal"
+    ]
+  },
+  {
+    "Id": "T0607",
+    "Name": "global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-03-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-03-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-03-e.bal"
+    ]
+  },
+  {
+    "Id": "T0610",
+    "Name": "global-var-negative-test-2de21d931c/global-variable-init-with-invocation-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-negative-test-2de21d931c/global-variable-init-with-invocation-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/global-var-negative-test-2de21d931c/global-variable-init-with-invocation-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0614",
+    "Name": "global-var-test-297b184697/global_variable_init-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/global_variable_init-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/global_variable_init-v.bal"
+    ]
+  },
+  {
+    "Id": "T0621",
+    "Name": "group-by-clause-test-38c059a6f0/group-by-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/group-by-clause-test-38c059a6f0/group-by-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/group-by-clause-test-38c059a6f0/group-by-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0626",
+    "Name": "identifier-literal-test-7d241978d7/identifier-literal-undefined-variable-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-test-7d241978d7/identifier-literal-undefined-variable-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-test-7d241978d7/identifier-literal-undefined-variable-e.bal"
+    ]
+  },
+  {
+    "Id": "T0633",
+    "Name": "identifier-test-a7ab8ef694/error_as_identifier_negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-test-a7ab8ef694/error_as_identifier_negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/identifier-test-a7ab8ef694/error_as_identifier_negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0636",
+    "Name": "identifier-test-a7ab8ef694/underscore_as_unquoted_identifier_negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-test-a7ab8ef694/underscore_as_unquoted_identifier_negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/identifier-test-a7ab8ef694/underscore_as_unquoted_identifier_negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0640",
+    "Name": "imports-negative-tests-a5adab46df/invalid-auto-imports-project-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/imports-negative-tests-a5adab46df/invalid-auto-imports-project-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/imports-negative-tests-a5adab46df/invalid-auto-imports-project-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/imports-negative-tests-a5adab46df/invalid-auto-imports-project-e/invalid-auto-imports-negative-2.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/imports-negative-tests-a5adab46df/invalid-auto-imports-project-e/invalid-auto-imports-negative.bal"
+    ]
+  },
+  {
+    "Id": "T0648",
+    "Name": "inner-query-test-63f3c0e826/inner-queries-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/inner-query-test-63f3c0e826/inner-queries-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/inner-query-test-63f3c0e826/inner-queries-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0655",
+    "Name": "integer-range-operator-test-d441b901c6/integer-range-operators-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/integer-range-operator-test-d441b901c6/integer-range-operators-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/integer-range-operator-test-d441b901c6/integer-range-operators-v.bal"
+    ]
+  },
+  {
+    "Id": "T0661",
+    "Name": "intersection-type-test-48ac088d43/readonly-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/readonly-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/readonly-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0664",
+    "Name": "isolated-object-test-4801b67a5e/isolated-objects-isolation-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/isolated-object-test-4801b67a5e/isolated-objects-isolation-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/isolated-object-test-4801b67a5e/isolated-objects-isolation-e.bal"
+    ]
+  },
+  {
+    "Id": "T0668",
+    "Name": "isolated-variable-test-68724717b2/isolated-variables-isolation-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/isolated-variable-test-68724717b2/isolated-variables-isolation-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/isolated-variable-test-68724717b2/isolated-variables-isolation-e.bal"
+    ]
+  },
+  {
+    "Id": "T0673",
+    "Name": "isolated-worker-test-8e649817ff/isolated-named-worker-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/isolated-worker-test-8e649817ff/isolated-named-worker-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/isolated-worker-test-8e649817ff/isolated-named-worker-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0678",
+    "Name": "isolation-analysis-test-71231d7fc4/analysis-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/isolation-analysis-test-71231d7fc4/analysis-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/isolation-analysis-test-71231d7fc4/analysis-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0684",
+    "Name": "isolation-analysis-test-71231d7fc4/record-field-default-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/isolation-analysis-test-71231d7fc4/record-field-default-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/isolation-analysis-test-71231d7fc4/record-field-default-e.bal"
+    ]
+  },
+  {
+    "Id": "T0687",
+    "Name": "iterable-arrow-expr-test-93e224d1ac/iterable-arrow-expr-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/iterable-arrow-expr-test-93e224d1ac/iterable-arrow-expr-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/iterable-arrow-expr-test-93e224d1ac/iterable-arrow-expr-v.bal"
+    ]
+  },
+  {
+    "Id": "T0690",
+    "Name": "iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-e.bal"
+    ]
+  },
+  {
+    "Id": "T0697",
+    "Name": "join-clause-test-146822e765/join-clause-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/join-clause-test-146822e765/join-clause-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/join-clause-test-146822e765/join-clause-v.bal"
+    ]
+  },
+  {
+    "Id": "T0700",
+    "Name": "jsontest-d8d6aef1f4/nullable-json-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/jsontest-d8d6aef1f4/nullable-json-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/jsontest-d8d6aef1f4/nullable-json-v.bal"
+    ]
+  },
+  {
+    "Id": "T0703",
+    "Name": "length-of-operator-test-40bf142c3a/length-of-operator-negative-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-negative-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-negative-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-negative-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0708",
+    "Name": "let-expression-test-6fab6108d2/let-expression-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/let-expression-test-6fab6108d2/let-expression-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/let-expression-test-6fab6108d2/let-expression-v.bal"
+    ]
+  },
+  {
+    "Id": "T0711",
+    "Name": "limit-clause-test-2ffd7e8897/limit-clause-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/limit-clause-test-2ffd7e8897/limit-clause-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/limit-clause-test-2ffd7e8897/limit-clause-v.bal"
+    ]
+  },
+  {
+    "Id": "T0716",
+    "Name": "list-constant-negative-test-9d4e6d6a8a/list_constant_negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/list-constant-negative-test-9d4e6d6a8a/list_constant_negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/list-constant-negative-test-9d4e6d6a8a/list_constant_negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0721",
+    "Name": "list-constructor-spread-operator-test-ae223889d2/inference-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/list-constructor-spread-operator-test-ae223889d2/inference-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/list-constructor-spread-operator-test-ae223889d2/inference-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0724",
+    "Name": "list-constructor-spread-operator-test-ae223889d2/spread-operator-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/list-constructor-spread-operator-test-ae223889d2/spread-operator-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/list-constructor-spread-operator-test-ae223889d2/spread-operator-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0734",
+    "Name": "locks-with-on-fail-test-044696e74b/locks-with-on-fail-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/locks-with-on-fail-test-044696e74b/locks-with-on-fail-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/locks-with-on-fail-test-044696e74b/locks-with-on-fail-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0740",
+    "Name": "lvalue-test-e2785cbb54/frozen-value-update-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/frozen-value-update-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/frozen-value-update-p.bal"
+    ]
+  },
+  {
+    "Id": "T0747",
+    "Name": "lvalue-test-e2785cbb54/lvalue-semantics-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/lvalue-semantics-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/lvalue-semantics-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0751",
+    "Name": "main-functions-test-f228557f7d/error-or-nil-returning-custom-error-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/error-or-nil-returning-custom-error-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/error-or-nil-returning-custom-error-p.bal"
+    ]
+  },
+  {
+    "Id": "T0755",
+    "Name": "main-functions-test-f228557f7d/main-with-stack-overflow-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/main-with-stack-overflow-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/main-with-stack-overflow-p.bal"
+    ]
+  },
+  {
+    "Id": "T0761",
+    "Name": "map-access-expr-test-6a04afad0c/map-access-semantics-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-semantics-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-semantics-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-semantics-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T0767",
+    "Name": "map-constant-negative-test-0be5e94915/map-constant-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/map-constant-negative-test-0be5e94915/map-constant-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/map-constant-negative-test-0be5e94915/map-constant-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0814",
+    "Name": "map-initializer-expr-test-3c385ec88b/map-initializer-expr-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-test-3c385ec88b/map-initializer-expr-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-test-3c385ec88b/map-initializer-expr-v.bal"
+    ]
+  },
+  {
+    "Id": "T0823",
+    "Name": "map-to-record-assignability-test-c5ae90a3ca/subtyping-key-not-found-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/subtyping-key-not-found-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/subtyping-key-not-found-p.bal"
+    ]
+  },
+  {
+    "Id": "T0828",
+    "Name": "mapping-constructor-expr-test-833706cb84/mapping-constructor-duplicate-fields-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/mapping-constructor-duplicate-fields-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/mapping-constructor-duplicate-fields-e.bal"
+    ]
+  },
+  {
+    "Id": "T0834",
+    "Name": "mapping-constructor-expr-test-833706cb84/readonly-field-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/readonly-field-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/readonly-field-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0837",
+    "Name": "mapping-constructor-expr-test-833706cb84/spread-op-field-constant-analysis-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/spread-op-field-constant-analysis-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/spread-op-field-constant-analysis-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0841",
+    "Name": "mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal"
+    ]
+  },
+  {
+    "Id": "T0847",
+    "Name": "match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0850",
+    "Name": "match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-unreachable-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-unreachable-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-unreachable-e.bal"
+    ]
+  },
+  {
+    "Id": "T0853",
+    "Name": "match-statement-static-patterns-test-4828836871/static-match-patterns-unmatched-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-statement-static-patterns-test-4828836871/static-match-patterns-unmatched-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-statement-static-patterns-test-4828836871/static-match-patterns-unmatched-e.bal"
+    ]
+  },
+  {
+    "Id": "T0856",
+    "Name": "match-statement-syntax-errors-test-3752146106/match-stmt-syntax-errors-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-statement-syntax-errors-test-3752146106/match-stmt-syntax-errors-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-statement-syntax-errors-test-3752146106/match-stmt-syntax-errors-e.bal"
+    ]
+  },
+  {
+    "Id": "T0860",
+    "Name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0863",
+    "Name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v/main.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v/modules/module1/module1.bal"
+    ]
+  },
+  {
+    "Id": "T0868",
+    "Name": "match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-semantic-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-semantic-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-semantic-e.bal"
+    ]
+  },
+  {
+    "Id": "T0875",
+    "Name": "match-stmt-type-narrowing-test-2f777af370/match-stmt-type-narrow-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-type-narrowing-test-2f777af370/match-stmt-type-narrow-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-stmt-type-narrowing-test-2f777af370/match-stmt-type-narrow-v.bal"
+    ]
+  },
+  {
+    "Id": "T0878",
+    "Name": "match-structured-patterns-test-076cef5d9b/structured-match-patterns-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-structured-patterns-test-076cef5d9b/structured-match-patterns-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-structured-patterns-test-076cef5d9b/structured-match-patterns-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0881",
+    "Name": "match-structured-patterns-test-076cef5d9b/structured-match-patterns-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/match-structured-patterns-test-076cef5d9b/structured-match-patterns-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/match-structured-patterns-test-076cef5d9b/structured-match-patterns-v.bal"
+    ]
+  },
+  {
+    "Id": "T0887",
+    "Name": "member-access-test-10fc9644e0/member-access-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/member-access-test-10fc9644e0/member-access-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/member-access-test-10fc9644e0/member-access-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0903",
+    "Name": "mod-operation-test-bd4a47c2f4/mod-zero-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-zero-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-zero-p.bal"
+    ]
+  },
+  {
+    "Id": "T0908",
+    "Name": "module-listener-decl-test-9b9489d763/imported-module-listeners-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v/main.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v/modules/module1/module1.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v/modules/module2/module2.bal"
+    ]
+  },
+  {
+    "Id": "T0914",
+    "Name": "module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-annotation-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-annotation-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-annotation-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0919",
+    "Name": "module-tuple-variable-test-4b19fdd529/module-tuple-variable-annotation-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/module-tuple-variable-test-4b19fdd529/module-tuple-variable-annotation-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/module-tuple-variable-test-4b19fdd529/module-tuple-variable-annotation-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0924",
+    "Name": "multiple-from-clause-test-c70b0738f9/multiple-from-clauses-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/multiple-from-clause-test-c70b0738f9/multiple-from-clauses-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/multiple-from-clause-test-c70b0738f9/multiple-from-clauses-v.bal"
+    ]
+  },
+  {
+    "Id": "T0927",
+    "Name": "multiple-let-clause-test-b6bd5c9fd6/multiple-let-clauses-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/multiple-let-clause-test-b6bd5c9fd6/multiple-let-clauses-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/multiple-let-clause-test-b6bd5c9fd6/multiple-let-clauses-v.bal"
+    ]
+  },
+  {
+    "Id": "T0930",
+    "Name": "multiple-where-clause-test-4d076677b8/multiple-where-clauses-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/multiple-where-clause-test-4d076677b8/multiple-where-clauses-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/multiple-where-clause-test-4d076677b8/multiple-where-clauses-v.bal"
+    ]
+  },
+  {
+    "Id": "T0933",
+    "Name": "multiply-operation-test-50bdc62cff/multiply-operation-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/multiply-operation-test-50bdc62cff/multiply-operation-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/multiply-operation-test-50bdc62cff/multiply-operation-p.bal"
+    ]
+  },
+  {
+    "Id": "T0936",
+    "Name": "native-conversion-negative-test-c94381ac56/native-conversion-compile-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-negative-test-c94381ac56/native-conversion-compile-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-negative-test-c94381ac56/native-conversion-compile-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T0939",
+    "Name": "native-conversion-test-4a94bbda4e/json-array-to-struct-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/json-array-to-struct-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/json-array-to-struct-p.bal"
+    ]
+  },
+  {
+    "Id": "T0942",
+    "Name": "native-conversion-test-4a94bbda4e/json-incompatible-struct-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/json-incompatible-struct-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/json-incompatible-struct-p.bal"
+    ]
+  },
+  {
+    "Id": "T0945",
+    "Name": "native-conversion-test-4a94bbda4e/json-missing-required-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/json-missing-required-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/json-missing-required-p.bal"
+    ]
+  },
+  {
+    "Id": "T0949",
+    "Name": "native-conversion-test-4a94bbda4e/native-conversion-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-v/Dependencies.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/native-conversion-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T0952",
+    "Name": "native-conversion-test-4a94bbda4e/null-json-to-array-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/null-json-to-array-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/null-json-to-array-p.bal"
+    ]
+  },
+  {
+    "Id": "T0955",
+    "Name": "native-conversion-test-4a94bbda4e/struct-incompatible-info2-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/struct-incompatible-info2-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/struct-incompatible-info2-p.bal"
+    ]
+  },
+  {
+    "Id": "T0958",
+    "Name": "negative-type-test-expr-test-ef0a2e24d5/negative-type-test-expr-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/negative-type-test-expr-test-ef0a2e24d5/negative-type-test-expr-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/negative-type-test-expr-test-ef0a2e24d5/negative-type-test-expr-v.bal"
+    ]
+  },
+  {
+    "Id": "T1004",
+    "Name": "never-type-test-35205a329e/never-code-analysis-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-code-analysis-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-code-analysis-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1008",
+    "Name": "never-type-test-35205a329e/never-type-is-expr-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-type-is-expr-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-type-is-expr-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1012",
+    "Name": "not-so-basic-worker-test-0fe9cb09ab/void-workers-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/not-so-basic-worker-test-0fe9cb09ab/void-workers-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/not-so-basic-worker-test-0fe9cb09ab/void-workers-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/not-so-basic-worker-test-0fe9cb09ab/void-workers-v/void_workers.bal"
+    ]
+  },
+  {
+    "Id": "T1016",
+    "Name": "nullable-type-test-a38c1ec2a3/nilable-types-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/nullable-type-test-a38c1ec2a3/nilable-types-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/nullable-type-test-a38c1ec2a3/nilable-types-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1019",
+    "Name": "numeric-conversion-test-6b3e1e5e00/infinite-float-as-int-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/infinite-float-as-int-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/infinite-float-as-int-p.bal"
+    ]
+  },
+  {
+    "Id": "T1022",
+    "Name": "numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-256-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-256-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-256-p.bal"
+    ]
+  },
+  {
+    "Id": "T1025",
+    "Name": "numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-negative-255-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-negative-255-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-negative-255-p.bal"
+    ]
+  },
+  {
+    "Id": "T1028",
+    "Name": "numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-union-negative-1-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-union-negative-1-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-union-negative-1-p.bal"
+    ]
+  },
+  {
+    "Id": "T1031",
+    "Name": "numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-3055-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-3055-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-3055-p.bal"
+    ]
+  },
+  {
+    "Id": "T1034",
+    "Name": "numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-union-256-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-union-256-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-union-256-p.bal"
+    ]
+  },
+  {
+    "Id": "T1037",
+    "Name": "numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-union-negative-255-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-union-negative-255-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-union-negative-255-p.bal"
+    ]
+  },
+  {
+    "Id": "T1040",
+    "Name": "numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-negative-1-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-negative-1-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-negative-1-p.bal"
+    ]
+  },
+  {
+    "Id": "T1043",
+    "Name": "numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-union-3055-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-union-3055-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-union-3055-p.bal"
+    ]
+  },
+  {
+    "Id": "T1046",
+    "Name": "numeric-conversion-test-6b3e1e5e00/nan-float-as-byte-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/nan-float-as-byte-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/nan-float-as-byte-p.bal"
+    ]
+  },
+  {
+    "Id": "T1049",
+    "Name": "numeric-conversion-test-6b3e1e5e00/nan-float-union-as-int-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/nan-float-union-as-int-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/nan-float-union-as-int-p.bal"
+    ]
+  },
+  {
+    "Id": "T1053",
+    "Name": "numeric-conversion-test-6b3e1e5e00/out-of-range-negative-decimal-union-as-int-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/out-of-range-negative-decimal-union-as-int-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/out-of-range-negative-decimal-union-as-int-p.bal"
+    ]
+  },
+  {
+    "Id": "T1056",
+    "Name": "numeric-conversion-test-6b3e1e5e00/out-of-range-positive-decimal-as-int-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/out-of-range-positive-decimal-as-int-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/out-of-range-positive-decimal-as-int-p.bal"
+    ]
+  },
+  {
+    "Id": "T1059",
+    "Name": "numeric-conversion-test-6b3e1e5e00/out-of-range-positive-float-union-as-int-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/out-of-range-positive-float-union-as-int-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/out-of-range-positive-float-union-as-int-p.bal"
+    ]
+  },
+  {
+    "Id": "T1066",
+    "Name": "object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p/main.bal"
+    ]
+  },
+  {
+    "Id": "T1069",
+    "Name": "object-field-function-pointer-invocation-test-5833b5a158/object-field-function-pointer-invocation-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-field-function-pointer-invocation-test-5833b5a158/object-field-function-pointer-invocation-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-field-function-pointer-invocation-test-5833b5a158/object-field-function-pointer-invocation-v.bal"
+    ]
+  },
+  {
+    "Id": "T1073",
+    "Name": "object-functions-with-defaultable-arguments-83211a89c0/default-parameter-diagnostics-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-functions-with-defaultable-arguments-83211a89c0/default-parameter-diagnostics-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-functions-with-defaultable-arguments-83211a89c0/default-parameter-diagnostics-e.bal"
+    ]
+  },
+  {
+    "Id": "T1076",
+    "Name": "object-initializer-test-9aa531bbdf/object-initializer-negative-project-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-initializer-test-9aa531bbdf/object-initializer-negative-project-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-initializer-test-9aa531bbdf/object-initializer-negative-project-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/object-initializer-test-9aa531bbdf/object-initializer-negative-project-e/main.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/object-initializer-test-9aa531bbdf/object-initializer-negative-project-e/modules/initializers/init.bal"
+    ]
+  },
+  {
+    "Id": "T1080",
+    "Name": "object-subtyping-test-6d097e853f/object-subtype-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtype-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtype-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1085",
+    "Name": "object-type-reference-test-19fd51d776/object-inclusion-with-private-members-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-inclusion-with-private-members-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-inclusion-with-private-members-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1090",
+    "Name": "object-type-reference-test-19fd51d776/object-type-reference-1-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-type-reference-1-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-type-reference-1-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1093",
+    "Name": "object-type-reference-test-19fd51d776/object-type-reference-2-semantics-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-type-reference-2-semantics-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-type-reference-2-semantics-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1096",
+    "Name": "object-with-function-invocation-using-self-keyword-3ef2bbabcc/object-self-function-invocation-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-with-function-invocation-using-self-keyword-3ef2bbabcc/object-self-function-invocation-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-with-function-invocation-using-self-keyword-3ef2bbabcc/object-self-function-invocation-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1099",
+    "Name": "object-with-private-fields-negative-test-2196e80b05/private-object-access1-semantics-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-semantics-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-semantics-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-semantics-e/modules/org_foo_baz_sn/private-fields-semantics-negative-01.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-semantics-e/modules/org_foo_baz_sn/private-fields-semantics-negative-02.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-semantics-e/private-fields-semantics-negative1.bal"
+    ]
+  },
+  {
+    "Id": "T1102",
+    "Name": "object-with-private-fields-negative-test-2196e80b05/runtime-object-equivalence-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/runtime-object-equivalence-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/runtime-object-equivalence-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/runtime-object-equivalence-v/modules/org_foo/private-fields.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/runtime-object-equivalence-v/object-private-fields-01-negative.bal"
+    ]
+  },
+  {
+    "Id": "T1114",
+    "Name": "open-record-iteration-test-4a36ef124f/open-record-iteration-chain-terminal-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-iteration-test-4a36ef124f/open-record-iteration-chain-terminal-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/open-record-iteration-test-4a36ef124f/open-record-iteration-chain-terminal-v.bal"
+    ]
+  },
+  {
+    "Id": "T1117",
+    "Name": "open-record-iteration-test-4a36ef124f/open-record-iteration-map-terminal-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-iteration-test-4a36ef124f/open-record-iteration-map-terminal-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/open-record-iteration-test-4a36ef124f/open-record-iteration-map-terminal-v.bal"
+    ]
+  },
+  {
+    "Id": "T1122",
+    "Name": "open-record-negative-test-5c62171999/open-record-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-negative-test-5c62171999/open-record-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/open-record-negative-test-5c62171999/open-record-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1128",
+    "Name": "open-record-optional-fields-test-44a9434c47/open_record_optional_fields-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-optional-fields-test-44a9434c47/open_record_optional_fields-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/open-record-optional-fields-test-44a9434c47/open_record_optional_fields-v.bal"
+    ]
+  },
+  {
+    "Id": "T1131",
+    "Name": "open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field3-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field3-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field3-p.bal"
+    ]
+  },
+  {
+    "Id": "T1136",
+    "Name": "open-record-test-d43d4bfeae/open-record-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/open-record-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/open-record-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/open-record-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T1144",
+    "Name": "operand-compilation-test-fbca3afc7e/successful-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-compilation-test-fbca3afc7e/successful-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/operand-compilation-test-fbca3afc7e/successful-v.bal"
+    ]
+  },
+  {
+    "Id": "T1147",
+    "Name": "operand-test-0e6612016b/operand_int_and_default_explicit-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operand_int_and_default_explicit-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operand_int_and_default_explicit-v.bal"
+    ]
+  },
+  {
+    "Id": "T1153",
+    "Name": "operand-test-0e6612016b/option_defaultable_optional_with_arg-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/option_defaultable_optional_with_arg-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/option_defaultable_optional_with_arg-v.bal"
+    ]
+  },
+  {
+    "Id": "T1157",
+    "Name": "option-test-1b0c555df9/boolean_array_option_false_value-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/boolean_array_option_false_value-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/boolean_array_option_false_value-p.bal"
+    ]
+  },
+  {
+    "Id": "T1160",
+    "Name": "option-test-1b0c555df9/decimal_option_invalid_value-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/decimal_option_invalid_value-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/decimal_option_invalid_value-p.bal"
+    ]
+  },
+  {
+    "Id": "T1163",
+    "Name": "option-test-1b0c555df9/integer_option_invalid_value-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/integer_option_invalid_value-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/integer_option_invalid_value-p.bal"
+    ]
+  },
+  {
+    "Id": "T1166",
+    "Name": "option-test-1b0c555df9/missing_option_value_before_another_option-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/missing_option_value_before_another_option-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/missing_option_value_before_another_option-p.bal"
+    ]
+  },
+  {
+    "Id": "T1169",
+    "Name": "option-test-1b0c555df9/option_all_spaced-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_all_spaced-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_all_spaced-v.bal"
+    ]
+  },
+  {
+    "Id": "T1172",
+    "Name": "option-test-1b0c555df9/option_with_array_type_equals_many-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_array_type_equals_many-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_array_type_equals_many-v.bal"
+    ]
+  },
+  {
+    "Id": "T1175",
+    "Name": "option-test-1b0c555df9/option_with_array_type_spaced_one-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_array_type_spaced_one-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_array_type_spaced_one-v.bal"
+    ]
+  },
+  {
+    "Id": "T1178",
+    "Name": "option-test-1b0c555df9/option_with_boolean_array_one-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_boolean_array_one-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_boolean_array_one-v.bal"
+    ]
+  },
+  {
+    "Id": "T1181",
+    "Name": "option-test-1b0c555df9/option_with_types_equals-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_types_equals-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_types_equals-v.bal"
+    ]
+  },
+  {
+    "Id": "T1184",
+    "Name": "option-test-1b0c555df9/repeated_option_equals-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/repeated_option_equals-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/repeated_option_equals-p.bal"
+    ]
+  },
+  {
+    "Id": "T1187",
+    "Name": "optional-field-access-test-22573a3d33/optional-field-access-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/optional-field-access-test-22573a3d33/optional-field-access-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/optional-field-access-test-22573a3d33/optional-field-access-e.bal"
+    ]
+  },
+  {
+    "Id": "T1190",
+    "Name": "order-by-clause-test-835e510187/order-by-clause-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/order-by-clause-test-835e510187/order-by-clause-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/order-by-clause-test-835e510187/order-by-clause-v.bal"
+    ]
+  },
+  {
+    "Id": "T1194",
+    "Name": "package-import-test-60d02fba3a/imports-per-file-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/imports-per-file-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/imports-per-file-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/imports-per-file-e/file-negative1.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/imports-per-file-e/file-negative2.bal"
+    ]
+  },
+  {
+    "Id": "T1198",
+    "Name": "package-init-invocation-test-9c9e700b75/package-init-invocation-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v/main.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v/modules/expressions.invocations.pkg.a/pa.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v/modules/expressions.invocations.pkg.b/pb.bal"
+    ]
+  },
+  {
+    "Id": "T1201",
+    "Name": "parallelism-test-f4e9b129d1/parallelism-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/parallelism-test-f4e9b129d1/parallelism-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/parallelism-test-f4e9b129d1/parallelism-v.bal"
+    ]
+  },
+  {
+    "Id": "T1208",
+    "Name": "query-action-or-expr-test-cc451d1303/query-action-or-expr-semantic-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/query-action-or-expr-test-cc451d1303/query-action-or-expr-semantic-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/query-action-or-expr-test-cc451d1303/query-action-or-expr-semantic-e.bal"
+    ]
+  },
+  {
+    "Id": "T1215",
+    "Name": "query-expr-with-query-construct-type-test-397e030880/query-expr-with-query-construct-type-update-key-2-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/query-expr-with-query-construct-type-test-397e030880/query-expr-with-query-construct-type-update-key-2-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/query-expr-with-query-construct-type-test-397e030880/query-expr-with-query-construct-type-update-key-2-p.bal"
+    ]
+  },
+  {
+    "Id": "T1218",
+    "Name": "query-expression-iterable-object-test-a42b42138e/query-expression-iterable-object-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/query-expression-iterable-object-test-a42b42138e/query-expression-iterable-object-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/query-expression-iterable-object-test-a42b42138e/query-expression-iterable-object-v.bal"
+    ]
+  },
+  {
+    "Id": "T1221",
+    "Name": "query-negative-tests-39b4ca8ff2/query-action-with-final-clause-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/query-negative-tests-39b4ca8ff2/query-action-with-final-clause-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/query-negative-tests-39b4ca8ff2/query-action-with-final-clause-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1224",
+    "Name": "query-negative-tests-39b4ca8ff2/query-empty-tuple-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/query-negative-tests-39b4ca8ff2/query-empty-tuple-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/query-negative-tests-39b4ca8ff2/query-empty-tuple-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1227",
+    "Name": "query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1230",
+    "Name": "query-type-narrowing-test-74c51d5294/query-type-narrowing-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/query-type-narrowing-test-74c51d5294/query-type-narrowing-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/query-type-narrowing-test-74c51d5294/query-type-narrowing-v.bal"
+    ]
+  },
+  {
+    "Id": "T1237",
+    "Name": "reachability-analysis-test-a8532630b8/reachability-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/reachability-analysis-test-a8532630b8/reachability-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/reachability-analysis-test-a8532630b8/reachability-v.bal"
+    ]
+  },
+  {
+    "Id": "T1241",
+    "Name": "read-only-object-bala-test-38fd1e4394/readonly-object-initialization-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-object-initialization-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-object-initialization-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-object-initialization-e/main.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-objects-provider-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-objects-provider-v/constructs.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-objects-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-objects-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T1245",
+    "Name": "readonly-object-test-9dae9381ef/readonly-objects-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/readonly-object-test-9dae9381ef/readonly-objects-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/readonly-object-test-9dae9381ef/readonly-objects-v.bal"
+    ]
+  },
+  {
+    "Id": "T1251",
+    "Name": "record-assignability-test-a5cb3cb04b/record-assignability-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-assignability-test-a5cb3cb04b/record-assignability-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-assignability-test-a5cb3cb04b/record-assignability-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1254",
+    "Name": "record-constraint-table-test-5308103ca6/record-constraint-table-test-5308103ca6-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-constraint-table-test-5308103ca6/record-constraint-table-test-5308103ca6-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-constraint-table-test-5308103ca6/record-constraint-table-test-5308103ca6-v.bal"
+    ]
+  },
+  {
+    "Id": "T1258",
+    "Name": "record-def-negative-test-2a404858e4/record-destructure-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-def-negative-test-2a404858e4/record-destructure-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-def-negative-test-2a404858e4/record-destructure-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1261",
+    "Name": "record-fields-access-negative-test-bbfa6baecd/record-project-access-1-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-1-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-1-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-1-e/modules/org.foo.baz/baz1.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-1-e/modules/org.foo.baz/baz2.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/record-fields-access-negative-test-bbfa6baecd/record-project-access-1-e/record_fields_negative1.bal"
+    ]
+  },
+  {
+    "Id": "T1266",
+    "Name": "record-to-jsontest-a7c9a96935/record-to-json-closed-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-to-jsontest-a7c9a96935/record-to-json-closed-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-to-jsontest-a7c9a96935/record-to-json-closed-p.bal"
+    ]
+  },
+  {
+    "Id": "T1271",
+    "Name": "record-value-test-1a630496b4/record-clear-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-value-test-1a630496b4/record-clear-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-value-test-1a630496b4/record-clear-p.bal"
+    ]
+  },
+  {
+    "Id": "T1275",
+    "Name": "record-variable-definition-test-0c506ca119/record-variable-definition-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-variable-definition-test-0c506ca119/record-variable-definition-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-variable-definition-test-0c506ca119/record-variable-definition-v.bal"
+    ]
+  },
+  {
+    "Id": "T1278",
+    "Name": "record-variable-reference-test-d23ea5efdc/record-variable-reference-assignment-to-final-var-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-variable-reference-test-d23ea5efdc/record-variable-reference-assignment-to-final-var-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-variable-reference-test-d23ea5efdc/record-variable-reference-assignment-to-final-var-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1281",
+    "Name": "record-variable-reference-test-d23ea5efdc/record-variable-reference-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/record-variable-reference-test-d23ea5efdc/record-variable-reference-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/record-variable-reference-test-d23ea5efdc/record-variable-reference-v.bal"
+    ]
+  },
+  {
+    "Id": "T1285",
+    "Name": "ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-v.bal"
+    ]
+  },
+  {
+    "Id": "T1289",
+    "Name": "reg-exp-value-test-30e03bfeee/regexp-value-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/reg-exp-value-test-30e03bfeee/regexp-value-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/reg-exp-value-test-30e03bfeee/regexp-value-v.bal"
+    ]
+  },
+  {
+    "Id": "T1294",
+    "Name": "retry-stmt-test-5faabda7b4/retry-statement-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-test-5faabda7b4/retry-statement-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-test-5faabda7b4/retry-statement-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1298",
+    "Name": "retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T1311",
+    "Name": "return-stmt-negative-test-c1f15d4b97/not-enough-args-to-return-3-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/return-stmt-negative-test-c1f15d4b97/not-enough-args-to-return-3-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/return-stmt-negative-test-c1f15d4b97/not-enough-args-to-return-3-e.bal"
+    ]
+  },
+  {
+    "Id": "T1323",
+    "Name": "return-stmt-test-af437eb847/return-stmt-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/return-stmt-test-af437eb847/return-stmt-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/return-stmt-test-af437eb847/return-stmt-v.bal"
+    ]
+  },
+  {
+    "Id": "T1329",
+    "Name": "sealed-array-test-916de22362/sealed-array-invalid-index-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-invalid-index-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-invalid-index-p.bal"
+    ]
+  },
+  {
+    "Id": "T1336",
+    "Name": "sealed-array-test-916de22362/sealed-array-semantics-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-semantics-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-semantics-e.bal"
+    ]
+  },
+  {
+    "Id": "T1339",
+    "Name": "sealed-arrays-of-arrays-test-51b52f77c7/negative-sealed-arrays-of-arrays-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/sealed-arrays-of-arrays-test-51b52f77c7/negative-sealed-arrays-of-arrays-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/sealed-arrays-of-arrays-test-51b52f77c7/negative-sealed-arrays-of-arrays-e.bal"
+    ]
+  },
+  {
+    "Id": "T1342",
+    "Name": "selectively-immutable-type-test-08053ceb2e/immutable-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/selectively-immutable-type-test-08053ceb2e/immutable-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/selectively-immutable-type-test-08053ceb2e/immutable-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1347",
+    "Name": "shadowing-test-c0d314524b/shadowing-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/shadowing-test-c0d314524b/shadowing-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/shadowing-test-c0d314524b/shadowing-v.bal"
+    ]
+  },
+  {
+    "Id": "T1350",
+    "Name": "simple-type-cast-expr-test-95b0683c3a/simple-type-cast-expr-test-95b0683c3a-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/simple-type-cast-expr-test-95b0683c3a/simple-type-cast-expr-test-95b0683c3a-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/simple-type-cast-expr-test-95b0683c3a/simple-type-cast-expr-test-95b0683c3a-v.bal"
+    ]
+  },
+  {
+    "Id": "T1365",
+    "Name": "string-test-618b121b6c/string-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/string-test-618b121b6c/string-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/string-test-618b121b6c/string-v.bal"
+    ]
+  },
+  {
+    "Id": "T1370",
+    "Name": "string-value-xml-test-f2ac2e01f3/string-value-xml-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/string-value-xml-test-f2ac2e01f3/string-value-xml-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/string-value-xml-test-f2ac2e01f3/string-value-xml-v.bal"
+    ]
+  },
+  {
+    "Id": "T1388",
+    "Name": "struct-negative-test-2ccd0a79e0/struct-constants-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/struct-constants-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/struct-constants-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/struct-constants-e/struct-constants.bal"
+    ]
+  },
+  {
+    "Id": "T1392",
+    "Name": "struct-test-5119d420d4/struct-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-test-5119d420d4/struct-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/struct-test-5119d420d4/struct-v.bal"
+    ]
+  },
+  {
+    "Id": "T1397",
+    "Name": "table-cast-test-10e69b67ad/table-cast-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/table-cast-test-10e69b67ad/table-cast-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/table-cast-test-10e69b67ad/table-cast-e.bal"
+    ]
+  },
+  {
+    "Id": "T1400",
+    "Name": "table-key-field-value-test-2f8ad88b2d/table-key-field-value-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/table-key-field-value-test-2f8ad88b2d/table-key-field-value-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/table-key-field-value-test-2f8ad88b2d/table-key-field-value-v.bal"
+    ]
+  },
+  {
+    "Id": "T1403",
+    "Name": "table-negative-test-f923667200/table-value-any-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/table-negative-test-f923667200/table-value-any-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/table-negative-test-f923667200/table-value-any-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1407",
+    "Name": "table-with-record-key-specifier-test-df7e983faa/table-with-record-key-specifier-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/table-with-record-key-specifier-test-df7e983faa/table-with-record-key-specifier-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/table-with-record-key-specifier-test-df7e983faa/table-with-record-key-specifier-v.bal"
+    ]
+  },
+  {
+    "Id": "T1410",
+    "Name": "tables-as-func-args-53418aff8c/tables-as-func-args-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tables-as-func-args-53418aff8c/tables-as-func-args-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tables-as-func-args-53418aff8c/tables-as-func-args-v.bal"
+    ]
+  },
+  {
+    "Id": "T1413",
+    "Name": "ternary-expression-test-915619b7bf/ternary-type-narrow-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/ternary-expression-test-915619b7bf/ternary-type-narrow-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/ternary-expression-test-915619b7bf/ternary-type-narrow-e.bal"
+    ]
+  },
+  {
+    "Id": "T1416",
+    "Name": "test-error-return-f3f8de5f6c/error-return-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/test-error-return-f3f8de5f6c/error-return-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/test-error-return-f3f8de5f6c/error-return-e.bal"
+    ]
+  },
+  {
+    "Id": "T1419",
+    "Name": "top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e/main.bal",
+      "/workspace/scratch/jballerina-migration/migration-results/top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e/tests/main_test.bal"
+    ]
+  },
+  {
+    "Id": "T1426",
+    "Name": "tuple-access-expr-test-f5671505a0/tuple-access-v",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/tuple-access-v",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/tuple-access-v/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/tuple-access-v/main.bal"
+    ]
+  },
+  {
+    "Id": "T1435",
+    "Name": "tuple-fill-member-test-5373bad550/tuple-fill-member-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-fill-member-test-5373bad550/tuple-fill-member-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-fill-member-test-5373bad550/tuple-fill-member-v.bal"
+    ]
+  },
+  {
+    "Id": "T1444",
+    "Name": "tuple-mutability-test-4a07e00b3d/invalid-assignment-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/invalid-assignment-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/invalid-assignment-p.bal"
+    ]
+  },
+  {
+    "Id": "T1447",
+    "Name": "tuple-mutability-test-4a07e00b3d/tuple-literal-assignments-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/tuple-literal-assignments-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/tuple-literal-assignments-e.bal"
+    ]
+  },
+  {
+    "Id": "T1450",
+    "Name": "tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-index-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-index-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-index-p.bal"
+    ]
+  },
+  {
+    "Id": "T1453",
+    "Name": "tuple-variable-definition-test-6b1e019355/tuple-variable-definition-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-definition-test-6b1e019355/tuple-variable-definition-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-definition-test-6b1e019355/tuple-variable-definition-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1457",
+    "Name": "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-dataflow-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-dataflow-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-dataflow-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1460",
+    "Name": "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-v.bal"
+    ]
+  },
+  {
+    "Id": "T1465",
+    "Name": "type-definitions-negative-test-4cffd2ad3d/type-definitions-semantics-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/type-definitions-negative-test-4cffd2ad3d/type-definitions-semantics-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/type-definitions-negative-test-4cffd2ad3d/type-definitions-semantics-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1470",
+    "Name": "type-guard-test-74355f2266/sem-types-1-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/sem-types-1-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/sem-types-1-e.bal"
+    ]
+  },
+  {
+    "Id": "T1474",
+    "Name": "type-guard-test-74355f2266/sem-types-5-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/sem-types-5-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/sem-types-5-v.bal"
+    ]
+  },
+  {
+    "Id": "T1477",
+    "Name": "type-guard-test-74355f2266/type-guard-semantics-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-guard-semantics-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-guard-semantics-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1480",
+    "Name": "type-guard-test-74355f2266/type-narrow-2-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-narrow-2-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-narrow-2-e.bal"
+    ]
+  },
+  {
+    "Id": "T1483",
+    "Name": "type-guard-test-74355f2266/type-narrow-positive-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-narrow-positive-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-narrow-positive-v.bal"
+    ]
+  },
+  {
+    "Id": "T1487",
+    "Name": "type-test-expr-test-70ad51e586/type-test-expr-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1491",
+    "Name": "type-unification-test-b44c903fb3/map-struct-json-unified-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/type-unification-test-b44c903fb3/map-struct-json-unified-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/type-unification-test-b44c903fb3/map-struct-json-unified-v.bal"
+    ]
+  },
+  {
+    "Id": "T1495",
+    "Name": "typeof-over-literal-expression-test-2703e4397a/typeof-over-literal-expression-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/typeof-over-literal-expression-test-2703e4397a/typeof-over-literal-expression-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/typeof-over-literal-expression-test-2703e4397a/typeof-over-literal-expression-e.bal"
+    ]
+  },
+  {
+    "Id": "T1498",
+    "Name": "unary-expr-test-6a6cdd6e72/unary-operations-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/unary-expr-test-6a6cdd6e72/unary-operations-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/unary-expr-test-6a6cdd6e72/unary-operations-v.bal"
+    ]
+  },
+  {
+    "Id": "T1502",
+    "Name": "union-type-stamp-inbuilt-function-test-59ddd1d6d4/union-type-stamp-inbuilt-function-test-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/union-type-stamp-inbuilt-function-test-59ddd1d6d4/union-type-stamp-inbuilt-function-test-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/union-type-stamp-inbuilt-function-test-59ddd1d6d4/union-type-stamp-inbuilt-function-test-v.bal"
+    ]
+  },
+  {
+    "Id": "T1506",
+    "Name": "var-declr-semantic-test-d22f78a264/incomplete-listener-decl-2-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/incomplete-listener-decl-2-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/incomplete-listener-decl-2-e.bal"
+    ]
+  },
+  {
+    "Id": "T1509",
+    "Name": "var-declr-semantic-test-d22f78a264/var-def-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/var-def-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/var-def-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1512",
+    "Name": "var-mutability-with-workers-test-9792f76954/var-mutability-with-workers-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/var-mutability-with-workers-test-9792f76954/var-mutability-with-workers-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/var-mutability-with-workers-test-9792f76954/var-mutability-with-workers-v.bal"
+    ]
+  },
+  {
+    "Id": "T1516",
+    "Name": "variable-definition-test-ff080c840f/duplicate-constant-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/duplicate-constant-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/duplicate-constant-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/duplicate-constant-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1520",
+    "Name": "variable-definition-test-ff080c840f/variable-definition-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/variable-definition-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/variable-definition-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/variable-definition-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1525",
+    "Name": "wait-actions-negative-test-f93f239821/after-wait-action-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-actions-negative-test-f93f239821/after-wait-action-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/wait-actions-negative-test-f93f239821/after-wait-action-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1528",
+    "Name": "wait-for-all-actions-test-ef2703e247/all-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-actions-test-ef2703e247/all-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-actions-test-ef2703e247/all-v.bal"
+    ]
+  },
+  {
+    "Id": "T1531",
+    "Name": "wait-for-all-actions-test-ef2703e247/wait-test-15-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-actions-test-ef2703e247/wait-test-15-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-actions-test-ef2703e247/wait-test-15-p.bal"
+    ]
+  },
+  {
+    "Id": "T1535",
+    "Name": "wait-for-one-actions-test-dad8f74b8b/wait-for-one-actions-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-for-one-actions-test-dad8f74b8b/wait-for-one-actions-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/wait-for-one-actions-test-dad8f74b8b/wait-for-one-actions-v.bal"
+    ]
+  },
+  {
+    "Id": "T1539",
+    "Name": "while-stmt-test-8fe83cda27/while-stmt-on-fail-negative-reachability-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-on-fail-negative-reachability-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-on-fail-negative-reachability-e.bal"
+    ]
+  },
+  {
+    "Id": "T1542",
+    "Name": "while-stmt-test-8fe83cda27/while-stmt-type-narrowing-positive-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-type-narrowing-positive-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-type-narrowing-positive-v.bal"
+    ]
+  },
+  {
+    "Id": "T1545",
+    "Name": "worker-alternate-receive-test-a1a9b89ec6/alternate-receive-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-alternate-receive-test-a1a9b89ec6/alternate-receive-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-alternate-receive-test-a1a9b89ec6/alternate-receive-v.bal"
+    ]
+  },
+  {
+    "Id": "T1548",
+    "Name": "worker-conditional-send-test-60862305bc/worker-conditional-send-test-60862305bc-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-conditional-send-test-60862305bc/worker-conditional-send-test-60862305bc-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-conditional-send-test-60862305bc/worker-conditional-send-test-60862305bc-v.bal"
+    ]
+  },
+  {
+    "Id": "T1551",
+    "Name": "worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1554",
+    "Name": "worker-fail-test-278d4f50a4/invalid-receive-in-if-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-in-if-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-in-if-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-in-if-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1557",
+    "Name": "worker-fail-test-278d4f50a4/invalid-receive-with-trap-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-with-trap-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-with-trap-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-with-trap-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1560",
+    "Name": "worker-fail-test-278d4f50a4/invalid-send-in-lambda-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-send-in-lambda-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-send-in-lambda-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-send-in-lambda-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1563",
+    "Name": "worker-fail-test-278d4f50a4/invalid-workreceive-without-worker-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-workreceive-without-worker-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-workreceive-without-worker-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-workreceive-without-worker-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1566",
+    "Name": "worker-fail-test-278d4f50a4/invalid_receive_with_union_error_return_negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid_receive_with_union_error_return_negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid_receive_with_union_error_return_negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid_receive_with_union_error_return_negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1569",
+    "Name": "worker-fail-test-278d4f50a4/send-receive-mismatch-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/send-receive-mismatch-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/send-receive-mismatch-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/send-receive-mismatch-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1572",
+    "Name": "worker-flush-test-6ee8386f38/worker-flush-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-flush-test-6ee8386f38/worker-flush-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-flush-test-6ee8386f38/worker-flush-p.bal"
+    ]
+  },
+  {
+    "Id": "T1575",
+    "Name": "worker-in-function-test-bde1b19edb/worker-in-function-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-in-function-test-bde1b19edb/worker-in-function-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-in-function-test-bde1b19edb/worker-in-function-v.bal"
+    ]
+  },
+  {
+    "Id": "T1578",
+    "Name": "worker-on-fail-test-7287699041/worker-on-fail-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-on-fail-test-7287699041/worker-on-fail-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-on-fail-test-7287699041/worker-on-fail-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1581",
+    "Name": "worker-sync-send-test-389660a47d/multiple-sync-send-with-panic-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/multiple-sync-send-with-panic-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/multiple-sync-send-with-panic-p.bal"
+    ]
+  },
+  {
+    "Id": "T1584",
+    "Name": "worker-sync-send-test-389660a47d/sync-send-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/sync-send-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/sync-send-v.bal"
+    ]
+  },
+  {
+    "Id": "T1605",
+    "Name": "worker-test-0f3493dd03/worker-in-lock-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/worker-in-lock-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/worker-in-lock-e.bal"
+    ]
+  },
+  {
+    "Id": "T1610",
+    "Name": "xml-type-descriptor-test-13d74b7ab8/xml_type_descriptor_negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/xml-type-descriptor-test-13d74b7ab8/xml_type_descriptor_negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/xml-type-descriptor-test-13d74b7ab8/xml_type_descriptor_negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1614",
+    "Name": "xmlaccess-test-873756d6ae/nav-access-negative-e",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-negative-e",
+    "Project": true,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-negative-e/Ballerina.toml",
+      "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-negative-e/main.bal"
+    ]
+  },
+  {
+    "Id": "T1619",
+    "Name": "xmlattribute-access-test-c2d99d33fe/xml-attribute-access-lax-behavior-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlattribute-access-test-c2d99d33fe/xml-attribute-access-lax-behavior-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/xmlattribute-access-test-c2d99d33fe/xml-attribute-access-lax-behavior-v.bal"
+    ]
+  },
+  {
+    "Id": "T1622",
+    "Name": "xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal"
+    ]
+  },
+  {
+    "Id": "T1625",
+    "Name": "xmliteration-test-c9c3cad714/xml_iteration_negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/xmliteration-test-c9c3cad714/xml_iteration_negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/xmliteration-test-c9c3cad714/xml_iteration_negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1629",
+    "Name": "xmlnstest-f41d1c0429/xmlns-negative-e.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-negative-e.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-negative-e.bal"
+    ]
+  },
+  {
+    "Id": "T1632",
+    "Name": "xmlnstest-f41d1c0429/xmlns-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-v.bal"
+    ]
+  },
+  {
+    "Id": "T1636",
+    "Name": "xmltest-76e9a224a5/xml-literals-with-namespaces-v.bal",
+    "Path": "/workspace/scratch/jballerina-migration/migration-results/xmltest-76e9a224a5/xml-literals-with-namespaces-v.bal",
+    "Project": false,
+    "Sources": [
+      "/workspace/scratch/jballerina-migration/migration-results/xmltest-76e9a224a5/xml-literals-with-namespaces-v.bal"
+    ]
+  }
+]

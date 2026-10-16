@@ -1,0 +1,16 @@
+{
+  "Name": "large-init-build-test-d2d15f0021/large-init-split-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/large-init-build-test-d2d15f0021/large-init-split-v",
+  "Project": true,
+  "Id": "T0702",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/large-init-build-test-d2d15f0021/large-init-split-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/large-init-build-test-d2d15f0021/large-init-split-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/large-init-build-test-d2d15f0021/large-init-split-v/modules/mod/mod.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.061
+}

@@ -1,0 +1,31 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:24 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:40 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:41 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:46 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:48 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:86 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:87 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:93 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:94 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:100 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:101 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:107 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:108 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:113 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:118 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:119 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:129 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:130 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:144 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:145 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:151 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:152 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:156 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at inference-negative-e.bal:163 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

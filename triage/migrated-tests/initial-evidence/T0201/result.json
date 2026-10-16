@@ -1,0 +1,14 @@
+{
+  "Name": "bany-type-success-scenarios-test-dd79d857fe/any-type-success-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bany-type-success-scenarios-test-dd79d857fe/any-type-success-v.bal",
+  "Project": false,
+  "Id": "T0201",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bany-type-success-scenarios-test-dd79d857fe/any-type-success-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.049
+}

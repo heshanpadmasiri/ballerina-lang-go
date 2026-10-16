@@ -1,0 +1,21 @@
+{
+  "id": "T1590",
+  "name": "worker-test-0f3493dd03/05-send-default-after-worker-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, including 'Panic', but does not list named worker declarations or worker send statements.",
+    "## Expressions: '[Start action]' and '[Wait action]' are listed; worker send/receive actions are not listed.",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.runtime includes 'sleep'.",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; future:cancel is absent."
+  ],
+  "reason": "The entry point exercises named worker w1, sends to the default worker with 'i -> function', receives with '<- w1', and expects propagation of a worker panic after the first send. Named workers and worker messaging, including this panic propagation behavior, are not covered by the subset's positive lists. Supported panic, start and wait constructs do not establish support for worker channels. This essential unsupported behavior suffices to classify the whole case as feature.",
+  "unsupported_constructs": [
+    "Named worker declarations and asynchronous/synchronous worker sends and receives.",
+    "Propagation of worker panic through a subsequent default-worker receive.",
+    "The retained helper functions also invoke future cancellation via f1.cancel(), which is absent from the permitted langlib method list."
+  ],
+  "test_design_notes": [
+    "The file retains many unrelated worker, future, lock, query and binding-pattern tests; main invokes only sendToDefaultWithPanicAfterSendInWorker.",
+    "The sole @panic marker is attached to error construction before the first send, while the actual panic occurs later inside the worker; the marker carries no expected panic text. No @args or @output markers appear."
+  ]
+}

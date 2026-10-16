@@ -1,0 +1,14 @@
+{
+  "Name": "wait-actions-negative-test-f93f239821/wait-actions-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-actions-negative-test-f93f239821/wait-actions-negative-e.bal",
+  "Project": false,
+  "Id": "T1526",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/wait-actions-negative-test-f93f239821/wait-actions-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 1.599
+}

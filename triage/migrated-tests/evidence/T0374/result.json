@@ -1,0 +1,16 @@
+{
+  "Name": "constant-access-negative-test-bfd16651f8/constant-access-negative-test-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-access-negative-test-bfd16651f8/constant-access-negative-test-e",
+  "Project": true,
+  "Id": "T0374",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constant-access-negative-test-bfd16651f8/constant-access-negative-test-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/constant-access-negative-test-bfd16651f8/constant-access-negative-test-e/constant-pkg-negative.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/constant-access-negative-test-bfd16651f8/constant-access-negative-test-e/modules/variable/constant-def.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.053
+}

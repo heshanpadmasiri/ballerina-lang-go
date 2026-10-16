@@ -1,0 +1,17 @@
+{
+  "id": "T1376",
+  "name": "struct-access-with-index-test-2fbf1b5e54/struct-access-with-index-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: 'Type definition'; 'Function definition'",
+    "Statements: 'Assignment' / 'See supported lvexpr'; 'Local variable declarations'; 'If/else'; 'Return'",
+    "Expressions: 'Member access expression'; 'Field access expression'; 'List constructor'; 'Mapping constructor'; 'Type test expression'; 'Type cast expression'; 'Conditional expression'",
+    "Operators: 'Multiplicative ops `*`, `%`, `/`'; 'Additive ops `+`, `-`'"
+  ],
+  "reason": "Record definitions with default fields, nested record/map/array member reads and writes, array growth by indexed assignment, tuple returns, optional values, arithmetic indices, type narrowing and casts all fall within the listed supported declarations, expressions and assignments. No stated restriction excludes their asserted default-value or nested-update behavior. The output markers exercise these supported operations; io:println is instrumentation.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The blank @output marker after defaults[1] asserts an empty output line.",
+    "The final two helper calls have no output assertions, so their nested/direct field assignments are exercised only for successful execution."
+  ]
+}

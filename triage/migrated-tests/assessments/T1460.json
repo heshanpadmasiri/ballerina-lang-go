@@ -1,0 +1,21 @@
+{
+  "id": "T1460",
+  "name": "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Destructuring assignment statement\" \u2014 \"Only supports wildcard-binding-pattern\"",
+    "Expressions: positive list includes \"Type test expression\" but does not list typeof expressions",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\"",
+    "Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions\" includes \"error:message\", not error:detail"
+  ],
+  "reason": "The case requires nested list destructuring assignments such as [[a, b], c] = [[\"UpdatedBallerina\", 453], false], which exceed the explicit wildcard-only restriction. This is decisive for feature classification even though many surrounding ordinary expressions and declarations are supported. Executed rest-pattern tests additionally assert typeof-derived typedesc rendering (typeof is not covered) and call error.detail(), which is excluded by the langlib allowlist. Output markers exercise the destructured values, so the unsupported operation is essential.",
+  "unsupported_constructs": [
+    "List and nested/rest list destructuring assignments instead of wildcard-only destructuring",
+    "typeof expressions and asserted typedesc string rendering",
+    "error.detail() langlib method"
+  ],
+  "test_design_notes": [
+    "Mixed scope: basic tuple assignments, classes, arrays, unions, rest bindings, readonly values, and runtime typedesc assertions are bundled into one executable case.",
+    "Only @output markers appear; later rest/readonly tests run via assertions without output markers. io:println is instrumentation."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "T1183",
+  "name": "option-test-1b0c555df9/repeated_boolean_option-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\""
+  ],
+  "reason": "The included-record parameter signature is supported, but the asserted panic depends on main-entry command-line option parsing rejecting a repeated boolean option (--booleanVal twice). Command-line option parsing and duplicate-option rejection are not covered by the supplied subset specification.",
+  "unsupported_constructs": [
+    "Main-entry command-line parsing and repeated boolean option rejection."
+  ],
+  "test_design_notes": [
+    "The empty main body contains no panic; @args and @panic assert entry-point argument processing behavior."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0877",
+  "name": "match-structured-error-patterns-test-5636c50f57/structured_error_match_patterns-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted outputs require structured error match patterns to extract error reasons and detail fields, distinguish missing detail fields, collect remaining details, and match a named error type. These patterns are outside the explicitly supported constant and wildcard match patterns.",
+  "unsupported_constructs": [
+    "Structured error match patterns, including var error (...), error (...), named error patterns, detail binding and rest binding",
+    "List and mapping binding match patterns such as var [reason, detail] and var {fatal}"
+  ],
+  "test_design_notes": [
+    "The expected outputs depend directly on structured matching and clause selection; io:println is only output instrumentation."
+  ]
+}

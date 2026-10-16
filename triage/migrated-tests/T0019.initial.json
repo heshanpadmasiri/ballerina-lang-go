@@ -1,0 +1,18 @@
+{
+  "id": "T0019",
+  "name": "anonymous-closed-record-test-dd78432cc7/anonymous-closed-record-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\" (ballerina/io is absent).",
+    "Statements: \"Local variable declarations\"; Module-level declarations: \"Module variable declarations\" and \"Type definition\".",
+    "Expressions: \"Type cast expression\", \"Mapping constructor\", \"Optional field access expression\" and \"Type test expression\"."
+  ],
+  "reason": "The complete source requires importing ballerina/io and calling io:println, outside the expressly enumerated import support. Consequently the whole case requires a feature under the literal supplied specification. Its core record exercises otherwise use declared supported categories: anonymous record parameters, module/local declarations, nested/defaulted record fields, explicit rest fields, type inclusion, mapping construction, casts, type tests, field/member access and optional access. The final record binding is a local declaration, not the destructuring assignment statement whose support is restricted to wildcard patterns. Arithmetic, equality, panic/error construction and value:toString also fall within listed support.",
+  "unsupported_constructs": [
+    "ballerina/io import and io:println calls (not in the supported import list)."
+  ],
+  "test_design_notes": [
+    "No @error markers or deliberate rejection cases occur; four @output markers match the evident values.",
+    "main never calls testRestField, testAnonRecWithExplicitRestField or testAnonRecordAsRestFieldOfAnonRecord, leaving those behaviors without runtime coverage. Despite the filename, several record descriptors are open records."
+  ]
+}

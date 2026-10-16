@@ -1,0 +1,21 @@
+{
+  "id": "T1392",
+  "name": "struct-test-5119d420d4/struct-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition] and [Function definition]",
+    "Statements: [Assignment], [Local variable declarations], [Return]",
+    "Expressions: [Type cast expression], [List constructor], [Mapping constructor], [Field access expression], [Member access expression]",
+    "Expressions / Mapping constructor: \"Currently spread-field not supported\"",
+    "Expressions / Literal: \"Currently support nil-literal, boolean-literal, numeric-literal and string-literal only\"",
+    "Operators: \"Multiplicative ops *, %, /\", \"Additive ops +, -\" and unary \"numeric ops +, -\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value includes toString and toBalString"
+  ],
+  "reason": "Record type definitions, default field values, recursive nullable record fields, nested record/map/list construction and mutation, tuples, casts and arithmetic indexing use supported constructs without hitting a stated restriction. The asserted behavior exercises default initialization, array extension by indexed assignment, nested access, negative numeric values and record rendering. There is no essential unsupported construct; io:println is output instrumentation, not a restricted ballerina/lang.* invocation.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The empty @output marker asserts the blank default lname line; the harness must preserve empty expected lines.",
+    "The final @output asserts exact whole-record rendering, including field order, compact spacing and nil as null; a failure only on this line should be checked for an expected-output/rendering mismatch.",
+    "The case combines record defaults, recursive records, array growth, arithmetic indexes and output formatting, so a failure may prevent later assertions from running."
+  ]
+}

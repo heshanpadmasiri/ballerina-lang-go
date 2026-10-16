@@ -1,0 +1,34 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Jack
+        	USA
+        	CA
+        	25
+        	Jane
+        	USA
+        	emily
+        	emily
+        	default first name
+        	
+        	999
+        	default first name
+        	Smith
+        	999
+        	
+        
+        got:
+        	Jack
+        	USA
+        	CA
+        	25
+        	Jane
+        	USA
+        	emily
+        	emily
+        	default first name
+        	
+        	999
+        	
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

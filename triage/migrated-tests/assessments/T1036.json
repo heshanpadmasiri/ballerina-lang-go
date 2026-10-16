@@ -1,0 +1,14 @@
+{
+  "id": "T1036",
+  "name": "numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-union-negative-1-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: 'Type definition' and 'Function definition'",
+    "Statements: 'Local variable declarations' and 'Call'",
+    "Expressions: 'Type cast expression' and 'Literal' (supports 'numeric-literal')",
+    "Operators: Unary operators — 'numeric ops `+`, `-`'"
+  ],
+  "reason": "The case asserts a panic when a union-typed value holding float -1.0 is cast to byte. Type definitions, function calls, local declarations, numeric literals/unary minus and type casts are supported, with no restriction excluding this union cast or its failing runtime behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment identifies the expected failing cast; the record alternative is declared but never constructed."]
+}

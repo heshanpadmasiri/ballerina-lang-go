@@ -1,0 +1,12 @@
+{
+  "id": "T0286",
+  "name": "builtin-method-test-2384a81445/builtin-methods-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not clone.",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString, but not value:clone."
+  ],
+  "reason": "Both testClone and testCloneAny require m.clone(), the lang.value clone operation, which is absent from the supported langlib and method-call lists. The asserted sample outputs depend on this unsupported operation successfully cloning the map in both return-type contexts.",
+  "unsupported_constructs": ["Langlib value:clone invoked with method syntax as m.clone()"],
+  "test_design_notes": ["Both @output assertions expect sample. There are no @args or @panic assertions; the error branch panics if testCloneAny returns an error. io:println is output instrumentation."]
+}

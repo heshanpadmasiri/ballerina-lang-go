@@ -1,0 +1,14 @@
+{
+  "Name": "foreach-array-tests-6709ca3e0f/foreach-array-remove-elements-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/foreach-array-tests-6709ca3e0f/foreach-array-remove-elements-p.bal",
+  "Project": false,
+  "Id": "T0490",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/foreach-array-tests-6709ca3e0f/foreach-array-remove-elements-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.042
+}

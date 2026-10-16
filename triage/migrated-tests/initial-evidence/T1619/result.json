@@ -1,0 +1,14 @@
+{
+  "Name": "xmlattribute-access-test-c2d99d33fe/xml-attribute-access-lax-behavior-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlattribute-access-test-c2d99d33fe/xml-attribute-access-lax-behavior-v.bal",
+  "Project": false,
+  "Id": "T1619",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlattribute-access-test-c2d99d33fe/xml-attribute-access-lax-behavior-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.046
+}

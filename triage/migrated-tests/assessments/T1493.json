@@ -1,0 +1,19 @@
+{
+  "id": "T1493",
+  "name": "typedesc-tests-6cfb08048c/typedesc-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports dependently-typed functions using `typedesc` parameters with the [`<>` inferred default]",
+    "## Module-level declarations: [Type definition]",
+    "## Expressions: [Variable reference]; [Member access expression]; [Equality expression]",
+    "## Operators: Equality ops `==`, `!=`, `===`, `!==`"
+  ],
+  "reason": "Essential tests require type descriptors as expression values (int, IntArray, ImmutableIntArray, singleton/union aliases and function-type aliases) and assignability between constrained typedesc values. The expression positive list does not cover typedesc expressions or this behavior; the explicit typedesc support is for dependently-typed function parameters with inferred defaults, which does not establish support for these assignments. Whole case is therefore feature despite supported declaration, equality and ordinary diagnostic scaffolding.",
+  "unsupported_constructs": [
+    "Type-descriptor expression values and constrained typedesc assignability for named array, readonly-intersection, singleton, union and function types"
+  ],
+  "test_design_notes": [
+    "Mixed negative case also checks missing identifiers, undefined symbols and malformed member access; rejection of those supported grammar/type-system errors is independently in scope.",
+    "Several source lines contain multiple @error markers; no @args, @panic or @output markers are present."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "T0515",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-boolean-array-modification-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; value:cloneReadOnly is absent."
+  ],
+  "reason": "The asserted panic on assigning to a frozen boolean array depends on a.cloneReadOnly(). This lang.value function is absent from both the supported library functions and the method-call allowlist, so the essential freeze operation is outside subset 10.",
+  "unsupported_constructs": ["lang.value cloneReadOnly invoked as a.cloneReadOnly()"],
+  "test_design_notes": ["The @panic assertion targets mutation of the readonly clone, including an assignment of the existing element value."]
+}

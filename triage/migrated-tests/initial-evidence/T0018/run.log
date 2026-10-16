@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "annotation-expression-code-analysis-negative-4f892de7fb/annotation-expression-code-analysis-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> annotation-expression-code-analysis-negative-e.bal:33:5
+           |
+        33 |     ...fl, // @error
+           |     ^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

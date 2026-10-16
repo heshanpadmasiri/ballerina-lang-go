@@ -1,0 +1,14 @@
+{
+  "Name": "native-conversion-negative-test-c94381ac56/native-conversion-negative-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-negative-test-c94381ac56/native-conversion-negative-v.bal",
+  "Project": false,
+  "Id": "T0937",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-negative-test-c94381ac56/native-conversion-negative-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.071
+}

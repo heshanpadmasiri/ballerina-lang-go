@@ -1,0 +1,17 @@
+{
+  "id": "T0253",
+  "name": "bjsonvalue-test-248ac7be19/get-array-out-of-bound-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)",
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "Expressions: [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)"
+  ],
+  "reason": "The JSON list constructor, cast to json[], and array member access are supported without applicable restrictions. Accessing index 5 of a three-element array must panic with the asserted IndexOutOfRange reason and index/size detail. The lang.array-qualified runtime error arises from supported indexing; it is not an invocation of an unlisted langlib function.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic annotation asserts the out-of-range indexing error, before the outer string cast can execute. No @args or @output assertions are present."
+  ]
+}

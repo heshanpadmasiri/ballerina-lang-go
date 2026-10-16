@@ -1,0 +1,14 @@
+{
+  "Name": "bfloat-value-test-b01a6e05bd/bfloat-value-negative-discrimination-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bfloat-value-test-b01a6e05bd/bfloat-value-negative-discrimination-e.bal",
+  "Project": false,
+  "Id": "T0239",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bfloat-value-test-b01a6e05bd/bfloat-value-negative-discrimination-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.027
+}

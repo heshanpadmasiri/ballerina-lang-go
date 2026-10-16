@@ -1,0 +1,14 @@
+{
+  "Name": "main-functions-test-f228557f7d/invalid-error-returning-main-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/invalid-error-returning-main-e.bal",
+  "Project": false,
+  "Id": "T0754",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/invalid-error-returning-main-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.039
+}

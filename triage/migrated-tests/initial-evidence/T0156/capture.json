@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: no filler value\n        at testNoDefFiniteTyped2DArrays(array-lvalue-fill-no-def-finite-typed-2d-arrays-p.bal:9)\n           main(array-lvalue-fill-no-def-finite-typed-2d-arrays-p.bal:4)\n","Diagnostics":null}

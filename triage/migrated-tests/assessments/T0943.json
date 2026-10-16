@@ -1,0 +1,17 @@
+{
+  "id": "T0943",
+  "name": "native-conversion-test-4a94bbda4e/json-incompatible-type-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition] and [Function definition]",
+    "Expressions: [Mapping constructor], [List constructor], [Type test expression] and [Method call]",
+    "Statements: [Local variable declarations], [If/else], [Return] and [Panic]",
+    "Subset restrictions / Import declarations: `ballerina/lang.value` lists `cloneWithType`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for ... `value:cloneWithType`"
+  ],
+  "reason": "The case converts JSON containing string age \"25\" to a Person record with int age. The explicitly supported cloneWithType operation must reject that incompatible field with an error; the subsequent type test and panic propagate the failed conversion. The record, optional/recursive fields, constructors and control flow introduce no listed unsupported feature.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic comment is attached to the conversion line, while the explicit panic occurs after the returned error fails the Person type test; the whole function nevertheless asserts a panic on incompatible conversion."
+  ]
+}

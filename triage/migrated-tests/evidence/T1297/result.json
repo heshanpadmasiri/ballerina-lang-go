@@ -1,0 +1,15 @@
+{
+  "Name": "retry-stmt-with-on-fail-test-9697c09cc6/retry-on-fail-negative-unreachable-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-on-fail-negative-unreachable-e",
+  "Project": true,
+  "Id": "T1297",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-on-fail-negative-unreachable-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-on-fail-negative-unreachable-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.025
+}

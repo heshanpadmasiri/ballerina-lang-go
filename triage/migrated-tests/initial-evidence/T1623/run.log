@@ -1,0 +1,38 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns4="http://sample.com/wso2/f" foo1="bar1" xmlns:ns1="http://sample.com/wso2/e" ns1:foo2="bar2" ns4:foo3="bar3"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns3="http://sample.com/wso2/f" foo1="bar"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns3="http://sample.com/wso2/f" xmlns:ns4="http://wso2.com"/>
+        	<root xmlns="http://ballerinalang.org/" xmlns:ns3="http://sample.com/wso2/f" att="http://wso2.com"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns3="http://sample.com/wso2/f" xmlns:ns1="http://sample.com/wso2/a1" ns1:foo1="bar1"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns4="http://sample.com/wso2/f/" xmlns:ns3="http://sample.com/wso2/f" xmlns:ns5="http://sample.com/wso2/f/" ns5:diff="yes" ns3:foo1="bar1"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns4="http://sample.com/wso2/f/" xmlns:ns3="http://sample.com/wso2/f" xmlns:ns5="http://sample.com/wso2/f/" ns5:diff="yes" ns5:foo1="bar1"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns4="http://sample.com/wso2/f/" xmlns:ns3="http://sample.com/wso2/f" xmlns:ns5="http://sample.com/wso2/f/" ns5:diff="yes" ns5:foo1="bar1"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns4="http://sample.com/wso2/f/" xmlns:ns3="http://sample.com/wso2/f" xmlns:ns5="http://sample.com/wso2/f/" ns5:diff="yes" foo1="bar1" foo2="bar2" foo3="bar3"/>
+        	<root xmlns="http://defaultNs/" xmlns:ns0="http://sample.com/wso2/e" foo1="newbar1" ns0:foo2="newbar2" foo3="newbar3"/>
+        	true
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns3="http://wso2.com"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns3="http://sample.com/wso2/f" xmlns:ns0="http://sample.com/wso2/a1" ns0:foo1="newbar1" ns3:foo2="newbar2"/>
+        	<root xmlns="http://sample.com/wso2/c1" xmlns:ns3="http://sample.com/wso2/f" xmlns:ns0="http://sample.com/wso2/a1" xmlns:ns5="http://sample.com/wso2/a1" ns5:foo1="newaddedbar1" ns3:foo2="bar2"/>
+        	bar1
+        	bar2
+        	
+        	
+        	http://sample.com/wso2/f
+        	bar1
+        	bar2
+        	
+        	{http://sample.com/wso2/a1}wso2
+        	{http://sample.com/wso2/a1}ballerina
+        	bar
+        	2
+        	["{http://www.w3.org/2000/xmlns/}xmlns","foo"]
+        	true
+        	{"{http://www.w3.org/2000/xmlns/}xmlns":"http://sample.com/wso2/c1","name":"Foo"}
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

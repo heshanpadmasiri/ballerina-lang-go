@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "query-negative-tests-39b4ca8ff2/query-ambiguous-type-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> query-ambiguous-type-negative-e.bal:41:29
+           |
+        41 |     stream<int, error?> _ = stream from var i in numList select chr; // @error
+           |                             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> query-ambiguous-type-negative-e.bal:42:36
+           |
+        42 |     stream<int, error?>|string _ = stream from var i in numList select chr; // @error
+           |                                    ^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

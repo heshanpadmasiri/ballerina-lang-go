@@ -1,0 +1,15 @@
+{
+  "Name": "basic-worker-test-0bffe305fe/worker-async-send-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-worker-test-0bffe305fe/worker-async-send-negative-e",
+  "Project": true,
+  "Id": "T0220",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/basic-worker-test-0bffe305fe/worker-async-send-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/basic-worker-test-0bffe305fe/worker-async-send-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

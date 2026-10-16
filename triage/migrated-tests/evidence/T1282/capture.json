@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'c'\n --\u003e recursive-record-type-e.bal:9:5\n  |\n9 |     RecursiveRecordWithRestType c = {i: 5, \"a\": a, \"b\": b}; // @error: unused variable 'c'\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"recursive-record-type-e.bal","StartLine":9,"EndLine":9}]}

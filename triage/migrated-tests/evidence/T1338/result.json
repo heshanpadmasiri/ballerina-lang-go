@@ -1,0 +1,14 @@
+{
+  "Name": "sealed-arrays-of-arrays-test-51b52f77c7/code-analysis-negative-sealed-arrays-of-arrays-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/sealed-arrays-of-arrays-test-51b52f77c7/code-analysis-negative-sealed-arrays-of-arrays-e.bal",
+  "Project": false,
+  "Id": "T1338",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/sealed-arrays-of-arrays-test-51b52f77c7/code-analysis-negative-sealed-arrays-of-arrays-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.061
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T1332",
+  "name": "sealed-array-test-916de22362/sealed-array-listexpr-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Type definition; Constant declarations; Class definition",
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Expressions: List constructor; Member access expression; Field access expression",
+    "## Statements: Local variable declarations; Assignment",
+    "## Object/class definitions: Supports object-field-descriptor, method-decl, remote-method-decl and resource-method-decl members",
+    "## Object/class definitions: Supports included-record-param, rest-param and defaultable-param in methods"
+  ],
+  "reason": "The case checks fixed-length array list-constructor filler rules: reject fillers for abstract objects, classes requiring arguments or returning error?, records with required fields, and unions without suitable fillers; accept a class with defaultable initializer parameters. These are supported list construction and type-checking behaviors using supported declarations, fields and initializer signatures. No applicable subset restriction excludes these cases.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative @error assertions exercise rejection within supported grammar and type checking; their intentionally illegal initializations do not make the case a feature request.",
+    "The unmarked AgeDefaulted array construction is a positive filler-initialization check within this negative test file."
+  ]
+}

@@ -1,0 +1,32 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "bbyte-value-test-94ec1c259b/byte-value-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> byte-value-e.bal:2:5
+           |
+         2 |     worker w1 {
+           |     ^^^^^^^^^^^
+         3 |         byte a = 10;
+           |         ^^^^^^^^^^^^
+         4 |         byte b = 12; // @error unused variable 'b'
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         5 |         a -> w2;
+           |         ^^^^^^^^
+         6 |         b = <- w2;
+           |         ^^^^^^^^^^
+         7 |     }
+           |     ^
+         8 |     worker w2 {
+           |     ^^^^^^^^^^^
+         9 |         byte a = 0; // @error unused variable 'a'
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |         byte b = 15;
+           |         ^^^^^^^^^^^^
+        11 |         a = <- w1;
+           |         ^^^^^^^^^^
+        12 |         b -> w1;
+           |         ^^^^^^^^
+        13 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

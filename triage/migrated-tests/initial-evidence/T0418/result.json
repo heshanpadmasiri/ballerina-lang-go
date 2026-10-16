@@ -1,0 +1,14 @@
+{
+  "Name": "display-annotation-test-3b487ddbc8/display_annot_negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/display-annotation-test-3b487ddbc8/display_annot_negative-e.bal",
+  "Project": false,
+  "Id": "T0418",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/display-annotation-test-3b487ddbc8/display_annot_negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.057
+}

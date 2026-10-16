@@ -1,0 +1,13 @@
+{
+  "id": "T1156",
+  "name": "option-compilation-test-89edd7ad99/successful-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Expressions: [Literal](https://ballerina.io/spec/lang/master/#literal); [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)"
+  ],
+  "reason": "The included-record parameter and literal defaults are supported, but the supplied @args makes successful command-line option binding essential: scalar conversion, a flag-style boolean, repeated array options, nullable fields and omitted defaults. The subset document covers function signatures but does not specify command-line argument parsing or main-option binding.",
+  "unsupported_constructs": ["Command-line --option binding into main's included record parameter, including boolean flags and repeated array options"],
+  "test_design_notes": ["The main body is empty; this tests successful startup with the supplied arguments, without asserting the resulting record field values."]
+}

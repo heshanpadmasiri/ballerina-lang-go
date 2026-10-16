@@ -1,0 +1,14 @@
+{
+  "Name": "value-type-cast-expr-test-98fa22439c/value-type-cast-expr-test-98fa22439c-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/value-type-cast-expr-test-98fa22439c/value-type-cast-expr-test-98fa22439c-v.bal",
+  "Project": false,
+  "Id": "T1505",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/value-type-cast-expr-test-98fa22439c/value-type-cast-expr-test-98fa22439c-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.088
+}

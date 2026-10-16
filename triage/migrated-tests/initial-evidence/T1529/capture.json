@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported\n --\u003e wait-test-13-p.bal:6:22\n  |\n6 |     future\u003cint\u003e f1 = @strand{thread:\"any\"} start add_panic(20, 66);\n  |                      ^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"wait-test-13-p.bal","StartLine":6,"EndLine":6}]}

@@ -1,0 +1,16 @@
+{
+  "id": "T1155",
+  "name": "option-compilation-test-89edd7ad99/invalid-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition"
+  ],
+  "reason": "The marked errors assert restrictions on command-line option field types in main's included Options record. These are entry-point/CLI validation rules, not ordinary record-field typing errors: the fields themselves use valid types and compatible defaults. Although included-record parameters and type definitions are supported, subset10 does not cover command-line option processing or its special main-parameter validation.",
+  "unsupported_constructs": [
+    "Command-line option type restrictions for main's included record parameter (typedesc, unions, map, and nested record fields)"
+  ],
+  "test_design_notes": [
+    "Negative compilation case with six @error field markers; the asserted CLI-specific rejection matters beyond the supported included-record parameter syntax."
+  ]
+}

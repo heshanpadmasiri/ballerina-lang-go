@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "record-value-test-1a630496b4/record-clear-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: method not found: removeAll
+          --> record-clear-p.bal:13:5
+           |
+        13 |     person.removeAll(); // @panic
+           |     ^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

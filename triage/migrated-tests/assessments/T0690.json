@@ -1,0 +1,21 @@
+{
+  "id": "T0690",
+  "name": "iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.map lists only length, keys, hasKey, get, remove; ballerina/lang.array lists map but not filter.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists map:length, map:keys, map:hasKey, map:get, map:remove and array:map, but omits map:entries, map:map, map:filter, map:forEach and array:filter.",
+    "Expressions: \"Anonymous function expression\"; Statements: \"Local variable declarations\" and \"Compound Assignment\"."
+  ],
+  "reason": "The case depends on unsupported map entries/map/filter/forEach operations and array filter operations, including their callbacks mutating captured variables. These essential operations fall outside the explicit langlib and method-call positive lists, so the whole case is a feature gap even though anonymous functions and assignments are supported.",
+  "unsupported_constructs": [
+    "map.entries()",
+    "map.'map(...) and map.filter(...)",
+    "map.forEach(...)",
+    "array.filter(...)"
+  ],
+  "test_design_notes": [
+    "The supplied source marks unused-variable diagnostics for t, count, filteredArr and y; negative diagnostics do not remove its dependence on unsupported iterable operations.",
+    "No external runtime assertions were supplied; the functions expose captured-variable mutations through returned counts, strings and collections."
+  ]
+}

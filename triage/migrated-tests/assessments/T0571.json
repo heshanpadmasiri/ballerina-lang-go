@@ -1,0 +1,17 @@
+{
+  "id": "T0571",
+  "name": "function-signature-negative-test-2746ef5bfb/cyclic-functions-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Module variable declarations]",
+    "Module-level declarations: [Function definition]; Supports the isolated function qualifier",
+    "Module-level declarations: [Type definition]",
+    "Expressions: Call; Mapping constructor; Variable reference; Member access expression",
+    "Statements: Local variable declarations"
+  ],
+  "reason": "The two error-marked module initializers exercise cyclic initialization dependencies through isolated function calls: func calls f1, which calls testFunc, which reads func; func1 analogously calls f2/testFunc1 and reads func1. Module variables, isolated functions, calls, mapping construction, member access, and type definitions are supported. No stated restriction excludes these cycles or the readonly map and optional isolated function types. Rejecting the cyclic initializers is negative behavior within the supported language scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Both expected errors are attached to module variable declarations; the file supplies no exact diagnostic text."
+  ]
+}

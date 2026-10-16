@@ -1,0 +1,16 @@
+{
+  "id": "T0860",
+  "name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: [Match statement] — Currently only supports [const-pattern] and [wildcard-match-pattern]"
+  ],
+  "reason": "The negative assertions require error match patterns, including typed, nested and alternative error patterns, and capture patterns with guards. These are outside the explicit supported match-pattern set, so their compatibility, redundancy and guard diagnostics are not supported-subset requirements.",
+  "unsupported_constructs": [
+    "Error match patterns, including typed and nested error patterns",
+    "Capture match patterns (var errorA, etc.) with guards"
+  ],
+  "test_design_notes": [
+    "Negative rejection is in scope for supported grammar, but this case specifically asserts diagnostics for excluded match-pattern forms."
+  ]
+}

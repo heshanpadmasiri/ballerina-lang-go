@@ -1,0 +1,14 @@
+{
+  "Name": "struct-test-5119d420d4/struct-literals-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-test-5119d420d4/struct-literals-v.bal",
+  "Project": false,
+  "Id": "T1391",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-test-5119d420d4/struct-literals-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.102
+}

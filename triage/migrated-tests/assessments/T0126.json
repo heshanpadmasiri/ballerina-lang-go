@@ -1,0 +1,19 @@
+{
+  "id": "T0126",
+  "name": "array-access-expr-test-36e8f0c67c/array-access-values-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Constant declarations; Type definition; Function definition",
+    "Statements: Assignment — See supported lvexpr; Local variable declarations; Return",
+    "Expressions: List constructor; Member access expression; Call; Equality expression; Logical expression",
+    "Operators: Additive ops +, -; Logical ops &&, ||",
+    "Import declarations: ballerina/lang.array — length",
+    "Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: array:length"
+  ],
+  "reason": "The case uses supported declarations, array constructors, indexed reads and assignments, finite/union index types, ordinary calls, arithmetic and boolean expressions. Its asserted outputs exercise array element updates, automatic growth with filler values, finite integer indices, array returns and arguments, and the explicitly supported array length method. No applicable restriction excludes these uses.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "main uses explicit calls and asserts outputs 210, true, true, 106, 100, 5, 105 and 11; no @args or @panic execution protocol is required.",
+    "io:println is output instrumentation."
+  ]
+}

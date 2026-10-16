@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: invalid token\n --\u003e too-many-args-to-return-1-e.bal:3:18\n  |\n3 |         \"sameera\"; // @error\n  |                  ^\n\n","Diagnostics":[{"File":"too-many-args-to-return-1-e.bal","StartLine":3,"EndLine":3}]}

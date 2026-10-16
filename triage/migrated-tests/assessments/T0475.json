@@ -1,0 +1,18 @@
+{
+  "id": "T0475",
+  "name": "field-lock-test-031a81a52d/locks-in-records-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Lock statement]\" and \"[Foreach]\" are listed; named worker declarations are not in the supported statement list.",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are listed, but named worker declarations are not listed.",
+    "## Import declarations (Subset restrictions): \"ballerina/lang.runtime\" supports \"sleep\"."
+  ],
+  "reason": "Both asserted outputs of 1001000 depend on concurrent named workers (worker w1) and the calling function completing their increments before returning. Named worker declarations and their lifecycle behavior are not covered by the subset positive lists, even though locks, record field/member mutation, range iteration, and runtime:sleep are supported.",
+  "unsupported_constructs": [
+    "Named worker declarations (worker w1) and associated completion semantics."
+  ],
+  "test_design_notes": [
+    "main asserts 1001000 for each of two concurrent increments over 1 ... 1000; io:println only reports these results.",
+    "runtime:sleep(0.01) is explicitly supported and is not the exclusion reason."
+  ]
+}

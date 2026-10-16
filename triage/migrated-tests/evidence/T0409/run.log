@@ -1,0 +1,82 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "dataflow-analysis-test-00b490139e/uninitialized-semantics-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> uninitialized-semantics-e.bal:543:1
+            |
+        543 |     {name: fName, married, age: {age: theAge, format}, ...theMap} = getPerson();
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-semantics-e.bal:582:9
+            |
+        582 |     var o = object { public string s; };
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:353:5
+            |
+        353 |         var y => {val = "any";}
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:621:5
+            |
+        621 |         var [a, b] => {k = 1;}
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:622:5
+            |
+        622 |         var {a, b} => {k = 2;}
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:631:5
+            |
+        631 |         var [a, b] => {k = 1;}
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:632:5
+            |
+        632 |         var {a, b} => {k = 2;}
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:633:5
+            |
+        633 |         var x => {k = 0;}
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:642:5
+            |
+        642 |         var [a, b] => {k = 1;}
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:643:5
+            |
+        643 |         var {a, b} => {}
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-semantics-e.bal:644:5
+            |
+        644 |         var x => {k = 0;}
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> uninitialized-semantics-e.bal:543:1
+            |
+        543 |     {name: fName, married, age: {age: theAge, format}, ...theMap} = getPerson();
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> uninitialized-semantics-e.bal:582:9
+            |
+        582 |     var o = object { public string s; };
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

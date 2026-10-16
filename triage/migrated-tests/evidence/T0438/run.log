@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> equal-and-not-equal-e.bal:144:20
+            |
+        144 |     MyObject obj = object {int i = 10;};
+            |                    ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> equal-and-not-equal-e.bal:146:21
+            |
+        146 |     MyObject obj2 = object {int i = 10;};
+            |                     ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> equal-and-not-equal-e.bal:144:20
+            |
+        144 |     MyObject obj = object {int i = 10;};
+            |                    ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> equal-and-not-equal-e.bal:146:21
+            |
+        146 |     MyObject obj2 = object {int i = 10;};
+            |                     ^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

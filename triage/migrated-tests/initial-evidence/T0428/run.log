@@ -1,0 +1,171 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "do-stmts-test-54fb85fbab/do-stmt-negative-unreachable-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> do-stmt-negative-unreachable-e.bal:20:5
+           |
+        20 |     do {
+           |     ^^^^
+        21 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 |     } on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> do-stmt-negative-unreachable-e.bal:32:5
+           |
+        32 |     do {
+           |     ^^^^
+        33 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |     } on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |         return str;
+           |         ^^^^^^^^^^^
+        38 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> do-stmt-negative-unreachable-e.bal:45:5
+           |
+        45 |     do {
+           |     ^^^^
+        46 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        47 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        48 |     } on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        49 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        50 |         return str;
+           |         ^^^^^^^^^^^
+        51 |         str += "-> After returning string"; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        52 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> do-stmt-negative-unreachable-e.bal:59:5
+           |
+        59 |     do {
+           |     ^^^^
+        60 |         str = str + "do statement start";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |         return str;
+           |         ^^^^^^^^^^^
+        62 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> do-stmt-negative-unreachable-e.bal:7:5
+           |
+         7 |     do {
+           |     ^^^^
+         8 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         fail error("custom error", message = "error value");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |         str += "After failure throw"; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |     } on fail error e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        12 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> do-stmt-negative-unreachable-e.bal:20:5
+           |
+        20 |     do {
+           |     ^^^^
+        21 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 |     } on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> do-stmt-negative-unreachable-e.bal:32:5
+           |
+        32 |     do {
+           |     ^^^^
+        33 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |     } on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |         return str;
+           |         ^^^^^^^^^^^
+        38 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> do-stmt-negative-unreachable-e.bal:45:5
+           |
+        45 |     do {
+           |     ^^^^
+        46 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        47 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        48 |     } on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        49 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        50 |         return str;
+           |         ^^^^^^^^^^^
+        51 |         str += "-> After returning string"; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        52 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> do-stmt-negative-unreachable-e.bal:59:5
+           |
+        59 |     do {
+           |     ^^^^
+        60 |         str = str + "do statement start";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |         return str;
+           |         ^^^^^^^^^^^
+        62 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> do-stmt-negative-unreachable-e.bal:7:5
+           |
+         7 |     do {
+           |     ^^^^
+         8 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         fail error("custom error", message = "error value");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |         str += "After failure throw"; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |     } on fail error e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        12 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

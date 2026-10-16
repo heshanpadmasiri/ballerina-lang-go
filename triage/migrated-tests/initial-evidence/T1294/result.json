@@ -1,0 +1,14 @@
+{
+  "Name": "retry-stmt-test-5faabda7b4/retry-statement-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-test-5faabda7b4/retry-statement-negative-e.bal",
+  "Project": false,
+  "Id": "T1294",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-test-5faabda7b4/retry-statement-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.056
+}

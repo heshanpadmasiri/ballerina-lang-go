@@ -1,0 +1,16 @@
+{
+  "id": "T0622",
+  "name": "group-by-clause-test-38c059a6f0/group-by-negative-semantic-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"Supports `group by` and `collect` clauses\"",
+    "## Expressions: \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"",
+    "## Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\""
+  ],
+  "reason": "The asserted diagnostic concerns check bar() in a group-by key when bar returns error? and the enclosing function cannot return an error. Group-by queries, check expressions, function definitions, calls, list constructors and error constructors are supported, and no stated restriction excludes their semantic interaction. Rejecting this invalid error propagation is within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error marker asserts compile-time rejection; the illegal check expression is the behavior under test.",
+    "The stream<Foo> parameter is unused; this case does not construct or iterate a stream or use a stream query constructor."
+  ]
+}

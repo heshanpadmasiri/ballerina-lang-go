@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-256-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'converted'
+         --> invalid-int-as-byte-256-p.bal:2:5
+          |
+        2 |     byte converted = <byte> value; // @panic
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

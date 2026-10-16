@@ -1,0 +1,16 @@
+{
+  "id": "T0626",
+  "name": "identifier-literal-test-7d241978d7/identifier-literal-undefined-variable-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"; \"Function definition\"",
+    "Statements: \"Return\"",
+    "Expressions: \"Variable reference\"; \"Currently `xml-qualified-names` not supported\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\""
+  ],
+  "reason": "The negative test expects rejection of an undefined escaped identifier in a return expression. Module variables, functions, strings and variable references are supported; escaped identifier spelling has no stated restriction. The referenced name differs from the declared global name, so undefined-variable rejection is within the supported grammar and name-resolution behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The sole @error marks the undefined variable reference; no runtime assertion is required."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T0958",
+  "name": "negative-type-test-expr-test-ef0a2e24d5/negative-type-test-expr-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"Type test expression\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; \"ballerina/lang.error\" lists only \"message\".",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists \"error:message\"."
+  ],
+  "reason": "The whole case requires unsupported error langlib operations: testMapAsRecord invokes x.detail() after parsing an invalid integer and asserts runtime membership of the resulting details in error:Detail and specific mapping/record types. lang.error supports only message, so this asserted behavior depends on excluded methods/types even though type-test expressions themselves are supported.",
+  "unsupported_constructs": [
+    "error:detail via x.detail()",
+    "ballerina/lang.error:Detail"
+  ],
+  "test_design_notes": [
+    "io:println is output instrumentation and does not determine classification.",
+    "The case also contains readonly class Class, for which the module-level class qualifier support and object/class restriction conflict; the explicit error langlib exclusions independently suffice for feature classification."
+  ]
+}

@@ -1,0 +1,129 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	typedesc 16
+        	typedesc 0.0
+        	typedesc 22
+        	typedesc 33
+        	typedesc RecType0
+        	typedesc Obj0
+        	typedesc 22
+        	typedesc 33
+        	typedesc 33.33
+        	false
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	typedesc 1
+        	typedesc 2.0
+        	typedesc 2.1
+        	typedesc str-literal
+        	typedesc true
+        	typedesc false
+        	typedesc ()
+        	true
+        	typedesc <data>test</data>
+        	true
+        	typedesc [1,2,3]
+        	true
+        	typedesc ["ballerina",123]
+        	true
+        	true
+        	typedesc {"name":"test"}
+        	true
+        	typedesc {"s":"test"}
+        	true
+        	typedesc [{"s":"test"}]
+        	true
+        	typedesc <?xml-stylesheet href="mystyle.css" type="text/css"?>
+        	true
+        	typedesc [1,2,3]
+        	true
+        	typedesc ["ballerina",123]
+        	true
+        	true
+        	typedesc {"name":"test"}
+        	true
+        	typedesc {"s":"test"}
+        	true
+        	typedesc [{"s":"test"}]
+        	true
+        	true
+        	typedesc <?xml-stylesheet href="mystyle.css" type="text/css"?>
+        	true
+        	true
+        	typedesc [1,2,3]
+        	true
+        	true
+        	typedesc ["ballerina",123]
+        	true
+        	true
+        	true
+        	typedesc {"name":"test"}
+        	true
+        	true
+        	true
+        	typedesc {"s":"test"}
+        	true
+        	true
+        	true
+        	typedesc [{"s":"test"}]
+        	true
+        	{"message":"'lang.xml:Element' value cannot be converted to '<?xml-stylesheet href="mystyle.css" type="text/css"?>'"}
+        	true
+        	true
+        	typedesc [1,2,3,23]
+        	true
+        	true
+        	typedesc ["ballerina-lang",324]
+        	true
+        	true
+        	true
+        	typedesc {"name":"Hinduja"}
+        	true
+        	true
+        	true
+        	typedesc {"s":"Jane Doe"}
+        	true
+        	true
+        	true
+        	typedesc [{"s":"test","a":"test 2"}]
+        	true
+        	true
+        	typedesc <?xml-stylesheet href="mystyle.css" type="text/css"?>
+        	true
+        	true
+        	typedesc [1,2,3]
+        	true
+        	true
+        	typedesc ["ballerina",123]
+        	true
+        	true
+        	true
+        	typedesc {"name":"test"}
+        	true
+        	true
+        	true
+        	typedesc {"s":"test"}
+        	true
+        	true
+        	true
+        	typedesc [{"s":"test"}]
+        	typedesc Array
+        	typedesc Tuple
+        	typedesc Table
+        	typedesc Map
+        	typedesc Employee
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

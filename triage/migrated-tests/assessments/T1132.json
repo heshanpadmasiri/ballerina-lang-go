@@ -1,0 +1,16 @@
+{
+  "id": "T1132",
+  "name": "open-record-test-d43d4bfeae/attached-functions-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"",
+    "Module-level declarations: \"Type definition\"",
+    "Statements: \"Return\"",
+    "Expressions: \"Variable reference\" and \"Field access expression\""
+  ],
+  "reason": "This negative case asserts rejection of an invalid module-level attached-function declaration on a record and its use of self. Function/type declarations and the return/field-reference constructs are covered; rejection of invalid syntax and an unavailable self binding falls within that supported grammar/type system. It does not require successful support for record methods.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Both the function declaration and return expression carry @error markers; the case asserts compile-time rejection rather than executable attached-record-method behavior."
+  ]
+}

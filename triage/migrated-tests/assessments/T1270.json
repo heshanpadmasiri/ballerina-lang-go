@@ -1,0 +1,12 @@
+{
+  "id": "T1270",
+  "name": "record-type-inclusion-test-10e02d3ce3/cyclic-inclusion-via-field-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message."
+  ],
+  "reason": "The runtime cast-error test calls e.detail() and asserts the exact message stored in the returned error detail mapping. lang.error:detail is absent from both the supported error-library methods and the method-syntax allowlist, so the whole case requires an unsupported operation.",
+  "unsupported_constructs": ["error detail retrieval via e.detail() (lang.error:detail)"],
+  "test_design_notes": ["The unsupported detail call is essential to an explicit assertion, not instrumentation. The io:println reference is instrumentation alone."]
+}

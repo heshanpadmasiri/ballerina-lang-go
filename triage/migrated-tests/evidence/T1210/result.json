@@ -1,0 +1,14 @@
+{
+  "Name": "query-action-with-action-or-expr-59ba5e02bb/query-action-with-action-or-expr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-action-with-action-or-expr-59ba5e02bb/query-action-with-action-or-expr-v.bal",
+  "Project": false,
+  "Id": "T1210",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-action-with-action-or-expr-59ba5e02bb/query-action-with-action-or-expr-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.065
+}

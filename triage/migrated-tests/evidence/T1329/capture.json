@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'x2'\n --\u003e sealed-array-invalid-index-p.bal:7:5\n  |\n7 |     boolean x2 = x1[index]; // @panic\n  |     ^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"sealed-array-invalid-index-p.bal","StartLine":7,"EndLine":7}]}

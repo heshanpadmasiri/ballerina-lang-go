@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible type: expected int, got \"foo\"\n --\u003e multi-type-array-initializer-e.bal:3:10\n  |\n3 |   arr = [\"foo\", 10]; // @error\n  |          ^^^^^\n\n","Diagnostics":[{"File":"multi-type-array-initializer-e.bal","StartLine":3,"EndLine":3}]}

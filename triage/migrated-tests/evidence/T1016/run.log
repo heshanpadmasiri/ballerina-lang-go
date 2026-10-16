@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "nullable-type-test-a38c1ec2a3/nilable-types-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> nilable-types-negative-e.bal:11:11
+           |
+        11 |     BType[*] tarr = [NIL, ANY];
+           |           ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> nilable-types-negative-e.bal:11:11
+           |
+        11 |     BType[*] tarr = [NIL, ANY];
+           |           ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

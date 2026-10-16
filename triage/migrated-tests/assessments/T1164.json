@@ -1,0 +1,16 @@
+{
+  "id": "T1164",
+  "name": "option-test-1b0c555df9/invalid_array_option_value-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+    "## Statements: [Panic](https://ballerina.io/spec/lang/master/#panic-stmt)"
+  ],
+  "reason": "The essential assertion is a panic during command-line option binding: repeated --array options include arr-val, which cannot be converted to an int array element. The subset supports included-record parameter signatures and panic statements, but does not cover command-line option parsing, conversion, or rejection behavior. Signature support alone does not cover this assertion.",
+  "unsupported_constructs": [
+    "Command-line binding of repeated --array options to an included record's int[] field, with rejection of a non-integer value"
+  ],
+  "test_design_notes": [
+    "The main body is empty; the @args and @panic directives make entry-point argument processing the tested behavior."
+  ]
+}

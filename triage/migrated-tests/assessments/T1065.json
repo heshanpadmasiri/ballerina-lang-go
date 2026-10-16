@@ -1,0 +1,17 @@
+{
+  "id": "T1065",
+  "name": "object-documentation-test-a02bd077c8/object_documentation_negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"[Annotation declarations and attachments]\", \"[Service declarations]\", \"[Type definition]\" and \"[Class definition]\" are listed as supported.",
+    "## Module-level declarations: Class definition \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\".",
+    "# Supported language features (subset 10): no listed feature covers Markdown documentation validation or documentation diagnostics."
+  ],
+  "reason": "The asserted errors concern duplicate or unmatched documentation parameters, undocumented fields, invalid documentation references and documentation syntax. Although the surrounding declarations are supported, validating documentation and producing these diagnostics is not covered by the subset's positive feature lists. This essential asserted behavior makes the whole case a feature.",
+  "unsupported_constructs": [
+    "Markdown documentation validation and its diagnostics, including duplicate/mismatched field or parameter documentation and unresolved documentation references"
+  ],
+  "test_design_notes": [
+    "The @error markers predominantly assert documentation diagnostics; assessing only the supported class, record, annotation and service declarations would miss the test's purpose."
+  ]
+}

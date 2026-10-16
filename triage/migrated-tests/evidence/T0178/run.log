@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:6 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:7 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:9 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:10 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:14 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:15 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:16 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:24 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:31 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at array-size-test-negative-e.bal:41 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

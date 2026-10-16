@@ -1,0 +1,14 @@
+{
+  "Name": "field-access-test-e922449994/field-access-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/field-access-test-e922449994/field-access-v.bal",
+  "Project": false,
+  "Id": "T0473",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/field-access-test-e922449994/field-access-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.062
+}

@@ -1,0 +1,20 @@
+{
+  "id": "T0024",
+  "name": "anonymous-open-record-test-a3375985f4/anonymous-open-record-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports source-only, runtime, marker and repeated annotations",
+    "## Module-level declarations: Supports the [`isolated`](https://ballerina.io/spec/lang/master/#isolated-qual) function qualifier",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)"
+  ],
+  "reason": "The case combines a local anonymous open-record type, a field default evaluated through Test(), an empty mapping constructor, wildcard binding, and an isolated function carrying @deprecated. Function definitions, isolated qualification, annotations, local declarations, calls, mappings, return statements and integer literals are listed as supported. However, subset10 does not cover record-type descriptors or record-field default expressions, and it does not specify deprecation diagnostics. Those unlisted capabilities make the whole case a feature assessment under the stated not-covered rule; this is not a claim that ordinary function calls or annotation syntax are unsupported.",
+  "unsupported_constructs": [
+    "Anonymous open-record type descriptor with a default-valued field: not covered by subset10",
+    "Deprecation diagnostic propagation from a record-field default: not specified"
+  ],
+  "test_design_notes": [
+    "The @error marker is attached to Test(), whose zero-argument call and int result are otherwise type-consistent.",
+    "The source shows no obvious rejection-worthy type or grammar error; a deprecation warning may have been migrated into an error expectation.",
+    "No diagnostic text distinguishes an intended deprecation warning from a true compilation error."
+  ]
+}

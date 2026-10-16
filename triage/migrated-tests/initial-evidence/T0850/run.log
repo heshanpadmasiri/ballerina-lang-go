@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-unreachable-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+          --> match-statement-on-fail-unreachable-e.bal:28:14
+           |
+        28 |              fail err;
+           |              ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+          --> match-statement-on-fail-unreachable-e.bal:58:14
+           |
+        58 |              fail error ErrorTypeB(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+          --> match-statement-on-fail-unreachable-e.bal:28:14
+           |
+        28 |              fail err;
+           |              ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+          --> match-statement-on-fail-unreachable-e.bal:58:14
+           |
+        58 |              fail error ErrorTypeB(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

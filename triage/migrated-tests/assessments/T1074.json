@@ -1,0 +1,19 @@
+{
+  "id": "T1074",
+  "name": "object-functions-with-defaultable-arguments-83211a89c0/value-behaviors-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "## Object/class definitions: Supports `included-record-param`, `rest-param` and `defaultable-param` in methods",
+    "### Named and default arguments: Named arguments and omitted defaultable arguments are supported for method calls and client remote method call actions only when the receiver type has one positive object atom.",
+    "### Named and default arguments: Object constructor calls support named and default arguments while selecting a unique class from an object union; they do not have the atomic-target restriction above.",
+    "## Expressions: Type cast expression; New expression; List constructor; Mapping constructor; Field access expression; Member access expression",
+    "## Operators: Multiplicative ops `*`, `%`, `/`; Additive ops `+`, `-`"
+  ],
+  "reason": "The case exercises constructor and attached-method default expressions, omitted and named arguments, and default selection after structural assignment between classes with compatible methods. Every method receiver has a single named class type, so the invocation restriction is satisfied, including calls through ObjectFive/ObjectSix variables. Assertions check defaults from the receiver's declared method signature, explicit argument overrides, arithmetic, records and object fields. These behaviors use supported classes, defaultable methods, constructors, calls and expressions; no essential excluded feature is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The casting-named tests use structural class assignment, not a cast expression; their assertions distinguish the target signature's default values from the original class's defaults.",
+    "io:println is output instrumentation only."
+  ]
+}

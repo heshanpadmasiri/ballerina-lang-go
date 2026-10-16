@@ -1,0 +1,17 @@
+{
+  "id": "T0941",
+  "name": "native-conversion-test-4a94bbda4e/json-incompatible-map-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Expressions: Mapping constructor; List constructor; Method call; Type test expression",
+    "Statements: Local variable declarations; If/else; Return; Panic",
+    "Subset restrictions / Import declarations: ballerina/lang.value includes cloneWithType",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling ... value:cloneWithType"
+  ],
+  "reason": "The case converts JSON into a recursive closed Person record using explicitly supported cloneWithType method syntax. The nested parent's address is a string, incompatible with its map<anydata>? field, so conversion returns an error and the subsequent panic exercises the expected failure. Record defaults, optional and nullable fields, JSON constructors, type testing and panic have no applicable exclusion in the supplied subset specification.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is on cloneWithType, but the explicit panic p after the type test is what propagates the returned conversion error; the case asserts failure rather than an exact error message."
+  ]
+}

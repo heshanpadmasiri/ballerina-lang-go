@@ -1,0 +1,16 @@
+{
+  "Name": "option-test-1b0c555df9/boolean_option_value-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/boolean_option_value-p.bal",
+  "Project": false,
+  "Id": "T1159",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/boolean_option_value-p.bal"
+  ],
+  "Args": [
+    "--bool=false"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.065
+}

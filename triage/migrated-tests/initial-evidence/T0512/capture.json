@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n  --\u003e frozen-any-array-addition-p.bal:10:20\n   |\n10 |     anydata[] i2 = i1.cloneReadOnly();\n   |                    ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-any-array-addition-p.bal","StartLine":10,"EndLine":10}]}

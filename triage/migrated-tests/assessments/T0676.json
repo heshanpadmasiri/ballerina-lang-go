@@ -1,0 +1,19 @@
+{
+  "id": "T0676",
+  "name": "isolated-worker-test-8e649817ff/isolated-start-action-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: lists \"[New expression]\" but does not list object-constructor expressions.",
+    "Expressions: \"[Start action]\", \"[Wait action]\", \"[Method call]\", and \"[Client remote method call action]\" are supported.",
+    "Module-level declarations: \"Supports the [`isolated`] function qualifier\".",
+    "Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\"."
+  ],
+  "reason": "The asserted results require anonymous object-constructor expressions, including isolated object and client object constructors, to create receivers and arguments for started calls. Object-constructor expressions are absent from the supported expression list; the listed new expression does not cover this syntax. This essential unsupported construct makes the whole case a feature request even though isolated functions, start/wait, ordinary methods, and remote calls are listed as supported.",
+  "unsupported_constructs": [
+    "Object-constructor expressions: object { ... }, isolated object { ... }, client object { ... }, and isolated client object { ... }."
+  ],
+  "test_design_notes": [
+    "The assertions exercise returned values from started function, method, and remote calls, including default and rest arguments and readonly arguments.",
+    "The unreachable io:println call is instrumentation and does not determine classification."
+  ]
+}

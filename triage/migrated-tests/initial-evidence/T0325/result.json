@@ -1,0 +1,14 @@
+{
+  "Name": "class-test-31d1ee9eb5/class-def-negative2-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/class-test-31d1ee9eb5/class-def-negative2-e.bal",
+  "Project": false,
+  "Id": "T0325",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/class-test-31d1ee9eb5/class-def-negative2-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.026
+}

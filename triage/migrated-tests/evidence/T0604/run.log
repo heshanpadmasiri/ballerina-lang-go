@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at main.bal:5 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

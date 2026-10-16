@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n --\u003e frozen-json-array-modification-p.bal:4:16\n  |\n4 |     json[] b = a.cloneReadOnly();\n  |                ^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-json-array-modification-p.bal","StartLine":4,"EndLine":4}]}

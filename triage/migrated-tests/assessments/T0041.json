@@ -1,0 +1,19 @@
+{
+  "id": "T0041",
+  "name": "argument-parser-negative-test-706c373f17/invalid-byte-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"",
+    "Module-level declarations: \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"",
+    "Statements: \"Panic\""
+  ],
+  "reason": "The source declares an empty public main function with one required byte parameter. Its expected failure comes from supplying the command-line string 256 through the @args directive, rather than from an invalid source expression or assignment. Function definitions and required parameters are covered, but subset10 does not describe command-line entry-point invocation, conversion of argument strings to byte values, or the failure behavior for an out-of-range argument. Consequently the whole case exercises a not-covered runtime argument-parsing feature. The byte parameter's ordinary type checking alone cannot establish support for this externally supplied argument conversion and its expected panic.",
+  "unsupported_constructs": [
+    "Command-line argument conversion and rejection for a byte-typed main parameter"
+  ],
+  "test_design_notes": [
+    "The @args and @panic comments are harness markers, not Ballerina syntax.",
+    "No panic statement occurs in the empty function body; the expected failure must occur during argument handling.",
+    "No mixed unsupported source constructs or obvious migration errors are visible."
+  ]
+}

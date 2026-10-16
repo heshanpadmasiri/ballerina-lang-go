@@ -1,0 +1,14 @@
+{
+  "Name": "dataflow-analysis-test-00b490139e/uninitialized-local-complex-variables-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/uninitialized-local-complex-variables-e.bal",
+  "Project": false,
+  "Id": "T0408",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/uninitialized-local-complex-variables-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.043
+}

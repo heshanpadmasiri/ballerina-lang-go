@@ -1,0 +1,17 @@
+{
+  "id": "T0322",
+  "name": "class-test-31d1ee9eb5/class-dataflow-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Statements: Local variable declarations",
+    "Statements: Assignment — See supported `lvexpr`",
+    "Expressions: Variable reference",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only"
+  ],
+  "reason": "The class, initialized int field, method, int local declarations, numeric literals, variable references and assignments are supported. The four @error assertions require rejection of reads of uninitialized locals (i = k; i = q; k = q; q = q), which is negative validation within the supported grammar and type system. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case with four @error markers; no @args, @panic or @output assertions. Later assignments exercise initialization after assignment."
+  ]
+}

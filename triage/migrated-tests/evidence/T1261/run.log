@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "record-fields-access-negative-test-bbfa6baecd/record-project-access-1-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> modules/org.foo.baz/baz2.bal:31:63
+           |
+        31 |     object { public string desc; public string title; } job = object {
+           |                                                               ^^^^^^^^
+        32 |         public string desc = "";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |         public string title = "";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> modules/org.foo.baz/baz2.bal:31:63
+           |
+        31 |     object { public string desc; public string title; } job = object {
+           |                                                               ^^^^^^^^
+        32 |         public string desc = "";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |         public string title = "";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,17 @@
+{
+  "Name": "package-init-invocation-test-9c9e700b75/package-init-invocation-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v",
+  "Project": true,
+  "Id": "T1198",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v/modules/expressions.invocations.pkg.a/pa.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-invocation-test-9c9e700b75/package-init-invocation-v/modules/expressions.invocations.pkg.b/pb.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.044
+}

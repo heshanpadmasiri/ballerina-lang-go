@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at if-else-stmt-semantics-negative-e.bal:1-1 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at if-else-stmt-semantics-negative-e.bal:7-7 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at if-else-stmt-semantics-negative-e.bal:29-29 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at if-else-stmt-semantics-negative-e.bal:36-36 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at if-else-stmt-semantics-negative-e.bal:38-38 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at if-else-stmt-semantics-negative-e.bal:50-50 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at if-else-stmt-semantics-negative-e.bal:2 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at if-else-stmt-semantics-negative-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at if-else-stmt-semantics-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at if-else-stmt-semantics-negative-e.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at if-else-stmt-semantics-negative-e.bal:37 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at if-else-stmt-semantics-negative-e.bal:41 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

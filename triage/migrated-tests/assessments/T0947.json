@@ -1,0 +1,17 @@
+{
+  "id": "T0947",
+  "name": "native-conversion-test-4a94bbda4e/map-incompatible-struct-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Expressions: Mapping constructor; List constructor; Type test expression",
+    "Statements: Local variable declarations; If/else; Return; Panic",
+    "Subset restrictions / Import declarations: ballerina/lang.value — cloneWithType",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType"
+  ],
+  "reason": "The case converts a map<anydata> to Employee using the explicitly supported cloneWithType method. The map lacks required Employee fields (including partner), so conversion must return an error and the explicit panic employee produces the expected panic. Record definitions, constructors, type testing, and panic are covered, and no applicable restriction excludes this conversion failure behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is on the conversion call, but cloneWithType returns an error for the incompatible value; the subsequent explicit panic is the runtime failure being asserted."
+  ]
+}

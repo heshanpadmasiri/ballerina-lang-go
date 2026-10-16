@@ -1,0 +1,14 @@
+{
+  "Name": "open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field2-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field2-p.bal",
+  "Project": false,
+  "Id": "T1130",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field2-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.038
+}

@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "list-constant-negative-test-9d4e6d6a8a/list_constant_negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> list_constant_negative-e.bal:36:12
+           |
+        36 | const byte[*] ARR_3 = [300, 400]; // @error @error
+           |            ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> list_constant_negative-e.bal:45:13
+           |
+        45 | const [int, table<int>] TUPLE_6 = [1]; // @error
+           |             ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> list_constant_negative-e.bal:36:12
+           |
+        36 | const byte[*] ARR_3 = [300, 400]; // @error @error
+           |            ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> list_constant_negative-e.bal:45:13
+           |
+        45 | const [int, table<int>] TUPLE_6 = [1]; // @error
+           |             ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

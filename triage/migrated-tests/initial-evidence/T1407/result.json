@@ -1,0 +1,14 @@
+{
+  "Name": "table-with-record-key-specifier-test-df7e983faa/table-with-record-key-specifier-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/table-with-record-key-specifier-test-df7e983faa/table-with-record-key-specifier-v.bal",
+  "Project": false,
+  "Id": "T1407",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/table-with-record-key-specifier-test-df7e983faa/table-with-record-key-specifier-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.07
+}

@@ -1,0 +1,13 @@
+{
+  "id": "T0683",
+  "name": "isolation-analysis-test-71231d7fc4/object-field-default-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists [New expression](https://ballerina.io/spec/lang/master/#section_6.8.2), but does not list object constructor expressions.",
+    "## Module-level declarations: Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "## Module-level declarations: Supports the [`isolated`](https://ballerina.io/spec/lang/master/#isolated-qual) function qualifier (see [isolated functions](https://ballerina.io/spec/lang/master/#isolated_functions))"
+  ],
+  "reason": "The case asserts isolation diagnostics for class field defaults and construction inside an isolated function, including anonymous object constructor expressions with field initializers and init methods. Object constructor expressions are absent from the supported expression list, making an essential part of this whole case unsupported even though class fields, new expressions and isolated functions are supported.",
+  "unsupported_constructs": ["Anonymous object constructor expressions (`object { ... }`), including nested constructors and their field-default isolation analysis"],
+  "test_design_notes": ["This is a negative diagnostic test; illegal accesses and non-isolated calls alone do not put it outside scope. The unsupported object constructors are independently essential to its asserted diagnostics."]
+}

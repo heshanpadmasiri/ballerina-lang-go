@@ -1,0 +1,18 @@
+{
+  "id": "T0483",
+  "name": "final-typed-binding-patterns-negative-2ea1d9d04a/final-typed-binding-patterns-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"",
+    "## Statements: \"[Assignment](https://ballerina.io/spec/lang/master/#assignment-stmt)\"",
+    "## Statements: \"[Destructuring assignment statement](https://ballerina.io/spec/lang/master/#destructuring-assignment-stmt)\" / \"Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)\"",
+    "## Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"",
+    "## Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\" and \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\""
+  ],
+  "reason": "The case tests final local variables introduced by inferred and explicitly typed record/tuple binding patterns, including nesting, and rejection of subsequent reassignment. Local variable declarations and ordinary assignments are supported without a binding-pattern restriction. The wildcard-only restriction applies to destructuring assignment statements, not these initialized declarations. The helper functions, record/tuple types and constructors are also within the supported features.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compile-time case with @error markers on binding names and reassignments; illegal reassignment remains in scope for supported local declarations and final-variable semantics.",
+    "No @args, @panic or @output directives or runtime assertions occur."
+  ]
+}

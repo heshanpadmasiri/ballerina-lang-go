@@ -1,0 +1,21 @@
+{
+  "id": "T1602",
+  "name": "worker-test-0f3493dd03/17-start-inside-lock-depth3-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: lists \"Lock statement\", but does not list named worker declarations or worker send statements.",
+    "Expressions: lists \"Start action\" and \"Wait action\", but does not list worker receive actions or typeof expressions.",
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; no ballerina/lang.future or cancel is listed.",
+    "Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; cancel is absent."
+  ],
+  "reason": "The whole file contains named worker declarations and inter-worker/default-worker send and receive operations, which are not covered by the subset's positive lists. It also calls future.cancel(), outside the restricted langlib method list. These suffice for feature classification even though the selected main path uses listed lock, function calls and start actions.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker message send/receive operations",
+    "future.cancel() langlib calls",
+    "typeof expressions"
+  ],
+  "test_design_notes": [
+    "Mixed scope: main only invokes the depth-three start-inside-lock panic case, but the retained source contains a broad worker test suite with unsupported constructs.",
+    "The @panic marker occurs on the start statement reached indirectly from main through a lock and two helper calls; it asserts runtime failure while holding the lock, beyond merely accepting a start signature. No @args or @output markers appear."
+  ]
+}

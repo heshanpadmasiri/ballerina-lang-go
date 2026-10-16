@@ -1,0 +1,14 @@
+{
+  "Name": "comment-stmt-test-6d92f6e13d/comment-stmt-test-6d92f6e13d-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/comment-stmt-test-6d92f6e13d/comment-stmt-test-6d92f6e13d-v.bal",
+  "Project": false,
+  "Id": "T0368",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/comment-stmt-test-6d92f6e13d/comment-stmt-test-6d92f6e13d-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.056
+}

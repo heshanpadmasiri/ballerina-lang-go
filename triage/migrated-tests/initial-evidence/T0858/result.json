@@ -1,0 +1,14 @@
+{
+  "Name": "match-stmt-const-pattern-test-fd23397e8d/const-pattern-negative-semantics-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-const-pattern-test-fd23397e8d/const-pattern-negative-semantics-e.bal",
+  "Project": false,
+  "Id": "T0858",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-const-pattern-test-fd23397e8d/const-pattern-negative-semantics-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.058
+}

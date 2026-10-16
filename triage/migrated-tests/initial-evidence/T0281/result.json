@@ -1,0 +1,14 @@
+{
+  "Name": "bstring-main-test-514ec3ba4d/bstring-main-test-514ec3ba4d-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstring-main-test-514ec3ba4d/bstring-main-test-514ec3ba4d-v.bal",
+  "Project": false,
+  "Id": "T0281",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstring-main-test-514ec3ba4d/bstring-main-test-514ec3ba4d-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.079
+}

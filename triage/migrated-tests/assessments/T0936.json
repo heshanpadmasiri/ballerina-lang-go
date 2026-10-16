@@ -1,0 +1,14 @@
+{
+  "id": "T0936",
+  "name": "native-conversion-negative-test-c94381ac56/native-conversion-compile-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Module-level declarations: Type definition",
+    "Expressions: New expression; `Call`",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; `ballerina/lang.value` — `cloneWithType`"
+  ],
+  "reason": "The asserted compile-time rejection passes a PersonObj instance to the supported value:cloneWithType function, expecting an incompatible-types diagnostic because its input requires anydata. Class fields, object construction, calls, and record type declarations are supported, and no listed restriction excludes this negative type check.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The record declarations are unused; the sole asserted behavior is rejection of an object argument where anydata is required."]
+}

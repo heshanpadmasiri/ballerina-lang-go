@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible type reference 'Foo': a referenced type across modules cannot have non-public fields or methods\n  --\u003e modules/object_reference_negative/main.bal:20:6\n   |\n20 |     *abc:Foo; // @error\n   |      ^^^^^^^\n\n","Diagnostics":[{"File":"modules/object_reference_negative/main.bal","StartLine":20,"EndLine":20}]}

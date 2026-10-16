@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 4\n        at main(finite-type-out-of-range-p.bal:7)\n","Diagnostics":null}

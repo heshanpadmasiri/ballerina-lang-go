@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: no filler value\n        at test2DObjectArrays3(array-lvalue-fill-2d-object-arrays3-p.bal:15)\n           main(array-lvalue-fill-2d-object-arrays3-p.bal:10)\n","Diagnostics":null}

@@ -1,0 +1,14 @@
+{
+  "Name": "block-stmt-test-58e33229dc/block-stmt-semantics-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/block-stmt-test-58e33229dc/block-stmt-semantics-negative-e.bal",
+  "Project": false,
+  "Id": "T0265",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/block-stmt-test-58e33229dc/block-stmt-semantics-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.035
+}

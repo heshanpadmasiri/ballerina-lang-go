@@ -1,0 +1,30 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "record-type-inclusion-test-10e02d3ce3/cyclic-inclusion-via-field-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: invalid cycle detected for type definition ErrorRecord
+          --> cyclic-inclusion-via-field-v.bal:44:1
+           |
+        44 | public type ErrorRecord record {
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |     string code?;
+           |     ^^^^^^^^^^^^^
+        46 |     record {
+           |     ^^^^^^^^
+        47 |         *ErrorRecord;
+           |         ^^^^^^^^^^^^^
+        48 |     } innerError?;
+           |     ^^^^^^^^^^^^^^
+        49 | };
+           | ^^
+        
+        error[SEMANTIC_ERROR]: invalid cycle detected for type definition Foo
+         --> cyclic-inclusion-via-field-v.bal:3:1
+          |
+        3 | type Foo record {|
+          | ^^^^^^^^^^^^^^^^^^
+        4 |     Bar x?;
+          |     ^^^^^^^
+        5 | |};
+          | ^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

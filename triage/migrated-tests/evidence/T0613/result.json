@@ -1,0 +1,14 @@
+{
+  "Name": "global-var-test-297b184697/configurable_var_positive-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/configurable_var_positive-e.bal",
+  "Project": false,
+  "Id": "T0613",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/configurable_var_positive-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.027
+}

@@ -1,0 +1,15 @@
+{
+  "Name": "worker-fail-test-278d4f50a4/send-receive-mismatch-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/send-receive-mismatch-e",
+  "Project": true,
+  "Id": "T1569",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/send-receive-mismatch-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/send-receive-mismatch-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.034
+}

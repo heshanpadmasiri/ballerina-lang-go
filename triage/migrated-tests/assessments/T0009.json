@@ -1,0 +1,51 @@
+{
+  "id": "T0009",
+  "name": "access-test-42f7c8c3ea/access-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Expressions",
+      "quote": "[Optional field access expression]"
+    },
+    {
+      "heading": "Expressions",
+      "quote": "[Member access expression]"
+    },
+    {
+      "heading": "Expressions",
+      "quote": "[Nil lifted expression]"
+    },
+    {
+      "heading": "Expressions",
+      "quote": "Nested expressions (`(expression)`) "
+    },
+    {
+      "heading": "Subset restrictions > Import declarations",
+      "quote": "Only following lang libraries with given methods/types are supported"
+    },
+    {
+      "heading": "Subset restrictions > Import declarations",
+      "quote": "`ballerina/lang.error`\n    - `message`"
+    },
+    {
+      "heading": "Subset restrictions > Import declarations",
+      "quote": "`ballerina/lang.value`\n    - `cloneWithType`\n    - `fromJsonWithType`\n    - `toString`\n    - `toBalString`"
+    },
+    {
+      "heading": "Subset restrictions > Invocations > Other invocation restrictions",
+      "quote": "Method call syntax can be used for calling the following langlib functions:"
+    }
+  ],
+  "reason": "Mixed case: optional/ordinary field access, member access, nil lifting, grouped expressions, classes, anonymous functions, casts, check/trap and the listed operators are supported. The executed assertions also require error.detail(), cloneReadOnly(), and a range iterator() langlib call, none of which are in the permitted library/method lists. These requirements make the whole case a feature case independent of any failure in supported access expressions. The grouped-expression function additionally uses let, typeof and Elvis expressions, which are not listed in the supported expression inventory.",
+  "unsupported_constructs": [
+    "je.detail(): lang.error supports only message; detail is absent from both library and method-call allowlists.",
+    "bool.cloneReadOnly(): absent from lang.value and method-call allowlists.",
+    "(1 ..< 5).iterator().next(): range/int iterator is absent from the library and method-call allowlists (only XML iterator is listed).",
+    "let expression, typeof expression and Elvis operator (?:): not covered by the supported expression/operator inventories."
+  ],
+  "test_design_notes": [
+    "The main function aggregates supported access tests with broader expression/library tests, so a failure cannot by itself identify an access-expression bug.",
+    "Eight printed boolean results have matching @output true markers; the closure-mutation test is deliberately checked through panic assertions and emits no output.",
+    "No obvious migration or output-marker mismatch is visible in the supplied source."
+  ]
+}

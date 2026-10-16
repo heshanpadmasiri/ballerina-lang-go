@@ -1,0 +1,20 @@
+{
+  "id": "T1435",
+  "name": "tuple-fill-member-test-5373bad550/tuple-fill-member-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn); [Class definition](https://ballerina.io/spec/lang/master/#section_8.6); Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "## Expressions: [Mapping constructor]; [Optional field access expression]; [Member access expression]; [Field access expression]",
+    "## Statements: [Assignment]; [Local variable declarations]; [Panic]",
+    "## Operators: Equality ops `==`, `!=`, `===`, `!==`",
+    "### Other invocation restrictions: `array:length`; `array:push`; `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The case tests list-constructor filler values for fixed and rest tuples, including primitive defaults, record field defaults, fixed arrays and class initialization, followed by supported indexing, optional field access and mutation. List constructors, type/class definitions and the relevant expressions are supported without a restriction excluding tuple fillers or these member types. All langlib calls used by the assertions (length, push and toString) are explicitly permitted, and the unqualified class uses no restricted qualifiers.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args, @panic or @output markers occur; main invokes all four assertion routines.",
+    "The retained io:println call is instrumentation in an uncalled helper.",
+    "The case combines primitive, record, fixed-array and class filler behavior, but none is excluded by the supplied subset specification."
+  ]
+}

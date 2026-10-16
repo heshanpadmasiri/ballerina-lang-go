@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "mod-operation-test-bd4a47c2f4/mod-values-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+           --> main.bal:185:13
+            |
+        185 |     int e = int:MAX_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+           --> main.bal:482:13
+            |
+        482 |     int e = int:MAX_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MIN_VALUE
+           --> main.bal:186:13
+            |
+        186 |     int f = int:MIN_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MIN_VALUE
+           --> main.bal:483:13
+            |
+        483 |     int f = int:MIN_VALUE;
+            |             ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,14 @@
+{
+  "Name": "closure-test-5c6a7d056f/resource-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closure-test-5c6a7d056f/resource-v.bal",
+  "Project": false,
+  "Id": "T0364",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closure-test-5c6a7d056f/resource-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.027
+}

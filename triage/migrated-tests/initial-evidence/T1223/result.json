@@ -1,0 +1,14 @@
+{
+  "Name": "query-negative-tests-39b4ca8ff2/query-dataflow-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-negative-tests-39b4ca8ff2/query-dataflow-negative-e.bal",
+  "Project": false,
+  "Id": "T1223",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-negative-tests-39b4ca8ff2/query-dataflow-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.042
+}

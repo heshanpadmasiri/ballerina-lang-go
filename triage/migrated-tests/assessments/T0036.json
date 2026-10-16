@@ -1,0 +1,19 @@
+{
+  "id": "T0036",
+  "name": "anydata-ternary-conv-test-63ef110d27/anydata-ternary-conv-test-63ef110d27-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions lists ‘Conditional expression’, ‘Type test expression’ and ‘Type cast expression’, but does not list typeof expressions.",
+    "Expressions: ‘XML template expression’ — ‘Supports interpolation in XML content and attributes’.",
+    "Subset restrictions / Import declarations: ‘Only following lang libraries with given methods/types are supported’; ballerina/lang.xml includes ‘Element’."
+  ],
+  "reason": "The whole case includes typeof expressions when printing the runtime types of tuples and an anydata array. This expression form is not covered by the subset's expression inventory, so the case is a feature request even though its central ternary narrowing operations use explicitly supported conditional and type-test expressions. The test mixes scalar, nil, union, record, JSON, XML, array and nested tuple values with casts, indexed assignments and output checks. XML templates and xml:Element are explicitly covered; their presence alone does not establish a missing feature.",
+  "unsupported_constructs": [
+    "typeof tuple1, typeof tuple2, typeof tuple3 and typeof typeCheckedValue: expression form absent from the supported list"
+  ],
+  "test_design_notes": [
+    "No deliberate negative-test markers appear.",
+    "Printed typedesc expectations depend on exact runtime type formatting, including lang.xml names.",
+    "The nil result uses an empty @output marker; its blank-line interpretation needs care."
+  ]
+}

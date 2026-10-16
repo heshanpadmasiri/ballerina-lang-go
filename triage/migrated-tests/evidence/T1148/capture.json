@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 0\n        at main(operand_rest_param_only-v.bal:5)\n","Diagnostics":null}

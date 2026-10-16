@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible type: expected int, got never\n --\u003e unary-const-index-access-p.bal:3:13\n  |\n3 |     int _ = a[~1]; // @panic\n  |             ^^^^^\n\n","Diagnostics":[{"File":"unary-const-index-access-p.bal","StartLine":3,"EndLine":3}]}

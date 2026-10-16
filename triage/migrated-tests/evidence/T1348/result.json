@@ -1,0 +1,14 @@
+{
+  "Name": "simple-constant-negative-test-654366703c/simple-literal-constant-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/simple-constant-negative-test-654366703c/simple-literal-constant-negative-e.bal",
+  "Project": false,
+  "Id": "T1348",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/simple-constant-negative-test-654366703c/simple-literal-constant-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

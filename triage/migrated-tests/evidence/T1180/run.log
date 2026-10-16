@@ -1,0 +1,20 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:48: CLI exit: exit status 1
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: -v test leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'birth'
+         --> option_with_operand-v.bal:8:22
+          |
+        8 | public function main(string birth, *Student student) {
+          |                      ^^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	Riyafa
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

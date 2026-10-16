@@ -1,0 +1,14 @@
+{
+  "Name": "expression-stmt-test-bbb4c75cd4/ignore-values-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/expression-stmt-test-bbb4c75cd4/ignore-values-negative-e.bal",
+  "Project": false,
+  "Id": "T0465",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/expression-stmt-test-bbb4c75cd4/ignore-values-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.025
+}

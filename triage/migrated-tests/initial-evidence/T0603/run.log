@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "global-var-function-with-pkg-test-24ccb66686/project1-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'glbVarAny'
+         --> main.bal:5:1
+          |
+        5 | any glbVarAny = getAnyGlobalVar();
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,16 @@
+{
+  "Name": "var-declr-semantic-test-d22f78a264/incomplete-var-decl-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/incomplete-var-decl-e",
+  "Project": true,
+  "Id": "T1508",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/incomplete-var-decl-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/incomplete-var-decl-e/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/incomplete-var-decl-e/modules/test/types.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

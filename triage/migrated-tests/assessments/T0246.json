@@ -1,0 +1,17 @@
+{
+  "id": "T0246",
+  "name": "binary-expr-eval-precedence-test-6ce454d67b/binary-expr-eval-precedence-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Operators: Logical ops `&&`, `||`; Equality ops `==`, `!=`, `===`, `!==`",
+    "## Expressions: Mapping constructor; Field access expression; Type test expression; Method call",
+    "### Other invocation restrictions: `value:toString` and `value:toBalString`",
+    "## Statements: If/else; Local variable declarations; Return"
+  ],
+  "reason": "All essential constructs and asserted outputs are supported. Logical operators cover short-circuit evaluation and chained conditions. getBoolean uses supported JSON mapping construction and field access, an error type test, and supported value:toString method calls; the missing-field result converts to text unequal to test, yielding false. Thus the eight expected outputs are true, false, false, false, 101, 201, 101, 201.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println is output instrumentation. No @args or @panic assertions occur.",
+    "The RHS helper has no asserted side effect, so outputs alone do not establish that short-circuiting actually skipped its evaluation."
+  ]
+}

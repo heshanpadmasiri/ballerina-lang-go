@@ -1,0 +1,19 @@
+{
+  "id": "T1452",
+  "name": "tuple-type-stamp-inbuilt-function-test-6e3b331fc3/tuple-type-stamp-inbuilt-function-test-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: supported expression list includes 'Type test expression' and 'Type cast expression', but does not include typeof/type-of expressions.",
+    "## Import declarations: 'ballerina/lang.value' lists 'cloneWithType', 'toString' and 'toBalString'.",
+    "### Other invocation restrictions: 'value:cloneWithType', 'value:toString' and 'value:toBalString'; 'string:indexOf', 'string:includes', 'string:substring' and 'string:equalsIgnoreCaseAscii'."
+  ],
+  "reason": "The tuple conversions use explicitly supported cloneWithType, but the executed runtimeTypeName helper requires the unlisted typeof expression. Several @output assertions depend on (typeof value).toString().substring(9) producing exact runtime type names (Teacher, Employee, map<anydata>). This essential reflection behavior is not covered by the supported expression list, so the whole case is feature scope.",
+  "unsupported_constructs": [
+    "typeof value expression and runtime typedesc-name reflection used by runtimeTypeName"
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported tuple cloneWithType conversions and ordinary value/type checks are combined with unsupported typeof-based runtime type-name assertions.",
+    "Exact type-name outputs additionally depend on typedesc string formatting and the hard-coded substring offset 9; supported toString/substring signatures alone do not establish that representation.",
+    "io:println is output instrumentation; no obvious marker mismatch."
+  ]
+}

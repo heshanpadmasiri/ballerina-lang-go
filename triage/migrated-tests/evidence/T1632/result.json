@@ -1,0 +1,14 @@
+{
+  "Name": "xmlnstest-f41d1c0429/xmlns-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-v.bal",
+  "Project": false,
+  "Id": "T1632",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.053
+}

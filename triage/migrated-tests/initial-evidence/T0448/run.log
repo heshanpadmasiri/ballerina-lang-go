@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "error-destructure-negetive-test-6c1d1c393d/error_destructure_binding_pattern_error_cause-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error_destructure_binding_pattern_error_cause-e.bal:20:5
+           |
+        20 |     error(errorMsg, error(errorCause)) = error("msg", error("Error cause")); // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error_destructure_binding_pattern_error_cause-e.bal:20:5
+           |
+        20 |     error(errorMsg, error(errorCause)) = error("msg", error("Error cause")); // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

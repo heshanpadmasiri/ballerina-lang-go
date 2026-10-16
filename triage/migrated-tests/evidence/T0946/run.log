@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want map-incompatible-array-p.bal:17, got map-incompatible-array-p.bal:21
+        stderr:
+        error: '[string...]' value cannot be converted to 'nil|[int...]'
+                at trigger(map-incompatible-array-p.bal:21)
+                   main(map-incompatible-array-p.bal:25)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

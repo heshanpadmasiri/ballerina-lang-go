@@ -1,0 +1,14 @@
+{
+  "id": "T0384",
+  "name": "constant-without-expected-type-test-645773bda1/constant_without_expected_type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString and fromHexString, but not MAX_VALUE.",
+    "Module-level declarations: \"Constant declarations\"",
+    "Operators: multiplicative, bitwise, additive and shift operators; unary logical, numeric and bitwise complement operators are listed as supported.",
+    "Subset restrictions > Other invocation restrictions: \"value:toString and value:toBalString\" are supported in method call syntax."
+  ],
+  "reason": "The whole case requires int:MAX_VALUE in const CUI5 = -int:MAX_VALUE and asserts its negated value. MAX_VALUE is absent from the restricted ballerina/lang.int API list, making this an essential unsupported dependency despite constant declarations and the arithmetic operators being supported.",
+  "unsupported_constructs": ["ballerina/lang.int constant int:MAX_VALUE"],
+  "test_design_notes": ["main invokes all test functions, including the assertion for CUI5. No @args, @panic or @output directives occur. The assertions also exercise constant arithmetic, IEEE NaN/infinity and remainder results, bit shifts, mapping access and supported value:toString calls."]
+}

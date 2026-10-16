@@ -1,0 +1,17 @@
+{
+  "id": "T0044",
+  "name": "argument-parser-negative-test-706c373f17/invalid-decimal-02-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\" and \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\".",
+    "Subset restrictions / Import declarations: the supported ballerina/lang.decimal methods include \"fromString\"."
+  ],
+  "reason": "The source defines a public main function with one required decimal parameter and an empty body. Its actual negative behavior comes from supplying the external argument 123asd and expecting a panic during command-line argument conversion. The subset supports function definitions and required parameters, and lists decimal fromString among supported library functions. However, it does not cover the entry-point command-line argument parser, automatic conversion of argument strings to decimal parameters, or its failure contract. Library conversion support does not establish support for that separate invocation mechanism. The whole case therefore depends on a not-covered feature rather than a rejection directly exercised by supported source grammar or typing.",
+  "unsupported_constructs": [
+    "Automatic command-line string-to-decimal conversion for main parameters and rejection of malformed input."
+  ],
+  "test_design_notes": [
+    "The malformed value appears only in the @args comment; it is not a decimal literal in Ballerina source.",
+    "The @panic marker is attached to the function declaration; the empty body contains no panic statement. The expectation requires harness interpretation and startup behavior. No mixed unsupported source constructs or obvious migration errors are visible."
+  ]
+}

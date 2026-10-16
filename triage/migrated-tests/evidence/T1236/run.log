@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "reachability-analysis-test-a8532630b8/narrowing_with_if_without_else_not_completed_normally_test-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+           --> narrowing_with_if_without_else_not_completed_normally_test-e.bal:433:4
+            |
+        433 |    string? protocol = foo();
+            |    ^^^^^^^^^^^^^^^^^^^^^^^^^
+        434 |     if protocol is string {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        435 |         return;
+            |         ^^^^^^^
+        436 |     }
+            |     ^
+        437 |     @strand {
+            |     ^^^^^^^^^
+        438 |         thread: "any"
+            |         ^^^^^^^^^^^^^
+        439 |     }
+            |     ^
+        440 |     worker w1 returns error? {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        441 |         string subProtocol = protocol; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        442 |     }
+            |     ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

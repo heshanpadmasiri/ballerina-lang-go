@@ -1,0 +1,17 @@
+{
+  "id": "T0504",
+  "name": "forward-referencing-global-definition-test-c1122b914e/record-field-default-cycle-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions \u2014 [Conditional expression](https://ballerina.io/spec/lang/master/#conditional-expr)",
+    "## Expressions \u2014 [Optional field access expression](https://ballerina.io/spec/lang/master/#optional-field-access-expr)",
+    "## Module-level declarations \u2014 [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)"
+  ],
+  "reason": "The negative case asserts rejection of global initialization dependency cycles through record field defaults, including nested records and a class field. Its nillable-record cycle uses the Elvis expression `nillableNestedRec.r?.n ?: \"\"`; Elvis expressions are absent from the supported expression list. The listed conditional expression is a separate expression form. This essential expression makes the whole case a feature request despite supported module variables and optional field access.",
+  "unsupported_constructs": [
+    "Elvis expression (`?:`) in the initializer of nillableNestedRecordGVar."
+  ],
+  "test_design_notes": [
+    "The @error markers assert compile-time cycle rejection; illegal cyclic declarations alone do not make a negative test out of scope."
+  ]
+}

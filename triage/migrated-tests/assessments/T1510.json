@@ -1,0 +1,16 @@
+{
+  "id": "T1510",
+  "name": "var-ignore-test-d8823af21d/var-ignore-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: 'Module variable declarations'; 'Function definition'",
+    "## Statements: 'Local variable declarations'; 'Return'",
+    "## Statements: 'Destructuring assignment statement' \u2014 'Only supports wildcard-binding-pattern'",
+    "## Expressions: 'Error constructor'; 'Literal' \u2014 'Currently support nil-literal, boolean-literal, numeric-literal and string-literal only'"
+  ],
+  "reason": "The case checks rejection of error-valued wildcard declarations and incompatible initializers in module and local variable declarations. Variable declarations, wildcard binding, error constructors, and the literal expressions used are covered; no applicable subset restriction excludes their static rejection. Illegal declarations in this negative test remain within the supported grammar/type-system scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Includes unmarked int _ = 100 and local var _ = 200 as valid controls alongside @error declarations; this is not mixed feature scope. No @args, @panic, or @output markers occur."
+  ]
+}

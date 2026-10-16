@@ -1,0 +1,17 @@
+{
+  "Name": "main-functions-test-f228557f7d/basic-main-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/basic-main-v.bal",
+  "Project": false,
+  "Id": "T0750",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/basic-main-v.bal"
+  ],
+  "Args": [
+    "V1",
+    "V2"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.073
+}

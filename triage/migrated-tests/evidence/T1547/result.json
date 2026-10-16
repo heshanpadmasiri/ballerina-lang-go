@@ -1,0 +1,14 @@
+{
+  "Name": "worker-cancelled-test-ab55d05560/worker-cancelled-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-cancelled-test-ab55d05560/worker-cancelled-p.bal",
+  "Project": false,
+  "Id": "T1547",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-cancelled-test-ab55d05560/worker-cancelled-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.044
+}

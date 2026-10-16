@@ -1,0 +1,13 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at incorrect-named-arg-p.bal:2
+        stderr:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+         --> incorrect-named-arg-p.bal:2:22
+          |
+        2 | public function main(int i) { // @panic
+          |                      ^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

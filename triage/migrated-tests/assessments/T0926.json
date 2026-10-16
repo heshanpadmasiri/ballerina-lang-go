@@ -1,0 +1,18 @@
+{
+  "id": "T0926",
+  "name": "multiple-from-clause-with-var-type-test-bff9b2c5d7/multiple-from-clause-with-var-type-test-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions: Mapping constructor; List constructor; Field access expression; Member access expression",
+    "Statements: Local variable declarations; Return",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `array:length`",
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern"
+  ],
+  "reason": "The three queries assert ordered Cartesian products of two arrays using repeated from clauses and select mapping constructors, with inferred simple or record binding patterns. These are supported query expressions; the wildcard-only restriction applies to destructuring assignment statements, not query from bindings. Array length and indexed record-field checks are supported, and no applicable restriction excludes the asserted six-element order or projected values.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Checks all six Cartesian-product entries for simple bindings, explicit record-field bindings with a wildcard, and shorthand record bindings.",
+    "io:println only exposes assertion results."
+  ]
+}

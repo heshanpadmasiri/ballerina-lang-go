@@ -1,0 +1,19 @@
+{
+  "id": "T1243",
+  "name": "read-only-object-bala-test-38fd1e4394/readonly-objects-v",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.error` lists only `message`.",
+    "Subset restrictions > Invocations > Other invocation restrictions: method-call langlib list includes `error:message` but not `error:detail`.",
+    "Module-level declarations > Class definition: \"Supports `client`, `service`, `isolated`, `readonly` and `distinct` ...\"",
+    "Subset restrictions > Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\""
+  ],
+  "reason": "The runtime mutation tests require err.detail()[\"message\"] to assert exact readonly-update error details. error:detail is absent from both supported lang.error methods and the permitted langlib method-call list, making this essential asserted behavior outside the subset. Readonly class qualifiers also have conflicting positive and restrictive statements, but the unsupported detail calls independently establish feature classification.",
+  "unsupported_constructs": [
+    "Calls to lang.error:detail via err.detail(), used to verify runtime mutation error detail messages."
+  ],
+  "test_design_notes": [
+    "Readonly class support is stated in the positive class list but excluded by the object/class restriction.",
+    "io:println is instrumentation and does not determine classification."
+  ]
+}

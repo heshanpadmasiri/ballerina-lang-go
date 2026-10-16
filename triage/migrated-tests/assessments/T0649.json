@@ -1,0 +1,21 @@
+{
+  "id": "T0649",
+  "name": "inner-query-test-63f3c0e826/inner-queries-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions \u2192 Query expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"",
+    "Expressions \u2192 Query expressions: \"Supports `list` and `map` as `query-constructor-type`\"",
+    "Subset restrictions \u2192 Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.array lists length, push, map, indexOf, remove, removeAll, toStream, toBase64, toBase16, fromBase64, fromBase16.",
+    "Subset restrictions \u2192 Invocations \u2192 Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (array:some, array:filter and array:pop are absent)."
+  ],
+  "reason": "The case requires stream and table query constructors, while the positive constructor list permits only list and map. It asserts results from nested stream/table joins and keyed table construction, including duplicate-key errors propagated from inner and outer queries. The final test also asserts query results using unsupported array some/filter/pop calls. Supported join and on-conflict clauses do not extend the constructor or langlib lists.",
+  "unsupported_constructs": [
+    "stream and table key(...) query constructors",
+    "Query actions ending in do (not included in the supported statements/actions lists)",
+    "ballerina/lang.array some, filter and pop calls"
+  ],
+  "test_design_notes": [
+    "io:println calls only report results and are not grounds for classification.",
+    "Commented-out inner-query visibility test is inactive."
+  ]
+}

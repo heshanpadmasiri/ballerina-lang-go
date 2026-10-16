@@ -1,0 +1,46 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "module-listener-decl-test-9b9489d763/imported-module-listeners-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> modules/module2/module2.bal:22:31
+           |
+        22 |     resource function get foo(string b) {
+           |                               ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> modules/module2/module2.bal:25:31
+           |
+        25 |     resource function get bar(string b) {
+           |                               ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> modules/module2/module2.bal:30:31
+           |
+        30 |     resource function get foo(string b) {}
+           |                               ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> modules/module2/module2.bal:34:31
+           |
+        34 |     resource function get foo(string b) {}
+           |                               ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'name'
+          --> modules/module2/module2.bal:16:49
+           |
+        16 |     public function attach(service object {} s, string[]|string? name = ()) returns error? {}
+           |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+          --> modules/module2/module2.bal:16:28
+           |
+        16 |     public function attach(service object {} s, string[]|string? name = ()) returns error? {}
+           |                            ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+          --> modules/module2/module2.bal:18:28
+           |
+        18 |     public function detach(service object {} s) returns error? {}
+           |                            ^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

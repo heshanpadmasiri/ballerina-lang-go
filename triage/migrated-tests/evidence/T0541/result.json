@@ -1,0 +1,14 @@
+{
+  "Name": "func-invocation-expr-test-adcfe7c191/function-invocation-expr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/func-invocation-expr-test-adcfe7c191/function-invocation-expr-v.bal",
+  "Project": false,
+  "Id": "T0541",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/func-invocation-expr-test-adcfe7c191/function-invocation-expr-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.087
+}

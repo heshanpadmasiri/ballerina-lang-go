@@ -1,0 +1,14 @@
+{
+  "Name": "anydata-ternary-conv-test-63ef110d27/anydata-ternary-conv-test-63ef110d27-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anydata-ternary-conv-test-63ef110d27/anydata-ternary-conv-test-63ef110d27-v.bal",
+  "Project": false,
+  "Id": "T0036",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anydata-ternary-conv-test-63ef110d27/anydata-ternary-conv-test-63ef110d27-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.089
+}

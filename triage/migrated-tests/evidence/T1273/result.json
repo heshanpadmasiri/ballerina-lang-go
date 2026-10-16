@@ -1,0 +1,14 @@
+{
+  "Name": "record-value-test-1a630496b4/record-remove-required-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-value-test-1a630496b4/record-remove-required-p.bal",
+  "Project": false,
+  "Id": "T1273",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-value-test-1a630496b4/record-remove-required-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.086
+}

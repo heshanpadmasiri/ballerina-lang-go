@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	matched float array
+        	matched float array
+        	matched float array
+        	matched float array
+        	matched float array
+        	10
+        	5
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,26 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Alexander
+        	George
+        	WSO2
+        	Alexander
+        	George
+        	WSO2
+        	3
+        	Alex
+        	George
+        	WSO2
+        	2
+        	Alex
+        	George
+        	30
+        	Ranjan
+        	Fonseka
+        	30
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,352 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "raw-template-literal-test-73d1c4c5ea/raw-template-literal-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:104:17
+            |
+        104 |     Temp1 rt1 = `Foo${8}Bar${"asdf"}${23.45}`; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:105:17
+            |
+        105 |     Temp1 rt2 = `${8}`; // @error
+            |                 ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:106:17
+            |
+        106 |     Temp1 rt3 = `Foo${8}Bar${"asdf"}`; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:116:15
+            |
+        116 |     Temp2 t = `Count:${1}${2}`; // @error
+            |               ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:117:9
+            |
+        117 |     t = `Count`; // @error
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:127:15
+            |
+        127 |     Temp3 t = `Count:${1}${2}`; // @error
+            |               ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:131:35
+            |
+        131 |     ob:RawTemplate|Template1 rt = `Count: ${10}, ${20}`; // @error
+            |                                   ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:135:44
+            |
+        135 | final object:RawTemplate & readonly tmp1 = `Count: ${10}, ${20}`;
+            |                                            ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:136:35
+            |
+        136 | final Template1 & readonly tmp2 = `Count: ${10}, ${20}`;
+            |                                   ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:137:41
+            |
+        137 | final RawTemplateType & readonly tmp3 = `Count: ${10}, ${20}`;
+            |                                         ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:146:48
+            |
+        146 |     final object:RawTemplate & readonly tmp4 = `Count: ${10}, ${20}`;
+            |                                                ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:149:39
+            |
+        149 |     final Template1 & readonly tmp5 = `Count: ${10}, ${20}`;
+            |                                       ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> raw-template-literal-negative-e.bal:152:45
+            |
+        152 |     final RawTemplateType & readonly tmp6 = `Count: ${10}, ${20}`;
+            |                                             ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:15:15
+           |
+        15 |     } temp1 = `${x} + ${y} = ${x + y}`; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:19:15
+           |
+        19 |     } temp2 = `${x} + ${y} = ${x + y}`; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:32:19
+           |
+        32 |     Template t1 = `Using tuples: ${x}, ${s}, ${f}`; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:33:19
+           |
+        33 |     Template t2 = `Using tuples: ${x}`; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:38:15
+           |
+        38 |     } temp2 = `Using tuples 2: ${x}, ${s}, ${t1}`; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:51:15
+           |
+        51 |     } temp1 = `Foo ${x}Bar`; // @error
+           |               ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:63:19
+           |
+        63 |     Template1 t = `${x} + ${y} = ${x + y}`; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:75:15
+           |
+        75 |     } temp3 = `Using tuples: ${x}, ${s}, ${f}`; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:84:13
+           |
+        84 |     } rt1 = `Hello World!`; // @error
+           |             ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:85:21
+           |
+        85 |     object {} rt2 = `Hello World!`; // @error
+           |                     ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:86:60
+           |
+        86 |     object { public (readonly & string[]) strings; } rt3 = `Hello World!`; // @error
+           |                                                            ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:87:47
+           |
+        87 |     object { public int[] insertions; } rt4 = `Hello World!`; // @error
+           |                                               ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:88:56
+           |
+        88 |     object { public int[] insertions; int foo; } rt5 = `Hello World!`; // @error
+           |                                                        ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+          --> raw-template-literal-negative-e.bal:94:13
+           |
+        94 |     } rt6 = `Hello World!`; // @error
+           |             ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+         --> raw-template-literal-negative-e.bal:5:18
+          |
+        5 |     string rt1 = `Hello ${name}!`; // @error
+          |                  ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+         --> raw-template-literal-negative-e.bal:6:19
+          |
+        6 |     anydata rt2 = `Hello ${name}!`; // @error
+          |                   ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:104:17
+            |
+        104 |     Temp1 rt1 = `Foo${8}Bar${"asdf"}${23.45}`; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:105:17
+            |
+        105 |     Temp1 rt2 = `${8}`; // @error
+            |                 ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:106:17
+            |
+        106 |     Temp1 rt3 = `Foo${8}Bar${"asdf"}`; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:116:15
+            |
+        116 |     Temp2 t = `Count:${1}${2}`; // @error
+            |               ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:117:9
+            |
+        117 |     t = `Count`; // @error
+            |         ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:127:15
+            |
+        127 |     Temp3 t = `Count:${1}${2}`; // @error
+            |               ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:131:35
+            |
+        131 |     ob:RawTemplate|Template1 rt = `Count: ${10}, ${20}`; // @error
+            |                                   ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:135:44
+            |
+        135 | final object:RawTemplate & readonly tmp1 = `Count: ${10}, ${20}`;
+            |                                            ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:136:35
+            |
+        136 | final Template1 & readonly tmp2 = `Count: ${10}, ${20}`;
+            |                                   ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:137:41
+            |
+        137 | final RawTemplateType & readonly tmp3 = `Count: ${10}, ${20}`;
+            |                                         ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:146:48
+            |
+        146 |     final object:RawTemplate & readonly tmp4 = `Count: ${10}, ${20}`;
+            |                                                ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:149:39
+            |
+        149 |     final Template1 & readonly tmp5 = `Count: ${10}, ${20}`;
+            |                                       ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> raw-template-literal-negative-e.bal:152:45
+            |
+        152 |     final RawTemplateType & readonly tmp6 = `Count: ${10}, ${20}`;
+            |                                             ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:15:15
+           |
+        15 |     } temp1 = `${x} + ${y} = ${x + y}`; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:19:15
+           |
+        19 |     } temp2 = `${x} + ${y} = ${x + y}`; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:32:19
+           |
+        32 |     Template t1 = `Using tuples: ${x}, ${s}, ${f}`; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:33:19
+           |
+        33 |     Template t2 = `Using tuples: ${x}`; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:38:15
+           |
+        38 |     } temp2 = `Using tuples 2: ${x}, ${s}, ${t1}`; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:51:15
+           |
+        51 |     } temp1 = `Foo ${x}Bar`; // @error
+           |               ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:63:19
+           |
+        63 |     Template1 t = `${x} + ${y} = ${x + y}`; // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:75:15
+           |
+        75 |     } temp3 = `Using tuples: ${x}, ${s}, ${f}`; // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:84:13
+           |
+        84 |     } rt1 = `Hello World!`; // @error
+           |             ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:85:21
+           |
+        85 |     object {} rt2 = `Hello World!`; // @error
+           |                     ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:86:60
+           |
+        86 |     object { public (readonly & string[]) strings; } rt3 = `Hello World!`; // @error
+           |                                                            ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:87:47
+           |
+        87 |     object { public int[] insertions; } rt4 = `Hello World!`; // @error
+           |                                               ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:88:56
+           |
+        88 |     object { public int[] insertions; int foo; } rt5 = `Hello World!`; // @error
+           |                                                        ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+          --> raw-template-literal-negative-e.bal:94:13
+           |
+        94 |     } rt6 = `Hello World!`; // @error
+           |             ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+         --> raw-template-literal-negative-e.bal:5:18
+          |
+        5 |     string rt1 = `Hello ${name}!`; // @error
+          |                  ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+         --> raw-template-literal-negative-e.bal:6:19
+          |
+        6 |     anydata rt2 = `Hello ${name}!`; // @error
+          |                   ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

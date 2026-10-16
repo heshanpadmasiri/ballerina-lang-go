@@ -1,0 +1,14 @@
+{
+  "Name": "query-expr-with-query-construct-type-test-397e030880/query-expr-query-construct-type-semantics-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-expr-with-query-construct-type-test-397e030880/query-expr-query-construct-type-semantics-negative-e.bal",
+  "Project": false,
+  "Id": "T1213",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-expr-with-query-construct-type-test-397e030880/query-expr-query-construct-type-semantics-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.07
+}

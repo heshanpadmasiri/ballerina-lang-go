@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n  --\u003e sem-types-5-v.bal:46:34\n   |\n46 |         self.credentialsConfig = credentialsConfig.cloneReadOnly();\n   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"sem-types-5-v.bal","StartLine":46,"EndLine":46}]}

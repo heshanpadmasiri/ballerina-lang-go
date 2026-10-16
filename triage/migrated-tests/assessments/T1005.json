@@ -1,0 +1,13 @@
+{
+  "id": "T1005",
+  "name": "never-type-test-35205a329e/never-method-call-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Statements: \"Assignment\", \"Call\", \"Local variable declarations\", \"Panic\"",
+    "Expressions: \"Method call\", \"Error constructor\", \"New expression\", \"Field access expression\""
+  ],
+  "reason": "The case constructs a class, initializes its integer field, and invokes a method returning never that panics with a constructed error. All essential constructs and the panic behavior are supported. The specification imposes no restriction excluding never method return types, and the ordinary user-defined method call uses no restricted langlib invocation.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment indicates expected panic behavior; there are no explicit assertions or error-message checks in the supplied case."]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T1013",
+  "name": "not-so-basic-worker-test-0fe9cb09ab/worker-actions-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: the supported statement list does not include fork statements or named worker declarations.",
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are supported, but worker send and receive actions are not listed.",
+    "# Subset restrictions / ## Import declarations: `ballerina/lang.runtime` includes `sleep`."
+  ],
+  "reason": "The asserted results essentially depend on fork blocks, named workers, and inter-worker send/receive actions, none of which appear in the subset's positive lists. Supported start/wait actions and runtime:sleep do not establish support for worker creation or message passing. Outputs such as 90, 12, and 65000 require these uncovered worker behaviors.",
+  "unsupported_constructs": [
+    "fork statements and named worker declarations, including nested forks",
+    "worker message send (`a -> w2`) and receive (`<- w1`) actions"
+  ],
+  "test_design_notes": [
+    "The test additionally asserts selected-worker wait completion, shared-state updates, and repeated worker creation; the uncovered worker constructs suffice for the whole-case feature classification.",
+    "io:println calls only expose expected outputs; runtime:sleep and value:toString are explicitly supported."
+  ]
+}

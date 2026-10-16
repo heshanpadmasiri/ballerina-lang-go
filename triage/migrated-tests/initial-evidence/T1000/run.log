@@ -1,0 +1,143 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "nested-queries-with-encl-func-params-b1d65d2cdb/nested-queries-with-encl-func-params-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> nested-queries-with-encl-func-params-e.bal:27:41
+           |
+        27 |               from var emp in (from var {
+           |                                         ^
+        28 |                   firstName,
+           |                   ^^^^^^^^^^
+        29 |                   lastName, // @error unused variable 'lastName'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        30 |                   dept // @error unused variable 'dept'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        31 |               } in employeeList select msg + " " + firstName)
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> nested-queries-with-encl-func-params-e.bal:39:41
+           |
+        39 |               from var emp in (from var {
+           |                                         ^
+        40 |                   firstName,
+           |                   ^^^^^^^^^^
+        41 |                   lastName, // @error unused variable 'lastName'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |                   dept // @error unused variable 'dept'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |               } in employeeList select msg + " " + firstName)
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> nested-queries-with-encl-func-params-e.bal:50:41
+           |
+        50 |               from var emp in (from var {
+           |                                         ^
+        51 |                   firstName,
+           |                   ^^^^^^^^^^
+        52 |                   lastName,
+           |                   ^^^^^^^^^
+        53 |                   dept // @error unused variable 'dept'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        54 |               } in employeeList
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> nested-queries-with-encl-func-params-e.bal:62:41
+           |
+        62 |               from var emp in (from var {
+           |                                         ^
+        63 |                   firstName, // @error unused variable 'firstName'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        64 |                   lastName,
+           |                   ^^^^^^^^^
+        65 |                   dept // @error unused variable 'dept'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |               } in employeeList
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> nested-queries-with-encl-func-params-e.bal:74:33
+           |
+        74 |         from var x in (from var {
+           |                                 ^
+        75 |             firstName,
+           |             ^^^^^^^^^^
+        76 |             lastName,
+           |             ^^^^^^^^^
+        77 |             dept // @error unused variable 'dept'
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        78 |         } in employeeList
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> nested-queries-with-encl-func-params-e.bal:27:41
+           |
+        27 |               from var emp in (from var {
+           |                                         ^
+        28 |                   firstName,
+           |                   ^^^^^^^^^^
+        29 |                   lastName, // @error unused variable 'lastName'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        30 |                   dept // @error unused variable 'dept'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        31 |               } in employeeList select msg + " " + firstName)
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> nested-queries-with-encl-func-params-e.bal:39:41
+           |
+        39 |               from var emp in (from var {
+           |                                         ^
+        40 |                   firstName,
+           |                   ^^^^^^^^^^
+        41 |                   lastName, // @error unused variable 'lastName'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |                   dept // @error unused variable 'dept'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |               } in employeeList select msg + " " + firstName)
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> nested-queries-with-encl-func-params-e.bal:50:41
+           |
+        50 |               from var emp in (from var {
+           |                                         ^
+        51 |                   firstName,
+           |                   ^^^^^^^^^^
+        52 |                   lastName,
+           |                   ^^^^^^^^^
+        53 |                   dept // @error unused variable 'dept'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        54 |               } in employeeList
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> nested-queries-with-encl-func-params-e.bal:62:41
+           |
+        62 |               from var emp in (from var {
+           |                                         ^
+        63 |                   firstName, // @error unused variable 'firstName'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        64 |                   lastName,
+           |                   ^^^^^^^^^
+        65 |                   dept // @error unused variable 'dept'
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |               } in employeeList
+           |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> nested-queries-with-encl-func-params-e.bal:74:33
+           |
+        74 |         from var x in (from var {
+           |                                 ^
+        75 |             firstName,
+           |             ^^^^^^^^^^
+        76 |             lastName,
+           |             ^^^^^^^^^
+        77 |             dept // @error unused variable 'dept'
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        78 |         } in employeeList
+           |         ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

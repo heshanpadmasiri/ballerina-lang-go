@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: missing map key\n        at testMapConstrainedToUnionCaseThree(constrained-map-union-missing-key-p.bal:3)\n           main(constrained-map-union-missing-key-p.bal:7)\n","Diagnostics":null}

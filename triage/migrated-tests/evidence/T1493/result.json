@@ -1,0 +1,14 @@
+{
+  "Name": "typedesc-tests-6cfb08048c/typedesc-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/typedesc-tests-6cfb08048c/typedesc-e.bal",
+  "Project": false,
+  "Id": "T1493",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/typedesc-tests-6cfb08048c/typedesc-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.074
+}

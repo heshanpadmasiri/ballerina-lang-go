@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-annotation-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> module-record-variable-test-a0b146279e-annotation-negative-e.bal:5:17
+          |
+        5 | record {int a;} {a: myA} = {a: 5};
+          |                 ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

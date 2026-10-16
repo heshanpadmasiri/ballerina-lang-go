@@ -1,0 +1,54 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "selectively-immutable-type-test-08053ceb2e/immutable-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> immutable-negative-e.bal:159:42
+            |
+        159 |     table<Bar> key(name) & readonly tb = table [ // @error
+            |                                          ^^^^^^^^^^^^^^^^^
+        160 |         {name: "Jo", id: new} // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        161 |     ];
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> immutable-negative-e.bal:159:5
+            |
+        159 |     table<Bar> key(name) & readonly tb = table [ // @error
+            |     ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> immutable-negative-e.bal:113:9
+            |
+        113 |         ...rec // @error
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> immutable-negative-e.bal:133:9
+            |
+        133 |         ...rec // @error
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> immutable-negative-e.bal:232:9
+            |
+        232 |         ...y // @error
+            |         ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> immutable-negative-e.bal:159:42
+            |
+        159 |     table<Bar> key(name) & readonly tb = table [ // @error
+            |                                          ^^^^^^^^^^^^^^^^^
+        160 |         {name: "Jo", id: new} // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        161 |     ];
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> immutable-negative-e.bal:159:5
+            |
+        159 |     table<Bar> key(name) & readonly tb = table [ // @error
+            |     ^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

@@ -1,0 +1,18 @@
+{
+  "id": "T1485",
+  "name": "type-reference-tests-fcb8264969/type-reference-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: 'Type definition'; 'Class definition'",
+    "## Expressions: 'Anonymous function expression'; 'New expression'; 'List constructor'; 'Mapping constructor' (no table constructor listed)",
+    "## Statements: 'Local variable declarations'; 'Return'",
+    "## Object/class definitions: 'Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported'"
+  ],
+  "reason": "The whole case includes an essential table constructor, `table key(a) [{a: \"a\"}]`, which is not covered by the supported expression list. This suffices for feature classification even though the ordinary alias, anonymous-function, and class assignment rejection tests otherwise use listed constructs. The unqualified Student class does not encounter the qualifier restriction.",
+  "unsupported_constructs": ["Table constructor expression with key specifier in testTableTypeReferenceNegative"],
+  "test_design_notes": [
+    "Mixed scope: ordinary type-reference rejection tests share a file with table-specific tests.",
+    "The table constructor is unmarked but is required to type-check the surrounding negative test; @error markers on assignments do not remove this dependency.",
+    "Only @error markers occur; there are no @args, @panic, or @output behaviors to assess."
+  ]
+}

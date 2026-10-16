@@ -1,0 +1,23 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:47: CLI exit: exit status 1
+    migration_triage_test.go:53: -v test leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'value'
+         --> open-record-iteration-terminal2-v.bal:7:52
+          |
+        7 |     int count = grades.reduce(function (int total, int value) returns int { return total + 1; }, 0);
+          |                                                    ^^^^^^^^^
+        
+        ballerina: compilation contains errors
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	4
+        	80
+        	0
+        	233
+        	58.25
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

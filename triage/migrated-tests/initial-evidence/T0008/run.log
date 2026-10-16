@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "access-test-42f7c8c3ea/access-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 's1'
+          --> access-p.bal:12:5
+           |
+        12 |     string? s1 = a.betas[0]?.s; // @panic
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

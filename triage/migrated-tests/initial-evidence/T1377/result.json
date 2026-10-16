@@ -1,0 +1,17 @@
+{
+  "Name": "struct-equivalency-negative-test-3cd7535bf7/cross-module-user-mismatch-p",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-equivalency-negative-test-3cd7535bf7/cross-module-user-mismatch-p",
+  "Project": true,
+  "Id": "T1377",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-equivalency-negative-test-3cd7535bf7/cross-module-user-mismatch-p/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/struct-equivalency-negative-test-3cd7535bf7/cross-module-user-mismatch-p/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/struct-equivalency-negative-test-3cd7535bf7/cross-module-user-mismatch-p/modules/bar/bar.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/struct-equivalency-negative-test-3cd7535bf7/cross-module-user-mismatch-p/modules/foo/private-fields.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.059
+}

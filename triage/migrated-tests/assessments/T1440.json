@@ -1,0 +1,18 @@
+{
+  "id": "T1440",
+  "name": "tuple-mutability-test-4a07e00b3d/complex-tuple-types-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Module variable declarations; Function definition",
+    "Statements: Local variable declarations",
+    "Expressions: List constructor; Mapping constructor; Member access expression; Type test expression; Conditional expression",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "The case constructs fixed tuples containing unions, nested tuples, json-compatible primitive values and a record, then reads constant-index members and prints selected values. The listed declaration, constructor, member-access, type-test and conditional features cover this behavior, with no applicable tuple/union/json restriction. The five expected outputs follow directly from the initialized members and supported type tests. io:println is instrumentation, not a restricted ballerina/lang.* dependency.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Despite the directory name, this case tests tuple construction and reads; it performs no mutation.",
+    "Five @output markers assert 12.0, true, true, json and 12.0; no @args or @panic markers are present."
+  ]
+}

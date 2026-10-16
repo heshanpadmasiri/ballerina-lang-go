@@ -1,0 +1,17 @@
+{
+  "Name": "argument-parser-positive-test-e41e5b8a0a/uint16-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/uint16-v",
+  "Project": true,
+  "Id": "T0122",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/uint16-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/uint16-v/main.bal"
+  ],
+  "Args": [
+    "10"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.125
+}

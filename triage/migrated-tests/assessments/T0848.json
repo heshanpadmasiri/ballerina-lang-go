@@ -1,0 +1,13 @@
+{
+  "id": "T0848",
+  "name": "match-guard-analysis-test-cf5a6832da/match-guard-type-checking-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Module-level declarations: Supports the isolated function qualifier",
+    "Operators: Additive ops +, -; Logical ops &&, ||"
+  ],
+  "reason": "The whole case requires a mapping match pattern, {b: 2, c: 3}, in f1. This is outside the explicit restriction to constant and wildcard match patterns, even though the asserted diagnostics concern non-boolean match guards. The constant-pattern guard type errors in f2 otherwise use supported expressions and operators.",
+  "unsupported_constructs": ["Mapping match pattern {b: 2, c: 3} in f1"],
+  "test_design_notes": ["Negative test marks guards returning nil or int, and an int operand of ||, as errors. Unsupported mapping-pattern grammar in f1 makes the combined case a feature classification."]
+}

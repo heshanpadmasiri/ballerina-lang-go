@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'address'\n --\u003e modules/variable/constant-def.bal:9:1\n  |\n9 | const string address = \"Colombo\";\n  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"modules/variable/constant-def.bal","StartLine":9,"EndLine":9}]}

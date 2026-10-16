@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections\n  --\u003e main.bal:23:13\n   |\n23 |             from var person in personList.toStream()\n   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":23,"EndLine":23}]}

@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: top stack frame mismatch for @panic: want array-fill-object-init-param-p.bal:13, got array-fill-object-init-param-p.bal:12
+        stderr:
+        error: no filler value
+                at main(array-fill-object-init-param-p.bal:12)
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

@@ -1,0 +1,18 @@
+{
+  "id": "T0453",
+  "name": "error-stack-trace-test-7110040e22/stacktrace-elements-v",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions; the error entry is error:message."
+  ],
+  "reason": "The case requires error:StackFrame and e.stackTrace(), neither of which is included in the supported lang.error types/methods. Its assertions require three frames and exact callable, module, filename and line-number formatting, so stack-trace behavior is essential to the case.",
+  "unsupported_constructs": [
+    "ballerina/lang.error StackFrame type",
+    "error.stackTrace() and its asserted frame metadata/formatting"
+  ],
+  "test_design_notes": [
+    "main invokes the assertions directly; no @args, @panic or @output directives are present.",
+    "io:println is assertion-failure instrumentation and does not determine the classification."
+  ]
+}

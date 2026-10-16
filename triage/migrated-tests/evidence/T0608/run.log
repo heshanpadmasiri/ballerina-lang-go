@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: diagnostic at configurable-global-var-decl-negative-e.bal:24-24 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at configurable-global-var-decl-negative-e.bal:28-28 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at configurable-global-var-decl-negative-e.bal:97-97 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at configurable-global-var-decl-negative-e.bal:97-97 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at configurable-global-var-decl-negative-e.bal:97-97 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at configurable-global-var-decl-negative-e.bal:29 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

@@ -1,0 +1,19 @@
+{
+  "id": "T0592",
+  "name": "future-negative-tests-7e2663cfde/cases/future_strand-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Start action](https://ballerina.io/spec/lang/master/#start-action)",
+    "Expressions: [Wait action](https://ballerina.io/spec/lang/master/#wait-action)",
+    "Module-level declarations: Annotation declarations and attachments — Supports source-only, runtime, marker and repeated annotations",
+    "Expressions: [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: array:push"
+  ],
+  "reason": "The case exercises supported start and wait actions, including annotated starts and two concurrent consumers waiting on the same futures. Its asserted results are two successful values of 3 and two duplicate-wait errors. The positive lists support annotations, checking expressions, records, field access, arrays, type tests and loops; no stated restriction excludes strand annotations, wait-for-all mappings or duplicate-wait error behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Despite the negative-tests directory name, this is a runtime output test of duplicate waits, not a compile-time rejection test.",
+    "The case partitions successful values and errors before asserting outputs, so it does not require a particular concurrent consumer to win.",
+    "io:println is output instrumentation only."
+  ]
+}

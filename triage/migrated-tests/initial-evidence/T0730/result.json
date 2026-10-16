@@ -1,0 +1,14 @@
+{
+  "Name": "locks-in-main-test-617c6c002d/locks-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/locks-negative-e.bal",
+  "Project": false,
+  "Id": "T0730",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/locks-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

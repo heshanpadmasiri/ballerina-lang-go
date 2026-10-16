@@ -1,0 +1,16 @@
+{
+  "id": "T1018",
+  "name": "numeric-conversion-test-6b3e1e5e00/infinite-float-as-byte-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"",
+    "Statements: \"Local variable declarations\"; \"Call\"",
+    "Expressions: \"Type cast expression\"; \"Literal\" (\"numeric-literal\")",
+    "Operators: \"Multiplicative ops `*`, `%`, `/`\""
+  ],
+  "reason": "The case computes positive float infinity with 1.0 / 0.0 and expects the explicit cast to byte to panic. Float division, numeric literals, type casts, local declarations, and function definitions/calls are positively supported, with no applicable restriction excluding non-finite numeric casts or their failure behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic comment marks the expected runtime failure at the cast; no library invocation is involved."
+  ]
+}

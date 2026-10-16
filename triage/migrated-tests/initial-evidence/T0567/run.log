@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at function-pointers-with-named-args-negative-e.bal:2 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

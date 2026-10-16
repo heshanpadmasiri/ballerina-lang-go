@@ -1,0 +1,15 @@
+{
+  "Name": "map-access-expr-test-6a04afad0c/nested-map-access-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/nested-map-access-e",
+  "Project": true,
+  "Id": "T0762",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/nested-map-access-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/nested-map-access-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.035
+}

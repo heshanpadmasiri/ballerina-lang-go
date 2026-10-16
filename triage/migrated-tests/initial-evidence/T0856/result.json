@@ -1,0 +1,14 @@
+{
+  "Name": "match-statement-syntax-errors-test-3752146106/match-stmt-syntax-errors-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-statement-syntax-errors-test-3752146106/match-stmt-syntax-errors-e.bal",
+  "Project": false,
+  "Id": "T0856",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-statement-syntax-errors-test-3752146106/match-stmt-syntax-errors-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.031
+}

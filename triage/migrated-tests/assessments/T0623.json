@@ -1,0 +1,16 @@
+{
+  "id": "T0623",
+  "name": "group-expression-test-a9a0af51cf/group-expression-test-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: Nested expressions (`(expression)`)",
+    "Expressions: Method call; Type cast expression; New expression; Check expression; Field access expression; Member access expression; Type test expression",
+    "Module-level declarations: Type definition; Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Operators: Equality ops `==`, `!=`, `===`, `!==`; Multiplicative ops `*`, `%`, `/`; Additive ops `+`, `-`; Logical ops `&&`, `||`",
+    "Subset restrictions / Import declarations: `ballerina/lang.value` — `cloneWithType`; `ballerina/lang.string` — `length`, `toUpperAscii`; `ballerina/lang.float` — `isNaN`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `value:cloneWithType`; `string:length`; `string:toLowerAscii`, `string:toUpperAscii` and `string:trim`; `float:isFinite`, `float:isInfinite`, `float:isNaN`, `float:sum`, `float:max`, `float:min` and `float:avg`"
+  ],
+  "reason": "All asserted behavior uses supported grouping, map/array indexing, record/object fields and methods, casts, equality, type tests and supported langlib calls. Parentheses preserve these operations, including cloneWithType with record and union typedesc arguments. Float division producing NaN and isNaN are within the supported operators and library methods. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Ten main outputs assert true; io:println is output instrumentation."]
+}

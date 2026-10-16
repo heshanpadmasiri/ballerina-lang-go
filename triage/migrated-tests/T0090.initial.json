@@ -1,0 +1,18 @@
+{
+  "id": "T0090",
+  "name": "argument-parser-positive-test-e41e5b8a0a/decimal-02-v",
+  "classification": "bug",
+  "spec_references": [
+    {"heading": "Module-level declarations", "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"},
+    {"heading": "Statements", "quote": "[Call](https://ballerina.io/spec/lang/master/#call-stmt)"},
+    {"heading": "Expressions", "quote": "[Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)"},
+    {"heading": "Subset restrictions / Import declarations", "quote": "Only following lang libraries with given methods/types are supported"}
+  ],
+  "reason": "The complete case declares a public main function with one required decimal parameter and prints that parameter. Required parameters, calls and variable references are supported; no restriction excludes decimal main parameters or negative decimal command-line input. The lang-library restriction does not exclude ordinary ballerina/io instrumentation.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @args marker supplies the string -10.123; the negative decimal is command-line input, not a source unary expression.",
+    "The @output marker expects -10.123. io:println is observation instrumentation.",
+    "No mixed unsupported construct is present. Assessment uses only the supplied sources and subset specification."
+  ]
+}

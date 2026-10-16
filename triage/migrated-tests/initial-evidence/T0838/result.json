@@ -1,0 +1,14 @@
+{
+  "Name": "mapping-constructor-expr-test-833706cb84/spread-op-field-semantic-analysis-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/spread-op-field-semantic-analysis-negative-e.bal",
+  "Project": false,
+  "Id": "T0838",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/spread-op-field-semantic-analysis-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.051
+}

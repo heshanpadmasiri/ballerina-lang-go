@@ -1,0 +1,14 @@
+{
+  "Name": "error-query-test-72a3210769/error-query-test-72a3210769-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-query-test-72a3210769/error-query-test-72a3210769-v.bal",
+  "Project": false,
+  "Id": "T0452",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-query-test-72a3210769/error-query-test-72a3210769-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.083
+}

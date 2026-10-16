@@ -1,0 +1,14 @@
+{
+  "Name": "worker-alternate-receive-test-a1a9b89ec6/alternate-receive-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-alternate-receive-test-a1a9b89ec6/alternate-receive-v.bal",
+  "Project": false,
+  "Id": "T1545",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-alternate-receive-test-a1a9b89ec6/alternate-receive-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.058
+}

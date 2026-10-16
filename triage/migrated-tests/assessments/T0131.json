@@ -1,0 +1,15 @@
+{
+  "id": "T0131",
+  "name": "array-access-expr-test-36e8f0c67c/unary-const-index-access-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)",
+    "## Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "## Operators: Unary operators — bitwise complement `~`",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "## Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)"
+  ],
+  "reason": "The case uses supported function calls, local declarations, list construction, array member access and unary bitwise complement. The expression ~1 evaluates to -2, so accessing the two-element array at that index must panic, as asserted by @panic. No subset restriction excludes this member-access behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["@panic asserts an out-of-range array access panic; there are no @args or @output assertions."]
+}

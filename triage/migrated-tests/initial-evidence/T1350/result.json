@@ -1,0 +1,14 @@
+{
+  "Name": "simple-type-cast-expr-test-95b0683c3a/simple-type-cast-expr-test-95b0683c3a-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/simple-type-cast-expr-test-95b0683c3a/simple-type-cast-expr-test-95b0683c3a-v.bal",
+  "Project": false,
+  "Id": "T1350",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/simple-type-cast-expr-test-95b0683c3a/simple-type-cast-expr-test-95b0683c3a-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.081
+}

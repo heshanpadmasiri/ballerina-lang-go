@@ -1,0 +1,19 @@
+{
+  "id": "T0761",
+  "name": "map-access-expr-test-6a04afad0c/map-access-semantics-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)",
+    "## Expressions: [Field access expression](https://ballerina.io/spec/lang/master/#section_6.10)",
+    "## Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "## Statements: [Assignment](https://ballerina.io/spec/lang/master/#assignment-stmt)",
+    "## Statements: [Return](https://ballerina.io/spec/lang/master/#return-stmt)",
+    "## Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)"
+  ],
+  "reason": "This negative case exercises rejection of an integer map key, wildcard field access on a map, and uses of uninitialized map variables. These are invalid uses of supported member/field access, local declarations, assignments, returns and function calls. The subset lists these constructs without restrictions excluding the relevant static checks; illegal code in this supported grammar remains in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The source marks the integer index and wildcard access with @error comments; uninitialized maps are also used in an assignment and a return. It contains no executable diagnostic assertions or entry point."
+  ]
+}

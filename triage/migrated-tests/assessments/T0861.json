@@ -1,0 +1,18 @@
+{
+  "id": "T0861",
+  "name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString"
+  ],
+  "reason": "Asserted outputs depend on error match patterns decomposing messages, causes and detail fields, including typed error patterns, nested list/mapping patterns, rest bindings and capture patterns with guards. Match support is explicitly limited to constant and wildcard patterns, so this whole case requires unsupported functionality. The test also uses value:Cloneable, absent from the allowed lang.value types/methods.",
+  "unsupported_constructs": [
+    "Error match patterns, including typed error patterns and nested cause/detail patterns",
+    "Capture, list, mapping and rest match patterns",
+    "ballerina/lang.value:Cloneable"
+  ],
+  "test_design_notes": [
+    "Assertions exercise message/cause/detail matching, missing detail fields, remainder capture, wildcard exclusion of errors, and distinct/structural error type guards; io:println is output instrumentation."
+  ]
+}

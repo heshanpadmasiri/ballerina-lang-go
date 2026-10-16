@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @error annotation at integer-value-negative-e.bal:3 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at integer-value-negative-e.bal:6 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at integer-value-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at integer-value-negative-e.bal:30 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at integer-value-negative-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at integer-value-negative-e.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at integer-value-negative-e.bal:37 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at integer-value-negative-e.bal:39 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

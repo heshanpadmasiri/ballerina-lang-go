@@ -1,0 +1,14 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:51 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:53 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:67 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:69 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:71 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:73 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at unary-operations-e.bal:75 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

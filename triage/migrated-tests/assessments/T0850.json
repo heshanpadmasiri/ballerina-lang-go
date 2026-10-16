@@ -1,0 +1,13 @@
+{
+  "id": "T0850",
+  "name": "match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-unreachable-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: [Match statement] — Currently only supports const-pattern and wildcard-match-pattern",
+    "Statements: [Return]",
+    "Expressions: [Error constructor]"
+  ],
+  "reason": "The negative test asserts unreachable-code diagnostics after fail and within match on fail handlers. Although its constant match patterns, returns and error constructors are supported, fail statements and on fail handling are not included in the subset's positive statement list. This essential failure-handling behavior makes the whole case a feature gap.",
+  "unsupported_constructs": ["fail statement", "match on fail clause and associated control-flow diagnostics"],
+  "test_design_notes": ["Negative rejection is in scope in principle; classification rests on the essential unsupported failure-handling constructs, not on the source being intentionally invalid."]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "array-initializer-expr-test-8700f50634/multi-type-array-initializer-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-initializer-expr-test-8700f50634/multi-type-array-initializer-e.bal",
+  "Project": false,
+  "Id": "T0153",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-initializer-expr-test-8700f50634/multi-type-array-initializer-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.031
+}

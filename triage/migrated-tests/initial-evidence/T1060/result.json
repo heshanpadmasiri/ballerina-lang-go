@@ -1,0 +1,15 @@
+{
+  "Name": "numeric-literal-assignment-test-297b8c4e7a/diagnostics-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-literal-assignment-test-297b8c4e7a/diagnostics-e",
+  "Project": true,
+  "Id": "T1060",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/numeric-literal-assignment-test-297b8c4e7a/diagnostics-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/numeric-literal-assignment-test-297b8c4e7a/diagnostics-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.076
+}

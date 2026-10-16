@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-crlf-e.bal:1-1 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-crlf-e.bal:3-3 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-crlf-e.bal:6 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

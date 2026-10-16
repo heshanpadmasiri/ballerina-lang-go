@@ -1,0 +1,14 @@
+{
+  "Name": "package-import-test-60d02fba3a/duplicate-package-import-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/duplicate-package-import-e.bal",
+  "Project": false,
+  "Id": "T1191",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/duplicate-package-import-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

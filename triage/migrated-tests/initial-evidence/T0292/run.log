@@ -1,0 +1,63 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "byte-as-int-test-3342351ff8/readonly-warnings-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ByteArrayLiteralNode transformed to non-action-or-expression node <nil>
+          --> readonly-warnings-e.bal:10:41
+           |
+        10 |     byte[2] & readonly arr3 = <readonly>base16 `aa bb`;
+           |                                         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ByteArrayLiteralNode transformed to non-action-or-expression node <nil>
+          --> readonly-warnings-e.bal:14:55
+           |
+        14 |     anydata[] & readonly arr4 = <anydata[] & readonly>base16 `aa bb`;
+           |                                                       ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ByteArrayLiteralNode transformed to non-action-or-expression node <nil>
+          --> readonly-warnings-e.bal:18:36
+           |
+        18 |     any[] arr5 = <any[] & readonly>base16 `aa bb`;
+           |                                    ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ByteArrayLiteralNode transformed to non-action-or-expression node <nil>
+         --> readonly-warnings-e.bal:2:49
+          |
+        2 |     byte[] & readonly arr1 = <byte[] & readonly>base16 `aa bb`;
+          |                                                 ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ByteArrayLiteralNode transformed to non-action-or-expression node <nil>
+         --> readonly-warnings-e.bal:6:49
+          |
+        6 |     int[2] & readonly arr2 = <int[2] & readonly>base16 `aa bb`;
+          |                                                 ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformByteArrayLiteral unimplemented
+          --> readonly-warnings-e.bal:10:41
+           |
+        10 |     byte[2] & readonly arr3 = <readonly>base16 `aa bb`;
+           |                                         ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformByteArrayLiteral unimplemented
+          --> readonly-warnings-e.bal:14:55
+           |
+        14 |     anydata[] & readonly arr4 = <anydata[] & readonly>base16 `aa bb`;
+           |                                                       ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformByteArrayLiteral unimplemented
+          --> readonly-warnings-e.bal:18:36
+           |
+        18 |     any[] arr5 = <any[] & readonly>base16 `aa bb`;
+           |                                    ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformByteArrayLiteral unimplemented
+         --> readonly-warnings-e.bal:2:49
+          |
+        2 |     byte[] & readonly arr1 = <byte[] & readonly>base16 `aa bb`;
+          |                                                 ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformByteArrayLiteral unimplemented
+         --> readonly-warnings-e.bal:6:49
+          |
+        6 |     int[2] & readonly arr2 = <int[2] & readonly>base16 `aa bb`;
+          |                                                 ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

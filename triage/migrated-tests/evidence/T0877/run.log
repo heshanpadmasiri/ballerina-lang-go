@@ -1,0 +1,36 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	Error Code:Msg
+        	Matched with error : Error Code {"message":"Msg"}
+        	Matched with error : Error Code
+        	Matched with boolean : true
+        	Matched with string : It's fatal
+        	Matched with a record : true
+        	Matched with an error : Error Code 1
+        	Matched with an error : Error Code 1
+        	Matched with an error 1: Error Code 1
+        	Matched with an error 1: Error Code 1
+        	Matched with string
+        	Matched with an error: reason = Just Panic, message = Bit of detail
+        	Matched with error reason = Error One
+        	Matched with a record : true
+        	Default
+        	Matched with an error : Error Code 1Something Wrong
+        	reason = Error One, message = msgOne, fatal = true
+        	reason = Error Three, message = msgTwo, fatal = false
+        	Error Code{}
+        	["x",1]
+        	x
+        	Error Code{"foo":"foo"}
+        	Error Code:Msg
+        	Const reason:Msg
+        	Msg
+        	error detail message
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

@@ -1,0 +1,27 @@
+{
+  "id": "T0031",
+  "name": "any-function-type-test-d439f10943/any-function-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Subset restrictions > Import declarations",
+      "quote": "Only following lang libraries with given methods/types are supported",
+      "detail": "The ballerina/lang.value list includes cloneWithType, fromJsonWithType, toString and toBalString; it excludes cloneReadOnly. The ballerina/lang.error list includes message only; it excludes detail."
+    },
+    {
+      "heading": "Subset restrictions > Invocations > Other invocation restrictions",
+      "quote": "Method call syntax can be used for calling the following langlib functions:",
+      "detail": "The exhaustive list includes value:cloneWithType, value:fromJsonWithType, value:toString, value:toBalString and error:message, but not value:cloneReadOnly or error:detail."
+    }
+  ],
+  "reason": "The complete case requires arr.cloneReadOnly() in testRuntimeHashCodeViaFunctionEquality, a lang.value operation excluded by both supported lang-library methods and supported method-call lists. It also calls e.detail(), which is excluded for lang.error. These essential operations make the whole case a feature request regardless of support for its function types, casts and type tests.",
+  "unsupported_constructs": [
+    "arr.cloneReadOnly() in testRuntimeHashCodeViaFunctionEquality",
+    "e.detail() in testCastingToFunctionWithAnyFunctionReturnType"
+  ],
+  "test_design_notes": [
+    "Mixed case covers general and isolated function values, narrowing/casts, records/maps, class fields, anonymous functions, readonly cloning and never return types.",
+    "io:println and @output comments are ordinary output instrumentation and are not classification grounds.",
+    "No @error markers; some runtime casts deliberately trap errors."
+  ]
+}

@@ -1,0 +1,32 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "variable-definition-test-ff080c840f/variable-definition-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:36:9
+           |
+        36 | int x = let var _ = 10 in 10 * 20;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:41:14
+           |
+        41 |     int xx = let var _ = 10 in 10 * // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |         20;
+           |         ^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> main.bal:36:9
+           |
+        36 | int x = let var _ = 10 in 10 * 20;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> main.bal:41:14
+           |
+        41 |     int xx = let var _ = 10 in 10 * // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |         20;
+           |         ^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

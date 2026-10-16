@@ -1,0 +1,47 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Jack
+        	USA
+        	CA
+        	25
+        	Jane
+        	USA
+        	emily
+        	emily
+        	default first name
+        	
+        	999
+        	default first name
+        	Smith
+        	999
+        	Jack
+        	string:string:int:100:boolean:true:()::float:25.5:decimal:96.9
+        	:int:50
+        	:string:string
+        	:boolean:true
+        	()
+        	:object:10:function:16:json:json-string:boolean:true:():
+        	582
+        	95
+        	95
+        	stringbarField98.995
+        	string100true()
+        	Passed
+        	
+        
+        got:
+        	Jack
+        	USA
+        	CA
+        	25
+        	Jane
+        	USA
+        	emily
+        	emily
+        	default first name
+        	
+        	999
+        	
+--- FAIL: TestMigrationTriage (0.11s)
+FAIL

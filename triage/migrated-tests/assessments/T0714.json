@@ -1,0 +1,15 @@
+{
+  "id": "T0714",
+  "name": "list-binding-pattern-test-b87d28a686/list-binding-pattern-semantics-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The negative test requires list binding match patterns, including nested patterns and rest bindings, to diagnose repeated variable names and incompatible inferred binding types. These patterns are outside the explicitly supported match patterns.",
+  "unsupported_constructs": [
+    "List binding match patterns: var [a, a], var [a, [a]], var [p, ...oth], var [x, ...y], and var [z]"
+  ],
+  "test_design_notes": [
+    "The @error assertions exercise duplicate bindings and assignment/return type incompatibilities arising from list match bindings; rejection alone does not make this unsupported pattern grammar an in-scope negative test."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0638",
+  "name": "if-else-stmt-test-abeec549fb/if-else-stmt-semantics-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Statements: \"If/else\", \"Compound Assignment\", \"Assignment\", \"Local variable declarations\", \"Return\"",
+    "Expressions: \"Equality expression\", \"Type test expression\", \"List constructor\"",
+    "Operators: \"Equality ops `==`, `!=`, `===`, `!==`\" and \"Additive ops `+`, `-`\""
+  ],
+  "reason": "The case checks rejection of non-boolean if/else-if conditions and incompatible assignments or arithmetic after compound assignment resets equality/type-test narrowing. These are static semantics of supported statements, expressions and operators; no listed restriction excludes the behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative source uses @error comments to mark expected diagnostics; illegal conditions and incompatible types remain within the supported grammar/type-system scope.",
+    "The final function also uses a singleton numeric type and an int|string union to exercise narrowing and its reset."
+  ]
+}

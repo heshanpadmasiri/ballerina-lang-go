@@ -1,0 +1,22 @@
+{
+  "id": "T0452",
+  "name": "error-query-test-72a3210769/error-query-test-72a3210769-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `list` and `map` as `query-constructor-type`",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; `ballerina/lang.error` lists only `message`",
+    "Subset restrictions / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: ... `error:message`"
+  ],
+  "reason": "The executed main requires stream query constructors and a table query constructor, outside the explicitly supported list/map constructor types. Its first test also inspects error details and causes with err.detail(), err.cause(), and cause.detail(); those lang.error methods are absent from the allowed library and method lists. Thus the case requires unsupported behavior even though ordinary query clauses and check/trap expressions are supported.",
+  "unsupported_constructs": [
+    "stream from ... select ... query constructors and stream next behavior",
+    "table key(id) from ... select ... query constructor",
+    "lang.error detail and cause methods",
+    "value:Cloneable type (not listed among supported lang.value methods/types)",
+    "query actions with do clauses and do/on fail/fail statements are not covered by the positive statement/action lists"
+  ],
+  "test_design_notes": [
+    "main invokes assertions for error propagation, stream iteration, distinct errors, panic trapping, and on-fail handling; these are runtime behavior requirements, not signature-only uses.",
+    "No @args, @panic, or @output directives are present."
+  ]
+}

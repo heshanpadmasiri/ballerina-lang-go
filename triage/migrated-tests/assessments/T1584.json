@@ -1,0 +1,21 @@
+{
+  "id": "T1584",
+  "name": "worker-sync-send-test-389660a47d/sync-send-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations or asynchronous worker sends.",
+    "## Expressions: lists 'Start action' and 'Wait action', but does not list synchronous worker send or worker receive actions.",
+    "## Import declarations (Subset restrictions): 'Only following lang libraries with given methods/types are supported'; ballerina/lang.string lists length, indexOf, includes, substring, equalsIgnoreCaseAscii, toLowerAscii, toUpperAscii, trim, toBytes, fromBytes, but not startsWith.",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; string:startsWith is absent."
+  ],
+  "reason": "Essential named workers and their synchronous/asynchronous send/receive channel semantics, including error propagation, are not covered by subset 10. Supporting start and wait actions does not establish support for worker messaging. Main also asserts output through string.startsWith, explicitly outside the listed langlib methods. Either gap suffices for feature classification.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker messaging (->, ->>, <-), including synchronization and channel error propagation",
+    "string.startsWith langlib method"
+  ],
+  "test_design_notes": [
+    "Whole file mixes normal worker synchronization, error propagation, record transfer, asynchronous sends and unused panic scenarios. Several panic helpers are never invoked by main; no @panic or @args markers appear.",
+    "The bare @output on process2() expects an empty printed nil result; other markers assert scheduling-dependent prefixes, transfer value 10, numeric result 60, error-channel behavior and typedesc name formatting. The substring(9) assertion depends on a particular typeof/toString representation, while typeof expressions are also not listed in supported expressions.",
+    "errorResultWithMultipleWorkers creates an anonymous function without invoking it, so that scenario is not exercised at runtime. io:println is instrumentation; runtime:sleep is explicitly supported."
+  ]
+}

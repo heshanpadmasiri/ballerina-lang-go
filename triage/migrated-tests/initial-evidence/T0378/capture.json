@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: missing identifier\n --\u003e constant-expression-e.bal:7:17\n  |\n7 | const int CI5 = *(5 + 10); // @error // @error\n  |                 \n\n","Diagnostics":[{"File":"constant-expression-e.bal","StartLine":7,"EndLine":7}]}

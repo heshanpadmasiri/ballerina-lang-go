@@ -1,0 +1,18 @@
+{
+  "id": "T0767",
+  "name": "map-constant-negative-test-0be5e94915/map-constant-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: 'Constant declarations', 'Function definition', 'Type definition'",
+    "Expressions: 'Mapping constructor' — 'Currently spread-field not supported'",
+    "Expressions: 'Member access expression', 'Variable reference', 'Call'",
+    "Statements: 'Compound Assignment' — 'See supported binary operators'",
+    "Operators: 'Additive ops `+`, `-`'"
+  ],
+  "reason": "All asserted rejections concern supported constant declarations, mapping constructors (including computed keys), member access, calls, compound assignment and type checking. The errors exercise nonconstant initializers, mutation of a constant map, duplicate constant keys, a cyclic/invalid constant reference, and ambiguous or incompatible mapping-constructor types. None requires an excluded construct or restricted library operation.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation case: @error comments mark expected rejection; illegal expressions within supported grammar remain in scope.",
+    "No spread fields or langlib invocations occur."
+  ]
+}

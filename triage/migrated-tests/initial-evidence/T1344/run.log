@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at service-object-assignment-e.bal:33-33 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at service-object-assignment-e.bal:37-37 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at service-object-assignment-e.bal:39-39 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at service-object-assignment-e.bal:62-62 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at service-object-assignment-e.bal:36 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

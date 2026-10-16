@@ -1,0 +1,16 @@
+{
+  "Name": "error-stack-trace-test-7110040e22/stacktrace-elements-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-stack-trace-test-7110040e22/stacktrace-elements-v",
+  "Project": true,
+  "Id": "T0453",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-stack-trace-test-7110040e22/stacktrace-elements-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/error-stack-trace-test-7110040e22/stacktrace-elements-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/error-stack-trace-test-7110040e22/stacktrace-elements-v/modules/stacktrace/stacktrace.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.059
+}

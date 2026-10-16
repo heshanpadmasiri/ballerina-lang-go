@@ -1,0 +1,14 @@
+{
+  "Name": "worker-test-0f3493dd03/11-future-cancel-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/11-future-cancel-p.bal",
+  "Project": false,
+  "Id": "T1596",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/11-future-cancel-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.051
+}

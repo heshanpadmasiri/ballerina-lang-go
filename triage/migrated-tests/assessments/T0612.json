@@ -1,0 +1,18 @@
+{
+  "id": "T0612",
+  "name": "global-var-test-297b184697/configurable_var_decl-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "## Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)",
+    "## Expressions: [Field access expression](https://ballerina.io/spec/lang/master/#section_6.10)",
+    "### Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "Configurable module variables with record initializers fall under supported module variable declarations, without a configurable-variable restriction. The assertions exercise their default values, including a record field default and an explicitly overridden field. Type definitions, mapping construction, field access, equality, type tests, conditional expressions and the helper's value:toString method calls are supported; no essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The comment describes implicit final/readonly semantics, but the executed assertions only check default record values; they do not attempt mutation or external configuration overrides.",
+    "The unused retainIoImport function is instrumentation and does not determine classification."
+  ]
+}

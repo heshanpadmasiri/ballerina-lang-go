@@ -1,0 +1,13 @@
+{
+  "id": "T0223",
+  "name": "bbyte-array-value-test-e70b15d057/byte-array-value-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions:",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "The main function essentially depends on base16/base64 byte-array literals, including whitespace decoding, inferred fixed lengths, readonly context and assignment to int arrays. These literal forms are outside the explicit supported literal list. It also asserts isReadOnly(), which is absent from the permitted langlib methods.",
+  "unsupported_constructs": ["base16 and base64 byte-array literal expressions", "byteArr2.isReadOnly() langlib invocation"],
+  "test_design_notes": ["No @args, @panic or @output directives occur. main executes all assertions; successful execution requires their asserted byte contents and inherent types. The unused io:println helper is instrumentation and does not determine classification."]
+}

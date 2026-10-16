@@ -1,0 +1,16 @@
+{
+  "id": "T0263",
+  "name": "bjsonvalue-test-248ac7be19/null-json-to-string-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "## Expressions: \"[Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)\"",
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\" and \"[Return](https://ballerina.io/spec/lang/master/#return-stmt)\"",
+    "## Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\""
+  ],
+  "reason": "The case uses a nil literal assigned to json, a cast to string, local declarations, returns and ordinary function calls, all within the supported constructs. The @panic asserts the runtime TypeCastError for casting nil to string, including its incompatible-types message; this is the failure behavior of the supported type cast. No restricted langlib operation is involved.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic is attached to the cast reached through main; there are no @args or @output assertions."
+  ]
+}

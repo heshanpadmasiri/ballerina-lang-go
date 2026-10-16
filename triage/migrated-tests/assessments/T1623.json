@@ -1,0 +1,22 @@
+{
+  "id": "T1623",
+  "name": "xmlattributes-test-067a6f32b7/xmlattributes-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Variable reference: Currently `xml-qualified-names` not supported",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.string lists indexOf, includes, substring and trim but not lastIndexOf",
+    "Subset restrictions > Invocations > Other invocation restrictions: `string:indexOf`, `string:includes`, `string:substring` and `string:equalsIgnoreCaseAscii`",
+    "Expressions > XML template expression: Supports interpolation in XML content and attributes",
+    "Subset restrictions > Import declarations > ballerina/lang.xml: `Element`, `getAttributes`"
+  ],
+  "reason": "Essential QName expression uses such as xAttr[ns0:foo1] and string s1 = ns0:wso2 hit the explicit xml-qualified-names restriction. Independently, the invoked serialization assertion helper calls string.lastIndexOf, which is absent from both the permitted string langlib functions and method-call list. Supported XML templates and getAttributes do not remove these restrictions.",
+  "unsupported_constructs": [
+    "XML-qualified-name expressions used as attribute map keys and string values",
+    "string.lastIndexOf method calls in hasUpdatedFoo3WithExpectedNamespace"
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported XML attribute operations and interpolation are combined with unsupported QName expressions and lastIndexOf.",
+    "Output markers assert exact namespace prefix selection and serialized declaration/attribute order, plus namespace entries in attribute-map length/keys; these are behavioral assertions beyond return signatures.",
+    "No @args or @panic markers; internal panic assertions check character-reference preservation and empty-sequence attribute errors. No obvious marker mismatch."
+  ]
+}

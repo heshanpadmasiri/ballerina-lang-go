@@ -1,0 +1,17 @@
+{
+  "id": "T0373",
+  "name": "compound-assignment-test-dfbd0a78b0/compound-assignment-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Variable reference: Currently `xml-qualified-names` not supported",
+    "Statements > Compound Assignment: See supported binary operators"
+  ],
+  "reason": "The whole case requires an unsupported XML qualified-name variable reference: testXMLAttributeWithCompoundAssignment indexes attributes with ns0:foo1 and main asserts its result is bar1bar2. Supported compound assignments do not cover this essential XML name construct.",
+  "unsupported_constructs": [
+    "XML qualified-name variable reference ns0:foo1 in attributes[ns0:foo1]"
+  ],
+  "test_design_notes": [
+    "main executes the XML attribute test and asserts @output bar1bar2; this is required behavior, not unused syntax or io:println instrumentation.",
+    "No @args or @panic annotations are present."
+  ]
+}

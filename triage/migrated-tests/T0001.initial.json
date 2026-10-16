@@ -1,0 +1,27 @@
+{
+  "id": "T0001",
+  "name": "abstract-object-test-b4e9633034/abstract-anon-object-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Subset restrictions / Object/class definitions",
+      "quote": "Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members"
+    },
+    {
+      "heading": "Supported language features (subset 10) / Module-level declarations",
+      "quote": "Supports `object-field`, `method-defn` and `object-type-inclusion` members"
+    },
+    {
+      "heading": "Supported language features (subset 10) / Expressions",
+      "quote": "[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)"
+    }
+  ],
+  "reason": "The case mixes supported structural object fields and method declarations with init method bodies embedded in object type descriptors (p1 and p4). The object-type member list covers method declarations, not method definitions; method definitions are expressly listed for class definitions. Thus the whole negative case requires a not-covered construct even though variable declarations, ordinary object method declarations, new expressions and return statements are covered.",
+  "unsupported_constructs": [
+    "Method definitions with bodies (`function init(int age, string name) {}`) inside object type descriptors, in p1 and p4."
+  ],
+  "test_design_notes": [
+    "Mixed negative case: p1/p4 contain method bodies in type descriptors; p2/p6 test new on structural object types with a declared method; p5 is an uninitialized local declaration with a structural object type.",
+    "Repeated same-line @error markers (five on p1, four on p4) encode diagnostic multiplicity without individual locations or messages; parser recovery can affect their counts. No obvious migration corruption is visible in the supplied source."
+  ]
+}

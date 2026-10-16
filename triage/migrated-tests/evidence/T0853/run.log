@@ -1,0 +1,388 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "match-statement-static-patterns-test-4828836871/static-match-patterns-unmatched-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:112:9
+            |
+        112 |         [20, 21] => {return "[20, 21]";} // pattern will not be matched // @error
+            |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:169:9
+            |
+        169 |         [20, 21] => {return "[20, 21]";} // pattern will not be matched // @error
+            |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:170:9
+            |
+        170 |         [20, "A", true] => {return "[20, 21]";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:171:9
+            |
+        171 |         [20, "A"] => {return "[20, 21]";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:178:9
+            |
+        178 |         [12, "A"] => {return "[12, \"A\"]";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:179:9
+            |
+        179 |         ["A", 12] => {return "[12, \"A\"]";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:184:9
+            |
+        184 |         [12, "A"] => {return "t3";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:185:9
+            |
+        185 |         [12, false] => {return "t3";}
+            |         ^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:186:9
+            |
+        186 |         ["A", "false"] => {return "t3";}
+            |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:187:9
+            |
+        187 |         ["A", false] => {return "t3";}
+            |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:188:9
+            |
+        188 |         [false, "A"] => {return "t3";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:193:9
+            |
+        193 |         [12, "B"] => {return "t4";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:194:9
+            |
+        194 |         [12, {a: "B"}] => {return "t4";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:195:9
+            |
+        195 |         [12, {a: 12.1}] => {return "t4";}
+            |         ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:200:9
+            |
+        200 |         [12, "B"] => {return "t5";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:201:9
+            |
+        201 |         [12, {a: "B"}] => {return "t5";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:202:9
+            |
+        202 |         [12, {a: 12.1, b: false}] => {return "t5";}
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:203:9
+            |
+        203 |         [12, {a: 12.1}] => {return "t5";}
+            |         ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:242:9
+            |
+        242 |         [12, "B"] => {return "a";} // pattern will not be matched // @error
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unmatched-e.bal:24:9
+           |
+        24 |         [20, 21] => {return "(20, 21)";} // pattern will not be matched // @error
+           |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unmatched-e.bal:65:9
+           |
+        65 |         [20, 21] => {return "[20, 21]";} // pattern will not be matched // @error
+           |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:108:9
+            |
+        108 |         {a: 20.2} => {return "{a: 20.2}";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:109:9
+            |
+        109 |         {a: 20, b: 10} => {return "{a: 20.2}";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:110:9
+            |
+        110 |         {a: 20} => {return "{a: 20}";}
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:119:9
+            |
+        119 |         {a: 20.2} => {return "{a: 20.2}";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:120:9
+            |
+        120 |         {a: 20, b: 10} => {return "{a: 20, b: 10}";}
+            |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:121:9
+            |
+        121 |         {a: 20} => {return "{a: 20}";}
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:122:9
+            |
+        122 |         {a: false, b: 10} => {return "{a: false, b: 10}";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:127:9
+            |
+        127 |         {a: 20} => {return "{a: 20}";}
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:128:9
+            |
+        128 |         {a: 20.2} => {return "{a: 20.2}";} // pattern will not be matched // @error
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:129:9
+            |
+        129 |         {a: 21, b: 10} => {return "{a: 21, b: 10}";}
+            |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:130:9
+            |
+        130 |         {a: false, b: 10} => {return "{a: false, b: 10}";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:135:9
+            |
+        135 |         {a: 20} => {return "{a: 20}";}
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:136:9
+            |
+        136 |         {a: 20.2} => {return "{a: 20.2}";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:137:9
+            |
+        137 |         {a: false, b: 10} => {return "{a: false, b: 10}";}
+            |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:138:9
+            |
+        138 |         {a: true} => {return "{a: 20, b: 10}";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:139:9
+            |
+        139 |         {a: "r1", b: 10} => {return "{a: r1, b: 10}";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:144:9
+            |
+        144 |         {a: 20} => {return "{a: 20}";}
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:145:9
+            |
+        145 |         {a: 20.2, b: true} => {return "{a: 20.2}";}
+            |         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:146:9
+            |
+        146 |         {a: false, b: 10} => {return "{a: false, b: 10}";}
+            |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:147:9
+            |
+        147 |         {a: true} => {return "{a: 20, b: 10}";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:148:9
+            |
+        148 |         {a: "r1", b: 10} => {return "{a: r1, b: 10}";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:153:9
+            |
+        153 |         {a: 20} => {return "{a: 20}";}
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:154:9
+            |
+        154 |         {a: 20.2} => {return "{a: 20.2}";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:155:9
+            |
+        155 |         {a: false, b: 10} => {return "{a: false, b: 10}";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:156:9
+            |
+        156 |         {a: true} => {return "{a: 20, b: 10}";}
+            |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:157:9
+            |
+        157 |         {a: "r1", b: 10} => {return "{a: r1, b: 10}";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:167:9
+            |
+        167 |         {a: 20} => {return "{a: 20}";} // pattern will not be matched // @error
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:204:9
+            |
+        204 |         {a: "A"} => {return "t5";} // pattern will not be matched // @error
+            |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:205:9
+            |
+        205 |         {a: 12} => {return "t5";}
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:219:9
+            |
+        219 |         {a: "b"} => {return "f";}
+            |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:220:9
+            |
+        220 |         {x: 1, b: "b"} => {return "f";}
+            |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:221:9
+            |
+        221 |         {x: 1, b: 2} => {return "f";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:222:9
+            |
+        222 |         {x: 1, y: 2} => {return "f";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:223:9
+            |
+        223 |         {x: 1, y: true} => {return "f";}
+            |         ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:237:9
+            |
+        237 |         {a: "b"} => {return "a";} // pattern will not be matched // @error
+            |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:256:9
+            |
+        256 |         {var1: 12} => {return "a";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unmatched-e.bal:257:9
+            |
+        257 |         {var1: 12} => {return "a";} // pattern will not be matched // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unmatched-e.bal:21:9
+           |
+        21 |         {a: 20} => {return "{a: 20}";} // pattern will not be matched // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unmatched-e.bal:32:9
+           |
+        32 |         {a: 20} => {return "{a: 20}";} // pattern will not be matched // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unmatched-e.bal:42:9
+           |
+        42 |         {a: 20} => {return "{a: 20}";} // pattern will not be matched // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unmatched-e.bal:52:9
+           |
+        52 |         {a: 20} => {return "{a: 20}";} // pattern will not be matched // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unmatched-e.bal:62:9
+           |
+        62 |         {a: 20} => {return "{a: 20}";} // pattern will not be matched // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unmatched-e.bal:73:9
+           |
+        73 |         {a: 20} => {return "{a: 20}";}
+           |         ^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

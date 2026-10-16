@@ -1,0 +1,17 @@
+{
+  "id": "T0957",
+  "name": "negative-type-test-expr-test-ef0a2e24d5/negative-type-test-expr-negative-e.bal",
+  "classification": "uncertain",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `client`, `service`, `isolated`, `readonly` and `distinct` [`class-type-quals`]",
+    "Subset restrictions / Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "Expressions: [Type test expression]",
+    "Statements: [If/else]"
+  ],
+  "reason": "The case checks rejection of impossible negative type tests and unreachable branches across structural types. Its record tests depend on `readonly class Class` and readonly Class fields. The specification explicitly supports readonly classes in the declaration list but explicitly excludes them in the object/class restriction, so whole-case scope is ambiguous.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative diagnostics for impossible tests and unreachable code are asserted behavior, not reasons to exclude otherwise supported syntax.",
+    "The readonly class is used by Foo, Bar and Qux in the record-disjointness tests; it is material to the case."
+  ]
+}

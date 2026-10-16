@@ -1,0 +1,17 @@
+{
+  "id": "T0298",
+  "name": "check-panic-expression-operator-test-baa47123b9/checkpanic-array-index-p",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"",
+    "## Expressions: \"[Trap expression](https://ballerina.io/spec/lang/master/#trap-expr)\"",
+    "## Expressions: \"[Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)\"",
+    "## Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\"",
+    "## Statements: \"[Match statement](https://ballerina.io/spec/lang/master/#match-stmt)\"; \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\""
+  ],
+  "reason": "All essential constructs are covered: the constant-pattern match selects case 5, out-of-range array member access panics, trap converts that panic into an error return, and checkpanic (a checking expression) re-panics on that error. The @panic expectation is therefore within the supported expression behavior. No restricted library calls are used.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic comment is on the trapped access, but the observable uncaught panic occurs later at checkpanic after the trapped error is returned. There are no @args or @output assertions."
+  ]
+}

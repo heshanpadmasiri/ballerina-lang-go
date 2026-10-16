@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: invalid array length\n  --\u003e array-size-test-negative-e.bal:29:8\n   |\n29 |     int[\"TEST\"] _ = []; // @error\n   |        ^\n\n","Diagnostics":[{"File":"array-size-test-negative-e.bal","StartLine":29,"EndLine":29}]}

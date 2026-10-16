@@ -1,0 +1,14 @@
+{
+  "Name": "struct-negative-test-2ccd0a79e0/invalid-struct-literal-key-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/invalid-struct-literal-key-e.bal",
+  "Project": false,
+  "Id": "T1386",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/invalid-struct-literal-key-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.207
+}

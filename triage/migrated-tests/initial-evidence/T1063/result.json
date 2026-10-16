@@ -1,0 +1,14 @@
+{
+  "Name": "object-documentation-test-a02bd077c8/object_annotation-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-documentation-test-a02bd077c8/object_annotation-e.bal",
+  "Project": false,
+  "Id": "T1063",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-documentation-test-a02bd077c8/object_annotation-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.045
+}

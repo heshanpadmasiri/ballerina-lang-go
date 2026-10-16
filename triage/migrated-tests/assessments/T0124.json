@@ -1,0 +1,16 @@
+{
+  "id": "T0124",
+  "name": "argument-parser-positive-test-e41e5b8a0a/uint8-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.int` lists `Unsigned8`."
+  ],
+  "reason": "The Unsigned8 parameter type and required parameter signature are supported, but the asserted execution requires converting command-line string \"10\" into an int:Unsigned8 main argument. subset10.md does not cover command-line argument parsing or main entry-point argument binding; signature support does not establish that execution protocol.",
+  "unsupported_constructs": [
+    "Command-line argument conversion and binding to main(int:Unsigned8) via @args [\"10\"]."
+  ],
+  "test_design_notes": [
+    "@output 10 depends on successful CLI conversion and invocation. io:println is output instrumentation and is not itself the unsupported feature. No @panic assertion."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "intersection-type-test-48ac088d43/error-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/error-v.bal",
+  "Project": false,
+  "Id": "T0660",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/error-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.055
+}

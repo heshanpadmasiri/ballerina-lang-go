@@ -1,0 +1,14 @@
+{
+  "Name": "xmlquery-expression-test-448a9347b5/xmlquery-expression-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlquery-expression-test-448a9347b5/xmlquery-expression-e.bal",
+  "Project": false,
+  "Id": "T1633",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlquery-expression-test-448a9347b5/xmlquery-expression-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

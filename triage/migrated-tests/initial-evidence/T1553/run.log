@@ -1,0 +1,53 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/invalid-receive-in-fork-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> main.bal:2:5
+           |
+         2 |     fork {
+           |     ^^^^^^
+         3 |         worker w1 {
+           |         ^^^^^^^^^^^
+         4 |             int i = 20; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+         5 |         }
+           |         ^
+         6 |         worker w2 {
+           |         ^^^^^^^^^^^
+         7 |             int sum = 0;
+           |             ^^^^^^^^^^^^
+         8 |             fork {
+           |             ^^^^^^
+         9 |                 worker w3 {
+           |                 ^^^^^^^^^^^
+        10 |                     int l = 50;
+           |                     ^^^^^^^^^^^
+        11 |                     l -> w4;
+           |                     ^^^^^^^^
+        12 |                 }
+           |                 ^
+        13 |                 worker w4 {
+           |                 ^^^^^^^^^^^
+        14 |                     foreach var j in 1...10 {
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |                         var i = j;
+           |                         ^^^^^^^^^^
+        16 |                         sum = sum + i;
+           |                         ^^^^^^^^^^^^^^
+        17 |                         if true {
+           |                         ^^^^^^^^^
+        18 |                             i = <- w3; // @error
+           |                             ^^^^^^^^^^^^^^^^^^^^
+        19 |                         }
+           |                         ^
+        20 |                     }
+           |                     ^
+        21 |                 }
+           |                 ^
+        22 |             }
+           |             ^
+        23 |         }
+           |         ^
+        24 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

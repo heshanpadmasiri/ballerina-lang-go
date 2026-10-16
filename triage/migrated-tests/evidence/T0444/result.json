@@ -1,0 +1,14 @@
+{
+  "Name": "error-binding-pattern-test-d3ff0cd2c4/error-type-ref-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-binding-pattern-test-d3ff0cd2c4/error-type-ref-negative-e.bal",
+  "Project": false,
+  "Id": "T0444",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-binding-pattern-test-d3ff0cd2c4/error-type-ref-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.024
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T0664",
+  "name": "isolated-object-test-4801b67a5e/isolated-objects-isolation-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: 'Destructuring assignment statement' — 'Only supports wildcard-binding-pattern'",
+    "Import declarations: 'Only following lang libraries with given methods/types are supported' (lang.value lists cloneWithType, fromJsonWithType, toString and toBalString; lang.array does not list pop)",
+    "Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' (clone, cloneReadOnly and array:pop are absent)"
+  ],
+  "reason": "This negative isolation case depends on constructs outside subset 10. CurrentConfig.foo and bar assert isolation errors for list and record destructuring assignments, whereas only wildcard destructuring is supported. The test also relies on clone/cloneReadOnly and pop for transfer and aliasing checks; those langlib operations are outside the explicit supported lists. Supported isolated classes and locks do not make the whole case supported.",
+  "unsupported_constructs": [
+    "List destructuring assignments [a, globDecimal] = self.x.clone() and [a2, globDecimal] = self.x",
+    "Record destructuring assignments {a, b, c} = self.y and {a, b, c} = self.y.cloneReadOnly()",
+    "Langlib clone(), cloneReadOnly() and array pop() operations"
+  ],
+  "test_design_notes": [
+    "Negative rejection tests remain in scope when their grammar and type-system behavior are supported; this classification follows explicit construct and langlib restrictions."
+  ]
+}

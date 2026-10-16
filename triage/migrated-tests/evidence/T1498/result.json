@@ -1,0 +1,14 @@
+{
+  "Name": "unary-expr-test-6a6cdd6e72/unary-operations-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/unary-expr-test-6a6cdd6e72/unary-operations-v.bal",
+  "Project": false,
+  "Id": "T1498",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/unary-expr-test-6a6cdd6e72/unary-operations-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.085
+}

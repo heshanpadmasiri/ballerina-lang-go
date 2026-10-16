@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '{| json... |}' value cannot be converted to '[int...]'\n        at trigger(json-array-fail-p.bal:9)\n           main(json-array-fail-p.bal:13)\n","Diagnostics":null}

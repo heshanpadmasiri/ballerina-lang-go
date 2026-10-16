@@ -1,0 +1,12 @@
+{
+  "id": "T1090",
+  "name": "object-type-reference-test-19fd51d776/object-type-reference-1-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members"
+  ],
+  "reason": "The case depends on Employee2 including Person2 within an object type descriptor (`*Person2;`), propagating fields and method obligations into the subsequent Manager2 class inclusion and its asserted errors. Object-type inclusion is explicitly supported for class members, but is absent from the supported object-type-descriptor member list. This essential construct is therefore outside the documented subset.",
+  "unsupported_constructs": ["Object-type inclusion inside an object type descriptor: `type Employee2 object { *Person2; ... }`"],
+  "test_design_notes": ["Negative rejection of class inclusions and related field accesses would otherwise be in scope; illegal code alone does not make this a feature case."]
+}

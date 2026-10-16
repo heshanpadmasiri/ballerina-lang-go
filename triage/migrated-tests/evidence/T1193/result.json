@@ -1,0 +1,14 @@
+{
+  "Name": "package-import-test-60d02fba3a/import-same-pkg-different-alias-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/import-same-pkg-different-alias-v.bal",
+  "Project": false,
+  "Id": "T1193",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/import-same-pkg-different-alias-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.06
+}

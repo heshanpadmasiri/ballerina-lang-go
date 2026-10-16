@@ -1,0 +1,24 @@
+{
+  "id": "T0619",
+  "name": "group-by-clause-test-38c059a6f0/group-by-invocation-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Supports `group by` and `collect` clauses",
+    "Expressions: Supports `list` and `map` as `query-constructor-type`",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions / Import declarations: `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString`",
+    "Subset restrictions / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: ... `int:toHexString`"
+  ],
+  "reason": "Although group-by clauses are supported, the asserted grouped sums, extrema, averages and counts require integer langlib operations absent from the explicit allowlist (for example int:sum(price) must produce [35, 11]). The whole case also asserts stream and table query outputs, beyond the listed list/map constructors. These essential unsupported operations make this a feature case.",
+  "unsupported_constructs": [
+    "Integer langlib sum, max, min, avg and count, including method forms such as 2.sum(price)",
+    "stream and table query constructors",
+    "string:join and its method forms",
+    "value:count, value:cloneReadOnly and value:ensureType",
+    "Query actions terminating in do clauses"
+  ],
+  "test_design_notes": [
+    "Assertions exercise aggregation results, group order, repeated grouping, optional-field handling and multiple output forms.",
+    "Commented-out examples are inactive; io:println is unreachable instrumentation and does not determine classification."
+  ]
+}

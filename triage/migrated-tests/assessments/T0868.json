@@ -1,0 +1,15 @@
+{
+  "id": "T0868",
+  "name": "match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-semantic-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted assignment and return type errors depend on types inferred and narrowed by mapping match patterns, including field captures and rest captures over maps, json, closed records and readonly record unions. These patterns are expressly outside the supported match-pattern forms.",
+  "unsupported_constructs": [
+    "Mapping match patterns with field capture patterns, rest captures and mapping field constants"
+  ],
+  "test_design_notes": [
+    "Negative type checking is in scope generally, but these annotated errors require unsupported mapping-pattern inference and narrowing."
+  ]
+}

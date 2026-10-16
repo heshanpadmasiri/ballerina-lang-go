@@ -1,0 +1,20 @@
+{
+  "id": "T1450",
+  "name": "tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-index-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Local variable declarations",
+    "Expressions: List constructor; Member access expression",
+    "Statements: Foreach — Currently only supports range, list, map, string and XML subtypes, and iterable objects",
+    "Invocations / Other invocation restrictions: value:toString and value:toBalString"
+  ],
+  "reason": "The essential open tuple type descriptor [boolean, string...] and its rest-member indexing semantics are not explicitly covered by subset10. General support for local declarations, list constructors and member access does not explicitly establish support for tuple rest descriptors or their bounds behavior. The @panic marker requires an out-of-bounds panic for t[4] on a four-element tuple; it is not merely a signature test. The subsequent foreach and toString call fall within the listed list iteration and value:toString support.",
+  "unsupported_constructs": [
+    "Tuple type descriptor with a rest member: [boolean, string...]",
+    "Runtime bounds behavior for indexing the rest portion of an open tuple"
+  ],
+  "test_design_notes": [
+    "The @panic marker is attached to t[4], which is beyond the initialized tuple's four elements; no panic message is asserted.",
+    "The foreach/string construction is unreachable after the expected panic. No @args or @output markers occur."
+  ]
+}

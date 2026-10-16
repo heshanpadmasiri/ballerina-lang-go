@@ -1,0 +1,41 @@
+{
+  "id": "T0005",
+  "name": "access-levels-negative-test-4f8066db20/private-access-level-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Expressions",
+      "quote": "[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)",
+      "relevance": "Supports the new/new() initializers used throughout, but the expression list does not cover the distinct object-constructor expression object { ... } used to initialize anonObj."
+    },
+    {
+      "heading": "Module-level declarations",
+      "quote": "[Class definition](https://ballerina.io/spec/lang/master/#section_8.6)\n  - Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+      "relevance": "Covers the ordinary classes and their fields and initializer methods."
+    },
+    {
+      "heading": "Module-level declarations",
+      "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+      "relevance": "The public functions mix required, defaultable and rest parameters."
+    },
+    {
+      "heading": "Object/class definitions",
+      "quote": "Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members",
+      "relevance": "Covers the anonymous object type descriptor, separately from its object-constructor initializer."
+    },
+    {
+      "heading": "Module-level declarations",
+      "quote": "[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+      "relevance": "The case also contains named record and finite-union type definitions."
+    }
+  ],
+  "reason": "The whole case requires an anonymous object-constructor expression (anonObj = object { ... }), which is not covered by the supported Expressions list. This makes it a feature case even though it mixes that construct with supported class/type/function/constant/variable declarations, new expressions, mapping/list constructors, assignments and returns. The intended negative checks concern non-public types exposed through public fields and signatures; no explicit access-level exclusion is stated for the otherwise supported declarations.",
+  "unsupported_constructs": [
+    "Anonymous object-constructor expression initializing anonObj: object { public string s = \"\"; public Baz z = 1; public Foo foo1 = new; }. This is distinct from the listed new expression and from an object type descriptor."
+  ],
+  "test_design_notes": [
+    "The unsupported anonymous object constructor occurs on an unmarked line, so it can introduce a diagnostic unrelated to the marked access-level checks.",
+    "Several declarations carry multiple @error markers on one line (fooFunc2, fooFunc3, BazFunc, test6 and test7); these encode multiple expected diagnostics at a shared location. No obvious malformed marker is present.",
+    "The isolated initializer is expressly covered by isolated function support; it is not itself a reason to classify the case as a feature."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "basic-async-operations-test-5353eae739/async-non-native-basic8-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-async-operations-test-5353eae739/async-non-native-basic8-p.bal",
+  "Project": false,
+  "Id": "T0208",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/basic-async-operations-test-5353eae739/async-non-native-basic8-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.037
+}

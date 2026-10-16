@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at object-type-reference-1-negative-e.bal:68-68 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at object-type-reference-1-negative-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-type-reference-1-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-type-reference-1-negative-e.bal:42 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-type-reference-1-negative-e.bal:45 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-type-reference-1-negative-e.bal:66 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-type-reference-1-negative-e.bal:69 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-type-reference-1-negative-e.bal:73 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

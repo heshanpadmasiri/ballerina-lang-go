@@ -1,0 +1,18 @@
+{
+  "id": "T1343",
+  "name": "selectively-immutable-type-test-08053ceb2e/immutable-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists \"cloneWithType\", \"fromJsonWithType\", \"toString\", \"toBalString\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; value entries are \"value:cloneWithType\", \"value:fromJsonWithType\", \"value:toString\" and \"value:toBalString\"."
+  ],
+  "reason": "The executed tests depend on unsupported lang.value operations: repeated isReadOnly() assertions distinguish mutable values from deeply readonly lists, mappings and XML, and cloneReadOnly() constructs the readonly values tested at runtime. Neither operation appears in the closed list of supported langlib functions or method calls, so the whole case requires a feature even though many surrounding constructors, casts and type tests are supported.",
+  "unsupported_constructs": [
+    "lang.value:isReadOnly()",
+    "lang.value:cloneReadOnly()"
+  ],
+  "test_design_notes": [
+    "The unsupported calls directly implement and assert readonly behavior; they are not incidental output instrumentation.",
+    "The io:println() call only retains an import and is not the classification basis."
+  ]
+}

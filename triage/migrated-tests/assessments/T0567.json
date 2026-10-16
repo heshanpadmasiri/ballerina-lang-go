@@ -1,0 +1,16 @@
+{
+  "id": "T0567",
+  "name": "function-pointers-with-optional-args-test-cf461980fa/function-pointers-with-named-args-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition; Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Statements: Local variable declarations; Return",
+    "Expressions: List constructor; Variable reference; Call",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "This negative case requests rejection of an int in the int[] slot of a returned tuple, and an invalid function-variable declaration containing a default expression and an undefined initializer reference. These are diagnostics within supported function signatures, local declarations, references and return/list typing. The explicit atomic function signature also places the omitted-argument call within the documented invocation scope; no essential unsupported behavior is required.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Both error markers occur in invalid code; the second marked line combines an invalid function-type default expression with the undefined name funcWithRestArgs, so it does not isolate one diagnostic."
+  ]
+}

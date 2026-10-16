@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at open-record-uninit-access-semantics-e.bal:14-14 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at open-record-uninit-access-semantics-e.bal:16-16 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at open-record-uninit-access-semantics-e.bal:9 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

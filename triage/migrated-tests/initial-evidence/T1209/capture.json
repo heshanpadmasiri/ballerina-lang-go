@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: Regexp parser not implemented\n --\u003e query-action-or-expr-v.bal:1:1\n  |\n1 | import ballerina/io;\n  | \n\n","Diagnostics":[{"File":"query-action-or-expr-v.bal","StartLine":1,"EndLine":1}]}

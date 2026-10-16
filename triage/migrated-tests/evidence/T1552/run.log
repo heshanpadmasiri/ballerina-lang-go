@@ -1,0 +1,32 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "worker-fail-test-278d4f50a4/invalid-receive-in-foreach-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:2:5
+           |
+         2 |     worker w1 {
+           |     ^^^^^^^^^^^
+         3 |         int i = 20;
+           |         ^^^^^^^^^^^
+         4 |         i -> w2;
+           |         ^^^^^^^^
+         5 |     }
+           |     ^
+         6 |     worker w2 {
+           |     ^^^^^^^^^^^
+         7 |         int j = 25; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+         8 |         int sum = 0;
+           |         ^^^^^^^^^^^^
+         9 |         foreach var i in 1...10 {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |             sum = sum + i;
+           |             ^^^^^^^^^^^^^^
+        11 |             j = <- w1; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^
+        12 |         }
+           |         ^
+        13 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,18 @@
+{
+  "Name": "function-pointers-test-229c021698/private-function-pointers-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/private-function-pointers-v",
+  "Project": true,
+  "Id": "T0564",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/private-function-pointers-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/private-function-pointers-v/modules/a.b/fp-access.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/private-function-pointers-v/modules/bar/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/private-function-pointers-v/modules/foo/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/private-function-pointers-v/private-fp.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.063
+}

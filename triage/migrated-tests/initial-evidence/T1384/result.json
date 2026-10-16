@@ -1,0 +1,14 @@
+{
+  "Name": "struct-negative-test-2ccd0a79e0/get-non-init-field-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/get-non-init-field-p.bal",
+  "Project": false,
+  "Id": "T1384",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/get-non-init-field-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.039
+}

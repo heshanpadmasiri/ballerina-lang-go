@@ -1,0 +1,14 @@
+{
+  "Name": "record-variable-definition-test-0c506ca119/record-variable-definition-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-variable-definition-test-0c506ca119/record-variable-definition-e.bal",
+  "Project": false,
+  "Id": "T1274",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-variable-definition-test-0c506ca119/record-variable-definition-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

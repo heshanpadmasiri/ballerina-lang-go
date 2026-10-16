@@ -1,0 +1,12 @@
+{
+  "id": "T1148",
+  "name": "operand-test-0e6612016b/operand_rest_param_only-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+    "Expressions: [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)"
+  ],
+  "reason": "The signature and indexed accesses are supported, but the asserted outputs depend on the launcher binding command-line operands Riyafa and John to main's string rest parameter. The subset does not cover command-line argument binding; signature support alone does not establish that behavior.",
+  "unsupported_constructs": ["Command-line operands bound to public main(string... s)"],
+  "test_design_notes": ["The @args directive supplies two launcher operands, and the output assertions verify their order and values. io:println is instrumentation."]
+}

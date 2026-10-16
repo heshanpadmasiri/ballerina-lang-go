@@ -1,0 +1,19 @@
+{
+  "id": "T0275",
+  "name": "bstream-value-test-dc50cbbb1f/stream-invalid-cast-p",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported' (ballerina/lang.stream is absent).",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' (stream:next, stream:close and stream:filter are absent).",
+    "Supported language features (subset 10) > Expressions: 'Type cast expression'"
+  ],
+  "reason": "The case contains stream langlib calls next(), close() and filter(), which are outside the supported langlib lists. General support for type casts does not establish the asserted stream completion-type cast behavior: main calls testInvalidCast(), which casts a stream<Foo,error?> produced by array:toStream to stream<Foo,error> and expects a panic. That stream-specific runtime behavior is not covered by the supplied subset document.",
+  "unsupported_constructs": [
+    "stream langlib next(), close() and filter()",
+    "Runtime stream completion-type cast from stream<Foo,error?> to stream<Foo,error> with expected panic"
+  ],
+  "test_design_notes": [
+    "The @panic marker is on the cast in testInvalidCast(), invoked by main; no @args or @output directives appear.",
+    "array:toStream and type-cast syntax are explicitly supported, but whole-case classification also accounts for the other declarations and the asserted runtime behavior."
+  ]
+}

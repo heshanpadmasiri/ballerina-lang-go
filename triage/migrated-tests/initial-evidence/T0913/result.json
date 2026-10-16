@@ -1,0 +1,14 @@
+{
+  "Name": "module-public-variable-test-5b1954009d/module-public-var-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-public-variable-test-5b1954009d/module-public-var-v.bal",
+  "Project": false,
+  "Id": "T0913",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-public-variable-test-5b1954009d/module-public-var-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.056
+}

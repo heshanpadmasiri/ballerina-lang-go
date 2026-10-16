@@ -1,0 +1,19 @@
+{
+  "Name": "open-record-iteration-test-4a36ef124f/open-record-iteration-map-terminal-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-iteration-test-4a36ef124f/open-record-iteration-map-terminal-v.bal",
+  "Project": false,
+  "Id": "T1117",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-iteration-test-4a36ef124f/open-record-iteration-map-terminal-v.bal"
+  ],
+  "Args": [
+    "80",
+    "75",
+    "65",
+    "78"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.078
+}

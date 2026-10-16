@@ -1,0 +1,19 @@
+{
+  "id": "T0442",
+  "name": "error-binding-pattern-test-d3ff0cd2c4/error-binding-pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString"
+  ],
+  "reason": "The executed assertions require error match/binding patterns, including capturing message/cause, nested error patterns, typed error patterns and detail destructuring. Match support explicitly allows only constant and wildcard patterns. The file additionally uses value:Cloneable, absent from the permitted lang.value types/methods.",
+  "unsupported_constructs": [
+    "Error match/binding patterns such as var error(a), error(var m, var c), and var error MyErrorX()",
+    "Nested error/detail mapping/list/rest binding patterns in match clauses",
+    "ballerina/lang.value:Cloneable type"
+  ],
+  "test_design_notes": [
+    "main invokes the test functions and checks message/cause extraction, typed matches and serialized detail/rest contents through assertEquals; no @args, @panic or @output directives occur.",
+    "io:println is retained only through keepIo instrumentation and does not determine classification."
+  ]
+}

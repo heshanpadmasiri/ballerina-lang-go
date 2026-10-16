@@ -1,0 +1,21 @@
+{
+  "id": "T0758",
+  "name": "map-access-expr-test-6a04afad0c/map-access-expr-v",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.map lists length, keys, hasKey, get, remove.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; map:length, map:keys, map:hasKey, map:get, map:remove.",
+    "Expressions lists supported expressions but does not list typeof/type descriptor expressions."
+  ],
+  "reason": "The asserted outputs require map.removeAll(), map.reduce() and map.removeIfHasKey(), which are absent from both the supported map langlib list and the supported langlib method-call list. These essential operations make the whole case a feature request even though basic map access and several other map operations are supported. The final typedesc rendering assertion also depends on an unlisted typeof expression.",
+  "unsupported_constructs": [
+    "map.removeAll() in testMapRemoveAll",
+    "map.reduce() in testGetMapValues",
+    "map.removeIfHasKey() in four positive/negative tests",
+    "typeof arr in testMapToString"
+  ],
+  "test_design_notes": [
+    "Assertions exercise map clearing, ordered value reduction and present/absent removal behavior, not just method availability.",
+    "io:println is output instrumentation."
+  ]
+}

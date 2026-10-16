@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: match pattern variable reference must refer to a constant\n  --\u003e const-pattern-negative-semantics-e.bal:22:9\n   |\n22 |         a =\u003e {} // @error variable 'a' should be declared as constant\n   |         ^\n\n","Diagnostics":[{"File":"const-pattern-negative-semantics-e.bal","StartLine":22,"EndLine":22}]}

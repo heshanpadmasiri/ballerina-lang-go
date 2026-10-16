@@ -1,0 +1,52 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "record-value-test-1a630496b4/record-operations-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: entries
+           --> record-operations-v.bal:109:16
+            |
+        109 |     io:println(newPerson.entries().length()); // @output 4
+            |                ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: entries
+           --> record-operations-v.bal:110:16
+            |
+        110 |     io:println(newPerson.entries().length() == 0); // @output false
+            |                ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: entries
+          --> record-operations-v.bal:32:26
+           |
+        32 |     foreach var entry in defaultPerson.entries() {
+           |                          ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: entries
+          --> record-operations-v.bal:63:16
+           |
+        63 |     io:println(defaultPerson.entries().length()); // @output 3
+           |                ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: entries
+          --> record-operations-v.bal:64:16
+           |
+        64 |     io:println(defaultPerson.entries().length() == 0); // @output false
+           |                ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: entries
+          --> record-operations-v.bal:78:26
+           |
+        78 |     foreach var entry in newPerson.entries() {
+           |                          ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: toArray
+           --> record-operations-v.bal:100:26
+            |
+        100 |     foreach var value in newPerson.toArray() {
+            |                          ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: toArray
+          --> record-operations-v.bal:54:26
+           |
+        54 |     foreach var value in defaultPerson.toArray() {
+           |                          ^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

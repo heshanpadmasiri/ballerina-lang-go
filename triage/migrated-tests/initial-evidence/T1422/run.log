@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "trap-operator-test-ec322bfc54/trap-operator-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: ballerina/test
+         --> trap-operator-v.bal:2:1
+          |
+        2 | import ballerina/test;
+          | ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+          --> trap-operator-v.bal:19:9
+           |
+        19 |         test:assertEquals("panic inside function", errFnResult.message());
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+          --> trap-operator-v.bal:32:5
+           |
+        32 |     test:assertEquals(loopTrapCounter, 10);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> trap-operator-v.bal:17:5
+           |
+        17 |     test:assertTrue(errFnResult is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'i'
+          --> trap-operator-v.bal:29:13
+           |
+        29 |     foreach int i in 0 ..< 10 {
+           |             ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'print'
+          --> trap-operator-v.bal:41:5
+           |
+        41 |     var print = io:println;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'res'
+          --> trap-operator-v.bal:23:16
+           |
+        23 | function errFn(error? res) {
+           |                ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'unionResult'
+          --> trap-operator-v.bal:30:9
+           |
+        30 |         error? unionResult = trap func();
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

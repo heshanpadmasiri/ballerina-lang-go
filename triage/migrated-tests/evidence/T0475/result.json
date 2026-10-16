@@ -1,0 +1,14 @@
+{
+  "Name": "field-lock-test-031a81a52d/locks-in-records-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/field-lock-test-031a81a52d/locks-in-records-v.bal",
+  "Project": false,
+  "Id": "T0475",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/field-lock-test-031a81a52d/locks-in-records-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.037
+}

@@ -1,0 +1,12 @@
+{
+  "id": "T1157",
+  "name": "option-test-1b0c555df9/boolean_array_option_false_value-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Module-level declarations: Type definition"
+  ],
+  "reason": "The record and included record parameter are supported, but this case asserts a panic when the executable receives --array=false. Command-line option parsing and its rejection behavior for boolean-array options are not covered by subset 10; signature support alone does not establish that behavior.",
+  "unsupported_constructs": ["Command-line binding of --array=false to a boolean[] included-record field and the asserted startup panic"],
+  "test_design_notes": ["The empty main body has no explicit panic; @args and @panic make command-line validation the essential assertion."]
+}

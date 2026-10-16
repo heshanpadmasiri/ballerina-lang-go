@@ -1,0 +1,14 @@
+{
+  "Name": "byte-as-json-test-cc6615cf12/byte-as-json-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/byte-as-json-test-cc6615cf12/byte-as-json-v.bal",
+  "Project": false,
+  "Id": "T0295",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/byte-as-json-test-cc6615cf12/byte-as-json-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.074
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "typeof-over-literal-expression-test-2703e4397a/typeof-over-literal-expression-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/typeof-over-literal-expression-test-2703e4397a/typeof-over-literal-expression-v.bal",
+  "Project": false,
+  "Id": "T1496",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/typeof-over-literal-expression-test-2703e4397a/typeof-over-literal-expression-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.09
+}

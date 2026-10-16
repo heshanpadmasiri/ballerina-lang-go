@@ -1,0 +1,14 @@
+{
+  "id": "T1038",
+  "name": "numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-256-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)",
+    "Expressions / Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Module-level declarations: [Function definition]; Supports `required-params`",
+    "Statements: [Local variable declarations]; [Call]"
+  ],
+  "reason": "The case expects a runtime panic when casting the int value 256 to byte. Type casts, numeric literals, required int parameters, local declarations and function calls are supported, and no subset restriction excludes the failing int-to-byte cast or its runtime range check.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The // @panic marker asserts failure at the cast; the case does not require a particular panic message."]
+}

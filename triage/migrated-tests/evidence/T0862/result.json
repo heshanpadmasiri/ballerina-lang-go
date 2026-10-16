@@ -1,0 +1,14 @@
+{
+  "Name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-with-rest-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-with-rest-v.bal",
+  "Project": false,
+  "Id": "T0862",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-with-rest-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

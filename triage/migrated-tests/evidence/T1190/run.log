@@ -1,0 +1,63 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	true
+        	true
+        	4
+        	7
+        	Johns
+        	5
+        	Johns
+        	1
+        	Johns
+        	0
+        	Johns
+        	true
+        	true
+        	4
+        	Frank
+        	5
+        	Amy
+        	12
+        	Frank
+        	25
+        	Frank
+        	25
+        	true
+        	true
+        	4
+        	Frank
+        	25
+        	Frank
+        	25
+        	Amy
+        	12
+        	Frank
+        	5
+        	3
+        	Jennifer
+        	23
+        	62
+        	Zeth
+        	50
+        	30
+        	Zeth
+        	50
+        	25
+        	2
+        	Zeth
+        	50
+        	30
+        	Jennifer
+        	23
+        	20
+        	true
+        	Melina Kodel,Meghan Markle,Amy Melina,
+        	<author>Dan Brown</author><author>Enid Blyton</author>
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

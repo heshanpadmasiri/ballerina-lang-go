@@ -1,0 +1,14 @@
+{
+  "id": "T1367",
+  "name": "string-value-basics-test-a9d2149e3a/string-value-basics-index-out-of-range-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt); [Call](https://ballerina.io/spec/lang/master/#call-stmt)",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Expressions: [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)"
+  ],
+  "reason": "The test expects a panic when indexing the six-code-point string hello👋 at index 6. String literals and member access expressions are supported without a restriction excluding string indexing or its out-of-range panic behavior. The functions, local declarations and call are also supported, and no langlib invocation is involved.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment marks the expected runtime failure; the supplementary Unicode character makes the string six code points long."]
+}

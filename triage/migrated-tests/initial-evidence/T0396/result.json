@@ -1,0 +1,15 @@
+{
+  "Name": "continue-stmt-test-29a505efa0/continue-stmt-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/continue-stmt-test-29a505efa0/continue-stmt-e",
+  "Project": true,
+  "Id": "T0396",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/continue-stmt-test-29a505efa0/continue-stmt-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/continue-stmt-test-29a505efa0/continue-stmt-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.073
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "error-destructure-test-a5e96c7d64/error_destructure_binding_pattern-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-destructure-test-a5e96c7d64/error_destructure_binding_pattern-v.bal",
+  "Project": false,
+  "Id": "T0450",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-destructure-test-a5e96c7d64/error_destructure_binding_pattern-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.078
+}

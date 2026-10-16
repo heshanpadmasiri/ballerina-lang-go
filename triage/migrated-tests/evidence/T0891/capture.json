@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 4\n        at main(open-array-literal-out-of-range-p.bal:3)\n","Diagnostics":null}

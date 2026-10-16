@@ -1,0 +1,232 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "final-typed-binding-patterns-negative-2ea1d9d04a/final-typed-binding-patterns-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> final-typed-binding-patterns-negative-e.bal:98:34
+            |
+         98 |     final [int, [string, float]] [
+            |                                  ^
+         99 |         i, // @error
+            |         ^^^^^^^^^^^^
+        100 |         [
+            |         ^
+        101 |             j, // @error
+            |             ^^^^^^^^^^^^
+        102 |             k // @error
+            |             ^^^^^^^^^^^
+        103 |         ]
+            |         ^
+        104 |     ] = getNestedTuple();
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> final-typed-binding-patterns-negative-e.bal:71:15
+           |
+        71 |     final var [
+           |               ^
+        72 |         i, // @error
+           |         ^^^^^^^^^^^^
+        73 |         j // @error
+           |         ^^^^^^^^^^^
+        74 |     ] = getTuple();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> final-typed-binding-patterns-negative-e.bal:80:25
+           |
+        80 |     final [int, string] [
+           |                         ^
+        81 |         i, // @error
+           |         ^^^^^^^^^^^^
+        82 |         j // @error
+           |         ^^^^^^^^^^^
+        83 |     ] = getTuple();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> final-typed-binding-patterns-negative-e.bal:89:15
+           |
+        89 |     final var [
+           |               ^
+        90 |         i, // @error
+           |         ^^^^^^^^^^^^
+        91 |         j // @error
+           |         ^^^^^^^^^^^
+        92 |     ] = getNestedTuple();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> final-typed-binding-patterns-negative-e.bal:28:15
+           |
+        28 |     final var {
+           |               ^
+        29 |         b, // @error
+           |         ^^^^^^^^^^^^
+        30 |         s: j // @error
+           |         ^^^^^^^^^^^^^^
+        31 |     } = getRecord();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> final-typed-binding-patterns-negative-e.bal:37:16
+           |
+        37 |     final Data {
+           |                ^
+        38 |         b, // @error
+           |         ^^^^^^^^^^^^
+        39 |         s: j // @error
+           |         ^^^^^^^^^^^^^^
+        40 |     } = getRecord();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> final-typed-binding-patterns-negative-e.bal:46:15
+           |
+        46 |     final var {
+           |               ^
+        47 |         a, // @error
+           |         ^^^^^^^^^^^^
+        48 |         d: {
+           |         ^^^^
+        49 |             b, // @error
+           |             ^^^^^^^^^^^^
+        50 |             s // @error
+           |             ^^^^^^^^^^^
+        51 |         }
+           |         ^
+        52 |     } = getNestedRecord();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> final-typed-binding-patterns-negative-e.bal:58:17
+           |
+        58 |     final Data2 {
+           |                 ^
+        59 |         a, // @error
+           |         ^^^^^^^^^^^^
+        60 |         d: {
+           |         ^^^^
+        61 |             b, // @error
+           |             ^^^^^^^^^^^^
+        62 |             s // @error
+           |             ^^^^^^^^^^^
+        63 |         }
+           |         ^
+        64 |     } = getNestedRecord();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> final-typed-binding-patterns-negative-e.bal:98:34
+            |
+         98 |     final [int, [string, float]] [
+            |                                  ^
+         99 |         i, // @error
+            |         ^^^^^^^^^^^^
+        100 |         [
+            |         ^
+        101 |             j, // @error
+            |             ^^^^^^^^^^^^
+        102 |             k // @error
+            |             ^^^^^^^^^^^
+        103 |         ]
+            |         ^
+        104 |     ] = getNestedTuple();
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> final-typed-binding-patterns-negative-e.bal:28:15
+           |
+        28 |     final var {
+           |               ^
+        29 |         b, // @error
+           |         ^^^^^^^^^^^^
+        30 |         s: j // @error
+           |         ^^^^^^^^^^^^^^
+        31 |     } = getRecord();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> final-typed-binding-patterns-negative-e.bal:37:16
+           |
+        37 |     final Data {
+           |                ^
+        38 |         b, // @error
+           |         ^^^^^^^^^^^^
+        39 |         s: j // @error
+           |         ^^^^^^^^^^^^^^
+        40 |     } = getRecord();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> final-typed-binding-patterns-negative-e.bal:46:15
+           |
+        46 |     final var {
+           |               ^
+        47 |         a, // @error
+           |         ^^^^^^^^^^^^
+        48 |         d: {
+           |         ^^^^
+        49 |             b, // @error
+           |             ^^^^^^^^^^^^
+        50 |             s // @error
+           |             ^^^^^^^^^^^
+        51 |         }
+           |         ^
+        52 |     } = getNestedRecord();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> final-typed-binding-patterns-negative-e.bal:58:17
+           |
+        58 |     final Data2 {
+           |                 ^
+        59 |         a, // @error
+           |         ^^^^^^^^^^^^
+        60 |         d: {
+           |         ^^^^
+        61 |             b, // @error
+           |             ^^^^^^^^^^^^
+        62 |             s // @error
+           |             ^^^^^^^^^^^
+        63 |         }
+           |         ^
+        64 |     } = getNestedRecord();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> final-typed-binding-patterns-negative-e.bal:71:15
+           |
+        71 |     final var [
+           |               ^
+        72 |         i, // @error
+           |         ^^^^^^^^^^^^
+        73 |         j // @error
+           |         ^^^^^^^^^^^
+        74 |     ] = getTuple();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> final-typed-binding-patterns-negative-e.bal:80:25
+           |
+        80 |     final [int, string] [
+           |                         ^
+        81 |         i, // @error
+           |         ^^^^^^^^^^^^
+        82 |         j // @error
+           |         ^^^^^^^^^^^
+        83 |     ] = getTuple();
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> final-typed-binding-patterns-negative-e.bal:89:15
+           |
+        89 |     final var [
+           |               ^
+        90 |         i, // @error
+           |         ^^^^^^^^^^^^
+        91 |         j // @error
+           |         ^^^^^^^^^^^
+        92 |     ] = getNestedTuple();
+           |     ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

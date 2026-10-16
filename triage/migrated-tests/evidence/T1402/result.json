@@ -1,0 +1,14 @@
+{
+  "Name": "table-negative-test-f923667200/table-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/table-negative-test-f923667200/table-negative-e.bal",
+  "Project": false,
+  "Id": "T1402",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/table-negative-test-f923667200/table-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.084
+}

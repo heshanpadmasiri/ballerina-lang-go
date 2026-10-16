@@ -1,0 +1,16 @@
+{
+  "id": "T0554",
+  "name": "function-pointers-negative-test-87e21adb7c/fp-type-mismatch1-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition; Type definition; Module variable declarations",
+    "Statements: Local variable declarations; Return",
+    "Expressions: Variable reference; Call; Mapping constructor",
+    "Invocations / Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.\""
+  ],
+  "reason": "The asserted errors are rejection of assigning a function with a float parameter to a function type requiring int, and rejection of the undefined Context type in a function type alias. These are negative checks of supported declarations, function values and type resolution. The tuple, typedesc, union and map declarations introduce no listed restriction, and the call uses positional arguments. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Both marked lines assert compile-time rejection; the undefined Context reference is intentional negative input, not an external dependency requiring support."
+  ]
+}

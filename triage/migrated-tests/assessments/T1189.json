@@ -1,0 +1,17 @@
+{
+  "id": "T1189",
+  "name": "order-by-clause-test-835e510187/order-by-clause-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"",
+    "## Expressions: \"Variable reference\", \"Field access expression\", \"List constructor\" and \"Mapping constructor\"",
+    "## Module-level declarations: \"Function definition\" and \"Type definition\"",
+    "## Statements: \"Local variable declarations\" and \"Assignment\""
+  ],
+  "reason": "The case asserts compile-time rejection of an undefined order-key variable, a record-valued key, an array with unordered boolean alternatives, and a tuple with incompatible decimal/float alternatives. These exercise name resolution and order-key type validation within explicitly supported query clauses and ordinary records, arrays, tuples and unions. No listed restriction excludes these negative checks.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Four @error markers assert rejection; invalid source is intentional and does not itself make the test unsupported.",
+    "No runtime sorting result or diagnostic wording is asserted in the supplied file."
+  ]
+}

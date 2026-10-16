@@ -1,0 +1,13 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at object-self-function-invocation-negative-e.bal:156-156 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at object-self-function-invocation-negative-e.bal:173-173 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at object-self-function-invocation-negative-e.bal:6 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at object-self-function-invocation-negative-e.bal:30 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at object-self-function-invocation-negative-e.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at object-self-function-invocation-negative-e.bal:84 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at object-self-function-invocation-negative-e.bal:105 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at object-self-function-invocation-negative-e.bal:129 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at object-self-function-invocation-negative-e.bal:151 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at object-self-function-invocation-negative-e.bal:168 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

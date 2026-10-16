@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at object-private-fields-02-negative.bal:6-6 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

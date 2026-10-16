@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: cannot infer type for implicit new expression\n   --\u003e type-test-expr-negative-e.bal:287:23\n    |\n287 |     Qux val3 = {code: new};\n    |                       ^^^\n\n","Diagnostics":[{"File":"type-test-expr-negative-e.bal","StartLine":287,"EndLine":287}]}

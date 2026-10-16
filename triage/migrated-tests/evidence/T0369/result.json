@@ -1,0 +1,21 @@
+{
+  "Name": "common-test-37d14c64be/operand-option-rest-param-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/common-test-37d14c64be/operand-option-rest-param-v.bal",
+  "Project": false,
+  "Id": "T0369",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/common-test-37d14c64be/operand-option-rest-param-v.bal"
+  ],
+  "Args": [
+    "--name",
+    "Riyafa",
+    "--good",
+    "100",
+    "5",
+    "3"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.067
+}

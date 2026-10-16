@@ -1,0 +1,53 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-test-0f3493dd03/worker-in-lock-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> worker-in-lock-e.bal:24:9
+           |
+        24 |         fork {
+           |         ^^^^^^
+        25 |             worker w1 { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        26 |                 fork {
+           |                 ^^^^^^
+        27 |                     worker w2 { // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^
+        28 |                         int _ = 5;
+           |                         ^^^^^^^^^^
+        29 |                     }
+           |                     ^
+        30 |                 }
+           |                 ^
+        31 |             }
+           |             ^
+        32 |         }
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> worker-in-lock-e.bal:41:9
+           |
+        41 |         fork {
+           |         ^^^^^^
+        42 |             worker w1 { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        43 |                 int _ = 15;
+           |                 ^^^^^^^^^^^
+        44 |             }
+           |             ^
+        45 |         }
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+         --> worker-in-lock-e.bal:3:9
+          |
+        3 |         fork {
+          |         ^^^^^^
+        4 |             worker w1 { // @error
+          |             ^^^^^^^^^^^^^^^^^^^^^
+        5 |                 int _ = 5;
+          |                 ^^^^^^^^^^
+        6 |             }
+          |             ^
+        7 |         }
+          |         ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

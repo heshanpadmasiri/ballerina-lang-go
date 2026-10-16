@@ -1,0 +1,14 @@
+{
+  "Name": "checked-expr-error-return-type-test-2972bca8c1/checked-expr-error-return-type-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/checked-expr-error-return-type-test-2972bca8c1/checked-expr-error-return-type-v.bal",
+  "Project": false,
+  "Id": "T0308",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/checked-expr-error-return-type-test-2972bca8c1/checked-expr-error-return-type-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.061
+}

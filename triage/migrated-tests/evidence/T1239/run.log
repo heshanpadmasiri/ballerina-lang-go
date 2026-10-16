@@ -1,0 +1,1168 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "reachability-analysis-test-a8532630b8/unreachability_test-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+           --> unreachability_test-e.bal:258:9
+            |
+        258 |         do {
+            |         ^^^^
+        259 |             int|string a = "ABC";
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        260 |             if a is string {
+            |             ^^^^^^^^^^^^^^^^
+        261 |                 if v is boolean {
+            |                 ^^^^^^^^^^^^^^^^^
+        262 |                     break;
+            |                     ^^^^^^
+        263 |                 } else if v is () { // always true //
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        264 |                     continue;
+            |                     ^^^^^^^^^
+        265 |                 }
+            |                 ^
+        266 |                 string _ = "A"; // unreachable code // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        267 |             }
+            |             ^
+        268 |             if a is int { // always true //
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        269 |                 if true {
+            |                 ^^^^^^^^^
+        270 |                     fail getError();
+            |                     ^^^^^^^^^^^^^^^^
+        271 |                 }
+            |                 ^
+        272 |             }
+            |             ^
+        273 |         }
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+            --> unreachability_test-e.bal:1294:9
+             |
+        1294 |         fail error("fail msg");
+             |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+            --> unreachability_test-e.bal:1337:9
+             |
+        1337 |         fail error("fail msg");
+             |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+            --> unreachability_test-e.bal:1372:9
+             |
+        1372 |         fail error("Error");
+             |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+            --> unreachability_test-e.bal:1381:9
+             |
+        1381 |         fail error("Error");
+             |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+            --> unreachability_test-e.bal:1390:9
+             |
+        1390 |         fail error("Error"); // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+            --> unreachability_test-e.bal:1523:9
+             |
+        1523 |         fail error("Err");
+             |         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+           --> unreachability_test-e.bal:282:13
+            |
+        282 |             fail getError();
+            |             ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1766:16
+             |
+        1766 |         return object {
+             |                ^^^^^^^^
+        1767 |             public isolated function next() returns record {|int value;|}|error? {
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1768 |                return error("Custom error thrown.");
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1769 |             }
+             |             ^
+        1770 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1038:16
+             |
+        1038 |     error? n = from int i in 0 ... 2
+             |                ^^^^^^^^^^^^^^^^^^^^^
+        1039 |     do {
+             |     ^^^^
+        1040 |         return;
+             |         ^^^^^^^
+        1041 |         int _ = 1; // unreachable // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1042 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1048:5
+             |
+        1048 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1049 |     where false
+             |     ^^^^^^^^^^^
+        1050 |     do {
+             |     ^^^^
+        1051 |         int _ = 10; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1052 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1056:16
+             |
+        1056 |     checkpanic from var _ in new IterableWithError()
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1057 |         where false
+             |         ^^^^^^^^^^^
+        1058 |         do {
+             |         ^^^^
+        1059 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1060 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1064:16
+             |
+        1064 |     error? a = from var item in 1 ... 5
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^
+        1065 |         where false
+             |         ^^^^^^^^^^^
+        1066 |         do {
+             |         ^^^^
+        1067 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1068 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1074:21
+             |
+        1074 |     error? a = trap from var item in 1 ... 5
+             |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1075 |         where false
+             |         ^^^^^^^^^^^
+        1076 |         do {
+             |         ^^^^
+        1077 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1078 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1084:25
+             |
+        1084 |     error? a = <error?> from var item in 1 ... 5
+             |                         ^^^^^^^^^^^^^^^^^^^^^^^^
+        1085 |         where false
+             |         ^^^^^^^^^^^
+        1086 |         do {
+             |         ^^^^
+        1087 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1088 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1094:12
+             |
+        1094 |     return from var item in 1 ... 5
+             |            ^^^^^^^^^^^^^^^^^^^^^^^^
+        1095 |         where false
+             |         ^^^^^^^^^^^
+        1096 |         do {
+             |         ^^^^
+        1097 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1098 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1102:16
+             |
+        1102 |     checkpanic from var _ in new IterableWithError()
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1103 |         where false
+             |         ^^^^^^^^^^^
+        1104 |         do {
+             |         ^^^^
+        1105 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1106 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1110:12
+             |
+        1110 |     return from var item in 1 ... 5
+             |            ^^^^^^^^^^^^^^^^^^^^^^^^
+        1111 |         where false
+             |         ^^^^^^^^^^^
+        1112 |         do {
+             |         ^^^^
+        1113 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1114 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1118:17
+             |
+        1118 |     return trap from var item in 1 ... 5
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+        1119 |         where false
+             |         ^^^^^^^^^^^
+        1120 |         do {
+             |         ^^^^
+        1121 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1122 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1126:21
+             |
+        1126 |     return <error?> from var item in 1 ... 5
+             |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1127 |         where false
+             |         ^^^^^^^^^^^
+        1128 |         do {
+             |         ^^^^
+        1129 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1130 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1134:17
+             |
+        1134 |     error? a = (from var item in 1 ... 5
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+        1135 |         where false
+             |         ^^^^^^^^^^^
+        1136 |         do {
+             |         ^^^^
+        1137 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1138 |         });
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1144:18
+             |
+        1144 |     return (trap from var item in 1 ... 5
+             |                  ^^^^^^^^^^^^^^^^^^^^^^^^
+        1145 |         where false
+             |         ^^^^^^^^^^^
+        1146 |         do {
+             |         ^^^^
+        1147 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1148 |         });
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1153:10
+             |
+        1153 |     a = (from var item in 1 ... 5
+             |          ^^^^^^^^^^^^^^^^^^^^^^^^
+        1154 |         where false
+             |         ^^^^^^^^^^^
+        1155 |         do {
+             |         ^^^^
+        1156 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1157 |         });
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1163:11
+             |
+        1163 |     match from var item in 1 ... 5
+             |           ^^^^^^^^^^^^^^^^^^^^^^^^
+        1164 |         where false
+             |         ^^^^^^^^^^^
+        1165 |         do {
+             |         ^^^^
+        1166 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1167 |         } {
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1174:11
+             |
+        1174 |     match from var item in 1 ... 5
+             |           ^^^^^^^^^^^^^^^^^^^^^^^^
+        1175 |         where false
+             |         ^^^^^^^^^^^
+        1176 |         do {
+             |         ^^^^
+        1177 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1178 |         } {
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1185:12
+             |
+        1185 |     match (from var item in 1 ... 5
+             |            ^^^^^^^^^^^^^^^^^^^^^^^^
+        1186 |         where false
+             |         ^^^^^^^^^^^
+        1187 |         do {
+             |         ^^^^
+        1188 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1189 |         }) {
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1196:16
+             |
+        1196 |     error? a = from var item in 1 ... 5
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^
+        1197 |         where false
+             |         ^^^^^^^^^^^
+        1198 |         where item < 2
+             |         ^^^^^^^^^^^^^^
+        1199 |         do {
+             |         ^^^^
+        1200 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1201 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1207:18
+             |
+        1207 |     return trap (from var item in 1 ... 5
+             |                  ^^^^^^^^^^^^^^^^^^^^^^^^
+        1208 |         where false
+             |         ^^^^^^^^^^^
+        1209 |         where item < 2
+             |         ^^^^^^^^^^^^^^
+        1210 |         do {
+             |         ^^^^
+        1211 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1212 |         });
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1217:5
+             |
+        1217 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1218 |     where item < 2
+             |     ^^^^^^^^^^^^^^
+        1219 |     do {
+             |     ^^^^
+        1220 |         a = (from var value in 1 ... 5
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1221 |             where false
+             |             ^^^^^^^^^^^
+        1222 |             where value < 2
+             |             ^^^^^^^^^^^^^^^
+        1223 |             do {
+             |             ^^^^
+        1224 |                 int _ = 10; // unreachable code // @error
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1225 |             });
+             |             ^^^
+        1226 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1232:5
+             |
+        1232 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1233 |     where false
+             |     ^^^^^^^^^^^
+        1234 |     do {
+             |     ^^^^
+        1235 |         int _ = 1; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1236 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1259:16
+             |
+        1259 |     error? x = from var item in 1 ... 5 // @error
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1260 |         where false
+             |         ^^^^^^^^^^^
+        1261 |         do {
+             |         ^^^^
+        1262 |             error? y = from var item2 in 1 ...2 // unreachable code // @error // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1263 |             where true
+             |             ^^^^^^^^^^
+        1264 |             do {
+             |             ^^^^
+        1265 |                 int _ = 1;
+             |                 ^^^^^^^^^^
+        1266 |                 int _ = 1;
+             |                 ^^^^^^^^^^
+        1267 |             };
+             |             ^^
+        1268 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1272:16
+             |
+        1272 |     error? x = from var item in 1 ... 5 // @error
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1273 |         where true
+             |         ^^^^^^^^^^
+        1274 |         do {
+             |         ^^^^
+        1275 |             error? y = from var item2 in 1 ...2 // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1276 |             where false
+             |             ^^^^^^^^^^^
+        1277 |             do {
+             |             ^^^^
+        1278 |                 int _ = 1; // unreachable code // @error
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1279 |                 int _ = 1;
+             |                 ^^^^^^^^^^
+        1280 |             };
+             |             ^^
+        1281 |         };
+             |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1426:5
+             |
+        1426 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1427 |     where true
+             |     ^^^^^^^^^^
+        1428 |     do {
+             |     ^^^^
+        1429 |         while true {
+             |         ^^^^^^^^^^^^
+        1430 |             int _ = 3;
+             |             ^^^^^^^^^^
+        1431 |         }
+             |         ^
+        1432 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1433 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1438:5
+             |
+        1438 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1439 |     where true
+             |     ^^^^^^^^^^
+        1440 |     do {
+             |     ^^^^
+        1441 |         m = "Error";
+             |         ^^^^^^^^^^^^
+        1442 |         while m is string { //
+             |         ^^^^^^^^^^^^^^^^^^^^^^
+        1443 |             int _ = 3;
+             |             ^^^^^^^^^^
+        1444 |         }
+             |         ^
+        1445 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1446 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1450:5
+             |
+        1450 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1451 |     where true
+             |     ^^^^^^^^^^
+        1452 |     do {
+             |     ^^^^
+        1453 |         if true {
+             |         ^^^^^^^^^
+        1454 |             return;
+             |             ^^^^^^^
+        1455 |         }
+             |         ^
+        1456 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1457 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1461:5
+             |
+        1461 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1462 |     where false
+             |     ^^^^^^^^^^^
+        1463 |     do {
+             |     ^^^^
+        1464 |         panic error("Panic!");
+             |         ^^^^^^^^^^^^^^^^^^^^^^
+        1465 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1466 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1470:5
+             |
+        1470 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1471 |     where true
+             |     ^^^^^^^^^^
+        1472 |     do {
+             |     ^^^^
+        1473 |         while true {
+             |         ^^^^^^^^^^^^
+        1474 |             int _ = 3;
+             |             ^^^^^^^^^^
+        1475 |         }
+             |         ^
+        1476 |         panic error("Panic!");
+             |         ^^^^^^^^^^^^^^^^^^^^^^
+        1477 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1478 |     };
+             |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+            --> unreachability_test-e.bal:1482:5
+             |
+        1482 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1483 |     where true
+             |     ^^^^^^^^^^
+        1484 |     do {
+             |     ^^^^
+        1485 |         if true {
+             |         ^^^^^^^^^
+        1486 |             return;
+             |             ^^^^^^^
+        1487 |         }
+             |         ^
+        1488 |         panic error("Panic!");
+             |         ^^^^^^^^^^^^^^^^^^^^^^
+        1489 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1490 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+            --> unreachability_test-e.bal:1242:13
+             |
+        1242 |         var [a, b] = arr; // unreachable code // @error // @error // @error
+             |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> unreachability_test-e.bal:1254:13
+             |
+        1254 |         var {a: val1, b: val2} = rec; // unreachable code // @error // @error // @error
+             |             ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> unreachability_test-e.bal:1242:13
+             |
+        1242 |         var [a, b] = arr; // unreachable code // @error // @error // @error
+             |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> unreachability_test-e.bal:1254:13
+             |
+        1254 |         var {a: val1, b: val2} = rec; // unreachable code // @error // @error // @error
+             |             ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+           --> unreachability_test-e.bal:258:9
+            |
+        258 |         do {
+            |         ^^^^
+        259 |             int|string a = "ABC";
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        260 |             if a is string {
+            |             ^^^^^^^^^^^^^^^^
+        261 |                 if v is boolean {
+            |                 ^^^^^^^^^^^^^^^^^
+        262 |                     break;
+            |                     ^^^^^^
+        263 |                 } else if v is () { // always true //
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        264 |                     continue;
+            |                     ^^^^^^^^^
+        265 |                 }
+            |                 ^
+        266 |                 string _ = "A"; // unreachable code // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        267 |             }
+            |             ^
+        268 |             if a is int { // always true //
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        269 |                 if true {
+            |                 ^^^^^^^^^
+        270 |                     fail getError();
+            |                     ^^^^^^^^^^^^^^^^
+        271 |                 }
+            |                 ^
+        272 |             }
+            |             ^
+        273 |         }
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+            --> unreachability_test-e.bal:1294:9
+             |
+        1294 |         fail error("fail msg");
+             |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+            --> unreachability_test-e.bal:1337:9
+             |
+        1337 |         fail error("fail msg");
+             |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+            --> unreachability_test-e.bal:1372:9
+             |
+        1372 |         fail error("Error");
+             |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+            --> unreachability_test-e.bal:1381:9
+             |
+        1381 |         fail error("Error");
+             |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+            --> unreachability_test-e.bal:1390:9
+             |
+        1390 |         fail error("Error"); // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+            --> unreachability_test-e.bal:1523:9
+             |
+        1523 |         fail error("Err");
+             |         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+           --> unreachability_test-e.bal:282:13
+            |
+        282 |             fail getError();
+            |             ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+            --> unreachability_test-e.bal:1766:16
+             |
+        1766 |         return object {
+             |                ^^^^^^^^
+        1767 |             public isolated function next() returns record {|int value;|}|error? {
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1768 |                return error("Custom error thrown.");
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1769 |             }
+             |             ^
+        1770 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1038:16
+             |
+        1038 |     error? n = from int i in 0 ... 2
+             |                ^^^^^^^^^^^^^^^^^^^^^
+        1039 |     do {
+             |     ^^^^
+        1040 |         return;
+             |         ^^^^^^^
+        1041 |         int _ = 1; // unreachable // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1042 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1048:5
+             |
+        1048 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1049 |     where false
+             |     ^^^^^^^^^^^
+        1050 |     do {
+             |     ^^^^
+        1051 |         int _ = 10; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1052 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1056:16
+             |
+        1056 |     checkpanic from var _ in new IterableWithError()
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1057 |         where false
+             |         ^^^^^^^^^^^
+        1058 |         do {
+             |         ^^^^
+        1059 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1060 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1064:16
+             |
+        1064 |     error? a = from var item in 1 ... 5
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^
+        1065 |         where false
+             |         ^^^^^^^^^^^
+        1066 |         do {
+             |         ^^^^
+        1067 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1068 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1074:21
+             |
+        1074 |     error? a = trap from var item in 1 ... 5
+             |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1075 |         where false
+             |         ^^^^^^^^^^^
+        1076 |         do {
+             |         ^^^^
+        1077 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1078 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1084:25
+             |
+        1084 |     error? a = <error?> from var item in 1 ... 5
+             |                         ^^^^^^^^^^^^^^^^^^^^^^^^
+        1085 |         where false
+             |         ^^^^^^^^^^^
+        1086 |         do {
+             |         ^^^^
+        1087 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1088 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1094:12
+             |
+        1094 |     return from var item in 1 ... 5
+             |            ^^^^^^^^^^^^^^^^^^^^^^^^
+        1095 |         where false
+             |         ^^^^^^^^^^^
+        1096 |         do {
+             |         ^^^^
+        1097 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1098 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1102:16
+             |
+        1102 |     checkpanic from var _ in new IterableWithError()
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1103 |         where false
+             |         ^^^^^^^^^^^
+        1104 |         do {
+             |         ^^^^
+        1105 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1106 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1110:12
+             |
+        1110 |     return from var item in 1 ... 5
+             |            ^^^^^^^^^^^^^^^^^^^^^^^^
+        1111 |         where false
+             |         ^^^^^^^^^^^
+        1112 |         do {
+             |         ^^^^
+        1113 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1114 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1118:17
+             |
+        1118 |     return trap from var item in 1 ... 5
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+        1119 |         where false
+             |         ^^^^^^^^^^^
+        1120 |         do {
+             |         ^^^^
+        1121 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1122 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1126:21
+             |
+        1126 |     return <error?> from var item in 1 ... 5
+             |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1127 |         where false
+             |         ^^^^^^^^^^^
+        1128 |         do {
+             |         ^^^^
+        1129 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1130 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1134:17
+             |
+        1134 |     error? a = (from var item in 1 ... 5
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+        1135 |         where false
+             |         ^^^^^^^^^^^
+        1136 |         do {
+             |         ^^^^
+        1137 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1138 |         });
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1144:18
+             |
+        1144 |     return (trap from var item in 1 ... 5
+             |                  ^^^^^^^^^^^^^^^^^^^^^^^^
+        1145 |         where false
+             |         ^^^^^^^^^^^
+        1146 |         do {
+             |         ^^^^
+        1147 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1148 |         });
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1153:10
+             |
+        1153 |     a = (from var item in 1 ... 5
+             |          ^^^^^^^^^^^^^^^^^^^^^^^^
+        1154 |         where false
+             |         ^^^^^^^^^^^
+        1155 |         do {
+             |         ^^^^
+        1156 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1157 |         });
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1163:11
+             |
+        1163 |     match from var item in 1 ... 5
+             |           ^^^^^^^^^^^^^^^^^^^^^^^^
+        1164 |         where false
+             |         ^^^^^^^^^^^
+        1165 |         do {
+             |         ^^^^
+        1166 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1167 |         } {
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1174:11
+             |
+        1174 |     match from var item in 1 ... 5
+             |           ^^^^^^^^^^^^^^^^^^^^^^^^
+        1175 |         where false
+             |         ^^^^^^^^^^^
+        1176 |         do {
+             |         ^^^^
+        1177 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1178 |         } {
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1185:12
+             |
+        1185 |     match (from var item in 1 ... 5
+             |            ^^^^^^^^^^^^^^^^^^^^^^^^
+        1186 |         where false
+             |         ^^^^^^^^^^^
+        1187 |         do {
+             |         ^^^^
+        1188 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1189 |         }) {
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1196:16
+             |
+        1196 |     error? a = from var item in 1 ... 5
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^
+        1197 |         where false
+             |         ^^^^^^^^^^^
+        1198 |         where item < 2
+             |         ^^^^^^^^^^^^^^
+        1199 |         do {
+             |         ^^^^
+        1200 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1201 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1207:18
+             |
+        1207 |     return trap (from var item in 1 ... 5
+             |                  ^^^^^^^^^^^^^^^^^^^^^^^^
+        1208 |         where false
+             |         ^^^^^^^^^^^
+        1209 |         where item < 2
+             |         ^^^^^^^^^^^^^^
+        1210 |         do {
+             |         ^^^^
+        1211 |             int _ = 10; // unreachable code // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1212 |         });
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1217:5
+             |
+        1217 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1218 |     where item < 2
+             |     ^^^^^^^^^^^^^^
+        1219 |     do {
+             |     ^^^^
+        1220 |         a = (from var value in 1 ... 5
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1221 |             where false
+             |             ^^^^^^^^^^^
+        1222 |             where value < 2
+             |             ^^^^^^^^^^^^^^^
+        1223 |             do {
+             |             ^^^^
+        1224 |                 int _ = 10; // unreachable code // @error
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1225 |             });
+             |             ^^^
+        1226 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1232:5
+             |
+        1232 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1233 |     where false
+             |     ^^^^^^^^^^^
+        1234 |     do {
+             |     ^^^^
+        1235 |         int _ = 1; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1236 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1259:16
+             |
+        1259 |     error? x = from var item in 1 ... 5 // @error
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1260 |         where false
+             |         ^^^^^^^^^^^
+        1261 |         do {
+             |         ^^^^
+        1262 |             error? y = from var item2 in 1 ...2 // unreachable code // @error // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1263 |             where true
+             |             ^^^^^^^^^^
+        1264 |             do {
+             |             ^^^^
+        1265 |                 int _ = 1;
+             |                 ^^^^^^^^^^
+        1266 |                 int _ = 1;
+             |                 ^^^^^^^^^^
+        1267 |             };
+             |             ^^
+        1268 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1272:16
+             |
+        1272 |     error? x = from var item in 1 ... 5 // @error
+             |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1273 |         where true
+             |         ^^^^^^^^^^
+        1274 |         do {
+             |         ^^^^
+        1275 |             error? y = from var item2 in 1 ...2 // @error
+             |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1276 |             where false
+             |             ^^^^^^^^^^^
+        1277 |             do {
+             |             ^^^^
+        1278 |                 int _ = 1; // unreachable code // @error
+             |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1279 |                 int _ = 1;
+             |                 ^^^^^^^^^^
+        1280 |             };
+             |             ^^
+        1281 |         };
+             |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1426:5
+             |
+        1426 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1427 |     where true
+             |     ^^^^^^^^^^
+        1428 |     do {
+             |     ^^^^
+        1429 |         while true {
+             |         ^^^^^^^^^^^^
+        1430 |             int _ = 3;
+             |             ^^^^^^^^^^
+        1431 |         }
+             |         ^
+        1432 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1433 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1438:5
+             |
+        1438 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1439 |     where true
+             |     ^^^^^^^^^^
+        1440 |     do {
+             |     ^^^^
+        1441 |         m = "Error";
+             |         ^^^^^^^^^^^^
+        1442 |         while m is string { //
+             |         ^^^^^^^^^^^^^^^^^^^^^^
+        1443 |             int _ = 3;
+             |             ^^^^^^^^^^
+        1444 |         }
+             |         ^
+        1445 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1446 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1450:5
+             |
+        1450 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1451 |     where true
+             |     ^^^^^^^^^^
+        1452 |     do {
+             |     ^^^^
+        1453 |         if true {
+             |         ^^^^^^^^^
+        1454 |             return;
+             |             ^^^^^^^
+        1455 |         }
+             |         ^
+        1456 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1457 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1461:5
+             |
+        1461 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1462 |     where false
+             |     ^^^^^^^^^^^
+        1463 |     do {
+             |     ^^^^
+        1464 |         panic error("Panic!");
+             |         ^^^^^^^^^^^^^^^^^^^^^^
+        1465 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1466 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1470:5
+             |
+        1470 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1471 |     where true
+             |     ^^^^^^^^^^
+        1472 |     do {
+             |     ^^^^
+        1473 |         while true {
+             |         ^^^^^^^^^^^^
+        1474 |             int _ = 3;
+             |             ^^^^^^^^^^
+        1475 |         }
+             |         ^
+        1476 |         panic error("Panic!");
+             |         ^^^^^^^^^^^^^^^^^^^^^^
+        1477 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1478 |     };
+             |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+            --> unreachability_test-e.bal:1482:5
+             |
+        1482 |     from var item in 1 ... 5
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        1483 |     where true
+             |     ^^^^^^^^^^
+        1484 |     do {
+             |     ^^^^
+        1485 |         if true {
+             |         ^^^^^^^^^
+        1486 |             return;
+             |             ^^^^^^^
+        1487 |         }
+             |         ^
+        1488 |         panic error("Panic!");
+             |         ^^^^^^^^^^^^^^^^^^^^^^
+        1489 |         int _ = 2; // unreachable code // @error
+             |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1490 |     };
+             |     ^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

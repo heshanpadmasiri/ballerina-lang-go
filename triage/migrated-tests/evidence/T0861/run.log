@@ -1,0 +1,55 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	match1
+        	match2
+        	match2
+        	match3
+        	No match
+        	match1
+        	Message
+        	match1
+        	match2
+        	match3
+        	match1
+        	No match
+        	Message2
+        	match
+        	match1
+        	match2
+        	match2
+        	No match
+        	match1
+        	match2
+        	match3
+        	No match
+        	match1
+        	match2
+        	Not Matched
+        	Matched
+        	Not Matched
+        	Matched
+        	Matched
+        	Matched with Error One
+        	Matched with Error Two
+        	message:Error cause:No Cause details:{}
+        	message:Error cause:Invalid Op details:{}
+        	message:Error cause:Invalid Op details:{"code1":12}
+        	message:Error cause:No Cause details:{"code1":12,"code2":{"a":"A","b":[1,2]}}
+        	message:Error cause:No Cause details:{"a":"A","rest":{"b":[1,2]}}
+        	message:Error cause:No Cause details:{"a":12,"rest":["A",10.5,1]}
+        	message:Error cause:Invalid Op details:{"a":[12,"A",10.5,1],"rest":{"code2":{"a":"A","b":[1,2]}}}
+        	match1
+        	match2
+        	match3
+        	match4
+        	no match
+        	no match
+        	no match
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'value'\n --\u003e operand_int_and_default_default-v.bal:4:22\n  |\n4 | public function main(int value, string name = \"Riyafa\") {\n  |                      ^^^^^^^^^\n\nballerina: compilation contains errors\n","Diagnostics":null}

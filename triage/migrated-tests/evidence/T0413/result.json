@@ -1,0 +1,14 @@
+{
+  "Name": "deprecation-annotation-test-5a4ffa9c53/deprecated-construct-usage-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/deprecation-annotation-test-5a4ffa9c53/deprecated-construct-usage-e.bal",
+  "Project": false,
+  "Id": "T0413",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/deprecation-annotation-test-5a4ffa9c53/deprecated-construct-usage-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

@@ -1,0 +1,12 @@
+{
+  "id": "T0536",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-xml-set-children-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString, but not cloneReadOnly.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions\"; value:cloneReadOnly is absent, while xml:setChildren is listed."
+  ],
+  "reason": "The expected panic from setting children of a frozen XML element depends on x1.cloneReadOnly(), a langlib operation excluded from both the supported library functions and supported method-call lists. XML setChildren itself is supported, but the essential freezing operation makes this whole case a feature request.",
+  "unsupported_constructs": ["value:cloneReadOnly invoked as x1.cloneReadOnly()"],
+  "test_design_notes": ["The @panic assertion checks mutation of the readonly XML value produced by cloneReadOnly, not merely XML construction or setChildren availability."]
+}

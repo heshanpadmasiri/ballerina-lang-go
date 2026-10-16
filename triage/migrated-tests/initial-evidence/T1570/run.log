@@ -1,0 +1,23 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/send_receive_mismatch_negative-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+         --> main.bal:2:5
+          |
+        2 |     @strand{thread:"any"} // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        3 |     worker w1 {
+          |     ^^^^^^^^^^^
+        4 |         5 ->> w2;
+          |         ^^^^^^^^^
+        5 |     }
+          |     ^
+        6 |     @strand{thread:"any"} // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        7 |     worker w2 {
+          |     ^^^^^^^^^^^
+        8 |         string _ = <- w1; // @error
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        9 |     }
+          |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "string-value-basics-test-a9d2149e3a/string-value-basics-index-out-of-range-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'val'
+         --> string-value-basics-index-out-of-range-p.bal:3:5
+          |
+        3 |     string val = hello[6]; // @panic
+          |     ^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

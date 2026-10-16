@@ -1,0 +1,19 @@
+{
+  "id": "T0117",
+  "name": "argument-parser-positive-test-e41e5b8a0a/optional-one-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Expressions: \"[Type test expression](https://ballerina.io/spec/lang/master/#section_6.28)\"",
+    "Statements: \"[Compound Assignment](https://ballerina.io/spec/lang/master/#compound-assignment-stmt)\""
+  ],
+  "reason": "The asserted output depends on command-line argument binding: @args [\"hello world\"] must supply the string value to main(string? s). Subset 10 supports function parameter signatures but does not cover the main entry-point command-line parsing/binding protocol. This essential execution behavior makes the whole case a feature.",
+  "unsupported_constructs": [
+    "Command-line argument parsing and binding to a nullable string main parameter."
+  ],
+  "test_design_notes": [
+    "@output requires exactly string value: hello world after argument binding; no @panic is asserted.",
+    "The provided argument exercises the string branch; the nil branch is not exercised.",
+    "io:println is output instrumentation and is not itself a feature finding."
+  ]
+}

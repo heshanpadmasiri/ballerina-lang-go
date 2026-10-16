@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:57: -e test "type-guard-test-74355f2266/sem-types-4-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,14 @@
+{
+  "Name": "freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-semantics-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-semantics-negative-e.bal",
+  "Project": false,
+  "Id": "T0510",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-semantics-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.065
+}

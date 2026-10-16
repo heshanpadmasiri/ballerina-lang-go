@@ -1,0 +1,15 @@
+{
+  "id": "T1048",
+  "name": "numeric-conversion-test-6b3e1e5e00/nan-float-union-as-byte-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition",
+    "Statements: Local variable declarations; Call",
+    "Expressions: Type cast expression",
+    "Expressions / Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Operators / Binary operators: Multiplicative ops `*`, `%`, `/`"
+  ],
+  "reason": "The case computes NaN with supported float division, stores it in a float|boolean union, and asserts that casting that value to byte panics. Type casts and the surrounding declarations and call are supported, with no restriction excluding union-source numeric casts or NaN failure behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment marks the expected runtime failure of the byte cast; this is not a successful conversion test."]
+}

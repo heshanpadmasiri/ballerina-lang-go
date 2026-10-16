@@ -1,0 +1,14 @@
+{
+  "Name": "array-mutability-test-f73ad51ac1/array-mutability-open-sealed-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-mutability-test-f73ad51ac1/array-mutability-open-sealed-p.bal",
+  "Project": false,
+  "Id": "T0171",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-mutability-test-f73ad51ac1/array-mutability-open-sealed-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.023
+}

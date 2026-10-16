@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: removeAll\n  --\u003e record-clear-p.bal:13:5\n   |\n13 |     person.removeAll(); // @panic\n   |     ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"record-clear-p.bal","StartLine":13,"EndLine":13}]}

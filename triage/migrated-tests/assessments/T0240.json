@@ -1,0 +1,15 @@
+{
+  "id": "T0240",
+  "name": "bfloat-value-test-b01a6e05bd/bfloat-value-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "## Module-level declarations: \"Function definition\", \"Module variable declarations\", \"Type definition\"",
+    "## Statements: \"Assignment\", \"Local variable declarations\", \"Return\""
+  ],
+  "reason": "This negative case requires rejection of malformed leading-zero float syntax and out-of-range decimal/hexadecimal float literals, including literals in singleton type positions and union-typed initializers. These exercise supported numeric literals, declarations and their type checking; subset 10 states no applicable exclusion. All asserted behavior is compile-time rejection within the supported grammar/type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The file asserts @error diagnostics, including multiple errors on individual lines; it contains no @args, @panic or @output assertions."
+  ]
+}

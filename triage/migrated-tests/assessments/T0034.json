@@ -1,0 +1,19 @@
+{
+  "id": "T0034",
+  "name": "anydata-negative-test-0fcaa4113f/anydata-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; the list contains no ballerina/lang.table.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; table:toJson is absent.",
+    "Supported Ballerina code / Expressions lists \"List constructor\" and \"Mapping constructor\", but does not list table constructors."
+  ],
+  "reason": "This mixed negative suite principally tests rejection of non-data values assigned to anydata through maps, arrays, unions, tuples, errors, and readonly intersections. Those deliberate type errors do not themselves imply unsupported syntax. However, the complete case also declares table types, constructs tables, and invokes tbl.toJson() and tb.toJson(). Table constructors are not covered by the expressions list, and table toJson is outside the explicitly restricted langlib method set. These independent unsupported constructs determine the whole-case feature classification.",
+  "unsupported_constructs": [
+    "Table constructor expressions and table support not covered in the listed subset features",
+    "Table langlib toJson method calls"
+  ],
+  "test_design_notes": [
+    "The opening mapping assignments to unions containing anydata have suspicious @error markers: their literal values appear data-compatible; review expected diagnostics independently.",
+    "Separate supported anydata rejection checks from table cases. No execution evidence was consulted."
+  ]
+}

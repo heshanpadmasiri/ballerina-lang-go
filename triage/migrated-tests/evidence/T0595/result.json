@@ -1,0 +1,14 @@
+{
+  "Name": "global-query-test-49deff6295/global-query-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-query-test-49deff6295/global-query-e.bal",
+  "Project": false,
+  "Id": "T0595",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-query-test-49deff6295/global-query-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

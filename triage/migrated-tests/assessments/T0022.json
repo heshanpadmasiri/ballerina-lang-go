@@ -1,0 +1,18 @@
+{
+  "id": "T0022",
+  "name": "anonymous-object-test-5197ee0f89/anonymous-object-undefaultable-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: lists ‘New expression’ and ‘Anonymous function expression’, but does not list object constructor expressions.",
+    "Object/class definitions: ‘Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members’.",
+    "Module-level declarations: ‘Class definition’ and ‘Supports `object-field`, `method-defn` and `object-type-inclusion` members’"
+  ],
+  "reason": "The case requires anonymous object constructor expressions (`object { ... }` in initializer position), including an initializer method using self. These expressions are not covered by the subset's expression list, so the whole case is a feature request. Other parts exercise supported object type descriptors, method declarations, class fields, explicit new expressions, local/module variables, assignment and return. The negative checks concern structural incompatibility: objects with age/name fields lack the required test method. Those rejections belong to the supported object type system, rather than themselves constituting unsupported features.",
+  "unsupported_constructs": [
+    "Anonymous object constructor expressions initializing p1, p2 and p5, including p1's init method."
+  ],
+  "test_design_notes": [
+    "Four @error markers correspond to missing-method incompatibilities for p2, p4 initialization, p4 reassignment and p5.",
+    "No obvious misplaced marker or migration corruption is visible; unsupported constructors may prevent these intended type diagnostics from being reached."
+  ]
+}

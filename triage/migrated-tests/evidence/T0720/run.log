@@ -1,0 +1,52 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "list-constructor-expr-test-039d73e3d9/list-constructor-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> list-constructor-negative-e.bal:16:9
+           |
+        16 |     var [v1, v2, v3] = ["hello", 123, 34.56]; // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> list-constructor-negative-e.bal:19:9
+           |
+        19 |     var [i, error(reason, info = info, fatal = fatal)] = [1, e]; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> list-constructor-negative-e.bal:22:9
+           |
+        22 |     var [j, {id:id, name:name}] = [1, p]; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> list-constructor-negative-e.bal:25:9
+           |
+        25 |     var [[k, l], m] = [a, 4]; // @error
+           |         ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> list-constructor-negative-e.bal:16:9
+           |
+        16 |     var [v1, v2, v3] = ["hello", 123, 34.56]; // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> list-constructor-negative-e.bal:19:9
+           |
+        19 |     var [i, error(reason, info = info, fatal = fatal)] = [1, e]; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> list-constructor-negative-e.bal:22:9
+           |
+        22 |     var [j, {id:id, name:name}] = [1, p]; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> list-constructor-negative-e.bal:25:9
+           |
+        25 |     var [[k, l], m] = [a, 4]; // @error
+           |         ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,21 @@
+{
+  "id": "T1208",
+  "name": "query-action-or-expr-test-cc451d1303/query-action-or-expr-semantic-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions: Query expressions — Supports `list` and `map` as `query-constructor-type`",
+    "Expressions: Start action; Wait action; Client remote method call action",
+    "Statements: supported statement list does not include named workers; Expressions: supported expression/action list does not include worker send/receive actions or query actions"
+  ],
+  "reason": "The negative case requires query-action rejection and worker communication semantics that are outside the subset's positive lists. It also uses a table query constructor, whereas only list and map query constructors are supported. These essential portions make the whole case a feature even though many action-placement and union-result rejection checks involve supported expressions.",
+  "unsupported_constructs": [
+    "Named workers and asynchronous/synchronous worker sends and single/multiple worker receives",
+    "Query actions with a do clause",
+    "table key(id) query constructor"
+  ],
+  "test_design_notes": [
+    "This is a negative compilation test using @error annotations; illegal code alone does not make a supported grammar/type-system rejection out of scope.",
+    "Start, wait, client remote calls, and string:Char are listed as supported; they are not the basis for the feature classification."
+  ]
+}

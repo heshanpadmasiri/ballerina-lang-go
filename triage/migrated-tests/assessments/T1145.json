@@ -1,0 +1,17 @@
+{
+  "id": "T1145",
+  "name": "operand-test-0e6612016b/operand_default_only-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "### Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.\""
+  ],
+  "reason": "The assertion requires launching main with no command-line operand and supplying its default string argument, yielding Riyafa. Defaultable function parameters and omitted arguments in function calls are supported, but command-line operand binding and entry-point invocation behavior are not covered by the subset.",
+  "unsupported_constructs": [
+    "Command-line entry-point invocation supplying an omitted defaultable main operand."
+  ],
+  "test_design_notes": [
+    "There is no explicit call to main; the output depends on entry-point argument handling.",
+    "io:println is output instrumentation and does not itself determine the classification."
+  ]
+}

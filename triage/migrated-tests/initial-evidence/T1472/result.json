@@ -1,0 +1,14 @@
+{
+  "Name": "type-guard-test-74355f2266/sem-types-3-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/sem-types-3-v.bal",
+  "Project": false,
+  "Id": "T1472",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/sem-types-3-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.085
+}

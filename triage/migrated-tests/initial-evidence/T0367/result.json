@@ -1,0 +1,14 @@
+{
+  "Name": "collect-clause-test-c0e4163727/cases/collect-clause-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/collect-clause-test-c0e4163727/cases/collect-clause-v.bal",
+  "Project": false,
+  "Id": "T0367",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/collect-clause-test-c0e4163727/cases/collect-clause-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.067
+}

@@ -1,0 +1,14 @@
+{
+  "id": "T0115",
+  "name": "argument-parser-positive-test-e41e5b8a0a/optional-none-first-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Statements: If/else; Compound Assignment",
+    "## Expressions: Type test expression",
+    "## Invocations / ### Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The asserted output requires launching main with no command-line arguments and supplying nil for its required nullable string parameter. Subset 10 supports parameter signatures and ordinary function invocation but does not cover this command-line entry-point argument binding protocol. Signature support alone does not establish omitted CLI arguments becoming nil.",
+  "unsupported_constructs": ["Command-line invocation of main(string? s) with an absent argument bound to nil"],
+  "test_design_notes": ["No @args is present; @output expects 'string value: s is nil', so the absent CLI argument behavior is essential. The conditional, string concatenation and io:println instrumentation do not independently establish a feature gap."]
+}

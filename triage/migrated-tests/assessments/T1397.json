@@ -1,0 +1,16 @@
+{
+  "id": "T1397",
+  "name": "table-cast-test-10e69b67ad/table-cast-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive expression list includes \"Type cast expression\", \"List constructor\" and \"Mapping constructor\", but does not include table constructor expressions.",
+    "## Module-level declarations: \"Type definition\" and \"Module variable declarations\" are supported."
+  ],
+  "reason": "The case essentially uses table key(name)/key(age) constructor expressions to initialize four module variables. Table constructors are absent from the supported expressions list, so the whole case is feature scope even though type casts, member access, and negative type-checking assertions are generally supported.",
+  "unsupported_constructs": [
+    "Table constructor expressions: table key(name) [...] and table key(age) [...]."
+  ],
+  "test_design_notes": [
+    "Mixed negative and unmarked cast/indexing cases; @error markers occur in testKeyConstraintCastToString1 and testKeyConstraintCastToString3. No @args, @panic, or @output markers appear."
+  ]
+}

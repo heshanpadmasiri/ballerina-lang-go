@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'ans'\n --\u003e multiply-operation-p.bal:4:5\n  |\n4 |     int ans = num1 * num2; // @panic\n  |     ^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"multiply-operation-p.bal","StartLine":4,"EndLine":4}]}

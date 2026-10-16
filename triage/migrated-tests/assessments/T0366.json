@@ -1,0 +1,12 @@
+{
+  "id": "T0366",
+  "name": "collect-clause-test-c0e4163727/cases/collect-clause-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: 'Supports `group by` and `collect` clauses' and 'Supports `list` and `map` as `query-constructor-type`'",
+    "Subset restrictions / Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString, fromHexString."
+  ],
+  "reason": "Although collect/group-by clauses are supported, this negative case relies on argument and result-type diagnostics for int:sum, which is outside the allowed lang.int methods. It also exercises stream/table query constructors outside the supported list/map constructor types. Therefore the whole case is not within the documented subset.",
+  "unsupported_constructs": ["int:sum and int:max langlib calls", "string:'join langlib calls", "stream and table query-constructor types"],
+  "test_design_notes": ["The case asserts compile-time @error diagnostics; no @args, @panic, or @output behavior is specified.", "Negative tests within supported syntax/type rules remain in scope, but the restricted langlib calls and query constructors make this whole case a feature classification."]
+}

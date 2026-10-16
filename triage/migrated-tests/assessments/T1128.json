@@ -1,0 +1,16 @@
+{
+  "id": "T1128",
+  "name": "open-record-optional-fields-test-44a9434c47/open_record_optional_fields-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists Type test expression, Type cast expression, Optional field access expression, and Member access expression; does not list typeof expression.",
+    "### Other invocation restrictions: `map:hasKey` and `map:get` are supported with method call syntax."
+  ],
+  "reason": "The case requires typeof expressions and asserts that both retrieved Address3 records produce the printed descriptor 'typedesc Address3'. typeof expressions and this runtime descriptor behavior are not covered by the subset's positive expression list, making the whole case a feature despite supported optional field access, casts, and map access methods.",
+  "unsupported_constructs": [
+    "typeof optionalNonDefValues[0] and typeof optionalNonDefValues[1], asserting named runtime type descriptors"
+  ],
+  "test_design_notes": [
+    "io:println serves as output instrumentation; it is not the basis for classification."
+  ]
+}

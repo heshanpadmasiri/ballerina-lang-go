@@ -1,0 +1,14 @@
+{
+  "Name": "global-var-test-297b184697/oce_depend_on_global_variable-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/oce_depend_on_global_variable-v.bal",
+  "Project": false,
+  "Id": "T0616",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/oce_depend_on_global_variable-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.029
+}

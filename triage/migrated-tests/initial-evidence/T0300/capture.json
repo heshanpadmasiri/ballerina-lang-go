@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: My Error\n        at migration/checkpanic_custom_error_p:testBasicCheckpanic(main.bal:7)\n           migration/checkpanic_custom_error_p:main(main.bal:2)\n","Diagnostics":null}

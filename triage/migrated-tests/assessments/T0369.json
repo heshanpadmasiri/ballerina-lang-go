@@ -1,0 +1,17 @@
+{
+  "id": "T0369",
+  "name": "common-test-37d14c64be/operand-option-rest-param-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Invocations / ### Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The signature is supported, but this case essentially tests command-line argument binding, which subset10 does not cover. Its @args requires --name Riyafa to populate an included record field, --good to become boolean true without consuming the following operand, 100 to bind score, and remaining operands 5 and 3 to become the int rest array. Function signature and function-call argument support do not specify this command-line behavior.",
+  "unsupported_constructs": [
+    "Command-line option and operand parsing into required, included-record and rest parameters of main, including a valueless boolean option"
+  ],
+  "test_design_notes": [
+    "The assertions require student.name == Riyafa, student.good == true, score == 100, and ratings == [5, 3] under the supplied @args.",
+    "ballerina/test is not excluded by the restriction on ballerina/lang.* libraries; the decisive gap is command-line binding."
+  ]
+}

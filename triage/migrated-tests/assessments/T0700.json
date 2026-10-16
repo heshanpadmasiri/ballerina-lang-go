@@ -1,0 +1,17 @@
+{
+  "id": "T0700",
+  "name": "jsontest-d8d6aef1f4/nullable-json-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [Field access expression]",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message"
+  ],
+  "reason": "The test asserts that field access on null JSON returns an error with detail message 'JSON value is not a mapping'. Its assertion requires error.detail(), which is absent from both the supported lang.error methods and the langlib method-call allowlist. This essential unsupported operation makes the whole case a feature despite field access itself being supported.",
+  "unsupported_constructs": [
+    "error.detail() langlib method call"
+  ],
+  "test_design_notes": [
+    "io:println is output instrumentation; the essential unsupported behavior is extracting the asserted error detail."
+  ]
+}

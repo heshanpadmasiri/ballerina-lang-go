@@ -1,0 +1,14 @@
+{
+  "Name": "struct-negative-test-2ccd0a79e0/set-non-init-struct-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/set-non-init-struct-v.bal",
+  "Project": false,
+  "Id": "T1387",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/set-non-init-struct-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.063
+}

@@ -1,0 +1,21 @@
+{
+  "id": "T1588",
+  "name": "worker-test-0f3493dd03/03-send-default-before-worker-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements but does not include named worker declarations or worker send statements.",
+    "## Expressions: includes 'Start action', 'Wait action', 'Error constructor', 'Check expression' and 'Trap expression', but does not list worker receive actions or synchronous worker sends.",
+    "## Statements: 'Panic'",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.runtime lists 'sleep', 'onGracefulStop', 'StopHandler'.",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; the list does not include future cancellation."
+  ],
+  "reason": "The entry point requires a named worker, a worker-to-default send, and a default-worker receive that propagates a panic occurring before the send. Named workers, worker messaging, and this cross-worker panic behavior are not covered by subset 10. Supported panic/start/wait constructs do not establish worker-message support, so this whole case is a feature gap.",
+  "unsupported_constructs": [
+    "Named worker declarations and asynchronous/synchronous worker messaging (->, ->>, <-), including panic/error propagation between workers.",
+    "Additional whole-file future cancellation calls f1.cancel(), absent from the permitted langlib methods."
+  ],
+  "test_design_notes": [
+    "The file retains many unrelated worker, future cancellation, lock, lambda and query test helpers; main invokes only sendToDefaultWithPanicBeforeSendInWorker.",
+    "The sole @panic marker is attached to the error constructor before panic err; the expected failure depends on cross-worker panic propagation, not merely local panic syntax."
+  ]
+}

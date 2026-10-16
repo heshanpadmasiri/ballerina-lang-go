@@ -1,0 +1,20 @@
+{
+  "id": "T1298",
+  "name": "retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes While, Return and Panic, but does not list retry, fail or on fail clauses.",
+    "# Subset restrictions / ## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.error lists only 'message'.",
+    "# Subset restrictions / ## Invocations / ### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; string:concat is absent."
+  ],
+  "reason": "The executed tests assert retry attempt counts, nested retry propagation, exhaustion handling, returns from retry/on-fail blocks, and error binding patterns in on-fail handlers. Retry, fail and on-fail behavior is outside the supported statement list. The executed testAppendOnFailError additionally requires errors:Retriable and string.concat, neither permitted by the langlib positive lists.",
+  "unsupported_constructs": [
+    "retry statements with custom MyRetryManager and default retry manager",
+    "fail statements and on fail handlers, including error binding patterns",
+    "ballerina/lang.error:Retriable",
+    "string.concat langlib method"
+  ],
+  "test_design_notes": [
+    "io:println(\"completed\") is output instrumentation only."
+  ]
+}

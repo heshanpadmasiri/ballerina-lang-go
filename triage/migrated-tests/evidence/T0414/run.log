@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "deprecation-annotation-test-5a4ffa9c53/deprecated-construct-usage-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown annotation: deprecated
+         --> deprecated-construct-usage-v.bal:1:1
+          |
+        1 | @deprecated
+          | ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

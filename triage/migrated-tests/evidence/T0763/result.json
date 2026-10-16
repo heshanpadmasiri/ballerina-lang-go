@@ -1,0 +1,22 @@
+{
+  "Name": "map-constant-equality-in-bala-test-8a32c6bf8d/foo-provider-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-constant-equality-in-bala-test-8a32c6bf8d/foo-provider-v",
+  "Project": true,
+  "Id": "T0763",
+  "WorkspaceRoot": "/workspace/scratch/jballerina-migration/migration-results/map-constant-equality-in-bala-test-8a32c6bf8d",
+  "WorkspaceMembers": [
+    "foo-provider-v"
+  ],
+  "ExecutionPath": "/workspace/scratch/nutcracker-triage-workspaces/T0763",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-constant-equality-in-bala-test-8a32c6bf8d/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/map-constant-equality-in-bala-test-8a32c6bf8d/foo-provider-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/map-constant-equality-in-bala-test-8a32c6bf8d/foo-provider-v/Dependencies.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/map-constant-equality-in-bala-test-8a32c6bf8d/foo-provider-v/map_constant.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.053
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0178",
+  "name": "array-size-definition-test-a34088ca39/array-size-test-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"",
+    "## Import declarations: `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString`; it does not list `MAX_VALUE`."
+  ],
+  "reason": "The negative array-size case includes `int[int:MAX_VALUE] _ = []; // @error`, relying on the lang.int MAX_VALUE constant to test an invalid array size. That constant is outside the explicitly supported lang.int members, so the whole case contains an essential unsupported construct.",
+  "unsupported_constructs": [
+    "`int:MAX_VALUE` (ballerina/lang.int constant excluded from the supported-member list)"
+  ],
+  "test_design_notes": [
+    "The file asserts compile-time rejection with @error; it has no @args, @panic, or @output execution protocol. Rejection of unsupported MAX_VALUE would not establish the intended array-size diagnostic."
+  ]
+}

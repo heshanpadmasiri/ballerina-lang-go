@@ -1,0 +1,15 @@
+{
+  "Name": "runtime-test-2bcb63c65d/runtime-error-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/runtime-test-2bcb63c65d/runtime-error-v",
+  "Project": true,
+  "Id": "T1324",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/runtime-test-2bcb63c65d/runtime-error-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/runtime-test-2bcb63c65d/runtime-error-v/runtime-error.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 1.62
+}

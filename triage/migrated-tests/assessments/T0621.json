@@ -1,0 +1,18 @@
+{
+  "id": "T0621",
+  "name": "group-by-clause-test-38c059a6f0/group-by-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"Supports `group by` and `collect` clauses\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString`.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; the integer entry is \"`int:toHexString`\"."
+  ],
+  "reason": "Although group-by clauses are supported, this negative test depends on sequence-variable argument and type checking for int:sum and int:avg, which are absent from the permitted integer langlib functions. It also uses integer sum method calls such as 5.sum(...), outside the method-call allowlist. These are essential to asserted errors, so the whole case is feature.",
+  "unsupported_constructs": [
+    "int:sum and int:avg calls with grouped sequence variables",
+    "Integer sum method calls (5.sum(...))"
+  ],
+  "test_design_notes": [
+    "Negative rejection tests remain in scope for supported syntax and types; this classification is based on essential restricted langlib calls, not merely on the intentionally invalid sequence-variable uses."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "client-object-test-cc3f260977/remote-basic-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/client-object-test-cc3f260977/remote-basic-negative-e.bal",
+  "Project": false,
+  "Id": "T0330",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/client-object-test-cc3f260977/remote-basic-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.024
+}

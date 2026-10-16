@@ -1,0 +1,14 @@
+{
+  "Name": "add-operation-test-7854f6d108/add-operation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/add-operation-test-7854f6d108/add-operation-v.bal",
+  "Project": false,
+  "Id": "T0012",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/add-operation-test-7854f6d108/add-operation-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.079
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T1066",
+  "name": "object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Statements: \"Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"New expression\"; \"Field access expression\"; \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "Subset restrictions / Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\""
+  ],
+  "reason": "The case uses supported classes with public fields and initializers, object construction, structural object assignment, and field mutation. It asserts that assigning nil through an any-typed field view panics because the object retains its inherent string field type. No listed restriction excludes object structural compatibility or inherent field-type enforcement; the asserted panic is part of supported object assignment behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic comment marks the expected failure at o2.x = (); the test checks runtime inherent-type enforcement after assigning the narrower object to the wider object type."
+  ]
+}

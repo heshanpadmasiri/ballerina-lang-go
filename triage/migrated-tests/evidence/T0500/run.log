@@ -1,0 +1,46 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "forward-referencing-global-definition-test-c1122b914e/in-function-global-reference-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> file01.bal:28:1
+           |
+        28 | Employee b = forwardEmp(e);
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'globalA'
+          --> file01.bal:40:1
+           |
+        40 | int globalA = 11;
+           | ^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'globalB'
+          --> file01.bal:41:1
+           |
+        41 | int globalB = 12;
+           | ^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'person'
+         --> file02.bal:1:1
+          |
+        1 | Person person = {
+          | ^^^^^^^^^^^^^^^^^
+        2 |     name: "Sumedha",
+          |     ^^^^^^^^^^^^^^^^
+        3 |     age: 30
+          |     ^^^^^^^
+        4 | };
+          | ^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'r'
+          --> file01.bal:36:5
+           |
+        36 |     int r = f(1);
+           |     ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'shouldNotReOrder'
+          --> file01.bal:42:1
+           |
+        42 | int shouldNotReOrder = 13;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

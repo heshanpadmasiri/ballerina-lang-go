@@ -1,0 +1,14 @@
+{
+  "Name": "isolation-analysis-test-71231d7fc4/analysis-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/isolation-analysis-test-71231d7fc4/analysis-negative-e.bal",
+  "Project": false,
+  "Id": "T0678",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/isolation-analysis-test-71231d7fc4/analysis-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.051
+}

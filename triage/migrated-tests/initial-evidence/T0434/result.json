@@ -1,0 +1,16 @@
+{
+  "Name": "enum-test-f69b0643c8/enum-access-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enum-access-v",
+  "Project": true,
+  "Id": "T0434",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enum-access-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enum-access-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enum-access-v/modules/enumsdef/enum-def.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.071
+}

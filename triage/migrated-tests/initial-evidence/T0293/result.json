@@ -1,0 +1,14 @@
+{
+  "Name": "byte-as-json-test-cc6615cf12/byte-as-json-array-inherent-type-violation-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/byte-as-json-test-cc6615cf12/byte-as-json-array-inherent-type-violation-p.bal",
+  "Project": false,
+  "Id": "T0293",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/byte-as-json-test-cc6615cf12/byte-as-json-array-inherent-type-violation-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.049
+}

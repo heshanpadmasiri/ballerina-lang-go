@@ -1,0 +1,14 @@
+{
+  "Name": "constant-type-test-27d6dffc1c/constant-type-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-type-test-27d6dffc1c/constant-type-negative-e.bal",
+  "Project": false,
+  "Id": "T0382",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constant-type-test-27d6dffc1c/constant-type-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.062
+}

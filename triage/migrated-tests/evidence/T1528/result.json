@@ -1,0 +1,14 @@
+{
+  "Name": "wait-for-all-actions-test-ef2703e247/all-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-actions-test-ef2703e247/all-v.bal",
+  "Project": false,
+  "Id": "T1528",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-actions-test-ef2703e247/all-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.09
+}

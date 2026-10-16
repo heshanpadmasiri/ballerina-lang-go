@@ -1,0 +1,18 @@
+{
+  "id": "T1083",
+  "name": "object-subtyping-test-6d097e853f/object-subtyping-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\"; \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\"",
+    "Module-level declarations: \"Import declarations\" and \"Type definition\"",
+    "Expressions: \"New expression\", \"Method call\", \"Field access expression\" and \"Type test expression\"",
+    "Other invocation restrictions: \"`value:toString` and `value:toBalString`\""
+  ],
+  "reason": "The case exercises structural object assignability with extra source members, abstract object targets, public objects across modules, module-local members, and a client object assigned to a non-client object target. These use supported class/object members and the supported client qualifier, with no restriction excluding the asserted assignability or method dispatch. Constructors, field access, string construction, integer value:toString calls and assertion logic are supported. All asserted outputs and the client-to-non-client field assertion are in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println calls are output instrumentation.",
+    "The client class declares ordinary methods only; the test asserts assignment compatibility and preservation of the name field, not remote invocation."
+  ]
+}

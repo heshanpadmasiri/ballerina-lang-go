@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: no filler value\n        at main(array-mutability-invalid-cast-p.bal:9)\n","Diagnostics":null}

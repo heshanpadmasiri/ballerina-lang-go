@@ -1,0 +1,16 @@
+{
+  "id": "T0479",
+  "name": "final-access-test-b8abe5c420/implicitly-final-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"",
+    "Module-level declarations: \"Module listener declarations\"; \"Service declarations\"; \"Class definition\"",
+    "Statements: \"Assignment\"; \"Compound Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"Anonymous function expression\"; \"New expression\"; \"List constructor\"; \"Mapping constructor\""
+  ],
+  "reason": "The case checks rejection of assignments to implicitly final required/rest parameters and a module listener, including compound assignment and anonymous-function rest parameters. These are negative checks within supported function, listener, assignment, and anonymous-function constructs. The mock listener class and service declaration are also explicitly supported, and no listed restriction excludes the case.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error comments mark expected compile-time rejection; there are no @args, @panic, or @output assertions. No execution is required to assess this negative case."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T1610",
+  "name": "xml-type-descriptor-test-13d74b7ab8/xml_type_descriptor_negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Function definition\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions: \"XML template expression\"",
+    "Subset restrictions / Import declarations: \"ballerina/lang.xml\" includes \"Element\", \"Text\", \"Comment\", \"ProcessingInstruction\""
+  ],
+  "reason": "All essential constructs fall within supported type definitions, local declarations, XML templates, and explicitly listed XML node types. The errors exercise XML type-parameter validity and assignability involving unions, never, readonly intersections and record types; no applicable restriction excludes these type-system checks. Illegal type arguments and assignments are deliberate negative checks within the supported grammar.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Seven @error markers cover invalid XML type arguments and incompatible assignments. No @args, @panic or @output behavior is asserted. No obvious mixed-scope or marker issue."
+  ]
+}

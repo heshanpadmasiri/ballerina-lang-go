@@ -1,0 +1,15 @@
+{
+  "Name": "query-semantic-negative-tests-cfb3d21b20/wildcard-binding-pattern-query-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/wildcard-binding-pattern-query-e",
+  "Project": true,
+  "Id": "T1228",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/wildcard-binding-pattern-query-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/wildcard-binding-pattern-query-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.044
+}

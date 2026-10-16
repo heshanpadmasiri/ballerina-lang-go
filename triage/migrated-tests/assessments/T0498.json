@@ -1,0 +1,15 @@
+{
+  "id": "T0498",
+  "name": "forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"; \"Function definition\"; \"Type definition\"",
+    "Statements: \"Return\"",
+    "Expressions: \"Call\"; \"Variable reference\"; \"Mapping constructor\"; \"Literal\""
+  ],
+  "reason": "The expected rejection concerns a module-variable initialization dependency cycle: fromFuncA references fromFunc, whose initializer calls getPersonOuter -> getPersonInner -> getfromFuncA -> fromFuncA. Module variables, functions, type definitions, calls, references, mapping constructors and returns are supported, and no listed restriction excludes dependency-cycle checking or the record declaration. This negative test is within the supported language scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The sole @error marks fromFuncA; there are no @args, @panic or @output assertions. The mutually recursive mutRecA/mutRecB functions are uncalled, so no runtime recursion behavior is asserted."
+  ]
+}

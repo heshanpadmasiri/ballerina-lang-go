@@ -1,0 +1,15 @@
+{
+  "Name": "object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p",
+  "Project": true,
+  "Id": "T1066",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.029
+}

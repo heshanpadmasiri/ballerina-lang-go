@@ -1,0 +1,14 @@
+{
+  "Name": "mod-operation-test-bd4a47c2f4/mod-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-negative-e.bal",
+  "Project": false,
+  "Id": "T0901",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.042
+}

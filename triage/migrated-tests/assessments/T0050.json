@@ -1,0 +1,18 @@
+{
+  "id": "T0050",
+  "name": "argument-parser-negative-test-706c373f17/invalid-decimal-08-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: 'Function definition'; 'Supports required-params, defaultable-params, included-record-param and rest-param in the signature'",
+    "Expressions: 'Currently support nil-literal, boolean-literal, numeric-literal and string-literal only'",
+    "Subset restrictions / Import declarations: ballerina/lang.decimal includes 'fromString'"
+  ],
+  "reason": "The source defines an empty public main function with one required decimal parameter and requests execution with the command-line string 4.5f, expecting a panic. Function definitions and required parameters are supported, but the behavior under test is executable entry-point argument decoding and rejection of a float-suffixed decimal argument. The supplied subset specification does not cover command-line argument conversion, accepted textual decimal argument forms, or entry-point failure behavior. Support for numeric literals and decimal:fromString does not establish this separate invocation protocol: 4.5f occurs only in a harness comment, not as a source literal or an explicit fromString call. Thus the whole case depends on a not-covered feature.",
+  "unsupported_constructs": [
+    "Command-line decoding of a decimal main parameter and rejection/panic for argument 4.5f"
+  ],
+  "test_design_notes": [
+    "The @args and @panic comments are harness markers; there is no panic statement in the function body.",
+    "No mixed unsupported source constructs or obvious migration corruption are visible. The expected runtime rejection cannot be inferred from ordinary numeric-literal grammar alone."
+  ]
+}

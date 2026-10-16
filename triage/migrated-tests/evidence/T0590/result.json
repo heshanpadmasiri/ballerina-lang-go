@@ -1,0 +1,14 @@
+{
+  "Name": "future-negative-tests-7e2663cfde/cases/future_compilation-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/future-negative-tests-7e2663cfde/cases/future_compilation-e.bal",
+  "Project": false,
+  "Id": "T0590",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/future-negative-tests-7e2663cfde/cases/future_compilation-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.027
+}

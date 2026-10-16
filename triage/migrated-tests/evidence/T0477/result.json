@@ -1,0 +1,15 @@
+{
+  "Name": "final-access-test-b8abe5c420/final-local-no-init-var-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-local-no-init-var-v",
+  "Project": true,
+  "Id": "T0477",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-local-no-init-var-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/final-local-no-init-var-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.037
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T0511",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/freeze-and-isfrozen-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; the value entries are value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString."
+  ],
+  "reason": "The executed assertions fundamentally require cloneReadOnly and isReadOnly, including deep readonly cloning, preservation of mutable originals, cyclic structures, XML item mutability and mutation panics. Neither lang.value operation is included in the restricted library or method-call positive lists, so this case requires unsupported functionality.",
+  "unsupported_constructs": [
+    "lang.value cloneReadOnly and isReadOnly operations and their deep readonly/mutation enforcement behavior",
+    "value:Cloneable type (absent from the lang.value supported types/methods list)",
+    "map.removeAll and error.detail calls (absent from their supported langlib lists)"
+  ],
+  "test_design_notes": [
+    "main executes readonly cloning assertions and checks the trapped mutation error detail; many additional mutation helper functions are declared but not invoked.",
+    "io:println calls are output instrumentation and do not determine this classification."
+  ]
+}

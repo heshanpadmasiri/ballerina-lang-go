@@ -1,0 +1,15 @@
+{
+  "Name": "xmlaccess-test-873756d6ae/step-expr-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/step-expr-negative-e",
+  "Project": true,
+  "Id": "T1618",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/step-expr-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/step-expr-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.052
+}

@@ -1,0 +1,23 @@
+{
+  "id": "T1487",
+  "name": "type-test-expr-test-70ad51e586/type-test-expr-negative-e.bal",
+  "classification": "uncertain",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `client`, `service`, `isolated`, `readonly` and `distinct` `class-type-quals`",
+    "Subset restrictions / Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "Expressions: Type test expression",
+    "Module-level declarations: Type definition; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Expressions: XML template expression; List constructor; Mapping constructor; New expression",
+    "Statements: If/else; Local variable declarations; Return",
+    "Subset restrictions / Import declarations: `ballerina/lang.xml` — `Text`; `ballerina/lang.value` — `toString`",
+    "Subset restrictions / Invocations / Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The case depends on `readonly class Class`, used in readonly record fields and record type-intersection rejection checks. The positive class list explicitly supports readonly, while the object/class restriction explicitly excludes it. These conflicting statements prevent a confident whole-case classification. Type tests, unreachable branches, nonintersecting types, XML templates, structural records/objects, inclusions, constructors and toString calls otherwise fall under the listed language features; negative rejection in those supported areas is in scope.",
+  "unsupported_constructs": [
+    "`readonly class Class` is excluded by Object/class definitions restrictions but explicitly included by the Module-level declarations class list."
+  ],
+  "test_design_notes": [
+    "Mixed scope: a large negative type-test file also includes unmarked positive record, tuple, array, map, XML and object checks.",
+    "`@error` markers assert compile-time impossibility and unreachable code. No @args, @panic or @output markers assert runtime behavior."
+  ]
+}

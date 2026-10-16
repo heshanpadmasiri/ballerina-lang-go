@@ -1,0 +1,14 @@
+{
+  "Name": "bbyte-value-negative-test-a1f101c098/byte-shift-operators-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bbyte-value-negative-test-a1f101c098/byte-shift-operators-negative-e.bal",
+  "Project": false,
+  "Id": "T0225",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bbyte-value-negative-test-a1f101c098/byte-shift-operators-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.073
+}

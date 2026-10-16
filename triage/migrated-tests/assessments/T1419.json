@@ -1,0 +1,18 @@
+{
+  "id": "T1419",
+  "name": "top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\", \"Module variable declarations\", \"Type definition\", \"Class definition\"",
+    "Module-level declarations: \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Statements: \"Assignment\", \"Call\"",
+    "Expressions: \"Literal\", \"Variable reference\", \"Field access expression\"",
+    "Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\""
+  ],
+  "reason": "The case expects rejection of redeclared function, record type, module variable and class across the main module and its test source. These are supported module-level declarations with ordinary fields, initializer assignments and calls. Negative duplicate-symbol rejection within that supported declaration system is in scope. No restricted class qualifier, langlib call or unsupported asserted runtime behavior occurs.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "All four @error markers are in tests/main_test.bal and depend on compiling test sources together with main.bal; compiling main.bal alone does not exercise the case.",
+    "The markers assert redeclaration diagnostics; there are no @args, @panic or @output assertions."
+  ]
+}

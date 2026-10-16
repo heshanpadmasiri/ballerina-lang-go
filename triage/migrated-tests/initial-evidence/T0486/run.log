@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "finite-type-test-02d418a48f/finite-type-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> finite-type-e.bal:30:9
+           |
+        30 |     var [i, j] = b; // @error unused variable 'j'
+           |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> finite-type-e.bal:30:9
+           |
+        30 |     var [i, j] = b; // @error unused variable 'j'
+           |         ^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

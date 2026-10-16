@@ -1,0 +1,15 @@
+{
+  "id": "T0747",
+  "name": "lvalue-test-e2785cbb54/lvalue-semantics-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Statements: \"Assignment\"; \"See supported [`lvexpr`](#expressions)\"; \"Compound Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"lvexpr\"; \"New expression\"; \"List constructor\"; \"Mapping constructor\"; \"Field access expression\"; \"Optional field access expression\"; \"Member access expression\"",
+    "Operators: \"Additive ops `+`, `-`\"",
+    "Subset restrictions / Import declarations: `ballerina/lang.int` lists `Signed8` and `Signed32`; `ballerina/lang.string` lists `Char`"
+  ],
+  "reason": "The case asserts compile-time rejection of invalid assignments, missing object/record fields, object indexing, optional-access assignment targets, invalid filling reads through uninitialized or nullable fields, incompatible array elements and record-field values, and nil assignments through record member access. These exercise supported declarations, assignments, access expressions and their type checking. The built-in int and string subtypes used are expressly allowed, and no listed restriction excludes these negative checks.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Compile-negative source uses @error comments to identify expected rejection sites; it does not require runtime execution."]
+}

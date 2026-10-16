@@ -1,0 +1,14 @@
+{
+  "Name": "module-tuple-variable-test-4b19fdd529/module-tuple-variable-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-tuple-variable-test-4b19fdd529/module-tuple-variable-v.bal",
+  "Project": false,
+  "Id": "T0921",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-tuple-variable-test-4b19fdd529/module-tuple-variable-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.071
+}

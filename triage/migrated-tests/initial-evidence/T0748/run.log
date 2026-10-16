@@ -1,0 +1,33 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "lvalue-test-e2785cbb54/lvalue-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> lvalue-v.bal:260:40
+            |
+        260 |                    <string> checkpanic err.detail()["message"]);
+            |                                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> lvalue-v.bal:295:40
+            |
+        295 |                    <string> checkpanic err.detail()["message"]);
+            |                                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> lvalue-v.bal:312:40
+            |
+        312 |                    <string> checkpanic err.detail()["message"]);
+            |                                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> lvalue-v.bal:322:40
+            |
+        322 |                    <string> checkpanic err.detail()["message"]);
+            |                                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> lvalue-v.bal:346:40
+            |
+        346 |                    <string> checkpanic err.detail()["message"]);
+            |                                        ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

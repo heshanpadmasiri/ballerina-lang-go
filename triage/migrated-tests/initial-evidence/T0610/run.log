@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at global-variable-init-with-invocation-negative-e.bal:20-20 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at global-variable-init-with-invocation-negative-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at global-variable-init-with-invocation-negative-e.bal:10 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at global-variable-init-with-invocation-negative-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at global-variable-init-with-invocation-negative-e.bal:14 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at global-variable-init-with-invocation-negative-e.bal:16 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at global-variable-init-with-invocation-negative-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at global-variable-init-with-invocation-negative-e.bal:22 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

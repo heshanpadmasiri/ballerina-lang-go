@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at main(invalid-update-closed-record-p.bal:7)\n","Diagnostics":null}

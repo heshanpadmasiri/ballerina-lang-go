@@ -1,0 +1,15 @@
+{
+  "Name": "variable-definition-test-ff080c840f/undeclared-variables-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/undeclared-variables-e",
+  "Project": true,
+  "Id": "T1518",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/undeclared-variables-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/undeclared-variables-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.049
+}

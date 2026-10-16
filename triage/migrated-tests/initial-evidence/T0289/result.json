@@ -1,0 +1,14 @@
+{
+  "Name": "byte-as-int-test-3342351ff8/byte-as-int-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/byte-as-int-test-3342351ff8/byte-as-int-v.bal",
+  "Project": false,
+  "Id": "T0289",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/byte-as-int-test-3342351ff8/byte-as-int-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

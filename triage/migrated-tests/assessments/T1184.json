@@ -1,0 +1,13 @@
+{
+  "id": "T1184",
+  "name": "option-test-1b0c555df9/repeated_option_equals-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Module-level declarations: Type definition",
+    "## Invocations / ### Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The included record parameter and record type are supported syntax, but the asserted behavior is a panic when command-line parsing encounters repeated --stringVal=value options. Subset 10 does not cover command-line option binding or duplicate-option rejection; its function-call argument support does not establish this entry-point runtime behavior.",
+  "unsupported_constructs": ["Command-line option parsing and rejection of repeated scalar options for main's included record parameter"],
+  "test_design_notes": ["The @args directive supplies two stringVal options and @panic asserts rejection before the empty main body executes."]
+}

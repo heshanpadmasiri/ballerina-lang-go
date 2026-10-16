@@ -1,0 +1,14 @@
+{
+  "Name": "constant-expression-test-2596be1ac5/constant-expression-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-expression-test-2596be1ac5/constant-expression-e.bal",
+  "Project": false,
+  "Id": "T0378",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constant-expression-test-2596be1ac5/constant-expression-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.103
+}

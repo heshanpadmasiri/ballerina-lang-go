@@ -1,0 +1,20 @@
+{
+  "id": "T1599",
+  "name": "worker-test-0f3493dd03/14-worker-inside-lock-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists 'Lock statement', but does not list named worker declarations.",
+    "## Expressions: lists 'Start action' and 'Wait action', but does not list worker send/receive actions.",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; the list does not include future:cancel."
+  ],
+  "reason": "The executed path calls panicWorkerInsideLock from a lock and declares a named worker there, with @panic expecting rejection/panic of that worker creation. Named workers and their lock-dependent panic behavior are not covered by subset10; support for lock, start, and wait alone does not establish them. The whole source also contains extensive unsupported worker messaging and future cancellation.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker creation while executing inside a lock, including the expected @panic behavior.",
+    "Worker asynchronous/synchronous sends and receives (->, ->>, <-).",
+    "Future cancellation via f1.cancel(), absent from permitted langlib methods."
+  ],
+  "test_design_notes": [
+    "The @panic marker is on a worker declaration in a helper reached by main, rather than on an explicit panic statement; it asserts runtime lock/worker behavior.",
+    "The source retains many unrelated worker, messaging, cancellation, and query test helpers; main invokes only testPanicWorkerInsideLock. No @args or @output markers appear."
+  ]
+}

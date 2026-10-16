@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation: cannot mutate readonly value\n        at updateReturnedConstantStringMapWithExistingKey(returned-string-existing-p.bal:9)\n           main(returned-string-existing-p.bal:13)\n","Diagnostics":null}

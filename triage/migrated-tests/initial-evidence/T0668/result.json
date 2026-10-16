@@ -1,0 +1,14 @@
+{
+  "Name": "isolated-variable-test-68724717b2/isolated-variables-isolation-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/isolated-variable-test-68724717b2/isolated-variables-isolation-e.bal",
+  "Project": false,
+  "Id": "T0668",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/isolated-variable-test-68724717b2/isolated-variables-isolation-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

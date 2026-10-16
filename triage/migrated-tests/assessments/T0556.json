@@ -1,0 +1,17 @@
+{
+  "id": "T0556",
+  "name": "function-pointers-negative-test-87e21adb7c/fp-with-import-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition",
+    "Statements: Local variable declarations; Return",
+    "Expressions: Anonymous function expression; Variable reference; Field access expression; Member access expression",
+    "Expressions: Call; List constructor; Mapping constructor"
+  ],
+  "reason": "This negative case requires rejection of unresolved streams module references and the undefined outputProcess reference, plus a constant out-of-range access arr[3] on int[2]. These are name-resolution and type-checking errors in supported declarations, calls, anonymous functions and member accesses. The file contains no imports or resolved stream-library behavior requiring an unsupported feature.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Five error markers occur on the declaration/call line and one on arr[3]; the source does not supply exact diagnostic text.",
+    "The streams prefix is undeclared in the supplied file; it does not establish use of a resolved external library or ballerina/lang.* module."
+  ]
+}

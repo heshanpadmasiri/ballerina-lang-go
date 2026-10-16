@@ -1,0 +1,18 @@
+{
+  "id": "T1368",
+  "name": "string-value-basics-test-a9d2149e3a/string-value-basics-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: lists supported expressions, including \"Type cast expression\" and \"Type test expression\", but does not list typeof expressions.",
+    "Subset restrictions / Import declarations: ballerina/lang.string includes \"Char\" and \"length\"; ballerina/lang.map includes \"hasKey\"; ballerina/lang.error includes \"message\"; ballerina/lang.value includes \"toString\".",
+    "Subset restrictions / Invocations / Other invocation restrictions: method-call support includes \"map:hasKey\", \"error:message\", \"string:length\", and \"value:toString\"."
+  ],
+  "reason": "The assertion helper uses typeof expected and typeof actual, an expression form not covered by the supported Expressions list. That compiled helper makes the whole case a feature despite the otherwise supported string operations, casts, member accesses, records, arrays, and listed langlib methods. The output markers exercise Unicode code-point length (including supplementary characters), concatenation, and casts; there is no explicit restriction excluding those string behaviors.",
+  "unsupported_constructs": [
+    "typeof expressions in assert: typeof expected and typeof actual"
+  ],
+  "test_design_notes": [
+    "Mixed scope: basic string behavior is coupled to an assertion diagnostic helper using uncovered typeof expressions, even though the diagnostic branch should not execute on success.",
+    "The seven @output markers are consistent with the literal strings and expected code-point lengths; no obvious marker issue. io:println is output instrumentation."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0455",
+  "name": "error-variable-definition-test-48c425a06f/error_variable_definition-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "## Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "## Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "## Statements: Destructuring assignment statement \u2014 Only supports wildcard-binding-pattern"
+  ],
+  "reason": "The negative case tests error constructors, typed/inferred error binding patterns (including detail rest bindings and an error pattern nested in a tuple declaration), duplicate bindings, and incompatible inferred/declared types. These are local variable declarations covered without binding-pattern restrictions. The wildcard-only restriction concerns destructuring assignment statements, whereas this file uses declarations with initializers. Type definitions, error constructors and list constructors are explicitly supported; no applicable restriction excludes the asserted static errors.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-time negative case using @error markers; no @args, @panic or @output behavior."
+  ]
+}

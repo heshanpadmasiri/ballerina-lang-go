@@ -1,0 +1,18 @@
+{
+  "id": "T1481",
+  "name": "type-guard-test-74355f2266/type-narrow-3-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition — Supports required-params",
+    "## Statements: If/else; Local variable declarations; Return",
+    "## Expressions: Type test expression; Equality expression; Logical expression; Unary logical expression; Nested expressions (`(expression)`)",
+    "## Operators: Equality ops `==`, `!=`, `===`, `!==`; Logical ops `&&`, `||`; logical `!`; numeric ops `+`, `-`"
+  ],
+  "reason": "This negative compilation case exercises union and singleton type narrowing through type tests, equality, logical combinations, negation, branches and returns, using supported functions, declarations and expressions. Rejection of incompatible assignments within this supported grammar/type system is in scope. No applicable subset restriction excludes these constructs or their narrowing behavior; no langlib or invocation restrictions are implicated.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixed valid declarations and intentional @error assignments form one negative compilation case; there are no @args, @panic or @output assertions.",
+    "Some @error annotations explicitly preserve legacy lack of narrowing (issues #34307 and #34965), so diagnostic expectations may encode historical compiler limitations rather than desired narrowing semantics.",
+    "test8 comments an unreachable-code error without an @error marker; test17's string assignment comment incorrectly says expected int. Marker and diagnostic-text expectations need care."
+  ]
+}

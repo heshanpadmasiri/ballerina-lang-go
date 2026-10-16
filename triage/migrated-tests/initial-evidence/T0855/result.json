@@ -1,0 +1,14 @@
+{
+  "Name": "match-statement-static-patterns-test-4828836871/static-match-patterns-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-statement-static-patterns-test-4828836871/static-match-patterns-v.bal",
+  "Project": false,
+  "Id": "T0855",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-statement-static-patterns-test-4828836871/static-match-patterns-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.078
+}

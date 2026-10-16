@@ -1,0 +1,16 @@
+{
+  "id": "T0304",
+  "name": "check-panic-expression-operator-test-baa47123b9/checkpanic-generic-multi-union-p",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"",
+    "## Expressions: \"[Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\"",
+    "## Statements: \"[Match statement](https://ballerina.io/spec/lang/master/#match-stmt)\"; \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\"",
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"; \"[Return](https://ballerina.io/spec/lang/master/#return-stmt)\""
+  ],
+  "reason": "The checking-expr production covers checkpanic. This case calls a function returning int|boolean|error, receives error(\"Generic Error\"), and must panic when checkpanic consumes that error. The numeric constant match arm, ordinary calls, union-typed local declarations and returns fall within the supported constructs and encounter no listed restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is placed at error construction; the actual panic occurs when the caller evaluates checkpanic. The test asserts an uncaught panic, with no @args or @output directives."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T1263",
+  "name": "record-query-test-15a6dd75a6/record-query-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions: Anonymous function expression; Mapping constructor; Optional field access expression; Member access expression",
+    "Module-level declarations: Type definition; Module variable declarations",
+    "Statements: Local variable declarations",
+    "Invocations / Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The case asserts array queries over records using supported from/let/select clauses, including mapping and tuple bindings, nil and optional fields, open-record extra fields, record defaults, and anonymous functions capturing local or module variables. These constructs and the asserted field values are covered by the listed declarations, expressions and query clauses without an applicable exclusion. Method-syntax toString is explicitly allowed. The wildcard-only restriction concerns destructuring assignment statements, not query binding patterns.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Assertions check nil propagation, optional-field lookup, query let scoping, open-record field preservation, closure access, and record default initialization.",
+    "The unused ballerina/io import supplies no essential external behavior."
+  ]
+}

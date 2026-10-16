@@ -1,0 +1,14 @@
+{
+  "Name": "sealed-array-test-916de22362/sealed-array-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-negative-e.bal",
+  "Project": false,
+  "Id": "T1335",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.051
+}

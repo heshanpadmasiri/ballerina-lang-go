@@ -1,0 +1,21 @@
+{
+  "id": "T0031",
+  "name": "any-function-type-test-d439f10943/any-function-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only message, and ballerina/lang.value omits cloneReadOnly.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; neither error:detail nor value:cloneReadOnly appears.",
+    "Supported language features (subset 10) / Expressions lists \"Anonymous function expression\", \"Type cast expression\" and \"Type test expression\"."
+  ],
+  "reason": "This mixed positive/runtime-negative case exercises broad function values, isolated function types, casts and narrowing, closures, function fields in records/classes/maps, unions, readonly arrays, and never-return subtyping. The expression and declaration categories cover much of that core functionality. However, e.detail() and arr.cloneReadOnly() require langlib methods outside the explicit supported lists, making the whole case a feature assessment regardless of potential defects in the supported function operations.",
+  "unsupported_constructs": [
+    "error.detail()",
+    "value.cloneReadOnly()",
+    "ballerina/io import and io:println output harness are outside the listed libraries"
+  ],
+  "test_design_notes": [
+    "No @error markers occur; failed casts are deliberately trapped and asserted at runtime.",
+    "Nine main calls have matching @output () markers; no obvious marker mismatch appears.",
+    "The exact TypeCastError message assertion couples the test to diagnostic formatting. Unsupported library calls should be separated from core function-type coverage."
+  ]
+}

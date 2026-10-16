@@ -1,0 +1,16 @@
+{
+  "id": "T1105",
+  "name": "open-record-equivalency-rules-test-7770622aa6/closed-to-open-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"Type definition\" and \"Function definition\"",
+    "## Statements: \"Local variable declarations\", \"Assignment\" and \"Return\"",
+    "## Expressions: \"Mapping constructor\" (restriction: \"Currently spread-field not supported\"), \"Variable reference\" and \"Field access expression\""
+  ],
+  "reason": "All constructs are within the listed support and no restriction excludes record types or structural record assignment checks. The five marked assignments assert rejection of closed records lacking a required age field (including an optional age source field), or containing a map<any> address incompatible with the open target's implicit rest field constraint. The remaining mapping construction, return, and optional-field assignment use supported expressions and statements. These negative type-checking expectations remain in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case: five assignments carry @error markers; no runtime entry point is needed.",
+    "The functions named testMissingOptionalFieldInRHS1 and testMissingOptionalFieldInRHS2 also lack the target's required age field, so their rejection does not isolate optional-field compatibility."
+  ]
+}

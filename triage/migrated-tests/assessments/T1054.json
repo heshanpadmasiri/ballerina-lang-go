@@ -1,0 +1,18 @@
+{
+  "id": "T1054",
+  "name": "numeric-conversion-test-6b3e1e5e00/out-of-range-negative-float-as-int-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: 'Type cast expression'",
+    "Expressions / Literal: 'Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only'",
+    "Operators / Unary operators: 'numeric ops `+`, `-`'",
+    "Statements: 'Local variable declarations' and 'Call'",
+    "Module-level declarations: 'Function definition'"
+  ],
+  "reason": "The case asserts a panic for a negative float-to-int cast at the integer range boundary. Numeric literals, unary minus, local declarations, type casts and ordinary function calls are explicitly supported, with no restriction excluding numeric conversion range checks or their failure behavior. No langlib function is used.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The only asserted outcome is the inline @panic marker; there is no explicit result assertion or panic recovery.",
+    "The decimal literal lies near the lower integer boundary; the subset document does not specify its floating-point rounding or establish independently whether this particular value should panic. This does not introduce an unsupported construct."
+  ]
+}

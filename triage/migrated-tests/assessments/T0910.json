@@ -1,0 +1,14 @@
+{
+  "id": "T0910",
+  "name": "module-listener-decl-test-9b9489d763/module-listener-declaration-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: [Module listener declarations](https://ballerina.io/spec/lang/master/#section_8.3.1)",
+    "Module-level declarations: [Class definition](https://ballerina.io/spec/lang/master/#section_8.6)",
+    "Expressions: [New expression](https://ballerina.io/spec/lang/master/#section_6.8.2); object constructor expressions are absent from the supported expression list",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported"
+  ],
+  "reason": "The declarations submodule exercises listener declarations initialized both from class instances and from an anonymous object constructor. Listener declarations and class construction are listed as supported, but the `listener lsn = object { ... }` initializer requires an object constructor expression, which is not in the positive supported-expression list. This essential construct makes the whole case a feature gap.",
+  "unsupported_constructs": ["Anonymous object constructor expression used as a listener initializer"],
+  "test_design_notes": ["The supplied main function is empty and imports no declarations submodule; the listener cases reside in that submodule. No explicit behavioral assertions are supplied."]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: variable may not be initialized\n  --\u003e sealed-array-negative-e.bal:19:5\n   |\n19 |     sealedArray1[4] = 12; // @error\n   |     ^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"sealed-array-negative-e.bal","StartLine":19,"EndLine":19}]}

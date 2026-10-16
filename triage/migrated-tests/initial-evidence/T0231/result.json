@@ -1,0 +1,16 @@
+{
+  "Name": "bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v",
+  "Project": true,
+  "Id": "T0231",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v/Dependencies.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.059
+}

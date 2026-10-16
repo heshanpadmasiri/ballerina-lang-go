@@ -1,0 +1,17 @@
+{
+  "id": "T0609",
+  "name": "global-var-negative-test-2de21d931c/global-variable-init-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"",
+    "Module-level declarations: \"Annotation declarations and attachments\"; \"Supports annotation values evaluated from constant and runtime expressions\"",
+    "Statements: \"Assignment\", \"Local variable declarations\", \"Return\"",
+    "Expressions: \"Mapping constructor\" and \"Variable reference\"",
+    "Invocations / Named and default arguments: \"an atomic function type with a known parameter signature\""
+  ],
+  "reason": "This negative case asserts rejection of uninitialized module variables, including function-typed and optional function-typed variables, and reads of uninitialized variables in annotation values and function bodies. Module declarations, runtime annotation expressions, variable references, and function types are within the documented supported language. No listed restriction excludes definite initialization checking or any essential construct used here; invalid supported-language code remains in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The source marks expected diagnostic locations with @error; it does not provide exact diagnostic messages."
+  ]
+}

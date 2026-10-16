@@ -1,0 +1,17 @@
+{
+  "id": "T0589",
+  "name": "functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Expressions: Call; Mapping constructor — Currently spread-field not supported",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.",
+    "Invocations / Other invocation restrictions: array:length; value:toString and value:toBalString"
+  ],
+  "reason": "The case exercises record-valued rest arguments to direct, known-signature function calls, including record defaults, absent optional fields selecting parameter defaults, binding required parameters by record fields, and producing an empty rest array. Calls and default/rest parameters are supported without a restriction excluding mapping-valued rest arguments. The spread-field exclusion applies to mapping constructors, not invocation rest arguments. Casts, arithmetic, equality/type tests, panic/error construction, array length and value toString used by the assertions are supported.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Checks sums 35, 60, 45 and 55; averages 10 and 20; total 30; and rest-array length 0.",
+    "io:println is entry-point instrumentation only."
+  ]
+}

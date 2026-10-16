@@ -1,0 +1,1350 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "isolated-object-test-4801b67a5e/isolated-objects-warnings-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:379:22
+            |
+        379 |             self.x = let int[] u = b, int[] v = a.clone() in [b, u, v, c];
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:380:23
+            |
+        380 |             self.y = (let int[]? u = b in ((u is int[]) ? u : <int[]> []));
+            |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:381:22
+            |
+        381 |             self.z = let int[] u = a.clone() in u;
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:387:22
+            |
+        387 |             self.x = let int[] u = c, int[] v = c in [c, u, v];
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:388:23
+            |
+        388 |             self.y = (let int[]? u = c in ((u is int[]) ? u : <int[]> []));
+            |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:389:22
+            |
+        389 |             self.z = let int[] u = c.clone() in u;
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:394:21
+            |
+        394 |         any[] arr = let int[] u = c in [u]; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:397:22
+            |
+        397 |             self.w = let int[] u = c in [u, let int[] v = c.clone() in isolated function () returns int[2][] { return [c, []]; }]; // @error
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:802:20
+            |
+        802 |                 if let int[] p = item in p.length() == 0 {
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:151:97
+            |
+        151 | isolated object {} isolatedObjectWithMethodsAccessingPrivateMutableFieldsWithinLockStatements = object {
+            |                                                                                                 ^^^^^^^^
+        152 |     public final int[] & readonly a = [10, 20, 30];
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        153 |     final readonly & record {int i;} b = {i: 101};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        154 | 
+            | 
+        155 |     private int c = 1;
+            |     ^^^^^^^^^^^^^^^^^^
+        156 |     private map<int[]> d = {};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        157 | 
+            | 
+        158 |     function accessMutableFieldInLockOne() returns int[] {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        159 |         int i = 1;
+            |         ^^^^^^^^^^
+        160 | 
+            | 
+        161 |         lock {
+            |         ^^^^^^
+        162 |             self.c = i;
+            |             ^^^^^^^^^^^
+        163 | 
+            | 
+        164 |             int j = i;
+            |             ^^^^^^^^^^
+        165 |             self.c = i;
+            |             ^^^^^^^^^^^
+        166 | 
+            | 
+        167 |             map<int[]> k = {
+            |             ^^^^^^^^^^^^^^^^
+        168 |                 a: [1, 2, i, j, i + j],
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^
+        169 |                 b: self.a
+            |                 ^^^^^^^^^
+        170 |             };
+            |             ^^
+        171 |             self.d = k;
+            |             ^^^^^^^^^^^
+        172 |             k = self.d;
+            |             ^^^^^^^^^^^
+        173 |         }
+            |         ^
+        174 | 
+            | 
+        175 |         return self.a;
+            |         ^^^^^^^^^^^^^^
+        176 |     }
+            |     ^
+        177 | 
+            | 
+        178 |     isolated function accessMutableFieldInLockTwo() returns int[] {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        179 |         int i = 1;
+            |         ^^^^^^^^^^
+        180 |         int[] x; // @error
+            |         ^^^^^^^^^^^^^^^^^^
+        181 | 
+            | 
+        182 |         lock {
+            |         ^^^^^^
+        183 |             int j = i;
+            |             ^^^^^^^^^^
+        184 | 
+            | 
+        185 |             lock {
+            |             ^^^^^^
+        186 |                 int[] y = [1, 2, 3];
+            |                 ^^^^^^^^^^^^^^^^^^^^
+        187 |                 x = y.clone();
+            |                 ^^^^^^^^^^^^^^
+        188 |                 self.c = i;
+            |                 ^^^^^^^^^^^
+        189 |             }
+            |             ^
+        190 | 
+            | 
+        191 |             map<int[]> k = {
+            |             ^^^^^^^^^^^^^^^^
+        192 |                 a: [1, 2, i, j, i + j],
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^
+        193 |                 b: self.a
+            |                 ^^^^^^^^^
+        194 |             };
+            |             ^^
+        195 |             self.d = k;
+            |             ^^^^^^^^^^^
+        196 |             k = self.d;
+            |             ^^^^^^^^^^^
+        197 |         }
+            |         ^
+        198 | 
+            | 
+        199 |         return self.a;
+            |         ^^^^^^^^^^^^^^
+        200 |     }
+            |     ^
+        201 | 
+            | 
+        202 |     isolated function accessImmutableFieldOutsideLock() returns int[] {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        203 |         int[] arr = [];
+            |         ^^^^^^^^^^^^^^^
+        204 | 
+            | 
+        205 |         arr.push(...self.a);
+            |         ^^^^^^^^^^^^^^^^^^^^
+        206 |         arr[5] = self.b.i;
+            |         ^^^^^^^^^^^^^^^^^^
+        207 |         return arr;
+            |         ^^^^^^^^^^^
+        208 |     }
+            |     ^
+        209 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:212:34
+            |
+        212 |     final isolated object {} a = isolated object {
+            |                                  ^^^^^^^^^^^^^^^^^
+        213 |         final int i = 1;
+            |         ^^^^^^^^^^^^^^^^
+        214 |         private map<int> j = {};
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        215 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:229:71
+            |
+        229 | isolated object {} isolatedObjectWithNonPrivateIsolatedObjectFields = object {
+            |                                                                       ^^^^^^^^
+        230 |     final isolated object { function foo() returns int; } a = isolated object {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        231 |         final int i = 1;
+            |         ^^^^^^^^^^^^^^^^
+        232 |         private map<int> j = {};
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        233 | 
+            | 
+        234 |         isolated function foo() returns int {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        235 |             lock {
+            |             ^^^^^^
+        236 |                 return self.i + (self.j["a"] ?: 1);
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        237 |             }
+            |             ^
+        238 |         }
+            |         ^
+        239 |     };
+            |     ^^
+        240 |     final int|IsolatedClassWithMethodsAccessingPrivateMutableFieldsWithinLockStatements b = new ({i: 1}, 102, {});
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        241 |     private final IsolatedClassWithMethodsAccessingPrivateMutableFieldsWithinLockStatements c = new ({i: 1}, 102, {});
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        242 |     private int[] d = [1, 2];
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        243 | 
+            | 
+        244 |     function accessNonPrivateIsoltedObjectFieldOutsideLock() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        245 |         int x = self.a.foo(); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        246 |     }
+            |     ^
+        247 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:261:63
+            |
+        261 | isolated object {} isolatedObjectWithUniqueInitializerExprs = object {
+            |                                                               ^^^^^^^^
+        262 |     private map<int> a = <map<int>> {};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        263 |     final int[] & readonly b = [1, INT];
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        264 |     private table<record {readonly int id; string name;}> c;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        265 | 
+            | 
+        266 |     isolated function init() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        267 |         self.c = table [
+            |         ^^^^^^^^^^^^^^^^
+        268 |             {id: INT, name: "foo"},
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        269 |             {id: INT + 100, name: "bar"}
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        270 |         ];
+            |         ^^
+        271 |     }
+            |     ^
+        272 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:403:14
+            |
+        403 |     var ob = object {
+            |              ^^^^^^^^
+        404 |         final int[] & readonly x = [];
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        405 |         final IsolatedObjectType y = object {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        406 |             final int a = 1;
+            |             ^^^^^^^^^^^^^^^^
+        407 |             final readonly & string[] b = [];
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        408 |         };
+            |         ^^
+        409 |         final (readonly & string[])|IsolatedClassWithPrivateMutableFields z = new IsolatedClassWithPrivateMutableFields({i: 2}, 3);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        410 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:415:15
+            |
+        415 |     var ob2 = object {
+            |               ^^^^^^^^
+        416 |         final int[] x = [];
+            |         ^^^^^^^^^^^^^^^^^^^
+        417 |         final object {} y = object {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        418 |             final int a = 1;
+            |             ^^^^^^^^^^^^^^^^
+        419 |             final string[] b = [];
+            |             ^^^^^^^^^^^^^^^^^^^^^^
+        420 |         };
+            |         ^^
+        421 |         final IsolatedClassWithPrivateMutableFields z = new ({i: 2}, 3);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        422 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:426:15
+            |
+        426 |     var ob3 = object {
+            |               ^^^^^^^^
+        427 |         final int[] & readonly x = [];
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        428 |         final IsolatedObjectType y = object {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        429 |             final int a = 1;
+            |             ^^^^^^^^^^^^^^^^
+        430 |             final readonly & string[] b = [];
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        431 |         };
+            |         ^^
+        432 |         final string[]|IsolatedClassWithPrivateMutableFields z = new IsolatedClassWithPrivateMutableFields({i: 2}, 3);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        433 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:451:21
+            |
+        451 |     object {} ob1 = isolated object {
+            |                     ^^^^^^^^^^^^^^^^^
+        452 |         private int i = 1;
+            |         ^^^^^^^^^^^^^^^^^^
+        453 | 
+            | 
+        454 |         function updateI() {
+            |         ^^^^^^^^^^^^^^^^^^^^
+        455 |             lock {
+            |             ^^^^^^
+        456 |                 self.i = 2;
+            |                 ^^^^^^^^^^^
+        457 |             }
+            |             ^
+        458 |         }
+            |         ^
+        459 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:462:21
+            |
+        462 |     object {} ob2 = object {
+            |                     ^^^^^^^^
+        463 |         private int i = 1;
+            |         ^^^^^^^^^^^^^^^^^^
+        464 | 
+            | 
+        465 |         function updateI() {
+            |         ^^^^^^^^^^^^^^^^^^^^
+        466 |             self.i = 2;
+            |             ^^^^^^^^^^^
+        467 |         }
+            |         ^
+        468 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:525:25
+            |
+        525 | service object {} ser = isolated service object {
+            |                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        526 |     private int[] x = [];
+            |     ^^^^^^^^^^^^^^^^^^^^^
+        527 | 
+            | 
+        528 |     remote function foo() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        529 |         lock {
+            |         ^^^^^^
+        530 |             self.x = [2, 3];
+            |             ^^^^^^^^^^^^^^^^
+        531 |         }
+            |         ^
+        532 |     }
+            |     ^
+        533 | 
+            | 
+        534 |     resource function get bar() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        535 |         lock {
+            |         ^^^^^^
+        536 |             self.x = [2, 3];
+            |             ^^^^^^^^^^^^^^^^
+        537 |         }
+            |         ^
+        538 |     }
+            |     ^
+        539 | 
+            | 
+        540 |     function baz() {
+            |     ^^^^^^^^^^^^^^^^
+        541 |         lock {
+            |         ^^^^^^
+        542 |             self.x = [2, 3];
+            |             ^^^^^^^^^^^^^^^^
+        543 |         }
+            |         ^
+        544 |     }
+            |     ^
+        545 | 
+            | 
+        546 |     resource function get corge() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        547 |         lock {
+            |         ^^^^^^
+        548 |             isolatedArr = [];
+            |             ^^^^^^^^^^^^^^^^^
+        549 |         }
+            |         ^
+        550 |     }
+            |     ^
+        551 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:690:51
+            |
+        690 | var isolatedObjectWithInvalidCopyInInMethodCall = isolated object {
+            |                                                   ^^^^^^^^^^^^^^^^^
+        691 |     private map<int> m = {};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        692 | 
+            | 
+        693 |     isolated function baz() returns map<int>[] {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        694 |         map<int>[] y = [];
+            |         ^^^^^^^^^^^^^^^^^^
+        695 | 
+            | 
+        696 |         lock {
+            |         ^^^^^^
+        697 |             map<int>[] y2 = y.clone();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        698 |             y2[0] = self.m.clone();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        699 |             y.clone().push(self.m);
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        700 |             array:push(y2, self.m);
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        701 |         }
+            |         ^
+        702 | 
+            | 
+        703 |         return y;
+            |         ^^^^^^^^^
+        704 |     }
+            |     ^
+        705 | 
+            | 
+        706 |     function qux(map<int[]> y) {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        707 |         lock {
+            |         ^^^^^^
+        708 |             _ = y.clone().remove(self.m["a"].toString());
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        709 |         }
+            |         ^
+        710 |     }
+            |     ^
+        711 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:862:79
+            |
+        862 | var isolatedObjectConstructorWithValidAccessInInitMethodAfterInitialization = isolated object {
+            |                                                                               ^^^^^^^^^^^^^^^^^
+        863 |     private int[][] arr;
+            |     ^^^^^^^^^^^^^^^^^^^^
+        864 | 
+            | 
+        865 |     function init() {
+            |     ^^^^^^^^^^^^^^^^^
+        866 |         self.arr = [];
+            |         ^^^^^^^^^^^^^^
+        867 | 
+            | 
+        868 |         lock {
+            |         ^^^^^^
+        869 |             int[] node = getIntArray();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        870 | 
+            | 
+        871 |             self.arr.push(node);
+            |             ^^^^^^^^^^^^^^^^^^^^
+        872 |             self.arr[1] = node;
+            |             ^^^^^^^^^^^^^^^^^^^
+        873 |         }
+            |         ^
+        874 |     }
+            |     ^
+        875 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:878:13
+            |
+        878 |     var _ = isolated object {
+            |             ^^^^^^^^^^^^^^^^^
+        879 |         private int[][] arr;
+            |         ^^^^^^^^^^^^^^^^^^^^
+        880 | 
+            | 
+        881 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+        882 |             self.arr = [];
+            |             ^^^^^^^^^^^^^^
+        883 | 
+            | 
+        884 |             int[] node = getIntArray();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        885 | 
+            | 
+        886 |             lock {
+            |             ^^^^^^
+        887 |                 self.arr.push(node.clone());
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        888 |                 self.arr[1] = node.cloneReadOnly();
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        889 |             }
+            |             ^
+        890 |         }
+            |         ^
+        891 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:916:31
+            |
+        916 |                 object {} _ = isolated object {
+            |                               ^^^^^^^^^^^^^^^^^
+        917 |                     private int[][] innerArr = [];
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        918 | 
+            | 
+        919 |                     function innerF(int[] innerNode) {
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        920 |                         function _ = function () {
+            |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        921 |                             lock {
+            |                             ^^^^^^
+        922 |                                 self.innerArr.push(innerNode.clone());
+            |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        923 |                             }
+            |                             ^
+        924 |                         };
+            |                         ^^
+        925 |                     }
+            |                     ^
+        926 |                 };
+            |                 ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:932:22
+            |
+        932 |         object{} _ = object {
+            |                      ^^^^^^^^
+        933 |             private int[][] arr2 = [];
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        934 | 
+            | 
+        935 |             function fn() {
+            |             ^^^^^^^^^^^^^^^
+        936 |                 function _ = function (int[] node) {
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        937 |                     self.arr2.push(node); // OK because `self` is of the non-isolated object
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        938 |                 };
+            |                 ^^
+        939 |             }
+            |             ^
+        940 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> isolated-objects-warnings-e.bal:69:88
+           |
+        69 |     isolated object {} isolatedObjectOverridingMutableFieldsInIncludedIsolatedObject = isolated object IsolatedObjectType { // @error
+           |                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        70 | 
+           | 
+        71 |         final byte a = 100;
+           |         ^^^^^^^^^^^^^^^^^^^
+        72 |         private string[] b = [];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        73 | 
+           | 
+        74 |         function accessImmutableField() returns int => self.a + 1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        75 | 
+           | 
+        76 |         isolated function accessMutableField() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        77 |             lock {
+           |             ^^^^^^
+        78 |                 self.b.push(...immutableStringArray);
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |                 return self.b.length();
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^
+        80 |             }
+           |             ^
+        81 |         }
+           |         ^
+        82 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:820:26
+            |
+        820 |             error? res = from var e in self.arrs do { // @error
+            |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        821 |                 arr.clone().push(e);
+            |                 ^^^^^^^^^^^^^^^^^^^^
+        822 |             };
+            |             ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:824:19
+            |
+        824 |             res = from var e in arr.clone() do {
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        825 |                 self.arrs.push(e.clone());
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        826 |             };
+            |             ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:145:18
+            |
+        145 |         arr.push(...self.a);
+            |                  ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+          --> isolated-objects-warnings-e.bal:62:25
+           |
+        62 |             self.b.push(...immutableStringArray);
+           |                         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> isolated-objects-warnings-e.bal:254:13
+            |
+        254 |     private table<record {readonly int i; string name;}> c;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> isolated-objects-warnings-e.bal:256:28
+            |
+        256 |     isolated function init(table<record {readonly int i; string name;}> tb) {
+            |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:769:20
+            |
+        769 |             return `values: ${self.arr.clone()}`;
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:775:20
+            |
+        775 |             return `values: ${self.arr2.pop()}`;
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TemplateExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-warnings-e.bal:781:20
+            |
+        781 |             return `values: ${self.arr2[0]}, ${self.arr.clone()}, ${intArr.clone()}`;
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+           --> isolated-objects-warnings-e.bal:736:1
+            |
+        736 | configurable string toMobile = "";
+            | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> isolated-objects-warnings-e.bal:769:20
+            |
+        769 |             return `values: ${self.arr.clone()}`;
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> isolated-objects-warnings-e.bal:775:20
+            |
+        775 |             return `values: ${self.arr2.pop()}`;
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: raw templates not supported
+           --> isolated-objects-warnings-e.bal:781:20
+            |
+        781 |             return `values: ${self.arr2[0]}, ${self.arr.clone()}, ${intArr.clone()}`;
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:379:22
+            |
+        379 |             self.x = let int[] u = b, int[] v = a.clone() in [b, u, v, c];
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:380:23
+            |
+        380 |             self.y = (let int[]? u = b in ((u is int[]) ? u : <int[]> []));
+            |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:381:22
+            |
+        381 |             self.z = let int[] u = a.clone() in u;
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:387:22
+            |
+        387 |             self.x = let int[] u = c, int[] v = c in [c, u, v];
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:388:23
+            |
+        388 |             self.y = (let int[]? u = c in ((u is int[]) ? u : <int[]> []));
+            |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:389:22
+            |
+        389 |             self.z = let int[] u = c.clone() in u;
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:394:21
+            |
+        394 |         any[] arr = let int[] u = c in [u]; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:397:22
+            |
+        397 |             self.w = let int[] u = c in [u, let int[] v = c.clone() in isolated function () returns int[2][] { return [c, []]; }]; // @error
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> isolated-objects-warnings-e.bal:802:20
+            |
+        802 |                 if let int[] p = item in p.length() == 0 {
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:151:97
+            |
+        151 | isolated object {} isolatedObjectWithMethodsAccessingPrivateMutableFieldsWithinLockStatements = object {
+            |                                                                                                 ^^^^^^^^
+        152 |     public final int[] & readonly a = [10, 20, 30];
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        153 |     final readonly & record {int i;} b = {i: 101};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        154 | 
+            | 
+        155 |     private int c = 1;
+            |     ^^^^^^^^^^^^^^^^^^
+        156 |     private map<int[]> d = {};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        157 | 
+            | 
+        158 |     function accessMutableFieldInLockOne() returns int[] {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        159 |         int i = 1;
+            |         ^^^^^^^^^^
+        160 | 
+            | 
+        161 |         lock {
+            |         ^^^^^^
+        162 |             self.c = i;
+            |             ^^^^^^^^^^^
+        163 | 
+            | 
+        164 |             int j = i;
+            |             ^^^^^^^^^^
+        165 |             self.c = i;
+            |             ^^^^^^^^^^^
+        166 | 
+            | 
+        167 |             map<int[]> k = {
+            |             ^^^^^^^^^^^^^^^^
+        168 |                 a: [1, 2, i, j, i + j],
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^
+        169 |                 b: self.a
+            |                 ^^^^^^^^^
+        170 |             };
+            |             ^^
+        171 |             self.d = k;
+            |             ^^^^^^^^^^^
+        172 |             k = self.d;
+            |             ^^^^^^^^^^^
+        173 |         }
+            |         ^
+        174 | 
+            | 
+        175 |         return self.a;
+            |         ^^^^^^^^^^^^^^
+        176 |     }
+            |     ^
+        177 | 
+            | 
+        178 |     isolated function accessMutableFieldInLockTwo() returns int[] {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        179 |         int i = 1;
+            |         ^^^^^^^^^^
+        180 |         int[] x; // @error
+            |         ^^^^^^^^^^^^^^^^^^
+        181 | 
+            | 
+        182 |         lock {
+            |         ^^^^^^
+        183 |             int j = i;
+            |             ^^^^^^^^^^
+        184 | 
+            | 
+        185 |             lock {
+            |             ^^^^^^
+        186 |                 int[] y = [1, 2, 3];
+            |                 ^^^^^^^^^^^^^^^^^^^^
+        187 |                 x = y.clone();
+            |                 ^^^^^^^^^^^^^^
+        188 |                 self.c = i;
+            |                 ^^^^^^^^^^^
+        189 |             }
+            |             ^
+        190 | 
+            | 
+        191 |             map<int[]> k = {
+            |             ^^^^^^^^^^^^^^^^
+        192 |                 a: [1, 2, i, j, i + j],
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^
+        193 |                 b: self.a
+            |                 ^^^^^^^^^
+        194 |             };
+            |             ^^
+        195 |             self.d = k;
+            |             ^^^^^^^^^^^
+        196 |             k = self.d;
+            |             ^^^^^^^^^^^
+        197 |         }
+            |         ^
+        198 | 
+            | 
+        199 |         return self.a;
+            |         ^^^^^^^^^^^^^^
+        200 |     }
+            |     ^
+        201 | 
+            | 
+        202 |     isolated function accessImmutableFieldOutsideLock() returns int[] {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        203 |         int[] arr = [];
+            |         ^^^^^^^^^^^^^^^
+        204 | 
+            | 
+        205 |         arr.push(...self.a);
+            |         ^^^^^^^^^^^^^^^^^^^^
+        206 |         arr[5] = self.b.i;
+            |         ^^^^^^^^^^^^^^^^^^
+        207 |         return arr;
+            |         ^^^^^^^^^^^
+        208 |     }
+            |     ^
+        209 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:212:34
+            |
+        212 |     final isolated object {} a = isolated object {
+            |                                  ^^^^^^^^^^^^^^^^^
+        213 |         final int i = 1;
+            |         ^^^^^^^^^^^^^^^^
+        214 |         private map<int> j = {};
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        215 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:229:71
+            |
+        229 | isolated object {} isolatedObjectWithNonPrivateIsolatedObjectFields = object {
+            |                                                                       ^^^^^^^^
+        230 |     final isolated object { function foo() returns int; } a = isolated object {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        231 |         final int i = 1;
+            |         ^^^^^^^^^^^^^^^^
+        232 |         private map<int> j = {};
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        233 | 
+            | 
+        234 |         isolated function foo() returns int {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        235 |             lock {
+            |             ^^^^^^
+        236 |                 return self.i + (self.j["a"] ?: 1);
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        237 |             }
+            |             ^
+        238 |         }
+            |         ^
+        239 |     };
+            |     ^^
+        240 |     final int|IsolatedClassWithMethodsAccessingPrivateMutableFieldsWithinLockStatements b = new ({i: 1}, 102, {});
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        241 |     private final IsolatedClassWithMethodsAccessingPrivateMutableFieldsWithinLockStatements c = new ({i: 1}, 102, {});
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        242 |     private int[] d = [1, 2];
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        243 | 
+            | 
+        244 |     function accessNonPrivateIsoltedObjectFieldOutsideLock() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        245 |         int x = self.a.foo(); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        246 |     }
+            |     ^
+        247 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:261:63
+            |
+        261 | isolated object {} isolatedObjectWithUniqueInitializerExprs = object {
+            |                                                               ^^^^^^^^
+        262 |     private map<int> a = <map<int>> {};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        263 |     final int[] & readonly b = [1, INT];
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        264 |     private table<record {readonly int id; string name;}> c;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        265 | 
+            | 
+        266 |     isolated function init() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        267 |         self.c = table [
+            |         ^^^^^^^^^^^^^^^^
+        268 |             {id: INT, name: "foo"},
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        269 |             {id: INT + 100, name: "bar"}
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        270 |         ];
+            |         ^^
+        271 |     }
+            |     ^
+        272 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:403:14
+            |
+        403 |     var ob = object {
+            |              ^^^^^^^^
+        404 |         final int[] & readonly x = [];
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        405 |         final IsolatedObjectType y = object {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        406 |             final int a = 1;
+            |             ^^^^^^^^^^^^^^^^
+        407 |             final readonly & string[] b = [];
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        408 |         };
+            |         ^^
+        409 |         final (readonly & string[])|IsolatedClassWithPrivateMutableFields z = new IsolatedClassWithPrivateMutableFields({i: 2}, 3);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        410 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:415:15
+            |
+        415 |     var ob2 = object {
+            |               ^^^^^^^^
+        416 |         final int[] x = [];
+            |         ^^^^^^^^^^^^^^^^^^^
+        417 |         final object {} y = object {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        418 |             final int a = 1;
+            |             ^^^^^^^^^^^^^^^^
+        419 |             final string[] b = [];
+            |             ^^^^^^^^^^^^^^^^^^^^^^
+        420 |         };
+            |         ^^
+        421 |         final IsolatedClassWithPrivateMutableFields z = new ({i: 2}, 3);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        422 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:426:15
+            |
+        426 |     var ob3 = object {
+            |               ^^^^^^^^
+        427 |         final int[] & readonly x = [];
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        428 |         final IsolatedObjectType y = object {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        429 |             final int a = 1;
+            |             ^^^^^^^^^^^^^^^^
+        430 |             final readonly & string[] b = [];
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        431 |         };
+            |         ^^
+        432 |         final string[]|IsolatedClassWithPrivateMutableFields z = new IsolatedClassWithPrivateMutableFields({i: 2}, 3);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        433 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:451:21
+            |
+        451 |     object {} ob1 = isolated object {
+            |                     ^^^^^^^^^^^^^^^^^
+        452 |         private int i = 1;
+            |         ^^^^^^^^^^^^^^^^^^
+        453 | 
+            | 
+        454 |         function updateI() {
+            |         ^^^^^^^^^^^^^^^^^^^^
+        455 |             lock {
+            |             ^^^^^^
+        456 |                 self.i = 2;
+            |                 ^^^^^^^^^^^
+        457 |             }
+            |             ^
+        458 |         }
+            |         ^
+        459 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:462:21
+            |
+        462 |     object {} ob2 = object {
+            |                     ^^^^^^^^
+        463 |         private int i = 1;
+            |         ^^^^^^^^^^^^^^^^^^
+        464 | 
+            | 
+        465 |         function updateI() {
+            |         ^^^^^^^^^^^^^^^^^^^^
+        466 |             self.i = 2;
+            |             ^^^^^^^^^^^
+        467 |         }
+            |         ^
+        468 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:525:25
+            |
+        525 | service object {} ser = isolated service object {
+            |                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        526 |     private int[] x = [];
+            |     ^^^^^^^^^^^^^^^^^^^^^
+        527 | 
+            | 
+        528 |     remote function foo() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        529 |         lock {
+            |         ^^^^^^
+        530 |             self.x = [2, 3];
+            |             ^^^^^^^^^^^^^^^^
+        531 |         }
+            |         ^
+        532 |     }
+            |     ^
+        533 | 
+            | 
+        534 |     resource function get bar() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        535 |         lock {
+            |         ^^^^^^
+        536 |             self.x = [2, 3];
+            |             ^^^^^^^^^^^^^^^^
+        537 |         }
+            |         ^
+        538 |     }
+            |     ^
+        539 | 
+            | 
+        540 |     function baz() {
+            |     ^^^^^^^^^^^^^^^^
+        541 |         lock {
+            |         ^^^^^^
+        542 |             self.x = [2, 3];
+            |             ^^^^^^^^^^^^^^^^
+        543 |         }
+            |         ^
+        544 |     }
+            |     ^
+        545 | 
+            | 
+        546 |     resource function get corge() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        547 |         lock {
+            |         ^^^^^^
+        548 |             isolatedArr = [];
+            |             ^^^^^^^^^^^^^^^^^
+        549 |         }
+            |         ^
+        550 |     }
+            |     ^
+        551 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:690:51
+            |
+        690 | var isolatedObjectWithInvalidCopyInInMethodCall = isolated object {
+            |                                                   ^^^^^^^^^^^^^^^^^
+        691 |     private map<int> m = {};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        692 | 
+            | 
+        693 |     isolated function baz() returns map<int>[] {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        694 |         map<int>[] y = [];
+            |         ^^^^^^^^^^^^^^^^^^
+        695 | 
+            | 
+        696 |         lock {
+            |         ^^^^^^
+        697 |             map<int>[] y2 = y.clone();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        698 |             y2[0] = self.m.clone();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        699 |             y.clone().push(self.m);
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        700 |             array:push(y2, self.m);
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        701 |         }
+            |         ^
+        702 | 
+            | 
+        703 |         return y;
+            |         ^^^^^^^^^
+        704 |     }
+            |     ^
+        705 | 
+            | 
+        706 |     function qux(map<int[]> y) {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        707 |         lock {
+            |         ^^^^^^
+        708 |             _ = y.clone().remove(self.m["a"].toString());
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        709 |         }
+            |         ^
+        710 |     }
+            |     ^
+        711 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:862:79
+            |
+        862 | var isolatedObjectConstructorWithValidAccessInInitMethodAfterInitialization = isolated object {
+            |                                                                               ^^^^^^^^^^^^^^^^^
+        863 |     private int[][] arr;
+            |     ^^^^^^^^^^^^^^^^^^^^
+        864 | 
+            | 
+        865 |     function init() {
+            |     ^^^^^^^^^^^^^^^^^
+        866 |         self.arr = [];
+            |         ^^^^^^^^^^^^^^
+        867 | 
+            | 
+        868 |         lock {
+            |         ^^^^^^
+        869 |             int[] node = getIntArray();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        870 | 
+            | 
+        871 |             self.arr.push(node);
+            |             ^^^^^^^^^^^^^^^^^^^^
+        872 |             self.arr[1] = node;
+            |             ^^^^^^^^^^^^^^^^^^^
+        873 |         }
+            |         ^
+        874 |     }
+            |     ^
+        875 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:878:13
+            |
+        878 |     var _ = isolated object {
+            |             ^^^^^^^^^^^^^^^^^
+        879 |         private int[][] arr;
+            |         ^^^^^^^^^^^^^^^^^^^^
+        880 | 
+            | 
+        881 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+        882 |             self.arr = [];
+            |             ^^^^^^^^^^^^^^
+        883 | 
+            | 
+        884 |             int[] node = getIntArray();
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        885 | 
+            | 
+        886 |             lock {
+            |             ^^^^^^
+        887 |                 self.arr.push(node.clone());
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        888 |                 self.arr[1] = node.cloneReadOnly();
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        889 |             }
+            |             ^
+        890 |         }
+            |         ^
+        891 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:916:31
+            |
+        916 |                 object {} _ = isolated object {
+            |                               ^^^^^^^^^^^^^^^^^
+        917 |                     private int[][] innerArr = [];
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        918 | 
+            | 
+        919 |                     function innerF(int[] innerNode) {
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        920 |                         function _ = function () {
+            |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        921 |                             lock {
+            |                             ^^^^^^
+        922 |                                 self.innerArr.push(innerNode.clone());
+            |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        923 |                             }
+            |                             ^
+        924 |                         };
+            |                         ^^
+        925 |                     }
+            |                     ^
+        926 |                 };
+            |                 ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-warnings-e.bal:932:22
+            |
+        932 |         object{} _ = object {
+            |                      ^^^^^^^^
+        933 |             private int[][] arr2 = [];
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        934 | 
+            | 
+        935 |             function fn() {
+            |             ^^^^^^^^^^^^^^^
+        936 |                 function _ = function (int[] node) {
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        937 |                     self.arr2.push(node); // OK because `self` is of the non-isolated object
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        938 |                 };
+            |                 ^^
+        939 |             }
+            |             ^
+        940 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> isolated-objects-warnings-e.bal:69:88
+           |
+        69 |     isolated object {} isolatedObjectOverridingMutableFieldsInIncludedIsolatedObject = isolated object IsolatedObjectType { // @error
+           |                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        70 | 
+           | 
+        71 |         final byte a = 100;
+           |         ^^^^^^^^^^^^^^^^^^^
+        72 |         private string[] b = [];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        73 | 
+           | 
+        74 |         function accessImmutableField() returns int => self.a + 1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        75 | 
+           | 
+        76 |         isolated function accessMutableField() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        77 |             lock {
+           |             ^^^^^^
+        78 |                 self.b.push(...immutableStringArray);
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |                 return self.b.length();
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^
+        80 |             }
+           |             ^
+        81 |         }
+           |         ^
+        82 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> isolated-objects-warnings-e.bal:820:26
+            |
+        820 |             error? res = from var e in self.arrs do { // @error
+            |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        821 |                 arr.clone().push(e);
+            |                 ^^^^^^^^^^^^^^^^^^^^
+        822 |             };
+            |             ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> isolated-objects-warnings-e.bal:824:19
+            |
+        824 |             res = from var e in arr.clone() do {
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        825 |                 self.arrs.push(e.clone());
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        826 |             };
+            |             ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> isolated-objects-warnings-e.bal:145:18
+            |
+        145 |         arr.push(...self.a);
+            |                  ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+          --> isolated-objects-warnings-e.bal:62:25
+           |
+        62 |             self.b.push(...immutableStringArray);
+           |                         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> isolated-objects-warnings-e.bal:254:13
+            |
+        254 |     private table<record {readonly int i; string name;}> c;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> isolated-objects-warnings-e.bal:256:28
+            |
+        256 |     isolated function init(table<record {readonly int i; string name;}> tb) {
+            |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

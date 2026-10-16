@@ -1,0 +1,115 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "retry-stmt-with-on-fail-test-9697c09cc6/retry-on-fail-negative-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:11:4
+           |
+        11 |    retry(3) {
+           |    ^^^^^^^^^^
+        12 |      str += "Before failure throw";
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |      fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |    } on fail ErrorTypeB e { // @error
+           |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |       str += "-> Error caught ! ";
+           |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |    }
+           |    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:31:4
+           |
+        31 |    retry(3) {
+           |    ^^^^^^^^^^
+        32 |      str += "Before failure throw";
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |      int resA = check getTypeAError();
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |      int resB = check getTypeBError();
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |    }
+           |    ^
+        36 |    on fail ErrorTypeA e { // @error
+           |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |       str += "-> Error caught : ";
+           |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |       str = str.concat(e.message());
+           |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        39 |    }
+           |    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:61:5
+           |
+        61 |     retry(3) {
+           |     ^^^^^^^^^^
+        62 |         if isPositiveState {
+           |         ^^^^^^^^^^^^^^^^^^^^
+        63 |             fail error SampleComplexError("Transaction Failure", code = 20, pos = [30, 45], infoDetails = {moreInfo: "deadlock condition"});
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        64 |         }
+           |         ^
+        65 |         fail error SampleError("Transaction Failure", code = 50, reason = "deadlock condition");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |     } on fail var error(msg) { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        67 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:11:4
+           |
+        11 |    retry(3) {
+           |    ^^^^^^^^^^
+        12 |      str += "Before failure throw";
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |      fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |    } on fail ErrorTypeB e { // @error
+           |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |       str += "-> Error caught ! ";
+           |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |    }
+           |    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:31:4
+           |
+        31 |    retry(3) {
+           |    ^^^^^^^^^^
+        32 |      str += "Before failure throw";
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |      int resA = check getTypeAError();
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |      int resB = check getTypeBError();
+           |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |    }
+           |    ^
+        36 |    on fail ErrorTypeA e { // @error
+           |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |       str += "-> Error caught : ";
+           |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |       str = str.concat(e.message());
+           |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        39 |    }
+           |    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:61:5
+           |
+        61 |     retry(3) {
+           |     ^^^^^^^^^^
+        62 |         if isPositiveState {
+           |         ^^^^^^^^^^^^^^^^^^^^
+        63 |             fail error SampleComplexError("Transaction Failure", code = 20, pos = [30, 45], infoDetails = {moreInfo: "deadlock condition"});
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        64 |         }
+           |         ^
+        65 |         fail error SampleError("Transaction Failure", code = 50, reason = "deadlock condition");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |     } on fail var error(msg) { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        67 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

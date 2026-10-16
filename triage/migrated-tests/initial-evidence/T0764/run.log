@@ -1,0 +1,1689 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "map-constant-equality-in-bala-test-8a32c6bf8d/map-constant-equality-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: testorg/foo
+         --> main.bal:2:1
+          |
+        2 | import testorg/foo;
+          | ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+          --> main.bal:11:12
+           |
+        11 |     return foo:bm1 == foo:bm1_new; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+          --> main.bal:15:12
+           |
+        15 |     return foo:bm1 === foo:bm1; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+          --> main.bal:15:24
+           |
+        15 |     return foo:bm1 === foo:bm1; // true
+           |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+          --> main.bal:19:12
+           |
+        19 |     return foo:bm1 === foo:bm1_new; // false
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+          --> main.bal:51:12
+           |
+        51 |     return foo:bm1 === foo:bm3["key5"]; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+          --> main.bal:65:31
+           |
+        65 |     return foo:bm7["key5"] == foo:bm1; // true
+           |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+          --> main.bal:73:32
+           |
+        73 |     return foo:bm7["key5"] === foo:bm1; // false
+           |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+         --> main.bal:7:12
+          |
+        7 |     return foo:bm1 == foo:bm1; // true
+          |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1
+         --> main.bal:7:23
+          |
+        7 |     return foo:bm1 == foo:bm1; // true
+          |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1_new
+          --> main.bal:11:23
+           |
+        11 |     return foo:bm1 == foo:bm1_new; // true
+           |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm1_new
+          --> main.bal:19:24
+           |
+        19 |     return foo:bm1 === foo:bm1_new; // false
+           |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:25:12
+           |
+        25 |     return foo:bm3 == foo:bm3; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:25:23
+           |
+        25 |     return foo:bm3 == foo:bm3; // true
+           |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:29:12
+           |
+        29 |     return foo:bm3 == foo:bm3_new; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:33:12
+           |
+        33 |     return foo:bm3 === foo:bm3; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:33:24
+           |
+        33 |     return foo:bm3 === foo:bm3; // true
+           |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:37:12
+           |
+        37 |     return foo:bm3 === foo:bm3_new; // false
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:43:12
+           |
+        43 |     return foo:bm3["key5"] == foo:bm3["key5"]; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:43:31
+           |
+        43 |     return foo:bm3["key5"] == foo:bm3["key5"]; // true
+           |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:47:12
+           |
+        47 |     return foo:bm3["key5"] == foo:bm3_new["key5"]; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:51:24
+           |
+        51 |     return foo:bm1 === foo:bm3["key5"]; // true
+           |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3
+          --> main.bal:55:12
+           |
+        55 |     return foo:bm3["key5"] === foo:bm3_new["key5"]; // false
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3_new
+          --> main.bal:29:23
+           |
+        29 |     return foo:bm3 == foo:bm3_new; // true
+           |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3_new
+          --> main.bal:37:24
+           |
+        37 |     return foo:bm3 === foo:bm3_new; // false
+           |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3_new
+          --> main.bal:47:31
+           |
+        47 |     return foo:bm3["key5"] == foo:bm3_new["key5"]; // true
+           |                               ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm3_new
+          --> main.bal:55:32
+           |
+        55 |     return foo:bm3["key5"] === foo:bm3_new["key5"]; // false
+           |                                ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:61:12
+           |
+        61 |     return foo:bm7["key5"] == foo:bm7["key5"]; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:61:31
+           |
+        61 |     return foo:bm7["key5"] == foo:bm7["key5"]; // true
+           |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:65:12
+           |
+        65 |     return foo:bm7["key5"] == foo:bm1; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:69:12
+           |
+        69 |     return foo:bm7["key5"] === foo:bm7["key5"]; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:69:32
+           |
+        69 |     return foo:bm7["key5"] === foo:bm7["key5"]; // true
+           |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:73:12
+           |
+        73 |     return foo:bm7["key5"] === foo:bm1; // false
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:79:12
+           |
+        79 |     return foo:bm7 == foo:bm8; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:83:12
+           |
+        83 |     return foo:bm7 === foo:bm8; // false
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:87:12
+           |
+        87 |     return foo:bm7["key5"] == foo:bm8["key5"]; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm7
+          --> main.bal:91:12
+           |
+        91 |     return foo:bm7["key5"] === foo:bm8["key5"]; // false
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm8
+          --> main.bal:79:23
+           |
+        79 |     return foo:bm7 == foo:bm8; // true
+           |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm8
+          --> main.bal:83:24
+           |
+        83 |     return foo:bm7 === foo:bm8; // false
+           |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm8
+          --> main.bal:87:31
+           |
+        87 |     return foo:bm7["key5"] == foo:bm8["key5"]; // true
+           |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bm8
+          --> main.bal:91:32
+           |
+        91 |     return foo:bm7["key5"] === foo:bm8["key5"]; // false
+           |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:187:12
+            |
+        187 |     return foo:bytem1 == foo:bytem1; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:187:26
+            |
+        187 |     return foo:bytem1 == foo:bytem1; // true
+            |                          ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:191:12
+            |
+        191 |     return foo:bytem1 == foo:bytem1_new; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:195:12
+            |
+        195 |     return foo:bytem1 === foo:bytem1; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:195:27
+            |
+        195 |     return foo:bytem1 === foo:bytem1; // true
+            |                           ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:199:12
+            |
+        199 |     return foo:bytem1 === foo:bytem1_new; // false
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:231:12
+            |
+        231 |     return foo:bytem1 === foo:bytem3["key5"]; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:245:34
+            |
+        245 |     return foo:bytem7["key5"] == foo:bytem1; // true
+            |                                  ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1
+           --> main.bal:253:35
+            |
+        253 |     return foo:bytem7["key5"] === foo:bytem1; // false
+            |                                   ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1_new
+           --> main.bal:191:26
+            |
+        191 |     return foo:bytem1 == foo:bytem1_new; // true
+            |                          ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem1_new
+           --> main.bal:199:27
+            |
+        199 |     return foo:bytem1 === foo:bytem1_new; // false
+            |                           ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:205:12
+            |
+        205 |     return foo:bytem3 == foo:bytem3; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:205:26
+            |
+        205 |     return foo:bytem3 == foo:bytem3; // true
+            |                          ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:209:12
+            |
+        209 |     return foo:bytem3 == foo:bytem3_new; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:213:12
+            |
+        213 |     return foo:bytem3 === foo:bytem3; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:213:27
+            |
+        213 |     return foo:bytem3 === foo:bytem3; // true
+            |                           ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:217:12
+            |
+        217 |     return foo:bytem3 === foo:bytem3_new; // false
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:223:12
+            |
+        223 |     return foo:bytem3["key5"] == foo:bytem3["key5"]; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:223:34
+            |
+        223 |     return foo:bytem3["key5"] == foo:bytem3["key5"]; // true
+            |                                  ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:227:12
+            |
+        227 |     return foo:bytem3["key5"] == foo:bytem3_new["key5"]; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:231:27
+            |
+        231 |     return foo:bytem1 === foo:bytem3["key5"]; // true
+            |                           ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3
+           --> main.bal:235:12
+            |
+        235 |     return foo:bytem3["key5"] === foo:bytem3_new["key5"]; // false
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3_new
+           --> main.bal:209:26
+            |
+        209 |     return foo:bytem3 == foo:bytem3_new; // true
+            |                          ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3_new
+           --> main.bal:217:27
+            |
+        217 |     return foo:bytem3 === foo:bytem3_new; // false
+            |                           ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3_new
+           --> main.bal:227:34
+            |
+        227 |     return foo:bytem3["key5"] == foo:bytem3_new["key5"]; // true
+            |                                  ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem3_new
+           --> main.bal:235:35
+            |
+        235 |     return foo:bytem3["key5"] === foo:bytem3_new["key5"]; // false
+            |                                   ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:241:12
+            |
+        241 |     return foo:bytem7["key5"] == foo:bytem7["key5"]; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:241:34
+            |
+        241 |     return foo:bytem7["key5"] == foo:bytem7["key5"]; // true
+            |                                  ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:245:12
+            |
+        245 |     return foo:bytem7["key5"] == foo:bytem1; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:249:12
+            |
+        249 |     return foo:bytem7["key5"] === foo:bytem7["key5"]; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:249:35
+            |
+        249 |     return foo:bytem7["key5"] === foo:bytem7["key5"]; // true
+            |                                   ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:253:12
+            |
+        253 |     return foo:bytem7["key5"] === foo:bytem1; // false
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:259:12
+            |
+        259 |     return foo:bytem7 == foo:bytem8; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:263:12
+            |
+        263 |     return foo:bytem7 === foo:bytem8; // false
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:267:12
+            |
+        267 |     return foo:bytem7["key5"] == foo:bytem8["key5"]; // true
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem7
+           --> main.bal:271:12
+            |
+        271 |     return foo:bytem7["key5"] === foo:bytem8["key5"]; // false
+            |            ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem8
+           --> main.bal:259:26
+            |
+        259 |     return foo:bytem7 == foo:bytem8; // true
+            |                          ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem8
+           --> main.bal:263:27
+            |
+        263 |     return foo:bytem7 === foo:bytem8; // false
+            |                           ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem8
+           --> main.bal:267:34
+            |
+        267 |     return foo:bytem7["key5"] == foo:bytem8["key5"]; // true
+            |                                  ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bytem8
+           --> main.bal:271:35
+            |
+        271 |     return foo:bytem7["key5"] === foo:bytem8["key5"]; // false
+            |                                   ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:367:12
+            |
+        367 |     return foo:dm1 == foo:dm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:367:23
+            |
+        367 |     return foo:dm1 == foo:dm1; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:371:12
+            |
+        371 |     return foo:dm1 == foo:dm1_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:375:12
+            |
+        375 |     return foo:dm1 === foo:dm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:375:24
+            |
+        375 |     return foo:dm1 === foo:dm1; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:379:12
+            |
+        379 |     return foo:dm1 === foo:dm1_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:411:12
+            |
+        411 |     return foo:dm1 === foo:dm3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:425:31
+            |
+        425 |     return foo:dm7["key5"] == foo:dm1; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1
+           --> main.bal:433:32
+            |
+        433 |     return foo:dm7["key5"] === foo:dm1; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1_new
+           --> main.bal:371:23
+            |
+        371 |     return foo:dm1 == foo:dm1_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm1_new
+           --> main.bal:379:24
+            |
+        379 |     return foo:dm1 === foo:dm1_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:385:12
+            |
+        385 |     return foo:dm3 == foo:dm3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:385:23
+            |
+        385 |     return foo:dm3 == foo:dm3; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:389:12
+            |
+        389 |     return foo:dm3 == foo:dm3_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:393:12
+            |
+        393 |     return foo:dm3 === foo:dm3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:393:24
+            |
+        393 |     return foo:dm3 === foo:dm3; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:397:12
+            |
+        397 |     return foo:dm3 === foo:dm3_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:403:12
+            |
+        403 |     return foo:dm3["key5"] == foo:dm3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:403:31
+            |
+        403 |     return foo:dm3["key5"] == foo:dm3["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:407:12
+            |
+        407 |     return foo:dm3["key5"] == foo:dm3_new["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:411:24
+            |
+        411 |     return foo:dm1 === foo:dm3["key5"]; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3
+           --> main.bal:415:12
+            |
+        415 |     return foo:dm3["key5"] === foo:dm3_new["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3_new
+           --> main.bal:389:23
+            |
+        389 |     return foo:dm3 == foo:dm3_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3_new
+           --> main.bal:397:24
+            |
+        397 |     return foo:dm3 === foo:dm3_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3_new
+           --> main.bal:407:31
+            |
+        407 |     return foo:dm3["key5"] == foo:dm3_new["key5"]; // true
+            |                               ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm3_new
+           --> main.bal:415:32
+            |
+        415 |     return foo:dm3["key5"] === foo:dm3_new["key5"]; // false
+            |                                ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:421:12
+            |
+        421 |     return foo:dm7["key5"] == foo:dm7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:421:31
+            |
+        421 |     return foo:dm7["key5"] == foo:dm7["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:425:12
+            |
+        425 |     return foo:dm7["key5"] == foo:dm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:429:12
+            |
+        429 |     return foo:dm7["key5"] === foo:dm7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:429:32
+            |
+        429 |     return foo:dm7["key5"] === foo:dm7["key5"]; // true
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:433:12
+            |
+        433 |     return foo:dm7["key5"] === foo:dm1; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:439:12
+            |
+        439 |     return foo:dm7 == foo:dm8; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:443:12
+            |
+        443 |     return foo:dm7 === foo:dm8; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:447:12
+            |
+        447 |     return foo:dm7["key5"] == foo:dm8["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm7
+           --> main.bal:451:12
+            |
+        451 |     return foo:dm7["key5"] === foo:dm8["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm8
+           --> main.bal:439:23
+            |
+        439 |     return foo:dm7 == foo:dm8; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm8
+           --> main.bal:443:24
+            |
+        443 |     return foo:dm7 === foo:dm8; // false
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm8
+           --> main.bal:447:31
+            |
+        447 |     return foo:dm7["key5"] == foo:dm8["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: dm8
+           --> main.bal:451:32
+            |
+        451 |     return foo:dm7["key5"] === foo:dm8["key5"]; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:277:12
+            |
+        277 |     return foo:fm1 == foo:fm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:277:23
+            |
+        277 |     return foo:fm1 == foo:fm1; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:281:12
+            |
+        281 |     return foo:fm1 == foo:fm1_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:285:12
+            |
+        285 |     return foo:fm1 === foo:fm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:285:24
+            |
+        285 |     return foo:fm1 === foo:fm1; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:289:12
+            |
+        289 |     return foo:fm1 === foo:fm1_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:321:12
+            |
+        321 |     return foo:fm1 === foo:fm3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:335:31
+            |
+        335 |     return foo:fm7["key5"] == foo:fm1; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1
+           --> main.bal:343:32
+            |
+        343 |     return foo:fm7["key5"] === foo:fm1; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1_new
+           --> main.bal:281:23
+            |
+        281 |     return foo:fm1 == foo:fm1_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm1_new
+           --> main.bal:289:24
+            |
+        289 |     return foo:fm1 === foo:fm1_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:295:12
+            |
+        295 |     return foo:fm3 == foo:fm3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:295:23
+            |
+        295 |     return foo:fm3 == foo:fm3; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:299:12
+            |
+        299 |     return foo:fm3 == foo:fm3_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:303:12
+            |
+        303 |     return foo:fm3 === foo:fm3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:303:24
+            |
+        303 |     return foo:fm3 === foo:fm3; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:307:12
+            |
+        307 |     return foo:fm3 === foo:fm3_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:313:12
+            |
+        313 |     return foo:fm3["key5"] == foo:fm3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:313:31
+            |
+        313 |     return foo:fm3["key5"] == foo:fm3["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:317:12
+            |
+        317 |     return foo:fm3["key5"] == foo:fm3_new["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:321:24
+            |
+        321 |     return foo:fm1 === foo:fm3["key5"]; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3
+           --> main.bal:325:12
+            |
+        325 |     return foo:fm3["key5"] === foo:fm3_new["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3_new
+           --> main.bal:299:23
+            |
+        299 |     return foo:fm3 == foo:fm3_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3_new
+           --> main.bal:307:24
+            |
+        307 |     return foo:fm3 === foo:fm3_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3_new
+           --> main.bal:317:31
+            |
+        317 |     return foo:fm3["key5"] == foo:fm3_new["key5"]; // true
+            |                               ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm3_new
+           --> main.bal:325:32
+            |
+        325 |     return foo:fm3["key5"] === foo:fm3_new["key5"]; // false
+            |                                ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:331:12
+            |
+        331 |     return foo:fm7["key5"] == foo:fm7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:331:31
+            |
+        331 |     return foo:fm7["key5"] == foo:fm7["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:335:12
+            |
+        335 |     return foo:fm7["key5"] == foo:fm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:339:12
+            |
+        339 |     return foo:fm7["key5"] === foo:fm7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:339:32
+            |
+        339 |     return foo:fm7["key5"] === foo:fm7["key5"]; // true
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:343:12
+            |
+        343 |     return foo:fm7["key5"] === foo:fm1; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:349:12
+            |
+        349 |     return foo:fm7 == foo:fm8; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:353:12
+            |
+        353 |     return foo:fm7 === foo:fm8; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:357:12
+            |
+        357 |     return foo:fm7["key5"] == foo:fm8["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm7
+           --> main.bal:361:12
+            |
+        361 |     return foo:fm7["key5"] === foo:fm8["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm8
+           --> main.bal:349:23
+            |
+        349 |     return foo:fm7 == foo:fm8; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm8
+           --> main.bal:353:24
+            |
+        353 |     return foo:fm7 === foo:fm8; // false
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm8
+           --> main.bal:357:31
+            |
+        357 |     return foo:fm7["key5"] == foo:fm8["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: fm8
+           --> main.bal:361:32
+            |
+        361 |     return foo:fm7["key5"] === foo:fm8["key5"]; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+           --> main.bal:101:12
+            |
+        101 |     return foo:im1 == foo:im1_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+           --> main.bal:105:12
+            |
+        105 |     return foo:im1 === foo:im1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+           --> main.bal:105:24
+            |
+        105 |     return foo:im1 === foo:im1; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+           --> main.bal:109:12
+            |
+        109 |     return foo:im1 === foo:im1_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+           --> main.bal:141:12
+            |
+        141 |     return foo:im1 === foo:im3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+           --> main.bal:155:31
+            |
+        155 |     return foo:im7["key5"] == foo:im1; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+           --> main.bal:163:32
+            |
+        163 |     return foo:im7["key5"] === foo:im1; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+          --> main.bal:97:12
+           |
+        97 |     return foo:im1 == foo:im1; // true
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1
+          --> main.bal:97:23
+           |
+        97 |     return foo:im1 == foo:im1; // true
+           |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1_new
+           --> main.bal:101:23
+            |
+        101 |     return foo:im1 == foo:im1_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im1_new
+           --> main.bal:109:24
+            |
+        109 |     return foo:im1 === foo:im1_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:115:12
+            |
+        115 |     return foo:im3 == foo:im3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:115:23
+            |
+        115 |     return foo:im3 == foo:im3; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:119:12
+            |
+        119 |     return foo:im3 == foo:im3_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:123:12
+            |
+        123 |     return foo:im3 === foo:im3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:123:24
+            |
+        123 |     return foo:im3 === foo:im3; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:127:12
+            |
+        127 |     return foo:im3 === foo:im3_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:133:12
+            |
+        133 |     return foo:im3["key5"] == foo:im3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:133:31
+            |
+        133 |     return foo:im3["key5"] == foo:im3["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:137:12
+            |
+        137 |     return foo:im3["key5"] == foo:im3_new["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:141:24
+            |
+        141 |     return foo:im1 === foo:im3["key5"]; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3
+           --> main.bal:145:12
+            |
+        145 |     return foo:im3["key5"] === foo:im3_new["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3_new
+           --> main.bal:119:23
+            |
+        119 |     return foo:im3 == foo:im3_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3_new
+           --> main.bal:127:24
+            |
+        127 |     return foo:im3 === foo:im3_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3_new
+           --> main.bal:137:31
+            |
+        137 |     return foo:im3["key5"] == foo:im3_new["key5"]; // true
+            |                               ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im3_new
+           --> main.bal:145:32
+            |
+        145 |     return foo:im3["key5"] === foo:im3_new["key5"]; // false
+            |                                ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:151:12
+            |
+        151 |     return foo:im7["key5"] == foo:im7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:151:31
+            |
+        151 |     return foo:im7["key5"] == foo:im7["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:155:12
+            |
+        155 |     return foo:im7["key5"] == foo:im1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:159:12
+            |
+        159 |     return foo:im7["key5"] === foo:im7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:159:32
+            |
+        159 |     return foo:im7["key5"] === foo:im7["key5"]; // true
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:163:12
+            |
+        163 |     return foo:im7["key5"] === foo:im1; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:169:12
+            |
+        169 |     return foo:im7 == foo:im8; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:173:12
+            |
+        173 |     return foo:im7 === foo:im8; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:177:12
+            |
+        177 |     return foo:im7["key5"] == foo:im8["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im7
+           --> main.bal:181:12
+            |
+        181 |     return foo:im7["key5"] === foo:im8["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im8
+           --> main.bal:169:23
+            |
+        169 |     return foo:im7 == foo:im8; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im8
+           --> main.bal:173:24
+            |
+        173 |     return foo:im7 === foo:im8; // false
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im8
+           --> main.bal:177:31
+            |
+        177 |     return foo:im7["key5"] == foo:im8["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: im8
+           --> main.bal:181:32
+            |
+        181 |     return foo:im7["key5"] === foo:im8["key5"]; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:547:12
+            |
+        547 |     return foo:nm1 == foo:nm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:547:23
+            |
+        547 |     return foo:nm1 == foo:nm1; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:551:12
+            |
+        551 |     return foo:nm1 == foo:nm1_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:555:12
+            |
+        555 |     return foo:nm1 === foo:nm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:555:24
+            |
+        555 |     return foo:nm1 === foo:nm1; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:559:12
+            |
+        559 |     return foo:nm1 === foo:nm1_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:591:12
+            |
+        591 |     return foo:nm1 === foo:nm3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:605:31
+            |
+        605 |     return foo:nm7["key5"] == foo:nm1; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1
+           --> main.bal:613:32
+            |
+        613 |     return foo:nm7["key5"] === foo:nm1; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1_new
+           --> main.bal:551:23
+            |
+        551 |     return foo:nm1 == foo:nm1_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm1_new
+           --> main.bal:559:24
+            |
+        559 |     return foo:nm1 === foo:nm1_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:565:12
+            |
+        565 |     return foo:nm3 == foo:nm3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:565:23
+            |
+        565 |     return foo:nm3 == foo:nm3; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:569:12
+            |
+        569 |     return foo:nm3 == foo:nm3_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:573:12
+            |
+        573 |     return foo:nm3 === foo:nm3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:573:24
+            |
+        573 |     return foo:nm3 === foo:nm3; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:577:12
+            |
+        577 |     return foo:nm3 === foo:nm3_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:583:12
+            |
+        583 |     return foo:nm3["key5"] == foo:nm3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:583:31
+            |
+        583 |     return foo:nm3["key5"] == foo:nm3["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:587:12
+            |
+        587 |     return foo:nm3["key5"] == foo:nm3_new["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:591:24
+            |
+        591 |     return foo:nm1 === foo:nm3["key5"]; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3
+           --> main.bal:595:12
+            |
+        595 |     return foo:nm3["key5"] === foo:nm3_new["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3_new
+           --> main.bal:569:23
+            |
+        569 |     return foo:nm3 == foo:nm3_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3_new
+           --> main.bal:577:24
+            |
+        577 |     return foo:nm3 === foo:nm3_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3_new
+           --> main.bal:587:31
+            |
+        587 |     return foo:nm3["key5"] == foo:nm3_new["key5"]; // true
+            |                               ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm3_new
+           --> main.bal:595:32
+            |
+        595 |     return foo:nm3["key5"] === foo:nm3_new["key5"]; // false
+            |                                ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:601:12
+            |
+        601 |     return foo:nm7["key5"] == foo:nm7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:601:31
+            |
+        601 |     return foo:nm7["key5"] == foo:nm7["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:605:12
+            |
+        605 |     return foo:nm7["key5"] == foo:nm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:609:12
+            |
+        609 |     return foo:nm7["key5"] === foo:nm7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:609:32
+            |
+        609 |     return foo:nm7["key5"] === foo:nm7["key5"]; // true
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:613:12
+            |
+        613 |     return foo:nm7["key5"] === foo:nm1; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:619:12
+            |
+        619 |     return foo:nm7 == foo:nm8; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:623:12
+            |
+        623 |     return foo:nm7 === foo:nm8; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:627:12
+            |
+        627 |     return foo:nm7["key5"] == foo:nm8["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm7
+           --> main.bal:631:12
+            |
+        631 |     return foo:nm7["key5"] === foo:nm8["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm8
+           --> main.bal:619:23
+            |
+        619 |     return foo:nm7 == foo:nm8; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm8
+           --> main.bal:623:24
+            |
+        623 |     return foo:nm7 === foo:nm8; // false
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm8
+           --> main.bal:627:31
+            |
+        627 |     return foo:nm7["key5"] == foo:nm8["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: nm8
+           --> main.bal:631:32
+            |
+        631 |     return foo:nm7["key5"] === foo:nm8["key5"]; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:457:12
+            |
+        457 |     return foo:sm1 == foo:sm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:457:23
+            |
+        457 |     return foo:sm1 == foo:sm1; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:461:12
+            |
+        461 |     return foo:sm1 == foo:sm1_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:465:12
+            |
+        465 |     return foo:sm1 === foo:sm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:465:24
+            |
+        465 |     return foo:sm1 === foo:sm1; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:469:12
+            |
+        469 |     return foo:sm1 === foo:sm1_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:501:12
+            |
+        501 |     return foo:sm1 === foo:sm3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:515:31
+            |
+        515 |     return foo:sm7["key5"] == foo:sm1; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1
+           --> main.bal:523:32
+            |
+        523 |     return foo:sm7["key5"] === foo:sm1; // false
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1_new
+           --> main.bal:461:23
+            |
+        461 |     return foo:sm1 == foo:sm1_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm1_new
+           --> main.bal:469:24
+            |
+        469 |     return foo:sm1 === foo:sm1_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:475:12
+            |
+        475 |     return foo:sm3 == foo:sm3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:475:23
+            |
+        475 |     return foo:sm3 == foo:sm3; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:479:12
+            |
+        479 |     return foo:sm3 == foo:sm3_new; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:483:12
+            |
+        483 |     return foo:sm3 === foo:sm3; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:483:24
+            |
+        483 |     return foo:sm3 === foo:sm3; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:487:12
+            |
+        487 |     return foo:sm3 === foo:sm3_new; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:493:12
+            |
+        493 |     return foo:sm3["key5"] == foo:sm3["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:493:31
+            |
+        493 |     return foo:sm3["key5"] == foo:sm3["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:497:12
+            |
+        497 |     return foo:sm3["key5"] == foo:sm3_new["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:501:24
+            |
+        501 |     return foo:sm1 === foo:sm3["key5"]; // true
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3
+           --> main.bal:505:12
+            |
+        505 |     return foo:sm3["key5"] === foo:sm3_new["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3_new
+           --> main.bal:479:23
+            |
+        479 |     return foo:sm3 == foo:sm3_new; // true
+            |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3_new
+           --> main.bal:487:24
+            |
+        487 |     return foo:sm3 === foo:sm3_new; // false
+            |                        ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3_new
+           --> main.bal:497:31
+            |
+        497 |     return foo:sm3["key5"] == foo:sm3_new["key5"]; // true
+            |                               ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm3_new
+           --> main.bal:505:32
+            |
+        505 |     return foo:sm3["key5"] === foo:sm3_new["key5"]; // false
+            |                                ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:511:12
+            |
+        511 |     return foo:sm7["key5"] == foo:sm7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:511:31
+            |
+        511 |     return foo:sm7["key5"] == foo:sm7["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:515:12
+            |
+        515 |     return foo:sm7["key5"] == foo:sm1; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:519:12
+            |
+        519 |     return foo:sm7["key5"] === foo:sm7["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:519:32
+            |
+        519 |     return foo:sm7["key5"] === foo:sm7["key5"]; // true
+            |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:523:12
+            |
+        523 |     return foo:sm7["key5"] === foo:sm1; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:529:12
+            |
+        529 |     return foo:sm7 == foo:sm8; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:533:12
+            |
+        533 |     return foo:sm7 === foo:sm8; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:537:12
+            |
+        537 |     return foo:sm7["key5"] == foo:sm8["key5"]; // true
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm7
+           --> main.bal:541:12
+            |
+        541 |     return foo:sm7["key5"] === foo:sm8["key5"]; // false
+            |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm8
+           --> main.bal:529:23
+            |
+        529 |     return foo:sm7 == foo:sm8; // true
+            |                       ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm8
+           --> main.bal:533:24
+            |
+        533 |     return foo:sm7 === foo:sm8; // false
+            |                        ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm8
+           --> main.bal:537:31
+            |
+        537 |     return foo:sm7["key5"] == foo:sm8["key5"]; // true
+            |                               ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sm8
+           --> main.bal:541:32
+            |
+        541 |     return foo:sm7["key5"] === foo:sm8["key5"]; // false
+            |                                ^^^^^^^
+--- FAIL: TestMigrationTriage (0.09s)
+FAIL

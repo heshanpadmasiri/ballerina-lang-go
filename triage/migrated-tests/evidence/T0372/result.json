@@ -1,0 +1,14 @@
+{
+  "Name": "compound-assignment-test-dfbd0a78b0/compound-assignment-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/compound-assignment-test-dfbd0a78b0/compound-assignment-negative-e.bal",
+  "Project": false,
+  "Id": "T0372",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/compound-assignment-test-dfbd0a78b0/compound-assignment-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 1.501
+}

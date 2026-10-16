@@ -1,0 +1,106 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "xmlnstest-f41d1c0429/xmlns-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: abc
+          --> xmlns-v.bal:35:12
+           |
+        35 |     assert(ns7:abc, "{http://ballerina.com/g}abc");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: abc
+          --> xmlns-v.bal:57:12
+           |
+        57 |     assert(ns6:abc, "{http://ballerina.com/f}abc");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bar
+          --> xmlns-v.bal:31:12
+           |
+        31 |     assert(ns2:bar, "{http://ballerina.com/b}bar");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: bar
+          --> xmlns-v.bal:32:12
+           |
+        32 |     assert(ns3:bar, "{http://ballerina.com/c}bar");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: baz
+          --> xmlns-v.bal:25:16
+           |
+        25 |     string a = ns1:baz;
+           |                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: baz
+          --> xmlns-v.bal:51:12
+           |
+        51 |     assert(ns4:baz, "{http://ballerina.com/e}baz");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: baz
+          --> xmlns-v.bal:54:12
+           |
+        54 |     assert(ns5:baz, "{http://www.w3.org/2000/xmlns/}baz");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: def
+          --> xmlns-v.bal:36:12
+           |
+        36 |     assert(ns8:def, "{http://ballerina.com/i}def");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+          --> xmlns-v.bal:29:12
+           |
+        29 |     assert(ns0:foo, "{http://ballerina.com/a}foo");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+          --> xmlns-v.bal:30:12
+           |
+        30 |     assert(ns1:foo, "{http://www.w3.org/2000/xmlns/}foo");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: ghi
+          --> xmlns-v.bal:18:19
+           |
+        18 | final string f3 = ns7:ghi;
+           |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: ijk
+          --> xmlns-v.bal:17:19
+           |
+        17 | final string f2 = ns2:ijk;
+           |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: jkl
+          --> xmlns-v.bal:19:19
+           |
+        19 | final string f4 = ns8:jkl;
+           |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: lmn
+          --> xmlns-v.bal:16:19
+           |
+        16 | final string f1 = ns1:lmn;
+           |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: pqr
+          --> xmlns-v.bal:20:12
+           |
+        20 | string s = ns3:pqr;
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: sty
+          --> xmlns-v.bal:21:13
+           |
+        21 | string s2 = ns7:sty;
+           |             ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: xyz
+          --> xmlns-v.bal:22:13
+           |
+        22 | string s3 = ns8:xyz;
+           |             ^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "string-value-xml-test-f2ac2e01f3/string-value-xml-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+          --> string-value-xml-v.bal:74:35
+           |
+        74 |                         <!--Price: $${ 40 / 5 + 4 }-->
+           |                                   ^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

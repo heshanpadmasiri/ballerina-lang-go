@@ -1,0 +1,16 @@
+{
+  "id": "T0506",
+  "name": "forward-referencing-global-definition-test-c1122b914e/simple-global-cycle-e",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"Module variable declarations\", \"Function definition\", \"Type definition\"",
+    "## Expressions: \"Anonymous function expression\", \"Variable reference\", \"Field access expression\", \"Mapping constructor\", \"List constructor\", \"Call\"",
+    "## Statements: \"Local variable declarations\", \"Return\""
+  ],
+  "reason": "This negative case asserts rejection of cyclic module-variable initialization: employee/person references, dep1/dep2 references, and lambdaFoo/myBool dependencies through an anonymous function. Module variables, type and function definitions, variable and field references, constructors, and anonymous function calls are supported. No listed restriction excludes these dependency-cycle diagnostics; rejecting illegal initialization cycles within supported constructs is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The three @error markers assert compile-time rejection, rather than successful execution of the cyclic initializers.",
+    "The dependency graph spans file01.bal and file02.bal in one package."
+  ]
+}

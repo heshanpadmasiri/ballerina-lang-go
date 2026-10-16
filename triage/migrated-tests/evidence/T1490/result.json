@@ -1,0 +1,14 @@
+{
+  "Name": "type-test-expr-test-746fc24e41/type-test-expr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-746fc24e41/type-test-expr-v.bal",
+  "Project": false,
+  "Id": "T1490",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-746fc24e41/type-test-expr-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.079
+}

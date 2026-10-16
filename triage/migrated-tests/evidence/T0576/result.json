@@ -1,0 +1,14 @@
+{
+  "Name": "function-signature-test-d3becf86ae/function-signatures-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-signature-test-d3becf86ae/function-signatures-v.bal",
+  "Project": false,
+  "Id": "T0576",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-signature-test-d3becf86ae/function-signatures-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.078
+}

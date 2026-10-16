@@ -1,0 +1,14 @@
+{
+  "Name": "length-operation-test-5fc3453f66/length-operation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/length-operation-test-5fc3453f66/length-operation-v.bal",
+  "Project": false,
+  "Id": "T0706",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/length-operation-test-5fc3453f66/length-operation-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.046
+}

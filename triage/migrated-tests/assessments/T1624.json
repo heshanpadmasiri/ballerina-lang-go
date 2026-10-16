@@ -1,0 +1,17 @@
+{
+  "id": "T1624",
+  "name": "xmliteration-test-c9c3cad714/xml_iteration-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Foreach — Currently only supports range, list, map, string and XML subtypes, and iterable objects",
+    "Expressions: XML template expression — Supports interpolation in XML content and attributes",
+    "Subset restrictions > Import declarations: ballerina/lang.xml includes concat, iterator, map, forEach and filter",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: xml:iterator, xml:length, xml:getName, xml:setName, xml:getAttributes, xml:getChildren, xml:setChildren, xml:getDescendants, xml:data, xml:getTarget, xml:getContent, xml:strip, xml:elements, xml:children, xml:elementChildren, xml:text, xml:get, xml:slice, xml:map, xml:forEach and xml:filter"
+  ],
+  "reason": "The case essentially invokes el.concat(xml `<bar/>`) in element and union sequence iteration tests. Although xml:concat is an allowed library function, concat is absent from the explicit XML method-call whitelist, so this method syntax is outside subset 10. This decisive restriction makes the whole case feature-scoped.",
+  "unsupported_constructs": ["XML concat through method-call syntax: el.concat(...)"] ,
+  "test_design_notes": [
+    "Mixed scope: supported XML foreach, navigation, iterator, map/filter/forEach and value:toString behavior coexist with unsupported concat method syntax.",
+    "Output markers assert XML iteration order, serialization, and literal backslash-u text; no obvious marker inconsistency is apparent. No @args or @panic markers occur."
+  ]
+}

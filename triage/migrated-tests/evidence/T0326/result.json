@@ -1,0 +1,14 @@
+{
+  "Name": "class-test-31d1ee9eb5/class-def-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/class-test-31d1ee9eb5/class-def-v.bal",
+  "Project": false,
+  "Id": "T0326",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/class-test-31d1ee9eb5/class-def-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.053
+}

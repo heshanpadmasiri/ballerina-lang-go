@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n --\u003e frozen-value-update-p.bal:5:15\n  |\n5 |     BRec b2 = b.cloneReadOnly();\n  |               ^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-value-update-p.bal","StartLine":5,"EndLine":5}]}

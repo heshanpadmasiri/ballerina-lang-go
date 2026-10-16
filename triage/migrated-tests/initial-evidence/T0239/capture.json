@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible type: expected float, got 2.3d\n --\u003e bfloat-value-negative-discrimination-e.bal:2:15\n  |\n2 |     float b = 2.3d; // @error\n  |               ^^^^\n\n","Diagnostics":[{"File":"bfloat-value-negative-discrimination-e.bal","StartLine":2,"EndLine":2}]}

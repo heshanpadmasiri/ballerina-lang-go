@@ -1,0 +1,14 @@
+{
+  "Name": "arrays-of-arrays-test-253b35e6d5/arrays-of-arrays-failures-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/arrays-of-arrays-test-253b35e6d5/arrays-of-arrays-failures-e.bal",
+  "Project": false,
+  "Id": "T0185",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/arrays-of-arrays-test-253b35e6d5/arrays-of-arrays-failures-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.044
+}

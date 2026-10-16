@@ -1,0 +1,21 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "bbyte-value-negative-test-a1f101c098/byte-value-runtime-negative-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> byte-value-runtime-negative-v.bal:11:5
+           |
+        11 |     byte b = check trap <byte>a;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+          --> byte-value-runtime-negative-v.bal:17:5
+           |
+        17 |     byte d = check trap <byte>c;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'f'
+          --> byte-value-runtime-negative-v.bal:23:5
+           |
+        23 |     byte f = check trap <byte>e;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

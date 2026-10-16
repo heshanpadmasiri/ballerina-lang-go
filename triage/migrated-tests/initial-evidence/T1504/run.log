@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "unused-variable-test-ea064cfdc1/unused-variable-analysis-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

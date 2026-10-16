@@ -1,0 +1,508 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "collect-clause-test-c0e4163727/cases/collect-clause-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> collect-clause-negative-e.bal:193:9
+            |
+        193 |     _ = from int number in 1 ... 5
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        194 |         do {
+            |         ^^^^
+        195 |             int _ = from int i in numberStream
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        196 |                 collect sum(i); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+        197 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> collect-clause-negative-e.bal:199:9
+            |
+        199 |     _ = from int number in 1 ... 5
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        200 |         do {
+            |         ^^^^
+        201 |             int _ = from int i in 1 ... 3
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        202 |                 from int j in numberStream
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        203 |                 collect sum(i); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+        204 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> collect-clause-negative-e.bal:147:41
+            |
+        147 |                 collect int:sum(salary, ...j); // @error
+            |                                         ^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> collect-clause-negative-e.bal:154:33
+            |
+        154 |                 collect int:max(...[price]); // @error
+            |                                 ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:106:22
+            |
+        106 |     int _ = from var {salary} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:108:24
+            |
+        108 |     int[] _ = from var {salary} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                        ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:121:23
+            |
+        121 |     var x1 = from var {name, price1, price2} in input1
+            |                       ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:125:23
+            |
+        125 |     var x2 = from var {name, price1, price2} in input1
+            |                       ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:132:23
+            |
+        132 |     int x7 = from var {name, price1} in [{name: "Saman", price1: 2}]
+            |                       ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:138:22
+            |
+        138 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:142:22
+            |
+        142 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:146:22
+            |
+        146 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:149:22
+            |
+        149 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> collect-clause-negative-e.bal:152:22
+            |
+        152 |     var x = from var {name, price} in [{name: "", price: 2}]
+            |                      ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:18:23
+           |
+        18 |     int x1 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                       ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:20:28
+           |
+        20 |     string[] x2 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                            ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:25:26
+           |
+        25 |     string x1 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:27:25
+           |
+        27 |     int[] x2 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                         ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:32:23
+           |
+        32 |     int x1 = from var {x} in [{"x":"2", "y":"3"}, {"x":"4", "y":"5"}]
+           |                       ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:34:26
+           |
+        34 |     string x2 = from var {x} in [{"x":"2", "y":"3"}, {"x":"4", "y":"5"}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:36:26
+           |
+        36 |     string x3 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:38:26
+           |
+        38 |     string x4 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:40:23
+           |
+        40 |     var x5 = from var {x} in [{"x":"2", "y":"3"}, {"x":"4", "y":"5"}]
+           |                       ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:45:26
+           |
+        45 |     string x1 = from var {x} in [{"x":"2", "y":"3"}, {"x":"4", "y":"5"}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:47:23
+           |
+        47 |     int x2 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                       ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:49:40
+           |
+        49 |     record {| int x; |} rec = from var {x, y} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                                        ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:54:25
+           |
+        54 |     int[6] a = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                         ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:56:46
+           |
+        56 |     record {| int[6] intArr; |} r = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                                              ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:61:24
+           |
+        61 |     int sum = from var {name, price} in [{name: "Saman", price: 11}]
+           |                        ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:66:24
+           |
+        66 |     int sum = from var {name, price} in [{name: "Saman", price: 11}]
+           |                        ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:68:20
+           |
+        68 |     sum = from var {name, price} in [{name: "Saman", price: 11}]
+           |                    ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:79:32
+           |
+        79 |     var sum1 = stream from var {name, price1, price2} in input
+           |                                ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:81:29
+           |
+        81 |     var sum2 = map from var {name, price1, price2} in input
+           |                             ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:83:34
+           |
+        83 |     map<int> sum3 = map from var {name, price1, price2} in input
+           |                                  ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:85:41
+           |
+        85 |     var sum4 = table key(name) from var {name, price1, price2} in input
+           |                                         ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:90:24
+           |
+        90 |     int[] a = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                        ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:95:24
+           |
+        95 |     int[] a = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                        ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> collect-clause-negative-e.bal:97:22
+           |
+        97 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:106:22
+            |
+        106 |     int _ = from var {salary} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:108:24
+            |
+        108 |     int[] _ = from var {salary} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                        ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:121:23
+            |
+        121 |     var x1 = from var {name, price1, price2} in input1
+            |                       ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:125:23
+            |
+        125 |     var x2 = from var {name, price1, price2} in input1
+            |                       ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:132:23
+            |
+        132 |     int x7 = from var {name, price1} in [{name: "Saman", price1: 2}]
+            |                       ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:138:22
+            |
+        138 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:142:22
+            |
+        142 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:146:22
+            |
+        146 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:149:22
+            |
+        149 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> collect-clause-negative-e.bal:152:22
+            |
+        152 |     var x = from var {name, price} in [{name: "", price: 2}]
+            |                      ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:18:23
+           |
+        18 |     int x1 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                       ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:20:28
+           |
+        20 |     string[] x2 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                            ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:25:26
+           |
+        25 |     string x1 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:27:25
+           |
+        27 |     int[] x2 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                         ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:32:23
+           |
+        32 |     int x1 = from var {x} in [{"x":"2", "y":"3"}, {"x":"4", "y":"5"}]
+           |                       ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:34:26
+           |
+        34 |     string x2 = from var {x} in [{"x":"2", "y":"3"}, {"x":"4", "y":"5"}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:36:26
+           |
+        36 |     string x3 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:38:26
+           |
+        38 |     string x4 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:40:23
+           |
+        40 |     var x5 = from var {x} in [{"x":"2", "y":"3"}, {"x":"4", "y":"5"}]
+           |                       ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:45:26
+           |
+        45 |     string x1 = from var {x} in [{"x":"2", "y":"3"}, {"x":"4", "y":"5"}]
+           |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:47:23
+           |
+        47 |     int x2 = from var {x} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                       ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:49:40
+           |
+        49 |     record {| int x; |} rec = from var {x, y} in [{"x":2, "y":3}, {"x":4, "y":5}]
+           |                                        ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:54:25
+           |
+        54 |     int[6] a = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                         ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:56:46
+           |
+        56 |     record {| int[6] intArr; |} r = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                                              ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:61:24
+           |
+        61 |     int sum = from var {name, price} in [{name: "Saman", price: 11}]
+           |                        ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:66:24
+           |
+        66 |     int sum = from var {name, price} in [{name: "Saman", price: 11}]
+           |                        ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:68:20
+           |
+        68 |     sum = from var {name, price} in [{name: "Saman", price: 11}]
+           |                    ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:79:32
+           |
+        79 |     var sum1 = stream from var {name, price1, price2} in input
+           |                                ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:81:29
+           |
+        81 |     var sum2 = map from var {name, price1, price2} in input
+           |                             ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:83:34
+           |
+        83 |     map<int> sum3 = map from var {name, price1, price2} in input
+           |                                  ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:85:41
+           |
+        85 |     var sum4 = table key(name) from var {name, price1, price2} in input
+           |                                         ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:90:24
+           |
+        90 |     int[] a = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                        ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:95:24
+           |
+        95 |     int[] a = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                        ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> collect-clause-negative-e.bal:97:22
+           |
+        97 |     int _ = from var {salary, bonus} in [{salary: 2, bonus: 1}, {salary: 4, bonus: 2}]
+           |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> collect-clause-negative-e.bal:79:16
+           |
+        79 |     var sum1 = stream from var {name, price1, price2} in input
+           |                ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> collect-clause-negative-e.bal:85:16
+           |
+        85 |     var sum4 = table key(name) from var {name, price1, price2} in input
+           |                ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> collect-clause-negative-e.bal:193:9
+            |
+        193 |     _ = from int number in 1 ... 5
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        194 |         do {
+            |         ^^^^
+        195 |             int _ = from int i in numberStream
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        196 |                 collect sum(i); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+        197 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> collect-clause-negative-e.bal:199:9
+            |
+        199 |     _ = from int number in 1 ... 5
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        200 |         do {
+            |         ^^^^
+        201 |             int _ = from int i in 1 ... 3
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        202 |                 from int j in numberStream
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        203 |                 collect sum(i); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+        204 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> collect-clause-negative-e.bal:147:41
+            |
+        147 |                 collect int:sum(salary, ...j); // @error
+            |                                         ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> collect-clause-negative-e.bal:154:33
+            |
+        154 |                 collect int:max(...[price]); // @error
+            |                                 ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

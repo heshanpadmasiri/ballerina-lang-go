@@ -1,0 +1,16 @@
+{
+  "id": "T0346",
+  "name": "closed-record-optional-fields-test-39abbdf876/closed_record_optional_fields_negatives-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"",
+    "Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\"",
+    "Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"",
+    "Expressions: \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\"; \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\""
+  ],
+  "reason": "The case asserts compile-time rejection of an optional record field with a default initializer and an empty record constructor missing required adrs. These are negative checks within supported type definitions, local declarations, and mapping constructors; no listed restriction excludes the closed records, optional/default fields, singleton union, or forward type reference used here.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Two @error markers occur on int age? = 999; one occurs on Person p1 = {}. No @args, @panic, or @output behavior is asserted."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0088",
+  "name": "argument-parser-positive-test-e41e5b8a0a/char-v",
+  "classification": "bug",
+  "spec_references": [
+    {"heading": "Module-level declarations", "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"},
+    {"heading": "Subset restrictions > Import declarations", "quote": "Only following lang libraries with given methods/types are supported", "detail": "The ballerina/lang.string list explicitly includes Char."},
+    {"heading": "Statements", "quote": "[Call](https://ballerina.io/spec/lang/master/#call-stmt)"},
+    {"heading": "Expressions", "quote": "[Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)"}
+  ],
+  "reason": "The complete case uses a supported function with one required string:Char parameter, a variable reference and an ordinary print call. Char is expressly included in the supported lang.string types. No essential construct is expressly unsupported or excluded by the positive lists.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @args [\"A\"] and @output A comments identify a positive command-line argument parsing case.",
+    "ballerina/io and io:println are ordinary output instrumentation; the lang-library restriction does not exclude all standard libraries.",
+    "No mixed unsupported constructs or negative-test markers are present."
+  ]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'd'\n --\u003e invalid-decimal-03-p.bal:2:22\n  |\n2 | public function main(decimal d) { // @panic\n  |                      ^^^^^^^^^\n\nballerina: compilation contains errors\n","Diagnostics":null}

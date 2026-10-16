@@ -1,0 +1,14 @@
+{
+  "Name": "multiple-from-clause-test-c70b0738f9/multiple-from-clauses-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/multiple-from-clause-test-c70b0738f9/multiple-from-clauses-v.bal",
+  "Project": false,
+  "Id": "T0924",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/multiple-from-clause-test-c70b0738f9/multiple-from-clauses-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.065
+}

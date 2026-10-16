@@ -1,0 +1,14 @@
+{
+  "Name": "array-fill-negative-test-3d68a15e37/array-fill-object-init-param-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-fill-negative-test-3d68a15e37/array-fill-object-init-param-p.bal",
+  "Project": false,
+  "Id": "T0142",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-fill-negative-test-3d68a15e37/array-fill-object-init-param-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.093
+}

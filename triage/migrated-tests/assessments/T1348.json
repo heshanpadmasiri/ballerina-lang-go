@@ -1,0 +1,20 @@
+{
+  "id": "T1348",
+  "name": "simple-constant-negative-test-654366703c/simple-literal-constant-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: supported actions include \"Start action\" and \"Wait action\"; worker send/receive actions are not listed.",
+    "## Statements: supported statements do not include worker declarations.",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString, fromHexString, but not MIN_VALUE.",
+    "## Module-level declarations: \"Constant declarations\" and \"Type definition\" are supported."
+  ],
+  "reason": "The case requires worker declarations and worker message send/receive to diagnose assignment to a constant from a receive action. These constructs are outside the supported positive lists. It also uses int:MIN_VALUE, which is absent from the restricted lang.int members, and typeof, which is absent from supported expressions. Thus the whole case requires unsupported features even though most constant type and arithmetic rejection checks are within supported declarations and operators.",
+  "unsupported_constructs": [
+    "worker declarations and worker send/receive actions in testWorkerInteractions",
+    "int:MIN_VALUE references",
+    "typeof expression in constant initializer"
+  ],
+  "test_design_notes": [
+    "Negative diagnostics for invalid code within supported grammar remain in scope; classification is based on essential unsupported constructs, not merely the presence of expected errors."
+  ]
+}

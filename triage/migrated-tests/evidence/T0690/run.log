@@ -1,0 +1,52 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> basic-iterable-with-variable-mutability-e.bal:11:13
+           |
+        11 |         var [k, t] = v; // @error unused variable 't'
+           |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> basic-iterable-with-variable-mutability-e.bal:18:13
+           |
+        18 |         var [v1, v2] = v;
+           |             ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> basic-iterable-with-variable-mutability-e.bal:63:13
+           |
+        63 |         var [x, y] = pair; // @error unused variable 'y'
+           |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> basic-iterable-with-variable-mutability-e.bal:6:13
+          |
+        6 |         var [key, value] = tuple;
+          |             ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> basic-iterable-with-variable-mutability-e.bal:11:13
+           |
+        11 |         var [k, t] = v; // @error unused variable 't'
+           |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> basic-iterable-with-variable-mutability-e.bal:18:13
+           |
+        18 |         var [v1, v2] = v;
+           |             ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> basic-iterable-with-variable-mutability-e.bal:63:13
+           |
+        63 |         var [x, y] = pair; // @error unused variable 'y'
+           |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> basic-iterable-with-variable-mutability-e.bal:6:13
+          |
+        6 |         var [key, value] = tuple;
+          |             ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

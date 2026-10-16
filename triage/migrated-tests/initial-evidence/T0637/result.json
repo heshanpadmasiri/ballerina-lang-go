@@ -1,0 +1,14 @@
+{
+  "Name": "if-else-stmt-test-abeec549fb/if-else-stmt-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/if-else-stmt-test-abeec549fb/if-else-stmt-negative-e.bal",
+  "Project": false,
+  "Id": "T0637",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/if-else-stmt-test-abeec549fb/if-else-stmt-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.051
+}

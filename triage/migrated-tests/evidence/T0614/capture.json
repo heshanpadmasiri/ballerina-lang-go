@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Unknown symbol: clone\n  --\u003e global_variable_init-v.bal:21:9\n   |\n21 |     n = value:clone(la);\n   |         ^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"global_variable_init-v.bal","StartLine":21,"EndLine":21}]}

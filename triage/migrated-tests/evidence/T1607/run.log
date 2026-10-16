@@ -1,0 +1,238 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "xml-member-access-test-cd91bb2812/xml_member_access-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:110:33
+            |
+        110 |     xml:Element|xml<never> m1 = elem[0];
+            |                                 ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:113:16
+            |
+        113 |     assertTrue(elem[3] is xml<never>);
+            |                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:115:19
+            |
+        115 |     xml:Text m2 = text[0];
+            |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:118:16
+            |
+        118 |     assertTrue(text[3] is xml<never>);
+            |                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:120:33
+            |
+        120 |     xml:Comment|xml<never> m3 = comment[0];
+            |                                 ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:123:16
+            |
+        123 |     assertTrue(comment[2] is xml<never>);
+            |                ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:125:47
+            |
+        125 |     xml:ProcessingInstruction|xml<never> m4 = pi[0];
+            |                                               ^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:128:16
+            |
+        128 |     assertTrue(pi[4] is xml<never>);
+            |                ^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:133:45
+            |
+        133 |     xml:Element|xml:Comment|xml<never> m1 = seq[0];
+            |                                             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:136:45
+            |
+        136 |     xml:Element|xml:Comment|xml<never> m2 = seq[1];
+            |                                             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:139:16
+            |
+        139 |     assertTrue(seq[4] is xml<never>);
+            |                ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:141:59
+            |
+        141 |     xml:Comment|xml:ProcessingInstruction|xml<never> m3 = seq2[0];
+            |                                                           ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:144:16
+            |
+        144 |     assertTrue(seq2[1] is xml<never>);
+            |                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:149:45
+            |
+        149 |     xml:Element|xml:Comment|xml<never> m1 = seq[0];
+            |                                             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:152:45
+            |
+        152 |     xml:Element|xml:Comment|xml<never> m2 = seq[1];
+            |                                             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:155:42
+            |
+        155 |     assertEquality(xml `<bar>val</bar>`, seq[2]);
+            |                                          ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:156:16
+            |
+        156 |     assertTrue(seq[4] is xml<never>);
+            |                ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:158:59
+            |
+        158 |     xml:Comment|xml:ProcessingInstruction|xml<never> m3 = seq2[0];
+            |                                                           ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:161:16
+            |
+        161 |     assertTrue(seq2[1] is xml<never>);
+            |                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+           --> xml_member_access-v.bal:166:22
+            |
+        166 |     xml<never> val = seq[0];
+            |                      ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:18:14
+           |
+        18 |     xml m1 = seq[0];
+           |              ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:21:69
+           |
+        21 |     xml:Element|xml:Comment|xml:ProcessingInstruction|xml:Text m2 = seq[1];
+           |                                                                     ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:24:14
+           |
+        24 |     xml m3 = seq[2];
+           |              ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:27:14
+           |
+        27 |     xml m4 = seq[3];
+           |              ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:30:14
+           |
+        30 |     xml m5 = seq[4];
+           |              ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:36:33
+           |
+        36 |     xml:Element|xml<never> m1 = seq[0];
+           |                                 ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:39:33
+           |
+        39 |     xml:Element|xml<never> m2 = seq[1];
+           |                                 ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:42:33
+           |
+        42 |     xml:Element|xml<never> m3 = seq[5];
+           |                                 ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:45:36
+           |
+        45 |         xml:Element|xml<never> _ = seq[-5];
+           |                                    ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:56:33
+           |
+        56 |     xml:Comment|xml<never> m1 = seq[0];
+           |                                 ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:59:33
+           |
+        59 |     xml:Comment|xml<never> m2 = seq[2];
+           |                                 ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:62:33
+           |
+        62 |     xml:Comment|xml<never> m3 = seq[5];
+           |                                 ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:65:36
+           |
+        65 |         xml:Comment|xml<never> _ = seq[-1];
+           |                                    ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:76:30
+           |
+        76 |     xml:Text|xml<never> m1 = seq[0];
+           |                              ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:79:30
+           |
+        79 |     xml:Text|xml<never> m3 = seq[2];
+           |                              ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:82:33
+           |
+        82 |         xml:Text|xml<never> _ = seq[-1];
+           |                                 ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:93:47
+           |
+        93 |     xml:ProcessingInstruction|xml<never> m1 = seq[0];
+           |                                               ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:96:47
+           |
+        96 |     xml:ProcessingInstruction|xml<never> m3 = seq[2];
+           |                                               ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unsupported container type for index based access
+          --> xml_member_access-v.bal:99:50
+           |
+        99 |         xml:ProcessingInstruction|xml<never> _ = seq[-1];
+           |                                                  ^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

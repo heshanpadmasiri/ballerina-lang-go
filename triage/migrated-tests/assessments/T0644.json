@@ -1,0 +1,12 @@
+{
+  "id": "T0644",
+  "name": "init-function-test-d2ccfe8a95/init-function-error-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message."
+  ],
+  "reason": "The asserted output 24 requires result.detail() to retrieve the error detail field i after init increments the module variable. The supported error langlib and method-call lists include message but omit detail, so this essential assertion requires unsupported functionality.",
+  "unsupported_constructs": ["error:detail invoked as result.detail()"],
+  "test_design_notes": ["io:println is output instrumentation; the unsupported operation is the error detail retrieval inside its argument."]
+}

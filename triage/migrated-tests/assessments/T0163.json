@@ -1,0 +1,15 @@
+{
+  "id": "T0163",
+  "name": "array-mutability-test-f73ad51ac1/array-mutability-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Statements: \"Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"New expression\"; \"List constructor\"; \"Variable reference\""
+  ],
+  "reason": "This negative compilation case exercises array assignability across record and class element types, dimensions, fixed/open lengths, and optional/union element types. Type definitions, class fields, local declarations, assignments, list constructors and inferred new expressions are supported; no listed restriction excludes these type relationships. The @error assertions require rejection of incompatible assignments within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Contains @error assertions only; no @args, @panic or @output execution protocol is required. Positive assignments also exercise array covariance and equivalent optional/union types."
+  ]
+}

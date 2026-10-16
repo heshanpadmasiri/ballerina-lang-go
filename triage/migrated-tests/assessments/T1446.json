@@ -1,0 +1,18 @@
+{
+  "id": "T1446",
+  "name": "tuple-mutability-test-4a07e00b3d/try-catch-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Statements: [Assignment]; [Local variable declarations]; [Call]",
+    "## Expressions: [List constructor]; [Member access expression]; [Trap expression]; [Conditional expression]",
+    "## Expressions / Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Module-level declarations: [Function definition]",
+    "# Subset restrictions / ## Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "All essential operations are covered: tuple list construction and aliasing, indexed assignment/access, nil literals, a function call trapped for panic, and the nil-default conditional expression. Assigning nil through the widened optional-element tuple reference must fail against the original tuple's inherent int element type, leaving y[1] equal to 5 and satisfying @output 5. No listed restriction excludes this behavior; ballerina/io println is instrumentation, not a restricted ballerina/lang.* call.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The trapped result is unused, so the output verifies retention of element value 5 but does not directly assert the trapped error's type or message.",
+    "Despite the filename, this uses trap rather than a try/catch construct. No marker mismatch or obvious mixed scope."
+  ]
+}

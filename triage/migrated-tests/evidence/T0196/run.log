@@ -1,0 +1,444 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "assignment-to-narrowed-vars-in-loops-test-df0ab3d5c6/assignment_to_narrowed_vars_in_loops_negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:445:13
+            |
+        445 |             [a, b, f, c, d, ...w] = [1, 2, 3, 4, 5]; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:446:13
+            |
+        446 |             [...w] = []; // @error
+            |             ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:459:13
+            |
+        459 |             {a: e, b: f, d} = rec; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:460:13
+            |
+        460 |             {a, b, ...x} = rec; // @error
+            |             ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:468:13
+            |
+        468 |             error(a, b = b, c = c, d = d) = err; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:469:13
+            |
+        469 |             error(b = f, ...x) = err; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:496:18
+            |
+        496 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:515:18
+            |
+        515 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:537:18
+            |
+        537 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:561:18
+            |
+        561 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:578:18
+            |
+        578 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:599:18
+            |
+        599 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:637:20
+            |
+        637 |         error? m = from int i in 0 ..< 2
+            |                    ^^^^^^^^^^^^^^^^^^^^^
+        638 |         do {
+            |         ^^^^
+        639 |             int _ = x;
+            |             ^^^^^^^^^^
+        640 |             x = "str"; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^
+        641 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:650:20
+            |
+        650 |         error? m = from int i in 0 ..< 2
+            |                    ^^^^^^^^^^^^^^^^^^^^^
+        651 |         do {
+            |         ^^^^
+        652 |             error? n = from int j in 0 ..< 2
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        653 |             do {
+            |             ^^^^
+        654 |                 boolean b = false;
+            |                 ^^^^^^^^^^^^^^^^^^
+        655 | 
+            | 
+        656 |                 if b {
+            |                 ^^^^^^
+        657 |                     x = "str"; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^
+        658 |                 }
+            |                 ^
+        659 | 
+            | 
+        660 |                 x = 1; // @error
+            |                 ^^^^^^^^^^^^^^^^
+        661 |             };
+            |             ^^
+        662 |             boolean _ = n is error;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        663 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:672:20
+            |
+        672 |         error? m = from int i in 0 ..< 2
+            |                    ^^^^^^^^^^^^^^^^^^^^^
+        673 |         do {
+            |         ^^^^
+        674 |             int _ = x;
+            |             ^^^^^^^^^^
+        675 |             if x is int {
+            |             ^^^^^^^^^^^^^
+        676 |                 x = "str"; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^
+        677 |             }
+            |             ^
+        678 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:688:9
+            |
+        688 |         from var a in x // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        689 |         where p is int
+            |         ^^^^^^^^^^^^^^
+        690 |         do {
+            |         ^^^^
+        691 |             p = 12; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        692 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:696:9
+            |
+        696 |         from var a in x
+            |         ^^^^^^^^^^^^^^^
+        697 |         where p is int && a is int
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        698 |         do {
+            |         ^^^^
+        699 |             p = 12; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        700 |             a = 10; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        701 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:705:9
+            |
+        705 |         from var a in x // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        706 |         where p is int
+            |         ^^^^^^^^^^^^^^
+        707 |         do {
+            |         ^^^^
+        708 |             p = 12; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        709 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:713:9
+            |
+        713 |         from var a in x
+            |         ^^^^^^^^^^^^^^^
+        714 |         where p is int && a is int
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        715 |         do {
+            |         ^^^^
+        716 |             p = 12; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        717 |             a = 10; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        718 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:444:37
+            |
+        444 |             [string, int, int, int] [_, f, _, _] = [a, b, c, d]; // @error
+            |                                     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:452:37
+            |
+        452 |             [string, int, int, int] [e, f, _, _] = [a, b, c, d]; // @error
+            |                                     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:466:37
+            |
+        466 |             [string, int, int, int] [_, f, _, _] = [a, b, c, d]; // @error
+            |                                     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:479:31
+            |
+        479 |     foreach [string, anydata] [k, v] in logRecord.entries() {
+            |                               ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:444:37
+            |
+        444 |             [string, int, int, int] [_, f, _, _] = [a, b, c, d]; // @error
+            |                                     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:452:37
+            |
+        452 |             [string, int, int, int] [e, f, _, _] = [a, b, c, d]; // @error
+            |                                     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:466:37
+            |
+        466 |             [string, int, int, int] [_, f, _, _] = [a, b, c, d]; // @error
+            |                                     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:479:31
+            |
+        479 |     foreach [string, anydata] [k, v] in logRecord.entries() {
+            |                               ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:445:13
+            |
+        445 |             [a, b, f, c, d, ...w] = [1, 2, 3, 4, 5]; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:446:13
+            |
+        446 |             [...w] = []; // @error
+            |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:459:13
+            |
+        459 |             {a: e, b: f, d} = rec; // @error
+            |             ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:460:13
+            |
+        460 |             {a, b, ...x} = rec; // @error
+            |             ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:468:13
+            |
+        468 |             error(a, b = b, c = c, d = d) = err; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:469:13
+            |
+        469 |             error(b = f, ...x) = err; // @error
+            |             ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:496:18
+            |
+        496 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:515:18
+            |
+        515 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:537:18
+            |
+        537 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:561:18
+            |
+        561 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:578:18
+            |
+        578 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:599:18
+            |
+        599 |     int? value = let int length = arr.length() in length > 0 ? length : ();
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:637:20
+            |
+        637 |         error? m = from int i in 0 ..< 2
+            |                    ^^^^^^^^^^^^^^^^^^^^^
+        638 |         do {
+            |         ^^^^
+        639 |             int _ = x;
+            |             ^^^^^^^^^^
+        640 |             x = "str"; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^
+        641 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:650:20
+            |
+        650 |         error? m = from int i in 0 ..< 2
+            |                    ^^^^^^^^^^^^^^^^^^^^^
+        651 |         do {
+            |         ^^^^
+        652 |             error? n = from int j in 0 ..< 2
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        653 |             do {
+            |             ^^^^
+        654 |                 boolean b = false;
+            |                 ^^^^^^^^^^^^^^^^^^
+        655 | 
+            | 
+        656 |                 if b {
+            |                 ^^^^^^
+        657 |                     x = "str"; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^
+        658 |                 }
+            |                 ^
+        659 | 
+            | 
+        660 |                 x = 1; // @error
+            |                 ^^^^^^^^^^^^^^^^
+        661 |             };
+            |             ^^
+        662 |             boolean _ = n is error;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^
+        663 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:672:20
+            |
+        672 |         error? m = from int i in 0 ..< 2
+            |                    ^^^^^^^^^^^^^^^^^^^^^
+        673 |         do {
+            |         ^^^^
+        674 |             int _ = x;
+            |             ^^^^^^^^^^
+        675 |             if x is int {
+            |             ^^^^^^^^^^^^^
+        676 |                 x = "str"; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^
+        677 |             }
+            |             ^
+        678 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:688:9
+            |
+        688 |         from var a in x // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        689 |         where p is int
+            |         ^^^^^^^^^^^^^^
+        690 |         do {
+            |         ^^^^
+        691 |             p = 12; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        692 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:696:9
+            |
+        696 |         from var a in x
+            |         ^^^^^^^^^^^^^^^
+        697 |         where p is int && a is int
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        698 |         do {
+            |         ^^^^
+        699 |             p = 12; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        700 |             a = 10; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        701 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:705:9
+            |
+        705 |         from var a in x // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        706 |         where p is int
+            |         ^^^^^^^^^^^^^^
+        707 |         do {
+            |         ^^^^
+        708 |             p = 12; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        709 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> assignment_to_narrowed_vars_in_loops_negative-e.bal:713:9
+            |
+        713 |         from var a in x
+            |         ^^^^^^^^^^^^^^^
+        714 |         where p is int && a is int
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        715 |         do {
+            |         ^^^^
+        716 |             p = 12; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        717 |             a = 10; // @error
+            |             ^^^^^^^^^^^^^^^^^
+        718 |         };
+            |         ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

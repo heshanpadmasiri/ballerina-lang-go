@@ -1,0 +1,15 @@
+{
+  "id": "T0843",
+  "name": "mapping-constructor-expr-test-833706cb84/var-name-field-semantic-analysis-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr); Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported",
+    "Expressions: [Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr); Currently `xml-qualified-names` not supported",
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn); [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; `ballerina/lang.float` / `PI`"
+  ],
+  "reason": "All asserted errors concern supported mapping constructors and name/type checking: shorthand fields resolve a shadowing local of incompatible type, add an undeclared field to a closed record, refer to undeclared variables, or misuse a module-qualified constant as a shorthand field. No spread fields are used, and the float module and PI constant are explicitly allowed. Rejection of the invalid qualified shorthand is within the supported grammar's negative tests.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The source marks six invalid constructors with @error; assess diagnostic rejection rather than successful execution."]
+}

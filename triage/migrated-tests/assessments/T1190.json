@@ -1,0 +1,18 @@
+{
+  "id": "T1190",
+  "name": "order-by-clause-test-835e510187/order-by-clause-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions \u2192 Query expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"",
+    "Expressions \u2192 Query expressions: \"Supports `list` and `map` as `query-constructor-type`\""
+  ],
+  "reason": "Although order by and the other query clauses are supported, this whole case requires stream and table query constructors, outside the listed list/map constructors. The invoked tests assert sorted stream iteration and sorted keyed-table iteration, and nested stream/table queries determine asserted joined results. These are essential exercised behaviors, not unused type signatures.",
+  "unsupported_constructs": [
+    "Explicit stream query constructors (`stream from ... select ...`)",
+    "Explicit table query constructors (`table key(id, name) from ...` and nested `table key() from ...`)"
+  ],
+  "test_design_notes": [
+    "The case also checks scalar, nil/NaN and array/tuple ordering; one unsupported essential constructor suffices for the whole-case feature classification.",
+    "io:println is output instrumentation and is not the classification basis."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "selectively-immutable-type-test-08053ceb2e/immutable-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/selectively-immutable-type-test-08053ceb2e/immutable-v.bal",
+  "Project": false,
+  "Id": "T1343",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/selectively-immutable-type-test-08053ceb2e/immutable-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 4.925
+}

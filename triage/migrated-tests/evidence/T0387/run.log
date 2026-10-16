@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at constrained-map-negative-e.bal:3 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at constrained-map-negative-e.bal:7 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at constrained-map-negative-e.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at constrained-map-negative-e.bal:19 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

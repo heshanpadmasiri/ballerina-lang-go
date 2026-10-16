@@ -1,0 +1,17 @@
+{
+  "Name": "visibility-cad8c93397/visibility-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/visibility-cad8c93397/visibility-v",
+  "Project": true,
+  "Id": "T1524",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/visibility-cad8c93397/visibility-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/visibility-cad8c93397/visibility-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/visibility-cad8c93397/visibility-v/modules/mod/mod.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/visibility-cad8c93397/visibility-v/modules/mod/tests/test.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.103
+}

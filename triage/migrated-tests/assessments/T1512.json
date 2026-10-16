@@ -1,0 +1,21 @@
+{
+  "id": "T1512",
+  "name": "var-mutability-with-workers-test-9792f76954/var-mutability-with-workers-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations or fork statements.",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are supported; worker send and receive actions are not listed.",
+    "### Other invocation restrictions: \"array:length\", \"map:length\", and \"value:toString\" are supported method calls."
+  ],
+  "reason": "The asserted outputs depend essentially on named workers sharing and mutating captured variables, worker message sends/receives, and nested fork blocks. These constructs and their concurrency semantics are not covered by the subset's positive lists. Support for start/wait actions and annotation attachments does not supply support for named workers, message passing, or fork.",
+  "unsupported_constructs": [
+    "Named worker declarations, including @strand{thread:\"any\"} scheduling behavior and shared mutable captured state",
+    "Worker send and receive actions (i -> w2, TOKEN -> w3, and <- w1)",
+    "Nested fork statements containing workers"
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported records, classes, anonymous functions, start/wait actions, and permitted langlib methods occur alongside unsupported worker constructs.",
+    "@output markers assert final shared scalar, tuple, map, record, and object values after worker synchronization; this is essential runtime concurrency behavior beyond function signatures.",
+    "io:println is output instrumentation. No obvious marker issue."
+  ]
+}

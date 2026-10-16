@@ -1,0 +1,22 @@
+{
+  "id": "T1514",
+  "name": "variable-declared-with-with-var-including-error-test-1fe4adcb27/var-inferred-including-error-warnings-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"Query expressions\" supports \"from\", \"where\", \"let\", \"join\" (including outer join), \"order by\", \"limit\", \"on conflict\" and \"select\" clauses; query actions with do clauses are not listed.",
+    "## Statements: supported statement list includes \"Local variable declarations\", \"Foreach\" and \"Return\", but does not list do/on fail or fail statements.",
+    "## Expressions: standalone let expressions are not listed (let is listed only among query clauses).",
+    "### Other invocation restrictions: \"error:message\" and \"value:toString\" are supported method calls."
+  ],
+  "reason": "Whole case requires unsupported/not-covered constructs: query actions ending in do {}, standalone let expressions, and do/fail/on fail handling. These are essential parts of this mixed negative-diagnostic case, even though ordinary declarations, error constructors, foreach over lists and the message/toString calls are supported.",
+  "unsupported_constructs": [
+    "Query actions using from/join ... do {}",
+    "do statement with fail statement and on fail clause",
+    "Standalone let expressions in module and local initializers"
+  ],
+  "test_design_notes": [
+    "Many @error markers appear to represent original unused-variable warnings (including repeated markers on one line); the filename explicitly refers to warnings. Treating these as rejection assertions may misrepresent the original test.",
+    "Mixed scope: supported declaration/error-inference checks coexist with unsupported control-flow and expression forms.",
+    "No @args, @panic or @output assertions are present."
+  ]
+}

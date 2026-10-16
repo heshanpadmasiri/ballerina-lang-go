@@ -1,0 +1,17 @@
+{
+  "id": "T1294",
+  "name": "retry-stmt-test-5faabda7b4/retry-statement-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statements include Assignment, Compound Assignment, Return, and Match statement; retry statements are absent from the positive list.",
+    "## Module-level declarations: \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\""
+  ],
+  "reason": "The expected errors require retry-specific validation: rejecting CustomRetryManager as a retry manager and recognizing code after an unconditionally returning retry block as unreachable. Retry statements, including explicit manager types, are not covered by the supported statement list, so this whole negative case requires an unsupported feature.",
+  "unsupported_constructs": [
+    "retry<CustomRetryManager> statement and retry-manager type validation",
+    "retry statement and its control-flow/reachability semantics"
+  ],
+  "test_design_notes": [
+    "The @error markers assert invalid retry-manager typing and unreachable code after retry; ordinary class methods, string compound assignment, and returns do not remove the dependency on retry support."
+  ]
+}

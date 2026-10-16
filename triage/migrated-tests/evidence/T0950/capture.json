@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '\"im not an array\"' value cannot be converted to '[string...]'\n        at trigger(non-array-json-to-array-p.bal:11)\n           main(non-array-json-to-array-p.bal:15)\n","Diagnostics":null}

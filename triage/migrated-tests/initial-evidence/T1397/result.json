@@ -1,0 +1,14 @@
+{
+  "Name": "table-cast-test-10e69b67ad/table-cast-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/table-cast-test-10e69b67ad/table-cast-e.bal",
+  "Project": false,
+  "Id": "T1397",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/table-cast-test-10e69b67ad/table-cast-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.029
+}

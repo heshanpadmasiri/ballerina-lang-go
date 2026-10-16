@@ -1,0 +1,228 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "deprecation-annotation-test-5a4ffa9c53/deprecation-annotation-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> deprecation-annotation-e.bal:176:27
+            |
+        176 |     SimpleClass|float _ = object SimpleClass { // @error
+            |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        177 |         @deprecated
+            |         ^^^^^^^^^^^
+        178 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+        179 |         }
+            |         ^
+        180 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> deprecation-annotation-e.bal:216:20
+            |
+        216 |     MyObject obj = client object MyObject { // @error
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        217 |         @deprecated
+            |         ^^^^^^^^^^^
+        218 |         int id = 4;
+            |         ^^^^^^^^^^^
+        219 |         remote function getId() returns int {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        220 |             return self.id; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        221 |         }
+            |         ^
+        222 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> deprecation-annotation-e.bal:412:11
+            |
+        412 |     fooFn(...argX); // @error
+            |           ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> deprecation-annotation-e.bal:413:11
+            |
+        413 |     fooFn(...[
+            |           ^^^^
+        414 |             1,
+            |             ^^
+        415 |             2 // @error
+            |             ^^^^^^^^^^^
+        416 |         ]
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> deprecation-annotation-e.bal:419:11
+            |
+        419 |     fooFn(...[
+            |           ^^^^
+        420 |         1,
+            |         ^^
+        421 |         ...[
+            |         ^^^^
+        422 |             fn1() // @error
+            |             ^^^^^^^^^^^^^^^
+        423 |             ]
+            |             ^
+        424 |         ]
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> deprecation-annotation-e.bal:427:11
+            |
+        427 |     fooFn(...[
+            |           ^^^^
+        428 |         ...[
+            |         ^^^^
+        429 |             ...fn2() // @error
+            |             ^^^^^^^^^^^^^^^^^^
+        430 |             ]
+            |             ^
+        431 |         ]
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> deprecation-annotation-e.bal:435:9
+            |
+        435 |         ...[
+            |         ^^^^
+        436 |             "B", // @error
+            |             ^^^^^^^^^^^^^^
+        437 |             1, // @error
+            |             ^^^^^^^^^^^^
+        438 |             3 // @error
+            |             ^^^^^^^^^^^
+        439 |         ]
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> deprecation-annotation-e.bal:191:25
+            |
+        191 |     typedesc funcType = typeof testUsingDeprecatedAnnotation();
+            |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> deprecation-annotation-e.bal:72:23
+           |
+        72 |     typedesc<any> t = typeof a;
+           |                       ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> deprecation-annotation-e.bal:342:9
+            |
+        342 |         ...details // @error
+            |         ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> deprecation-annotation-e.bal:350:9
+            |
+        350 |         ...companyDetails // @error
+            |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> deprecation-annotation-e.bal:176:27
+            |
+        176 |     SimpleClass|float _ = object SimpleClass { // @error
+            |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        177 |         @deprecated
+            |         ^^^^^^^^^^^
+        178 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+        179 |         }
+            |         ^
+        180 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> deprecation-annotation-e.bal:216:20
+            |
+        216 |     MyObject obj = client object MyObject { // @error
+            |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        217 |         @deprecated
+            |         ^^^^^^^^^^^
+        218 |         int id = 4;
+            |         ^^^^^^^^^^^
+        219 |         remote function getId() returns int {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        220 |             return self.id; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        221 |         }
+            |         ^
+        222 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> deprecation-annotation-e.bal:412:11
+            |
+        412 |     fooFn(...argX); // @error
+            |           ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> deprecation-annotation-e.bal:413:11
+            |
+        413 |     fooFn(...[
+            |           ^^^^
+        414 |             1,
+            |             ^^
+        415 |             2 // @error
+            |             ^^^^^^^^^^^
+        416 |         ]
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> deprecation-annotation-e.bal:419:11
+            |
+        419 |     fooFn(...[
+            |           ^^^^
+        420 |         1,
+            |         ^^
+        421 |         ...[
+            |         ^^^^
+        422 |             fn1() // @error
+            |             ^^^^^^^^^^^^^^^
+        423 |             ]
+            |             ^
+        424 |         ]
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> deprecation-annotation-e.bal:427:11
+            |
+        427 |     fooFn(...[
+            |           ^^^^
+        428 |         ...[
+            |         ^^^^
+        429 |             ...fn2() // @error
+            |             ^^^^^^^^^^^^^^^^^^
+        430 |             ]
+            |             ^
+        431 |         ]
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> deprecation-annotation-e.bal:435:9
+            |
+        435 |         ...[
+            |         ^^^^
+        436 |             "B", // @error
+            |             ^^^^^^^^^^^^^^
+        437 |             1, // @error
+            |             ^^^^^^^^^^^^
+        438 |             3 // @error
+            |             ^^^^^^^^^^^
+        439 |         ]
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> deprecation-annotation-e.bal:191:25
+            |
+        191 |     typedesc funcType = typeof testUsingDeprecatedAnnotation();
+            |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> deprecation-annotation-e.bal:72:23
+           |
+        72 |     typedesc<any> t = typeof a;
+           |                       ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

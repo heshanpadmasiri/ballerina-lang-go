@@ -1,0 +1,15 @@
+{
+  "Name": "struct-negative-test-2ccd0a79e0/struct-constants-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/struct-constants-e",
+  "Project": true,
+  "Id": "T1388",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/struct-constants-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/struct-negative-test-2ccd0a79e0/struct-constants-e/struct-constants.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.035
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0853",
+  "name": "match-statement-static-patterns-test-4828836871/static-match-patterns-unmatched-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The negative test asserts type incompatibility diagnostics for mapping and list match patterns, including nested record/list patterns and record rest/optional-field compatibility. These structural match patterns are essential to the assertions and are outside the explicitly supported const-pattern and wildcard-match-pattern subset.",
+  "unsupported_constructs": [
+    "Mapping match patterns such as {a: 20} and {x: 1, y: true}",
+    "List match patterns such as [20, 21] and nested [12, {a: 12.1}]"
+  ],
+  "test_design_notes": [
+    "The file also contains negative assertions involving supported literal and named constant patterns; whole-case classification remains feature because structural patterns are essential.",
+    "Expected rejection of invalid code alone does not make a test unsupported; the structural pattern grammar under test exceeds the documented match restriction."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "T0675",
+  "name": "isolated-worker-test-8e649817ff/isolated-start-action-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' and 'Start action', but does not list object constructor expressions.",
+    "## Module-level declarations: 'Supports the [`isolated`](https://ballerina.io/spec/lang/master/#isolated-qual) function qualifier (see [isolated functions](https://ballerina.io/spec/lang/master/#isolated_functions))'.",
+    "## Object/class definitions: 'Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported'; 'Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members'."
+  ],
+  "reason": "The negative case asserts isolation diagnostics for start actions on functions and methods, including methods of anonymous objects constructed with object {...} and client object {...}. Those object constructor expressions are essential to many assertions and are absent from the supported expression list; support for object types and class definitions does not establish support for these expressions. One uncovered essential construct makes the whole case a feature.",
+  "unsupported_constructs": ["Anonymous object constructor expressions: object {...} and client object {...}"],
+  "test_design_notes": ["Expected @error rejections involving otherwise supported isolated functions and start actions are in scope; negative code alone is not the basis for this classification."]
+}

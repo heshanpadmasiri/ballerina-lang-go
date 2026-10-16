@@ -1,0 +1,20 @@
+{
+  "id": "T1583",
+  "name": "worker-sync-send-test-389660a47d/panic-with-multiple-send-stmts-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported list includes 'Panic' but does not include named worker declarations or worker send statements.",
+    "## Expressions: '[Start action]' and '[Wait action]' are listed; worker synchronous send and receive actions are not listed.",
+    "## Import declarations (under # Subset restrictions): 'ballerina/lang.runtime' supports 'sleep', 'onGracefulStop', and 'StopHandler'."
+  ],
+  "reason": "The case essentially depends on named workers communicating via asynchronous sends (->), synchronous sends (->>), and receives (<-), and on a worker panic propagating through pending communications to wait w1. These constructs and communication/panic propagation behavior are not covered by subset10. Support for panic, wait, and runtime:sleep does not establish support for this worker scenario.",
+  "unsupported_constructs": [
+    "Named worker declarations",
+    "Worker asynchronous and synchronous sends and receives",
+    "Panic propagation across worker communication"
+  ],
+  "test_design_notes": [
+    "The @panic marker is on the error-constructor declaration immediately before panic err, rather than on the panic statement itself.",
+    "The asserted panic requires cross-worker propagation; it is not merely a direct panic statement test."
+  ]
+}

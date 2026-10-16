@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'ignored'\n --\u003e mod-zero-p.bal:6:5\n  |\n6 |     int ignored = intMod(2000, 0);\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"mod-zero-p.bal","StartLine":6,"EndLine":6}]}

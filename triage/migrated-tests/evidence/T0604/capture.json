@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'value'\n --\u003e modules/mod.cde/abc.bal:6:5\n  |\n6 |     int value = efg:getSuccessful(); // @error unused variable 'value'\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"modules/mod.cde/abc.bal","StartLine":6,"EndLine":6}]}

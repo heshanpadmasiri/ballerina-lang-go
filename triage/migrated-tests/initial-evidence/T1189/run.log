@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at order-by-clause-negative-e.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at order-by-clause-negative-e.bal:61 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

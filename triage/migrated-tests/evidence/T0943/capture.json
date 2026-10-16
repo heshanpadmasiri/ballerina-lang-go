@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '\"25\"' value cannot be converted to 'int'\n        at trigger(json-incompatible-type-p.bal:21)\n           main(json-incompatible-type-p.bal:25)\n","Diagnostics":null}

@@ -1,0 +1,14 @@
+{
+  "id": "T1507",
+  "name": "var-declr-semantic-test-d22f78a264/incomplete-listener-decl-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Module listener declarations](https://ballerina.io/spec/lang/master/#section_8.3.1)",
+    "## Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)"
+  ],
+  "reason": "Negative syntax/recovery case for an incomplete public listener declaration followed by an empty function definition. Both declaration forms are supported, and no applicable subset restriction excludes rejecting this malformed declaration.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Eight @error markers include five on the following function declaration and two on a trailing comment; these appear to assert recovery/cascading diagnostics from the single incomplete listener declaration, with no diagnostic text specified."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "package-import-test-60d02fba3a/invalid-import-1-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/invalid-import-1-e.bal",
+  "Project": false,
+  "Id": "T1195",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/invalid-import-1-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.057
+}

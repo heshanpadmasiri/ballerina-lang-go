@@ -1,0 +1,15 @@
+{
+  "Name": "worker-fail-test-278d4f50a4/invalid-worksend-without-worker-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-worksend-without-worker-e",
+  "Project": true,
+  "Id": "T1564",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-worksend-without-worker-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-worksend-without-worker-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.035
+}

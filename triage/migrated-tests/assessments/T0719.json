@@ -1,0 +1,18 @@
+{
+  "id": "T0719",
+  "name": "list-constructor-expr-test-039d73e3d9/list-constructor-infer-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions, including 'List constructor', 'Type cast expression' and 'Type test expression', but does not list typeof expressions.",
+    "# Subset restrictions / ## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.error lists only 'message'.",
+    "## Invocations / ### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes 'error:message' but not error:detail."
+  ],
+  "reason": "The case asserts inferred tuple type strings through typeof x, an expression not covered by the supported expression list. Its readonly mutation assertions also require err.detail() to inspect the panic detail message; error:detail is excluded by the explicit langlib and method-call allowlists. Either essential dependency makes the whole case a feature.",
+  "unsupported_constructs": [
+    "typeof x expressions used to inspect inferred tuple types",
+    "error:detail invoked as err.detail() to assert readonly modification error details"
+  ],
+  "test_design_notes": [
+    "List constructors, XML templates, anonymous functions, trap expressions and type tests are positively listed, but that does not cover the unsupported inspection operations used by the assertions."
+  ]
+}

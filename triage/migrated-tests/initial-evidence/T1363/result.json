@@ -1,0 +1,14 @@
+{
+  "Name": "string-template-literal-test-75d189a1b5/string-template-literal-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-template-literal-test-75d189a1b5/string-template-literal-v.bal",
+  "Project": false,
+  "Id": "T1363",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-template-literal-test-75d189a1b5/string-template-literal-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.088
+}

@@ -1,0 +1,20 @@
+{
+  "id": "T1579",
+  "name": "worker-on-fail-test-7287699041/worker-on-fail-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations, do statements, fail statements, or on fail clauses.",
+    "## Expressions: \"- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)\"; worker send/receive actions are not listed.",
+    "## Import declarations: \"ballerina/lang.array\" includes \"indexOf\"; \"ballerina/lang.error\" includes \"message\".",
+    "### Other invocation restrictions: \"array:indexOf\" and \"error:message\" are allowed method-call langlib functions."
+  ],
+  "reason": "All seven output assertions depend on named workers with on fail recovery, which subset 10 does not cover. Several additionally require do/on fail, fail statements, and asynchronous or synchronous worker communication. Listed wait/check/error support and permitted indexOf/message methods do not establish support for those essential worker behaviors.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker on fail clauses",
+    "do/on fail and fail statements",
+    "Worker asynchronous send (->), synchronous send (->>), and receive (<-) actions"
+  ],
+  "test_design_notes": [
+    "Seven output markers exercise distinct recovery and messaging behaviors in one case; unsupported worker/on fail scope is shared across them. No obvious marker mismatch. io:println is output instrumentation."
+  ]
+}

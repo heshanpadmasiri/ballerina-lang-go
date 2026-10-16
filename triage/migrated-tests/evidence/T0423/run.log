@@ -1,0 +1,40 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "division-operation-test-be1b8193ad/division-operation-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+           --> division-operation-v.bal:328:13
+            |
+        328 |     int e = int:MAX_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+           --> division-operation-v.bal:649:13
+            |
+        649 |     int e = int:MAX_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MIN_VALUE
+           --> division-operation-v.bal:329:13
+            |
+        329 |     int f = int:MIN_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MIN_VALUE
+           --> division-operation-v.bal:650:13
+            |
+        650 |     int f = int:MIN_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'a18'
+           --> division-operation-v.bal:187:5
+            |
+        187 |     int? a18 = a16 / a17;
+            |     ^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'k'
+          --> division-operation-v.bal:14:2
+           |
+        14 |  int k = val1/val;
+           |  ^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

@@ -1,0 +1,19 @@
+{
+  "id": "T1001",
+  "name": "nested-queries-with-encl-func-params-b1d65d2cdb/nested-queries-with-encl-func-params-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions: Nested expressions (`(expression)`)",
+    "Module-level declarations: Function definition — Supports the `isolated` function qualifier",
+    "Expressions: List constructor; Mapping constructor; Variable reference; Field access expression; Member access expression; Equality expression; Type test expression",
+    "Operators: Equality ops `==`, `!=`, `===`, `!==`; Additive ops `+`, `-`; Relational ops `<`, `<=`, `>`, `>=`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `array:length`; `value:toString` and `value:toBalString`"
+  ],
+  "reason": "All essential constructs are covered. The assertions exercise nested array-producing queries capturing enclosing function parameters and locals, repeated from-clause iteration and ordering, filtering, record binding patterns, and query-valued let clauses including empty input. The supported query clauses and general expression support impose no restriction excluding these combinations. Array length, indexing, record selection, isolated functions, and the assertion helper's equality/type tests and toString calls are supported.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The unused retainIoImport function is instrumentation and does not determine feature scope.",
+    "Tests check exact nested-query result order and multiplicity, empty input, and filtering to adult homeowners."
+  ]
+}

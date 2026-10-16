@@ -1,0 +1,19 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	{"PropertyName":"Value"}
+        	9
+        	true
+        	5
+        	{"PropertyName":"Value"}
+        	{"PropertyName":"Value"}
+        	7
+        	5
+        	5
+        	44.3
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

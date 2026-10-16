@@ -1,0 +1,16 @@
+{
+  "id": "T0285",
+  "name": "builtin-loading-test-f8091e705a/builtin-loading-test-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"",
+    "Module-level declarations: \"Type definition\"",
+    "Statements: \"Assignment\"",
+    "Expressions: \"Field access expression\"; \"Variable reference\""
+  ],
+  "reason": "This negative compilation case uses supported function declarations, required parameters, field assignment and type definitions. Its @error assertions exercise rejection of an invalid Listener type reference and declarations colliding with built-in type names (error, json, anydata, int, never, readonly and xml). Negative name/type checking for these supported constructs is in scope; the case needs no excluded library API or unsupported execution behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "All assertions are @error compilation assertions; there are no @args, @panic or @output assertions."
+  ]
+}

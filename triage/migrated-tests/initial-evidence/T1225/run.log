@@ -1,0 +1,361 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "query-negative-tests-39b4ca8ff2/query-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> query-negative-e.bal:256:6
+            |
+        256 | 	    from var student in studentList
+            | 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        257 | 	    let float twiceScore = (student.score * 2.0)
+            | 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        258 | 	    do {
+            | 	    ^^^^
+        259 | 	        twiceScore = 1000;
+            | 	        ^^^^^^^^^^^^^^^^^^
+        260 | 	        if(twiceScore < 50.00){
+            | 	        ^^^^^^^^^^^^^^^^^^^^^^^
+        261 | 	            FullName fullname = {firstName:student.firstName,lastName:student.lastName};
+            | 	            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        262 | 	            nameList.push(fullname);
+            | 	            ^^^^^^^^^^^^^^^^^^^^^^^^
+        263 | 	        }
+            | 	        ^
+        264 | 	    };
+            | 	    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> query-negative-e.bal:542:5
+            |
+        542 |     from int _ in [1, 3, 5]
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        543 |     do {
+            |     ^^^^
+        544 |         check returnNil(); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        545 |         return "string 1";
+            |         ^^^^^^^^^^^^^^^^^^
+        546 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> query-negative-e.bal:551:5
+            |
+        551 |     from int _ in [1, 3, 5]
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        552 |     do {
+            |     ^^^^
+        553 |         check returnNil(); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        554 |         return;
+            |         ^^^^^^^
+        555 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> query-negative-e.bal:396:38
+            |
+        396 |     table<TableRecord> key(name) t = table [
+            |                                      ^^^^^^^
+        397 |             {name: "Amy", id: 1234},
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        398 |             {name: "John", id: 4567}
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        399 |         ];
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> query-negative-e.bal:406:38
+            |
+        406 |     table<TableRecord> key(name) t = table [
+            |                                      ^^^^^^^
+        407 |             {name: "Amy", id: 1234},
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        408 |             {name: "John", id: 4567}
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        409 |         ];
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> query-negative-e.bal:447:33
+            |
+        447 |     table<User> key(id) users = table [];
+            |                                 ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> query-negative-e.bal:465:33
+            |
+        465 |     table<User> key(id) users = table [];
+            |                                 ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> query-negative-e.bal:396:5
+            |
+        396 |     table<TableRecord> key(name) t = table [
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> query-negative-e.bal:401:5
+            |
+        401 |     table<int> ids = from var x in t select x.id; // @error
+            |     ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> query-negative-e.bal:406:5
+            |
+        406 |     table<TableRecord> key(name) t = table [
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> query-negative-e.bal:411:5
+            |
+        411 |     table<int> ids = from var {id} in t select id; // @error
+            |     ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> query-negative-e.bal:447:5
+            |
+        447 |     table<User> key(id) users = table [];
+            |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> query-negative-e.bal:465:5
+            |
+        465 |     table<User> key(id) users = table [];
+            |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> query-negative-e.bal:205:12
+            |
+        205 | 		from var {fname,lastName,score} in studentList // @error
+            | 		         ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> query-negative-e.bal:351:35
+            |
+        351 |     Employee[] records = from var {fname, lname, age} in entities select {fname, lname, age}; // @error
+            |                                   ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> query-negative-e.bal:381:22
+            |
+        381 |             from var {firstName, lastName, age} in personList // @error
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> query-negative-e.bal:411:31
+            |
+        411 |     table<int> ids = from var {id} in t select id; // @error
+            |                               ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> query-negative-e.bal:426:26
+            |
+        426 |     var x = map from var {k} in keyValsMap // @error
+            |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> query-negative-e.bal:432:26
+            |
+        432 |     var x = map from var {k} in keyValsMap // @error
+            |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> query-negative-e.bal:205:12
+            |
+        205 | 		from var {fname,lastName,score} in studentList // @error
+            | 		         ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> query-negative-e.bal:351:35
+            |
+        351 |     Employee[] records = from var {fname, lname, age} in entities select {fname, lname, age}; // @error
+            |                                   ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> query-negative-e.bal:381:22
+            |
+        381 |             from var {firstName, lastName, age} in personList // @error
+            |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> query-negative-e.bal:411:31
+            |
+        411 |     table<int> ids = from var {id} in t select id; // @error
+            |                               ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> query-negative-e.bal:426:26
+            |
+        426 |     var x = map from var {k} in keyValsMap // @error
+            |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> query-negative-e.bal:432:26
+            |
+        432 |     var x = map from var {k} in keyValsMap // @error
+            |                          ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-negative-e.bal:421:12
+            |
+        421 |     return stream from string num in clientStream select {a: 1}; // @error
+            |            ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-negative-e.bal:451:18
+            |
+        451 |     var result = table key(id) from var user in users // @error
+            |                  ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-negative-e.bal:456:14
+            |
+        456 |     result = table key(id) from var user in userList // @error
+            |              ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-negative-e.bal:469:18
+            |
+        469 |     var result = table key(id, firstName) from var user in users // @error
+            |                  ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-negative-e.bal:474:14
+            |
+        474 |     result = table key(id, firstName) from var user in userList // @error
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-negative-e.bal:514:19
+            |
+        514 |     var result1 = table key(id) from var user in users // @error
+            |                   ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-negative-e.bal:518:19
+            |
+        518 |     var result2 = table key(id) from var user in users // @error
+            |                   ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> query-negative-e.bal:256:6
+            |
+        256 | 	    from var student in studentList
+            | 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        257 | 	    let float twiceScore = (student.score * 2.0)
+            | 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        258 | 	    do {
+            | 	    ^^^^
+        259 | 	        twiceScore = 1000;
+            | 	        ^^^^^^^^^^^^^^^^^^
+        260 | 	        if(twiceScore < 50.00){
+            | 	        ^^^^^^^^^^^^^^^^^^^^^^^
+        261 | 	            FullName fullname = {firstName:student.firstName,lastName:student.lastName};
+            | 	            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        262 | 	            nameList.push(fullname);
+            | 	            ^^^^^^^^^^^^^^^^^^^^^^^^
+        263 | 	        }
+            | 	        ^
+        264 | 	    };
+            | 	    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> query-negative-e.bal:542:5
+            |
+        542 |     from int _ in [1, 3, 5]
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        543 |     do {
+            |     ^^^^
+        544 |         check returnNil(); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        545 |         return "string 1";
+            |         ^^^^^^^^^^^^^^^^^^
+        546 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> query-negative-e.bal:551:5
+            |
+        551 |     from int _ in [1, 3, 5]
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        552 |     do {
+            |     ^^^^
+        553 |         check returnNil(); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        554 |         return;
+            |         ^^^^^^^
+        555 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> query-negative-e.bal:396:38
+            |
+        396 |     table<TableRecord> key(name) t = table [
+            |                                      ^^^^^^^
+        397 |             {name: "Amy", id: 1234},
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        398 |             {name: "John", id: 4567}
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        399 |         ];
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> query-negative-e.bal:406:38
+            |
+        406 |     table<TableRecord> key(name) t = table [
+            |                                      ^^^^^^^
+        407 |             {name: "Amy", id: 1234},
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        408 |             {name: "John", id: 4567}
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        409 |         ];
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> query-negative-e.bal:447:33
+            |
+        447 |     table<User> key(id) users = table [];
+            |                                 ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> query-negative-e.bal:465:33
+            |
+        465 |     table<User> key(id) users = table [];
+            |                                 ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> query-negative-e.bal:396:5
+            |
+        396 |     table<TableRecord> key(name) t = table [
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> query-negative-e.bal:401:5
+            |
+        401 |     table<int> ids = from var x in t select x.id; // @error
+            |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> query-negative-e.bal:406:5
+            |
+        406 |     table<TableRecord> key(name) t = table [
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> query-negative-e.bal:411:5
+            |
+        411 |     table<int> ids = from var {id} in t select id; // @error
+            |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> query-negative-e.bal:447:5
+            |
+        447 |     table<User> key(id) users = table [];
+            |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> query-negative-e.bal:465:5
+            |
+        465 |     table<User> key(id) users = table [];
+            |     ^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

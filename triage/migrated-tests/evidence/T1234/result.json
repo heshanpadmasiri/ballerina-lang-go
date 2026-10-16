@@ -1,0 +1,14 @@
+{
+  "Name": "raw-template-literal-test-73d1c4c5ea/raw-template-literal-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/raw-template-literal-test-73d1c4c5ea/raw-template-literal-v.bal",
+  "Project": false,
+  "Id": "T1234",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/raw-template-literal-test-73d1c4c5ea/raw-template-literal-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.085
+}

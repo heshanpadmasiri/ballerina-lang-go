@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: ensureType\n  --\u003e map-struct-json-unified-v.bal:69:27\n   |\n69 |         city = checkpanic result.address[cityKey].ensureType();\n   |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"map-struct-json-unified-v.bal","StartLine":69,"EndLine":69}]}

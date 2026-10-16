@@ -1,0 +1,36 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: ballerina/test
+          --> tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal:17:1
+           |
+        17 | import ballerina/test;
+           | ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+          --> tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal:36:5
+           |
+        36 |     test:assertEquals((<error>actualError).message(), "{ballerina/lang.map}InherentTypeViolation");
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+          --> tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal:37:5
+           |
+        37 |     test:assertEquals((<error>actualError).detail()["message"],
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |         "cannot update 'readonly' field 'name' in record of type 'Employee & readonly'");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal:35:5
+           |
+        35 |     test:assertTrue(actualError is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'ignored'
+          --> tuple-vs-array-readonly-violation-without-tuple-update-method-v.bal:43:5
+           |
+        43 |     error? ignored = testFrozenAnyArrayElementUpdate();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

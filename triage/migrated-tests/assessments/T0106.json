@@ -1,0 +1,12 @@
+{
+  "id": "T0106",
+  "name": "argument-parser-positive-test-e41e5b8a0a/float-12-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Expressions: Literal — Currently support nil-literal, boolean-literal, numeric-literal and string-literal only"
+  ],
+  "reason": "The asserted behavior requires the external main argument parser to convert the command-line string -0X1EF.A2P-2 into float -123.908203125. subset10 covers required parameter signatures and source numeric literals, but does not cover command-line argument conversion or this hexadecimal float input protocol. Signature support alone does not establish that behavior.",
+  "unsupported_constructs": ["Command-line hexadecimal floating-point argument parsing for main(float f)"],
+  "test_design_notes": ["@args supplies a string through the external execution protocol; it is not a Ballerina numeric literal. io:println and @output are instrumentation."]
+}

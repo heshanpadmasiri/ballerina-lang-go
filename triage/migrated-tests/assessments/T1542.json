@@ -1,0 +1,19 @@
+{
+  "id": "T1542",
+  "name": "while-stmt-test-8fe83cda27/while-stmt-type-narrowing-positive-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"- [While](https://ballerina.io/spec/lang/master/#while-stmt)\"; \"- [If/else](https://ballerina.io/spec/lang/master/#section_7.18)\"; \"- [Break](https://ballerina.io/spec/lang/master/#break-stmt)\"; \"- [Return](https://ballerina.io/spec/lang/master/#return-stmt)\"",
+    "Expressions: \"- [Type test expression](https://ballerina.io/spec/lang/master/#section_6.28)\"; \"- [Equality expression](https://ballerina.io/spec/lang/master/#equality-expr)\"",
+    "Statements: supported statement list does not include do statements or standalone block statements."
+  ],
+  "reason": "The whole case includes a do statement in test3, which is absent from the supported statements list. This is decisive even though while loops, type tests, equality, branching and return/break are listed. The expected output true requires test3 to compile and execute.",
+  "unsupported_constructs": [
+    "test3: do { ... } statement (not covered by the supported statement list)",
+    "test3: standalone { ... } block statement (not covered by the supported statement list)"
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported while/type-narrowing exercises are combined with unlisted do and standalone block statements.",
+    "The @output true marker matches the unconditional true return after helper calls; narrowing correctness is chiefly checked by typed wildcard declarations at compile time. io:println is instrumentation."
+  ]
+}

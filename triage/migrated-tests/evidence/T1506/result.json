@@ -1,0 +1,14 @@
+{
+  "Name": "var-declr-semantic-test-d22f78a264/incomplete-listener-decl-2-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/incomplete-listener-decl-2-e.bal",
+  "Project": false,
+  "Id": "T1506",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/var-declr-semantic-test-d22f78a264/incomplete-listener-decl-2-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.112
+}

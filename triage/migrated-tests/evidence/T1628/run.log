@@ -1,0 +1,36 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	<root xmlns="http://ballerina.com/" xmlns:ns0="http://ballerina.com/a" ns0:id="456"><foo>123</foo><bar xmlns:ns1="http://ballerina.com/c" ns1:status="complete"/></root>
+        	<foo xmlns="http://ballerina.com/">123</foo><bar xmlns="http://ballerina.com/" xmlns:ns1="http://ballerina.com/c" ns1:status="complete"/>
+        	2
+        	<root>hello</root>
+        	<root xmlns="http://ballerina.com/">hello</root>
+        	<ns1:root xmlns="http://ballerina.com/" xmlns:ns1="http://ballerina.com/b">hello</ns1:root>
+        	<nsx:foo xmlns:nsx="http://wso2.com" nsx:id="123">hello</nsx:foo>
+        	<foo xmlns="http://ballerina.com/default/namespace" xmlns:nsx="http://wso2.com/aaa">hello</foo>
+        	<foo xmlns="http://wso2.com" xmlns:nsx="http://wso2.com/aaa">hello</foo>
+        	<root xmlns:ns0="http://ballerinalang.com/"><ns0:foo>hello</ns0:foo></root>
+        	{http://sample.com/wso2/a2}foo
+        	{http://sample.com/wso2/b2}foo
+        	{http://sample.com/wso2/d2}foo
+        	{http://ballerina.com/b}foo
+        	{http://sample.com/wso2/a3}foo
+        	{http://ballerina.com/b}foo
+        	<p:person xmlns:p="foo" xmlns:q="bar">hello</p:person>
+        	<Order xmlns="http://acme.company" xmlns:acme="http://acme.company.nondefault">
+        	        <OrderLines>
+        	            <OrderLine acme:lineNo="334" itemCode="334-2"/>
+        	        </OrderLines>
+        	        <ShippingAddress>
+        	        </ShippingAddress>
+        	    </Order>
+        	<foo xmlns="http://wso2.com/">hello</foo>
+        	<?xml version="1.0" encoding="UTF-8"?><foo>Example</foo>
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

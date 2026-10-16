@@ -1,0 +1,14 @@
+{
+  "Name": "worker-test-0f3493dd03/17-start-inside-lock-depth3-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/17-start-inside-lock-depth3-p.bal",
+  "Project": false,
+  "Id": "T1602",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/17-start-inside-lock-depth3-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.068
+}

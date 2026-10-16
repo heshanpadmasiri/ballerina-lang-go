@@ -1,0 +1,12 @@
+{
+  "id": "T0840",
+  "name": "mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-consistency-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString; ballerina/lang.error lists message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString; error:message."
+  ],
+  "reason": "The asserted readonly record update failure depends on cloneReadOnly(), which is absent from both the supported lang.value functions and the method-call allowlist. The error-detail assertion additionally invokes unsupported error.detail(). Thus essential behavior lies outside subset 10.",
+  "unsupported_constructs": ["lang.value cloneReadOnly() method calls on array and tuple", "lang.error detail() method call"],
+  "test_design_notes": ["main executes the array/record readonly mutation assertion; frozenTupleUpdate is declared but never called."]
+}

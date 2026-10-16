@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at break-stmt-negative-e.bal:31 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,12 @@
+{
+  "id": "T0518",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-float-array-modification-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, excluding cloneReadOnly.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; value:cloneReadOnly is absent."
+  ],
+  "reason": "The expected panic on modifying b[1] depends on creating a frozen float array using a.cloneReadOnly(). That essential langlib operation is outside both the supported library-method list and the method-syntax list, so the asserted frozen-array mutation behavior is outside this subset.",
+  "unsupported_constructs": ["value:cloneReadOnly invoked as a.cloneReadOnly()"],
+  "test_design_notes": ["The @panic annotation asserts failure of indexed mutation after cloning to readonly; ordinary list construction and assignment support does not establish support for that prerequisite operation."]
+}

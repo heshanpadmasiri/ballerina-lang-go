@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "bjsonvalue-test-248ac7be19/map-json-to-json-array-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'ignored'
+         --> map-json-to-json-array-p.bal:7:5
+          |
+        7 |     () ignored = testMapJsonToJsonArray();
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'p'
+         --> map-json-to-json-array-p.bal:3:5
+          |
+        3 |     map<json>[] p = <map<json>[]>j; // @panic error: {ballerina}TypeCastError {"message":"incompatible types: 'json[]' cannot be cast to 'map<json>[]'"}
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

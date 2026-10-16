@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at closure-semantic-negative-e.bal:11-11 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at closure-semantic-negative-e.bal:60-60 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at closure-semantic-negative-e.bal:87-87 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at closure-semantic-negative-e.bal:98-98 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at closure-semantic-negative-e.bal:99-99 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at closure-semantic-negative-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at closure-semantic-negative-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at closure-semantic-negative-e.bal:54 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

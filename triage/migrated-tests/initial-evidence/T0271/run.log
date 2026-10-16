@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at null-value-semantics-negative-e.bal:28-28 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at null-value-semantics-negative-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at null-value-semantics-negative-e.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at null-value-semantics-negative-e.bal:32 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

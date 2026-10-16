@@ -1,0 +1,15 @@
+{
+  "id": "T0357",
+  "name": "closed-record-test-6f9046ad8a/nested-sealed-record-inline-init-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"; \"Type definition\"; \"Function definition\"",
+    "Expressions: \"Mapping constructor\"; \"List constructor\"; \"Variable reference\"; \"Literal\"; \"Call\"",
+    "Statements: \"Local variable declarations\"; \"Return\"; \"Call\""
+  ],
+  "reason": "The case uses supported module variables, record type definitions, mapping/list constructors and function calls. Its asserted output checks insertion of omitted record field defaults, recursively including the Family mapping default and the children list referencing final module variable child. No applicable subset restriction excludes these record defaults or nested initialization.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @output assertion requires all nested defaults and the module variable value Bob to appear in the printed record; io:println is instrumentation. There are no @args or @panic directives."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "xml-member-access-test-cd91bb2812/xml_member_access_negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xml-member-access-test-cd91bb2812/xml_member_access_negative-e.bal",
+  "Project": false,
+  "Id": "T1608",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xml-member-access-test-cd91bb2812/xml_member_access_negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.054
+}

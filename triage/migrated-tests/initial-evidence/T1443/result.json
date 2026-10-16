@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-mutability-test-4a07e00b3d/different-type-covariance-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/different-type-covariance-v.bal",
+  "Project": false,
+  "Id": "T1443",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/different-type-covariance-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.072
+}

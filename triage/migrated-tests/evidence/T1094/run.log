@@ -1,0 +1,343 @@
+=== RUN   TestMigrationTriage
+runtime: goroutine stack exceeds 1000000000-byte limit
+runtime: sp=0x12e03b360328 stack=[0x12e03b360000, 0x12e05b360000]
+fatal error: stack overflow
+
+runtime stack:
+runtime.throw({0xde9559?, 0x420125?})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/panic.go:1243 +0x48 fp=0x7f7c377fdd20 sp=0x7f7c377fdcf0 pc=0x48daa8
+runtime.newstack()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/stack.go:1207 +0x5dd fp=0x7f7c377fde50 sp=0x7f7c377fdd20 pc=0x46d25d
+runtime.morestack()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:650 +0x7b fp=0x7f7c377fde58 sp=0x7f7c377fde50 pc=0x49339b
+
+goroutine 21 gp=0x12e01ae05a40 m=5 mp=0x12e01ae00008 [running]:
+runtime.mapIterStart(0x182ca98?, 0x12e01ad55410?, 0x12e03b3603e8)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/map.go:156 +0x4b fp=0x12e03b360338 sp=0x12e03b360330 pc=0x426ccb
+github.com/ballerina-nutcracker/ballerina/ast.(*BLangObjectType).Members.func1(...)
+	/workspace/ballerina-lang-go/ast/types.go:353
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2146 +0x8a fp=0x12e03b360458 sp=0x12e03b360338 pc=0x7ac56a
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e03b360610?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b360560 sp=0x12e03b360458 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b360680 sp=0x12e03b360560 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e03b360838?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b360788 sp=0x12e03b360680 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b3608a8 sp=0x12e03b360788 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e03b360a60?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b3609b0 sp=0x12e03b3608a8 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b360ad0 sp=0x12e03b3609b0 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b10?, 0x12e03b360c88?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b360bd8 sp=0x12e03b360ad0 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b360cf8 sp=0x12e03b360bd8 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e03b360eb0?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b360e00 sp=0x12e03b360cf8 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b360f20 sp=0x12e03b360e00 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e03b3610d8?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b361028 sp=0x12e03b360f20 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b361148 sp=0x12e03b361028 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e03b361300?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b361250 sp=0x12e03b361148 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b361370 sp=0x12e03b361250 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b10?, 0x12e03b361528?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b361478 sp=0x12e03b361370 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b361598 sp=0x12e03b361478 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e03b361750?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b3616a0 sp=0x12e03b361598 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b3617c0 sp=0x12e03b3616a0 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e03b361978?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b3618c8 sp=0x12e03b3617c0 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b3619e8 sp=0x12e03b3618c8 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e03b361ba0?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b361af0 sp=0x12e03b3619e8 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b361c10 sp=0x12e03b361af0 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b10?, 0x12e03b361dc8?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b361d18 sp=0x12e03b361c10 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b361e38 sp=0x12e03b361d18 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e03b361ff0?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b361f40 sp=0x12e03b361e38 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b362060 sp=0x12e03b361f40 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e03b362218?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b362168 sp=0x12e03b362060 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b362288 sp=0x12e03b362168 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e03b362440?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b362390 sp=0x12e03b362288 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b3624b0 sp=0x12e03b362390 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b10?, 0x12e03b362668?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b3625b8 sp=0x12e03b3624b0 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b3626d8 sp=0x12e03b3625b8 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e03b362890?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b3627e0 sp=0x12e03b3626d8 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b362900 sp=0x12e03b3627e0 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e03b362ab8?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b362a08 sp=0x12e03b362900 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b362b28 sp=0x12e03b362a08 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e03b362ce0?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b362c30 sp=0x12e03b362b28 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b362d50 sp=0x12e03b362c30 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b10?, 0x12e03b362f08?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b362e58 sp=0x12e03b362d50 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b362f78 sp=0x12e03b362e58 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e03b363130?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b363080 sp=0x12e03b362f78 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b3631a0 sp=0x12e03b363080 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e03b363358?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b3632a8 sp=0x12e03b3631a0 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b3633c8 sp=0x12e03b3632a8 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e03b363580?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b3634d0 sp=0x12e03b3633c8 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e03b3635f0 sp=0x12e03b3634d0 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b10?, 0x12e03b3637a8?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e03b3636f8 sp=0x12e03b3635f0 pc=0x7abe4d
+...1945056 frames elided...
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35ad98 sp=0x12e05b35ac78 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e01b1a6f50?, 0x1?}, {0x0, 0x0, 0x7f?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35aea0 sp=0x12e05b35ad98 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35afc0 sp=0x12e05b35aea0 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e01b1a7178?, 0x12e01b1a7108?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35b0c8 sp=0x12e05b35afc0 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35b1e8 sp=0x12e05b35b0c8 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e01b1a73a0?, 0x12e01ae33e48?}, {0x0, 0x0, 0x194e8d0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35b2f0 sp=0x12e05b35b1e8 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35b410 sp=0x12e05b35b2f0 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b10?, 0x12e01b1a75c8?, 0x0?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35b518 sp=0x12e05b35b410 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35b638 sp=0x12e05b35b518 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e01b1a77f0?, 0x0?}, {0x0, 0x0, 0x1ac1337?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35b740 sp=0x12e05b35b638 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35b860 sp=0x12e05b35b740 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e01b1a7a18?, 0x12e01b1a79c0?}, {0x0, 0x0, 0x12e01b1a79e8?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35b968 sp=0x12e05b35b860 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35ba88 sp=0x12e05b35b968 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e01b1a7c40?, 0x0?}, {0x0, 0x0, 0x12e01ad97808?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35bb90 sp=0x12e05b35ba88 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35bcb0 sp=0x12e05b35bb90 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b10?, 0x12e01b1a7e68?, 0x0?}, {0x0, 0x0, 0x12e01b1a7e28?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35bdb8 sp=0x12e05b35bcb0 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35bed8 sp=0x12e05b35bdb8 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b00?, 0x12e01b1a8090?, 0x7a962a?}, {0x0, 0x0, 0x0?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35bfe0 sp=0x12e05b35bed8 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35c100 sp=0x12e05b35bfe0 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01b2e9b20?, 0x12e01b1a82b8?, 0x12e01af46480?}, {0x0, 0x0, 0x7c?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35c208 sp=0x12e05b35c100 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35c328 sp=0x12e05b35c208 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(0x12e01b192540, {0x12e01ad6c680?, 0x12e01b1a84e0?, 0x7b1cd3?}, {0x0, 0x0, 0x12e01b0963a3?}, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2108 +0x12d fp=0x12e05b35c430 sp=0x12e05b35c328 pc=0x7abe4d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(0x12e01b192540, 0x12e01ad55a10?, 0x12e01ad55a10, 0x12e01ad55a40)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2155 +0x291 fp=0x12e05b35c550 sp=0x12e05b35c430 pc=0x7ac771
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.resolveObjectInclusions[...](0x12e01b16d5e0, {0x12e01ae02ac0, 0x1, 0x12e01b15a9e0})
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:2004 +0x2da fp=0x12e05b35c6e8 sp=0x12e05b35c550 pc=0x7b103a
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.visitInnerSymbolResolver[...](0x12e01b16d5e0, {0x194d270, 0x12e01ad5a780?})
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:1573 +0x338 fp=0x12e05b35c9d8 sp=0x12e05b35c6e8 pc=0x7b3298
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.(*compilationUnitSymbolResolver).Visit(0x12e01b16d5e0?, {0x194d270?, 0x12e01ad5a780?})
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:1940 +0x8dd fp=0x12e05b35cba8 sp=0x12e05b35c9d8 pc=0x7ab13d
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.(*functionSignatureTypeDataResolver).Visit(0x12e01ad56960, {0x194d270?, 0x12e01ad5a780?})
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:1960 +0x39 fp=0x12e05b35cc20 sp=0x12e05b35cba8 pc=0x7ab619
+github.com/ballerina-nutcracker/ballerina/ast.Walk({0x1949840?, 0x12e01ad56960?}, {0x194d270, 0x12e01ad5a780})
+	/workspace/ballerina-lang-go/ast/walk.go:37 +0x4c fp=0x12e05b35cfb8 sp=0x12e05b35cc20 pc=0x731c0c
+github.com/ballerina-nutcracker/ballerina/ast.WalkTypeData({0x1949840, 0x12e01ad56960}, 0x12e01ae59a98)
+	/workspace/ballerina-lang-go/ast/walk.go:999 +0xd1 fp=0x12e05b35d000 sp=0x12e05b35cfb8 pc=0x73b171
+github.com/ballerina-nutcracker/ballerina/ast.Walk({0x1949818?, 0x12e01b16d5e0?}, {0x194c080, 0x12e01ae59a40})
+	/workspace/ballerina-lang-go/ast/walk.go:137 +0x3cc5 fp=0x12e05b35d398 sp=0x12e05b35d000 pc=0x735885
+github.com/ballerina-nutcracker/ballerina/ast.Walk({0x1949818?, 0x12e01b16d5e0?}, {0x194bbe8, 0x12e01ad5d400})
+	/workspace/ballerina-lang-go/ast/walk.go:79 +0x6d0c fp=0x12e05b35d730 sp=0x12e05b35d398 pc=0x7388cc
+github.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.Resolve(0x12e01b192540, {0x12e01b036220, 0x12e01b036270, 0x12e01b036260, 0x12e01b036240, {0x12e01b036200, 0x1, 0x1}, 0x0, 0x0, ...}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/symbols/symbol_resolver.go:684 +0x40c fp=0x12e05b35da38 sp=0x12e05b35d730 pc=0x7a274c
+github.com/ballerina-nutcracker/ballerina/semantics.ResolveSymbols(0x12e01b192540, {0x12e01b036220, 0x12e01b036270, 0x12e01b036260, 0x12e01b036240, {0x12e01b036200, 0x1, 0x1}, 0x0, 0x0, ...}, ...)
+	/workspace/ballerina-lang-go/semantics/semantics.go:74 +0x53b fp=0x12e05b35e178 sp=0x12e05b35da38 pc=0x82c71b
+github.com/ballerina-nutcracker/ballerina/projects.resolveTypesAndSymbols(0x12e01ae5a600)
+	/workspace/ballerina-lang-go/projects/module_context.go:276 +0x9be fp=0x12e05b35eaa0 sp=0x12e05b35e178 pc=0xb8a0de
+github.com/ballerina-nutcracker/ballerina/projects.(*PackageCompilation).compileModulesInternal(0x12e01b02dc20)
+	/workspace/ballerina-lang-go/projects/package_compilation.go:128 +0xbd2 fp=0x12e05b35f6f8 sp=0x12e05b35eaa0 pc=0xb90112
+github.com/ballerina-nutcracker/ballerina/projects.(*PackageCompilation).compileModulesInternal-fm()
+	<autogenerated>:1 +0x17 fp=0x12e05b35f710 sp=0x12e05b35f6f8 pc=0xbb24d7
+sync.(*Once).doSlow(0x12e01b17c008?, 0x12e01ae5d3c0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:78 +0xab fp=0x12e05b35f768 sp=0x12e05b35f710 pc=0x49c5eb
+sync.(*Once).Do(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:69
+github.com/ballerina-nutcracker/ballerina/projects.(*PackageCompilation).compile(...)
+	/workspace/ballerina-lang-go/projects/package_compilation.go:63
+github.com/ballerina-nutcracker/ballerina/projects.newPackageCompilation(0x12e01b17c008, {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...})
+	/workspace/ballerina-lang-go/projects/package_compilation.go:52 +0x13e fp=0x12e05b35f7c8 sp=0x12e05b35f768 pc=0xb8f51e
+github.com/ballerina-nutcracker/ballerina/projects.(*packageContext).getPackageCompilation.func1()
+	/workspace/ballerina-lang-go/projects/package_context.go:214 +0x69 fp=0x12e05b35f848 sp=0x12e05b35f7c8 pc=0xba4469
+sync.(*Once).doSlow(0x12e01ad3c045?, 0xb?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:78 +0xab fp=0x12e05b35f8a0 sp=0x12e05b35f848 pc=0x49c5eb
+sync.(*Once).Do(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:69
+github.com/ballerina-nutcracker/ballerina/projects.(*packageContext).getPackageCompilation(0x12e01b17c008)
+	/workspace/ballerina-lang-go/projects/package_context.go:213 +0x45 fp=0x12e05b35f8d0 sp=0x12e05b35f8a0 pc=0xb91645
+github.com/ballerina-nutcracker/ballerina/projects.(*Package).Compilation(...)
+	/workspace/ballerina-lang-go/projects/package.go:231
+github.com/ballerina-nutcracker/ballerina/test_util/testharness.Run({0x1969280, 0x12e01b190248}, {{0x12e01afc96e0, 0x5c}, {0x12e01ae5d360, 0x96}, {0x0, 0x0}, 0x0}, {0x1952498, ...}, ...)
+	/workspace/ballerina-lang-go/test_util/testharness/test_harness.go:513 +0x345 fp=0x12e05b35fd70 sp=0x12e05b35f8d0 pc=0xd66725
+github.com/ballerina-nutcracker/ballerina/test_util/testharness.TestMigrationTriage(0x12e01b190248)
+	/workspace/ballerina-lang-go/test_util/testharness/migration_triage_test.go:51 +0x605 fp=0x12e05b35ff70 sp=0x12e05b35fd70 pc=0xd6c4a5
+testing.tRunner(0x12e01b190248, 0x196ad58)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2193 +0xea fp=0x12e05b35ffc0 sp=0x12e05b35ff70 pc=0x5342ca
+testing.(*T).Run.gowrap1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2258 +0x1b fp=0x12e05b35ffe0 sp=0x12e05b35ffc0 pc=0x539cbb
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e05b35ffe8 sp=0x12e05b35ffe0 pc=0x494d61
+created by testing.(*T).Run in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2258 +0x4d4
+
+goroutine 1 gp=0x12e01ad2c1e0 m=nil [chan receive]:
+runtime.gopark(0x1946568?, 0x7f7c3c7bf4a8?, 0x10?, 0x7e?, 0x1876c58?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad81908 sp=0x12e01ad818e8 pc=0x48dbca
+runtime.chanrecv(0x12e01b18e080, 0x12e01aeef9ef, 0x1)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/chan.go:667 +0x4ae fp=0x12e01ad81980 sp=0x12e01ad81908 pc=0x41a74e
+runtime.chanrecv1(0x18?, 0x18c2e08?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/chan.go:509 +0x12 fp=0x12e01ad819a8 sp=0x12e01ad81980 pc=0x41a272
+testing.(*T).Run(0x12e01b190008, {0xdef9ab?, 0x12e01aeefaa0?}, 0x196ad58)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2266 +0x4f2 fp=0x12e01ad81a80 sp=0x12e01ad819a8 pc=0x534832
+testing.runTests.func1(0x12e01b190008)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2742 +0x37 fp=0x12e01ad81ac0 sp=0x12e01ad81a80 pc=0x539f37
+testing.tRunner(0x12e01b190008, 0x12e01aeefbc8)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2193 +0xea fp=0x12e01ad81b10 sp=0x12e01ad81ac0 pc=0x5342ca
+testing.runTests({0xe0c450, 0x29}, {0xe1ba11, 0x3f}, 0x12e01ae337b8, {0x1a4b038, 0x1, 0x1}, {0xc2ac841bd76f6dea, 0x5d28e78d7, ...})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2740 +0x510 fp=0x12e01ad81bf8 sp=0x12e01ad81b10 pc=0x536890
+testing.(*M).Run(0x12e01b16f180)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2600 +0x6af fp=0x12e01ad81e38 sp=0x12e01ad81bf8 pc=0x53544f
+main.main()
+	_testmain.go:46 +0x9b fp=0x12e01ad81eb8 sp=0x12e01ad81e38 pc=0xd6e0fb
+runtime.main()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:302 +0x427 fp=0x12e01ad81fe0 sp=0x12e01ad81eb8 pc=0x4540a7
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad81fe8 sp=0x12e01ad81fe0 pc=0x494d61
+
+goroutine 2 gp=0x12e01ad2cd20 m=nil [force gc (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad92fa8 sp=0x12e01ad92f88 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.forcegchelper()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:387 +0xb3 fp=0x12e01ad92fe0 sp=0x12e01ad92fa8 pc=0x454373
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad92fe8 sp=0x12e01ad92fe0 pc=0x494d61
+created by runtime.init.7 in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:375 +0x1a
+
+goroutine 3 gp=0x12e01ad2d2c0 m=nil [GC sweep wait]:
+runtime.gopark(0x1?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad93788 sp=0x12e01ad93768 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.bgsweep(0x12e01adbc000)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgcsweep.go:324 +0x151 fp=0x12e01ad937c8 sp=0x12e01ad93788 pc=0x43ce31
+runtime.gcenable.gowrap1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:214 +0x17 fp=0x12e01ad937e0 sp=0x12e01ad937c8 pc=0x4834d7
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad937e8 sp=0x12e01ad937e0 pc=0x494d61
+created by runtime.gcenable in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:214 +0x66
+
+goroutine 4 gp=0x12e01ad2d4a0 m=nil [GC scavenge wait]:
+runtime.gopark(0x10000?, 0xee4f18?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad93f78 sp=0x12e01ad93f58 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.(*scavengerState).park(0x1a9c540)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgcscavenge.go:425 +0x49 fp=0x12e01ad93fa8 sp=0x12e01ad93f78 pc=0x43a929
+runtime.bgscavenge(0x12e01adbc000)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgcscavenge.go:658 +0x59 fp=0x12e01ad93fc8 sp=0x12e01ad93fa8 pc=0x43ae99
+runtime.gcenable.gowrap2()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:215 +0x17 fp=0x12e01ad93fe0 sp=0x12e01ad93fc8 pc=0x483497
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad93fe8 sp=0x12e01ad93fe0 pc=0x494d61
+created by runtime.gcenable in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:215 +0xa5
+
+goroutine 18 gp=0x12e01ae043c0 m=nil [GOMAXPROCS updater (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad8e788 sp=0x12e01ad8e768 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.updateMaxProcsGoroutine()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:7146 +0xe7 fp=0x12e01ad8e7e0 sp=0x12e01ad8e788 pc=0x461887
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad8e7e8 sp=0x12e01ad8e7e0 pc=0x494d61
+created by runtime.defaultGOMAXPROCSUpdateEnable in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:7134 +0x37
+
+goroutine 19 gp=0x12e01ae04960 m=nil [finalizer wait]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad8ee20 sp=0x12e01ad8ee00 pc=0x48dbca
+runtime.runFinalizers()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mfinal.go:210 +0x107 fp=0x12e01ad8efe0 sp=0x12e01ad8ee20 pc=0x42de87
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad8efe8 sp=0x12e01ad8efe0 pc=0x494d61
+created by runtime.createfing in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mfinal.go:172 +0x3d
+
+goroutine 20 gp=0x12e01ae05680 m=nil [cleanup wait]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad8f768 sp=0x12e01ad8f748 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.(*cleanupQueue).dequeue(0x1a9cd80)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mcleanup.go:522 +0xd3 fp=0x12e01ad8f7a0 sp=0x12e01ad8f768 pc=0x42abb3
+runtime.runCleanups()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mcleanup.go:718 +0x45 fp=0x12e01ad8f7e0 sp=0x12e01ad8f7a0 pc=0x42b225
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad8f7e8 sp=0x12e01ad8f7e0 pc=0x494d61
+created by runtime.(*cleanupQueue).createGs in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mcleanup.go:672 +0xa5
+
+goroutine 22 gp=0x12e01ae05c20 m=nil [GC worker (idle)]:
+runtime.gopark(0x39566501d40?, 0x12e01ad8ff60?, 0x0?, 0xa8?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad8ff40 sp=0x12e01ad8ff20 pc=0x48dbca
+runtime.gcBgMarkWorker(0x12e01b0b88c0)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1807 +0xeb fp=0x12e01ad8ffc8 sp=0x12e01ad8ff40 pc=0x4312cb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1711 +0x17 fp=0x12e01ad8ffe0 sp=0x12e01ad8ffc8 pc=0x4839d7
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad8ffe8 sp=0x12e01ad8ffe0 pc=0x494d61
+created by runtime.gcBgMarkStartWorkers in goroutine 21
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 23 gp=0x12e01b194000 m=nil [GC worker (idle)]:
+runtime.gopark(0x395664f5ae5?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x12e01ad90740 sp=0x12e01ad90720 pc=0x48dbca
+runtime.gcBgMarkWorker(0x12e01b0b88c0)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1807 +0xeb fp=0x12e01ad907c8 sp=0x12e01ad90740 pc=0x4312cb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1711 +0x17 fp=0x12e01ad907e0 sp=0x12e01ad907c8 pc=0x4839d7
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x12e01ad907e8 sp=0x12e01ad907e0 pc=0x494d61
+created by runtime.gcBgMarkStartWorkers in goroutine 21
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1711 +0xfc

@@ -1,0 +1,14 @@
+{
+  "Name": "native-conversion-test-4a94bbda4e/struct-incompatible-info2-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/struct-incompatible-info2-p.bal",
+  "Project": false,
+  "Id": "T0955",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-test-4a94bbda4e/struct-incompatible-info2-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.056
+}

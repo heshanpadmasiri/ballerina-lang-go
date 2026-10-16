@@ -1,0 +1,12 @@
+{
+  "id": "T0393",
+  "name": "constrained-map-test-60915d9ec9/constrained-map-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message."
+  ],
+  "reason": "The case depends on error.detail() to extract and assert cast and cloneWithType diagnostic messages. lang.error:detail is absent from both the supported library methods and method-call positive lists, making this whole case a feature request.",
+  "unsupported_constructs": ["error.detail() calls, including e.detail()[\"message\"], e2.detail(), e3.detail(), er.detail(), and jsonError.detail()"],
+  "test_design_notes": ["The @output assertions include exact cast diagnostics and sliced conversion diagnostics obtained through unsupported detail() calls; these are essential asserted behavior. io:println is only output instrumentation."]
+}

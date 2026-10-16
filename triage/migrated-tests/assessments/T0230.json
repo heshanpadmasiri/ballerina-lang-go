@@ -1,0 +1,17 @@
+{
+  "id": "T0230",
+  "name": "bdd-optimization-test-43a20088cf/bdd-optimization-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "Expressions: [Type test expression](https://ballerina.io/spec/lang/master/#section_6.28)",
+    "Statements: [If/else], [Local variable declarations], [Return]"
+  ],
+  "reason": "The case uses supported type definitions (records, inclusions, unions, intersections and distinct error subtypes), error construction, ordinary function calls, equality, branching and a type test. No subset restriction excludes these error types or their subtype relationships. createMember(1) constructs a BadRequestError, so testing that value against BadRequestError must produce the asserted true output.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The sole output assertion is true; there are no @args or @panic directives.",
+    "io:println is output instrumentation. The large union exercises distinct-error type relationships without adding an unsupported language construct."
+  ]
+}

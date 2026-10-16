@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want main.bal:24, got main.bal:20
+        stderr:
+        error: error2
+                at test_org/project:main(main.bal:20)
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,17 @@
+{
+  "id": "T0950",
+  "name": "native-conversion-test-4a94bbda4e/non-array-json-to-array-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Expressions: Mapping constructor; Type test expression",
+    "Statements: Local variable declarations; If/else; Return; Panic",
+    "Subset restrictions / Import declarations: ballerina/lang.value lists cloneWithType",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType"
+  ],
+  "reason": "The case converts a JSON mapping whose a field is a string to a closed record requiring string[] a. cloneWithType, including its method-call syntax, is explicitly supported. Rejecting the incompatible field value with an error and panicking on that error uses supported conversion, type-test, and panic behavior; no restriction excludes this conversion failure.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The wrapper returns if conversion produces StringArray and otherwise panics on the returned error. The expected panic therefore tests conversion failure; it need not mean cloneWithType itself panics."
+  ]
+}

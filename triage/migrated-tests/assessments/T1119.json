@@ -1,0 +1,17 @@
+{
+  "id": "T1119",
+  "name": "open-record-iteration-test-4a36ef124f/open-record-iteration-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.map lists length, keys, hasKey, get, remove.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; map:length, map:keys, map:hasKey, map:get, map:remove."
+  ],
+  "reason": "The asserted record traversal and transformation results depend on map langlib operations entries, forEach, map, filter and reduce, none of which appears in the supported map library or method-call lists. In particular, main asserts entry order, transformed values, filtered keys and reduce counts, so unsupported operations are essential to the tested behavior.",
+  "unsupported_constructs": [
+    "Record/map entries()",
+    "Record/map forEach(), map(), filter() and reduce() langlib calls"
+  ],
+  "test_design_notes": [
+    "io:println is output instrumentation and does not determine the classification."
+  ]
+}

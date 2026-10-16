@@ -1,0 +1,18 @@
+{
+  "id": "T1471",
+  "name": "type-guard-test-74355f2266/sem-types-2-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Supports the isolated function qualifier\"; \"Type definition\"",
+    "Statements: \"Assignment\"; \"If/else\"; \"Local variable declarations\"; \"Return\"",
+    "Expressions: \"Type test expression\"; \"Variable reference\"; \"Call\"; \"Literal\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\" (no langlib use here)"
+  ],
+  "reason": "The case tests static type-test narrowing and unreachable-code diagnostics over record subtyping and unions, using supported type definitions, functions, if/else, assignments and returns. No listed restriction excludes these type relationships, readonly tuple intersections, or the external function declaration. Negative diagnostics within this supported grammar/type system are in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The two unreachable else statements each carry duplicate @error markers; diagnostic multiplicity needs care.",
+    "The final return in f3 has an unexplained @error marker: earlier matching branches generally fall through, so the marker should be checked independently of the clearly unreachable else cases.",
+    "No @args, @panic or @output assertions occur; the external helper is only involved in static checking."
+  ]
+}

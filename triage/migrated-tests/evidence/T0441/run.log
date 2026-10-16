@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "error-binding-pattern-test-d3ff0cd2c4/error-binding-pattern-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+         --> error-binding-pattern-negative-e.bal:4:9
+          |
+        4 |         var error() => {} // @error
+          |         ^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+         --> error-binding-pattern-negative-e.bal:9:9
+          |
+        9 |         var error() => {} // @error
+          |         ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

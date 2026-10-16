@@ -1,0 +1,14 @@
+{
+  "Name": "list-constructor-expr-test-039d73e3d9/list-constructor-infer-type-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/list-constructor-expr-test-039d73e3d9/list-constructor-infer-type-v.bal",
+  "Project": false,
+  "Id": "T0719",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/list-constructor-expr-test-039d73e3d9/list-constructor-infer-type-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.092
+}

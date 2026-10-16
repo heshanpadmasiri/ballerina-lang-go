@@ -1,0 +1,18 @@
+{
+  "Name": "operand-test-0e6612016b/option_defaultable_optional_with_arg-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/option_defaultable_optional_with_arg-v.bal",
+  "Project": false,
+  "Id": "T1153",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/option_defaultable_optional_with_arg-v.bal"
+  ],
+  "Args": [
+    "--name=Riyafa",
+    "--score=100",
+    "--height=5.6"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.047
+}

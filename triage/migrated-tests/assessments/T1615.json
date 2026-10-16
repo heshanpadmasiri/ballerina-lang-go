@@ -1,0 +1,19 @@
+{
+  "id": "T1615",
+  "name": "xmlaccess-test-873756d6ae/nav-access-negative-filter-e",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [XML template expression]; 'Supports interpolation in XML content and attributes'",
+    "Expressions: [XML navigation expression]",
+    "Expressions: [Variable reference] — 'Currently `xml-qualified-names` not supported'",
+    "Statements: [Local variable declarations]",
+    "Module-level declarations: [Import declarations]; [Function definition]",
+    "Subset restrictions / Import declarations: `ballerina/lang.int` lists `Signed8`"
+  ],
+  "reason": "All essential constructs are supported. The marked errors require rejection of XML navigation on any and int receivers and rejection of a module import prefix used as an XML namespace prefix in a navigation name filter. XML navigation and XML templates are explicitly supported, and the aliased lang.int import and Signed8 type are allowed. The xml-qualified-names restriction is attached to variable references; foo:doc here is a navigation name filter, not a variable-reference expression.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Three @error markers assert compile-time rejection; no @args, @panic or @output assertions occur.",
+    "The unused valid XML value and Signed8 declaration are setup; no obvious mixed unsupported scope or marker issue."
+  ]
+}

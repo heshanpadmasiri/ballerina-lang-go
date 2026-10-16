@@ -1,0 +1,14 @@
+{
+  "Name": "xml-type-descriptor-test-13d74b7ab8/xml_type_descriptor_negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xml-type-descriptor-test-13d74b7ab8/xml_type_descriptor_negative-e.bal",
+  "Project": false,
+  "Id": "T1610",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xml-type-descriptor-test-13d74b7ab8/xml_type_descriptor_negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.03
+}

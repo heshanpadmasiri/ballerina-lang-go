@@ -1,0 +1,17 @@
+{
+  "id": "T0721",
+  "name": "list-constructor-spread-operator-test-ae223889d2/inference-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\"",
+    "Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"",
+    "Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"",
+    "Expressions: Mapping constructor restriction: \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\""
+  ],
+  "reason": "The case checks list-spread inference for arrays and tuples, including aliases, unions, readonly contexts and never rest members, and rejection of undefined references, non-list spread operands and incompatible assignments. List constructors and local declarations are supported without a list-spread restriction. The explicit spread exclusion applies to mapping constructors, not these lists. These negative type-checking assertions remain within the supported grammar and type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "This is a compile-negative case with both expected-error and expected-success statements; the success statements also exercise inferred list types through incompatible scalar assignments.",
+    "The final typedesc declarations exercise rejection of undefined and non-list spread operands; illegal operands alone do not make the case a feature request."
+  ]
+}

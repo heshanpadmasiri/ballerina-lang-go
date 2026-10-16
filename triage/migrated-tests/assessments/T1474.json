@@ -1,0 +1,14 @@
+{
+  "id": "T1474",
+  "name": "type-guard-test-74355f2266/sem-types-5-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: 'Method call', 'Client remote method call action', and 'Type test expression' are listed as supported.",
+    "Module-level declarations / Class definition: Supports `client`, `service`, `isolated`, `readonly` and `distinct` class-type-quals.",
+    "Subset restrictions / Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, and toBalString, but not cloneReadOnly.",
+    "Subset restrictions / Invocations / Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions'; the value entries omit cloneReadOnly."
+  ],
+  "reason": "The class-union narrowing and ordinary/remote enrich calls use listed features, but ClientBasicAuthProvider.init calls credentialsConfig.cloneReadOnly(), a lang.value operation absent from both supported langlib lists. This essential source construct makes the whole case feature scope even though main is empty.",
+  "unsupported_constructs": ["Langlib method call credentialsConfig.cloneReadOnly()"],
+  "test_design_notes": ["Mixed scope: supported class/type-guard code is combined with an unsupported langlib call.", "No @args, @panic, or @output markers; empty main supplies no runtime assertion."]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "distinct-type-def-test-35a3bcc454/distinct-type-def-test-35a3bcc454-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/distinct-type-def-test-35a3bcc454/distinct-type-def-test-35a3bcc454-e.bal",
+  "Project": false,
+  "Id": "T0421",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/distinct-type-def-test-35a3bcc454/distinct-type-def-test-35a3bcc454-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.023
+}

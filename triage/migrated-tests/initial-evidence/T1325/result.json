@@ -1,0 +1,15 @@
+{
+  "Name": "runtime-test-2bcb63c65d/runtime-test-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/runtime-test-2bcb63c65d/runtime-test-v",
+  "Project": true,
+  "Id": "T1325",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/runtime-test-2bcb63c65d/runtime-test-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/runtime-test-2bcb63c65d/runtime-test-v/runtime-test.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 1.096
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "open-record-equivalency-rules-test-7770622aa6/closed-to-open-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-rules-test-7770622aa6/closed-to-open-v.bal",
+  "Project": false,
+  "Id": "T1108",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-rules-test-7770622aa6/closed-to-open-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.08
+}

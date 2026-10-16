@@ -1,0 +1,14 @@
+{
+  "id": "T1256",
+  "name": "record-def-negative-test-2a404858e4/duplicate-key-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Type definition] and [Function definition]",
+    "## Statements: [Local variable declarations] and [Assignment]",
+    "## Expressions: [Mapping constructor]; Currently [spread-field] not supported",
+    "## Expressions: [Literal] — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only"
+  ],
+  "reason": "The case asserts compile-time rejection of duplicate record-constructor keys, including identifier/string-literal spellings of the same key, and an annotated uninitialized local declaration. These exercise supported type definitions, local declarations, assignments and mapping constructors. No spread fields or other restricted constructs occur; negative validation of these supported constructs is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The additional @error on `Song hi;` is distinct from the duplicate-key errors; this supplied source does not explain the expected diagnostic there."]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0590",
+  "name": "future-negative-tests-7e2663cfde/cases/future_compilation-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\"",
+    "Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"",
+    "Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\" and \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\"",
+    "Expressions: \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\"; \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\""
+  ],
+  "reason": "The case asserts rejection of incompatible future result types in start initializers and variable assignments, including unions with error and conversion from unconstrained future. Start actions, local declarations, type definitions, functions and mapping constructors are supported; no listed restriction excludes these type compatibility checks, open/closed records or unconstrained futures. All asserted negative behavior is within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Five annotated incompatible-type diagnostics; the unannotated widening assignment to unconstrained future supplies the final narrowing-error case."
+  ]
+}

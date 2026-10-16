@@ -1,0 +1,15 @@
+{
+  "id": "T0260",
+  "name": "bjsonvalue-test-248ac7be19/null-json-to-float-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\"",
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"; \"[Return](https://ballerina.io/spec/lang/master/#return-stmt)\"",
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; \"[Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)\"; \"[`Call`](https://ballerina.io/spec/lang/master/#call-expr)\""
+  ],
+  "reason": "The case uses supported functions, local declarations, a nil literal stored in json, a call, and a type cast. The asserted TypeCastError panic for casting the nil JSON value to float is the failure behavior of the supported type-cast expression; no subset restriction excludes this cast or its panic.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic assertion checks the TypeCastError reason and incompatible-types message for () to float; main invokes the function so the failing cast executes. No @args or @output assertions."
+  ]
+}

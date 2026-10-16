@@ -1,0 +1,18 @@
+{
+  "id": "T1092",
+  "name": "object-type-reference-test-19fd51d776/object-type-reference-2-negative-e.bal",
+  "classification": "uncertain",
+  "spec_references": [
+    "Module-level declarations: Supports `client`, `service`, `isolated`, `readonly` and `distinct` [`class-type-quals`]",
+    "Module-level declarations: Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "Module-level declarations: [Type definition]",
+    "Expressions: [Field access expression]"
+  ],
+  "reason": "The negative case asserts errors for object type inclusion and access to an uninherited field, including inclusion of a readonly object intersection in a readonly class. Object inclusion and field access are listed as supported, and negative validation is in scope. However, readonly class qualifiers are explicitly supported in the declaration list and explicitly excluded by the object/class restriction, so the scope of this essential readonly class case is conflicting.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Three @error markers assert compile-time rejection; no runtime behavior is exercised.",
+    "The readonly class qualifier has conflicting support statements in the supplied specification."
+  ]
+}

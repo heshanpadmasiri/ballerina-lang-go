@@ -1,0 +1,17 @@
+{
+  "id": "T0603",
+  "name": "global-var-function-with-pkg-test-24ccb66686/project1-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\", \"Function definition\", \"Module variable declarations\"",
+    "Expressions: \"Call\", \"Type cast expression\", \"List constructor\", \"Variable reference\", \"Member access expression\"",
+    "Statements: \"Assignment\", \"Local variable declarations\", \"Return\"; Destructuring assignment statement: \"Only supports wildcard-binding-pattern\"",
+    "Operators: \"Additive ops `+`, `-`\""
+  ],
+  "reason": "All essential constructs and asserted behavior are supported: imported-module functions read and mutate module globals, function calls initialize globals, int-to-float casts preserve the expected numeric values, and a tuple carries int/string/float/any results. The expected outputs exercise global initialization and cross-module state, with no applicable subset restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println is output instrumentation only.",
+    "getGlobalFloatVar is uncalled; its wildcard assignment is also supported."
+  ]
+}

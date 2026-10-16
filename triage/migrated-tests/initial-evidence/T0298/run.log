@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: top stack frame mismatch for @panic: want main.bal:15, got main.bal:7
+        stderr:
+        error: invalid array index: 4
+                at migration/checkpanic_array_index_p:testBasicCheckpanic(main.bal:7)
+                   migration/checkpanic_array_index_p:main(main.bal:2)
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

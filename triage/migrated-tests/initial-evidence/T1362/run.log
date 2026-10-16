@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at string-template-literal-syntax-negative-e.bal:13-13 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at string-template-literal-syntax-negative-e.bal:5 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.21s)
+FAIL

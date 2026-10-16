@@ -1,0 +1,17 @@
+{
+  "id": "T1612",
+  "name": "xmlaccess-test-873756d6ae/indexed-access-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"",
+    "Statements: \"Assignment\"; \"See supported [`lvexpr`](#expressions)\"; \"Local variable declarations\"",
+    "Expressions: \"XML template expression\"; \"XML navigation expression\"; \"Member access expression\"; \"lvexpr\"",
+    "Subset restrictions / Import declarations: \"ballerina/lang.xml\" includes \"Text\""
+  ],
+  "reason": "All essential constructs are covered: XML templates (including comments and text), child navigation, indexed member access, assignments, local declarations, and the supported xml:Text type. The expected rejections concern invalid XML update targets, non-integer indices, and incompatible indexed access on a string|xml:Text value. Negative rejection within these supported constructs remains in scope; no applicable restriction excludes them.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Seven @error markers assert compile-time rejection; no @args, @panic, or @output behavior is present.",
+    "The string|xml:Text indexed-access cases mix union access and assignment compatibility checks, but both remain within supported grammar/type checking."
+  ]
+}

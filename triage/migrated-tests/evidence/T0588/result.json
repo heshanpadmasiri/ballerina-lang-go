@@ -1,0 +1,14 @@
+{
+  "Name": "functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-negative-e.bal",
+  "Project": false,
+  "Id": "T0588",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

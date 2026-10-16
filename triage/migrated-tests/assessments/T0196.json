@@ -1,0 +1,19 @@
+{
+  "id": "T0196",
+  "name": "assignment-to-narrowed-vars-in-loops-test-df0ab3d5c6/assignment_to_narrowed_vars_in_loops_negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Destructuring assignment statement\" \u2014 \"Only supports wildcard-binding-pattern\"",
+    "Expressions: \"Query expressions\" \u2014 \"Supports from, where, let, join (including outer join), order by, limit, on conflict and select clauses\"",
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.map lists length, keys, hasKey, get, remove."
+  ],
+  "reason": "The whole negative case contains unsupported non-wildcard destructuring assignments in f12, including list, mapping and error patterns. Their asserted rejection behavior cannot make the whole case a supported-subset bug. It also uses query actions with do blocks, which are not covered by the supported query-expression clauses, and logRecord.entries(), absent from the allowed lang.map methods.",
+  "unsupported_constructs": [
+    "f12: [a, b, f, c, d, ...w] = ...; {a: e, b: f, d} = rec; error(a, b = b, c = c, d = d) = err",
+    "f21\u2013f23 and testInLoopAssignmentsWithQueryAction: from ... do query actions",
+    "f13: logRecord.entries() lang.map method"
+  ],
+  "test_design_notes": [
+    "Compile-negative test with @error assertions; no @args, @panic or @output execution protocol is present. Supported loop/type-test syntax alone does not establish support for all constructs in this file."
+  ]
+}

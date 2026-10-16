@@ -1,0 +1,17 @@
+{
+  "Name": "option-test-1b0c555df9/repeated_boolean_option-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/repeated_boolean_option-p.bal",
+  "Project": false,
+  "Id": "T1183",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/repeated_boolean_option-p.bal"
+  ],
+  "Args": [
+    "--booleanVal",
+    "--booleanVal"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.058
+}

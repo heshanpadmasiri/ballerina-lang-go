@@ -1,0 +1,14 @@
+{
+  "Name": "worker-multiple-receive-test-98321dc2b9/worker-multiple-receive-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-multiple-receive-test-98321dc2b9/worker-multiple-receive-v.bal",
+  "Project": false,
+  "Id": "T1577",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-multiple-receive-test-98321dc2b9/worker-multiple-receive-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.057
+}

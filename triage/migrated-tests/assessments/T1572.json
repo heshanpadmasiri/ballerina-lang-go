@@ -1,0 +1,20 @@
+{
+  "id": "T1572",
+  "name": "worker-flush-test-6ee8386f38/worker-flush-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, including Panic and Foreach, but does not list named worker declarations or worker sends.",
+    "## Expressions: lists 'Start action' and 'Wait action', but does not list worker send, receive, or flush actions.",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.runtime lists 'sleep'."
+  ],
+  "reason": "The case essentially requires named workers, synchronous and asynchronous worker sends, worker receives, and flush, including propagation of a worker panic through flush/wait. These constructs and their interaction are not covered by subset 10. Supported wait actions, panic statements, and runtime:sleep do not establish support for worker communication or flush panic propagation.",
+  "unsupported_constructs": [
+    "Named worker declarations w1, w2, w3",
+    "Synchronous send a ->> w2, asynchronous sends a -> w3 and a -> w2, and receives <- w1",
+    "flush action and worker panic propagation through flush/wait"
+  ],
+  "test_design_notes": [
+    "The @panic marker is on the error constructor declaration rather than the following panic statement; its apparent expected panic also relies on unsupported worker propagation.",
+    "No @args or @output markers appear. append2 is mutated by workers but never asserted, and main ignores the returned error."
+  ]
+}

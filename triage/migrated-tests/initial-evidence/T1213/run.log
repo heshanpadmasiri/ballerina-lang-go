@@ -1,0 +1,81 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "query-expr-with-query-construct-type-test-397e030880/query-expr-query-construct-type-semantics-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> query-expr-query-construct-type-semantics-negative-e.bal:134:29
+            |
+        134 |         let TokenTable tb = table []
+            |                             ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> query-expr-query-construct-type-semantics-negative-e.bal:47:17
+           |
+        47 | type TokenTable table<Token> key(idx);
+           |                 ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-expr-query-construct-type-semantics-negative-e.bal:110:57
+            |
+        110 |         let Token[] arr = from var j in (from var m in (table key(idx) from var j in [1, 1]
+            |                                                         ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-expr-query-construct-type-semantics-negative-e.bal:122:57
+            |
+        122 |         let Token[] arr = from var j in (from var m in (table key(idx) from var j in [1, 1]
+            |                                                         ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> query-expr-query-construct-type-semantics-negative-e.bal:135:51
+            |
+        135 |         where tb == from var j in (from var m in (table key(idx) from var j in [1, 1]
+            |                                                   ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> query-expr-query-construct-type-semantics-negative-e.bal:50:34
+           |
+        50 |     Token[] _ = from Token i in (table key(idx) from var j in [1, 1]
+           |                                  ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> query-expr-query-construct-type-semantics-negative-e.bal:62:26
+           |
+        62 |         from Token j in (table key(idx) from var j in [1, 1]
+           |                          ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> query-expr-query-construct-type-semantics-negative-e.bal:74:26
+           |
+        74 |         join Token j in (table key(idx) from var j in [1, 1]
+           |                          ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> query-expr-query-construct-type-semantics-negative-e.bal:86:64
+           |
+        86 |     Token[] _ = from Token i in (from var j in (from var m in (table key(idx) from var j in [1, 1]
+           |                                                                ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> query-expr-query-construct-type-semantics-negative-e.bal:97:40
+           |
+        97 |     Token[] _ = from Token i in (check table key(idx) from var j in (from var m in (check table key(idx) from var j in [1, 1]
+           |                                        ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> query-expr-query-construct-type-semantics-negative-e.bal:97:91
+           |
+        97 |     Token[] _ = from Token i in (check table key(idx) from var j in (from var m in (check table key(idx) from var j in [1, 1]
+           |                                                                                           ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> query-expr-query-construct-type-semantics-negative-e.bal:134:29
+            |
+        134 |         let TokenTable tb = table []
+            |                             ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> query-expr-query-construct-type-semantics-negative-e.bal:47:17
+           |
+        47 | type TokenTable table<Token> key(idx);
+           |                 ^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

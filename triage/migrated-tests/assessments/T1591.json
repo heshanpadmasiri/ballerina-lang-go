@@ -1,0 +1,19 @@
+{
+  "id": "T1591",
+  "name": "worker-test-0f3493dd03/06-send-default-after-default-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statements list includes Panic and Lock statement, but does not include named worker declarations or worker send statements.",
+    "## Expressions: lists Start action, Wait action, Check expression and Trap expression, but does not list worker receive actions.",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.runtime lists sleep, onGracefulStop and StopHandler, with no ballerina/lang.future cancel support."
+  ],
+  "reason": "The main path invokes sendToDefaultWithPanicAfterSendInDefault, which declares a named worker and exchanges a value through worker send/receive before panicking. Named workers and worker messaging are not covered by subset 10; supported panic/start/wait constructs do not establish support for that communication or its panic propagation behavior. This is decisive for feature classification.",
+  "unsupported_constructs": [
+    "Named worker declarations and asynchronous/synchronous worker sends (-> and ->>) and receives (<-), including default-worker communication.",
+    "Future cancellation via f1.cancel() in additional functions is outside the supported langlib list."
+  ],
+  "test_design_notes": [
+    "Whole file retains many unrelated worker, cancellation, lock, lambda and query scenarios while main executes only sendToDefaultWithPanicAfterSendInDefault.",
+    "The @panic marker is attached to the error-construction line immediately preceding panic err; the expected main outcome is an unhandled panic after a successful worker-to-default send/receive. No @args or @output markers appear."
+  ]
+}

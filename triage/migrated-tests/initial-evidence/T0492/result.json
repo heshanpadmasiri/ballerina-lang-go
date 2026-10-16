@@ -1,0 +1,14 @@
+{
+  "Name": "foreach-map-tests-ae9e081fa6/foreach-map-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/foreach-map-tests-ae9e081fa6/foreach-map-v.bal",
+  "Project": false,
+  "Id": "T0492",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/foreach-map-tests-ae9e081fa6/foreach-map-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.066
+}

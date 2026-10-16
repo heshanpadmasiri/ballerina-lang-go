@@ -1,0 +1,41 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	default
+        	
+        	
+        	
+        	
+        	LK
+        	John
+        	Doe
+        	
+        	
+        	
+        	LK
+        	default
+        	
+        	
+        	
+        	
+        	LK
+        	default
+        	
+        	
+        	
+        	{"street":"Palm Grove","city":"Colombo 3","country":"LK"}
+        	true
+        	typedesc Address3
+        	{"street":"Palm Grove","city":"Colombo 3","country":"LK"}
+        	true
+        	typedesc Address3
+        	default
+        	
+        	
+        	
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

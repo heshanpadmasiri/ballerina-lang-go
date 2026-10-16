@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'a'\n --\u003e successful-array-v.bal:2:22\n  |\n2 | public function main(int[] a) {\n  |                      ^^^^^^^\n\nballerina: compilation contains errors\n","Diagnostics":null}

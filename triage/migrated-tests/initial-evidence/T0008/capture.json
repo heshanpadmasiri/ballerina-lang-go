@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 's1'\n  --\u003e access-p.bal:12:5\n   |\n12 |     string? s1 = a.betas[0]?.s; // @panic\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"access-p.bal","StartLine":12,"EndLine":12}]}

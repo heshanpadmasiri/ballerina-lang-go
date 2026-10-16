@@ -1,0 +1,21 @@
+{
+  "id": "T0867",
+  "name": "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-with-rest-match-pattern-v",
+  "classification": "feature",
+  "spec_references": [
+    "Statements > Match statement: \"Currently only supports const-pattern and wildcard-match-pattern\"",
+    "Statements > Destructuring assignment statement: \"Only supports wildcard-binding-pattern\"",
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only message",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; error:message is listed, error:detail is absent"
+  ],
+  "reason": "The assertions depend on list match patterns with rest captures, nested list bindings and guards, whereas match supports only constant and wildcard patterns. The executed testListMatchPatternWithRestPattern13 also uses nested list destructuring assignment and asserts error detail values through detail(), both outside the documented restrictions.",
+  "unsupported_constructs": [
+    "List match patterns and rest captures, including nested patterns and var list binding patterns",
+    "Nested list destructuring assignment to existing captures",
+    "error:detail() langlib method used to assert detail1 and detail2"
+  ],
+  "test_design_notes": [
+    "main invokes the rest-pattern assertions, including testListMatchPatternWithRestPattern13; testListMatchPatternWithRestPattern12 is declared but not invoked.",
+    "io:println is incidental instrumentation."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "T0639",
+  "name": "if-else-stmt-test-abeec549fb/if-else-stmt-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists Assignment, Destructuring assignment statement, Compound Assignment, Break, Continue, Lock statement, Call, If/else, While, Local variable declarations, Return, Panic, Foreach and Match statement; standalone block statements are not listed.",
+    "## Expressions: \"[Anonymous function expression]\", \"[Type test expression]\", \"[Equality expression]\", and \"Nested expressions (`(expression)`)\" are supported."
+  ],
+  "reason": "The called testResetTypeNarrowingWithBlockStmt function uses a standalone block statement around local error declarations and narrowing/reset operations. Standalone block statements are absent from the supported statement list, so the whole case requires an uncovered construct even though its if/else branches, comparisons, anonymous function and type tests are listed as supported.",
+  "unsupported_constructs": ["Standalone block statement in testResetTypeNarrowingWithBlockStmt"],
+  "test_design_notes": ["Printed assertions cover branch selection, lexical scope and narrowed optional-string return behavior. Several additional called functions exercise compilation and execution without output assertions; the standalone-block function is among them.", "io:println is output instrumentation."]
+}

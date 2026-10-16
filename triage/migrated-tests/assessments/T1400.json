@@ -1,0 +1,21 @@
+{
+  "id": "T1400",
+  "name": "table-key-field-value-test-2f8ad88b2d/table-key-field-value-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported' (no ballerina/lang.table; ballerina/lang.error lists only message; ballerina/lang.value does not list clone).",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' (no table methods, error:detail, or value:clone).",
+    "Expressions: 'Query expressions' supports 'list' and 'map' as 'query-constructor-type'; table constructors and regular-expression templates are not listed."
+  ],
+  "reason": "The case requires keyed tables and table add/get/put/remove/length langlib methods, which are outside the supported langlib lists. Its asserted duplicate-key panics, exact error details, and composite/structural key equality depend on those unsupported operations. General method-call/trap/equality support does not override the langlib restrictions.",
+  "unsupported_constructs": [
+    "table constructors and keyed table operations, including table-valued queries",
+    "error.detail() and value.clone()",
+    "string:RegExp types and re templates, including interpolation"
+  ],
+  "test_design_notes": [
+    "Combines supported arithmetic, casts, strings/XML, and general queries with unsupported table/regexp/langlib behavior; main invokes the full collection.",
+    "No @args, @panic, or @output markers; assertions run from main and panic on failure. io:println is unreachable instrumentation.",
+    "Several historical blocked variants are commented out and do not contribute to scope."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T1252",
+  "name": "record-assignability-test-a5cb3cb04b/record-assignability-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition",
+    "Expressions: Type test expression",
+    "Expressions: Type cast expression; List constructor; Mapping constructor; String template expression",
+    "Statements: Local variable declarations; If/else; Panic",
+    "Subset restrictions / Import declarations: ballerina/lang.value includes toBalString",
+    "Subset restrictions / Invocations / Other invocation restrictions: value:toString and value:toBalString"
+  ],
+  "reason": "The case exercises record assignability and runtime membership for open and closed records, optional fields, typed/never rest fields, readonly nullable fields, and arrays of records. Type definitions, casts, type tests, constructors, and assertion machinery are supported, with no record-specific restriction excluding these behaviors. The assertions check runtime record and array membership, including empty values whose declared member/rest types affect membership; they remain within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The two io:println calls are output instrumentation only.",
+    "Assertion diagnostics use the explicitly supported value:toBalString method."
+  ]
+}

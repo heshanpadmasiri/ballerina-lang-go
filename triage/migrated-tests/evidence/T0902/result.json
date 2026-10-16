@@ -1,0 +1,16 @@
+{
+  "Name": "mod-operation-test-bd4a47c2f4/mod-values-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-values-v",
+  "Project": true,
+  "Id": "T0902",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-values-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-values-v/Dependencies.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-values-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.068
+}

@@ -1,0 +1,177 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "distinct-object-test-d9a03dbe83/distinct-object-assignability-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> distinct-object-assignability-e.bal:47:11
+           |
+        47 |     } x = object {
+           |           ^^^^^^^^
+        48 |         int i = 1;
+           |         ^^^^^^^^^^
+        49 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> distinct-object-assignability-e.bal:53:9
+           |
+        53 |     x = object {
+           |         ^^^^^^^^
+        54 |         int i = 10;
+           |         ^^^^^^^^^^^
+        55 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> distinct-object-assignability-e.bal:63:36
+           |
+        63 |     distinct object { int i; } y = object { int i = 3; };
+           |                                    ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> distinct-object-assignability-e.bal:68:19
+           |
+        68 |     object {} x = object {};
+           |                   ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:13:14
+           |
+        13 | type Foo int|distinct object { };
+           |              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:14:27
+           |
+        14 | type Foo2 int|(readonly & distinct object { });
+           |                           ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:15:12
+           |
+        15 | type Foo3 (distinct object { } & readonly)|distinct object { };
+           |            ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:15:44
+           |
+        15 | type Foo3 (distinct object { } & readonly)|distinct object { };
+           |                                            ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:16:11
+           |
+        16 | type Foo4 distinct object { }|distinct object { }|distinct object { };
+           |           ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:16:31
+           |
+        16 | type Foo4 distinct object { }|distinct object { }|distinct object { };
+           |                               ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:16:51
+           |
+        16 | type Foo4 distinct object { }|distinct object { }|distinct object { };
+           |                                                   ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:17:11
+           |
+        17 | type Foo5 distinct object { }|distinct error;
+           |           ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:17:31
+           |
+        17 | type Foo5 distinct object { }|distinct error;
+           |                               ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:19:14
+           |
+        19 | type Bar int|distinct object {
+           |              ^^^^^^^^^^^^^^^^^
+        20 |     int i;
+           |     ^^^^^^
+        21 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:59:5
+           |
+        59 |     distinct object {
+           |     ^^^^^^^^^^^^^^^^^
+        60 |         int i;
+           |         ^^^^^^
+        61 |     } _ = x; // @error
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:63:5
+           |
+        63 |     distinct object { int i; } y = object { int i = 3; };
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:75:5
+           |
+        75 |     distinct object { } _ = f1; // @error
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:76:5
+           |
+        76 |     distinct object { } _ = f2; // @error
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:77:5
+           |
+        77 |     distinct object { } _ = f3; // @error
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:78:5
+           |
+        78 |     distinct object { } _ = f4; // @error
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> distinct-object-assignability-e.bal:79:5
+           |
+        79 |     distinct object { } _ = f5; // @error
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> distinct-object-assignability-e.bal:47:11
+           |
+        47 |     } x = object {
+           |           ^^^^^^^^
+        48 |         int i = 1;
+           |         ^^^^^^^^^^
+        49 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> distinct-object-assignability-e.bal:53:9
+           |
+        53 |     x = object {
+           |         ^^^^^^^^
+        54 |         int i = 10;
+           |         ^^^^^^^^^^^
+        55 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> distinct-object-assignability-e.bal:63:36
+           |
+        63 |     distinct object { int i; } y = object { int i = 3; };
+           |                                    ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> distinct-object-assignability-e.bal:68:19
+           |
+        68 |     object {} x = object {};
+           |                   ^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

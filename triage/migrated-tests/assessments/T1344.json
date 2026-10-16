@@ -1,0 +1,18 @@
+{
+  "id": "T1344",
+  "name": "service-object-test-97b54e47e4/service-object-assignment-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\" and \"Function definition\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions: \"Type cast expression\"",
+    "Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\"",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\""
+  ],
+  "reason": "The case checks structural assignability among supported service and ordinary object types, including public and remote method declarations. Its expected errors reject ordinary-object-to-service assignment, assignment to a service requiring a missing method, and remote-method-to-public-method assignment. These are type-system checks over explicitly supported object qualifiers and members; no essential construct is excluded by the subset.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation case: three assignments are marked @error; the remaining assignments establish accepted structural relationships.",
+    "Casts from an any holding an integer are setup for static checking; executing these functions would fail at the cast and is not the asserted behavior."
+  ]
+}

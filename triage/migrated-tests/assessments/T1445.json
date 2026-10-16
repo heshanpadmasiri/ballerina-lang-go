@@ -1,0 +1,13 @@
+{
+  "id": "T1445",
+  "name": "tuple-mutability-test-4a07e00b3d/invalid-cast-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Module variable declarations\"",
+    "Statements: \"Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"Type cast expression\"; \"List constructor\"; \"Mapping constructor\"; \"Member access expression\""
+  ],
+  "reason": "Record definitions, tuple construction and assignment, mutation through a widened tuple reference, and a checked record cast are supported with no applicable restriction. The @panic asserts the supported cast runtime failure: the Employee value lacks the required Intern salary field and cannot be cast to the closed Intern record. No unsupported operation is required.",
+  "unsupported_constructs": [],
+  "test_design_notes": []
+}

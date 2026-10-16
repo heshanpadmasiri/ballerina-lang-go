@@ -1,0 +1,17 @@
+{
+  "id": "T0855",
+  "name": "match-statement-static-patterns-test-4828836871/static-match-patterns-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\"",
+    "### Other invocation restrictions: \"`value:toString` and `value:toBalString`\""
+  ],
+  "reason": "The executed tests require list and mapping match patterns, including nested structures, empty patterns, and alternatives containing structured patterns. Asserted outputs depend on matching tuple lengths, mapping fields and nested values. These patterns exceed the explicit const-pattern/wildcard-only match support. Supported toString/length calls and println instrumentation do not change the classification.",
+  "unsupported_constructs": [
+    "List match patterns such as [12, \"Ballerina\"], [], and [1, 2, 3].",
+    "Mapping match patterns such as {x: 12, y: \"Ballerina\"}, {}, and nested mapping/list patterns."
+  ],
+  "test_design_notes": [
+    "Whole-case feature classification: scalar constant and wildcard scenarios coexist with essential, executed structured-pattern scenarios."
+  ]
+}

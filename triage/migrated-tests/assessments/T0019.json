@@ -1,0 +1,23 @@
+{
+  "id": "T0019",
+  "name": "anonymous-closed-record-test-dd78432cc7/anonymous-closed-record-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    {"heading": "Module-level declarations", "quote": "[Module variable declarations]"},
+    {"heading": "Module-level declarations", "quote": "[Type definition]"},
+    {"heading": "Statements", "quote": "[Local variable declarations]"},
+    {"heading": "Expressions", "quote": "[Mapping constructor]", "restriction": "Currently [spread-field] not supported"},
+    {"heading": "Expressions", "quote": "[Type cast expression]"},
+    {"heading": "Expressions", "quote": "[Optional field access expression]"},
+    {"heading": "Expressions", "quote": "[Type test expression]"},
+    {"heading": "Other invocation restrictions", "quote": "`value:toString` and `value:toBalString`"},
+    {"heading": "Statements", "quote": "[Destructuring assignment statement]", "restriction": "Only supports [wildcard-binding-pattern]"}
+  ],
+  "reason": "The complete case uses supported declarations, record constructors and accesses, casts, type tests, equality, arithmetic, calls and control flow. No express restriction excludes anonymous records, nested records, record rest fields, record type inclusion, record defaults, or readonly record fields. The record binding pattern in 'final var {y} = r' is a local variable declaration, not the restricted destructuring assignment statement. No mapping spread field occurs; '*Foo' is record type inclusion. The toString method calls are expressly allowed.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixes anonymous open and closed records, explicit rest fields, nesting, type inclusion and defaults derived from a binding-pattern variable.",
+    "main invokes four output checks plus the type-inclusion and binding-default checks; several additional helper tests are declared but not invoked.",
+    "io:println and @output comments are test instrumentation; no @error markers occur."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "error-binding-pattern-test-d3ff0cd2c4/error-binding-pattern-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-binding-pattern-test-d3ff0cd2c4/error-binding-pattern-v.bal",
+  "Project": false,
+  "Id": "T0442",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-binding-pattern-test-d3ff0cd2c4/error-binding-pattern-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.051
+}

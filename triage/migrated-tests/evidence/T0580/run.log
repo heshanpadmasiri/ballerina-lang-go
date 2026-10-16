@@ -1,0 +1,61 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:99-99 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:117-117 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:117-117 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:131-131 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:131-131 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:139-139 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:139-139 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:139-139 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:139-139 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:162-162 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:174-174 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:183-183 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:187-187 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:191-191 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:195-195 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:203-203 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:212-212 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:233-233 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:233-233 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:254-254 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:289-289 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:292-292 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:292-292 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:311-311 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:311-311 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:322-322 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at included-record-params-e.bal:322-322 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:67 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:90 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:166 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:217 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:218 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:219 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:220 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:221 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:223 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:224 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:225 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:239 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:240 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:241 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:242 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:243 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:244 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:245 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:259 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:280 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:296 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:297 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:298 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:299 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:300 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:301 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:315 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:316 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:317 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:318 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at included-record-params-e.bal:319 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

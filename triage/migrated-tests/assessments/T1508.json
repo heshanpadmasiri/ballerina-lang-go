@@ -1,0 +1,15 @@
+{
+  "id": "T1508",
+  "name": "var-declr-semantic-test-d22f78a264/incomplete-var-decl-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\", \"Function definition\", \"Class definition\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions: \"New expression\""
+  ],
+  "reason": "Negative parser/semantic rejection of incomplete module-qualified new expressions in local declarations falls within the supported import, class, function, local-variable and new-expression grammar. The imported submodule only defines an ordinary public class; no essential unsupported feature or applicable restriction appears.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Two incomplete declarations omit semicolons and constructor syntax; the first also names undefined test:L. Nine @error markers include seven on the closing brace, so exact diagnostic counts/locations may depend on parser recovery. No @args, @panic or @output assertions."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0152",
+  "name": "array-initializer-expr-test-8700f50634/array-initializer-expr-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: 'Module variable declarations', 'Type definition', and 'Class definition' supporting 'object-field' and 'method-defn' members",
+    "Expressions: 'List constructor', 'Mapping constructor', 'New expression', 'Type cast expression', 'Type test expression', and 'Nested expressions (`(expression)`)'.",
+    "Statements: 'Assignment', 'Compound Assignment', 'While', 'Local variable declarations', 'Return', and 'Panic'",
+    "Subset restrictions / Invocations / Other invocation restrictions: 'array:length' and 'value:toString' are supported in method call syntax"
+  ],
+  "reason": "The case exercises supported array/list construction, including nested arrays, maps, contextual float elements, finite/optional element types, inferred lengths, grouped constructors, indexing and mutation. Class fields, method calls and global-variable side effects used in constructor elements are covered by the supported declarations, calls and assignments. Its output assertions use these operations and supported array length calls; no argument or panic execution protocol is requested. No essential unsupported construct was identified.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The final helper calls also assert array values after side-effecting global and self method calls, so their expectations form part of the case beyond the printed output.",
+    "ballerina/test is not excluded by the restriction on ballerina/lang.* libraries; io:println serves as output instrumentation."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "list-constructor-spread-operator-test-ae223889d2/spread-operator-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/list-constructor-spread-operator-test-ae223889d2/spread-operator-v.bal",
+  "Project": false,
+  "Id": "T0725",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/list-constructor-spread-operator-test-ae223889d2/spread-operator-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.068
+}

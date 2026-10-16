@@ -1,0 +1,56 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "variable-scope-test-6a8d57db07/scope-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> scope-negative-e.bal:35:31
+           |
+        35 | service object {} myService = service object {
+           |                               ^^^^^^^^^^^^^^^^
+        36 |     resource function get res(string s) {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |         string res = "abc";
+           |         ^^^^^^^^^^^^^^^^^^^
+        38 |         int b = a + 50; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        39 |     }
+           |     ^
+        40 | 
+           | 
+        41 |     resource function post res(string s) {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |         string res = "abc";
+           |         ^^^^^^^^^^^^^^^^^^^
+        43 |         int c = b + 50; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        44 |     }
+           |     ^
+        45 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> scope-negative-e.bal:35:31
+           |
+        35 | service object {} myService = service object {
+           |                               ^^^^^^^^^^^^^^^^
+        36 |     resource function get res(string s) {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |         string res = "abc";
+           |         ^^^^^^^^^^^^^^^^^^^
+        38 |         int b = a + 50; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        39 |     }
+           |     ^
+        40 | 
+           | 
+        41 |     resource function post res(string s) {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |         string res = "abc";
+           |         ^^^^^^^^^^^^^^^^^^^
+        43 |         int c = b + 50; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        44 |     }
+           |     ^
+        45 | };
+           | ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

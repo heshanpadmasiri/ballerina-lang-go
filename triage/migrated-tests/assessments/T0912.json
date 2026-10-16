@@ -1,0 +1,13 @@
+{
+  "id": "T0912",
+  "name": "module-public-variable-test-5b1954009d/access-project-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: supported expressions include ‘New expression’ and ‘Anonymous function expression’; object-constructor-expr is not listed.",
+    "## Object/class definitions: ‘Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported’",
+    "## Module-level declarations: ‘Module variable declarations’; ‘Supports the `isolated` function qualifier’"
+  ],
+  "reason": "The asserted value 20 requires init() to construct an object using `isolated object { public function getVal() returns int { ... } }`. This is an explicit object constructor expression, which is absent from the supported expression list. Support for isolated object type qualifiers and class definitions does not itself cover this expression form. One essential unsupported construct makes the whole case a feature request.",
+  "unsupported_constructs": ["Explicit isolated object constructor expression initializing myIsolatedObj"],
+  "test_design_notes": ["The object construction is essential to testPublicWithIsolatedObjectType's assertion, not instrumentation. The unused io:println helper does not determine classification."]
+}

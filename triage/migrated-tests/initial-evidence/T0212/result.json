@@ -1,0 +1,15 @@
+{
+  "Name": "basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e",
+  "Project": true,
+  "Id": "T0212",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.025
+}

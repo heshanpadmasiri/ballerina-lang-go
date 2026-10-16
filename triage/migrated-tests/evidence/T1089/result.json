@@ -1,0 +1,16 @@
+{
+  "Name": "object-type-reference-test-19fd51d776/object-ref-negative-project-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-ref-negative-project-e",
+  "Project": true,
+  "Id": "T1089",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-ref-negative-project-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-ref-negative-project-e/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-ref-negative-project-e/modules/object_reference_negative/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.049
+}

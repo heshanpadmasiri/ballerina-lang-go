@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation: cannot mutate readonly value\n        at updateReturnedConstantFloatMap2WithNewKey(returned-float-new-p.bal:9)\n           main(returned-float-new-p.bal:13)\n","Diagnostics":null}

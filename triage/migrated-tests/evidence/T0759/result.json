@@ -1,0 +1,15 @@
+{
+  "Name": "map-access-expr-test-6a04afad0c/map-access-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-negative-e",
+  "Project": true,
+  "Id": "T0759",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.036
+}

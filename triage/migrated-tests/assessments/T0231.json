@@ -1,0 +1,19 @@
+{
+  "id": "T0231",
+  "name": "bdecimal-bfloat-comparison-test-8c1bcb7cb6/decimal-float-comparison-v",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Expressions: List constructor; Member access expression; Equality expression; Nested expressions (`(expression)`)",
+    "## Operators: Equality ops `==`, `!=`, `===`, `!==`; Additive ops `+`, `-`",
+    "## Module-level declarations: Function definition",
+    "## Statements: Local variable declarations; Return; Call",
+    "# Subset restrictions / ## Import declarations: `ballerina/lang.value` — `toString`, `toBalString`"
+  ],
+  "reason": "The case uses supported float and decimal numeric literals, addition and equality, function calls, tuple/list construction and member access. Its asserted behavior is numeric literal rounding/rendering (including the large decimal exponent) and binary float versus decimal precision: false for float 0.1 + 0.2 == 0.3 and true for decimal. No stated restriction excludes these numeric magnitudes, precision semantics or ordinary scalar rendering. All essential constructs and asserted behaviors are in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Four @output assertions check the two large numeric representations and the two precision comparisons; there are no @args or @panic directives.",
+    "ballerina/io println calls serve as output instrumentation; dependency metadata does not add an essential unsupported language construct."
+  ]
+}

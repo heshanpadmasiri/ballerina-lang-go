@@ -1,0 +1,16 @@
+{
+  "id": "T1101",
+  "name": "object-with-private-fields-negative-test-2196e80b05/private-object-access2-semantics-e",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Import declarations]; [Function definition]; [Class definition] — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "## Expressions: [New expression]; [List constructor]; [Mapping constructor]; [Field access expression]",
+    "## Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members"
+  ],
+  "reason": "The asserted diagnostics concern private module classes exposed through public fields and function signatures, and access to a private object field across modules. Imports, public/private class members, function declarations, object field descriptors, object construction and field access fall within the supported grammar and type system; no applicable restriction excludes these visibility checks. Rejection of these illegal exposures/accesses is therefore in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "This is a compile-negative case: @error markers assert visibility diagnostics, including two diagnostics on the private address access; runtime execution is not required.",
+    "The anonymous object type of FooEmployee.address is covered by the object-field-descriptor support."
+  ]
+}

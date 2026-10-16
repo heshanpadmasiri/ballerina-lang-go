@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 0\n        at testGetNonInitAttribute(get-non-init-field-p.bal:19)\n           main(get-non-init-field-p.bal:23)\n","Diagnostics":null}

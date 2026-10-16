@@ -1,0 +1,14 @@
+{
+  "Name": "integer-range-operator-test-d441b901c6/integer-range-operators-runtime-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/integer-range-operator-test-d441b901c6/integer-range-operators-runtime-v.bal",
+  "Project": false,
+  "Id": "T0654",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/integer-range-operator-test-d441b901c6/integer-range-operators-runtime-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

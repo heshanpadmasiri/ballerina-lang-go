@@ -1,0 +1,14 @@
+{
+  "Name": "final-typed-binding-patterns-negative-2ea1d9d04a/final-typed-binding-patterns-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/final-typed-binding-patterns-negative-2ea1d9d04a/final-typed-binding-patterns-negative-e.bal",
+  "Project": false,
+  "Id": "T0483",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/final-typed-binding-patterns-negative-2ea1d9d04a/final-typed-binding-patterns-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.023
+}

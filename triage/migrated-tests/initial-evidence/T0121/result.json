@@ -1,0 +1,17 @@
+{
+  "Name": "argument-parser-positive-test-e41e5b8a0a/rest-provided-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/rest-provided-v",
+  "Project": true,
+  "Id": "T0121",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/rest-provided-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/rest-provided-v/main.bal"
+  ],
+  "Args": [
+    "restArg"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.127
+}

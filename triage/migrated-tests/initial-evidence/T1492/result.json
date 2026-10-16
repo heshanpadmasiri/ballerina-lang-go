@@ -1,0 +1,15 @@
+{
+  "Name": "typedesc-negative-runtime-tests-7992ec9ed7/typedesc-negative-runtime-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/typedesc-negative-runtime-tests-7992ec9ed7/typedesc-negative-runtime-v",
+  "Project": true,
+  "Id": "T1492",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/typedesc-negative-runtime-tests-7992ec9ed7/typedesc-negative-runtime-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/typedesc-negative-runtime-tests-7992ec9ed7/typedesc-negative-runtime-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.056
+}

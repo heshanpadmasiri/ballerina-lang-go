@@ -1,0 +1,17 @@
+{
+  "id": "T0854",
+  "name": "match-statement-static-patterns-test-4828836871/static-match-patterns-unreachable-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: [Match statement] — Currently only supports [const-pattern] and [wildcard-match-pattern]"
+  ],
+  "reason": "The negative case asserts unreachable-pattern diagnostics for structured list and mapping match patterns and var binding patterns. These essential patterns exceed the explicit const-pattern/wildcard-match-pattern restriction, so the whole case requires unsupported features even though some constant and wildcard reachability checks are in scope.",
+  "unsupported_constructs": [
+    "List match patterns such as [\"A\", 15] and []",
+    "Mapping match patterns such as {a: 200, b: \"A\"} and {}",
+    "Binding match patterns such as var [], var {}, var {a} and var s"
+  ],
+  "test_design_notes": [
+    "The asserted behavior is compile-time rejection of unreachable patterns and unreachable code; the unsupported structured and binding pattern overlap checks are central assertions."
+  ]
+}

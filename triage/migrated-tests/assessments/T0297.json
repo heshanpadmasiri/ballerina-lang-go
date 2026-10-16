@@ -1,0 +1,18 @@
+{
+  "id": "T0297",
+  "name": "capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions / Invocations / Other invocation restrictions: value:toString and value:toBalString"
+  ],
+  "reason": "The case requires match capture binding patterns, including named captures with guards and list/mapping binding patterns. These exceed the explicit restriction to constant and wildcard match patterns, so the whole case is a feature request.",
+  "unsupported_constructs": [
+    "Capture match binding patterns such as var a and var x, including guarded captures",
+    "List and mapping match binding patterns: var [a, b] and var {a: x, b: y}"
+  ],
+  "test_design_notes": [
+    "main invokes all seven assertion groups; capture and destructuring behavior is essential to their expected results.",
+    "The toString method calls are explicitly supported. There are no @args, @panic, or @output directives."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "Name": "tuple-access-expr-test-f5671505a0/invalid-index-as-function-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/invalid-index-as-function-p.bal",
+  "Project": false,
+  "Id": "T1424",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/invalid-index-as-function-p.bal"
+  ],
+  "Args": [
+    "-1"
+  ],
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.098
+}

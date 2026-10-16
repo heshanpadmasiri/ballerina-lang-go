@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-destructure-test-b0950b4de8/tuple-destructure-invalid-syntax-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-destructure-test-b0950b4de8/tuple-destructure-invalid-syntax-e.bal",
+  "Project": false,
+  "Id": "T1432",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-destructure-test-b0950b4de8/tuple-destructure-invalid-syntax-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.033
+}

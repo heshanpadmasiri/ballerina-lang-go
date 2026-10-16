@@ -1,0 +1,17 @@
+{
+  "id": "T0277",
+  "name": "bstream-value-test-dc50cbbb1f/stream-super-stream-cast-p",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported' (ballerina/lang.stream is absent).",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' (stream:next, stream:filter and stream:close are absent)."
+  ],
+  "reason": "The whole source depends on unsupported stream langlib operations: next(), filter() and close(). The entry point additionally expects @panic when casting a stream constructed with the unparameterized stream type to stream<int, error?>; generic type-cast support alone does not establish this stream behavior. The restricted langlib lists already decisively place this case outside subset 10.",
+  "unsupported_constructs": [
+    "Stream langlib method invocations next(), filter() and close()"
+  ],
+  "test_design_notes": [
+    "main calls testCastingFromSuperStreamType; its cast is annotated @panic. Most other test functions are not called but remain part of the supplied whole source.",
+    "No @args or @output directives are present."
+  ]
+}

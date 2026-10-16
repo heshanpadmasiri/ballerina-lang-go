@@ -1,0 +1,20 @@
+{
+  "id": "T0702",
+  "name": "large-init-build-test-d2d15f0021/large-init-split-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Import declarations; Function definition; Module variable declarations; Class definition",
+    "Module-level declarations: Supports the isolated function qualifier",
+    "Module-level declarations: Supports client, service, isolated, readonly and distinct class-type-quals; Supports object-field, method-defn and object-type-inclusion members; Supports remote-method-defn for client classes",
+    "Expressions: Method call; Check expression; New expression; Field access expression",
+    "Operators: Additive ops +, -",
+    "Object/class definitions: Only client, service and isolated object-type-quals / class-type-quals are supported; Supports included-record-param, rest-param and defaultable-param in methods"
+  ],
+  "reason": "The case exercises large module initialization in the root module and an imported submodule, constructing ordinary and client class instances and invoking methods through check. The root initializer calls func exactly 100 times, incrementing the module counter before main prints 100. All declarations, qualifiers, constructors, calls and arithmetic are supported; no listed restriction excludes this initialization behavior or its size.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The sole asserted output is 100; imported-module methods have no observable counter effect.",
+    "Listener is an ordinary user-defined class, and start is called explicitly; this does not require external listener infrastructure.",
+    "io:println is output instrumentation only."
+  ]
+}

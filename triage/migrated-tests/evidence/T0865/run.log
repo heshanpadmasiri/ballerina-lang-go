@@ -1,0 +1,52 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-negative-semantics-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> main.bal:20:9
+           |
+        20 |         [var a, var a] => {} // same variable cannot repeat in a match pattern // redeclared symbol 'a' // @error
+           |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> main.bal:21:9
+           |
+        21 |         [var a, [var a, 2]] => {} // same variable cannot repeat in a match pattern // redeclared symbol 'a' // @error
+           |         ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> main.bal:27:9
+           |
+        27 |         [var p, ...var oth] if p is anydata => {
+           |         ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> main.bal:36:9
+           |
+        36 |         [var x, ...var y] => {
+           |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> main.bal:39:9
+           |
+        39 |         [var z] => {
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> main.bal:54:9
+           |
+        54 |         [STRING, var val] => {
+           |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> main.bal:57:9
+           |
+        57 |         [INT, var val] => {
+           |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> main.bal:60:9
+           |
+        60 |         [_, var val] => {
+           |         ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,15 @@
+{
+  "id": "T0821",
+  "name": "map-to-record-assignability-test-c5ae90a3ca/map-to-record-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition; Type definition",
+    "## Statements: Local variable declarations",
+    "## Expressions: Mapping constructor — Currently spread-field not supported; Variable reference; Literal"
+  ],
+  "reason": "The case checks map-to-record assignability using local declarations, mapping constructors, and record type definitions. The expected rejections concern incompatible rest value types, any versus the implicit anydata record rest type, a required field absent from the map type's guarantees, and an open record value incompatible with a closed record rest constraint. The final unmarked assignment checks compatible structural record subtyping with an optional field. These are supported type-system checks; no listed restriction excludes record rest descriptors, optional fields, or map/record subtyping.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Four assignments carry @error markers; the final assignment is expected to be accepted. Negative source remains in scope for supported grammar and type-system behavior."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0195",
+  "name": "assign-stmt-test-4075ad6286/var-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\" and \"Module variable declarations\"",
+    "Statements: \"Local variable declarations\" and \"If/else\"",
+    "Expressions: \"Error constructor\", \"Type cast expression\", \"Variable reference\" and \"Type test expression\"",
+    "Operators: \"Additive ops `+`, `-`\" and \"Bitwise ops `&`, `|`, `^`\""
+  ],
+  "reason": "This negative compilation case exercises supported declarations, casts, type tests, variable references and operators. The @error assertions require rejecting undefined types/variables (Foo, Float, bar, foo, fooo), value names used as types (X and V), and invalid addition involving errors. These are static errors within the supported grammar/type system; illegal references do not introduce an unsupported feature. The remaining valid casts and union-typed declarations require no unsupported construct or execution protocol.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The source contains @error expectations only; there are no @args, @panic or @output execution assertions.",
+    "Several negative scenarios are repeated; diagnostic recovery and cascading @error expectations may affect exact diagnostic matching."
+  ]
+}

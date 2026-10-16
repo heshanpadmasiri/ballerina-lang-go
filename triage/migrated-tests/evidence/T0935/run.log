@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "named-return-parameter-test-1d4678836e/named-return-parameter-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'b'
+         --> named-return-parameter-v.bal:3:44
+          |
+        3 | function testSingleNamedReturnParam(int a, string b) returns (int) {
+          |                                            ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+         --> named-return-parameter-v.bal:8:58
+          |
+        8 | function testSingleNamedReturnParamZeroReturnArgs(int a, string b) returns (int) {
+          |                                                          ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

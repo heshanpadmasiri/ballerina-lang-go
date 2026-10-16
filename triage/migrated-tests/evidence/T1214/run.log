@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at query-expr-with-query-construct-type-update-key-1-p.bal:799
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: Regexp parser not implemented
+         --> query-expr-with-query-construct-type-update-key-1-p.bal:1:1
+          |
+        1 | // Copyright (c) 2020 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+          | 
+        
+--- FAIL: TestMigrationTriage (22.02s)
+FAIL

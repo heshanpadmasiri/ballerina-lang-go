@@ -1,0 +1,34 @@
+{
+  "id": "T0006",
+  "name": "access-levels-negative-test-4f8066db20/private-type-access-e",
+  "classification": "bug",
+  "spec_references": [
+    {
+      "heading": "Module-level declarations",
+      "quote": "- [Import declarations](https://ballerina.io/spec/lang/master/#import-decl)"
+    },
+    {
+      "heading": "Module-level declarations",
+      "quote": "- [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)"
+    },
+    {
+      "heading": "Module-level declarations",
+      "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"
+    },
+    {
+      "heading": "Statements",
+      "quote": "- [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)"
+    },
+    {
+      "heading": "Expressions",
+      "quote": "- [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)"
+    }
+  ],
+  "reason": "All constructs in the supplied case fall within declared support: same-package module imports, a module type definition, local variables, a JSON mapping constructor, a function call, and a rest parameter. The core negative case refers to A:Bar from another module although Bar has no public qualifier. The specification lists import declarations and type definitions without excluding module visibility checks or the string|xml|json union used here. No expressly unsupported construct appears. The import restrictions enumerate supported lang libraries; the imports here are package modules, and io is an alias for the local B module rather than ballerina/io.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The inaccessible A:Bar reference carries two identical @error markers on one line. The supplied sources do not establish whether two distinct diagnostics are required; marker multiplicity may overconstrain a valid rejection.",
+    "The local B module defines a public no-op println((any|error)... v), so the apparent io:println call does not depend on an external I/O library.",
+    "The JSON initializer is included in Bar's union; the intended negative condition is cross-module visibility of the private type, rather than an obvious assignment incompatibility."
+  ]
+}

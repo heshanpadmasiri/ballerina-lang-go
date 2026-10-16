@@ -1,0 +1,14 @@
+{
+  "Name": "map-initializer-expr-test-3c385ec88b/multi-type-map-initializer-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-test-3c385ec88b/multi-type-map-initializer-v.bal",
+  "Project": false,
+  "Id": "T0816",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-test-3c385ec88b/multi-type-map-initializer-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.027
+}

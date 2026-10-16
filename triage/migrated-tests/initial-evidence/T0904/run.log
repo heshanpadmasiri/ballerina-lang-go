@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "module-error-variable-test-718d21c637/module-error-variable-annotation-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> module-error-variable-annotation-negative-e.bal:5:7
+          |
+        5 | error error(message) = error("CCE");
+          |       ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

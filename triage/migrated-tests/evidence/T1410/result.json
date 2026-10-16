@@ -1,0 +1,14 @@
+{
+  "Name": "tables-as-func-args-53418aff8c/tables-as-func-args-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tables-as-func-args-53418aff8c/tables-as-func-args-v.bal",
+  "Project": false,
+  "Id": "T1410",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tables-as-func-args-53418aff8c/tables-as-func-args-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.071
+}

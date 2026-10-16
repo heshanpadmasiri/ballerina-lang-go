@@ -1,0 +1,15 @@
+{
+  "Name": "open-record-test-d43d4bfeae/invalid-key-expr-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/invalid-key-expr-e",
+  "Project": true,
+  "Id": "T1133",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/invalid-key-expr-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/invalid-key-expr-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.02
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-warning-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-warning-e.bal",
+  "Project": false,
+  "Id": "T0440",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-warning-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

@@ -1,0 +1,22 @@
+{
+  "id": "T1638",
+  "name": "xmltext-to-string-conversion-negative-test-4c141e2d03/xml_text_to_string_conversion-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [XML template expression] — Supports interpolation in XML content and attributes",
+    "Expressions: [Type cast expression], [Method call], [List constructor], [Mapping constructor], [Member access expression]",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.string lists indexOf and substring but not getCodePoint, codePointCompare or startsWith",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: string:indexOf, string:includes, string:substring and string:equalsIgnoreCaseAscii"
+  ],
+  "reason": "Mixed-scope negative test: XML-text assignment, argument and cast rejection exercises supported expression forms, but invokeLangLibMethods also asserts rejection involving string:getCodePoint, string:codePointCompare and string:startsWith, which are outside the explicit supported langlib lists. These essential marked calls make the whole case feature under the stated rule.",
+  "unsupported_constructs": [
+    "t.getCodePoint(6)",
+    "strings:codePointCompare(getXMLText(), \"y world\")",
+    "getXMLText().startsWith(\"he\")"
+  ],
+  "test_design_notes": [
+    "Supported XML-to-string rejection checks are mixed with unsupported langlib calls.",
+    "The condition places three @error markers on one line and two on the next; these represent multiple expected diagnostics.",
+    "No @args, @panic or @output markers occur."
+  ]
+}

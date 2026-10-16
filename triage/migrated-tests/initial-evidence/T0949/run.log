@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "native-conversion-test-4a94bbda4e/native-conversion-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: ballerina/test
+          --> main.bal:18:1
+           |
+        18 | import ballerina/test;
+           | ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> main.bal:564:9
+            |
+        564 |         test:assertEquals(a, {"a": [xml `a`, xml `b`, xml `c`]});
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> main.bal:876:5
+            |
+        876 |     test:assertEquals(x2, [{"x":0,"y":0}, {"x":0,"y":0,"z":0}]);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> main.bal:877:5
+            |
+        877 |     test:assertEquals(x4, [{"x":0,"y":0}, {"x":0,"y":0,"z":0}]);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+           --> main.bal:562:5
+            |
+        562 |     test:assertTrue(a is XmlArray);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> main.bal:987:20
+            |
+        987 | function getString(any s) returns string {
+            |                    ^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

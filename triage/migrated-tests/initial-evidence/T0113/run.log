@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:47: CLI exit: exit status 1
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	integer: 3e8, float: 1.0, string: Hello Ballerina, string rest args: 255 true <book>Harry Potter</book> just the rest
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.09s)
+FAIL

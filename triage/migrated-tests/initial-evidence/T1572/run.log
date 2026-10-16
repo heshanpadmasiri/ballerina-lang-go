@@ -1,0 +1,93 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: stderr does not contain a runtime error message for @panic at worker-flush-p.bal:41
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> worker-flush-p.bal:6:5
+           |
+         6 |     worker w1 returns error? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+         7 |         int a = 10;
+           |         ^^^^^^^^^^^
+         8 |         var sync = a ->> w2;
+           |         ^^^^^^^^^^^^^^^^^^^^
+         9 |         any|error res = sync;
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        10 |         ignore(res);
+           |         ^^^^^^^^^^^^
+        11 |         a -> w3;
+           |         ^^^^^^^^
+        12 |         a -> w2;
+           |         ^^^^^^^^
+        13 |         error? result = flush;
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        14 |         foreach var i in 1 ... 5 {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |             append2 += "w1";
+           |             ^^^^^^^^^^^^^^^^
+        16 |         }
+           |         ^
+        17 |         return result;
+           |         ^^^^^^^^^^^^^^
+        18 |     }
+           |     ^
+        19 |     worker w2 returns error? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |         if 0 > 1 {
+           |         ^^^^^^^^^^
+        21 |             return error("err", message = "err msg");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |         }
+           |         ^
+        23 |         sleep(5);
+           |         ^^^^^^^^^
+        24 |         foreach var i in 1 ... 5 {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |             append2 += "w2";
+           |             ^^^^^^^^^^^^^^^^
+        26 |         }
+           |         ^
+        27 |         int b = <- w1;
+           |         ^^^^^^^^^^^^^^
+        28 |         b = <- w1;
+           |         ^^^^^^^^^^
+        29 |         _ = b;
+           |         ^^^^^^
+        30 |     }
+           |     ^
+        31 |     worker w3 returns error|string {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        32 |         sleep(5);
+           |         ^^^^^^^^^
+        33 |         int k;
+           |         ^^^^^^
+        34 |         foreach var i in 1 ... 5 {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |             append2 += "w3";
+           |             ^^^^^^^^^^^^^^^^
+        36 |             k = i;
+           |             ^^^^^^
+        37 |         }
+           |         ^
+        38 |         if k > 3 {
+           |         ^^^^^^^^^^
+        39 |             map<string> reason = {k1: "error3"};
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        40 |             string errorReason = reason["k1"] ?: "";
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        41 |             error er3 = error(errorReason, message = "msg3"); // @panic
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |             panic er3;
+           |             ^^^^^^^^^^
+        43 |         }
+           |         ^
+        44 |         int b = <- w1;
+           |         ^^^^^^^^^^^^^^
+        45 |         _ = b;
+           |         ^^^^^^
+        46 |         return "done";
+           |         ^^^^^^^^^^^^^^
+        47 |     }
+           |     ^
+        
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

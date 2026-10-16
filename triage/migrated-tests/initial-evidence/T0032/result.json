@@ -1,0 +1,14 @@
+{
+  "Name": "anydata-negative-test-0fcaa4113f/anydata-invalid-closed-record-assignment-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anydata-negative-test-0fcaa4113f/anydata-invalid-closed-record-assignment-e.bal",
+  "Project": false,
+  "Id": "T0032",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anydata-negative-test-0fcaa4113f/anydata-invalid-closed-record-assignment-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.07
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "distinct-object-test-d9a03dbe83/distinct-object-subtyping-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/distinct-object-test-d9a03dbe83/distinct-object-subtyping-v.bal",
+  "Project": false,
+  "Id": "T0420",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/distinct-object-test-d9a03dbe83/distinct-object-subtyping-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.087
+}

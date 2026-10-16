@@ -1,0 +1,102 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at main.bal:622
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> main.bal:529:30
+            |
+        529 |     typedesc<anydata> expT = typeof expected;
+            |                              ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> main.bal:529:30
+            |
+        529 |     typedesc<anydata> expT = typeof expected;
+            |                              ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> main.bal:530:30
+            |
+        530 |     typedesc<anydata> actT = typeof actual;
+            |                              ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> main.bal:530:30
+            |
+        530 |     typedesc<anydata> actT = typeof actual;
+            |                              ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> main.bal:632:21
+            |
+        632 |     var intGenObj = object {
+            |                     ^^^^^^^^
+        633 |         int number = 0;
+            |         ^^^^^^^^^^^^^^^
+        634 |         public isolated function next() returns record {|int value;|}? {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        635 |             self.number += 1;
+            |             ^^^^^^^^^^^^^^^^^
+        636 |             return {value: self.number};
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        637 |         }
+            |         ^
+        638 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> main.bal:632:21
+            |
+        632 |     var intGenObj = object {
+            |                     ^^^^^^^^
+        633 |         int number = 0;
+            |         ^^^^^^^^^^^^^^^
+        634 |         public isolated function next() returns record {|int value;|}? {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        635 |             self.number += 1;
+            |             ^^^^^^^^^^^^^^^^^
+        636 |             return {value: self.number};
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        637 |         }
+            |         ^
+        638 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> main.bal:647:29
+            |
+        647 |     ObjectType intGenObj2 = object {
+            |                             ^^^^^^^^
+        648 |         int number = 0;
+            |         ^^^^^^^^^^^^^^^
+        649 |         public isolated function next() returns record {|int value;|}? {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        650 |             self.number += 1;
+            |             ^^^^^^^^^^^^^^^^^
+        651 |             return {value: self.number};
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        652 |         }
+            |         ^
+        653 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> main.bal:647:29
+            |
+        647 |     ObjectType intGenObj2 = object {
+            |                             ^^^^^^^^
+        648 |         int number = 0;
+            |         ^^^^^^^^^^^^^^^
+        649 |         public isolated function next() returns record {|int value;|}? {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        650 |             self.number += 1;
+            |             ^^^^^^^^^^^^^^^^^
+        651 |             return {value: self.number};
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        652 |         }
+            |         ^
+        653 |     };
+            |     ^
+        
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

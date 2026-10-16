@@ -1,0 +1,23 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "anonymous-object-test-5197ee0f89/anonymous-object-code-analyzer-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+         --> anonymous-object-code-analyzer-e.bal:4:13
+          |
+        4 |     } obj = object { // @error
+          |             ^^^^^^^^^^^^^^^^^^
+        5 |                 int b = Test(); // @error
+          |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+        6 |             };
+          |             ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+         --> anonymous-object-code-analyzer-e.bal:4:13
+          |
+        4 |     } obj = object { // @error
+          |             ^^^^^^^^^^^^^^^^^^
+        5 |                 int b = Test(); // @error
+          |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+        6 |             };
+          |             ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

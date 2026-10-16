@@ -1,0 +1,22 @@
+{
+  "id": "T1617",
+  "name": "xmlaccess-test-873756d6ae/navigation-access-v",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [XML navigation expression](https://ballerina.io/spec/lang/master/#xml-navigate-expr)",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions / Import declarations: ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString; clone and cloneReadOnly are absent.",
+    "Subset restrictions / Import declarations: ballerina/lang.xml lists get, slice, map, forEach, filter; first and last are absent.",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions:"
+  ],
+  "reason": "The navigation and XML templates have explicit positive support, but executed method-step assertions require first(), last(), clone(), and cloneReadOnly(), which are outside the exhaustive langlib and method-syntax lists. These essential unsupported calls suffice to classify the whole case as feature.",
+  "unsupported_constructs": [
+    "first() and last() in XML navigation method steps",
+    "value clone() and cloneReadOnly() in XML navigation method steps"
+  ],
+  "test_design_notes": [
+    "Mixed scope: basic supported XML navigation, namespaces, serialization outputs, and trapped negative-index assertions are bundled with unsupported langlib calls.",
+    "main calls method-step tests, so the unsupported calls are exercised. testXmlNavigationWithUnionType is defined but never called.",
+    "main skips printing multipleFilters[1]; methodCallResult is assigned without checking its error result. No @args or @panic markers occur; failures are asserted by explicit panic helpers."
+  ]
+}

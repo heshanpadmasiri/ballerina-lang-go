@@ -1,0 +1,171 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-warnings-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> mapping-match-pattern-warnings-e.bal:110:9
+            |
+        110 |         {x: var a, ...var rest} => { // @error @error @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:23:9
+           |
+        23 |         {a: true} => { // @error
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:30:9
+           |
+        30 |         {a: "2"} => { // @error
+           |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:33:26
+           |
+        33 |         {x: 2, y: "2"} | {x: 3, y: "3"} => { // @error @error
+           |                          ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:33:9
+           |
+        33 |         {x: 2, y: "2"} | {x: 3, y: "3"} => { // @error @error
+           |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:36:9
+           |
+        36 |         {c1: CONST1, c2: 2} => { // @error
+           |         ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:43:9
+           |
+        43 |         {a: 2 , b: true} => { // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:46:9
+           |
+        46 |         {a: CONST1 , b: true} => { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:60:28
+           |
+        60 |         {x: var a, y: 2} | {x: var a, y: 2} => { // @error @error
+           |                            ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:60:9
+           |
+        60 |         {x: var a, y: 2} | {x: var a, y: 2} => { // @error @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:62:9
+           |
+        62 |         {x: var a, y: 3} => { // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:64:9
+           |
+        64 |         {x: var a, y: 3} => { // @error @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:66:26
+           |
+        66 |         {x: 31, y: 21} | {x: 31, y: 21} => { // @error
+           |                          ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:66:9
+           |
+        66 |         {x: 31, y: 21} | {x: 31, y: 21} => { // @error
+           |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:68:24
+           |
+        68 |         {x: 1, y: X} | {x: 1, y: X} => { // @error
+           |                        ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:68:9
+           |
+        68 |         {x: 1, y: X} | {x: 1, y: X} => { // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:70:9
+           |
+        70 |         {x : 11, y: Y} => {
+           |         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:72:9
+           |
+        72 |         {x: 11, y: Y} => { // @error
+           |         ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:74:9
+           |
+        74 |         {x: var a, y: 21} if a is int => {
+           |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:76:9
+           |
+        76 |         {x: var a, y: 21} if a is int => { // @error
+           |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:83:9
+           |
+        83 |         {x: var a, y: var b} => {} // @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:84:9
+           |
+        84 |         {x: var c, y: var d} => {} // @error @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:90:9
+           |
+        90 |         {x: var a, ...var b} => {} // @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:91:9
+           |
+        91 |         {x: var c, ...var d} => {} // @error @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:97:9
+           |
+        97 |         {x: var a, ...var b} => {} // @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-match-pattern-warnings-e.bal:98:9
+           |
+        98 |         {x: var a, y: var b, ...var c} => {} // @error @error @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> mapping-match-pattern-warnings-e.bal:117:9
+            |
+        117 |         var {x, ...rest} => { // @error @error @error
+            |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> mapping-match-pattern-warnings-e.bal:119:9
+            |
+        119 |         var {id, name, ...rest} => { // @error @error @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

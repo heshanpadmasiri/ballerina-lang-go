@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at readonly-objects-e.bal:16 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at readonly-objects-e.bal:17 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at readonly-objects-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at readonly-objects-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at readonly-objects-e.bal:42 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at readonly-objects-e.bal:55 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

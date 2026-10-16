@@ -1,0 +1,14 @@
+{
+  "Name": "functions-and-nil-test-b8a729fc06/functions_with_nil_basics-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/functions-and-nil-test-b8a729fc06/functions_with_nil_basics-v.bal",
+  "Project": false,
+  "Id": "T0582",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/functions-and-nil-test-b8a729fc06/functions_with_nil_basics-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.083
+}

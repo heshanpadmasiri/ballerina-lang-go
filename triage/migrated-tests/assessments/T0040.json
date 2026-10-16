@@ -1,0 +1,17 @@
+{
+  "id": "T0040",
+  "name": "argument-parser-negative-test-706c373f17/insufficient-args-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: [Function definition]",
+    "Module-level declarations: Supports `required-params`, `defaultable-params`, `included-record-param` and `rest-param` in the signature"
+  ],
+  "reason": "The source declares a public main function with required int, float and string parameters followed by a string rest parameter. These signature constructs are explicitly supported. However, the actual negative scenario supplies only one command-line argument through the @args comment and expects startup failure. The supplied subset specification does not cover command-line argument binding, entry-point invocation, or the failure behavior for insufficient command-line arguments. Because that uncovered behavior is essential to the whole case, this is a feature classification rather than evidence of a supported-language rejection bug.",
+  "unsupported_constructs": [
+    "Command-line entry-point argument parsing and insufficient-argument failure behavior are not covered by subset10.md."
+  ],
+  "test_design_notes": [
+    "Mixed coverage: supported function signature, uncovered command-line execution behavior; the function body is empty.",
+    "@args [\"1\"] supplies fewer than the three required arguments. @panic appears on the declaration line, although failure would occur during argument binding before the body; marker recognition and expected failure form cannot be established from these files."
+  ]
+}

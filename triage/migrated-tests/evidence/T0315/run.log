@@ -1,0 +1,22 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "checked-expression-operator-test-30b071e6cd/check-expr-json-access-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+          --> check-expr-json-access-v.bal:11:20
+           |
+        11 |     assertEquality(int:MAX_VALUE, a);
+           |                    ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+         --> check-expr-json-access-v.bal:4:13
+          |
+        4 | type IntMax int:MAX_VALUE;
+          |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+         --> check-expr-json-access-v.bal:9:18
+          |
+        9 |     json j = {i: int:MAX_VALUE, f: 12.1, t: true, s: "abc", n: null, d: 1234d};
+          |                  ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

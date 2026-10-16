@@ -1,0 +1,16 @@
+{
+  "Name": "imports-negative-tests-a5adab46df/invalid-import-project-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/imports-negative-tests-a5adab46df/invalid-import-project-e",
+  "Project": true,
+  "Id": "T0641",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/imports-negative-tests-a5adab46df/invalid-import-project-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/imports-negative-tests-a5adab46df/invalid-import-project-e/invalid-import-negative-2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/imports-negative-tests-a5adab46df/invalid-import-project-e/invalid-import-negative.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.024
+}

@@ -1,0 +1,62 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	off
+        	5
+        	This is a string
+        	111
+        	222
+        	9989
+        	2
+        	on
+        	{"name":"abc"}
+        	4
+        	ss
+        	on
+        	1
+        	100
+        	on
+        	1001
+        	on
+        	Anonymous name
+        	100
+        	hundred
+        	John
+        	Anne
+        	2
+        	23
+        	5
+        	5
+        	5
+        	s
+        	5
+        	5.0
+        	5
+        	5.0
+        	5
+        	5.0
+        	5.0
+        	5.0
+        	5.0000000000000
+        	5.0000000000000
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	1.0
+        	true
+        	1.0
+        	true
+        	-
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

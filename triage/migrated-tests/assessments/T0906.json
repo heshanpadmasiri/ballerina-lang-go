@@ -1,0 +1,13 @@
+{
+  "id": "T0906",
+  "name": "module-error-variable-test-718d21c637/module-error-variable-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString.",
+    "Module-level declarations: \"Module variable declarations\"; \"Annotation declarations and attachments\".",
+    "Statements / Destructuring assignment statement: \"Only supports wildcard-binding-pattern\"."
+  ],
+  "reason": "The case requires value:Cloneable as the rest-field type of OpenErrorDetail, used by the errors whose detail rest bindings are asserted. Cloneable is absent from the explicitly exhaustive supported ballerina/lang.value methods/types, so the whole case requires an unsupported feature. The error binding patterns here are module variable declarations, not destructuring assignment statements; the latter restriction is not itself evidence against these declarations.",
+  "unsupported_constructs": ["ballerina/lang.value:Cloneable type used in OpenErrorDetail rest-field descriptor"],
+  "test_design_notes": ["Assertions exercise module error bindings, nested tuple/record/error bindings, cause bindings, annotations, forward initialization references, inferred declarations and detail rest bindings."]
+}

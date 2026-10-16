@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at record-rest-descriptor-equivalency-e.bal:70-70 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at record-rest-descriptor-equivalency-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-rest-descriptor-equivalency-e.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-rest-descriptor-equivalency-e.bal:43 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-rest-descriptor-equivalency-e.bal:51 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-rest-descriptor-equivalency-e.bal:59 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at record-rest-descriptor-equivalency-e.bal:92 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

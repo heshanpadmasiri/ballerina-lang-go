@@ -1,0 +1,14 @@
+{
+  "Name": "dynamic-control-stack-test-51077b26e6/dynamic-control-stack-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/dynamic-control-stack-test-51077b26e6/dynamic-control-stack-v.bal",
+  "Project": false,
+  "Id": "T0430",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/dynamic-control-stack-test-51077b26e6/dynamic-control-stack-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.173
+}

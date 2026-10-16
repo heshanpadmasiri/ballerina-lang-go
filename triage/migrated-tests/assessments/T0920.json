@@ -1,0 +1,13 @@
+{
+  "id": "T0920",
+  "name": "module-tuple-variable-test-4b19fdd529/module-tuple-variable-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Module variable declarations; Annotation declarations and attachments",
+    "## Subset restrictions / ## Import declarations: Only following lang libraries with given methods/types are supported",
+    "ballerina/lang.int: Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString, fromHexString"
+  ],
+  "reason": "Most assertions concern supported module-variable declarations and their rejection rules, including duplicate names, undefined references, invalid annotation attachment and incompatible nested bindings. However, the final negative case uses int:SIGNED8_MAX_VALUE as a tuple binding target, involving a lang.int constant absent from the explicit supported-member list. This makes the whole case depend on a restricted langlib member.",
+  "unsupported_constructs": ["int:SIGNED8_MAX_VALUE in the final tuple binding target"],
+  "test_design_notes": ["Negative source is intentionally illegal; ordinary declaration/type-checking errors alone do not make this a feature case.", "The final qualified binding target may also be rejected syntactically; the source supplies no diagnostic text to establish whether its assertion requires constant resolution."]
+}

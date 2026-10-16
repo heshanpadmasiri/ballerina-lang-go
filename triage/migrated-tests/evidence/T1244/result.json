@@ -1,0 +1,14 @@
+{
+  "Name": "readonly-object-test-9dae9381ef/readonly-objects-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/readonly-object-test-9dae9381ef/readonly-objects-e.bal",
+  "Project": false,
+  "Id": "T1244",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/readonly-object-test-9dae9381ef/readonly-objects-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.035
+}

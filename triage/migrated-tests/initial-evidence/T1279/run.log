@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "record-variable-reference-test-d23ea5efdc/record-variable-reference-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-variable-reference-negative-e.bal:30:5
+           |
+        30 |     { i: x, j: x } = rec1; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-variable-reference-negative-e.bal:36:5
+           |
+        36 |     { i: x, j: { i: x, j: x } } = rec1; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-variable-reference-negative-e.bal:30:5
+           |
+        30 |     { i: x, j: x } = rec1; // @error
+           |     ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-variable-reference-negative-e.bal:36:5
+           |
+        36 |     { i: x, j: { i: x, j: x } } = rec1; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

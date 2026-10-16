@@ -1,0 +1,17 @@
+{
+  "id": "T0883",
+  "name": "match-structured-tuple-patterns-test-1547c3778e/structured-tuple-match-patterns-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements — Match statement: Currently only supports const-pattern and wildcard-match-pattern",
+    "### Other invocation restrictions — value:toString and value:toBalString"
+  ],
+  "reason": "The asserted outputs require match clauses with variable-binding list patterns, including nested and empty list patterns, capture-all var patterns, and guards that narrow captured values. These are essential to the tested dispatch and destructuring behavior, while subset 10 restricts match patterns to constants and wildcards. The toString calls are supported and println is instrumentation.",
+  "unsupported_constructs": [
+    "Structured list match patterns such as var [s, i, f], var [s, [i, f]], and var []",
+    "Capture match patterns such as var s, including guarded structured capture clauses"
+  ],
+  "test_design_notes": [
+    "Positive execution case asserting tuple shape dispatch, nested captures, type-guard narrowing, default fallthrough, and array-length matching through output comments."
+  ]
+}

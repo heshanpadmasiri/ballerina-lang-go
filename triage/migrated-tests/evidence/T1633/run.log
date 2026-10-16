@@ -1,0 +1,46 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "xmlquery-expression-test-448a9347b5/xmlquery-expression-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections
+          --> xmlquery-expression-e.bal:11:37
+           |
+        11 |     xml<xml:Element> & readonly _ = from xml x in book1
+           |                                     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections
+          --> xmlquery-expression-e.bal:61:27
+           |
+        61 |     xml:Element _ = check from Book book in bookStream
+           |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections
+          --> xmlquery-expression-e.bal:64:31
+           |
+        64 |     xml:Element|xml _ = check from Book book in bookStream
+           |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections
+          --> xmlquery-expression-e.bal:67:28
+           |
+        67 |     xml:Text|xml _ = check from Book book in bookStream
+           |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections
+          --> xmlquery-expression-e.bal:69:33
+           |
+        69 |     xml:Element[]|xml _ = check from Book book in bookStream
+           |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections
+         --> xmlquery-expression-e.bal:4:24
+          |
+        4 |     xml & readonly _ = from var x in book1
+          |                        ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections
+         --> xmlquery-expression-e.bal:7:32
+          |
+        7 |     xml:Element & readonly _ = from var x in book1
+          |                                ^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

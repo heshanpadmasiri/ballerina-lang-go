@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: Bad Sad!!\n        at foo(never-call-stmt-p.bal:7)\n           main(never-call-stmt-p.bal:2)\n","Diagnostics":null}

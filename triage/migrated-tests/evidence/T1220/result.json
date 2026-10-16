@@ -1,0 +1,14 @@
+{
+  "Name": "query-input-type-test-fa8f6cb76b/query_input_types-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-input-type-test-fa8f6cb76b/query_input_types-v.bal",
+  "Project": false,
+  "Id": "T1220",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-input-type-test-fa8f6cb76b/query_input_types-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.089
+}

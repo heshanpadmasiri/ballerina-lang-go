@@ -1,0 +1,19 @@
+{
+  "id": "T1453",
+  "name": "tuple-variable-definition-test-6b1e019355/tuple-variable-definition-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Statements: \"Local variable declarations\"; \"Assignment\"; \"Return\"",
+    "Statements: \"Destructuring assignment statement\" / \"Only supports wildcard-binding-pattern\" (applies to assignment statements, not these variable declarations)",
+    "Module-level declarations: \"Type definition\"; \"Class definition\" / \"Supports object-field, method-defn and object-type-inclusion members\"",
+    "Expressions: \"New expression\"; \"List constructor\"; \"Mapping constructor\"; \"Field access expression\"; \"Call\"",
+    "Object/class definitions: \"Only client, service and isolated object-type-quals / class-type-quals are supported\" (no excluded qualifier occurs here)"
+  ],
+  "reason": "All essential constructs fall within supported local variable declarations, type definitions, classes, constructors and assignments. Tuple list binding patterns here introduce variables; they are not destructuring assignment statements subject to the wildcard-only restriction. The expected errors exercise tuple arity, nested pattern compatibility, element and object/record type compatibility, binding from any or non-list types, all-wildcard declarations, and readonly element assignment. Illegal declarations remain negative tests of the supported grammar/type system. The readonly intersections are type expressions, not restricted object/class qualifiers. No unsupported library or invocation behavior is required.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixed negative checks cover tuple patterns, record/class compatibility, type aliases and readonly tuple members, all within scope.",
+    "Several lines contain repeated @error markers for multiple expected diagnostics; exact diagnostic counts and wording are not specified by subset10.md.",
+    "No @args, @panic or @output markers occur."
+  ]
+}

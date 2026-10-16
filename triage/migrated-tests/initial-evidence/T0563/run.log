@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "function-pointers-test-229c021698/global-function-pointers-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+          --> global-function-pointers-v.bal:10:56
+           |
+        10 | function (string, int) returns string glf3 = function (string a, int b) returns string => "llll";
+           |                                                        ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> global-function-pointers-v.bal:10:66
+           |
+        10 | function (string, int) returns string glf3 = function (string a, int b) returns string => "llll";
+           |                                                                  ^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

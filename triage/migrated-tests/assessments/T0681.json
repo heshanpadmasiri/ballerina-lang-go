@@ -1,0 +1,13 @@
+{
+  "id": "T0681",
+  "name": "isolation-analysis-test-71231d7fc4/implicitly-final-vars-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions, including 'Anonymous function expression', but does not list let expressions.",
+    "## Expressions — Query expressions: 'Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses'.",
+    "## Module-level declarations — Function definition: 'Supports the [`isolated`](https://ballerina.io/spec/lang/master/#isolated-qual) function qualifier (see [isolated functions](https://ballerina.io/spec/lang/master/#isolated_functions))'."
+  ],
+  "reason": "The negative case asserts isolation-related rejection for anonymous functions capturing parameters, foreach variables and let-bound variables. Several active assertions require standalone let expressions, which are absent from the supported expression list; support for let clauses in query expressions does not cover these expressions. This essential unsupported construct makes the whole case a feature case.",
+  "unsupported_constructs": ["Standalone let expressions initializing fn3, fn4, fn8, fn9 and fn10."],
+  "test_design_notes": ["The query expression defining fn5 is commented out and is not assessed.", "Negative assertions are assessed as behavior; illegal code alone does not place a test outside scope."]
+}

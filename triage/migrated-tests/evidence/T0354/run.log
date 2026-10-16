@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "closed-record-test-6f9046ad8a/closed-record-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: removeIfHasKey
+           --> closed-record-v.bal:202:26
+            |
+        202 |     string? n = <string?>s.removeIfHasKey("name");
+            |                          ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: removeIfHasKey
+           --> closed-record-v.bal:203:46
+            |
+        203 |     if n is () || <string>n != "Andrew" || !(s.removeIfHasKey("age") is ()) { panic error("Wrong Result"); }
+            |                                              ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: removeIfHasKey
+           --> closed-record-v.bal:208:27
+            |
+        208 |     Grades? g2 = <Grades?>s.removeIfHasKey("grade");
+            |                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: removeIfHasKey
+           --> closed-record-v.bal:209:77
+            |
+        209 |     if g2 is () || !(g2.maths == g1.maths && g2.physics == g1.physics) || !(s.removeIfHasKey("grade") is ()) {
+            |                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

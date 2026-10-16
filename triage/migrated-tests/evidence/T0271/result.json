@@ -1,0 +1,14 @@
+{
+  "Name": "bnull-value-test-edd6349666/null-value-semantics-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bnull-value-test-edd6349666/null-value-semantics-negative-e.bal",
+  "Project": false,
+  "Id": "T0271",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bnull-value-test-edd6349666/null-value-semantics-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.031
+}

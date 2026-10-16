@@ -1,0 +1,14 @@
+{
+  "Name": "string-value-basics-test-a9d2149e3a/string-value-basics-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-value-basics-test-a9d2149e3a/string-value-basics-v.bal",
+  "Project": false,
+  "Id": "T1368",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-value-basics-test-a9d2149e3a/string-value-basics-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.047
+}

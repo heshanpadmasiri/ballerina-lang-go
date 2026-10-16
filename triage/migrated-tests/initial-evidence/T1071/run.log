@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "object-field-function-pointer-start-action-test-f45c4a8f77/object-field-function-pointer-start-action-test-f45c4a8f77-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> object-field-function-pointer-start-action-test-f45c4a8f77-v.bal:133:54
+            |
+        133 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+            |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> object-field-function-pointer-start-action-test-f45c4a8f77-v.bal:134:50
+            |
+        134 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+            |                                                  ^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

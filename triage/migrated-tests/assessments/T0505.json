@@ -1,0 +1,16 @@
+{
+  "id": "T0505",
+  "name": "forward-referencing-global-definition-test-c1122b914e/service-global-cycle-e",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Module variable declarations], [Module listener declarations], [Service declarations], [Class definition]",
+    "## Module-level declarations: Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "## Expressions: [New expression], [Variable reference], [Field access expression], [Method call]",
+    "## Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported"
+  ],
+  "reason": "The expected rejection at `int port = o.p` exercises cyclic module initialization: port depends on o, while constructing o initializes its p field from port. Module variables, class field initializers, object construction, field access, listeners and services are supported, and no stated restriction excludes this dependency analysis or the service/listener context.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compile case; the inline @error marks the cyclic global initializer. No runtime service behavior is asserted."
+  ]
+}

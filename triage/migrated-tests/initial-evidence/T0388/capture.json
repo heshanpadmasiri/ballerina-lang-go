@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at insertNilToMap(constrained-map-nil-insertion-p.bal:7)\n           testInherentTypeViolationWithNilType(constrained-map-nil-insertion-p.bal:3)\n           main(constrained-map-nil-insertion-p.bal:11)\n","Diagnostics":null}

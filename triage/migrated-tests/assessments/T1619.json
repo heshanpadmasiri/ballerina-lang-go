@@ -1,0 +1,20 @@
+{
+  "id": "T1619",
+  "name": "xmlattribute-access-test-c2d99d33fe/xml-attribute-access-lax-behavior-v.bal",
+  "classification": "uncertain",
+  "spec_references": [
+    "Expressions: [XML template expression] — Supports interpolation in XML content and attributes",
+    "Expressions: [Field access expression]",
+    "Expressions: [Optional field access expression]",
+    "Expressions: [Variable reference] — Currently `xml-qualified-names` not supported",
+    "Expressions: [Type test expression]",
+    "Subset restrictions / Import declarations: `ballerina/lang.xml` includes `space`"
+  ],
+  "reason": "The ordinary XML attribute access checks are covered by XML templates, field/optional field access, and type tests, including missing-attribute error versus nil behavior. The essential a.'xml:space and a?.'xml:space checks introduce ambiguity: field access is positively listed and lang.xml's space constant is allowed, but xml-qualified-names are explicitly unsupported under Variable reference. The supplied document does not clarify whether that restriction applies to these qualified attribute field names, so full-case support cannot be established unambiguously.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixed qualified and unqualified XML attribute access; the latter has clear positive coverage.",
+    "The output markers assert preserve twice and true four times; these test actual qualified lookup and missing-attribute semantics, not just signatures.",
+    "io:println is instrumentation. No obvious marker mismatch is visible."
+  ]
+}

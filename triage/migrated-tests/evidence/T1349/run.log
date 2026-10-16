@@ -1,0 +1,82 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "simple-constant-test-a426694281/simple-constant-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: startsWith
+           --> simple-constant-v.bal:179:61
+            |
+        179 | function testBuiltinFunctionInvocation() returns boolean => strings:startsWith(SHA1, "SH");
+            |                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: startsWith
+           --> simple-constant-v.bal:182:12
+            |
+        182 |     return strings:startsWith(arr[0], "SH");
+            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: startsWith
+           --> simple-constant-v.bal:189:12
+            |
+        189 |     return strings:startsWith(tr.'field, "SH");
+            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'POST'
+          --> simple-constant-v.bal:43:1
+           |
+        43 | const POST = "POST";
+           | ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'key'
+           --> simple-constant-v.bal:100:1
+            |
+        100 | const string key = "key";
+            | ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'm1'
+           --> simple-constant-v.bal:196:1
+            |
+        196 | M m1 = {f: "test_project"};
+            | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'm2'
+           --> simple-constant-v.bal:197:1
+            |
+        197 | M m2 = "V";
+            | ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'm3'
+           --> simple-constant-v.bal:198:1
+            |
+        198 | M m3 = "W";
+            | ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'm4'
+           --> simple-constant-v.bal:199:1
+            |
+        199 | M m4 = "X";
+            | ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'y'
+           --> simple-constant-v.bal:202:1
+            |
+        202 | Y y = "X";
+            | ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'z1'
+           --> simple-constant-v.bal:203:1
+            |
+        203 | Z z1 = "V";
+            | ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'z2'
+           --> simple-constant-v.bal:204:1
+            |
+        204 | Z z2 = "W";
+            | ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'z3'
+           --> simple-constant-v.bal:205:1
+            |
+        205 | Z z3 = "X";
+            | ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.09s)
+FAIL

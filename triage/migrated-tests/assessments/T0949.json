@@ -1,0 +1,19 @@
+{
+  "id": "T0949",
+  "name": "native-conversion-test-4a94bbda4e/native-conversion-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: 'Type definition', 'Function definition', 'Class definition'",
+    "Statements: 'Local variable declarations', 'Assignment', 'If/else', 'Panic', 'Foreach' (supports list subtypes)",
+    "Expressions: 'Check expression', 'Type cast expression', 'List constructor', 'Mapping constructor', 'XML template expression', 'Type test expression'",
+    "Subset restrictions / Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.value includes 'cloneWithType' and 'toString'; ballerina/lang.int includes 'fromString'; ballerina/lang.map includes 'keys'; ballerina/lang.array includes 'length'",
+    "Invocations / Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes 'value:cloneWithType', 'value:toString', 'map:keys', and 'array:length'"
+  ],
+  "reason": "The case exercises explicitly supported cloneWithType conversions among records, maps, JSON, arrays and tuples, including recursive records, defaults, optional fields, and string-to-XML array conversion. Its asserted preservation of nested values, record defaults and optional-field absence, tuple conversions, primitive string rendering, and int:fromString results uses supported constructs and listed langlib operations with no applicable exclusion. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "main invokes positive conversion checks, XML-array and tuple assertions, and output expectations; many incompatible-conversion helpers remain uncalled and do not assert rejection in this migrated entry point.",
+    "The tuple-typed movieData declaration binds a single variable; it is not restricted destructuring assignment. checkpanic falls under checking expressions.",
+    "ballerina/test assertions verify behavior; io:println supplies output instrumentation. The langlib allowlist does not exclude these non-lang modules."
+  ]
+}

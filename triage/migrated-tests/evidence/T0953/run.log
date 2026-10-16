@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want null-json-to-struct-p.bal:16, got null-json-to-struct-p.bal:20
+        stderr:
+        error: 'nil' value cannot be converted to '{| a: anydata, address: nil|{| anydata... |}, age: int, alive: boolean, children: nil|[{| a: anydata, address: nil|{| anydata... |}, age: int, alive: boolean, children: nil|..., info: json, marks: nil|[int...], name: string, parent: nil|..., score: float, never... |}...], info: json, marks: nil|[int...], name: string, parent: nil|{| a: anydata, address: nil|{| anydata... |}, age: int, alive: boolean, children: nil|[......], info: json, marks: nil|[int...], name: string, parent: nil|..., score: float, never... |}, score: float, never... |}'
+                at trigger(null-json-to-struct-p.bal:20)
+                   main(null-json-to-struct-p.bal:24)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

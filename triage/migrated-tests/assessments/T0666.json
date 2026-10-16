@@ -1,0 +1,18 @@
+{
+  "id": "T0666",
+  "name": "isolated-object-test-4801b67a5e/isolated-objects-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists \"[New expression]\" and \"[Type test expression]\" but does not list object constructor expressions.",
+    "## Module-level declarations: Class definition — \"Supports `client`, `service`, `isolated`, `readonly` and `distinct` ... `class-type-quals`\".",
+    "## Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\"."
+  ],
+  "reason": "The case essentially uses anonymous object constructor expressions (`object { ... }` and `isolated object { ... }`), which are absent from the supported expression list. Its assertions depend on implicit isolatedness inferred for these constructors, including distinctions between readonly and mutable field types and a union containing a mutable array. Support for isolated classes, new expressions and type tests does not establish support for object constructors or this inference behavior.",
+  "unsupported_constructs": [
+    "Anonymous object constructor expressions, including explicitly isolated constructors and implicit isolatedness inference"
+  ],
+  "test_design_notes": [
+    "Assertions also check runtime isolated type membership for isolated and non-isolated classes and anonymous objects.",
+    "The io:println call only retains the import and does not determine classification."
+  ]
+}

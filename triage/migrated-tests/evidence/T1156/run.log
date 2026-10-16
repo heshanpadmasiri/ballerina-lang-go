@@ -1,0 +1,13 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:48: CLI exit: exit status 1
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: -v test leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'options'
+          --> successful-v.bal:50:22
+           |
+        50 | public function main(*Options options) {
+           |                      ^^^^^^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

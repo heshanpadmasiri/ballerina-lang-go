@@ -1,0 +1,15 @@
+{
+  "Name": "struct-equivalency-negative-test-3cd7535bf7/same-package-value-type-mismatch-p",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-equivalency-negative-test-3cd7535bf7/same-package-value-type-mismatch-p",
+  "Project": true,
+  "Id": "T1381",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-equivalency-negative-test-3cd7535bf7/same-package-value-type-mismatch-p/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/struct-equivalency-negative-test-3cd7535bf7/same-package-value-type-mismatch-p/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.059
+}

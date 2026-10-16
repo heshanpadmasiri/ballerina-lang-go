@@ -1,0 +1,14 @@
+{
+  "Name": "let-expression-test-6fab6108d2/let-not-supported-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/let-expression-test-6fab6108d2/let-not-supported-e.bal",
+  "Project": false,
+  "Id": "T0709",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/let-expression-test-6fab6108d2/let-not-supported-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.027
+}

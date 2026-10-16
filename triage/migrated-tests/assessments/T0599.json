@@ -1,0 +1,20 @@
+{
+  "id": "T0599",
+  "name": "global-var-function-in-bala-test-943e6806ea/global-var-function-in-bala-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions — Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Module-level declarations — Module variable declarations",
+    "## Expressions — List constructor; Member access expression",
+    "### Other invocation restrictions — Method call syntax can be used for calling the following langlib functions: `array:length`"
+  ],
+  "reason": "The provider initializes exported-through-getter global byte arrays with base64 and base16 byte-array literals. The consumer asserts each decoded byte, so these literals and their decoding behavior are essential. They are outside the supported literal forms and are not separately listed among supported expressions. Supported global variables, function calls, array indexing, and length calls do not cover this omitted expression form.",
+  "unsupported_constructs": [
+    "base64 byte-array literal initializing glbByteArray2",
+    "base16 byte-array literal initializing glbByteArray3"
+  ],
+  "test_design_notes": [
+    "The test directly asserts the decoded contents of both encoded byte arrays, not merely their types or signatures.",
+    "io:println is output instrumentation."
+  ]
+}

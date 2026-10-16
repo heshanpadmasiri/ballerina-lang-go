@@ -1,0 +1,14 @@
+{
+  "Name": "iterable-operations-tests-f2b9a3e673/iterable-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/iterable-operations-tests-f2b9a3e673/iterable-negative-e.bal",
+  "Project": false,
+  "Id": "T0689",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/iterable-operations-tests-f2b9a3e673/iterable-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.057
+}

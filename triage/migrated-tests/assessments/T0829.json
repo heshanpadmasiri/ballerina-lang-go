@@ -1,0 +1,12 @@
+{
+  "id": "T0829",
+  "name": "mapping-constructor-expr-test-833706cb84/mapping-constructor-infer-record-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Mapping constructor — Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported",
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses"
+  ],
+  "reason": "The case asserts inferred record assignment rejection after combining record spread fields. Mapping-constructor spread fields are explicitly unsupported, so the whole case requires a feature even though its query-based and other mapping inference rejection checks use supported constructs.",
+  "unsupported_constructs": ["Mapping spread fields ...rec1 and ...rec2 in testInferredRecordTypeWithOptionalTypeFieldViaSpreadOpNegative"],
+  "test_design_notes": ["Negative @error assertions exercise static rejection; their illegality alone does not place them outside the subset. The spread-based inference assertion is sufficient for the whole-case feature classification."]
+}

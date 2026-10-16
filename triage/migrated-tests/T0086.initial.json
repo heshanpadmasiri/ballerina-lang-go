@@ -1,0 +1,24 @@
+{
+  "id": "T0086",
+  "name": "argument-parser-negative-test-706c373f17/too-many-args-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    {
+      "heading": "Supported language features (subset 10) / Module-level declarations",
+      "quote": "[Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+      "relevance": "The sole declaration is a public main function."
+    },
+    {
+      "heading": "Supported language features (subset 10) / Module-level declarations",
+      "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+      "relevance": "main has one required int parameter; no listed restriction excludes this signature or excess-argument rejection."
+    }
+  ],
+  "reason": "The complete source consists of a supported function definition with one required int parameter and an empty body. The negative case supplies two command-line arguments for that single parameter. No essential unsupported language construct appears, and the subset lists no restriction excluding this rejection case.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The // @args marker supplies [\"1\",\"Hello World\"], and // @panic marks the expected negative outcome; both are comment-based test metadata.",
+    "The failure concerns excess command-line arguments rather than an explicit Ballerina call expression. The spec does not separately describe command-line parsing behavior, so this assessment establishes feature scope, not the precise expected diagnostic or panic format.",
+    "No mixed unsupported constructs are present."
+  ]
+}

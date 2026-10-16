@@ -1,0 +1,13 @@
+{
+  "id": "T0709",
+  "name": "let-expression-test-6fab6108d2/let-not-supported-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list does not include standalone let expressions.",
+    "## Expressions — Query expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"",
+    "## Module-level declarations — Class definition: \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\""
+  ],
+  "reason": "The two @error assertions require rejecting standalone let expressions in record-field defaults and class-field initializers. Standalone let expressions are not covered by the supported expression list; support for a query let clause does not cover this syntax. Thus the essential negative behavior concerns an unsupported expression construct, despite class fields being supported.",
+  "unsupported_constructs": ["Standalone let expressions in record-field default values and class-field initializers"],
+  "test_design_notes": ["Both field initializers are explicitly marked @error; this is a negative diagnostic case, not a runtime arithmetic assertion."]
+}

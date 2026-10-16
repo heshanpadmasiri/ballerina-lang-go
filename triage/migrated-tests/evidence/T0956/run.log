@@ -1,0 +1,24 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	2
+        	Watson
+        	Waruna
+        	25
+        	30
+        	ABC College
+        	ABC College
+        	typedesc map<json>
+        	4
+        	4
+        	John
+        	Waruna
+        	DEF College
+        	ABC College
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

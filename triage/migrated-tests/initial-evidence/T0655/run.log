@@ -1,0 +1,75 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "integer-range-operator-test-d441b901c6/integer-range-operators-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:115:24
+            |
+        115 |     foreach var val in rangeAsArray {
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:130:24
+            |
+        130 |     foreach var val in rangeAsArray { arr[arrIndex] = val; arrIndex += 1; }
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:135:24
+            |
+        135 |     foreach var val in rangeAsArray { arr[arrIndex] = val; arrIndex += 1; }
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:147:24
+            |
+        147 |     foreach var val in rangeAsArray { arr[arrIndex] = val; arrIndex += 1; }
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:155:24
+            |
+        155 |     foreach var val in rangeAsArray { arr[arrIndex] = val; arrIndex += 1; }
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:159:24
+            |
+        159 |     foreach var val in rangeAsArray { arr[arrIndex] = val; arrIndex += 1; }
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:163:24
+            |
+        163 |     foreach var val in rangeAsArray { arr[arrIndex] = val; arrIndex += 1; }
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:206:24
+            |
+        206 |     foreach var val in rangeAsArray { arr[arrIndex] = val; arrIndex += 1; }
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+           --> integer-range-operators-v.bal:210:24
+            |
+        210 |     foreach var val in rangeAsArray { arr[arrIndex] = val; arrIndex += 1; }
+            |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable
+          --> integer-range-operators-v.bal:89:24
+           |
+        89 |     foreach var val in rangeAsArray {
+           |                        ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> integer-range-operators-v.bal:318:54
+            |
+        318 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+            |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> integer-range-operators-v.bal:319:50
+            |
+        319 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+            |                                                  ^^^^^^
+--- FAIL: TestMigrationTriage (0.09s)
+FAIL

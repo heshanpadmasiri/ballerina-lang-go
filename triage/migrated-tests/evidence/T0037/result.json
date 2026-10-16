@@ -1,0 +1,14 @@
+{
+  "Name": "anydata-test-09f359d581/anydata-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anydata-test-09f359d581/anydata-v.bal",
+  "Project": false,
+  "Id": "T0037",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anydata-test-09f359d581/anydata-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.087
+}

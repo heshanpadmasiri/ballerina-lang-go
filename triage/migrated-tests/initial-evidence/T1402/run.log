@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "table-negative-test-f923667200/table-negative-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

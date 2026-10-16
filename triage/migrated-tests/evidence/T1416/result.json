@@ -1,0 +1,14 @@
+{
+  "Name": "test-error-return-f3f8de5f6c/error-return-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/test-error-return-f3f8de5f6c/error-return-e.bal",
+  "Project": false,
+  "Id": "T1416",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/test-error-return-f3f8de5f6c/error-return-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.033
+}

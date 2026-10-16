@@ -1,0 +1,18 @@
+{
+  "id": "T1543",
+  "name": "while-stmt-test-8fe83cda27/while-stmt-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Statements: 'While', 'Break', 'Continue', 'Compound Assignment', 'If/else', 'Local variable declarations', 'Return', 'Panic'",
+    "Expressions: 'List constructor', 'Mapping constructor', 'Field access expression', 'Member access expression', 'Type test expression', 'Error constructor'",
+    "Operators: 'Equality ops `==`, `!=`, `===`, `!==`'; 'Additive ops `+`, `-`'; 'Logical ops `&&`, `||`'",
+    "Subset restrictions > Import declarations: 'ballerina/lang.float' includes 'fromString'; 'ballerina/lang.value' includes 'toString'",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes 'value:toString'"
+  ],
+  "reason": "All exercised behavior is supported: while iteration and nested break/continue, local scopes and per-iteration initialization, numeric/string compound assignment, float parsing, list/tuple access and array growth, and type narrowing through record tests and equality. The asserted outputs match those operations. The langlib calls float:fromString and value:toString are explicitly allowed, including toString method syntax; the assertion helper uses supported equality, type tests, conditional expressions, and error construction/panic. No applicable restriction excludes this case.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The file combines several while-loop behaviors with parsing and assertion-helper coverage, but no obvious unsupported mixed scope is present.",
+    "All markers are @output assertions; no @args or @panic markers are present. io:println is output instrumentation."
+  ]
+}

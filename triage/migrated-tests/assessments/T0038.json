@@ -1,0 +1,19 @@
+{
+  "id": "T0038",
+  "name": "argument-parser-negative-test-706c373f17/defaultable-too-many-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports `required-params`, `defaultable-params`, `included-record-param` and `rest-param` in the signature",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The declaration combines supported required/defaultable parameters and string/numeric defaults. However, the actual negative scenario supplies eight command-line strings to a six-parameter public main and expects startup failure. The supplied subset specification covers function signatures and language-level calls, but does not cover command-line binding, entry-point argument conversion, or excess CLI argument rejection. Whole-case classification is therefore feature for this unlisted execution interface, rather than a failure involving unsupported defaultable-parameter syntax.",
+  "unsupported_constructs": [
+    "Command-line argument binding to main and rejection of excess positional command-line arguments are not covered."
+  ],
+  "test_design_notes": [
+    "The @args and @panic comments are harness markers; there is no language-level call or panic statement.",
+    "The empty body makes failure depend entirely on startup argument handling. The decimal exponent default and multiple primitive parameter types are mixed into the CLI scenario.",
+    "No obvious malformed source or migration marker placement problem is visible; the generic @panic marker does not identify the expected diagnostic."
+  ]
+}

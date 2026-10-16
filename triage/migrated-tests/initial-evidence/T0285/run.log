@@ -1,0 +1,343 @@
+=== RUN   TestMigrationTriage
+runtime: goroutine stack exceeds 1000000000-byte limit
+runtime: sp=0x2226cdec06b0 stack=[0x2226cdec0000, 0x2226edec0000]
+fatal error: stack overflow
+
+runtime stack:
+runtime.throw({0xde9541?, 0x0?})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/panic.go:1243 +0x48 fp=0x7f1ec49fcd20 sp=0x7f1ec49fccf0 pc=0x48daa8
+runtime.newstack()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/stack.go:1207 +0x5dd fp=0x7f1ec49fce50 sp=0x7f1ec49fcd20 pc=0x46d25d
+runtime.morestack()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:650 +0x7b fp=0x7f1ec49fce58 sp=0x7f1ec49fce50 pc=0x49339b
+
+goroutine 23 gp=0x2226ad903a40 m=4 mp=0x2226ad8bb808 [running]:
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a9f)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8276 +0x55ce fp=0x2226cdec06c0 sp=0x2226cdec06b8 pc=0x818eae
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a9f)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec0798 sp=0x2226cdec06c0 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x25a9f)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226cdec08a0 sp=0x2226cdec0798 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226cdec0b40 sp=0x2226cdec08a0 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x25a9e)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226cdec0be0 sp=0x2226cdec0b40 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x25a9e)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226cdec0cb8 sp=0x2226cdec0be0 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a9e)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226cdec1458 sp=0x2226cdec0cb8 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a9e)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec1530 sp=0x2226cdec1458 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x25a9e)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226cdec1638 sp=0x2226cdec1530 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226cdec18d8 sp=0x2226cdec1638 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x25a9d)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226cdec1978 sp=0x2226cdec18d8 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x25a9d)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226cdec1a50 sp=0x2226cdec1978 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a9d)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226cdec21f0 sp=0x2226cdec1a50 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a9d)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec22c8 sp=0x2226cdec21f0 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x25a9d)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226cdec23d0 sp=0x2226cdec22c8 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226cdec2670 sp=0x2226cdec23d0 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x25a9c)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226cdec2710 sp=0x2226cdec2670 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x25a9c)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226cdec27e8 sp=0x2226cdec2710 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a9c)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226cdec2f88 sp=0x2226cdec27e8 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a9c)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec3060 sp=0x2226cdec2f88 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x25a9c)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226cdec3168 sp=0x2226cdec3060 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226cdec3408 sp=0x2226cdec3168 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x25a9b)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226cdec34a8 sp=0x2226cdec3408 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x25a9b)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226cdec3580 sp=0x2226cdec34a8 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a9b)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226cdec3d20 sp=0x2226cdec3580 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a9b)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec3df8 sp=0x2226cdec3d20 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x25a9b)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226cdec3f00 sp=0x2226cdec3df8 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226cdec41a0 sp=0x2226cdec3f00 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x25a9a)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226cdec4240 sp=0x2226cdec41a0 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x25a9a)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226cdec4318 sp=0x2226cdec4240 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a9a)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226cdec4ab8 sp=0x2226cdec4318 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a9a)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec4b90 sp=0x2226cdec4ab8 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x25a9a)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226cdec4c98 sp=0x2226cdec4b90 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226cdec4f38 sp=0x2226cdec4c98 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x25a99)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226cdec4fd8 sp=0x2226cdec4f38 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x25a99)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226cdec50b0 sp=0x2226cdec4fd8 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a99)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226cdec5850 sp=0x2226cdec50b0 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a99)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec5928 sp=0x2226cdec5850 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x25a99)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226cdec5a30 sp=0x2226cdec5928 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226cdec5cd0 sp=0x2226cdec5a30 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x25a98)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226cdec5d70 sp=0x2226cdec5cd0 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x25a98)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226cdec5e48 sp=0x2226cdec5d70 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a98)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226cdec65e8 sp=0x2226cdec5e48 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a98)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec66c0 sp=0x2226cdec65e8 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x25a98)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226cdec67c8 sp=0x2226cdec66c0 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226cdec6a68 sp=0x2226cdec67c8 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x25a97)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226cdec6b08 sp=0x2226cdec6a68 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x25a97)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226cdec6be0 sp=0x2226cdec6b08 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x25a97)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226cdec7380 sp=0x2226cdec6be0 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x25a97)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226cdec7458 sp=0x2226cdec7380 pc=0x8131bb
+...925545 frames elided...
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x5)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226edeb9c90 sp=0x2226edeb9bb8 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x5)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226edeba430 sp=0x2226edeb9c90 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x5)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226edeba508 sp=0x2226edeba430 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x5)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226edeba610 sp=0x2226edeba508 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226edeba8b0 sp=0x2226edeba610 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x4)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226edeba950 sp=0x2226edeba8b0 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x4)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226edebaa28 sp=0x2226edeba950 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x4)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226edebb1c8 sp=0x2226edebaa28 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x4)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226edebb2a0 sp=0x2226edebb1c8 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x4)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226edebb3a8 sp=0x2226edebb2a0 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226edebb648 sp=0x2226edebb3a8 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x3)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226edebb6e8 sp=0x2226edebb648 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x3)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226edebb7c0 sp=0x2226edebb6e8 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x3)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226edebbf60 sp=0x2226edebb7c0 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x3)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226edebc038 sp=0x2226edebbf60 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x3)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226edebc140 sp=0x2226edebc038 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226edebc3e0 sp=0x2226edebc140 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x2)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226edebc480 sp=0x2226edebc3e0 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x2)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226edebc558 sp=0x2226edebc480 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x2)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226edebccf8 sp=0x2226edebc558 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x2)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226edebcdd0 sp=0x2226edebccf8 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x2)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226edebced8 sp=0x2226edebcdd0 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226edebd178 sp=0x2226edebced8 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x1)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226edebd218 sp=0x2226edebd178 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x2226ada928c0, {0x0, 0xb4}, 0x1)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:744 +0x66f fp=0x2226edebd2f0 sp=0x2226edebd218 pc=0x7c364f
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78?, 0x2226add838c0}, 0x1)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8398 +0x31d4 fp=0x2226edebda90 sp=0x2226edebd2f0 pc=0x816ab4
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBType({0x196a6d0, 0x2226ada928c0}, 0x0, {0x1952d78, 0x2226add838c0}, 0x1)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:8230 +0x11b fp=0x2226edebdb68 sp=0x2226edebda90 pc=0x8131bb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveSimpleVariableInner({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226add83ad0, 0x1)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:3868 +0x27b fp=0x2226edebdc70 sp=0x2226edebdb68 pc=0x7e07fb
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveInvokableSignature({0x196a6d0, 0x2226ada928c0}, 0x0, {0x196a070, 0x2226ade182d0}, {0x1951c98, 0x2226ade1a6e0}, {0x2226add83a20, 0x2, 0x2}, ...)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:995 +0x171 fp=0x2226edebdf10 sp=0x2226edebdc70 pc=0x7c4cd1
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionSignature({0x196a6d0, 0x2226ada928c0}, 0x0, 0x2226ade182d0, 0x0)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:2143 +0x225 fp=0x2226edebdfb0 sp=0x2226edebdf10 pc=0x7cffe5
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).resolveTopLevelTypes(0x2226ada928c0, 0x2226add83b80)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:1124 +0x5d7 fp=0x2226edebe148 sp=0x2226edebdfb0 pc=0x7c6a57
+github.com/ballerina-nutcracker/ballerina/semantics/internal/types.ResolvePublicNodes(0x182ab10?, 0x2226add83b80, 0x2226adca06a8?)
+	/workspace/ballerina-lang-go/semantics/internal/types/type_resolver.go:753 +0x35 fp=0x2226edebe188 sp=0x2226edebe148 pc=0x7c3735
+github.com/ballerina-nutcracker/ballerina/semantics.ResolvePublicNodeTypes(...)
+	/workspace/ballerina-lang-go/semantics/semantics.go:83
+github.com/ballerina-nutcracker/ballerina/projects.resolveTypesAndSymbols(0x2226ad952600)
+	/workspace/ballerina-lang-go/projects/module_context.go:314 +0x1229 fp=0x2226edebeab0 sp=0x2226edebe188 pc=0xb8a949
+github.com/ballerina-nutcracker/ballerina/projects.(*PackageCompilation).compileModulesInternal(0x2226adaafb00)
+	/workspace/ballerina-lang-go/projects/package_compilation.go:128 +0xbd2 fp=0x2226edebf708 sp=0x2226edebeab0 pc=0xb90112
+github.com/ballerina-nutcracker/ballerina/projects.(*PackageCompilation).compileModulesInternal-fm()
+	<autogenerated>:1 +0x17 fp=0x2226edebf720 sp=0x2226edebf708 pc=0xbb24d7
+sync.(*Once).doSlow(0x2226adc75608?, 0x2226adc8615a?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:78 +0xab fp=0x2226edebf778 sp=0x2226edebf720 pc=0x49c5eb
+sync.(*Once).Do(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:69
+github.com/ballerina-nutcracker/ballerina/projects.(*PackageCompilation).compile(...)
+	/workspace/ballerina-lang-go/projects/package_compilation.go:63
+github.com/ballerina-nutcracker/ballerina/projects.newPackageCompilation(0x2226adc75608, {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...})
+	/workspace/ballerina-lang-go/projects/package_compilation.go:52 +0x13e fp=0x2226edebf7d8 sp=0x2226edebf778 pc=0xb8f51e
+github.com/ballerina-nutcracker/ballerina/projects.(*packageContext).getPackageCompilation.func1()
+	/workspace/ballerina-lang-go/projects/package_context.go:214 +0x69 fp=0x2226edebf858 sp=0x2226edebf7d8 pc=0xba4469
+sync.(*Once).doSlow(0x2226ad85e045?, 0xb?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:78 +0xab fp=0x2226edebf8b0 sp=0x2226edebf858 pc=0x49c5eb
+sync.(*Once).Do(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:69
+github.com/ballerina-nutcracker/ballerina/projects.(*packageContext).getPackageCompilation(0x2226adc75608)
+	/workspace/ballerina-lang-go/projects/package_context.go:213 +0x45 fp=0x2226edebf8e0 sp=0x2226edebf8b0 pc=0xb91645
+github.com/ballerina-nutcracker/ballerina/projects.(*Package).Compilation(...)
+	/workspace/ballerina-lang-go/projects/package.go:231
+github.com/ballerina-nutcracker/ballerina/test_util/testharness.Run({0x1969140, 0x2226adc88248}, {{0x2226adc622c0, 0x3a}, {0x2226adc86100, 0x74}, {0x0, 0x0}, 0x0}, {0x1952358, ...}, ...)
+	/workspace/ballerina-lang-go/test_util/testharness/test_harness.go:513 +0x345 fp=0x2226edebfd80 sp=0x2226edebf8e0 pc=0xd66725
+github.com/ballerina-nutcracker/ballerina/test_util/testharness.TestMigrationTriage(0x2226adc88248)
+	/workspace/ballerina-lang-go/test_util/testharness/migration_triage_test.go:50 +0x605 fp=0x2226edebff70 sp=0x2226edebfd80 pc=0xd6c4a5
+testing.tRunner(0x2226adc88248, 0x196ac18)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2193 +0xea fp=0x2226edebffc0 sp=0x2226edebff70 pc=0x5342ca
+testing.(*T).Run.gowrap1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2258 +0x1b fp=0x2226edebffe0 sp=0x2226edebffc0 pc=0x539cbb
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226edebffe8 sp=0x2226edebffe0 pc=0x494d61
+created by testing.(*T).Run in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2258 +0x4d4
+
+goroutine 1 gp=0x2226ad84e1e0 m=nil [chan receive]:
+runtime.gopark(0x1946428?, 0x2226ad92b818?, 0x8?, 0xb0?, 0x1876b18?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226adbe5908 sp=0x2226adbe58e8 pc=0x48dbca
+runtime.chanrecv(0x2226adc86080, 0x2226ad8f39ef, 0x1)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/chan.go:667 +0x4ae fp=0x2226adbe5980 sp=0x2226adbe5908 pc=0x41a74e
+runtime.chanrecv1(0x1a97420?, 0xf06000?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/chan.go:509 +0x12 fp=0x2226adbe59a8 sp=0x2226adbe5980 pc=0x41a272
+testing.(*T).Run(0x2226adc88008, {0xdef993?, 0x2226ad9e7aa0?}, 0x196ac18)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2266 +0x4f2 fp=0x2226adbe5a80 sp=0x2226adbe59a8 pc=0x534832
+testing.runTests.func1(0x2226adc88008)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2742 +0x37 fp=0x2226adbe5ac0 sp=0x2226adbe5a80 pc=0x539f37
+testing.tRunner(0x2226adc88008, 0x2226ad9e7bc8)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2193 +0xea fp=0x2226adbe5b10 sp=0x2226adbe5ac0 pc=0x5342ca
+testing.runTests({0xe0c438, 0x29}, {0xe1b9cc, 0x3f}, 0x2226ad92b7b8, {0x1a4b038, 0x1, 0x1}, {0xc2ac8097af70ac38, 0x5d26233e2, ...})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2740 +0x510 fp=0x2226adbe5bf8 sp=0x2226adbe5b10 pc=0x536890
+testing.(*M).Run(0x2226adc67040)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2600 +0x6af fp=0x2226adbe5e38 sp=0x2226adbe5bf8 pc=0x53544f
+main.main()
+	_testmain.go:46 +0x9b fp=0x2226adbe5eb8 sp=0x2226adbe5e38 pc=0xd6df7b
+runtime.main()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:302 +0x427 fp=0x2226adbe5fe0 sp=0x2226adbe5eb8 pc=0x4540a7
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226adbe5fe8 sp=0x2226adbe5fe0 pc=0x494d61
+
+goroutine 2 gp=0x2226ad84ed20 m=nil [force gc (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226ad8b6fa8 sp=0x2226ad8b6f88 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.forcegchelper()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:387 +0xb3 fp=0x2226ad8b6fe0 sp=0x2226ad8b6fa8 pc=0x454373
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226ad8b6fe8 sp=0x2226ad8b6fe0 pc=0x494d61
+created by runtime.init.7 in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:375 +0x1a
+
+goroutine 3 gp=0x2226ad84f2c0 m=nil [GC sweep wait]:
+runtime.gopark(0x1?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226ad8b7788 sp=0x2226ad8b7768 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.bgsweep(0x2226ad8e0000)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgcsweep.go:324 +0x151 fp=0x2226ad8b77c8 sp=0x2226ad8b7788 pc=0x43ce31
+runtime.gcenable.gowrap1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:214 +0x17 fp=0x2226ad8b77e0 sp=0x2226ad8b77c8 pc=0x4834d7
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226ad8b77e8 sp=0x2226ad8b77e0 pc=0x494d61
+created by runtime.gcenable in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:214 +0x66
+
+goroutine 4 gp=0x2226ad84f4a0 m=nil [GC scavenge wait]:
+runtime.gopark(0x10000?, 0xee4e70?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226ad8b7f78 sp=0x2226ad8b7f58 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.(*scavengerState).park(0x1a9c540)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgcscavenge.go:425 +0x49 fp=0x2226ad8b7fa8 sp=0x2226ad8b7f78 pc=0x43a929
+runtime.bgscavenge(0x2226ad8e0000)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgcscavenge.go:658 +0x59 fp=0x2226ad8b7fc8 sp=0x2226ad8b7fa8 pc=0x43ae99
+runtime.gcenable.gowrap2()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:215 +0x17 fp=0x2226ad8b7fe0 sp=0x2226ad8b7fc8 pc=0x483497
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226ad8b7fe8 sp=0x2226ad8b7fe0 pc=0x494d61
+created by runtime.gcenable in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:215 +0xa5
+
+goroutine 18 gp=0x2226ad902000 m=nil [GOMAXPROCS updater (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226ad8b2788 sp=0x2226ad8b2768 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.updateMaxProcsGoroutine()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:7146 +0xe7 fp=0x2226ad8b27e0 sp=0x2226ad8b2788 pc=0x461887
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226ad8b27e8 sp=0x2226ad8b27e0 pc=0x494d61
+created by runtime.defaultGOMAXPROCSUpdateEnable in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:7134 +0x37
+
+goroutine 19 gp=0x2226ad9025a0 m=nil [finalizer wait]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226ad8b2e20 sp=0x2226ad8b2e00 pc=0x48dbca
+runtime.runFinalizers()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mfinal.go:210 +0x107 fp=0x2226ad8b2fe0 sp=0x2226ad8b2e20 pc=0x42de87
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226ad8b2fe8 sp=0x2226ad8b2fe0 pc=0x494d61
+created by runtime.createfing in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mfinal.go:172 +0x3d
+
+goroutine 20 gp=0x2226ad9032c0 m=nil [cleanup wait]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226ad8b3768 sp=0x2226ad8b3748 pc=0x48dbca
+runtime.goparkunlock(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:480
+runtime.(*cleanupQueue).dequeue(0x1a9cd80)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mcleanup.go:522 +0xd3 fp=0x2226ad8b37a0 sp=0x2226ad8b3768 pc=0x42abb3
+runtime.runCleanups()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mcleanup.go:718 +0x45 fp=0x2226ad8b37e0 sp=0x2226ad8b37a0 pc=0x42b225
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226ad8b37e8 sp=0x2226ad8b37e0 pc=0x494d61
+created by runtime.(*cleanupQueue).createGs in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mcleanup.go:672 +0xa5
+
+goroutine 21 gp=0x2226ad903680 m=nil [GC worker (idle)]:
+runtime.gopark(0x4f1a329440?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226ad8b3f40 sp=0x2226ad8b3f20 pc=0x48dbca
+runtime.gcBgMarkWorker(0x2226adbb0850)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1807 +0xeb fp=0x2226ad8b3fc8 sp=0x2226ad8b3f40 pc=0x4312cb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1711 +0x17 fp=0x2226ad8b3fe0 sp=0x2226ad8b3fc8 pc=0x4839d7
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226ad8b3fe8 sp=0x2226ad8b3fe0 pc=0x494d61
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 22 gp=0x2226ad903860 m=nil [GC worker (idle)]:
+runtime.gopark(0x4f1feafddf?, 0x2?, 0x12?, 0x59?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/proc.go:474 +0xca fp=0x2226ad8b4740 sp=0x2226ad8b4720 pc=0x48dbca
+runtime.gcBgMarkWorker(0x2226adbb0850)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1807 +0xeb fp=0x2226ad8b47c8 sp=0x2226ad8b4740 pc=0x4312cb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1711 +0x17 fp=0x2226ad8b47e0 sp=0x2226ad8b47c8 pc=0x4839d7
+runtime.goexit({})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x2226ad8b47e8 sp=0x2226ad8b47e0 pc=0x494d61
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/runtime/mgc.go:1711 +0xfc

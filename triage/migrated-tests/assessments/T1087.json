@@ -1,0 +1,19 @@
+{
+  "id": "T1087",
+  "name": "object-type-reference-test-19fd51d776/object-inclusion-with-qualifiers-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' but does not list object constructor expressions.",
+    "## Module-level declarations: 'Supports `object-field`, `method-defn` and `object-type-inclusion` members'.",
+    "## Module-level declarations: 'Supports `client`, `service`, `isolated`, `readonly` and `distinct` ... `class-type-quals`'.",
+    "## Object/class definitions: 'Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported'."
+  ],
+  "reason": "The case requires object constructor expressions, which are absent from the supported expression list. In particular, main asserts that an `object Corge { ... }` constructor inherits readonly behavior and yields fields 200, 201, 202 and method result 603. This essential expression is distinct from the listed new expression. Class inclusions are supported, but that does not cover object constructor expressions.",
+  "unsupported_constructs": [
+    "Object constructor expressions, including `object Corge { ... }`, `object ObjectOne { ... }`, and qualified isolated/client/service object constructors."
+  ],
+  "test_design_notes": [
+    "The document conflicts on readonly class qualifiers: the module-level positive list includes readonly, while the object/class restriction excludes it. The independent missing object-constructor feature is sufficient for this classification.",
+    "The asserted decimal-to-int conversion and readonly intersection checks are part of the executed behavior; io:println is unused instrumentation."
+  ]
+}

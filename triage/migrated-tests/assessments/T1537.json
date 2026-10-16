@@ -1,0 +1,18 @@
+{
+  "id": "T1537",
+  "name": "while-stmt-test-8fe83cda27/while-stmt-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Function definition]",
+    "Statements: [While]",
+    "Statements: [Local variable declarations]",
+    "Expressions: [Literal] — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Expressions: [List constructor]"
+  ],
+  "reason": "All constructs are supported: a function contains while statements with string, integer and list-constructor conditions and integer local declarations. The four @error markers assert static rejection of non-boolean while conditions, which is within the supported grammar/type system. No applicable subset restriction excludes these constructs.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The function name mentions if statements, but the test consistently exercises while conditions; this naming mismatch does not change scope.",
+    "All four invalid conditions carry @error markers; no runtime arguments, panic or output assertions occur."
+  ]
+}

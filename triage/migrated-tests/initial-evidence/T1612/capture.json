@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: invalid expr in assignment lhs\n --\u003e main.bal:4:10\n  |\n4 |     x1/* = x2; // @error\n  |          \n\n","Diagnostics":[{"File":"main.bal","StartLine":4,"EndLine":4}]}

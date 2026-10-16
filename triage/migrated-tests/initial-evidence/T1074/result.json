@@ -1,0 +1,14 @@
+{
+  "Name": "object-functions-with-defaultable-arguments-83211a89c0/value-behaviors-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-functions-with-defaultable-arguments-83211a89c0/value-behaviors-v.bal",
+  "Project": false,
+  "Id": "T1074",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-functions-with-defaultable-arguments-83211a89c0/value-behaviors-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.053
+}

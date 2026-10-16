@@ -1,0 +1,18 @@
+{
+  "id": "T0333",
+  "name": "client-resource-access-action-negative-test-1519220005/client-resource-call-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: lists \"New expression\" and \"Client resource access action\", but does not list object constructor expressions.",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\".",
+    "Other invocation restrictions: \"Client resource access actions require an atomic client receiver. Dispatch is not supported when more than one resource method matches the access path.\""
+  ],
+  "reason": "The test requires anonymous object constructor expressions (`client object { ... }` and `object { ... }`) to establish receivers for its resource argument and ambiguity diagnostics. Object constructor expressions are not covered by the supported Expressions list; support for object/class members does not establish support for constructing anonymous objects. This essential construct makes the whole case a feature.",
+  "unsupported_constructs": [
+    "Anonymous object constructor expressions, including client object constructors."
+  ],
+  "test_design_notes": [
+    "Assertions are compile-time @error markers; no @args, @panic or @output behavior is present.",
+    "Illegal argument combinations and ambiguous accesses alone do not establish missing support: negative rejection within supported grammar/type rules is in scope."
+  ]
+}

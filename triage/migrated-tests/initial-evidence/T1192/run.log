@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at import-different-pkgs-same-alias-e.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at import-different-pkgs-same-alias-e.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at import-different-pkgs-same-alias-e.bal:2 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

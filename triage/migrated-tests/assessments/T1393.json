@@ -1,0 +1,18 @@
+{
+  "id": "T1393",
+  "name": "subtract-operation-test-d3a1c9ca4b/subtract-operation-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Constant declarations\"; \"Type definition\"; \"Function definition\"",
+    "Statements: \"Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; \"Mapping constructor\"",
+    "Operators: \"Additive ops `+`, `-`\"; \"numeric ops `+`, `-`\"",
+    "Subset restrictions / Import declarations: \"`ballerina/lang.string`\" includes \"`Char`\""
+  ],
+  "reason": "The case tests rejection of incompatible subtraction operands and mixed numeric types using supported arithmetic, literals, variable declarations, constants, type definitions, unions, JSON mappings and the explicitly allowed string:Char type. Invalid operands remain negative tests of the supported type system; no essential unsupported construct or invocation behavior appears.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error marker on int num1 = -9223372036854775808 appears misplaced: this is the valid minimum signed 64-bit integer. The subsequent subtraction by 1 is the overflow operation and has no marker. This portion needs marker/expectation review.",
+    "No @args, @panic or @output assertions occur; the overflow function is not invoked."
+  ]
+}

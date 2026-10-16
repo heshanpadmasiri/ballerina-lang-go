@@ -1,0 +1,16 @@
+{
+  "id": "T1228",
+  "name": "query-semantic-negative-tests-cfb3d21b20/wildcard-binding-pattern-query-e",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"[Query expressions](https://ballerina.io/spec/lang/master/#query-expr)\"; \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"",
+    "Expressions and Statements: query actions and `do` clauses are not listed among supported constructs."
+  ],
+  "reason": "The case asserts rejection of wildcard bindings over error-containing iteration types in both query expressions and query actions. The query-action half uses from ... do, which is not covered by the supported query-expression clauses or other positive lists. This essential unsupported construct makes the whole case a feature.",
+  "unsupported_constructs": [
+    "Query actions using from ... do clauses"
+  ],
+  "test_design_notes": [
+    "The @error markers assert compile-time rejection; illegal bindings alone do not make a supported-language negative test a feature. The unsupported query-action form is decisive here."
+  ]
+}

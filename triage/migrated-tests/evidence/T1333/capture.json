@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unsupported container type for index based access\n --\u003e sealed-array-map-index-p.bal:9:5\n  |\n9 |     x[\"v1\"][index] = 4; // @panic\n  |     ^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"sealed-array-map-index-p.bal","StartLine":9,"EndLine":9}]}

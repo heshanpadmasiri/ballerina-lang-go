@@ -1,0 +1,15 @@
+{
+  "Name": "map-access-expr-test-6a04afad0c/map-access-remove-missing-p",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-remove-missing-p",
+  "Project": true,
+  "Id": "T0760",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-remove-missing-p/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/map-access-expr-test-6a04afad0c/map-access-remove-missing-p/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.017
+}

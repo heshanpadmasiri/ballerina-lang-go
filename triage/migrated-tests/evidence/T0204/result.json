@@ -1,0 +1,14 @@
+{
+  "Name": "barray-value-test-74cb9876d7/lazy-array-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/barray-value-test-74cb9876d7/lazy-array-p.bal",
+  "Project": false,
+  "Id": "T0204",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/barray-value-test-74cb9876d7/lazy-array-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.071
+}

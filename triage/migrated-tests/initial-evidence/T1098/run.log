@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "object-with-private-fields-negative-test-2196e80b05/private-object-access1-e" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

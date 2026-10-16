@@ -1,0 +1,12 @@
+{
+  "id": "T1143",
+  "name": "operand-compilation-test-fbca3afc7e/successful-array-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Supported language features (subset 10): Supported Ballerina code: see corpus/bal—the corpus/bal/subset10 directory contains the tests and examples that define what is supported in this subset."
+  ],
+  "reason": "The function declaration is covered, but the @args directive makes successful command-line operand binding/conversion to the required int[] main parameter essential to this case. The supplied subset specification does not cover command-line entry-point operand processing; support for required parameter signatures alone does not establish that behavior.",
+  "unsupported_constructs": ["Command-line operand binding/conversion for an int[] main parameter"],
+  "test_design_notes": ["The empty function body asserts successful entry-point invocation with @args [\"1\"]; it does not inspect array contents."]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "worker-test-0f3493dd03/multiple-receive-action-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/multiple-receive-action-v.bal",
+  "Project": false,
+  "Id": "T1603",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/multiple-receive-action-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.038
+}

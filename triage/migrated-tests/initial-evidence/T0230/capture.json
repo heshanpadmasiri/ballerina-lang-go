@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported\n  --\u003e bdd-optimization-v.bal:19:29\n   |\n19 | type DefaultStatusCodeError distinct StatusCodeError \u0026 error\u003cDefaultErrorDetail\u003e;\n   |                             ^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"bdd-optimization-v.bal","StartLine":19,"EndLine":19}]}

@@ -1,0 +1,104 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "worker-on-fail-test-7287699041/worker-on-fail-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> worker-on-fail-negative-e.bal:20:5
+           |
+        20 |     worker w1 {
+           |     ^^^^^^^^^^^
+        21 |         0 ->> w2;
+           |         ^^^^^^^^^
+        22 |     } on fail {
+           |     ^^^^^^^^^^^
+        23 |         1 ->> w2;
+           |         ^^^^^^^^^
+        24 |     }
+           |     ^
+        25 | 
+           | 
+        26 |     worker w2 {
+           |     ^^^^^^^^^^^
+        27 |         int _ = <- w1;
+           |         ^^^^^^^^^^^^^^
+        28 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        29 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> worker-on-fail-negative-e.bal:35:5
+           |
+        35 |     worker w1 {
+           |     ^^^^^^^^^^^
+        36 |         boolean b = true;
+           |         ^^^^^^^^^^^^^^^^^
+        37 |         check error("err");
+           |         ^^^^^^^^^^^^^^^^^^^
+        38 |         0 -> w2;
+           |         ^^^^^^^^
+        39 |         if b {
+           |         ^^^^^^
+        40 |             1 -> w2;
+           |             ^^^^^^^^
+        41 |         }
+           |         ^
+        42 |     } on fail {
+           |     ^^^^^^^^^^^
+        43 |         boolean c = true;
+           |         ^^^^^^^^^^^^^^^^^
+        44 |         2 -> w2;
+           |         ^^^^^^^^
+        45 |         if c {
+           |         ^^^^^^
+        46 |             3 ->> w2;
+           |             ^^^^^^^^^
+        47 |         } else {
+           |         ^^^^^^^^
+        48 |             4 -> w2;
+           |             ^^^^^^^^
+        49 |         }
+           |         ^
+        50 |     }
+           |     ^
+        51 | 
+           | 
+        52 |     worker w2 {
+           |     ^^^^^^^^^^^
+        53 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        54 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        55 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        56 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        57 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        58 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> worker-on-fail-negative-e.bal:5:5
+           |
+         5 |     worker w1 {
+           |     ^^^^^^^^^^^
+         6 |         0 -> w2;
+           |         ^^^^^^^^
+         7 |     } on fail {
+           |     ^^^^^^^^^^^
+         8 |         1 -> w2;
+           |         ^^^^^^^^
+         9 |     }
+           |     ^
+        10 | 
+           | 
+        11 |     worker w2 {
+           |     ^^^^^^^^^^^
+        12 |         int _ = <- w1;
+           |         ^^^^^^^^^^^^^^
+        13 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

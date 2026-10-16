@@ -1,0 +1,17 @@
+{
+  "id": "T1516",
+  "name": "variable-definition-test-ff080c840f/duplicate-constant-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"",
+    "Module-level declarations: \"Function definition\"; \"Supports required-params ... in the signature\"",
+    "Expressions: \"Literal\"; \"Currently support nil-literal, boolean-literal, numeric-literal and string-literal only\"",
+    "Statements: \"Return\""
+  ],
+  "reason": "The case expects rejection of duplicate module variable name b, declared with final int and final float and numeric initializers. Module variable declarations, the required-parameter function and return statement are supported; no subset restriction excludes these constructs. Duplicate-name rejection within this supported grammar is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Despite the case name, these are final module variables, not const declarations.",
+    "The second declaration has an @error marker. There are no @args, @panic or @output assertions."
+  ]
+}

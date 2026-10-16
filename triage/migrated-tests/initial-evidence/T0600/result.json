@@ -1,0 +1,20 @@
+{
+  "Name": "global-var-function-in-bala-test-943e6806ea/global-var-function-local-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/global-var-function-local-v",
+  "Project": true,
+  "Id": "T0600",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/a-provider-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/a-provider-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/global-var-function-in-bala-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/global-var-function-in-bala-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/global-var-function-local-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/global-var-function-local-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.051
+}

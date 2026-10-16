@@ -1,0 +1,19 @@
+{
+  "id": "T0091",
+  "name": "argument-parser-positive-test-e41e5b8a0a/decimal-03-v",
+  "classification": "bug",
+  "spec_references": [
+    {"heading": "Module-level declarations", "quote": "[Function definition]", "relevance": "The case defines public main with a decimal parameter."},
+    {"heading": "Module-level declarations", "quote": "Supports [`required-params`], [`defaultable-params`], [`included-record-param`] and [`rest-param`] in the signature", "relevance": "The decimal argument is a required parameter; no decimal or exponent restriction is stated."},
+    {"heading": "Statements", "quote": "[Call]", "relevance": "The body contains a call statement."},
+    {"heading": "Expressions", "quote": "[Variable reference]", "relevance": "The argument to println is the parameter reference d."},
+    {"heading": "Subset restrictions / Import declarations", "quote": "Only following lang libraries with given methods/types are supported", "relevance": "This restricts lang libraries; ordinary ballerina/io output instrumentation does not establish an unsupported construct."}
+  ],
+  "reason": "The complete case uses a supported function definition with one required decimal parameter and prints its value. No supplied subset restriction excludes this parameter or decimal command-line value with a large exponent, so the expected argument conversion and output fall within this case's supported behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @args marker supplies 10.123e1423; @output expects 1.0123E+1424.",
+    "The exponent occurs in test input, not a source numeric literal.",
+    "io:println and @output are instrumentation; there are no mixed unsupported constructs or error markers."
+  ]
+}

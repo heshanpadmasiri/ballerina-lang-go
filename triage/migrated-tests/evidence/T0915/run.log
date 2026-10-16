@@ -1,0 +1,76 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:14:8
+           |
+        14 | Person {name: Fname2, married: Married2, age: Age2} = {name: "Jhone", married: true}; // @error
+           |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:16:17
+           |
+        16 | isolated Person {name: name3, married: married3} = {name: "Jhone", married: true}; // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:18:21
+           |
+        18 | configurable Person {name: name4, married: married4} = {name: "Jhone", married: true}; // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:23:8
+           |
+        23 | Person {name: name5} = {name: "Mack"}; // @error
+           |        ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:25:8
+           |
+        25 | Person {name: name6, married: married6} = {name: name7, married: n}; // @error
+           |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:26:5
+           |
+        26 | var {name: name7} = getVarValues();
+           |     ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:33:5
+           |
+        33 | var {fieldA: {fieldAVar}, fieldB: error(msg)} = foo(); // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:55:5
+           |
+        55 | var {name: eName, id: eId, age: eAge} = getEmployee();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:56:10
+           |
+        56 | Employee {name: eNameNew, id: eIdNew, age: eAgeNew} = getEmployee();
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:70:5
+           |
+        70 | var [{name: nameNew, details: {id: idNew, age: ageNew}}, ...x] = getNewEmployeeList();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-record-variable-test-a0b146279e-negative-e.bal:80:5
+           |
+        80 | var {a, c} = topt;
+           |     ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> module-record-variable-test-a0b146279e-negative-e.bal:7:8
+          |
+        7 | Person {name: Fname, married: Married} = {name: "Jhone", married: true}; // @error
+          |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

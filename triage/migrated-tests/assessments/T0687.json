@@ -1,0 +1,22 @@
+{
+  "id": "T0687",
+  "name": "iterable-arrow-expr-test-93e224d1ac/iterable-arrow-expr-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions > Import declarations: ballerina/lang.map lists length, keys, hasKey, get, remove",
+    "Subset restrictions > Import declarations: ballerina/lang.array lists length, push, map, indexOf, remove, removeAll, toStream, toBase64, toBase16, fromBase64, fromBase16",
+    "Subset restrictions > Import declarations: ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString, fromHexString",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions:"
+  ],
+  "reason": "The asserted transformed/filtered map results depend on lang.map map and filter, which are absent from both supported-library and method-call lists. Computing the asserted 9.0 also requires unsupported array filter and int sum. These essential operations place the whole case outside subset 10.",
+  "unsupported_constructs": [
+    "lang.map map and filter calls, including chained transformations",
+    "lang.array filter call",
+    "ballerina/lang.int sum invocation (ints:sum(...avg))"
+  ],
+  "test_design_notes": [
+    "The case also asserts that returned arrow functions pass isolated-function type tests; the unsupported collection operations already suffice for classification.",
+    "io:println serves as output instrumentation."
+  ]
+}

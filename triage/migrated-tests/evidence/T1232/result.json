@@ -1,0 +1,14 @@
+{
+  "Name": "query-with-closures-test-bfc248f951/query_with_closures-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-with-closures-test-bfc248f951/query_with_closures-v.bal",
+  "Project": false,
+  "Id": "T1232",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-with-closures-test-bfc248f951/query_with_closures-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

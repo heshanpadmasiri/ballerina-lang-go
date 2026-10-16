@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "list-constructor-spread-operator-test-ae223889d2/spread-operator-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+           --> spread-operator-negative-e.bal:124:15
+            |
+        124 |     ("x"|"y")[*] _ = [...a3]; // @error
+            |               ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+           --> spread-operator-negative-e.bal:140:9
+            |
+        140 |     int[*] _ = [1, 2, ... a2, 6]; // @error
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+           --> spread-operator-negative-e.bal:142:9
+            |
+        142 |     int[*] _ = [...a1, ... a2]; // @error
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> spread-operator-negative-e.bal:22:9
+           |
+        22 |     int[*] _ = [1, 2, ...a5]; // @error // @error
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+           --> spread-operator-negative-e.bal:124:15
+            |
+        124 |     ("x"|"y")[*] _ = [...a3]; // @error
+            |               ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+           --> spread-operator-negative-e.bal:140:9
+            |
+        140 |     int[*] _ = [1, 2, ... a2, 6]; // @error
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+           --> spread-operator-negative-e.bal:142:9
+            |
+        142 |     int[*] _ = [...a1, ... a2]; // @error
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> spread-operator-negative-e.bal:22:9
+           |
+        22 |     int[*] _ = [1, 2, ...a5]; // @error // @error
+           |         ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

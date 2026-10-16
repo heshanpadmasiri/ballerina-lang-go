@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "main-functions-test-f228557f7d/main-with-stack-overflow-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'foo'
+         --> main-with-stack-overflow-p.bal:8:5
+          |
+        8 |     Foo foo = new;
+          |     ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

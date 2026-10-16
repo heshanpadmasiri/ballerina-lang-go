@@ -1,0 +1,19 @@
+{
+  "id": "T1275",
+  "name": "record-variable-definition-test-0c506ca119/record-variable-definition-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType; value:fromJsonWithType; value:toString and value:toBalString"
+  ],
+  "reason": "The executed test requires mapping destructuring assignments that bind named/rest variables, beyond the explicit wildcard-only restriction. For example, testRecordDestructuring1 reassigns rest using {s: _, i: _, ...rest} and asserts its f value changes to 20; testClosedRecordDefinedRestField also assigns fullName, isMarried and rest variables and verifies their contents. The executed anonymous-record tests additionally call ensureType(), which is absent from the supported lang.value functions and method-call list.",
+  "unsupported_constructs": [
+    "Non-wildcard mapping destructuring assignments, including named and rest targets",
+    "lang.value ensureType() method calls"
+  ],
+  "test_design_notes": [
+    "Mapping binding patterns in variable declarations are distinct from the explicitly restricted destructuring assignment statements.",
+    "io:println output checks are instrumentation; classification rests on exercised language behavior."
+  ]
+}

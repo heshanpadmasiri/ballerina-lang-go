@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at xml_type_descriptor_negative-e.bal:37 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xml_type_descriptor_negative-e.bal:40 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xml_type_descriptor_negative-e.bal:43 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xml_type_descriptor_negative-e.bal:46 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

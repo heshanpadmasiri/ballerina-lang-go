@@ -1,0 +1,15 @@
+{
+  "Name": "bdecimal-value-negative-test-562a56cce5/decimal-large-exponent-literal-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-large-exponent-literal-e",
+  "Project": true,
+  "Id": "T0234",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-large-exponent-literal-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-large-exponent-literal-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.055
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "floating-point-literal-invalid-syntax-test-a72a75fd1e/floating-point-literal-invalid-syntax-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/floating-point-literal-invalid-syntax-test-a72a75fd1e/floating-point-literal-invalid-syntax-e.bal",
+  "Project": false,
+  "Id": "T0489",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/floating-point-literal-invalid-syntax-test-a72a75fd1e/floating-point-literal-invalid-syntax-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.027
+}

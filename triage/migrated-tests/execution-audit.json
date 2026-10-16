@@ -1,0 +1,43 @@
+{
+  "case_count": 1638,
+  "candidate_groups": 487,
+  "original_ballerina_files": 1736,
+  "covered_ballerina_files": 1736,
+  "original_branch_files_verified": 2216,
+  "changed_original_files": [],
+  "invalid_passes_with_compile_diagnostics": [],
+  "missing_captures_for_crashes_or_timeouts": [
+    "T0285",
+    "T1094",
+    "T1287",
+    "T1288",
+    "T1289",
+    "T1400"
+  ],
+  "counts": {
+    "fail": 1174,
+    "pass": 382,
+    "excluded-java": 78,
+    "timeout": 4
+  },
+  "by_kind": {
+    "v": {
+      "pass": 88,
+      "fail": 472,
+      "excluded-java": 32,
+      "timeout": 3
+    },
+    "e": {
+      "fail": 464,
+      "pass": 136,
+      "excluded-java": 44,
+      "timeout": 1
+    },
+    "p": {
+      "fail": 238,
+      "pass": 158,
+      "excluded-java": 2
+    }
+  },
+  "tracked_repository_changes": []
+}

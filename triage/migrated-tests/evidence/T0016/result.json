@@ -1,0 +1,14 @@
+{
+  "Name": "annotation-declaration-test-133dc37eee/source-annot-without-const-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/annotation-declaration-test-133dc37eee/source-annot-without-const-e.bal",
+  "Project": false,
+  "Id": "T0016",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/annotation-declaration-test-133dc37eee/source-annot-without-const-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.056
+}

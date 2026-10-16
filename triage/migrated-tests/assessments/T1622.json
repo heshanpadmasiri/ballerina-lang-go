@@ -1,0 +1,19 @@
+{
+  "id": "T1622",
+  "name": "xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: lists Import declarations, Function definition, Constant declarations, Annotation declarations and attachments, Module variable declarations, Module listener declarations, Service declarations, Type definition, Enum declarations, and Class definition; XML namespace declarations are not listed.",
+    "## Expressions: \"XML template expression\"; \"Supports interpolation in XML content and attributes\"; \"Type cast expression\"; \"Member access expression\".",
+    "# Subset restrictions / ## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.xml includes \"Element\" and \"getAttributes\".",
+    "## Invocations / ### Other invocation restrictions: method-call list includes \"xml:getAttributes\"."
+  ],
+  "reason": "The complete case contains a module-level default XML namespace declaration (xmlns \"http://sample.com/wso2/c1\";), which is not covered by the supported module-level declaration list. This suffices for feature classification. The XML template, Element cast, getAttributes method call and indexed assignment otherwise use listed constructs; the @panic assertion tests runtime rejection of an attribute expanded name with an empty local name, rather than merely successful invocation of getAttributes.",
+  "unsupported_constructs": [
+    "Module-level XML namespace declaration: xmlns \"http://sample.com/wso2/c1\";"
+  ],
+  "test_design_notes": [
+    "Mixed scope: an unlisted module-level namespace declaration accompanies an invalid attribute-name mutation through the supported XML attribute API.",
+    "The inline @panic marker targets assignment of key {http://sample.com/wso2/e}, whose local name is empty; no obvious marker mismatch."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T1007",
+  "name": "never-type-test-35205a329e/never-runtime-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not cloneReadOnly.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString, but not value:cloneReadOnly.",
+    "Supported language features (subset 10) > Expressions: \"Type test expression\", \"Type cast expression\" and \"Anonymous function expression\"."
+  ],
+  "reason": "testNeverFieldTypeCheck calls (<anydata>v9).cloneReadOnly() and (<anydata>v10).cloneReadOnly(), then asserts that each resulting readonly value passes a record type test. These calls are essential to the asserted readonly structural typing behavior and use an unlisted lang.value function, so the whole case requires an unsupported feature.",
+  "unsupported_constructs": [
+    "lang.value:cloneReadOnly invoked through method syntax in two asserted readonly record type-test cases"
+  ],
+  "test_design_notes": [
+    "The io:println call only preserves the import and is not the classification basis.",
+    "Other assertions exercise never return-type subtyping, empty never containers, and record optional/rest-field type tests; one essential unsupported langlib operation suffices for the whole-case feature classification."
+  ]
+}

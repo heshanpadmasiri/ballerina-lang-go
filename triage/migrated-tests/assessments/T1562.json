@@ -1,0 +1,13 @@
+{
+  "id": "T1562",
+  "name": "worker-fail-test-278d4f50a4/invalid-sync-send-in-foreach-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Foreach](https://ballerina.io/spec/lang/master/#section_7.21.1)\"; \"Currently only supports range, list, map, string and XML subtypes, and [iterable objects](https://ballerina.io/spec/lang/master/#section_5.8.2)\"",
+    "## Expressions: \"[Range expression](https://ballerina.io/spec/lang/master/#section_6.26)\"",
+    "## Statements and ## Expressions: positive lists do not include named worker declarations, synchronous worker send actions, or worker receive actions."
+  ],
+  "reason": "The essential asserted rejection concerns synchronous worker communication inside a foreach and worker send/receive matching. Named workers and their send/receive actions are not covered by subset 10. The supported range foreach does not bring those worker semantics into scope.",
+  "unsupported_constructs": ["Named worker declarations", "Synchronous worker send actions (->>)", "Worker receive actions (<-) and communication matching across loop boundaries"],
+  "test_design_notes": ["Four @error markers cover sends and receives; this is a negative diagnostic case, but its essential worker grammar/semantics are outside the documented subset.", "No @args, @panic, or @output assertions are present."]
+}

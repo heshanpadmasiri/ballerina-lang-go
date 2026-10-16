@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "error-destructure-negetive-test-6c1d1c393d/error_destructure_field_binding_negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error_destructure_field_binding_negative-e.bal:19:5
+           |
+        19 |     error(reason1, message = message1, cause = cause1, fatal = fatal1) = err; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error_destructure_field_binding_negative-e.bal:20:5
+           |
+        20 |     error FooError(reason2, message = message2, cause = cause2, fatal = fatal2) = err; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error_destructure_field_binding_negative-e.bal:33:5
+           |
+        33 |     error(reason1, msg = msg1, cause = cause1, extra = extra1) = err; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error_destructure_field_binding_negative-e.bal:34:5
+           |
+        34 |     error FooError(reason2, msg = msg2, cause = cause2, extra = extra2) = err; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error_destructure_field_binding_negative-e.bal:19:5
+           |
+        19 |     error(reason1, message = message1, cause = cause1, fatal = fatal1) = err; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error_destructure_field_binding_negative-e.bal:20:5
+           |
+        20 |     error FooError(reason2, message = message2, cause = cause2, fatal = fatal2) = err; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error_destructure_field_binding_negative-e.bal:33:5
+           |
+        33 |     error(reason1, msg = msg1, cause = cause1, extra = extra1) = err; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error_destructure_field_binding_negative-e.bal:34:5
+           |
+        34 |     error FooError(reason2, msg = msg2, cause = cause2, extra = extra2) = err; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

@@ -1,0 +1,16 @@
+{
+  "Name": "locks-in-main-test-617c6c002d/locks-imports-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/locks-imports-v",
+  "Project": true,
+  "Id": "T0729",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/locks-imports-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/locks-imports-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/locks-imports-v/modules/mod1/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.033
+}

@@ -1,0 +1,22 @@
+{
+  "id": "T1216",
+  "name": "query-expr-with-query-construct-type-test-397e030880/query-expr-with-query-construct-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Query expressions: Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions > Query expressions: Supports `group by` and `collect` clauses",
+    "Expressions > Query expressions: Supports `list` and `map` as `query-constructor-type`",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions > Import declarations > ballerina/lang.string: `Char`, `length`, `indexOf`, `includes`, `substring`, `equalsIgnoreCaseAscii`, `toLowerAscii`, `toUpperAscii`, `trim`, `toBytes`, `fromBytes`"
+  ],
+  "reason": "The case requires stream and table query constructors, while the supported constructor list contains only list and map. These constructs are essential to assertions of stream element values and exhaustion, table row order, duplicate-key handling, conflict errors, and inferred result types. Its regular-expression query tests additionally require string:RegExp and re templates, neither covered by the supported string langlib list or expression list.",
+  "unsupported_constructs": [
+    "stream query-constructor-type, including asserted next() element and exhaustion behavior",
+    "table query-constructor-type, including keyed duplicate/conflict behavior",
+    "string:RegExp and regular-expression templates"
+  ],
+  "test_design_notes": [
+    "Supported query clauses and map constructors do not make the whole case supported; essential stream/table constructor assertions suffice for feature classification.",
+    "io:println calls only expose boolean test results and do not determine classification."
+  ]
+}

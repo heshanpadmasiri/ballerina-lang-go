@@ -1,0 +1,19 @@
+{
+  "id": "T1569",
+  "name": "worker-fail-test-278d4f50a4/send-receive-mismatch-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements including \"If/else\" and \"Local variable declarations\", but does not list named worker declarations or fork statements.",
+    "## Expressions: lists \"Start action\" and \"Wait action\", but does not list worker send or receive actions."
+  ],
+  "reason": "The negative cases require named workers and worker message-send/receive matching diagnostics, none of which are covered by subset 10. Supported start/wait actions do not establish support for worker messaging. Case7 also requires an unlisted fork statement. These essential unsupported constructs make the whole case feature scope even though rejection tests within supported grammar would be in scope.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker send/receive matching diagnostics",
+    "Alternate receive (<- w1|w1) and multiple receive (<- {a: w1, b: w3, c: w3}) actions",
+    "Fork statement"
+  ],
+  "test_design_notes": [
+    "Negative diagnostic test with @error markers; no @args, @panic, or @output assertions.",
+    "Case7 mixes worker communication diagnostics with @error markers on apparently unused local variable declarations; those markers should be reviewed independently of messaging support."
+  ]
+}

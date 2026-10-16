@@ -1,0 +1,18 @@
+{
+  "id": "T1607",
+  "name": "xml-member-access-test-cd91bb2812/xml_member_access-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [XML template expression]; [Member access expression]; [Type test expression]; [Type cast expression]; [Anonymous function expression]; [Trap expression]; [Error constructor]; [String template expression]; [Equality expression]",
+    "## Statements: [Local variable declarations]; [Call]; [If/else]; [Panic]",
+    "## Import declarations: `ballerina/lang.xml` lists `Element`, `Text`, `Comment`, and `ProcessingInstruction`; `ballerina/lang.error` lists `message`; `ballerina/lang.value` lists `toBalString`",
+    "### Other invocation restrictions: `error:message`; `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The case exercises supported XML templates and member access across XML item subtypes, constrained sequences, unions, and empty sequences. Assertions cover item identity/type, empty results for nonnegative out-of-range indices, and trapped negative-index panics with error messages. These are behavior of the supported member-access expression; no applicable restriction excludes them. Anonymous closures, casts, traps, error message access, and assertion formatting are also supported.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args, @panic, or @output markers occur; main runs all assertions directly.",
+    "The empty io:print call is instrumentation and asserts no external library behavior.",
+    "Negative-index checks assert exact error message text; each closure also panics if access unexpectedly succeeds, and the subsequent message assertion distinguishes that fallback panic."
+  ]
+}

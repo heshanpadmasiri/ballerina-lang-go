@@ -1,0 +1,16 @@
+{
+  "id": "T0107",
+  "name": "argument-parser-positive-test-e41e5b8a0a/float-array-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Other invocation restrictions: \"`value:toString` and `value:toBalString`\""
+  ],
+  "reason": "The asserted behavior requires the external command-line argument parser to collect six positional strings into main's float[] parameter and parse them as floats. Subset 10 covers function signatures and value:toString method calls but does not cover this CLI execution/conversion protocol; signature support cannot establish it.",
+  "unsupported_constructs": [
+    "Command-line positional argument collection and float conversion into a main(float[]) parameter."
+  ],
+  "test_design_notes": [
+    "@args supplies six separate strings; @output expects float: [1.0,200.0,3.0,1.0,20.4,30.3]. io:println is output instrumentation."
+  ]
+}

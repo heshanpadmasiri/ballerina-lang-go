@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-destructure-test-b0950b4de8/tuple-destructure-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-destructure-test-b0950b4de8/tuple-destructure-v.bal",
+  "Project": false,
+  "Id": "T1434",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-destructure-test-b0950b4de8/tuple-destructure-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.083
+}

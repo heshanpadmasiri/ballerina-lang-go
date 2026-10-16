@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: missing map key\n        at testConstrainedMapStructTypeNegative(constrained-map-struct-type-negative-p.bal:7)\n           main(constrained-map-struct-type-negative-p.bal:12)\n","Diagnostics":null}

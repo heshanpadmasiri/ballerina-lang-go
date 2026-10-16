@@ -1,0 +1,14 @@
+{
+  "Name": "worker-sync-send-test-389660a47d/panic-with-multiple-send-stmts-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/panic-with-multiple-send-stmts-p.bal",
+  "Project": false,
+  "Id": "T1583",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/panic-with-multiple-send-stmts-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.051
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 3\n        at testArrayIndexOutOfRangeErrorWithFiniteTypeIndex(finite-index-out-of-range-p.bal:7)\n           main(finite-index-out-of-range-p.bal:11)\n","Diagnostics":null}

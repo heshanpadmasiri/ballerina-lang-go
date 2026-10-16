@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: Panic!\n        at getIntOrPanic(panic-within-default-p.bal:7)\n           main(panic-within-default-p.bal:10)\n           main(panic-within-default-p.bal:16)\n","Diagnostics":null}

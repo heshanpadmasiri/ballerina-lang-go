@@ -1,0 +1,16 @@
+{
+  "id": "T0123",
+  "name": "argument-parser-positive-test-e41e5b8a0a/uint32-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "## Import declarations: \"`ballerina/lang.int`\" includes \"`Unsigned32`\""
+  ],
+  "reason": "The required parameter and int:Unsigned32 type are supported, but this test requires the execution protocol to parse command-line argument \"10\" into main's Unsigned32 parameter and print 10. subset10 does not cover command-line argument parsing or main argument binding; signature support does not establish that behavior.",
+  "unsupported_constructs": [
+    "Command-line argument parsing and binding @args [\"10\"] to main(int:Unsigned32 i)."
+  ],
+  "test_design_notes": [
+    "@output 10 depends on successful CLI conversion and invocation; io:println is instrumentation. No @panic assertion."
+  ]
+}

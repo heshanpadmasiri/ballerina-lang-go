@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-mutability-test-4a07e00b3d/complex-tuple-types-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/complex-tuple-types-v.bal",
+  "Project": false,
+  "Id": "T1440",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/complex-tuple-types-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

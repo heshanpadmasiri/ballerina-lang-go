@@ -1,0 +1,18 @@
+{
+  "id": "T1476",
+  "name": "type-guard-test-74355f2266/type-guard-negative-e.bal",
+  "classification": "uncertain",
+  "spec_references": [
+    "Module-level declarations: \"Class definition\" / \"Supports `client`, `service`, `isolated`, `readonly` and `distinct` [`class-type-quals`]\"",
+    "Subset restrictions > Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\"",
+    "Expressions: \"Type test expression\", \"Conditional expression\", \"Logical expression\"",
+    "Statements: \"If/else\", \"Local variable declarations\", \"Return\"",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"`value:toString` and `value:toBalString`\""
+  ],
+  "reason": "The case includes `readonly class Class` used by readonly record fields and record type guards. The positive class qualifier list explicitly supports readonly, but the object/class restriction explicitly excludes it; this conflict prevents a definitive whole-case supported/unsupported judgment. Its negative type tests, narrowing and unreachable-code diagnostics otherwise use listed expression and statement forms; rejecting illegal combinations in supported syntax is in scope. Primitive toString method calls are covered by value:toString.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixed scope: scalar/logical narrowing and unreachable-code errors are combined with record/class intersections, maps and cyclic union type tests.",
+    "Only @error markers are present; there are no @args, @panic or @output assertions. Some lines carry multiple @error markers, while several negative-named functions have no markers."
+  ]
+}

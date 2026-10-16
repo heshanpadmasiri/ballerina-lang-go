@@ -1,0 +1,12 @@
+{
+  "id": "T0377",
+  "name": "constant-assignment-test-2d63b3eb49/constant-assignment-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions > Import declarations: ballerina/lang.string lists Char, length, indexOf, includes, substring, equalsIgnoreCaseAscii, toLowerAscii, toUpperAscii, trim, toBytes, fromBytes; concat is absent"
+  ],
+  "reason": "The module initializer calls strings:concat(str, \"awesome\") from ballerina/lang.string. This function is outside the explicit supported langlib list and is essential to the asserted outputs 'ballerina is awesome' and 'dummyballerina is awesome', so the whole case requires an unsupported feature.",
+  "unsupported_constructs": ["ballerina/lang.string:concat"],
+  "test_design_notes": ["The five @output assertions exercise module initialization and access; concat directly supplies two expected values. io:println is output instrumentation. The additional byte-array assertions do not remove the decisive unsupported langlib dependency."]
+}

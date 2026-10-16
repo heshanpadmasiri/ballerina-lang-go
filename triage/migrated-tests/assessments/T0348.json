@@ -1,0 +1,17 @@
+{
+  "id": "T0348",
+  "name": "closed-record-optional-fields-test-39abbdf876/optional_non_defaultable_field_get-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Type definition] and [Function definition]",
+    "## Statements: [Local variable declarations] and [Call]",
+    "## Expressions: [Mapping constructor], [Literal], and [Method call]",
+    "## Import declarations: ballerina/lang.map lists get",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: map:get"
+  ],
+  "reason": "The case uses supported type definitions, closed records with defaulted and optional fields, a mapping constructor, and the explicitly supported map:get method call. The absent optional adrs field is not inserted by constructing Person3 with {}; getting that missing key must panic, matching @panic. No listed restriction excludes these constructs or this missing-key behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The only asserted behavior is a panic from p.get(\"adrs\"); there are no @args or @output expectations."
+  ]
+}

@@ -1,0 +1,87 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "list-constructor-spread-operator-test-ae223889d2/inference-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: aggregated variable reference cannot be used as a spread member for a fixed-length list constructor
+           --> inference-v.bal:189:25
+            |
+        189 |     IntArr3 v1 = [1, ...[2, 3]];
+            |                         ^^^^^^
+        
+        error[SEMANTIC_ERROR]: aggregated variable reference cannot be used as a spread member for a fixed-length list constructor
+           --> inference-v.bal:198:18
+            |
+        198 |     Foo v4 = [...[true], "s"];
+            |                  ^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> inference-v.bal:234:54
+            |
+        234 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+            |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> inference-v.bal:235:50
+            |
+        235 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+            |                                                  ^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:144:19
+            |
+        144 |     typedesc v1 = [...a1];
+            |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:147:19
+            |
+        147 |     typedesc v2 = [string, ...a1, boolean];
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:152:19
+            |
+        152 |     typedesc v3 = [...a2];
+            |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:155:19
+            |
+        155 |     typedesc v4 = [string , ...a2, any];
+            |                   ^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:159:19
+            |
+        159 |     typedesc v5 = [string , ...[int, string], [3], x];
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:164:19
+            |
+        164 |     typedesc v6 = [...a3];
+            |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:170:19
+            |
+        170 |     typedesc v1 = [int, ...a1, boolean];
+            |                   ^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:174:19
+            |
+        174 |     typedesc v2 = [any, boolean, ...a2, int];
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: list type not found in expected type
+           --> inference-v.bal:178:19
+            |
+        178 |     typedesc v3 = [4, ...a1, 2.3d, ...a3];
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: ensureType
+           --> inference-v.bal:260:29
+            |
+        260 |     AnyArr arr = checkpanic actualArr.ensureType(AnyArr);
+            |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

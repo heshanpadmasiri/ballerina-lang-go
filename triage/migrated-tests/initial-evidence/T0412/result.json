@@ -1,0 +1,14 @@
+{
+  "Name": "deprecation-annotation-negative-test-3198403fd2/deprecation-annotation-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/deprecation-annotation-negative-test-3198403fd2/deprecation-annotation-negative-e.bal",
+  "Project": false,
+  "Id": "T0412",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/deprecation-annotation-negative-test-3198403fd2/deprecation-annotation-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.044
+}

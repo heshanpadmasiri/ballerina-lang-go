@@ -1,0 +1,17 @@
+{
+  "id": "T0116",
+  "name": "argument-parser-positive-test-e41e5b8a0a/optional-none-second-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "### Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.\""
+  ],
+  "reason": "The asserted output requires the executable entry-point argument parser to supply nil for main(string? s) when no command-line argument is present. Subset 10 supports parameter signatures and specified function-call argument behavior, but does not cover this command-line execution protocol; signature support does not establish it.",
+  "unsupported_constructs": [
+    "Command-line entry-point binding of an omitted nullable required parameter to nil."
+  ],
+  "test_design_notes": [
+    "No @args directive is present; @output expects \"string value: s is nil\".",
+    "io:println is output instrumentation and is not the unsupported feature."
+  ]
+}

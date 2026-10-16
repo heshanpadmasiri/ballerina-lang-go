@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'a'\n --\u003e main.bal:1:1\n  |\n1 | final int[] a = 5; // @error\n  | ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":1,"EndLine":1}]}

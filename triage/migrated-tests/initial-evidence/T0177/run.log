@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "array-size-definition-test-a34088ca39/array-size-scope-positive-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+         --> array-size-scope-positive-v.bal:5:1
+          |
+        5 | int[constLength] a = [1, 2];
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'arr'
+         --> array-size-scope-positive-v.bal:1:1
+          |
+        1 | int[constLength] arr = [1, 2];
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

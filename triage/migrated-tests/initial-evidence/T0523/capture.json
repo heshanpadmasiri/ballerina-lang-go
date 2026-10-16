@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n  --\u003e frozen-inner-record-update-p.bal:15:23\n   |\n15 |     DeptEmployee e2 = e1.cloneReadOnly();\n   |                       ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-inner-record-update-p.bal","StartLine":15,"EndLine":15}]}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: bad type cast\n        at testAnyToFuncPointerConversion_2(any-to-function-pointer-conversion-p.bal:24)\n           main(any-to-function-pointer-conversion-p.bal:19)\n","Diagnostics":null}

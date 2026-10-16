@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'a'\n --\u003e arrow-expression-type-narrow-e.bal:4:9\n  |\n4 |         function () returns string a = () =\u003e \"Hello \" + s; // @error\n  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"arrow-expression-type-narrow-e.bal","StartLine":4,"EndLine":4}]}

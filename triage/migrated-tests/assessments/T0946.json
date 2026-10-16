@@ -1,0 +1,17 @@
+{
+  "id": "T0946",
+  "name": "native-conversion-test-4a94bbda4e/map-incompatible-array-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Expressions: Method call; List constructor; Mapping constructor; Type test expression",
+    "Statements: Local variable declarations; If/else; Return; Panic",
+    "Subset restrictions / Import declarations: ballerina/lang.value — cloneWithType",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType"
+  ],
+  "reason": "The case exercises explicitly supported cloneWithType conversion from map<anydata> to a record. Its string[] marks is incompatible with the target int[]? field, so conversion must yield an error and the subsequent panic must execute. Record defaults, optional and recursive fields, constructors, type narrowing and panic introduce no stated restriction. All essential constructs and the asserted conversion failure are in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic comment is attached to the conversion call, but the executable failure path explicitly panics the returned conversion error after the Person type test."
+  ]
+}

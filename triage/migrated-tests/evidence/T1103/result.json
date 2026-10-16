@@ -1,0 +1,16 @@
+{
+  "Name": "object-with-private-fields-test-52ef1f2f6d/object-private-fields-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-test-52ef1f2f6d/object-private-fields-v",
+  "Project": true,
+  "Id": "T1103",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-test-52ef1f2f6d/object-private-fields-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-test-52ef1f2f6d/object-private-fields-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-test-52ef1f2f6d/object-private-fields-v/modules/foo/private-fields.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.125
+}

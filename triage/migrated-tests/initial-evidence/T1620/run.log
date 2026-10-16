@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "xmlattribute-access-test-c2d99d33fe/xml-attribute-access-syntax-neg-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.FieldAccessExpressionNode transformed to non-action-or-expression node <nil>
+          --> xml-attribute-access-syntax-neg-e.bal:10:13
+           |
+        10 |     var q = m.b:c; // @error
+           |             ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FieldAccessExpressionNode transformed to non-action-or-expression node <nil>
+         --> xml-attribute-access-syntax-neg-e.bal:7:13
+          |
+        7 |     var p = r.b:c; // @error
+          |             ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFieldAccessExpression: QUALIFIED_NAME_REFERENCE unsupported
+          --> xml-attribute-access-syntax-neg-e.bal:10:15
+           |
+        10 |     var q = m.b:c; // @error
+           |               ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFieldAccessExpression: QUALIFIED_NAME_REFERENCE unsupported
+         --> xml-attribute-access-syntax-neg-e.bal:7:15
+          |
+        7 |     var p = r.b:c; // @error
+          |               ^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

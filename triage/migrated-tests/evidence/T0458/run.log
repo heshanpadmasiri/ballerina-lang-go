@@ -1,0 +1,76 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "error-variable-reference-test-ab01ceefa3/error-variable-reference-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-negative-e.bal:14:5
+           |
+        14 |     error(r, message = message, abc = abc) = e; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> error-variable-reference-negative-e.bal:18:5
+           |
+        18 |     error(_, message = message3) = e3;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+         --> error-variable-reference-negative-e.bal:8:5
+          |
+        8 |     error(s, message = s, detail = s) = err1; // @error // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error-variable-reference-negative-e.bal:13:15
+           |
+        13 |     final var error(r, message = message, abc = abc) = e; // @error // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error-variable-reference-negative-e.bal:15:15
+           |
+        15 |     final var error(r2, message = message2, ...rest) = e; // @error // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error-variable-reference-negative-e.bal:17:15
+           |
+        17 |     final var error BarError(r3, message = message3) = e3; // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error-variable-reference-negative-e.bal:13:15
+           |
+        13 |     final var error(r, message = message, abc = abc) = e; // @error // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error-variable-reference-negative-e.bal:15:15
+           |
+        15 |     final var error(r2, message = message2, ...rest) = e; // @error // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error-variable-reference-negative-e.bal:17:15
+           |
+        17 |     final var error BarError(r3, message = message3) = e3; // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-negative-e.bal:14:5
+           |
+        14 |     error(r, message = message, abc = abc) = e; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> error-variable-reference-negative-e.bal:18:5
+           |
+        18 |     error(_, message = message3) = e3;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+         --> error-variable-reference-negative-e.bal:8:5
+          |
+        8 |     error(s, message = s, detail = s) = err1; // @error // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

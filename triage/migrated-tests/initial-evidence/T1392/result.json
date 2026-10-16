@@ -1,0 +1,14 @@
+{
+  "Name": "struct-test-5119d420d4/struct-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-test-5119d420d4/struct-v.bal",
+  "Project": false,
+  "Id": "T1392",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-test-5119d420d4/struct-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.07
+}

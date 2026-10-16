@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'args'\n --\u003e main.bal:3:22\n  |\n3 | public function main(string... args) {\n  |                      ^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":3,"EndLine":3}]}

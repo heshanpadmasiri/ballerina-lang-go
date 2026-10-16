@@ -1,0 +1,14 @@
+{
+  "Name": "match-structured-record-patterns-test-266717c556/structured_record_match_patterns-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-structured-record-patterns-test-266717c556/structured_record_match_patterns-v.bal",
+  "Project": false,
+  "Id": "T0882",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-structured-record-patterns-test-266717c556/structured_record_match_patterns-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.094
+}

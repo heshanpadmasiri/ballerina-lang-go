@@ -1,0 +1,14 @@
+{
+  "Name": "match-structured-error-patterns-test-5636c50f57/structured_error_match_patterns-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-structured-error-patterns-test-5636c50f57/structured_error_match_patterns-v.bal",
+  "Project": false,
+  "Id": "T0877",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-structured-error-patterns-test-5636c50f57/structured_error_match_patterns-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.043
+}

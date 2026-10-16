@@ -1,0 +1,14 @@
+{
+  "Name": "lvalue-test-e2785cbb54/inherent-type-violating-update-3-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/inherent-type-violating-update-3-p.bal",
+  "Project": false,
+  "Id": "T0743",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/inherent-type-violating-update-3-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.023
+}

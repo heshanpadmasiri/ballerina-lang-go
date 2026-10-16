@@ -1,0 +1,18 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:30 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:31 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:37 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:50 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:71 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:79 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:102 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:103 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:111 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at remote-basic-negative-e.bal:121 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

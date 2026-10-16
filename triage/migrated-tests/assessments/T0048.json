@@ -1,0 +1,18 @@
+{
+  "id": "T0048",
+  "name": "argument-parser-negative-test-706c373f17/invalid-decimal-06-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition; Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Subset restrictions / Import declarations: ballerina/lang.decimal lists fromString",
+    "Statements: Panic"
+  ],
+  "reason": "The source declares an otherwise ordinary public main function with one required decimal parameter and an empty body. Its expected failure depends entirely on the harness supplying the command-line string 2.0d and the executable entry-point argument parser rejecting that representation. The supplied specification supports required function parameters and decimal string conversion through the listed lang library, but does not describe command-line argument binding, accepted decimal argument spelling, or failure behavior during main invocation. Consequently the tested rejection is outside the documented subset, even though the function declaration itself uses supported syntax. Listing Panic as a supported statement does not establish entry-point parser panic semantics.",
+  "unsupported_constructs": [
+    "Command-line argument parsing and rejection for a decimal main parameter are not covered by the specification."
+  ],
+  "test_design_notes": [
+    "The @args and @panic comments are harness directives; the body contains no panic statement.",
+    "The value 2.0d appears only inside a harness argument string, not as a Ballerina numeric literal. No obvious migration defect is visible in the supplied source."
+  ]
+}

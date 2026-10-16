@@ -1,0 +1,67 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Hello
+        	
+        	Ballerina
+        	Hello
+        	
+        	Ballerina
+        	Hello
+        	
+        	Ballerina
+        	Hello
+        	
+        	Ballerina
+        	Hello
+        	
+        	Ballerina
+        	Hello
+        	
+        	Ballerina
+        	nil returns here
+        	no returns here
+        	
+        	nil returns here
+        	explicit nil returns here
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'i'\n --\u003e out-of-range-positive-decimal-union-as-int-p.bal:4:5\n  |\n4 |     int i = \u003cint\u003e f; // @panic\n  |     ^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"out-of-range-positive-decimal-union-as-int-p.bal","StartLine":4,"EndLine":4}]}

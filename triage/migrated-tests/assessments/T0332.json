@@ -1,0 +1,18 @@
+{
+  "id": "T0332",
+  "name": "client-resource-access-action-negative-test-1519220005/client-resource-access-return-type-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)\" is listed, but object-constructor expressions are not listed.",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\"",
+    "Other invocation restrictions: \"Client resource access actions require an atomic client receiver. Dispatch is not supported when more than one resource method matches the access path.\""
+  ],
+  "reason": "The case creates its receiver using an anonymous client object constructor (`var successClient = client object { ... };`), an expression form not covered by the supported Expressions list. Support for object/class members and client resource access actions does not establish support for constructing this anonymous object. This essential setup makes the whole case a feature gap even though its asserted argument/return type errors concern supported client resource actions.",
+  "unsupported_constructs": [
+    "Anonymous client object constructor expression `client object { ... }`."
+  ],
+  "test_design_notes": [
+    "The case asserts compile-time rejection through @error markers for incompatible resource arguments and result assignments; it has no @args, @panic, or @output assertions.",
+    "The receiver has distinct literal resource paths and a single inferred client type; the atomic-receiver and unique-resource-match restrictions do not independently exclude these accesses."
+  ]
+}

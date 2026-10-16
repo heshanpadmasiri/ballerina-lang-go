@@ -1,0 +1,14 @@
+{
+  "Name": "worker-test-0f3493dd03/08-receive-default-before-default-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/08-receive-default-before-default-p.bal",
+  "Project": false,
+  "Id": "T1593",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/08-receive-default-before-default-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.039
+}

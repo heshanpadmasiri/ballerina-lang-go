@@ -1,0 +1,14 @@
+{
+  "Name": "clone-operation-test-7a8df6a6e5/clone-operation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/clone-operation-test-7a8df6a6e5/clone-operation-v.bal",
+  "Project": false,
+  "Id": "T0338",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/clone-operation-test-7a8df6a6e5/clone-operation-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.123
+}

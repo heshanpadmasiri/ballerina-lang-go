@@ -1,0 +1,17 @@
+{
+  "id": "T0921",
+  "name": "module-tuple-variable-test-4b19fdd529/module-tuple-variable-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Import declarations (under # Subset restrictions): \"Only following lang libraries with given methods/types are supported\"; \"ballerina/lang.error\" lists only \"message\".",
+    "### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\" but not error:detail."
+  ],
+  "reason": "The executed testModuleLevelTupleRest2 asserts named error detail fields through g2.detail()[\"detail1\"] and g2.detail()[\"detail2\"]. error:detail is outside both the supported error langlib methods and the method-call whitelist, so the whole case requires an unsupported feature.",
+  "unsupported_constructs": [
+    "ballerina/lang.error:detail invoked through g2.detail() to assert error detail values."
+  ],
+  "test_design_notes": [
+    "Module-level tuple bindings, nested/rest bindings, annotations, forward references, objects and runtime type strings are exercised together; one unsupported asserted operation is sufficient for feature classification.",
+    "The io:print call is instrumentation and does not determine the classification."
+  ]
+}

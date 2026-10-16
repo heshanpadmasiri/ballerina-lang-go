@@ -1,0 +1,16 @@
+{
+  "id": "T0354",
+  "name": "closed-record-test-6f9046ad8a/closed-record-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.map lists \"length\", \"keys\", \"hasKey\", \"get\", \"remove\".",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"map:remove\" but not map:removeIfHasKey."
+  ],
+  "reason": "The executed main calls removeIfHasKeyOptional and removeIfHasKeyRest, which require the unsupported lang.map removeIfHasKey operation and assert its returned removed value and nil-on-absent behavior. This essential operation is absent from both positive supported langlib lists, so the whole case is a feature request.",
+  "unsupported_constructs": [
+    "Record method calls s.removeIfHasKey(\"name\"), s.removeIfHasKey(\"age\"), and s.removeIfHasKey(\"grade\"), including removed-value and absent-key nil behavior."
+  ],
+  "test_design_notes": [
+    "main executes both removeIfHasKey tests; their panic assertions require successful removal, correct returned values, and nil on a missing key. One decisive unsupported dependency suffices regardless of the other @output assertions."
+  ]
+}

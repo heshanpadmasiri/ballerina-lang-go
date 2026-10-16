@@ -1,0 +1,14 @@
+{
+  "id": "T0832",
+  "name": "mapping-constructor-expr-test-833706cb84/mapping-constructor-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: supported expression list includes 'Mapping constructor' and 'Type test expression', but does not include typeof expressions.",
+    "Expressions: Mapping constructor — 'Currently spread-field not supported'.",
+    "Module-level declarations: 'Supports dependently-typed functions using typedesc parameters with the <> inferred default'.",
+    "Other invocation restrictions: 'value:toString and value:toBalString'"
+  ],
+  "reason": "The case essentially uses typeof expressions to obtain mapping runtime typedesc values and asserts their exact string representations (typedesc map<(any|error)>, typedesc map<anydata>, and typedesc map<json>). typeof is absent from the supported expression list; support for typedesc function parameters does not establish support for this runtime reflection behavior. Mapping constructors and value:toString themselves are listed as supported.",
+  "unsupported_constructs": ["typeof expressions and asserted runtime typedesc string representations"],
+  "test_design_notes": ["The main function executes all mapping tests, including the runtime typedesc assertions.", "The empty io:print call is instrumentation and does not determine classification."]
+}

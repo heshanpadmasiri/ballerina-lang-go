@@ -1,0 +1,14 @@
+{
+  "id": "T1244",
+  "name": "readonly-object-test-9dae9381ef/readonly-objects-e.bal",
+  "classification": "uncertain",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `client`, `service`, `isolated`, `readonly` and `distinct` [`class-type-quals`]",
+    "Object/class definitions — Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported"
+  ],
+  "reason": "The case asserts compile-time rejection of mutable record/array assignment into readonly class fields, updates through readonly objects, construction of a readonly object intersection, a future field that cannot be readonly, and incompatible method qualifiers in readonly object assignments. These assertions depend essentially on readonly class semantics. The positive class feature list explicitly supports readonly classes, while the object/class restriction explicitly excludes that qualifier, so the supplied specification conflicts on the case's essential construct.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation test: @error annotations assert rejection, not successful execution of the invalid assignments or constructors."
+  ]
+}

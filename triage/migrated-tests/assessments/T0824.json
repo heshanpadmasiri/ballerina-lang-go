@@ -1,0 +1,16 @@
+{
+  "id": "T0824",
+  "name": "mapping-binding-pattern-negative-test-66fc85fc17/mapping-binding-pattern-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements — Match statement: Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted unmatched-pattern and unreachable-pattern diagnostics require mapping binding and mapping match patterns. These patterns are outside the explicitly supported constant and wildcard match patterns, so the whole negative case depends on unsupported matching behavior.",
+  "unsupported_constructs": [
+    "Mapping binding match patterns such as var {a: b}, including rest bindings (...rest)",
+    "Mapping match patterns such as {a: 150, b: \"A\"} and their reachability analysis"
+  ],
+  "test_design_notes": [
+    "The @error annotations assert diagnostic behavior for incompatible and redundant mapping patterns; negative-test status does not itself determine classification."
+  ]
+}

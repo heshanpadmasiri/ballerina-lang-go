@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "record-default-functions-test-5c734f9983/record_default_functions-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 's'
+          --> record_default_functions-v.bal:19:28
+           |
+        19 | isolated function getAsInt(string s) returns int {
+           |                            ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

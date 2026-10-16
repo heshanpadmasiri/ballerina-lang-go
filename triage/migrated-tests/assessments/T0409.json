@@ -1,0 +1,18 @@
+{
+  "id": "T0409",
+  "name": "dataflow-analysis-test-00b490139e/uninitialized-semantics-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern",
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The whole case exercises uninitialized-variable analysis across unsupported binding patterns: testVariableAssignment uses nested mapping destructuring assignment with a rest binding, and several match statements use capture, list, and mapping binding patterns. Either restriction is decisive even though ordinary uninitialized-variable rejection in supported constructs is in scope.",
+  "unsupported_constructs": [
+    "Nested mapping destructuring assignment {name: fName, married, age: {age: theAge, format}, ...theMap} = getPerson()",
+    "Match binding patterns var y / var x, var [a, b], and var {a, b}"
+  ],
+  "test_design_notes": [
+    "No @args, @panic, or @output directives appear; the source is a negative semantic/dataflow case with @error comments and uninitialized-variable comments.",
+    "cloneWithType and hasKey, including their method-call syntax, are explicitly supported; they do not establish a feature gap."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0436",
+  "name": "enum-test-f69b0643c8/enums-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Enum declarations\"",
+    "Module-level declarations: \"Constant declarations\" and \"Function definition\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions: \"Variable reference\"; literals support \"numeric-literal\" and \"string-literal\"",
+    "Operators: \"Additive ops `+`, `-`\""
+  ],
+  "reason": "All constructs belong to supported enum declarations, constants, functions, local declarations, literal/reference expressions and addition. Expected rejection of trailing enum separators, non-string values, duplicate/conflicting member names, incompatible enum assignments, missing initializers, undefined references and cyclic constants is negative coverage of the supported grammar and type system. No applicable restriction excludes these cases.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The file asserts compile-time errors through @error comments; it contains no @args, @panic or @output assertions.",
+    "Malformed and conflicting declarations can cause cascading diagnostics; that does not introduce an unsupported feature."
+  ]
+}

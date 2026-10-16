@@ -1,0 +1,36 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "locks-with-on-fail-test-044696e74b/locks-with-on-fail-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+          --> locks-with-on-fail-negative-e.bal:20:13
+           |
+        20 |             fail error SampleComplexError("Transaction Failure", code = 20, pos = [30, 45], infoDetails = {moreInfo: "deadlock condition"});
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+          --> locks-with-on-fail-negative-e.bal:22:9
+           |
+        22 |         fail error SampleError("Transaction Failure", code = 50, reason = "deadlock condition");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: on-fail clause on lock is not yet supported
+          --> locks-with-on-fail-negative-e.bal:23:7
+           |
+        23 |     } on fail var error(msg) { // @error invalid error variable; expecting an error type but found '(SampleComplexError|SampleError)' in type definition
+           |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+          --> locks-with-on-fail-negative-e.bal:20:13
+           |
+        20 |             fail error SampleComplexError("Transaction Failure", code = 20, pos = [30, 45], infoDetails = {moreInfo: "deadlock condition"});
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+          --> locks-with-on-fail-negative-e.bal:22:9
+           |
+        22 |         fail error SampleError("Transaction Failure", code = 50, reason = "deadlock condition");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

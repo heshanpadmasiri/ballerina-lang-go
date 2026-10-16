@@ -1,0 +1,41 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at different-function-signatures-semantics-negative-e.bal:10-10 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at different-function-signatures-semantics-negative-e.bal:10-10 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:1 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:17 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:36 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:53 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:54 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:56 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:57 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:58 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:59 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:64 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:66 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:67 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:68 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:79 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:81 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:82 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:84 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:91 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:92 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:93 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:96 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:98 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:99 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:100 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:101 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:106 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:107 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:114 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:115 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:118 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:119 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:145 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:147 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at different-function-signatures-semantics-negative-e.bal:150 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

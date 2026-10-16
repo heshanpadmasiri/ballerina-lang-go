@@ -1,0 +1,16 @@
+{
+  "id": "T0303",
+  "name": "check-panic-expression-operator-test-baa47123b9/checkpanic-generic-error-p",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"",
+    "## Expressions: \"[Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\"",
+    "## Statements: \"[Match statement](https://ballerina.io/spec/lang/master/#match-stmt)\"; \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\"",
+    "## Statements: \"[Panic](https://ballerina.io/spec/lang/master/#panic-stmt)\""
+  ],
+  "reason": "The supported checking-expression production covers checkpanic. The constant match selects branch 1, getGenericError returns an error, and checkpanic must panic with that error. Function calls, local declarations, error construction, returns, numeric literals and the constant match are covered, with no applicable restriction excluding this behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args or @output assertions are present. The @panic marker is attached to error construction, but constructing the error does not panic: the returned error triggers the caller's checkpanic. The case's asserted panic is reachable."
+  ]
+}

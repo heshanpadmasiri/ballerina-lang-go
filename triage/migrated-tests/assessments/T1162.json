@@ -1,0 +1,16 @@
+{
+  "id": "T1162",
+  "name": "option-test-1b0c555df9/float_option_invalid_value-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Module-level declarations: Type definition"
+  ],
+  "reason": "The signature's included record parameter is supported, but the asserted behavior is command-line option decoding: supplying --val=name to a float field must fail before the empty main body runs. Subset 10 does not cover command-line option binding or invalid-option conversion failure behavior.",
+  "unsupported_constructs": [
+    "Command-line option binding to an included record parameter and rejection of an invalid float option value"
+  ],
+  "test_design_notes": [
+    "The @args and @panic comments assert launcher behavior; there is no explicit panic statement in the program."
+  ]
+}

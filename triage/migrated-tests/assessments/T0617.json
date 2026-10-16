@@ -1,0 +1,18 @@
+{
+  "id": "T0617",
+  "name": "greater-less-than-operation-test-18ca062550/greater-less-than-operation-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Relational expression](https://ballerina.io/spec/lang/master/#relational-expr)",
+    "## Operators: Relational ops `<`, `<=`, `>`, `>=`",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn); [Constant declarations](https://ballerina.io/spec/lang/master/#module-const-decl); [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "## Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr); [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)",
+    "# Subset restrictions / ## Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.int lists Signed8, Signed16, Unsigned8, Unsigned16; ballerina/lang.string lists Char"
+  ],
+  "reason": "This negative case asserts static rejection of relational comparisons involving unordered or incompatible operand types, including JSON, records, mixed numeric types, unions, finite types, arrays and tuples. Relational expressions and all four operators are explicitly supported, and no restriction excludes these type-system rejection checks. The qualified integer subtypes and string:Char used by the final cases are explicitly allowed langlib types.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation test: @error markers assert diagnostics, so successful execution is not expected.",
+    "Some tuple initializers also have incompatible lengths (for example X2 b = [null] and [int, int, string] a = [1, 2]); these may produce additional diagnostics beyond the marked relational expressions."
+  ]
+}

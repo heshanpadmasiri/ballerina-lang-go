@@ -1,0 +1,20 @@
+{
+  "id": "T1578",
+  "name": "worker-on-fail-test-7287699041/worker-on-fail-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: the supported statement list does not include named worker declarations or on-fail clauses.",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are listed, but worker send/receive actions are not.",
+    "## Expressions: \"[Error constructor]\" and \"[Check expression]\" are listed."
+  ],
+  "reason": "The asserted missing-message errors depend on named workers, asynchronous and synchronous worker sends, worker receives, and worker on-fail control flow. These essential constructs and their communication-analysis behavior are not covered by subset 10; support for wait actions does not establish support for named worker messaging.",
+  "unsupported_constructs": [
+    "Named worker declarations with on fail clauses",
+    "Worker asynchronous send (->), synchronous send (->>), and receive (<-) actions",
+    "Missing-message diagnostic analysis across worker bodies and on-fail paths"
+  ],
+  "test_design_notes": [
+    "All three functions exercise the same unsupported worker messaging scope; seven receive statements carry @error markers.",
+    "No @args, @panic, or @output markers occur."
+  ]
+}

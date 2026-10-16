@@ -1,0 +1,14 @@
+{
+  "Name": "nested-actions-test-b754fe8c60/nested-actions-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/nested-actions-test-b754fe8c60/nested-actions-e.bal",
+  "Project": false,
+  "Id": "T0998",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/nested-actions-test-b754fe8c60/nested-actions-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.033
+}

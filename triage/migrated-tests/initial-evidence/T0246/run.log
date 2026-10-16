@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "binary-expr-eval-precedence-test-6ce454d67b/binary-expr-eval-precedence-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'three'
+          --> binary-expr-eval-precedence-v.bal:14:72
+           |
+        14 | function binaryOrExprWithLeftMostSubExprTrue(boolean one, boolean two, boolean three) returns boolean {
+           |                                                                        ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'three'
+          --> binary-expr-eval-precedence-v.bal:18:74
+           |
+        18 | function binaryANDExprWithLeftMostSubExprFalse(boolean one, boolean two, boolean three) returns boolean {
+           |                                                                          ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'two'
+          --> binary-expr-eval-precedence-v.bal:14:59
+           |
+        14 | function binaryOrExprWithLeftMostSubExprTrue(boolean one, boolean two, boolean three) returns boolean {
+           |                                                           ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'two'
+          --> binary-expr-eval-precedence-v.bal:18:61
+           |
+        18 | function binaryANDExprWithLeftMostSubExprFalse(boolean one, boolean two, boolean three) returns boolean {
+           |                                                             ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

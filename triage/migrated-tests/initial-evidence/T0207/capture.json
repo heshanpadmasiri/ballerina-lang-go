@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'result'\n  --\u003e async-non-native-basic7-p.bal:17:5\n   |\n17 |     int result = checkpanic wait f1; // @panic\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"async-non-native-basic7-p.bal","StartLine":17,"EndLine":17}]}

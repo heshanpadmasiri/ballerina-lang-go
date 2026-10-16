@@ -1,0 +1,18 @@
+{
+  "id": "T0021",
+  "name": "anonymous-object-test-5197ee0f89/anonymous-object-code-analyzer-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions",
+    "- [Annotation declarations and attachments](https://ballerina.io/spec/lang/master/#section_9.1)",
+    "## Object/class definitions"
+  ],
+  "reason": "The case combines a structural object type, an anonymous object constructor with a field initializer, a call to a deprecated isolated function, and an integer return. Function definitions, isolated functions, annotations, calls, local declarations, and object field descriptors are covered. However, the Expressions list includes new expressions and anonymous function expressions but does not include object-constructor expressions of the form object { ... }. Supporting object/class definitions does not expressly cover evaluating this anonymous constructor. Because at least one construct is not covered, the whole case is a feature case even though most surrounding syntax is supported.",
+  "unsupported_constructs": [
+    "Anonymous object-constructor expression: object { int b = Test(); } is not listed among supported expressions."
+  ],
+  "test_design_notes": [
+    "Both the constructor line and deprecated call carry @error markers; the source otherwise appears intended to test code-analyzer traversal and deprecation reporting.",
+    "A deprecated function call normally suggests a deprecation diagnostic rather than a type error; converting that expectation to @error is a likely marker mismatch. The constructor marker also has no explicit invalid typing rationale in this source."
+  ]
+}

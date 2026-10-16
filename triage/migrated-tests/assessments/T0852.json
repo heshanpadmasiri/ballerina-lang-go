@@ -1,0 +1,17 @@
+{
+  "id": "T0852",
+  "name": "match-statement-static-patterns-test-4828836871/static-match-patterns-semantics-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The case requires semantic analysis of mapping match patterns, including their inability to match an object and an invalid computed key. Mapping match patterns are outside the explicitly supported const-pattern and wildcard-match-pattern forms, so the whole case is a feature gap even though rejection of a nonconstant simple-variable pattern is within the supported constant-pattern area.",
+  "unsupported_constructs": [
+    "Mapping match patterns {var1: 12} against an object",
+    "Invalid mapping match pattern key {foo(): 12}"
+  ],
+  "test_design_notes": [
+    "Negative semantic test with @error annotations; illegal code alone does not imply an unsupported feature.",
+    "The simple-variable pattern a is marked invalid, but the mapping-pattern portion independently determines the whole-case classification."
+  ]
+}

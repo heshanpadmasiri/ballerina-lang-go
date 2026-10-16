@@ -1,0 +1,33 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:48: CLI exit: exit status 1
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: -v test leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: map
+         --> open-record-iteration-float-v.bal:7:12
+          |
+        7 |     return bar.'map(function (float value) returns float { return value + 10.0; });
+          |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: filter
+          --> open-record-iteration-float-v.bal:12:12
+           |
+        12 |     return bar.filter(function (float value) returns boolean { return value > 6.0; });
+           |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	30.15
+        	17.89
+        	15.15
+        	19.9
+        	20.15
+        	7.89
+        	
+        	9.9
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.10s)
+FAIL

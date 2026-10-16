@@ -1,0 +1,19 @@
+{
+  "id": "T0704",
+  "name": "length-of-operator-test-40bf142c3a/length-of-operator-v",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: Method call; Type cast expression; List constructor; Mapping constructor; String template expression; Field access expression; Member access expression; Type test expression; Check expression",
+    "## Statements: Assignment; If/else; Local variable declarations; Return",
+    "## Module-level declarations: Function definition; Type definition",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes array:length, map:length, string:length and string:toBytes",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported' lists length under ballerina/lang.array, ballerina/lang.map and ballerina/lang.string, and toBytes under ballerina/lang.string",
+    "## Operators: 'Equality ops `==`, `!=`, `===`, `!==`' and 'Additive ops `+`, `-`'"
+  ],
+  "reason": "All exercised behavior is supported: array and tuple lengths across expression contexts, record-field array length, narrowed json-array length, map and JSON-object entry counts, empty and ordinary string lengths, interpolated string length, and byte-array lengths after string:toBytes. The relevant langlib methods are explicitly permitted in method-call syntax. Expected results agree with the constructed values.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println only exposes results as test instrumentation.",
+    "Assertions cover lengths 0 through 11, including tuple element values and empty maps, strings and byte arrays."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "T0810",
+  "name": "map-constant-test-c580ec2dc9/map-constant-test-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the positive list includes 'Annotation access expression' but does not include typeof expression.",
+    "## Module-level declarations: 'Annotation declarations and attachments' and 'Supports annotation values evaluated from constant and runtime expressions'.",
+    "## Module-level declarations: 'Constant declarations'",
+    "### Other invocation restrictions: 'value:toString` and `value:toBalString'"
+  ],
+  "reason": "The asserted annotation result requires `typedesc<any> t = typeof r1` followed by `t.@testAnnotation`. Annotation declarations/access are supported, but the essential typeof expression is absent from the supported expression list, so the whole case requires an uncovered feature. The map constants and permitted toString method calls do not independently establish an unsupported feature.",
+  "unsupported_constructs": ["typeof expression in testConstInAnnotations"],
+  "test_design_notes": ["The main function asserts the annotation payload through an expected output, so typeof is part of exercised behavior. io:println is instrumentation."]
+}

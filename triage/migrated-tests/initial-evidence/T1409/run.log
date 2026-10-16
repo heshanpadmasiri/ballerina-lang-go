@@ -1,0 +1,387 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "tables-as-func-args-53418aff8c/tables-as-func-args-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> tables-as-func-args-e.bal:41:35
+           |
+        41 |     table<Person> key(age) tab1 = table [
+           |                                   ^^^^^^^
+        42 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        44 |         ];
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> tables-as-func-args-e.bal:50:35
+           |
+        50 |     table<Person> key(age) tab1 = table [
+           |                                   ^^^^^^^
+        51 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        52 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        53 |         ];
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> tables-as-func-args-e.bal:59:35
+           |
+        59 |     table<Person> key<int> tab1 = table key(age) [
+           |                                   ^^^^^^^^^^^^^^^^
+        60 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        62 |         ];
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> tables-as-func-args-e.bal:68:26
+           |
+        68 |     table<Person> tab1 = table [
+           |                          ^^^^^^^
+        69 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        70 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |         ];
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> tables-as-func-args-e.bal:77:26
+           |
+        77 |     table<Person> tab1 = table [
+           |                          ^^^^^^^
+        78 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |         ];
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> tables-as-func-args-e.bal:86:34
+           |
+        86 |     table<Person> key(age) tab = table [
+           |                                  ^^^^^^^
+        87 |          { name: "AAA", age: 31 },
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+        88 |          { name: "CCC", age: 34 }
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^
+        89 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> tables-as-func-args-e.bal:94:34
+           |
+        94 |     table<Person> key(age) tab = table [
+           |                                  ^^^^^^^
+        95 |          { name: "AAA", age: 31 },
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+        96 |          { name: "CCC", age: 34 }
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^
+        97 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:12:20
+           |
+        12 | type CustomerTable table<Customer> key(id, name);
+           |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:14:18
+           |
+        14 | type PersonTable table<Person> key(name);
+           |                  ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:16:35
+           |
+        16 | function getStringRepresentation1(table<Person> key(name) tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:20:35
+           |
+        20 | function getStringRepresentation2(table<Person> key<string> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:24:35
+           |
+        24 | function getStringRepresentation3(table<Person> key<int> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:28:35
+           |
+        28 | function getStringRepresentation4(table<Person> key<string> | table<Customer> key<[int, string]> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:28:63
+           |
+        28 | function getStringRepresentation4(table<Person> key<string> | table<Customer> key<[int, string]> tab) returns string {
+           |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:32:35
+           |
+        32 | function getStringRepresentation5(table<Person|Customer> key<string> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:36:35
+           |
+        36 | function getStringRepresentation6(table<Person> key<string|int> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:41:5
+           |
+        41 |     table<Person> key(age) tab1 = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:50:5
+           |
+        50 |     table<Person> key(age) tab1 = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:59:5
+           |
+        59 |     table<Person> key<int> tab1 = table key(age) [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:68:5
+           |
+        68 |     table<Person> tab1 = table [
+           |     ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:77:5
+           |
+        77 |     table<Person> tab1 = table [
+           |     ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:85:31
+           |
+        85 | function getTable1() returns (table<Person> key<string>) {
+           |                               ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:86:5
+           |
+        86 |     table<Person> key(age) tab = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:93:31
+           |
+        93 | function getTable2() returns (table<Person> key(name)) {
+           |                               ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> tables-as-func-args-e.bal:94:5
+           |
+        94 |     table<Person> key(age) tab = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> tables-as-func-args-e.bal:41:35
+           |
+        41 |     table<Person> key(age) tab1 = table [
+           |                                   ^^^^^^^
+        42 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        44 |         ];
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> tables-as-func-args-e.bal:50:35
+           |
+        50 |     table<Person> key(age) tab1 = table [
+           |                                   ^^^^^^^
+        51 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        52 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        53 |         ];
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> tables-as-func-args-e.bal:59:35
+           |
+        59 |     table<Person> key<int> tab1 = table key(age) [
+           |                                   ^^^^^^^^^^^^^^^^
+        60 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        62 |         ];
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> tables-as-func-args-e.bal:68:26
+           |
+        68 |     table<Person> tab1 = table [
+           |                          ^^^^^^^
+        69 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        70 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |         ];
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> tables-as-func-args-e.bal:77:26
+           |
+        77 |     table<Person> tab1 = table [
+           |                          ^^^^^^^
+        78 |         { name: "AAA", age: 31 },
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |         { name: "CCC", age: 34 }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |         ];
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> tables-as-func-args-e.bal:86:34
+           |
+        86 |     table<Person> key(age) tab = table [
+           |                                  ^^^^^^^
+        87 |          { name: "AAA", age: 31 },
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+        88 |          { name: "CCC", age: 34 }
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^
+        89 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> tables-as-func-args-e.bal:94:34
+           |
+        94 |     table<Person> key(age) tab = table [
+           |                                  ^^^^^^^
+        95 |          { name: "AAA", age: 31 },
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+        96 |          { name: "CCC", age: 34 }
+           |          ^^^^^^^^^^^^^^^^^^^^^^^^
+        97 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:12:20
+           |
+        12 | type CustomerTable table<Customer> key(id, name);
+           |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:14:18
+           |
+        14 | type PersonTable table<Person> key(name);
+           |                  ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:16:35
+           |
+        16 | function getStringRepresentation1(table<Person> key(name) tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:20:35
+           |
+        20 | function getStringRepresentation2(table<Person> key<string> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:24:35
+           |
+        24 | function getStringRepresentation3(table<Person> key<int> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:28:35
+           |
+        28 | function getStringRepresentation4(table<Person> key<string> | table<Customer> key<[int, string]> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:28:63
+           |
+        28 | function getStringRepresentation4(table<Person> key<string> | table<Customer> key<[int, string]> tab) returns string {
+           |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:32:35
+           |
+        32 | function getStringRepresentation5(table<Person|Customer> key<string> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:36:35
+           |
+        36 | function getStringRepresentation6(table<Person> key<string|int> tab) returns string {
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:41:5
+           |
+        41 |     table<Person> key(age) tab1 = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:50:5
+           |
+        50 |     table<Person> key(age) tab1 = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:59:5
+           |
+        59 |     table<Person> key<int> tab1 = table key(age) [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:68:5
+           |
+        68 |     table<Person> tab1 = table [
+           |     ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:77:5
+           |
+        77 |     table<Person> tab1 = table [
+           |     ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:85:31
+           |
+        85 | function getTable1() returns (table<Person> key<string>) {
+           |                               ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:86:5
+           |
+        86 |     table<Person> key(age) tab = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:93:31
+           |
+        93 | function getTable2() returns (table<Person> key(name)) {
+           |                               ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> tables-as-func-args-e.bal:94:5
+           |
+        94 |     table<Person> key(age) tab = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

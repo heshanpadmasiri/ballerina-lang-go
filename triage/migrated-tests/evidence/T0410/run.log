@@ -1,0 +1,190 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "dataflow-analysis-test-00b490139e/uninitialized-variables-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> uninitialized-variables-e.bal:576:1
+            |
+        576 |     {name: fName, married, age: {age: theAge, format}, ...theMap} = getPerson();
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-variables-e.bal:756:8
+            |
+        756 |    int _ = let int x = 4 + i in 2 * x * i; // @error // @error
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-variables-e.bal:615:9
+            |
+        615 |     var _ = object { public string s; }; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-variables-e.bal:785:10
+            |
+        785 |     f2(i, j, ...k); // uninitialized `f2`, `i`, `j`, `k` // @error // @error // @error // @error
+            |          ^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-variables-e.bal:791:12
+            |
+        791 |     f2(i2, j2, ...k2); // uninitialized `f2` // @error
+            |            ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-variables-e.bal:792:12
+            |
+        792 |     f3(i2, j2, ...k2); // OK
+            |            ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-variables-e.bal:793:10
+            |
+        793 |     f3(i, j, ...k); // uninitialized `i`, `j`, `k` // @error // @error // @error
+            |          ^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-variables-e.bal:827:17
+            |
+        827 |         [] if fn(i, ...anydataArr) => { // uninitialized `i`, `anydataArr` // @error // @error
+            |                 ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> uninitialized-variables-e.bal:833:25
+            |
+        833 |         [1, 2, 3] if fn(i2, ...anydataArr2) => { // OK
+            |                         ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> uninitialized-variables-e.bal:827:5
+            |
+        827 |         [] if fn(i, ...anydataArr) => { // uninitialized `i`, `anydataArr` // @error // @error
+            |
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> uninitialized-variables-e.bal:829:5
+            |
+        829 |         [1, 2] if fn2() => { // uninitialized `fn2` // @error
+            |         ^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> uninitialized-variables-e.bal:833:5
+            |
+        833 |         [1, 2, 3] if fn(i2, ...anydataArr2) => { // OK
+            |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:380:5
+            |
+        380 |         var y => {val = "any";} // @error
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:654:5
+            |
+        654 |         var [a, b] => {k = 1;} // @error // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:655:5
+            |
+        655 |         var {a, b} => {k = 2;} // @error // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:664:5
+            |
+        664 |         var [a, b] => {k = 1;} // @error // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:665:5
+            |
+        665 |         var {a, b} => {k = 2;} // @error // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:666:5
+            |
+        666 |         var x => {k = 0;} // @error
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:675:5
+            |
+        675 |         var [a, b] => {k = 1;} // @error // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:676:5
+            |
+        676 |         var {a, b} => {} // @error // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:677:5
+            |
+        677 |         var x => {k = 0;} // @error
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> uninitialized-variables-e.bal:831:5
+            |
+        831 |         var [x, y] if i < 3 => { // uninitialized `i` // @error // @error // @error
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> uninitialized-variables-e.bal:576:1
+            |
+        576 |     {name: fName, married, age: {age: theAge, format}, ...theMap} = getPerson();
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> uninitialized-variables-e.bal:756:8
+            |
+        756 |    int _ = let int x = 4 + i in 2 * x * i; // @error // @error
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> uninitialized-variables-e.bal:615:9
+            |
+        615 |     var _ = object { public string s; }; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> uninitialized-variables-e.bal:785:10
+            |
+        785 |     f2(i, j, ...k); // uninitialized `f2`, `i`, `j`, `k` // @error // @error // @error // @error
+            |          ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> uninitialized-variables-e.bal:791:12
+            |
+        791 |     f2(i2, j2, ...k2); // uninitialized `f2` // @error
+            |            ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> uninitialized-variables-e.bal:792:12
+            |
+        792 |     f3(i2, j2, ...k2); // OK
+            |            ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> uninitialized-variables-e.bal:793:10
+            |
+        793 |     f3(i, j, ...k); // uninitialized `i`, `j`, `k` // @error // @error // @error
+            |          ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> uninitialized-variables-e.bal:827:17
+            |
+        827 |         [] if fn(i, ...anydataArr) => { // uninitialized `i`, `anydataArr` // @error // @error
+            |                 ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> uninitialized-variables-e.bal:833:25
+            |
+        833 |         [1, 2, 3] if fn(i2, ...anydataArr2) => { // OK
+            |                         ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

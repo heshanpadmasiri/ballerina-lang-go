@@ -1,0 +1,14 @@
+{
+  "Name": "open-record-negative-test-5c62171999/undefined-rest-field-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-negative-test-5c62171999/undefined-rest-field-e.bal",
+  "Project": false,
+  "Id": "T1127",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-negative-test-5c62171999/undefined-rest-field-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.028
+}

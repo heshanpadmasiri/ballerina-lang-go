@@ -1,0 +1,21 @@
+{
+  "id": "T1486",
+  "name": "type-reference-tests-fcb8264969/type-reference-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not cloneReadOnly.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString, but not value:cloneReadOnly.",
+    "Subset restrictions > Import declarations: ballerina/lang.error lists only \"message\"; error:detail is absent.",
+    "Supported language features (subset 10) > Module-level declarations: \"Type definition\", \"Class definition\"; Expressions: \"Type test expression\", \"Optional field access expression\", \"Anonymous function expression\"."
+  ],
+  "reason": "The case combines type-reference assertions with essential unsupported langlib operations. testTypeRef and testTypeRef2 repeatedly call cloneReadOnly() and assert runtime array/tuple membership on its results; cloneReadOnly is absent from both permitted value functions and method-call functions. JSON error assertions additionally call detail(), also outside the listed error library support. These restrictions suffice to classify the whole case as feature despite broad support for type definitions and type-test expressions.",
+  "unsupported_constructs": [
+    "value:cloneReadOnly() used by array/tuple type-test assertions",
+    "error:detail() used to inspect JSON access error details",
+    "int:MAX_VALUE and int:MIN_VALUE are absent from the permitted ballerina/lang.int members"
+  ],
+  "test_design_notes": [
+    "Mixed scope: type aliases, readonly arrays, objects/classes, tables, JSON access error semantics, and error detail subtype checks are combined in one main invocation.",
+    "No @args, @panic or @output markers appear. io:println is instrumentation only."
+  ]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 3\n        at main(tuple-variable-out-of-range-p.bal:4)\n","Diagnostics":null}

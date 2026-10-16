@@ -1,0 +1,20 @@
+{
+  "id": "T1240",
+  "name": "reachability-analysis-test-a8532630b8/unreachability_test2-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "## Statements: supported statement list includes Return, Panic, If/else, While and Lock statement, but does not include fail, do or on fail",
+    "## Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses; Supports `group by` and `collect` clauses"
+  ],
+  "reason": "The whole negative test asserts unreachable-code diagnostics across both supported control flow and essential unsupported constructs. In particular, reachability inside guarded `var a` match patterns exceeds the explicit const/wildcard-only match restriction. Query-action do bodies and fail/do/on-fail control flow also exceed the positive lists, so the complete case is a feature request.",
+  "unsupported_constructs": [
+    "Binding match patterns with guards: `var a if a is int` and `var x if a > 10`",
+    "Query actions ending in `do` blocks, with reachability inferred from where clauses",
+    "fail statements and do/on-fail control flow"
+  ],
+  "test_design_notes": [
+    "The @error annotations assert compile-time rejection for unreachable code; negative status alone does not make supported portions out of scope.",
+    "Commented-out TODO cases are not assessed as active constructs."
+  ]
+}

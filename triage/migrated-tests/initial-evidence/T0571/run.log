@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "function-signature-negative-test-2746ef5bfb/cyclic-functions-negative-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

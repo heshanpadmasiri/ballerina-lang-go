@@ -1,0 +1,79 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:48: CLI exit: exit status 1
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: -v test leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+         --> successful-v.bal:2:22
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                      ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+         --> successful-v.bal:2:29
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                             ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'c'
+         --> successful-v.bal:2:38
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                                      ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+         --> successful-v.bal:2:49
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                                                 ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'e'
+         --> successful-v.bal:2:59
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                                                           ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'f'
+         --> successful-v.bal:2:67
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                                                                   ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'g'
+         --> successful-v.bal:2:77
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                                                                             ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'h'
+         --> successful-v.bal:2:89
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                                                                                         ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'i'
+         --> successful-v.bal:2:100
+          |
+        2 | public function main(int a, float b, decimal c, string d, int? e, float? f, decimal? g, string? h, int i = 1,
+          |                                                                                                    ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'j'
+         --> successful-v.bal:3:5
+          |
+        3 |     float j = 2.0, decimal k = 1e100, string l = "l") {
+          |     ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'k'
+         --> successful-v.bal:3:20
+          |
+        3 |     float j = 2.0, decimal k = 1e100, string l = "l") {
+          |                    ^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'l'
+         --> successful-v.bal:3:39
+          |
+        3 |     float j = 2.0, decimal k = 1e100, string l = "l") {
+          |                                       ^^^^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

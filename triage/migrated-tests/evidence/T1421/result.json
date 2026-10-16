@@ -1,0 +1,14 @@
+{
+  "Name": "trap-operator-test-ec322bfc54/trap-operator-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/trap-operator-test-ec322bfc54/trap-operator-e.bal",
+  "Project": false,
+  "Id": "T1421",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/trap-operator-test-ec322bfc54/trap-operator-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

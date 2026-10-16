@@ -1,0 +1,255 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "tuple-variable-definition-test-6b1e019355/tuple-variable-definition-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> tuple-variable-definition-negative-e.bal:104:9
+            |
+        104 |     var [a, b] = t; // @error
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> tuple-variable-definition-negative-e.bal:112:10
+            |
+        112 |     Ints [a, b] = i; // @error
+            |          ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> tuple-variable-definition-negative-e.bal:113:19
+            |
+        113 |     IntsOrStrings [c, d] = i; // @error
+            |                   ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> tuple-variable-definition-negative-e.bal:120:35
+            |
+        120 |     [string[] & readonly, string] [a, b] = t1; // @error
+            |                                   ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> tuple-variable-definition-negative-e.bal:122:19
+            |
+        122 |     ReadOnlyTuple [c, d] = t1;
+            |                   ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> tuple-variable-definition-negative-e.bal:126:9
+            |
+        126 |     var [e, _] = t1;
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:13:26
+           |
+        13 |     [string, int, float] [s1, i1, f1] = ["D", 4, 6.7, 45]; // @error
+           |                          ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:14:33
+           |
+        14 |     [int, byte, NoFillerObject] [s2, i2, r2] = [4, 6]; // @error
+           |                                 ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:15:26
+           |
+        15 |     [string, int, float] [s3, i3, f3] = [4, 5.6, "3"]; // @error @error @error
+           |                          ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:23:36
+           |
+        23 |     [[Foo, [BarObj, FooObj]], Bar] [[f, [bo, fo]], b] = [[bar, [fooObj, barObj]], foo]; // @error @error @error @error
+           |                                    ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:31:34
+           |
+        31 |     [Foo, [BarObj, FooObj], Bar] [f, [bo, fo], b] = [bar, fooObj, foo]; // @error @error @error
+           |                                  ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:39:56
+           |
+        39 |     [int, Foo, [BarObj, string, FooObj], Bar, boolean] [i, fr, [bo, s, fo], br, b] = [bar, 12, [fooObj, "DD", barObj], foo, true]; // @error @error @error @error @error
+           |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:75:53
+           |
+        75 |     [[string, [int, [boolean, int]]], [float, int]] [[s, [i1, [b, y]]], [f, i2]] = a; // @error
+           |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:85:53
+           |
+        85 |     [[string, [int, [boolean, int]]], [float, int]] [[s, [i1, [b, y]]], [f, i2]] = t; // @error
+           |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:90:26
+           |
+        90 |     [string, int, float] [_, _, _] = ["D", 4, 6.7]; // @error
+           |                          ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> tuple-variable-definition-negative-e.bal:94:16
+           |
+        94 |     string|int [p, q] = [0, 0]; // @error
+           |                ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> tuple-variable-definition-negative-e.bal:2:26
+          |
+        2 |     [string, int, float] [s, i, f] = ["D", 4, 6.7];
+          |                          ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> tuple-variable-definition-negative-e.bal:3:26
+          |
+        3 |     [int, byte, boolean] [s, i, r, t] = [4, 6, true]; // @error
+          |                          ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> tuple-variable-definition-negative-e.bal:7:26
+          |
+        7 |     [string, int, float] [s1, i1] = ["D", 4, 6.7]; // @error
+          |                          ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> tuple-variable-definition-negative-e.bal:8:26
+          |
+        8 |     [string, int, float] [s2, i2, r2, t2] = ["D", 4, 6.7]; // @error
+          |                          ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> tuple-variable-definition-negative-e.bal:9:28
+          |
+        9 |     [[string, int], float] [[s3, [i3, r3]], f3] = [["D", 4], 6.7]; // @error
+          |                            ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> tuple-variable-definition-negative-e.bal:104:9
+            |
+        104 |     var [a, b] = t; // @error
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> tuple-variable-definition-negative-e.bal:112:10
+            |
+        112 |     Ints [a, b] = i; // @error
+            |          ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> tuple-variable-definition-negative-e.bal:113:19
+            |
+        113 |     IntsOrStrings [c, d] = i; // @error
+            |                   ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> tuple-variable-definition-negative-e.bal:120:35
+            |
+        120 |     [string[] & readonly, string] [a, b] = t1; // @error
+            |                                   ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> tuple-variable-definition-negative-e.bal:122:19
+            |
+        122 |     ReadOnlyTuple [c, d] = t1;
+            |                   ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> tuple-variable-definition-negative-e.bal:126:9
+            |
+        126 |     var [e, _] = t1;
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:13:26
+           |
+        13 |     [string, int, float] [s1, i1, f1] = ["D", 4, 6.7, 45]; // @error
+           |                          ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:14:33
+           |
+        14 |     [int, byte, NoFillerObject] [s2, i2, r2] = [4, 6]; // @error
+           |                                 ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:15:26
+           |
+        15 |     [string, int, float] [s3, i3, f3] = [4, 5.6, "3"]; // @error @error @error
+           |                          ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:23:36
+           |
+        23 |     [[Foo, [BarObj, FooObj]], Bar] [[f, [bo, fo]], b] = [[bar, [fooObj, barObj]], foo]; // @error @error @error @error
+           |                                    ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:31:34
+           |
+        31 |     [Foo, [BarObj, FooObj], Bar] [f, [bo, fo], b] = [bar, fooObj, foo]; // @error @error @error
+           |                                  ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:39:56
+           |
+        39 |     [int, Foo, [BarObj, string, FooObj], Bar, boolean] [i, fr, [bo, s, fo], br, b] = [bar, 12, [fooObj, "DD", barObj], foo, true]; // @error @error @error @error @error
+           |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:75:53
+           |
+        75 |     [[string, [int, [boolean, int]]], [float, int]] [[s, [i1, [b, y]]], [f, i2]] = a; // @error
+           |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:85:53
+           |
+        85 |     [[string, [int, [boolean, int]]], [float, int]] [[s, [i1, [b, y]]], [f, i2]] = t; // @error
+           |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:90:26
+           |
+        90 |     [string, int, float] [_, _, _] = ["D", 4, 6.7]; // @error
+           |                          ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> tuple-variable-definition-negative-e.bal:94:16
+           |
+        94 |     string|int [p, q] = [0, 0]; // @error
+           |                ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> tuple-variable-definition-negative-e.bal:2:26
+          |
+        2 |     [string, int, float] [s, i, f] = ["D", 4, 6.7];
+          |                          ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> tuple-variable-definition-negative-e.bal:3:26
+          |
+        3 |     [int, byte, boolean] [s, i, r, t] = [4, 6, true]; // @error
+          |                          ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> tuple-variable-definition-negative-e.bal:7:26
+          |
+        7 |     [string, int, float] [s1, i1] = ["D", 4, 6.7]; // @error
+          |                          ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> tuple-variable-definition-negative-e.bal:8:26
+          |
+        8 |     [string, int, float] [s2, i2, r2, t2] = ["D", 4, 6.7]; // @error
+          |                          ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> tuple-variable-definition-negative-e.bal:9:28
+          |
+        9 |     [[string, int], float] [[s3, [i3, r3]], f3] = [["D", 4], 6.7]; // @error
+          |                            ^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at checked-expr-semantics-e.bal:29-29 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at checked-expr-semantics-e.bal:34 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

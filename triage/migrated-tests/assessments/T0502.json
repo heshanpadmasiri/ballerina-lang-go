@@ -1,0 +1,19 @@
+{
+  "id": "T0502",
+  "name": "forward-referencing-global-definition-test-c1122b914e/module-var-reordering-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Module variable declarations]",
+    "Module-level declarations: [Type definition]",
+    "Module-level declarations: [Class definition] — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Expressions: [Variable reference], [Field access expression], [Mapping constructor], [New expression], [`Call`]",
+    "Statements: [Lock statement]",
+    "Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The assertions exercise dependency ordering of module initializers across files, through record field defaults, a class field initializer, nested records, a readonly record intersection, and an indirect function call. Module variables, type/class definitions, field access, constructors and calls are supported, with no restriction excluding these initialization dependencies. The helper's toString calls are explicitly supported. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Assertions require all defaulted name fields to equal the later-declared name and res to equal the later-declared b (5).",
+    "The mutually recursive f1/f2 functions and lock are compiled but not invoked by main."
+  ]
+}

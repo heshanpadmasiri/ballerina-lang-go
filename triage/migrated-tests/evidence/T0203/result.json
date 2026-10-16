@@ -1,0 +1,14 @@
+{
+  "Name": "barray-value-test-74cb9876d7/array-value-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/barray-value-test-74cb9876d7/array-value-v.bal",
+  "Project": false,
+  "Id": "T0203",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/barray-value-test-74cb9876d7/array-value-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.28
+}

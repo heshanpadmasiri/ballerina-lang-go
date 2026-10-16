@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at updateGenericMapDifferentType(constrained-map-invalid-string-update-p.bal:9)\n           testStringMapUpdateWithInvalidTypeNegativeCase(constrained-map-invalid-string-update-p.bal:3)\n           main(constrained-map-invalid-string-update-p.bal:14)\n","Diagnostics":null}

@@ -1,0 +1,19 @@
+{
+  "id": "T1604",
+  "name": "worker-test-0f3493dd03/multiple-receive-type-checking-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations or worker send statements.",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are listed, but worker receive actions (including multiple receive) are not."
+  ],
+  "reason": "The essential behavior is duplicate-key rejection and contextual type checking of multiple worker receives. Named workers, asynchronous/synchronous worker sends, and multiple receive actions are outside the documented supported lists; start/wait support does not cover worker messaging. Thus the whole negative case requires a feature regardless of its otherwise ordinary type declarations.",
+  "unsupported_constructs": [
+    "Named worker declarations: worker w1/w2/w3",
+    "Worker sends: -> and ->>",
+    "Multiple receive action: <- {a: w1, b: w1}, including duplicate-key and contextual-type diagnostics"
+  ],
+  "test_design_notes": [
+    "Contains both @error expectations and explicitly OK receive cases; both rely on unsupported worker messaging.",
+    "No @args, @panic, or @output expectations are present."
+  ]
+}

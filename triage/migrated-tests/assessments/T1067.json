@@ -1,0 +1,19 @@
+{
+  "id": "T1067",
+  "name": "object-equivalency-test-f65632eff0/object-equivalency-v",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\".",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\" but does not include error:detail.",
+    "Module-level declarations / Class definition: \"Supports `client`, `service`, `isolated`, `readonly` and `distinct` ...\" and \"Supports ... `remote-method-defn` ... for client classes\".",
+    "Expressions lists Start action, Wait action, Trap expression, Type cast expression, New expression and Type test expression."
+  ],
+  "reason": "The executed client/non-client subtyping checks inspect four trapped errors through e1.detail() through e4.detail() and assert their detail message strings. error:detail is outside the explicitly supported langlib methods, so this whole case requires an unsupported feature even though class equivalency, client classes, casts, trapping and asynchronous tuple testing use listed constructs.",
+  "unsupported_constructs": [
+    "ballerina/lang.error:detail, invoked as e1.detail(), e2.detail(), e3.detail() and e4.detail() in testSubtypingBetweenNonClientAndClientObject"
+  ],
+  "test_design_notes": [
+    "main invokes the subtyping checks, so detail extraction is essential to the asserted runtime behavior.",
+    "io:println calls are output instrumentation; value:toString is explicitly supported."
+  ]
+}

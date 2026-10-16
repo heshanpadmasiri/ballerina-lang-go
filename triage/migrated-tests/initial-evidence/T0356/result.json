@@ -1,0 +1,14 @@
+{
+  "Name": "closed-record-test-6f9046ad8a/cyclic-record-via-fields-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/cyclic-record-via-fields-v.bal",
+  "Project": false,
+  "Id": "T0356",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/cyclic-record-via-fields-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.043
+}

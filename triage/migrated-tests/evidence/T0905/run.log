@@ -1,0 +1,46 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "module-error-variable-test-718d21c637/module-error-variable-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-error-variable-negative-e.bal:14:27
+           |
+        14 | isolated UserDefinedError error(message3, basicErrorNo = detail3) = error UserDefinedError("error message three", basicErrorNo = 3); // @error
+           |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-error-variable-negative-e.bal:17:32
+           |
+        17 | configurable UserDefinedError2 error(message4) = error UserDefinedError2("error message four"); // @error
+           |                                ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-error-variable-negative-e.bal:22:19
+           |
+        22 | UserDefinedError2 error(message5) = error UserDefinedError2("error message five");
+           |                   ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-error-variable-negative-e.bal:24:18
+           |
+        24 | UserDefinedError error(message7, basicErrorNo = errorNo2, ...otherDetails) = error UserDefinedError(
+           |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-error-variable-negative-e.bal:26:5
+           |
+        26 | var error(message6, basicErrorNo = errorNo1) = getError();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> module-error-variable-negative-e.bal:38:5
+           |
+        38 | var error(m, error(c), fieldA = {a: varA}, fieldD = {a: varB}) = foo(); // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> module-error-variable-negative-e.bal:9:18
+          |
+        9 | UserDefinedError error(message1, basicErrorNo = detail1) = error UserDefinedError("error message one", basicErrorNo = 1); // @error
+          |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

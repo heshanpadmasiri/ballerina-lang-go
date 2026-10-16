@@ -1,0 +1,203 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "query-negative-tests-39b4ca8ff2/query-dataflow-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> query-dataflow-negative-e.bal:100:5
+            |
+        100 |     from Chars item in chars
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        101 |     where item == "C"
+            |     ^^^^^^^^^^^^^^^^^
+        102 |     do {
+            |     ^^^^
+        103 |         item = "B"; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^
+        104 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> query-dataflow-negative-e.bal:42:16
+           |
+        42 |     error? x = from var person in personList // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |             do {
+           |             ^^^^
+        44 |                 person = {firstName: "XYZ", lastName: "George", age: 30}; // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |             };
+           |             ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> query-dataflow-negative-e.bal:59:6
+           |
+        59 | 	    from var student in studentList
+           | 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        60 | 	    let float twiceScore = (student.score * 2.0)
+           | 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 | 	    do {
+           | 	    ^^^^
+        62 |         twiceScore = 1000; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        63 | 	        if (twiceScore < 50.00) {
+           | 	        ^^^^^^^^^^^^^^^^^^^^^^^^^
+        64 | 	            FullName fullname = {firstName:student.firstName,lastName:student.lastName};
+           | 	            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        65 | 	            nameList.push(fullname);
+           | 	            ^^^^^^^^^^^^^^^^^^^^^^^^
+        66 | 	        }
+           | 	        ^
+        67 | 	    };
+           | 	    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> query-dataflow-negative-e.bal:73:5
+           |
+        73 |     from var a in arr
+           |     ^^^^^^^^^^^^^^^^^
+        74 |     where a is int
+           |     ^^^^^^^^^^^^^^
+        75 |     do {
+           |     ^^^^
+        76 |         a = 10; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        77 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> query-dataflow-negative-e.bal:79:5
+           |
+        79 |     from var a in arr // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |     from var b in [1, 2, "A"]
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        81 |     where b is int
+           |     ^^^^^^^^^^^^^^
+        82 |     do {
+           |     ^^^^
+        83 |         a = 20; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        84 |         b = 10; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        85 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> query-dataflow-negative-e.bal:87:5
+           |
+        87 |     from var a in arr
+           |     ^^^^^^^^^^^^^^^^^
+        88 |     join var b in [1, 2, "A"]
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        89 |     on a equals b
+           |     ^^^^^^^^^^^^^
+        90 |     where a is int && b is int
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        91 |     do {
+           |     ^^^^
+        92 |         a = 10; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        93 |         b = 20; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        94 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> query-dataflow-negative-e.bal:100:5
+            |
+        100 |     from Chars item in chars
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        101 |     where item == "C"
+            |     ^^^^^^^^^^^^^^^^^
+        102 |     do {
+            |     ^^^^
+        103 |         item = "B"; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^
+        104 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> query-dataflow-negative-e.bal:42:16
+           |
+        42 |     error? x = from var person in personList // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |             do {
+           |             ^^^^
+        44 |                 person = {firstName: "XYZ", lastName: "George", age: 30}; // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |             };
+           |             ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> query-dataflow-negative-e.bal:59:6
+           |
+        59 | 	    from var student in studentList
+           | 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        60 | 	    let float twiceScore = (student.score * 2.0)
+           | 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 | 	    do {
+           | 	    ^^^^
+        62 |         twiceScore = 1000; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        63 | 	        if (twiceScore < 50.00) {
+           | 	        ^^^^^^^^^^^^^^^^^^^^^^^^^
+        64 | 	            FullName fullname = {firstName:student.firstName,lastName:student.lastName};
+           | 	            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        65 | 	            nameList.push(fullname);
+           | 	            ^^^^^^^^^^^^^^^^^^^^^^^^
+        66 | 	        }
+           | 	        ^
+        67 | 	    };
+           | 	    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> query-dataflow-negative-e.bal:73:5
+           |
+        73 |     from var a in arr
+           |     ^^^^^^^^^^^^^^^^^
+        74 |     where a is int
+           |     ^^^^^^^^^^^^^^
+        75 |     do {
+           |     ^^^^
+        76 |         a = 10; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        77 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> query-dataflow-negative-e.bal:79:5
+           |
+        79 |     from var a in arr // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |     from var b in [1, 2, "A"]
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        81 |     where b is int
+           |     ^^^^^^^^^^^^^^
+        82 |     do {
+           |     ^^^^
+        83 |         a = 20; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        84 |         b = 10; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        85 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> query-dataflow-negative-e.bal:87:5
+           |
+        87 |     from var a in arr
+           |     ^^^^^^^^^^^^^^^^^
+        88 |     join var b in [1, 2, "A"]
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        89 |     on a equals b
+           |     ^^^^^^^^^^^^^
+        90 |     where a is int && b is int
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        91 |     do {
+           |     ^^^^
+        92 |         a = 10; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        93 |         b = 20; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        94 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,99 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "sealed-array-test-916de22362/sealed-array-semantics-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+           --> sealed-array-semantics-e.bal:114:9
+            |
+        114 |     int[*] intArr2 = intArr1.clone(); // @error
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+           --> sealed-array-semantics-e.bal:133:5
+            |
+        133 | int[*] a1 = fn3(); // @error
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-semantics-e.bal:24:12
+           |
+        24 |     string[*] sealedArray = ["1", "2", "3", "4", "5"];
+           |            ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-semantics-e.bal:35:9
+           |
+        35 |     int[*] sealedArray2 = [1, 2, 3, 4, 5];
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-semantics-e.bal:38:13
+           |
+        38 |     boolean[*] x; // @error
+           |             ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-semantics-e.bal:57:12
+           |
+        57 |     string[*] sealedStrArray = ["Sam", "Smith"];
+           |            ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-semantics-e.bal:83:10
+           |
+        83 |     json[*] x5 = x4; // @error
+           |          ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+          --> sealed-array-semantics-e.bal:97:18
+           |
+        97 |     (string|int)[*] sArray = ["ballerina", 1];
+           |                  ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+           --> sealed-array-semantics-e.bal:114:9
+            |
+        114 |     int[*] intArr2 = intArr1.clone(); // @error
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+           --> sealed-array-semantics-e.bal:133:5
+            |
+        133 | int[*] a1 = fn3(); // @error
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-semantics-e.bal:24:12
+           |
+        24 |     string[*] sealedArray = ["1", "2", "3", "4", "5"];
+           |            ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-semantics-e.bal:35:9
+           |
+        35 |     int[*] sealedArray2 = [1, 2, 3, 4, 5];
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-semantics-e.bal:38:13
+           |
+        38 |     boolean[*] x; // @error
+           |             ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-semantics-e.bal:57:12
+           |
+        57 |     string[*] sealedStrArray = ["Sam", "Smith"];
+           |            ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-semantics-e.bal:83:10
+           |
+        83 |     json[*] x5 = x4; // @error
+           |          ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+          --> sealed-array-semantics-e.bal:97:18
+           |
+        97 |     (string|int)[*] sArray = ["ballerina", 1];
+           |                  ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

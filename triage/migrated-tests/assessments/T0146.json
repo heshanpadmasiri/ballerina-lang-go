@@ -1,0 +1,16 @@
+{
+  "id": "T0146",
+  "name": "array-fill-test-6c34de832c/array-fill-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\" but not error:detail."
+  ],
+  "reason": "The executed negative filler-value checks call funcResult.detail()[\"message\"] and err.detail().toString() to assert exact IllegalListInsertion error details. error:detail is absent from both the supported lang.error API list and the langlib method-call list, so the whole case requires unsupported functionality.",
+  "unsupported_constructs": [
+    "error:detail method calls in testFiniteTypeUnionArrayFill and testXMLSubtypesArrayFill"
+  ],
+  "test_design_notes": [
+    "main invokes both affected functions; error-detail assertions are essential checks, independent of io:println instrumentation. @output assertions also cover array lengths, filler values and final inserted values; no @args or @panic execution protocol is used."
+  ]
+}

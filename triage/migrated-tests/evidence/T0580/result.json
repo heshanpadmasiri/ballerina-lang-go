@@ -1,0 +1,14 @@
+{
+  "Name": "function-with-included-record-param-4dd158ffbe/included-record-params-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-with-included-record-param-4dd158ffbe/included-record-params-e.bal",
+  "Project": false,
+  "Id": "T0580",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-with-included-record-param-4dd158ffbe/included-record-params-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.033
+}

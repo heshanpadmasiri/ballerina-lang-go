@@ -1,0 +1,14 @@
+{
+  "Name": "query-expression-with-var-type-test-15a4f3a6d1/query-expression-with-var-type-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-expression-with-var-type-test-15a4f3a6d1/query-expression-with-var-type-v.bal",
+  "Project": false,
+  "Id": "T1219",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-expression-with-var-type-test-15a4f3a6d1/query-expression-with-var-type-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.112
+}

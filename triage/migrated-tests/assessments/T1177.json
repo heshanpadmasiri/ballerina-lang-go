@@ -1,0 +1,17 @@
+{
+  "id": "T1177",
+  "name": "option-test-1b0c555df9/option_with_boolean_array_many-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition",
+    "Expressions: Field access expression"
+  ],
+  "reason": "The assertion requires main-entry command-line option binding: repeated --array flags must populate the included record's boolean array with [true,true]. The subset supports included-record parameter syntax but does not cover command-line option parsing or repeated boolean flag accumulation, so the essential asserted behavior is outside its documented coverage.",
+  "unsupported_constructs": [
+    "Command-line binding of repeated --array boolean flags to an included-record boolean[] field"
+  ],
+  "test_design_notes": [
+    "io:println only observes the parsed array and is not the unsupported feature."
+  ]
+}

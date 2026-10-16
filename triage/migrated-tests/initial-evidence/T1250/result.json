@@ -1,0 +1,14 @@
+{
+  "Name": "record-access-with-index-test-496b8706b7/record-access-with-index-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-access-with-index-test-496b8706b7/record-access-with-index-v.bal",
+  "Project": false,
+  "Id": "T1250",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-access-with-index-test-496b8706b7/record-access-with-index-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.126
+}

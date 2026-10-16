@@ -1,0 +1,22 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "type-guard-test-74355f2266/type-narrow-4-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type: expected "foo", got 2|"foo"
+          --> type-narrow-4-v.bal:21:19
+           |
+        21 |         "foo" _ = x; // OK
+           |                   ^
+        
+        error[SEMANTIC_ERROR]: incompatible type: expected "foo", got 2|"foo"
+          --> type-narrow-4-v.bal:27:19
+           |
+        27 |         "foo" _ = x; // OK
+           |                   ^
+        
+        error[SEMANTIC_ERROR]: incompatible type: expected "foo", got 2|"foo"
+          --> type-narrow-4-v.bal:33:19
+           |
+        33 |         "foo" _ = x; // OK
+           |                   ^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

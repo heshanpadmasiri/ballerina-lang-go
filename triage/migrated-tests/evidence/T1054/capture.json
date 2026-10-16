@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'i'\n --\u003e out-of-range-negative-float-as-int-p.bal:3:5\n  |\n3 |     int i = \u003cint\u003e f; // @panic\n  |     ^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"out-of-range-negative-float-as-int-p.bal","StartLine":3,"EndLine":3}]}

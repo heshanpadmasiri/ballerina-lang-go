@@ -1,0 +1,14 @@
+{
+  "Name": "anonymous-object-test-5197ee0f89/anonymous-object-code-analyzer-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-object-test-5197ee0f89/anonymous-object-code-analyzer-e.bal",
+  "Project": false,
+  "Id": "T0021",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anonymous-object-test-5197ee0f89/anonymous-object-code-analyzer-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.038
+}

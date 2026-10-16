@@ -1,0 +1,18 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	error("multiple waits on the same future is not allowed")
+        	error("multiple waits on the same future is not allowed")
+        	error("multiple waits on the same future is not allowed")
+        	error("multiple waits on the same future is not allowed")
+        	12
+        	error("multiple waits on the same future is not allowed")
+        	error("multiple waits on the same future is not allowed")
+        	error("multiple waits on the same future is not allowed")
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

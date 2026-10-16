@@ -1,0 +1,14 @@
+{
+  "Name": "top-level-var-declaration-test-e55340a75c/top-level-var-declaration-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/top-level-var-declaration-test-e55340a75c/top-level-var-declaration-v.bal",
+  "Project": false,
+  "Id": "T1420",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/top-level-var-declaration-test-e55340a75c/top-level-var-declaration-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.09
+}

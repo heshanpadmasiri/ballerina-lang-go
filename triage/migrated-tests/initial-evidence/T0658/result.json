@@ -1,0 +1,16 @@
+{
+  "Name": "intersection-type-test-48ac088d43/error-intersection-access-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/error-intersection-access-v",
+  "Project": true,
+  "Id": "T0658",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/error-intersection-access-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/error-intersection-access-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/error-intersection-access-v/modules/error_intersection_mod/error_intersection_mod.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.064
+}

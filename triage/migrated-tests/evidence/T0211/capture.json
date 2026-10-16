@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: missing named worker declaration in fork stmt\n  --\u003e main.bal:18:5\n   |\n18 |     fork { // @error\n   |     ^^^^^^^^^^^^^^^^\n19 | \n   | \n20 |     }\n   |     ^\n\n","Diagnostics":[{"File":"main.bal","StartLine":18,"EndLine":20}]}

@@ -1,0 +1,17 @@
+{
+  "Name": "global-var-function-with-pkg-test-24ccb66686/project2-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project2-v",
+  "Project": true,
+  "Id": "T0605",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project2-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project2-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project2-v/modules/mod.cde/abc.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project2-v/modules/mod.efg/abc.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.061
+}

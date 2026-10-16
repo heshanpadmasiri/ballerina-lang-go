@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '\"\"' value cannot be converted to 'int'\n        at testorg/equivalencynegative:testEqOfStructsInSamePackage06(main.bal:18)\n           testorg/equivalencynegative:main(main.bal:23)\n","Diagnostics":null}

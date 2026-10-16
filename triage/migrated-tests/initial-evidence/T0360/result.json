@@ -1,0 +1,14 @@
+{
+  "Name": "closure-negative-test-a955baa186/closure-negative-02-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closure-negative-test-a955baa186/closure-negative-02-e.bal",
+  "Project": false,
+  "Id": "T0360",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closure-negative-test-a955baa186/closure-negative-02-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.056
+}

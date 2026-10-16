@@ -1,0 +1,13 @@
+{
+  "id": "T1560",
+  "name": "worker-fail-test-278d4f50a4/invalid-send-in-lambda-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: [Anonymous function expression](https://ballerina.io/spec/lang/master/#anonymous-function-expr)",
+    "## Expressions: [Start action](https://ballerina.io/spec/lang/master/#start-action); [Wait action](https://ballerina.io/spec/lang/master/#wait-action)",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)"
+  ],
+  "reason": "The lambda and local declarations are supported, but the essential negative assertion concerns worker-send syntax (`i -> function`) inside a lambda. Worker send actions and their contextual rejection rules are not covered by subset 10's supported statements or expressions; the listed start and wait actions do not establish worker-send support.",
+  "unsupported_constructs": ["Worker-send action and its validity restrictions inside anonymous functions"],
+  "test_design_notes": ["The sole @error marker is on `i -> function`; `function` is also a keyword, so syntax rejection can obscure the intended lambda/worker contextual error. No @args, @panic, or @output assertions occur."]
+}

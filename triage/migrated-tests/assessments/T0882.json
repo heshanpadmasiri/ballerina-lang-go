@@ -1,0 +1,17 @@
+{
+  "id": "T0882",
+  "name": "match-structured-record-patterns-test-266717c556/structured_record_match_patterns-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: [Match statement] — Currently only supports [const-pattern] and [wildcard-match-pattern]"
+  ],
+  "reason": "The asserted results require match clauses that bind and destructure records and tuples, including nested patterns, rest capture and guards. These patterns are outside the explicit restriction to constant and wildcard match patterns.",
+  "unsupported_constructs": [
+    "Structured record binding match patterns such as var {s, i: integer, f}",
+    "Nested record/list match patterns, record rest capture, and capture patterns such as var y"
+  ],
+  "test_design_notes": [
+    "Output assertions exercise field-presence selection, nested tuple shape checks, guard narrowing and rest-record contents; these unsupported patterns are essential to the case.",
+    "io:println is output instrumentation; toString and array length are listed as supported langlib methods."
+  ]
+}

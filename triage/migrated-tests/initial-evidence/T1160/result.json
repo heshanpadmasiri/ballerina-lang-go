@@ -1,0 +1,16 @@
+{
+  "Name": "option-test-1b0c555df9/decimal_option_invalid_value-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/decimal_option_invalid_value-p.bal",
+  "Project": false,
+  "Id": "T1160",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/decimal_option_invalid_value-p.bal"
+  ],
+  "Args": [
+    "--val=name"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.049
+}

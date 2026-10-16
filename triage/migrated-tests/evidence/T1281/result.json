@@ -1,0 +1,14 @@
+{
+  "Name": "record-variable-reference-test-d23ea5efdc/record-variable-reference-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-variable-reference-test-d23ea5efdc/record-variable-reference-v.bal",
+  "Project": false,
+  "Id": "T1281",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-variable-reference-test-d23ea5efdc/record-variable-reference-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.089
+}

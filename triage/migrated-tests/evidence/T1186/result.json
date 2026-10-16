@@ -1,0 +1,16 @@
+{
+  "Name": "option-test-1b0c555df9/undefined_short_option-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/undefined_short_option-p.bal",
+  "Project": false,
+  "Id": "T1186",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/undefined_short_option-p.bal"
+  ],
+  "Args": [
+    "-val"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.049
+}

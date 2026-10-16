@@ -1,0 +1,240 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "table-key-field-value-test-2f8ad88b2d/table-key-field-value-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-field-value-e.bal:48:21
+           |
+        48 |     GlobalTable _ = table [
+           |                     ^^^^^^^
+        49 |         {m: {}, age: 21},
+           |         ^^^^^^^^^^^^^^^^^
+        50 |         {age: 12} // @error
+           |         ^^^^^^^^^^^^^^^^^^^
+        51 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-field-value-e.bal:53:22
+           |
+        53 |     GlobalTable2 _ = table [
+           |                      ^^^^^^^
+        54 |         {m: 2, name: "A"},
+           |         ^^^^^^^^^^^^^^^^^^
+        55 |         {name: "B"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        56 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-field-value-e.bal:58:22
+           |
+        58 |     GlobalTable3 _ = table [
+           |                      ^^^^^^^
+        59 |         {m: 2, name: "A"},
+           |         ^^^^^^^^^^^^^^^^^^
+        60 |         {name: "B"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        61 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-field-value-e.bal:63:74
+           |
+        63 |     table<record {readonly int idNum = 2; string name;}> key (idNum) _ = table [
+           |                                                                          ^^^^^^^
+        64 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        65 |         {name: "Chiran"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-field-value-e.bal:68:89
+           |
+        68 |     table<record {readonly int idNum = 2; readonly string name;}> key (idNum, name) _ = table [
+           |                                                                                         ^^^^^^^
+        69 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        70 |         {name: "Chiran"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-field-value-e.bal:73:95
+           |
+        73 |     table<record {readonly int idNum = 2; readonly string name = "A";}> key (idNum, name) _ = table [
+           |                                                                                               ^^^^^^^
+        74 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        75 |         {name: "Chiran"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        76 |         {idNum: 3}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        77 |         {} // @error
+           |         ^^^^^^^^^^^^
+        78 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-field-value-e.bal:24:18
+           |
+        24 | type GlobalTable table<Foo> key(m);
+           |                  ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-field-value-e.bal:31:19
+           |
+        31 | type GlobalTable2 table<Foo2> key(m);
+           |                   ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-field-value-e.bal:38:19
+           |
+        38 | type GlobalTable3 table<Foo3> key(m, name);
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-field-value-e.bal:45:19
+           |
+        45 | type GlobalTable4 table<Foo4> key(m, name);
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-field-value-e.bal:63:5
+           |
+        63 |     table<record {readonly int idNum = 2; string name;}> key (idNum) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-field-value-e.bal:68:5
+           |
+        68 |     table<record {readonly int idNum = 2; readonly string name;}> key (idNum, name) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-field-value-e.bal:73:5
+           |
+        73 |     table<record {readonly int idNum = 2; readonly string name = "A";}> key (idNum, name) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-field-value-e.bal:48:21
+           |
+        48 |     GlobalTable _ = table [
+           |                     ^^^^^^^
+        49 |         {m: {}, age: 21},
+           |         ^^^^^^^^^^^^^^^^^
+        50 |         {age: 12} // @error
+           |         ^^^^^^^^^^^^^^^^^^^
+        51 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-field-value-e.bal:53:22
+           |
+        53 |     GlobalTable2 _ = table [
+           |                      ^^^^^^^
+        54 |         {m: 2, name: "A"},
+           |         ^^^^^^^^^^^^^^^^^^
+        55 |         {name: "B"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        56 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-field-value-e.bal:58:22
+           |
+        58 |     GlobalTable3 _ = table [
+           |                      ^^^^^^^
+        59 |         {m: 2, name: "A"},
+           |         ^^^^^^^^^^^^^^^^^^
+        60 |         {name: "B"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        61 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-field-value-e.bal:63:74
+           |
+        63 |     table<record {readonly int idNum = 2; string name;}> key (idNum) _ = table [
+           |                                                                          ^^^^^^^
+        64 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        65 |         {name: "Chiran"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-field-value-e.bal:68:89
+           |
+        68 |     table<record {readonly int idNum = 2; readonly string name;}> key (idNum, name) _ = table [
+           |                                                                                         ^^^^^^^
+        69 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        70 |         {name: "Chiran"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-field-value-e.bal:73:95
+           |
+        73 |     table<record {readonly int idNum = 2; readonly string name = "A";}> key (idNum, name) _ = table [
+           |                                                                                               ^^^^^^^
+        74 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        75 |         {name: "Chiran"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        76 |         {idNum: 3}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        77 |         {} // @error
+           |         ^^^^^^^^^^^^
+        78 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-field-value-e.bal:24:18
+           |
+        24 | type GlobalTable table<Foo> key(m);
+           |                  ^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-field-value-e.bal:31:19
+           |
+        31 | type GlobalTable2 table<Foo2> key(m);
+           |                   ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-field-value-e.bal:38:19
+           |
+        38 | type GlobalTable3 table<Foo3> key(m, name);
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-field-value-e.bal:45:19
+           |
+        45 | type GlobalTable4 table<Foo4> key(m, name);
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-field-value-e.bal:63:5
+           |
+        63 |     table<record {readonly int idNum = 2; string name;}> key (idNum) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-field-value-e.bal:68:5
+           |
+        68 |     table<record {readonly int idNum = 2; readonly string name;}> key (idNum, name) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-field-value-e.bal:73:5
+           |
+        73 |     table<record {readonly int idNum = 2; readonly string name = "A";}> key (idNum, name) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

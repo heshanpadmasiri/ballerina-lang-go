@@ -1,0 +1,208 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "isolated-object-test-4801b67a5e/isolated-objects-semantic-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-semantic-e.bal:100:34
+            |
+        100 |     final isolated object {} i = object {}; // isolated since the constructed object is readonly
+            |                                  ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-semantic-e.bal:101:42
+            |
+        101 |     final isolated object { int x; } j = object { private int x = 0; }; // @error
+            |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-objects-semantic-e.bal:105:47
+            |
+        105 |     IsolatedClassWithIsolatedObjectFields f = object {
+            |                                               ^^^^^^^^
+        106 |         final isolated object {} i = object { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        107 |             private int x = 1;
+            |             ^^^^^^^^^^^^^^^^^^
+        108 |         };
+            |         ^^
+        109 |         final isolated object { int x; } j = object { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        110 |             private int x = 1;
+            |             ^^^^^^^^^^^^^^^^^^
+        111 |         };
+            |         ^^
+        112 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> isolated-objects-semantic-e.bal:37:30
+           |
+        37 |     final Foo & readonly b = object {
+           |                              ^^^^^^^^
+        38 |         final int a = 1;
+           |         ^^^^^^^^^^^^^^^^
+        39 |         final string[] & readonly b = [];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> isolated-objects-semantic-e.bal:47:30
+           |
+        47 |     final Foo & readonly b = object {
+           |                              ^^^^^^^^
+        48 |         final int a = 1;
+           |         ^^^^^^^^^^^^^^^^
+        49 |         final string[] & readonly b = [];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        50 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> isolated-objects-semantic-e.bal:55:30
+           |
+        55 |     final Foo & readonly b = object {
+           |                              ^^^^^^^^
+        56 |         final int a = 1;
+           |         ^^^^^^^^^^^^^^^^
+        57 |         final string[] & readonly b = [];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        58 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> isolated-objects-semantic-e.bal:66:28
+           |
+        66 |     isolated object {} x = object {
+           |                            ^^^^^^^^
+        67 |         final int i = 1;
+           |         ^^^^^^^^^^^^^^^^
+        68 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> isolated-objects-semantic-e.bal:72:34
+           |
+        72 |     Foo & readonly readOnlyFoo = object {
+           |                                  ^^^^^^^^
+        73 |                                      final int a = 1;
+           |                                      ^^^^^^^^^^^^^^^^
+        74 |                                      final string[] & readonly b = [];
+           |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        75 |                                  };
+           |                                  ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> isolated-objects-semantic-e.bal:91:14
+           |
+        91 |     var ob = object {
+           |              ^^^^^^^^
+        92 |         final int[] x = [];
+           |         ^^^^^^^^^^^^^^^^^^^
+        93 |         final NonIsolatedClass y = new;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        94 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-semantic-e.bal:100:34
+            |
+        100 |     final isolated object {} i = object {}; // isolated since the constructed object is readonly
+            |                                  ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-semantic-e.bal:101:42
+            |
+        101 |     final isolated object { int x; } j = object { private int x = 0; }; // @error
+            |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-objects-semantic-e.bal:105:47
+            |
+        105 |     IsolatedClassWithIsolatedObjectFields f = object {
+            |                                               ^^^^^^^^
+        106 |         final isolated object {} i = object { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        107 |             private int x = 1;
+            |             ^^^^^^^^^^^^^^^^^^
+        108 |         };
+            |         ^^
+        109 |         final isolated object { int x; } j = object { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        110 |             private int x = 1;
+            |             ^^^^^^^^^^^^^^^^^^
+        111 |         };
+            |         ^^
+        112 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> isolated-objects-semantic-e.bal:37:30
+           |
+        37 |     final Foo & readonly b = object {
+           |                              ^^^^^^^^
+        38 |         final int a = 1;
+           |         ^^^^^^^^^^^^^^^^
+        39 |         final string[] & readonly b = [];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> isolated-objects-semantic-e.bal:47:30
+           |
+        47 |     final Foo & readonly b = object {
+           |                              ^^^^^^^^
+        48 |         final int a = 1;
+           |         ^^^^^^^^^^^^^^^^
+        49 |         final string[] & readonly b = [];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        50 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> isolated-objects-semantic-e.bal:55:30
+           |
+        55 |     final Foo & readonly b = object {
+           |                              ^^^^^^^^
+        56 |         final int a = 1;
+           |         ^^^^^^^^^^^^^^^^
+        57 |         final string[] & readonly b = [];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        58 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> isolated-objects-semantic-e.bal:66:28
+           |
+        66 |     isolated object {} x = object {
+           |                            ^^^^^^^^
+        67 |         final int i = 1;
+           |         ^^^^^^^^^^^^^^^^
+        68 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> isolated-objects-semantic-e.bal:72:34
+           |
+        72 |     Foo & readonly readOnlyFoo = object {
+           |                                  ^^^^^^^^
+        73 |                                      final int a = 1;
+           |                                      ^^^^^^^^^^^^^^^^
+        74 |                                      final string[] & readonly b = [];
+           |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        75 |                                  };
+           |                                  ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> isolated-objects-semantic-e.bal:91:14
+           |
+        91 |     var ob = object {
+           |              ^^^^^^^^
+        92 |         final int[] x = [];
+           |         ^^^^^^^^^^^^^^^^^^^
+        93 |         final NonIsolatedClass y = new;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        94 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

@@ -1,0 +1,17 @@
+{
+  "id": "T1447",
+  "name": "tuple-mutability-test-4a07e00b3d/tuple-literal-assignments-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\", \"Module variable declarations\", and \"Function definition\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions: \"List constructor\", \"Mapping constructor\", \"Variable reference\"; Literal: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "Subset restrictions: no restriction on tuple, record, union or optional types or their assignment compatibility"
+  ],
+  "reason": "The case checks assignment compatibility of tuples containing records, unions, optional types and nested tuples. Type and variable declarations, constructors and references are supported, with no applicable restriction. The three marked incompatible assignments are negative type-system checks within that supported scope; the remaining assignments exercise valid widening.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Contains three @error markers and valid widening assignments in the same negative compilation case; no obvious mixed unsupported scope or marker issue.",
+    "No @args, @panic or @output behavior is asserted."
+  ]
+}

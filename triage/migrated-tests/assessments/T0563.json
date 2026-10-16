@@ -1,0 +1,18 @@
+{
+  "id": "T0563",
+  "name": "function-pointers-test-229c021698/global-function-pointers-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\", \"Type definition\", and \"Function definition\".",
+    "Expressions: \"Anonymous function expression\", \"Variable reference\", \"Call\", \"List constructor\", \"Member access expression\", \"Equality expression\", and \"Error constructor\".",
+    "Statements: \"Assignment\", \"Local variable declarations\", \"Return\", \"If/else\", and \"Panic\".",
+    "Operators: \"Additive ops `+`, `-`\" and \"Equality ops `==`, `!=`, `===`, `!==`\".",
+    "Subset restrictions / Import declarations: `ballerina/lang.value` includes `toString`; `ballerina/lang.array` includes `length`.",
+    "Subset restrictions / Invocations / Other invocation restrictions: method syntax supports \"`value:toString` and `value:toBalString`\" and \"`array:length`\"."
+  ],
+  "reason": "The case exercises module and local function values, reassignment, higher-order calls, nested anonymous functions capturing parameters, and module initialization through a function-valued argument. Its asserted strings, tuple length/elements, closure sums (5 and 18), and array equality use supported expressions/operators and permitted langlib methods. No applicable restriction excludes these behaviors.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println only exposes expected output; assertEquality also checks captured values and initialized array contents."
+  ]
+}

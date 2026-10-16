@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "module-tuple-variable-test-4b19fdd529/module-tuple-variable-annotation-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> module-tuple-variable-annotation-negative-e.bal:4:13
+          |
+        4 | [int, byte] [d, e] = [1, 3];
+          |             ^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

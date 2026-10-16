@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "custom-function-test-2824786169/assign-value-to-function-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-value-to-function-negative-e.bal:18:5
+           |
+        18 |     {func : foo, id : n} = rec; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-value-to-function-negative-e.bal:27:5
+           |
+        27 |     error(reason, func = foo, id = n) = testError; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+         --> assign-value-to-function-negative-e.bal:7:5
+          |
+        7 |     [foo, bar] = [function() returns string => "Bar", bar]; // @error // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-value-to-function-negative-e.bal:18:5
+           |
+        18 |     {func : foo, id : n} = rec; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-value-to-function-negative-e.bal:27:5
+           |
+        27 |     error(reason, func = foo, id = n) = testError; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+         --> assign-value-to-function-negative-e.bal:7:5
+          |
+        7 |     [foo, bar] = [function() returns string => "Bar", bar]; // @error // @error
+          |     ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

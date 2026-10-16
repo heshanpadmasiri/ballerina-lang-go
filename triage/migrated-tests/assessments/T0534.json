@@ -1,0 +1,12 @@
+{
+  "id": "T0534",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-tuple-update-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString, but not cloneReadOnly."
+  ],
+  "reason": "The asserted panic on updating t2[1] depends on producing a frozen tuple with t1.cloneReadOnly(). That essential langlib operation is absent from both the supported library methods and method-call whitelist, so the whole case requires an unsupported feature.",
+  "unsupported_constructs": ["value:cloneReadOnly invoked as t1.cloneReadOnly()"],
+  "test_design_notes": ["The @panic assertion targets mutation of the frozen tuple after cloning."]
+}

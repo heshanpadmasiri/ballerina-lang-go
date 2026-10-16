@@ -1,0 +1,16 @@
+{
+  "id": "T1499",
+  "name": "undefined-functions-test-94ce8c58e9/undefined-functions-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: 'Method call' and 'Anonymous function expression'",
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported'; the ballerina/lang.array list does not include forEach",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; array:forEach is absent, while xml:forEach is listed"
+  ],
+  "reason": "The unmarked tup.forEach callback relies on array:forEach, which is excluded from both the supported array langlib list and the method-call whitelist. This essential surrounding construct makes the whole case feature scope even though negative rejection of undefined methods and invalid calls in supported grammar is otherwise in scope.",
+  "unsupported_constructs": ["Tuple/array langlib forEach method invocation: tup.forEach(...)"],
+  "test_design_notes": [
+    "Mixed scope: undefined string/map method and union-object/function-call error markers coexist with an unmarked unsupported array:forEach invocation.",
+    "No @args, @panic, or @output assertions occur. The @error on x[\"k\"].length() involves a potentially nil map lookup; its rejection is distinct from absence of string:length, which is supported."
+  ]
+}

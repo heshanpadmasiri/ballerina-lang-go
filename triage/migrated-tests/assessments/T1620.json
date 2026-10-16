@@ -1,0 +1,14 @@
+{
+  "id": "T1620",
+  "name": "xmlattribute-access-test-c2d99d33fe/xml-attribute-access-syntax-neg-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Variable reference: Currently `xml-qualified-names` not supported",
+    "Expressions: Field access expression; Optional field access expression",
+    "Expressions > XML template expression: Supports interpolation in XML content and attributes",
+    "Subset restrictions > Import declarations > ballerina/lang.xml: Element, Text, Comment, ProcessingInstruction"
+  ],
+  "reason": "The case includes namespace-qualified accesses r.b:c and m.b:c, which depend on the explicitly unsupported xml-qualified-name syntax. Their negative markers do not bring this unsupported syntax into scope. The remaining negative accesses exercise supported XML types, templates, and ordinary/optional field access, but the whole case includes the excluded namespace-name construct.",
+  "unsupported_constructs": ["Namespace-qualified field names in r.b:c and m.b:c"],
+  "test_design_notes": ["Mixed scope: the namespace-syntax negatives are combined with ordinary and optional XML attribute-access type negatives.", "Only @error markers occur; no @args, @panic, or @output behavior is asserted."]
+}

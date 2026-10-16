@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "mapping-binding-pattern-negative-test-66fc85fc17/mapping-binding-pattern-semantics-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-semantics-negative-e.bal:19:9
+           |
+        19 |         var {x: p, ...oth} if p is anydata => {
+           |         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-semantics-negative-e.bal:28:9
+           |
+        28 |         var {x, ...y} => {
+           |         ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-semantics-negative-e.bal:31:9
+           |
+        31 |         var {a: z} => {
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-semantics-negative-e.bal:42:9
+           |
+        42 |         var {a, b, c, ...d} => {
+           |         ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-semantics-negative-e.bal:56:9
+           |
+        56 |         var {id, ...rest} => {
+           |         ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-semantics-negative-e.bal:72:9
+           |
+        72 |         var {i, ...rest} => {
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-semantics-negative-e.bal:76:9
+           |
+        76 |         var {...rest} => {
+           |         ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-semantics-negative-e.bal:88:9
+           |
+        88 |         var x => {
+           |         ^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

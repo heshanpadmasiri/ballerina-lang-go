@@ -1,0 +1,12 @@
+{
+  "id": "T0838",
+  "name": "mapping-constructor-expr-test-833706cb84/spread-op-field-semantic-analysis-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)",
+    "Expressions: Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported"
+  ],
+  "reason": "The asserted diagnostics concern mapping spread fields: invalid operand types, incompatible fields and rest types, missing required fields, and spreading open records into closed records. Spread fields are explicitly unsupported, so these semantic rejection checks require an unsupported feature.",
+  "unsupported_constructs": ["Mapping-constructor spread fields (...expression) and their semantic validation"],
+  "test_design_notes": ["Negative test with @error markers; unsupported spread-field semantics are essential throughout the case."]
+}

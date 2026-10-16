@@ -1,0 +1,134 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	string
+        	numeric
+        	a is A1
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	false
+        	boolean
+        	int
+        	string
+        	string value: This is working
+        	nil
+        	string and boolean
+        	An integer
+        	json int
+        	json float
+        	json string: hello
+        	json boolean
+        	json array
+        	json object
+        	json null
+        	a is not a man
+        	Human: Piyal
+        	Man: Piyal
+        	Human: Piyal
+        	I am a person in order: John
+        	I am a person not in order: John
+        	I am a person in order: Doe
+        	I am a person not in order: Doe
+        	values: 5, foo
+        	values: 5, foo, 6.7
+        	n/a
+        	values: 5, foo
+        	values: 5, foo, 6.7
+        	n/a
+        	values: 5, foo, 6.7
+        	values: 5, foo, 6.7, true
+        	n/a
+        	I am same as person: John
+        	I am a person: John
+        	I am same as person: Doe
+        	I am a person: Doe
+        	true
+        	false
+        	true
+        	true
+        	true
+        	true
+        	true
+        	false
+        	false
+        	true
+        	false
+        	false
+        	true
+        	true
+        	true
+        	true
+        	false
+        	false
+        	true
+        	false
+        	false
+        	true
+        	true
+        	false
+        	false
+        	false
+        	true
+        	true
+        	true
+        	true
+        	false
+        	false
+        	true
+        	true
+        	true
+        	false
+        	false
+        	true
+        	false
+        	true
+        	on
+        	on
+        	a is a fruit
+        	a is an Apple
+        	true
+        	true
+        	true
+        	true
+        	true
+        	false
+        	false
+        	true
+        	false
+        	true
+        	true
+        	false
+        	false
+        	true
+        	true
+        	false
+        	false
+        	true
+        	false
+        	true
+        	false
+        	true
+        	true
+        	false
+        	true
+        	true
+        	true
+        	true
+        	false
+        	true
+        	false
+        	true
+        	false
+        	true
+        	false
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

@@ -1,0 +1,12 @@
+{
+  "id": "T0613",
+  "name": "global-var-test-297b184697/configurable_var_positive-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"[Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)\"",
+    "## Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\" and \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\"; no table constructor is listed"
+  ],
+  "reason": "The case requires acceptance of configurable declarations including nilTable initialized with the table constructor `table []`. Table constructor expressions are absent from the supported expression list, so the whole case includes an essential construct outside the documented subset.",
+  "unsupported_constructs": ["Table constructor expression `table []` in the nilTable initializer"],
+  "test_design_notes": ["Compilation-only case; no runtime assertions or configuration input are present. The sentinel contains an unused local marked @error."]
+}

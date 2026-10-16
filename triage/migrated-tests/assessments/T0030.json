@@ -1,0 +1,19 @@
+{
+  "id": "T0030",
+  "name": "any-function-type-test-d439f10943/any-function-type-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'Type cast expression', 'New expression' and 'Anonymous function expression', but does not list object-constructor expressions.",
+    "## Module-level declarations: 'Supports the isolated function qualifier'.",
+    "## Object/class definitions: 'Supports object-field-descriptor, method-decl, remote-method-decl and resource-method-decl members'."
+  ],
+  "reason": "This mixed negative case primarily exercises function-value typing: bare function types, isolated function compatibility, invalid invocation, uninferable lambda parameters, and incompatible return types. Function definitions, declarations, calls, anonymous functions, returns, panic and error construction are covered. However, testAnyFunction also uses an anonymous object-constructor expression, object { ... }, which the supported expression inventory does not cover. Its surrounding cast and object type do not establish support for that expression form. Consequently the whole case includes a feature gap even though most expected rejections concern the supported type system.",
+  "unsupported_constructs": [
+    "Anonymous object-constructor expression in testAnyFunction; absent from the supported Expressions inventory."
+  ],
+  "test_design_notes": [
+    "The transactional qualifier is deliberately marked @error; its invalid use alone does not establish a feature gap.",
+    "The object member initialized with integer 1 is also deliberately invalid. The enclosing object constructor itself is unmarked and requires coverage.",
+    "No obvious misplaced error marker or migration artifact is apparent from the supplied source alone."
+  ]
+}

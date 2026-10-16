@@ -1,0 +1,18 @@
+{
+  "id": "T1194",
+  "name": "package-import-test-60d02fba3a/imports-per-file-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Import declarations](https://ballerina.io/spec/lang/master/#import-decl)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Expressions: [New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)",
+    "Subset restrictions / Import declarations: `ballerina/lang.int` lists `fromString`; `ballerina/lang.float` is supported."
+  ],
+  "reason": "The asserted errors concern a duplicate lang.int import and unresolved http/io module prefixes in another source file. Import declarations, functions, calls, local declarations and new expressions are supported, and int:fromString is explicitly allowed. Rejecting unimported prefixes does not require implementing HTTP or IO library behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative case: @error annotations assert duplicate-import and unresolved-prefix diagnostics; http:Client and io:CSV do not establish a dependency on library implementations because their prefixes are unimported.",
+    "io:println is itself marked erroneous here, rather than serving solely as output instrumentation."
+  ]
+}

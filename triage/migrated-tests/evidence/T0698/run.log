@@ -1,0 +1,57 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	3
+        	typedesc 3
+        	5
+        	typedesc Employee
+        	typedesc Employee
+        	4
+        	Hindu College
+        	typedesc Hindu College
+        	typedesc map<json>
+        	4
+        	2
+        	typedesc Student
+        	4
+        	LK2014
+        	typedesc LK2014
+        	typedesc Student
+        	4
+        	LK2014
+        	typedesc LK2014
+        	4
+        	1
+        	typedesc 1
+        	false
+        	typedesc false
+        	foo
+        	typedesc foo
+        	2
+        	typedesc map<anydata>
+        	typedesc map<anydata>
+        	typedesc map<anydata>
+        	5
+        	1
+        	typedesc 1
+        	false
+        	typedesc false
+        	foo
+        	typedesc foo
+        	
+        	2
+        	typedesc map<anydata>
+        	typedesc Foo
+        	typedesc string[]
+        	'map<json>' value cannot be converted to 'Student':
+        			field 'age' cannot be added to the closed record 'Student'
+        	'map<json>' value cannot be converted to 'StringMap':
+        			map field 'age' should be of type 'string', found '23'
+        	cannot convert '()' to type 'StringArray'
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

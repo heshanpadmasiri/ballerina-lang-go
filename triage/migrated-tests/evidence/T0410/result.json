@@ -1,0 +1,14 @@
+{
+  "Name": "dataflow-analysis-test-00b490139e/uninitialized-variables-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/uninitialized-variables-e.bal",
+  "Project": false,
+  "Id": "T0410",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/uninitialized-variables-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.068
+}

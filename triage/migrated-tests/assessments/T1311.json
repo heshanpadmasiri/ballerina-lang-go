@@ -1,0 +1,15 @@
+{
+  "id": "T1311",
+  "name": "return-stmt-negative-test-c1f15d4b97/not-enough-args-to-return-3-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"Function definition\"",
+    "## Statements: \"Return\"",
+    "## Expressions: \"`Call`\"; \"Literal\"; \"Variable reference\""
+  ],
+  "reason": "The case expects rejection of a comma-separated return with only two expressions for a three-member tuple return type. Function definitions, return statements, ordinary calls, variable references and string literals are supported; rejecting this malformed return is within the supported grammar/type system. No subset restriction excludes this negative behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The two @error annotations assert compile-time rejection; the comma-separated return is illegal syntax, not a required supported multi-value-return feature."
+  ]
+}

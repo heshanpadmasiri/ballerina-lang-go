@@ -1,0 +1,19 @@
+{
+  "Name": "option-test-1b0c555df9/repeated_option_spaced-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/repeated_option_spaced-p.bal",
+  "Project": false,
+  "Id": "T1185",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/repeated_option_spaced-p.bal"
+  ],
+  "Args": [
+    "--stringVal",
+    "val1",
+    "--stringVal",
+    "val2"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.061
+}

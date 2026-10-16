@@ -1,0 +1,16 @@
+{
+  "Name": "map-initializer-expr-test-3c385ec88b/map-access-project-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-test-3c385ec88b/map-access-project-v",
+  "Project": true,
+  "Id": "T0813",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-test-3c385ec88b/map-access-project-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-test-3c385ec88b/map-access-project-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-test-3c385ec88b/map-access-project-v/modules/c.d/constants.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.088
+}

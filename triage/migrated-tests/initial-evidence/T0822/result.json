@@ -1,0 +1,14 @@
+{
+  "Name": "map-to-record-assignability-test-c5ae90a3ca/map-to-record-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/map-to-record-v.bal",
+  "Project": false,
+  "Id": "T0822",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/map-to-record-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.046
+}

@@ -1,0 +1,20 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:38 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:53 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:84 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:90 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:99 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:108 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:117 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:138 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:187 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:191 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:207 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:214 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:232 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at type-guard-negative-e.bal:239 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

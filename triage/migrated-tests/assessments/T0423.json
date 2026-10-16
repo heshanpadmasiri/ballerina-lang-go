@@ -1,0 +1,17 @@
+{
+  "id": "T0423",
+  "name": "division-operation-test-be1b8193ad/division-operation-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"",
+    "Subset restrictions / Import declarations: ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString and fromHexString.",
+    "Operators: \"Multiplicative ops `*`, `%`, `/`\"",
+    "Expressions: \"Nil lifted expression\""
+  ],
+  "reason": "The invoked float/int and decimal/int division tests require int:MAX_VALUE and int:MIN_VALUE, which are absent from the exhaustive supported lang.int list. These constants supply boundary operands for asserted quotients, so the whole case requires unsupported library members despite division and nil-lifted expressions being supported.",
+  "unsupported_constructs": ["int:MAX_VALUE", "int:MIN_VALUE"],
+  "test_design_notes": [
+    "main asserts printed integer division, floating division and Infinity results and calls the arithmetic assertion tests; io:println is instrumentation.",
+    "overflowByDivision is declared but not called by main, and there is no @panic directive."
+  ]
+}

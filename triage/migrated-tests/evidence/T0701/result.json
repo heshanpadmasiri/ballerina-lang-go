@@ -1,0 +1,14 @@
+{
+  "Name": "large-init-build-test-d2d15f0021/large-init-compilation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/large-init-build-test-d2d15f0021/large-init-compilation-v.bal",
+  "Project": false,
+  "Id": "T0701",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/large-init-build-test-d2d15f0021/large-init-compilation-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.082
+}

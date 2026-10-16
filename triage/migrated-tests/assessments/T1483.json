@@ -1,0 +1,20 @@
+{
+  "id": "T1483",
+  "name": "type-guard-test-74355f2266/type-narrow-positive-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: lists Assignment, Destructuring assignment statement, Compound Assignment, Break, Continue, Lock statement, Call, If/else, While, Local variable declarations, Return, Panic, Foreach and Match statement; do statements are not listed.",
+    "Expressions: \"Type test expression\", \"Equality expression\", \"Logical expression\" and \"Unary logical expression\" are supported.",
+    "Module-level declarations: \"Type definition\" and \"Enum declarations\" are supported.",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\" (ballerina/lang.* restrictions)."
+  ],
+  "reason": "test7 requires a do statement containing a type guard and an early return, with string narrowing afterward inside that block. Do statements are not covered by the supported Statements list, so this whole combined case has essential unsupported scope even though its type tests, enum declarations, equality/logical operations and ordinary if/return statements are listed.",
+  "unsupported_constructs": [
+    "test7: do { ... } statement and control-flow narrowing through that statement"
+  ],
+  "test_design_notes": [
+    "Mixed scope: one main invokes sixteen narrowing subtests, so the unsupported do statement makes the combined case feature scope.",
+    "The @output true marker matches the helper's unconditional true return after all calls; narrowing is principally checked by compilation of typed wildcard declarations rather than runtime assertions. No @args or @panic markers occur.",
+    "io:println is output instrumentation and does not trigger the ballerina/lang.* import restrictions."
+  ]
+}

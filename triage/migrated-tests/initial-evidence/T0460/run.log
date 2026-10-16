@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Error One
+        	Error One
+        	Error Two
+        	Error Two
+        	Msg One
+        	Msg One
+        	Detail Msg
+        	Msg Two
+        	true
+        	Msg Two
+        	true
+        	Some Error One
+        	Some Error One
+        	Some Error Two
+        	Some Error Two
+        	Msg Three
+        	Msg Three
+        	Detail Msg
+        	Msg Four
+        	true
+        	Msg Four
+        	true
+        	error CMS ("Some Error One",message="Msg Three",detail="Detail Msg")
+        	Error One
+        	Error One
+        	Something Wrong
+        	true
+        	Something Wrong
+        	12
+        	Bal
+        	Err
+        	Something Wrong2
+        	true
+        	true
+        	extra
+        	Error
+        	Fatal
+        	true
+        	the reason
+        	msg
+        	false
+        	message
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

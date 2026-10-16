@@ -1,0 +1,20 @@
+{
+  "id": "T0915",
+  "name": "module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"",
+    "Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"",
+    "Module-level declarations: \"Type definition\" and \"Function definition\"",
+    "Statements: \"Local variable declarations\" and \"Return\"",
+    "Statements: \"Destructuring assignment statement\" / \"Only supports wildcard-binding-pattern\"",
+    "Expressions: \"List constructor\", \"Mapping constructor\", \"Error constructor\", \"Variable reference\" and \"Member access expression\""
+  ],
+  "reason": "The case checks rejection of invalid module variable binding declarations, including duplicate or forward-referenced names, incompatible record fields and nested binding patterns, invalid qualifiers or annotation attachment, missing required fields, and indexing an optional value. Module variable declarations, annotations, types, and the expressions involved are supported without an applicable restriction. Negative checks within those declarations remain in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Record/list/error binding patterns occur in variable declarations, not destructuring assignment statements; the wildcard-only restriction on destructuring assignment does not apply.",
+    "This is a compile-negative case with inline @error markers; no runtime assertion or langlib dependency is present."
+  ],
+  "reviewer_name": "module-record-variable-test-a0b146279e-negative-e.bal"
+}

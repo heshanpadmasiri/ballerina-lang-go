@@ -1,0 +1,15 @@
+{
+  "Name": "final-access-test-b8abe5c420/implicitly-final-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/implicitly-final-negative-e",
+  "Project": true,
+  "Id": "T0479",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/implicitly-final-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/final-access-test-b8abe5c420/implicitly-final-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.023
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "type-def-with-function-type-test-89330ee852/type-def-with-function-type-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-def-with-function-type-test-89330ee852/type-def-with-function-type-v.bal",
+  "Project": false,
+  "Id": "T1463",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-def-with-function-type-test-89330ee852/type-def-with-function-type-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.032
+}

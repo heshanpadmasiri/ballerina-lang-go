@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "package-init-test-6480e3dbbc/init-order-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'b'
+         --> modules/a/pa.bal:4:1
+          |
+        4 | int b = temp();
+          | ^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

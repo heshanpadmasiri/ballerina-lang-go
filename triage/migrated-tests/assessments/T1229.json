@@ -1,0 +1,17 @@
+{
+  "id": "T1229",
+  "name": "query-type-narrowing-test-74c51d5294/query-type-narrowing-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: [Query expressions](https://ballerina.io/spec/lang/master/#query-expr)",
+    "## Expressions: Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "## Statements: the supported statement list does not include query actions"
+  ],
+  "reason": "The case asserts rejection of arguments and singleton assignments after query filtering. Several assertions occur inside from/where/do query actions, including the literal-narrowing assertions. Query actions and their do clause are not covered by the supported statement list or the enumerated query-expression clauses, so an essential part of this whole case is outside the documented subset.",
+  "unsupported_constructs": [
+    "Query actions with a terminal do block"
+  ],
+  "test_design_notes": [
+    "Negative type errors alone do not make a case unsupported; the deciding omission is query-action syntax used by the assertions."
+  ]
+}

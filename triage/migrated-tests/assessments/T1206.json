@@ -1,0 +1,22 @@
+{
+  "id": "T1206",
+  "name": "query-action-or-expr-test-cc451d1303/match-stmt-in-do-clause-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement \u2014 Currently only supports const-pattern and wildcard-match-pattern",
+    "Expressions: Query expressions \u2014 Supports from, where, let, join (including outer join), order by, limit, on conflict and select clauses",
+    "Expressions: Mapping constructor \u2014 Currently spread-field not supported",
+    "Subset restrictions / Import declarations: ballerina/lang.value \u2014 cloneWithType, fromJsonWithType, toString, toBalString"
+  ],
+  "reason": "The case requires query actions with do clauses and asserts structural binding-pattern matching and reconstruction of list, mapping and error values. The supported query clause list omits do, and match support explicitly excludes these binding patterns. The mapping spread and cloneReadOnly call add further unsupported requirements.",
+  "unsupported_constructs": [
+    "Query actions with do clauses",
+    "Match binding patterns including var i, list/rest, nested mapping/rest and error patterns",
+    "Mapping-constructor spread field in {a, b, ...rest}",
+    "lang.value cloneReadOnly() absent from the supported langlib methods"
+  ],
+  "test_design_notes": [
+    "Assertions exercise constant and wildcard branches, guards, query iteration order, and structural binding-pattern reconstruction; whole-case support fails even though several individual assertions use supported constant patterns.",
+    "The io:print call is instrumentation."
+  ]
+}

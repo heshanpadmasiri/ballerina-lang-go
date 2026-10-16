@@ -1,0 +1,14 @@
+{
+  "id": "T1016",
+  "name": "nullable-type-test-a38c1ec2a3/nilable-types-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Constant declarations], [Type definition], [Function definition]",
+    "Statements: [Local variable declarations]",
+    "Statements: [Foreach] — Currently only supports range, list, map, string and XML subtypes, and iterable objects",
+    "Expressions: [List constructor], [Mapping constructor], [Variable reference], [Field access expression]"
+  ],
+  "reason": "The case uses supported declarations, list and record construction, field access, and foreach over an array. Its asserted diagnostic rejects assigning an element of BType?[] to non-nilable BType; this is ordinary type compatibility checking within the supported constructs. No stated restriction excludes the nullable union, constant singleton union, record, or inferred-length array used here.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @error annotation expects static rejection of BType x = v because the foreach variable can be nil, even though the original array initializer contains only non-nil values."]
+}

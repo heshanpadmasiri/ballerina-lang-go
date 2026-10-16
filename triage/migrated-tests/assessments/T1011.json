@@ -1,0 +1,17 @@
+{
+  "id": "T1011",
+  "name": "nil-optimization-test-dc36749029/nil_optimizations-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\" and \"Function definition\"",
+    "Statements: \"Call\" and \"Local variable declarations\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "Expressions: \"Type test expression\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\" (lists ballerina/lang.* libraries)"
+  ],
+  "reason": "The assertions check that nil and integer values in optional int and int|decimal unions satisfy exactly their corresponding nil/int/decimal type tests. Local declarations, nil and numeric literals, calls, and type tests are supported, with no applicable restriction excluding these union type tests. The ballerina/test assertions are not langlib calls covered by the ballerina/lang.* restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Covers both nil and integer values in each union; decimal is tested as a nonmatching alternative, without constructing a decimal value."
+  ]
+}

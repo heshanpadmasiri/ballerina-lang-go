@@ -1,0 +1,50 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "worker-fail-test-278d4f50a4/invalid_receive_with_union_error_return_negative-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:7:5
+           |
+         7 |     worker w1 returns FooError|TrxError? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         8 |         int j = 25; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+         9 |         if 0 > 1 {
+           |         ^^^^^^^^^^
+        10 |             return error FooError(FOO);
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |         }
+           |         ^
+        12 |         j = <- w2;
+           |         ^^^^^^^^^^
+        13 |         if 1 == 2 {
+           |         ^^^^^^^^^^^
+        14 |             TrxError e = error TrxError("trxError"); // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |             return e;
+           |             ^^^^^^^^^
+        16 |         }
+           |         ^
+        17 |         j = <- w2;
+           |         ^^^^^^^^^^
+        18 |         j = <- w2;
+           |         ^^^^^^^^^^
+        19 |         return;
+           |         ^^^^^^^
+        20 |     }
+           |     ^
+        21 |     worker w2 returns boolean|error {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |         int i = 2;
+           |         ^^^^^^^^^^
+        23 |         TrxError? success = i ->> w1; // @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |         success = i ->> w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |         () _ = i ->> w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        26 |         return true;
+           |         ^^^^^^^^^^^^
+        27 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

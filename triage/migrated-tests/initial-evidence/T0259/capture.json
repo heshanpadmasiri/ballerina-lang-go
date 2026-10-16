@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'ignored'\n --\u003e null-json-to-boolean-p.bal:7:5\n  |\n7 |     boolean ignored = testNullJsonToBoolean();\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"null-json-to-boolean-p.bal","StartLine":7,"EndLine":7}]}

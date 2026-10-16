@@ -1,0 +1,17 @@
+{
+  "id": "T1198",
+  "name": "package-init-invocation-test-9c9e700b75/package-init-invocation-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Import declarations], [Function definition], [Module variable declarations]",
+    "Expressions: [Start action], [Wait action], [Check expression], [`Call`], [Variable reference]",
+    "Statements: [Assignment], [Return]",
+    "Operators: Additive ops `+`, `-`"
+  ],
+  "reason": "The asserted outputs exercise supported module initialization and invocation behavior: module a initializes a1 to 9, then its c1 initializer invokes test(), updating a1 to 19 before imported calls observe it. The root module initializes a future through getFuture(), starts getInt(), and waits with checkpanic to obtain 899. Imports (including the unused-prefix import), module variables, function calls, start/wait actions, checking, assignments and integer addition are covered without an applicable restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The explicit output assertions are 19 and 899; io:println is instrumentation.",
+    "Module b initializes bb1 from a:getA1(), but bb1 is never observed, so its value is not directly asserted."
+  ]
+}

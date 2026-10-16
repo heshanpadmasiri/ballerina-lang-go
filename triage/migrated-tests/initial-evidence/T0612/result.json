@@ -1,0 +1,14 @@
+{
+  "Name": "global-var-test-297b184697/configurable_var_decl-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/configurable_var_decl-v.bal",
+  "Project": false,
+  "Id": "T0612",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/configurable_var_decl-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.046
+}

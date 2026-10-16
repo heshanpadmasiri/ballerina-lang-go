@@ -1,0 +1,17 @@
+{
+  "Name": "argument-parser-positive-test-e41e5b8a0a/int32-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int32-v",
+  "Project": true,
+  "Id": "T0111",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int32-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/int32-v/main.bal"
+  ],
+  "Args": [
+    "10"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.114
+}

@@ -1,0 +1,15 @@
+{
+  "Name": "bdecimal-value-negative-test-562a56cce5/decimal-value-negative-literal-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-value-negative-literal-e",
+  "Project": true,
+  "Id": "T0236",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-value-negative-literal-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/bdecimal-value-negative-test-562a56cce5/decimal-value-negative-literal-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.042
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'glbVarAny'\n --\u003e main.bal:5:1\n  |\n5 | any glbVarAny = getAnyGlobalVar();\n  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":5,"EndLine":5}]}

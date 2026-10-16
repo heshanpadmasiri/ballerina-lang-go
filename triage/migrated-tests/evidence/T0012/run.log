@@ -1,0 +1,664 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "add-operation-test-7854f6d108/add-operation-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:128:20
+            |
+        128 |     assertEquality(a15 + a19, xml `Mabc`);
+            |                    ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:129:20
+            |
+        129 |     assertEquality(a19 + a15, xml `abcM`);
+            |                    ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:130:20
+            |
+        130 |     assertEquality(a16 + a19, xml `EFGabc`);
+            |                    ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:131:20
+            |
+        131 |     assertEquality(a17 + a19, xml `Nabc`);
+            |                    ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:132:20
+            |
+        132 |     assertEquality(a18 + a19, xml `Catabc`);
+            |                    ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:370:13
+            |
+        370 |     xml l = x2 + b;
+            |             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:371:13
+            |
+        371 |     xml m = x2 + e;
+            |             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:372:13
+            |
+        372 |     xml n = x2 + d;
+            |             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:373:13
+            |
+        373 |     xml o = x1 + b;
+            |             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:374:13
+            |
+        374 |     xml p = x1 + e;
+            |             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:375:13
+            |
+        375 |     xml q = x1 + d;
+            |             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:377:20
+            |
+        377 |     assertEquality(s + x2, xml `abctext`);
+            |                    ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:378:20
+            |
+        378 |     assertEquality(x2 + s, xml `textabc`);
+            |                    ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:379:20
+            |
+        379 |     assertEquality(c + x1, xml `defg`);
+            |                    ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:380:20
+            |
+        380 |     assertEquality(x1 + c, xml `efgd`);
+            |                    ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:381:20
+            |
+        381 |     assertEquality(c + x2, xml `dtext`);
+            |                    ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:382:20
+            |
+        382 |     assertEquality(x2 + c, xml `textd`);
+            |                    ^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:553:36
+            |
+        553 |     xml<xml:Element|xml:Text> r1 = x1 + s1;
+            |                                    ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:554:20
+            |
+        554 |     assertEquality(x1 + s1, xml `<a>a</a>s1`);
+            |                    ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:555:10
+            |
+        555 |     r1 = x1 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:557:10
+            |
+        557 |     r1 = x1 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:559:10
+            |
+        559 |     r1 = x1 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:561:10
+            |
+        561 |     r1 = x1 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:563:10
+            |
+        563 |     r1 = x1 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:567:36
+            |
+        567 |     xml<xml:Comment|xml:Text> r2 = x2 + s1;
+            |                                    ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:569:10
+            |
+        569 |     r2 = x2 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:571:10
+            |
+        571 |     r2 = x2 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:573:10
+            |
+        573 |     r2 = x2 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:575:10
+            |
+        575 |     r2 = x2 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:577:10
+            |
+        577 |     r2 = x2 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:581:50
+            |
+        581 |     xml<xml:ProcessingInstruction|xml:Text> r3 = x3 + s1;
+            |                                                  ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:583:10
+            |
+        583 |     r3 = x3 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:585:10
+            |
+        585 |     r3 = x3 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:587:10
+            |
+        587 |     r3 = x3 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:589:10
+            |
+        589 |     r3 = x3 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:591:10
+            |
+        591 |     r3 = x3 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:595:19
+            |
+        595 |     xml:Text r4 = x4 + s1;
+            |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:597:10
+            |
+        597 |     r4 = x4 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:599:10
+            |
+        599 |     r4 = x4 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:601:10
+            |
+        601 |     r4 = x4 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:603:10
+            |
+        603 |     r4 = x4 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:605:10
+            |
+        605 |     r4 = x4 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:609:48
+            |
+        609 |     xml<xml:Element|xml:Comment|xml:Text> r5 = x5 + s1;
+            |                                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:611:10
+            |
+        611 |     r5 = x5 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:613:10
+            |
+        613 |     r5 = x5 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:615:10
+            |
+        615 |     r5 = x5 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:617:10
+            |
+        617 |     r5 = x5 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:619:10
+            |
+        619 |     r5 = x5 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:623:62
+            |
+        623 |     xml<xml:Element|xml:ProcessingInstruction|xml:Text> r6 = x6 + s1;
+            |                                                              ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:625:10
+            |
+        625 |     r6 = x6 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:627:10
+            |
+        627 |     r6 = x6 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:629:10
+            |
+        629 |     r6 = x6 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:631:10
+            |
+        631 |     r6 = x6 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:633:10
+            |
+        633 |     r6 = x6 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:637:36
+            |
+        637 |     xml<xml:Element|xml:Text> r7 = x7 + s1;
+            |                                    ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:639:10
+            |
+        639 |     r7 = x7 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:641:10
+            |
+        641 |     r7 = x7 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:643:10
+            |
+        643 |     r7 = x7 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:645:10
+            |
+        645 |     r7 = x7 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:647:10
+            |
+        647 |     r7 = x7 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:651:62
+            |
+        651 |     xml<xml:Comment|xml:ProcessingInstruction|xml:Text> r8 = x8 + s1;
+            |                                                              ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:653:10
+            |
+        653 |     r8 = x8 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:655:10
+            |
+        655 |     r8 = x8 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:657:10
+            |
+        657 |     r8 = x8 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:659:10
+            |
+        659 |     r8 = x8 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:661:10
+            |
+        661 |     r8 = x8 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:665:36
+            |
+        665 |     xml<xml:Comment|xml:Text> r9 = x9 + s1;
+            |                                    ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:667:10
+            |
+        667 |     r9 = x9 + s2;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:669:10
+            |
+        669 |     r9 = x9 + s3;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:671:10
+            |
+        671 |     r9 = x9 + s4;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:673:10
+            |
+        673 |     r9 = x9 + s5;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:675:10
+            |
+        675 |     r9 = x9 + s6;
+            |          ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:679:51
+            |
+        679 |     xml<xml:ProcessingInstruction|xml:Text> r10 = x10 + s1;
+            |                                                   ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:681:11
+            |
+        681 |     r10 = x10 + s2;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:683:11
+            |
+        683 |     r10 = x10 + s3;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:685:11
+            |
+        685 |     r10 = x10 + s4;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:687:11
+            |
+        687 |     r10 = x10 + s5;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:689:11
+            |
+        689 |     r10 = x10 + s6;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:693:75
+            |
+        693 |     xml<xml:Element|xml:Comment|xml:ProcessingInstruction|xml:Text> r11 = x11 + s1;
+            |                                                                           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:695:11
+            |
+        695 |     r11 = x11 + s2;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:697:11
+            |
+        697 |     r11 = x11 + s3;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:699:11
+            |
+        699 |     r11 = x11 + s4;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:701:11
+            |
+        701 |     r11 = x11 + s5;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:703:11
+            |
+        703 |     r11 = x11 + s6;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:707:49
+            |
+        707 |     xml<xml:Element|xml:Comment|xml:Text> r12 = x12 + s1;
+            |                                                 ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:709:11
+            |
+        709 |     r12 = x12 + s2;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:711:11
+            |
+        711 |     r12 = x12 + s3;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:713:11
+            |
+        713 |     r12 = x12 + s4;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:715:11
+            |
+        715 |     r12 = x12 + s5;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:717:11
+            |
+        717 |     r12 = x12 + s6;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:721:63
+            |
+        721 |     xml<xml:Element|xml:ProcessingInstruction|xml:Text> r13 = x13 + s1;
+            |                                                               ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:723:11
+            |
+        723 |     r13 = x13 + s2;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:725:11
+            |
+        725 |     r13 = x13 + s3;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:727:11
+            |
+        727 |     r13 = x13 + s4;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:729:11
+            |
+        729 |     r13 = x13 + s5;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:731:11
+            |
+        731 |     r13 = x13 + s6;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:735:63
+            |
+        735 |     xml<xml:Comment|xml:ProcessingInstruction|xml:Text> r14 = x14 + s1;
+            |                                                               ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:737:11
+            |
+        737 |     r14 = x14 + s2;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:739:11
+            |
+        739 |     r14 = x14 + s3;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:741:11
+            |
+        741 |     r14 = x14 + s4;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:743:11
+            |
+        743 |     r14 = x14 + s5;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:745:11
+            |
+        745 |     r14 = x14 + s6;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:749:20
+            |
+        749 |     xml:Text r15 = x15 + s1;
+            |                    ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:751:11
+            |
+        751 |     r15 = x15 + s2;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:753:11
+            |
+        753 |     r15 = x15 + s3;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:755:11
+            |
+        755 |     r15 = x15 + s4;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:757:11
+            |
+        757 |     r15 = x15 + s5;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+           --> add-operation-v.bal:759:11
+            |
+        759 |     r15 = x15 + s6;
+            |           ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+          --> add-operation-v.bal:28:12
+           |
+        28 |     return a + b;
+           |            ^^^^^
+        
+        error[SEMANTIC_ERROR]: both operands must belong to same basic type
+          --> add-operation-v.bal:34:12
+           |
+        34 |     return a + b;
+           |            ^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

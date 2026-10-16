@@ -1,0 +1,14 @@
+{
+  "Name": "bstring-table-value-test-e2d51ebec5/bstring-table-value-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstring-table-value-test-e2d51ebec5/bstring-table-value-v.bal",
+  "Project": false,
+  "Id": "T0283",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstring-table-value-test-e2d51ebec5/bstring-table-value-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.059
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n --\u003e frozen-tuple-update-p.bal:9:26\n  |\n9 |     [int, Employee] t2 = t1.cloneReadOnly();\n  |                          ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-tuple-update-p.bal","StartLine":9,"EndLine":9}]}

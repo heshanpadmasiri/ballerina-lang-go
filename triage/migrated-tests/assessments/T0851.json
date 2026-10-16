@@ -1,0 +1,20 @@
+{
+  "id": "T0851",
+  "name": "match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\"",
+    "## Statements: positive statement list includes Match statement and While but does not include fail statements, do statements, or on-fail clauses."
+  ],
+  "reason": "The case essentially tests fail/check propagation into match and while on-fail handlers, error-binding destructuring, and nested handler scope. These failure-handling statements/clauses are not covered by the supported statement list. Independently, its asserted match-variable scope behavior relies on list and variable match patterns explicitly excluded by the match restriction.",
+  "unsupported_constructs": [
+    "fail statements and on fail clauses on match/while",
+    "do statements with on fail handlers",
+    "List match patterns such as [DECIMAL_NUMBER, var digits] and variable match pattern var num",
+    "Error binding patterns in on fail handlers, including nested list, mapping, and error bindings"
+  ],
+  "test_design_notes": [
+    "Checks handler execution, propagation, variable scope, destructured error details and cause messages, and exact error string rendering.",
+    "io:println is only success instrumentation; toString and error.message are listed supported langlib methods."
+  ]
+}

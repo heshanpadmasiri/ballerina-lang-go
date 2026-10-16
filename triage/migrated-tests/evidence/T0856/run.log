@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at match-stmt-syntax-errors-e.bal:5 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

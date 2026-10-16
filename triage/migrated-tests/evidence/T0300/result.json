@@ -1,0 +1,15 @@
+{
+  "Name": "check-panic-expression-operator-test-baa47123b9/checkpanic-custom-error-p",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-custom-error-p",
+  "Project": true,
+  "Id": "T0300",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-custom-error-p/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-custom-error-p/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

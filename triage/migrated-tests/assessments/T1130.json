@@ -1,0 +1,17 @@
+{
+  "id": "T1130",
+  "name": "open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field2-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Statements: Local variable declarations",
+    "Expressions: Mapping constructor; Optional field access expression; Type cast expression; Method call",
+    "Subset restrictions / Import declarations: ballerina/lang.map includes get",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: map:get"
+  ],
+  "reason": "The case uses record type definitions with optional/defaulted fields, an empty record constructor, optional field access, and an explicit cast. The asserted panic occurs when the absent optional field yields nil and is cast to Address3; these constructs and cast behavior are within the supported language features. The subsequent map get method is also explicitly supported. No applicable restriction excludes this case.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is on the first cast. Its panic prevents execution of the subsequent p.get(\"adrs\") cast, so this case does not independently verify that later expression."
+  ]
+}

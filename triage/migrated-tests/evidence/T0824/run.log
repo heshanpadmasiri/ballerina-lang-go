@@ -1,0 +1,106 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "mapping-binding-pattern-negative-test-66fc85fc17/mapping-binding-pattern-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:89:9
+           |
+        89 |         {a: 150, b: "A"} => {}
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:90:9
+           |
+        90 |         {a: 150, b: "A", c: false} => {} // unreachable pattern // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:20:9
+           |
+        20 |         var {a: b} => { // pattern will not be matched // @error // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:27:9
+           |
+        27 |         var {b: a}  => { // pattern will not be matched // @error // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:38:28
+           |
+        38 |         var {x: a, y: b} | var {x: a, y: b} => { // unreachable pattern // @error // @error // @error
+           |                            ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:38:9
+           |
+        38 |         var {x: a, y: b} | var {x: a, y: b} => { // unreachable pattern // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:40:9
+           |
+        40 |         var {l: a, m: b} => { // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:42:9
+           |
+        42 |         var {l: a, m: b} => { // unreachable pattern // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:44:9
+           |
+        44 |         var {x: a, y: b} if a is int => { // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:46:9
+           |
+        46 |         var {x: a, y: b} if a is int => { // unreachable pattern // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:53:9
+           |
+        53 |         var {x: a, ...b} => {} // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:54:9
+           |
+        54 |         var {x: c, ...d} => {} // unreachable pattern // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:60:9
+           |
+        60 |         var {x: a, ...b} => {} // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:61:9
+           |
+        61 |         var {x: a, y: b, ...c} => {} // unreachable pattern // @error // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:73:9
+           |
+        73 |         var {x, ...rest} => { // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:75:9
+           |
+        75 |         var {id, name, ...rest} => { // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> mapping-binding-pattern-negative-e.bal:77:9
+           |
+        77 |         var {id, name} => { // @error // @error // @error
+           |         ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

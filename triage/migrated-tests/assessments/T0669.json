@@ -1,0 +1,19 @@
+{
+  "id": "T0669",
+  "name": "isolated-variable-test-68724717b2/isolated-variables-semantic-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Module variable declarations]",
+    "Module-level declarations: [Type definition]",
+    "Module-level declarations: Supports the isolated function qualifier",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members",
+    "Statements: [Assignment]; [Lock statement]",
+    "Expressions: [New expression]; [List constructor]; [Field access expression]"
+  ],
+  "reason": "The case asserts compile-time rejection of incompatible isolated-object initializers and an invalid isolated final module variable. Module variables, isolated object types/classes and methods, field declarations, constructors, assignments and locks are supported; no listed restriction excludes the isolation or final-variable checks exercised here. Negative type/isolation checks remain within scope even though the marked declarations are illegal.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Three declarations carry @error markers; this is a negative semantic test, with no runtime assertions."
+  ]
+}

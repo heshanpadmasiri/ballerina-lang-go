@@ -1,0 +1,71 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/invalid-receive-with-workers-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:10:5
+           |
+        10 |     worker w1 {
+           |     ^^^^^^^^^^^
+        11 |         1 ->> w2;
+           |         ^^^^^^^^^
+        12 |         2 ->> w2;
+           |         ^^^^^^^^^
+        13 |     }
+           |     ^
+        14 |     worker w2 {
+           |     ^^^^^^^^^^^
+        15 |         boolean b = true;
+           |         ^^^^^^^^^^^^^^^^^
+        16 |         int _ = <- w1;
+           |         ^^^^^^^^^^^^^^
+        17 |         if b {
+           |         ^^^^^^
+        18 |             return;
+           |             ^^^^^^^
+        19 |         }
+           |         ^
+        20 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        21 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:26:5
+           |
+        26 |     worker w1 {
+           |     ^^^^^^^^^^^
+        27 |         1 ->> w2;
+           |         ^^^^^^^^^
+        28 |         2 ->> w2;
+           |         ^^^^^^^^^
+        29 |     }
+           |     ^
+        30 |     worker w2 {
+           |     ^^^^^^^^^^^
+        31 |         boolean b = true;
+           |         ^^^^^^^^^^^^^^^^^
+        32 |         if b {
+           |         ^^^^^^
+        33 |             return;
+           |             ^^^^^^^
+        34 |         }
+           |         ^
+        35 |         int _ = <- w1|w1; // @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+         --> main.bal:2:5
+          |
+        2 |     int _ = <- w1; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        3 |     worker w1 {
+          |     ^^^^^^^^^^^
+        4 |         int i = 1;
+          |         ^^^^^^^^^^
+        5 |         i -> function;
+          |         ^^^^^^^^^^^^^^
+        6 |     }
+          |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

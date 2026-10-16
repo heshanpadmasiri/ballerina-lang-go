@@ -1,0 +1,22 @@
+{
+  "id": "T0405",
+  "name": "cyclic-type-definitions-test-3fce5ad632/union-type-definitions-cyclic-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString, but not Cloneable.",
+    "Subset restrictions > Import declarations: ballerina/lang.error lists message only.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: includes error:message but not error:detail.",
+    "Statements > Foreach: Currently only supports range, list, map, string and XML subtypes, and iterable objects"
+  ],
+  "reason": "The executed tests require value:Cloneable, which is absent from the explicit supported lang.value types/methods, and err.detail(), which is absent from both the error library and method-call allowlists. These are essential to the immutable cyclic-union cast assertions, so the whole case requires unsupported features. It also iterates a table, outside the documented foreach collection list.",
+  "unsupported_constructs": [
+    "ballerina/lang.value:Cloneable type and its readonly intersection",
+    "error.detail() and assertions on its message field",
+    "foreach over table<map<C>>"
+  ],
+  "test_design_notes": [
+    "main invokes all test functions, including the immutable-cast checks and table iteration.",
+    "The case checks successful recursive casts and type tests, trapped cast failures, and exact error reason/detail strings; it contains no @args, @panic, or @output directives.",
+    "io:print(\"\") is instrumentation and is not the classification basis."
+  ]
+}

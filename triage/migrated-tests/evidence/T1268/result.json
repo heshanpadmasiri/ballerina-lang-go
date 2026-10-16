@@ -1,0 +1,14 @@
+{
+  "Name": "record-to-jsontest-a7c9a96935/record-to-json-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-to-jsontest-a7c9a96935/record-to-json-v.bal",
+  "Project": false,
+  "Id": "T1268",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-to-jsontest-a7c9a96935/record-to-json-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.071
+}

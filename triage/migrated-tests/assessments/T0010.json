@@ -1,0 +1,45 @@
+{
+  "id": "T0010",
+  "name": "add-operation-test-7854f6d108/add-operation-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    {
+      "heading": "Supported language features (subset 10) / Module-level declarations",
+      "quote": "[Function definition] ... [Constant declarations] ... [Type definition]",
+      "relevance": "The case uses function definitions, module constants, and named union/singleton types; no applicable restriction excludes these declarations."
+    },
+    {
+      "heading": "Statements",
+      "quote": "[Assignment] ... [Destructuring assignment statement] ... Only supports [`wildcard-binding-pattern`] ... [Local variable declarations] ... [Return]",
+      "relevance": "Assignments, local declarations (including var and wildcard bindings), wildcard discard assignments, and returns are supported."
+    },
+    {
+      "heading": "Expressions",
+      "quote": "Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+      "relevance": "The ordinary literals in the case fall within the enumerated categories."
+    },
+    {
+      "heading": "Expressions",
+      "quote": "[Mapping constructor] ... [XML template expression] ... Supports interpolation in XML content and attributes ... [`Call`] ... Nested expressions (`(expression)`)",
+      "relevance": "JSON mapping constructors, XML templates, calls, and grouped expressions are covered. No XML query interpolation or mapping spread is used."
+    },
+    {
+      "heading": "Operators",
+      "quote": "Additive ops `+`, `-`",
+      "relevance": "The central operation is explicitly supported; negative operand compatibility and destination-type checks exercise that supported operation."
+    },
+    {
+      "heading": "Subset restrictions / Import declarations",
+      "quote": "Only following lang libraries with given methods/types are supported ... `ballerina/lang.string` ... `Char` ... `ballerina/lang.xml` ... `Element` ... `Text` ... `Comment` ... `ProcessingInstruction`",
+      "relevance": "Every langlib-qualified type used in the case is expressly listed."
+    }
+  ],
+  "reason": "The whole case exercises supported additive operators and their rejection of incompatible JSON, numeric, string, XML, union, and singleton operands or result assignments. Its surrounding declarations, literals, constructors, calls, wildcard assignments, and qualified langlib types are covered, with no applicable expressly unsupported construct. Invalid source is deliberate in this negative test and does not itself make the case an unsupported feature. This is a specification-support classification, not a claim about observed compiler behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The case mixes many supported domains: JSON mappings, singleton/union aliases, numeric conversion checks, string/XML concatenation and XML result constraints, and parser recovery tests. No supported/unsupported feature mixture is evident.",
+    "testMissingBinaryOp intentionally contains adjacent expressions without an operator, plus bar()() where bar returns no callable value. These are marked @error; parser recovery can produce additional diagnostics on those lines or subsequent text, so exact marker matching may need care.",
+    "Several valid concatenations are explicitly marked // OK among @error cases, including string unions, XML unions, and XML/string combinations. They must remain accepted while invalid combinations are rejected.",
+    "No obvious accidental migration artifact or misplaced error marker can be established from these two files alone."
+  ]
+}

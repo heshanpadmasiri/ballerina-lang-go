@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: detail\n  --\u003e nullable-json-v.bal:13:16\n   |\n13 |     io:println(fieldAccessError.detail()[\"message\"]); // @output JSON value is not a mapping\n   |                ^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"nullable-json-v.bal","StartLine":13,"EndLine":13}]}

@@ -1,0 +1,16 @@
+{
+  "id": "T1100",
+  "name": "object-with-private-fields-negative-test-2196e80b05/private-object-access2-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\"; \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Expressions: \"Field access expression\"; \"New expression\"; \"List constructor\"; \"Mapping constructor\"",
+    "Statements: \"Local variable declarations\"; \"Assignment\"; \"Return\"",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\""
+  ],
+  "reason": "The asserted rejection concerns access to FooEmployee.address, a private object field declared in another module. Classes, object fields, imports and field access are supported, with no restriction excluding private visibility or its access checks. The public nested-field access fooP.family and supporting constructors, methods, maps and lists also use supported constructs. This negative visibility check is within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Only fooE.address carries error markers (two markers on the same access); fooP.family is an unmarked public-field access."
+  ]
+}

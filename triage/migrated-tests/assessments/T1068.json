@@ -1,0 +1,18 @@
+{
+  "id": "T1068",
+  "name": "object-field-function-pointer-invocation-test-5833b5a158/object-field-function-pointer-invocation-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Module variable declarations",
+    "Expressions: Anonymous function expression; Field access expression; Method call; Call; New expression; Member access expression; Nested expressions (`(expression)`)",
+    "Statements: Assignment; Local variable declarations; Return"
+  ],
+  "reason": "All constructs are supported. Function-valued class fields initialized with anonymous functions are invoked with positional arguments. The asserted rejections concern excess or missing required arguments, incompatible argument types (including a rest argument), and assigning an int result to string. These are type checking of supported invocations; no named/default argument or langlib restriction applies.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation case with five @error annotations.",
+    "The unannotated f.k() call supplies zero rest arguments; its body indexes r[0], but the case asserts compile-time diagnostics rather than executing that call."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "byte-as-int-test-3342351ff8/readonly-warnings-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/byte-as-int-test-3342351ff8/readonly-warnings-e.bal",
+  "Project": false,
+  "Id": "T0292",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/byte-as-int-test-3342351ff8/readonly-warnings-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

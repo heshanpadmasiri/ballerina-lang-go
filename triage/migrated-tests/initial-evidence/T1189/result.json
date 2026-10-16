@@ -1,0 +1,14 @@
+{
+  "Name": "order-by-clause-test-835e510187/order-by-clause-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/order-by-clause-test-835e510187/order-by-clause-negative-e.bal",
+  "Project": false,
+  "Id": "T1189",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/order-by-clause-test-835e510187/order-by-clause-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.036
+}

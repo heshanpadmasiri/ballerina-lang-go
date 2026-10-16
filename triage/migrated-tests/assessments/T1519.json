@@ -1,0 +1,16 @@
+{
+  "id": "T1519",
+  "name": "variable-definition-test-ff080c840f/unsupported-type-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition; Supports required-params",
+    "Statements: Local variable declarations",
+    "Module-level declarations: Type definition"
+  ],
+  "reason": "The sole asserted behavior is rejection of a local variable declaration whose type name Foo is undefined. This is a negative name/type-resolution case within supported function and local-variable declaration grammar, not a request for an unsupported type feature. No applicable subset restriction excludes this rejection.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The Foo bar declaration carries @error; no runtime arguments, panic, or output assertions are present.",
+    "The case name says unsupported-type, but Foo has no definition in the supplied source; the actual test is an unknown type diagnostic."
+  ]
+}

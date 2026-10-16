@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at anonymous-open-record-e.bal:8-8 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at anonymous-open-record-e.bal:3 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

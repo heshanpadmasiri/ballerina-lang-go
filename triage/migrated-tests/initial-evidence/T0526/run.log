@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "freeze-and-is-frozen-test-c0f3b0e88b/frozen-json-modification-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: method not found: cloneReadOnly
+         --> frozen-json-modification-p.bal:4:20
+          |
+        4 |     map<json> j3 = j2.cloneReadOnly();
+          |                    ^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

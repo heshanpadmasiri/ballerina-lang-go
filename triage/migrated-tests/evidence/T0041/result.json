@@ -1,0 +1,16 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/invalid-byte-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-byte-p.bal",
+  "Project": false,
+  "Id": "T0041",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-byte-p.bal"
+  ],
+  "Args": [
+    "256"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

@@ -1,0 +1,40 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	{"key1":true,"key2":false}
+        	{"key5":{"key1":true,"key2":false},"key6":{"key3":false,"key4":true},"key7":{"key8":true,"key9":false}}
+        	{"key1":1,"key2":2}
+        	{"key5":{"key1":1,"key2":2},"key6":{"key3":3,"key4":4},"key7:":{"key8":8,"key9":9}}
+        	{"key1":10,"key2":20}
+        	{"key5":{"key1":10,"key2":20},"key6":{"key3":30,"key4":40},"key7":{"key8":80,"key9":90}}
+        	{"key1":100,"key2":200}
+        	{"key5":{"key1":100,"key2":200},"key6":{"key3":300,"key4":400},"key7":{"key8":800,"key9":900}}
+        	{"key1":1.0,"key2":2.0}
+        	{"key5":{"key1":1.0,"key2":2.0},"key6":{"key3":3.0,"key4":4.0},"key7":{"key8":8.0,"key9":9.0}}
+        	{"key1":"value1","key2":"value2"}
+        	{"key5":{"key1":"value1","key2":"value2"},"key6":{"key3":"value3","key4":"value4"},"key7":{"key8":"value8","key9":"value9"}}
+        	{"key1":null,"key2":null}
+        	{"key5":{"key1":null,"key2":null},"key6":{"key3":null,"key4":null},"key7":{"key8":null,"key9":null}}
+        	{"k3":{"k2":{"k1":"v1"}}}
+        	{"bm5kn":true}
+        	{"im5kn":123}
+        	{"bytem5kn":64}
+        	{"fm5kn":12.5}
+        	{"dm5kn":5.56}
+        	{"sm5kn":"sm4v"}
+        	{"nm5kn":null}
+        	true
+        	123
+        	64
+        	12.5
+        	5.56
+        	sm4v
+        	()
+        	{"s":"Ballerina","i":100,"m":{"mKey":"mValue"}}
+        	true
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

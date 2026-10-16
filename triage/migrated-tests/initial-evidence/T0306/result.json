@@ -1,0 +1,15 @@
+{
+  "Name": "check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-invocation-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-invocation-v",
+  "Project": true,
+  "Id": "T0306",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-invocation-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-invocation-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.092
+}

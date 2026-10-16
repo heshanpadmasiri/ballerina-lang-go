@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'value'\n  --\u003e open-record-iteration-map-terminal-v.bal:12:52\n   |\n12 |     int count = grades.reduce(function (int total, int value) returns int { return total + 1; }, 0);\n   |                                                    ^^^^^^^^^\n\nballerina: compilation contains errors\n","Diagnostics":null}

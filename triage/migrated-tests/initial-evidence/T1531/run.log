@@ -1,0 +1,21 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "wait-for-all-actions-test-ef2703e247/wait-test-15-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+          --> wait-test-15-p.bal:16:20
+           |
+        16 | function add_panic(int i, int j) returns int {
+           |                    ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'j'
+          --> wait-test-15-p.bal:16:27
+           |
+        16 | function add_panic(int i, int j) returns int {
+           |                           ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'result'
+         --> wait-test-15-p.bal:2:5
+          |
+        2 |     map<anydata|error> result = waitTest15();
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

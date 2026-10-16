@@ -1,0 +1,14 @@
+{
+  "Name": "recursive-record-type-test-1f056779f9/recursive-record-type-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/recursive-record-type-test-1f056779f9/recursive-record-type-e.bal",
+  "Project": false,
+  "Id": "T1282",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/recursive-record-type-test-1f056779f9/recursive-record-type-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.022
+}

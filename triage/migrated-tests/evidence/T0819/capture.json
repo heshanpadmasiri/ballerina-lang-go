@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at testInherentTypeViolationInExclusiveRecords(exclusive-record-inherent-type-violation-p.bal:4)\n           main(exclusive-record-inherent-type-violation-p.bal:8)\n","Diagnostics":null}

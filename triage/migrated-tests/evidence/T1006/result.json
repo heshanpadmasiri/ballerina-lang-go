@@ -1,0 +1,14 @@
+{
+  "Name": "never-type-test-35205a329e/never-return-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-return-p.bal",
+  "Project": false,
+  "Id": "T1006",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-return-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.017
+}

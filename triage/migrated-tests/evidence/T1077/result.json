@@ -1,0 +1,16 @@
+{
+  "Name": "object-initializer-test-9aa531bbdf/object-initializer-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-initializer-test-9aa531bbdf/object-initializer-v",
+  "Project": true,
+  "Id": "T1077",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-initializer-test-9aa531bbdf/object-initializer-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/object-initializer-test-9aa531bbdf/object-initializer-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-initializer-test-9aa531bbdf/object-initializer-v/modules/initializers/init.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.098
+}

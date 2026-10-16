@@ -1,0 +1,15 @@
+{
+  "id": "T0175",
+  "name": "array-mutability-test-f73ad51ac1/array-mutability-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Module variable declarations; Function definition",
+    "Statements: Assignment \u2014 See supported lvexpr; If/else; Local variable declarations; Return",
+    "Expressions: Type cast expression; List constructor; Mapping constructor; Field access expression; Member access expression; Type test expression"
+  ],
+  "reason": "The complete case uses supported declarations, record and array values, assignment through array members, record casts and field reads, tuple construction/indexing, and an array-union type test. The asserted outputs true, 100, and BOOL exercise these supported operations: both inserted records satisfy the aliased EmployeeAM array's element type, casts recover their fields, and a boolean array fails the int[] test. No restricted langlib operation or additional execution protocol is required.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println serves only as output instrumentation; the @output assertions are true, 100, and BOOL. There are no @args or @panic directives."
+  ]
+}

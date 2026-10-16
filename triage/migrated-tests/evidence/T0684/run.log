@@ -1,0 +1,56 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "isolation-analysis-test-71231d7fc4/record-field-default-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-field-default-e.bal:38:16
+           |
+        38 |         } ob = object {
+           |                ^^^^^^^^
+        39 |             boolean b = w; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        40 | 
+           | 
+        41 |             isolated function getB() returns boolean => self.b;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |         };
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> record-field-default-e.bal:100:16
+            |
+        100 |         return typeof r;
+            |                ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-field-default-e.bal:86:16
+           |
+        86 |         return typeof r;
+           |                ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> record-field-default-e.bal:38:16
+           |
+        38 |         } ob = object {
+           |                ^^^^^^^^
+        39 |             boolean b = w; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        40 | 
+           | 
+        41 |             isolated function getB() returns boolean => self.b;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> record-field-default-e.bal:100:16
+            |
+        100 |         return typeof r;
+            |                ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> record-field-default-e.bal:86:16
+           |
+        86 |         return typeof r;
+           |                ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

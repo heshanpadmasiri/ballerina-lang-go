@@ -1,0 +1,14 @@
+{
+  "Name": "global-var-function-test-61ae46642d/global-var-function-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-function-test-61ae46642d/global-var-function-v.bal",
+  "Project": false,
+  "Id": "T0601",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-test-61ae46642d/global-var-function-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.092
+}

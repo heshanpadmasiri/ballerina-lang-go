@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE\n   --\u003e constant-expression-v.bal:108:19\n    |\n108 | const int CUI5 = -int:MAX_VALUE;\n    |                   ^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"constant-expression-v.bal","StartLine":108,"EndLine":108}]}

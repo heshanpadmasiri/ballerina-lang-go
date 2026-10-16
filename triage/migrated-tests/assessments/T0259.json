@@ -1,0 +1,17 @@
+{
+  "id": "T0259",
+  "name": "bjsonvalue-test-248ac7be19/null-json-to-boolean-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Function definition]",
+    "## Statements: [Local variable declarations]; [Return]",
+    "## Expressions: [Literal] — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Expressions: [Type cast expression]",
+    "## Expressions: [`Call`]"
+  ],
+  "reason": "The complete case uses supported function definitions, local declarations, a nil literal stored in json, a function call, and an explicit boolean cast. Casting the nil JSON value to boolean must panic with TypeCastError; this asserted runtime cast failure is part of the supported type-cast behavior, with no applicable subset restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic annotation asserts TypeCastError and the incompatible-types message for '()' cast to 'boolean'; there are no @args or @output assertions."
+  ]
+}

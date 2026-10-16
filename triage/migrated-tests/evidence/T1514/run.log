@@ -1,0 +1,232 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "variable-declared-with-with-var-including-error-test-1fe4adcb27/var-inferred-including-error-warnings-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> var-inferred-including-error-warnings-e.bal:89:5
+           |
+        89 |     do {
+           |     ^^^^
+        90 |         fail error("error!");
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        91 |     } on fail var x {
+           |     ^^^^^^^^^^^^^^^^^
+        92 |         error y = x; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        93 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-warnings-e.bal:29:16
+           |
+        29 | error[] errs = let var e1 = error("one"), var e2 = error("two"), var e3 = [error("three")] in [e1, e2]; // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-warnings-e.bal:32:21
+           |
+        32 |     error[] errs2 = let var e1 = error("one"), var e2 = {a: error("two")}, var e3 = error("three") in [e1, e3]; // @error // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-warnings-e.bal:40:14
+           |
+        40 | string str = let var {q: [e, i], r, s: error MyError(err = err), t} = baz() in // @error // @error // @error // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        41 |     (<error> e).message() + r.message() + err.message() + t.toString();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-warnings-e.bal:42:15
+           |
+        42 | string str2 = let var {q: [e, i], r, s: error MyError(err = err), t} = baz() in t.toString(); // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-warnings-e.bal:45:19
+           |
+        45 |     string str3 = let var {q: [e, i], r, s: error MyError(err = err), t} = baz() in // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |         (<error> e).message() + r.message() + err.message() + t.toString();
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-warnings-e.bal:47:19
+           |
+        47 |     string str4 = let var {q: [e, i], r, s: error MyError(err = err), t} = baz() in t.toString(); // @error // @error // @error // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-warnings-e.bal:72:16
+           |
+        72 |     error? x = from var error(m, c) in v // @error // @error // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        73 |                 do {};
+           |                 ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-warnings-e.bal:83:16
+           |
+        83 |     error? z = from var error(m1, c1) in arr1 // @error // @error // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        84 |                 join var error(m2, c2) in arr2 on val equals 0 // @error // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        85 |                 do {};
+           |                 ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> var-inferred-including-error-warnings-e.bal:61:17
+           |
+        61 |     foreach var error(m, c) in errs { // @error // @error
+           |                 ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> var-inferred-including-error-warnings-e.bal:16:9
+           |
+        16 |     var [x1, y1] = foo(); // @error
+           |         ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> var-inferred-including-error-warnings-e.bal:18:9
+           |
+        18 |     var [a1, ...b1] = bar(); // @error
+           |         ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> var-inferred-including-error-warnings-e.bal:20:9
+           |
+        20 |     var [x2, y2] = foo(); // @error // @error
+           |         ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> var-inferred-including-error-warnings-e.bal:22:9
+           |
+        22 |     var [a2, ...b2] = bar(); // @error // @error
+           |         ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> var-inferred-including-error-warnings-e.bal:11:5
+           |
+        11 | var [a2, ...b2] = bar();
+           |     ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> var-inferred-including-error-warnings-e.bal:16:9
+           |
+        16 |     var [x1, y1] = foo(); // @error
+           |         ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> var-inferred-including-error-warnings-e.bal:18:9
+           |
+        18 |     var [a1, ...b1] = bar(); // @error
+           |         ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> var-inferred-including-error-warnings-e.bal:20:9
+           |
+        20 |     var [x2, y2] = foo(); // @error // @error
+           |         ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> var-inferred-including-error-warnings-e.bal:22:9
+           |
+        22 |     var [a2, ...b2] = bar(); // @error // @error
+           |         ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> var-inferred-including-error-warnings-e.bal:61:17
+           |
+        61 |     foreach var error(m, c) in errs { // @error // @error
+           |                 ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> var-inferred-including-error-warnings-e.bal:3:5
+          |
+        3 | var [x, y] = foo();
+          |     ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> var-inferred-including-error-warnings-e.bal:6:5
+          |
+        6 | var [a, ...b] = bar();
+          |     ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> var-inferred-including-error-warnings-e.bal:9:5
+          |
+        9 | var [x2, y2] = foo();
+          |     ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> var-inferred-including-error-warnings-e.bal:89:5
+           |
+        89 |     do {
+           |     ^^^^
+        90 |         fail error("error!");
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        91 |     } on fail var x {
+           |     ^^^^^^^^^^^^^^^^^
+        92 |         error y = x; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        93 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> var-inferred-including-error-warnings-e.bal:29:16
+           |
+        29 | error[] errs = let var e1 = error("one"), var e2 = error("two"), var e3 = [error("three")] in [e1, e2]; // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> var-inferred-including-error-warnings-e.bal:32:21
+           |
+        32 |     error[] errs2 = let var e1 = error("one"), var e2 = {a: error("two")}, var e3 = error("three") in [e1, e3]; // @error // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> var-inferred-including-error-warnings-e.bal:40:14
+           |
+        40 | string str = let var {q: [e, i], r, s: error MyError(err = err), t} = baz() in // @error // @error // @error // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        41 |     (<error> e).message() + r.message() + err.message() + t.toString();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> var-inferred-including-error-warnings-e.bal:42:15
+           |
+        42 | string str2 = let var {q: [e, i], r, s: error MyError(err = err), t} = baz() in t.toString(); // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> var-inferred-including-error-warnings-e.bal:45:19
+           |
+        45 |     string str3 = let var {q: [e, i], r, s: error MyError(err = err), t} = baz() in // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |         (<error> e).message() + r.message() + err.message() + t.toString();
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> var-inferred-including-error-warnings-e.bal:47:19
+           |
+        47 |     string str4 = let var {q: [e, i], r, s: error MyError(err = err), t} = baz() in t.toString(); // @error // @error // @error // @error // @error
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> var-inferred-including-error-warnings-e.bal:72:16
+           |
+        72 |     error? x = from var error(m, c) in v // @error // @error // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        73 |                 do {};
+           |                 ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> var-inferred-including-error-warnings-e.bal:83:16
+           |
+        83 |     error? z = from var error(m1, c1) in arr1 // @error // @error // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        84 |                 join var error(m2, c2) in arr2 on val equals 0 // @error // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        85 |                 do {};
+           |                 ^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

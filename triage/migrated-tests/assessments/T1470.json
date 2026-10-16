@@ -1,0 +1,17 @@
+{
+  "id": "T1470",
+  "name": "type-guard-test-74355f2266/sem-types-1-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"Function definition\"; \"Type definition\"",
+    "## Statements: \"If/else\"; \"Local variable declarations\"; \"Return\"; \"Assignment\"",
+    "## Expressions: \"Type test expression\"; \"Type cast expression\"; \"List constructor\"; \"Mapping constructor\"; \"Logical expression\"",
+    "## Operators: \"Logical ops `&&`, `||`\""
+  ],
+  "reason": "Compile-negative tests exercise type-test narrowing and assignment compatibility for structural records, mutable and readonly arrays/tuples, unions/intersections, and built-in types including json, xml, stream and future. These use supported declarations, statements and expressions; subset10 specifies no restriction excluding these type forms or their narrowing/type-checking behavior. Expected rejection of incompatible assignments is within the supported type system. No restricted imports, method invocations, or object qualifiers occur.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Contains many @error assertions interspersed with unmarked OK assignments and an unreachable comment; assess diagnostics per marker, not whole-file successful compilation.",
+    "No @args, @panic or @output markers; functions are not invoked, so the asserted behavior is static checking."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "shadowing-test-c0d314524b/shadowing-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/shadowing-test-c0d314524b/shadowing-v.bal",
+  "Project": false,
+  "Id": "T1347",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/shadowing-test-c0d314524b/shadowing-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.057
+}

@@ -1,0 +1,20 @@
+{
+  "id": "T0327",
+  "name": "class-test-31d1ee9eb5/distinct-class-def-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Class definition \u2014 Supports `client`, `service`, `isolated`, `readonly` and `distinct` `class-type-quals`",
+    "Module-level declarations: Class definition \u2014 Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Subset restrictions > Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "Expressions: Type test expression"
+  ],
+  "reason": "The essential `type Circle distinct object` declaration uses a distinct object-type qualifier, excluded by the restriction allowing only client, service and isolated object-type qualifiers. Runtime assertions require that distinct identity to survive inclusion into ColoredCircle and ColoredCirclePlus and reject the structural lookalike. This decisive unsupported construct makes the whole case a feature. Separately, distinct class coverage conflicts between the positive class list and the class qualifier restriction.",
+  "unsupported_constructs": [
+    "`distinct` class qualifiers (explicitly conflicting coverage)",
+    "`type Circle distinct object` (excluded by object qualifier restriction)"
+  ],
+  "test_design_notes": [
+    "main runs both assignability and runtime type-identity assertions; correct execution requires every assertion to pass without panic. No @args, @panic, or @output directives occur.",
+    "The assertion helper uses supported value:toString method syntax; it introduces no separate langlib exclusion."
+  ]
+}

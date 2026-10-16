@@ -1,0 +1,17 @@
+{
+  "id": "T1563",
+  "name": "worker-fail-test-278d4f50a4/invalid-workreceive-without-worker-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"Local variable declarations\" is supported; the statement list does not include worker send statements.",
+    "## Expressions: \"Start action\" and \"Wait action\" are listed, but worker send actions are not."
+  ],
+  "reason": "The negative test requires rejecting a worker send to an undeclared worker (m1 -> worker1). Worker messaging is not covered by subset 10; supported start/wait actions do not establish support for worker sends. This is therefore outside supported grammar despite its expected rejection.",
+  "unsupported_constructs": [
+    "Worker send action and validation of an undeclared worker target."
+  ],
+  "test_design_notes": [
+    "The case name says workreceive, but the function and marked statement test a send.",
+    "The sole @error marker is on the worker send; no @args, @panic, or @output behavior is asserted."
+  ]
+}

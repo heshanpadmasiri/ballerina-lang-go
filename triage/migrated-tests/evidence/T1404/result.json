@@ -1,0 +1,14 @@
+{
+  "Name": "table-to-jsonnegaive-test-4dd03ce530/table_to_json_negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/table-to-jsonnegaive-test-4dd03ce530/table_to_json_negative-e.bal",
+  "Project": false,
+  "Id": "T1404",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/table-to-jsonnegaive-test-4dd03ce530/table_to_json_negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.067
+}

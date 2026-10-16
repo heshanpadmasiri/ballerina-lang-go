@@ -1,0 +1,13 @@
+{
+  "id": "T0685",
+  "name": "isolation-analysis-test-71231d7fc4/semantic-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' and 'Anonymous function expression', but does not list object constructor expressions.",
+    "## Module-level declarations: 'Supports the [`isolated`](https://ballerina.io/spec/lang/master/#isolated-qual) function qualifier'",
+    "## Object/class definitions: 'Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported'"
+  ],
+  "reason": "The case asserts rejection of non-isolated object methods, function values, and bound methods assigned to isolated types. Its first assertion essentially uses an anonymous object constructor (`object { ... }`) to produce the source object. Object constructor expressions are absent from the supported expression list, so the whole case requires an unsupported construct despite explicit support for isolated functions and classes.",
+  "unsupported_constructs": ["Anonymous object constructor expression initializing obj"],
+  "test_design_notes": ["Negative isolation/type-compatibility assertions are in scope when expressed using supported constructs; illegality alone is not the reason for this classification."]
+}

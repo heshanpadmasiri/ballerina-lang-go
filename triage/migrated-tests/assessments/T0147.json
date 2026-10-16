@@ -1,0 +1,20 @@
+{
+  "id": "T0147",
+  "name": "array-fill-test-runtime-5e01b269f4/array-fill-runtime-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [List constructor], [Mapping constructor], [New expression], [Member access expression], [Field access expression], [Type test expression] and [Variable reference] are supported.",
+    "## Module-level declarations: [Constant declarations], [Type definition] and [Class definition]; class definitions support `service` and `object-field`, `method-defn` members.",
+    "## Statements: [Assignment], [Local variable declarations], [Foreach], [Return], [If/else] and [Panic] are supported.",
+    "### Named and default arguments: \"Object constructor calls support named and default arguments while selecting a unique class from an object union; they do not have the atomic-target restriction above.\"",
+    "### Other invocation restrictions: method-call support includes `array:length` and `value:toString` and `value:toBalString`.",
+    "## Object/class definitions: \"Supports `included-record-param`, `rest-param` and `defaultable-param` in methods\""
+  ],
+  "reason": "The complete case uses supported list construction, indexed assignment and access to assert filler values for fixed and extensible arrays, records with defaults, class instances and service-class tuples. Constant dimensions, singleton unions, function values and record-array returns introduce no listed restriction. Constructor defaults, length(), equality and assertion panic construction are supported. No essential unsupported construct or execution protocol appears.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "main invokes the array-fill checks directly; there are no @args, @panic or @output directives. Success means all invoked assertions complete without panic.",
+    "testObjectArrayFillingWithDefaultValues is defined but not called by main, so its assertions are not exercised.",
+    "io:println is retained only as instrumentation through an unused function reference."
+  ]
+}

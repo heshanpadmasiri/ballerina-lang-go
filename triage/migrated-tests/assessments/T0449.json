@@ -1,0 +1,11 @@
+{
+  "id": "T0449",
+  "name": "error-destructure-negetive-test-6c1d1c393d/error_destructure_field_binding_negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: [Destructuring assignment statement] — Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)"
+  ],
+  "reason": "The expected diagnostics exercise error destructuring assignments with named message/detail bindings, including explicitly typed error FooError patterns. These are essential to every asserted rejection and exceed the explicit wildcard-only destructuring support.",
+  "unsupported_constructs": ["Error destructuring assignment patterns with reason and named detail bindings, both untyped and FooError-qualified"],
+  "test_design_notes": ["Four statements each carry two @error markers; no @args, @panic, or @output assertions occur. Negative tests can be in scope, but these diagnostics depend on an explicitly unsupported pattern form."]
+}

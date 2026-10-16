@@ -1,0 +1,13 @@
+{
+  "id": "T0956",
+  "name": "native-conversion-with-stamp-types-test-c4af7d85fe/native-conversion-with-stamp-types-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive list includes Type test expression and Type cast expression, but does not include typeof expression.",
+    "## Import declarations (Subset restrictions): ballerina/lang.value explicitly supports cloneWithType and toString.",
+    "### Other invocation restrictions: method-call list explicitly includes value:cloneWithType and value:toString."
+  ],
+  "reason": "The conversion operations themselves are explicitly supported, but the case also asserts runtime type-descriptor results using typeof: (typeof m).toString(), (typeof returnValue).toString(), and typeof jsonResults[1]. The Expressions positive list does not cover typeof expressions, so this whole case requires an uncovered feature.",
+  "unsupported_constructs": ["typeof expressions and their asserted runtime type-descriptor results"],
+  "test_design_notes": ["The typeof uses are essential assertions of typedesc AnydataMap, typedesc String_Employee, and typedesc map<json>, not merely println instrumentation."]
+}

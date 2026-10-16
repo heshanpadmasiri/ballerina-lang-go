@@ -1,0 +1,104 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Value is '12'
+        	Value is 'Hello'
+        	Value is 'true'
+        	Value is '15'
+        	Value is 'HelloAgain'
+        	Value is 'false'
+        	Value is 'Default'
+        	Value is '12'
+        	Value is '15 & HelloWorld'
+        	Value is 'HelloAgain & 34'
+        	Value is 'Default'
+        	Value is '15 & 34'
+        	Value is 'true'
+        	Value is : 12
+        	Value is : Hello
+        	Value is : true
+        	Value is : 15
+        	Value is : HelloAgain
+        	Value is : false
+        	Default value is : NothingToMatch
+        	Value is : 13
+        	Value is : 14
+        	Value is : World
+        	Value is : Test
+        	Value is : 15
+        	Value is : [12,"Ballerina"]
+        	Value is : [12,"Ballerina"]
+        	Value is : [15,"Ballerina"]
+        	Value is : [20,"Ballerina"]
+        	Value is : [20,"Bala"]
+        	Default Value is : [20,"NothingToMatch"]
+        	Value is : [15,"Bal",100]
+        	Default Value is : [15,"Bal",200,230]
+        	Value is : [15,"Bal","Ballerina",5678,"Test"]
+        	Default Value is : [15,"Bal","Ballerina",5678,"NothingToMatch"]
+        	Value is : 2nd pattern - {"x":12,"y":"Ballerina"}
+        	Value is : 4th pattern - {"x":10,"y":"B"}
+        	Value is : 1st pattern - {"x":12,"y":"Ballerina","z":true}
+        	Value is Default pattern - {"x":10,"z":"Ballerina"}
+        	Value is : 5th pattern - {"x":15,"y":["John",{"x":12,"y":"Ballerina"},"Snow"],"z":15.1}
+        	Value is Default pattern - {"x":15,"y":["Stark",{"x":12,"y":"Ballerina"},"Sansa"],"z":15.1}
+        	Value is : 3rd pattern - {"x":15,"y":["Stark",{"x":12,"y":"Ballerina","z":true},"Sansa"],"z":15.1}
+        	Value is : 3rd pattern - {"x":40,"y":["Tyrion",{"x":12,"y":"Ballerina"},"Lanister"],"z":56.9}
+        	Value is : 4th pattern - 16
+        	Value is Default pattern - 12
+        	Value is : 2nd pattern - {"x":12,"y":"Ballerina"}
+        	Value is : 4th pattern - {"x":10,"y":"B"}
+        	Value is : 1st pattern - {"x":12,"y":"Ballerina","z":true}
+        	Value is Default pattern - {"x":10,"z":"Ballerina"}
+        	Value is : 5th pattern - {"x":15,"y":["John",{"x":12,"y":"Ballerina"},"Snow"],"z":15.1}
+        	Value is Default pattern - {"x":15,"y":["Stark",{"x":12,"y":"Ballerina"},"Sansa"],"z":15.1}
+        	Value is : 3rd pattern - {"x":15,"y":["Stark",{"x":12,"y":"Ballerina","z":true},"Sansa"],"z":15.1}
+        	Value is : 3rd pattern - {"x":40,"y":["Tyrion",{"x":12,"y":"Ballerina"},"Lanister"],"z":56.9}
+        	Value is : 4th pattern - 16
+        	Value is Default pattern - 12
+        	Value is Default pattern - 7.8
+        	5
+        	Value is 'x: 12, y: Ballerina'
+        	Value is 'x: 10, y: B'
+        	Value is '15'
+        	Value is 'x: 12, y: Ballerina, z: true'
+        	Value is 'Default'
+        	6
+        	Value is '(12, Ballerina)'
+        	Value is '(12, Ballerina)'
+        	Value is '(15)'
+        	Value is '(15, Bal, 100)'
+        	Value is '(15, Ballerina)'
+        	Value is 'Default'
+        	1
+        	Value is 'Correct'
+        	Value is '15.2'
+        	Value is 'true'
+        	Value is 'Default'
+        	Value is 'Correct'
+        	11|12
+        	["AA","BB","1010","truetrue"]
+        	6
+        	Bal
+        	Ballerina
+        	100
+        	200
+        	Nil
+        	Default
+        	Matched with empty array
+        	Matched with i: 1
+        	Matched with i: 1, j: 2
+        	Matched with i: 1, j: 2, k: 3
+        	Matched with default
+        	Matched with empty record
+        	Matched with a: 1
+        	Matched with a: 1, b: 2
+        	Matched with a: 1, b: 2, c: 3
+        	Matched with a: 1, b: 2, c: 3
+        	no-match
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

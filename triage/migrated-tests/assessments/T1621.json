@@ -1,0 +1,19 @@
+{
+  "id": "T1621",
+  "name": "xmlattribute-access-test-c2d99d33fe/xml-attribute-access-syntax-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists \"error:message\", but not error:detail.",
+    "Expressions: \"XML template expression\", \"XML navigation expression\", \"Field access expression\", \"Optional field access expression\" and \"Member access expression\" are supported."
+  ],
+  "reason": "The whole case requires the unlisted lang.error detail method: assertError calls value.detail().message to verify exact XML operation error details. This essential asserted behavior exceeds the restricted langlib surface even though XML templates, navigation and attribute access have positive expression coverage.",
+  "unsupported_constructs": [
+    "error:detail method calls in assertError, required to check XML operation error detail messages"
+  ],
+  "test_design_notes": [
+    "Mixed scope: basic and optional XML attribute access, namespace/navigation/indexing cases, XML attribute mutation and exact error-detail assertions share one case.",
+    "Two @output markers check a namespaced attribute value and the exact XML-sequence operation error rendering; io:println is instrumentation.",
+    "The x19 resultOptional assignment repeats x19.attr rather than x19?.attr, so that assertion does not exercise optional access."
+  ]
+}

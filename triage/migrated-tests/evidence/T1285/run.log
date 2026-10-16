@@ -1,0 +1,40 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'param'
+           --> ref-equal-and-not-equal-operations-v.bal:232:173
+            |
+        232 | function func_with_param(string param) {} function func_with_return() returns error? {} function func_with_rest_param(string... params) {} function func_with_default_param(string param = "test") {} function func_with_all(string param1, string param2 = "test", string... param3) returns error? {}
+            |                                                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'param'
+           --> ref-equal-and-not-equal-operations-v.bal:232:26
+            |
+        232 | function func_with_param(string param) {} function func_with_return() returns error? {} function func_with_rest_param(string... params) {} function func_with_default_param(string param = "test") {} function func_with_all(string param1, string param2 = "test", string... param3) returns error? {}
+            |                          ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'param1'
+           --> ref-equal-and-not-equal-operations-v.bal:232:222
+            |
+        232 | function func_with_param(string param) {} function func_with_return() returns error? {} function func_with_rest_param(string... params) {} function func_with_default_param(string param = "test") {} function func_with_all(string param1, string param2 = "test", string... param3) returns error? {}
+            |                                                                                                                                                                                                                              ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'param2'
+           --> ref-equal-and-not-equal-operations-v.bal:232:237
+            |
+        232 | function func_with_param(string param) {} function func_with_return() returns error? {} function func_with_rest_param(string... params) {} function func_with_default_param(string param = "test") {} function func_with_all(string param1, string param2 = "test", string... param3) returns error? {}
+            |                                                                                                                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'param3'
+           --> ref-equal-and-not-equal-operations-v.bal:232:261
+            |
+        232 | function func_with_param(string param) {} function func_with_return() returns error? {} function func_with_rest_param(string... params) {} function func_with_default_param(string param = "test") {} function func_with_all(string param1, string param2 = "test", string... param3) returns error? {}
+            |                                                                                                                                                                                                                                                                     ^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'params'
+           --> ref-equal-and-not-equal-operations-v.bal:232:119
+            |
+        232 | function func_with_param(string param) {} function func_with_return() returns error? {} function func_with_rest_param(string... params) {} function func_with_default_param(string param = "test") {} function func_with_all(string param1, string param2 = "test", string... param3) returns error? {}
+            |                                                                                                                       ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

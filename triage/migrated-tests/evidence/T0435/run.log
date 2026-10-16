@@ -1,0 +1,49 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:11-11 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:7-7 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:13-13 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:17-17 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:23-23 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:19-19 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:24-24 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:28-28 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:34-34 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:30-30 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:36-36 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:42-42 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:45-45 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:40-40 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:47-47 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:52-52 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:57-57 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:61-61 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:65-65 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:66-66 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:71-71 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:73-73 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:78-78 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:85-85 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:80-80 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at enum-metadata-test-e.bal:86-86 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:4 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:6 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:10 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:16 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:39 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:46 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:50 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:60 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:64 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:72 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:76 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at enum-metadata-test-e.bal:83 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

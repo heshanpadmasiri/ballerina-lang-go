@@ -1,0 +1,15 @@
+{
+  "id": "T1227",
+  "name": "query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions > Query expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"",
+    "Subset restrictions > Import declarations: \"`ballerina/lang.array`\" includes \"`toStream`\"",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"`array:toStream`\""
+  ],
+  "reason": "The negative case expects rejection at the second from clause over an array converted to a stream. Multiple from clauses, where/select, array toStream method calls, record values, and array result typing are covered by the listed supported features; no stream query-constructor type is used. Semantic rejection within this supported query grammar is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The only asserted diagnostic is the @error marker on the second from clause; no exact diagnostic text is supplied."
+  ]
+}

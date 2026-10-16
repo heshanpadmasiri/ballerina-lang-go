@@ -1,0 +1,14 @@
+{
+  "Name": "abstract-object-test-b4e9633034/abstract-object-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/abstract-object-test-b4e9633034/abstract-object-v.bal",
+  "Project": false,
+  "Id": "T0004",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/abstract-object-test-b4e9633034/abstract-object-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.081
+}

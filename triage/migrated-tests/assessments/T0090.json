@@ -1,0 +1,15 @@
+{
+  "id": "T0090",
+  "name": "argument-parser-positive-test-e41e5b8a0a/decimal-02-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\""
+  ],
+  "reason": "The assertion requires the external command-line argument \"-10.123\" to be parsed as a decimal and supplied to main, producing -10.123. Required parameter signature support does not cover command-line entry-point argument parsing; subset10 specifies no such execution protocol.",
+  "unsupported_constructs": [
+    "Command-line parsing and binding of a negative decimal argument to main(decimal d)."
+  ],
+  "test_design_notes": [
+    "@args [\"-10.123\"] is essential to the asserted @output -10.123; io:println is instrumentation."
+  ]
+}

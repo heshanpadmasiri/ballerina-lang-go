@@ -1,0 +1,12 @@
+{
+  "id": "T0237",
+  "name": "bdecimal-value-test-3ff4f5d11b/bdecimal-value-test-3ff4f5d11b-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message."
+  ],
+  "reason": "The executed decimal zero-operation and overflow tests require err.detail() to retrieve and assert exact panic detail messages. The supported error langlib list includes message but not detail, and the method-call positive list likewise excludes error:detail. This essential unsupported call suffices to classify the whole case as feature.",
+  "unsupported_constructs": ["error:detail() langlib calls in testDecimalZeroOperations and testDecimalValueOverflow"],
+  "test_design_notes": ["main executes these assertions as well as decimal @output checks; no @args or @panic directives appear. io:println is output instrumentation and is not the classification basis."]
+}

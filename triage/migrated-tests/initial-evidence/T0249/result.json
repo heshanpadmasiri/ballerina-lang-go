@@ -1,0 +1,14 @@
+{
+  "Name": "binteger-value-test-c66d8ec2ef/integer-value-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/binteger-value-test-c66d8ec2ef/integer-value-v.bal",
+  "Project": false,
+  "Id": "T0249",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/binteger-value-test-c66d8ec2ef/integer-value-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.057
+}

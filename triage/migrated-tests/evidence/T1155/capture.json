@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'option'\n  --\u003e invalid-e.bal:26:22\n   |\n26 | public function main(*Options option) {\n   |                      ^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"invalid-e.bal","StartLine":26,"EndLine":26}]}

@@ -1,0 +1,17 @@
+{
+  "Name": "main-functions-test-f228557f7d/error-or-nil-returning-error-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/error-or-nil-returning-error-p.bal",
+  "Project": false,
+  "Id": "T0752",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/main-functions-test-f228557f7d/error-or-nil-returning-error-p.bal"
+  ],
+  "Args": [
+    "error",
+    "1"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.134
+}

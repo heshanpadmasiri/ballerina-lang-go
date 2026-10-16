@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: stderr does not contain a runtime error message for @panic at invalid-int-13-p.bal:2
+        stderr:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+         --> invalid-int-13-p.bal:2:22
+          |
+        2 | public function main(int i) { // @panic
+          |                      ^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

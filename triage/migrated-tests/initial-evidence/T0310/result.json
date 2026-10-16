@@ -1,0 +1,14 @@
+{
+  "Name": "checked-expr-negative-test-764bc995e0/checked-expr-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/checked-expr-negative-test-764bc995e0/checked-expr-e.bal",
+  "Project": false,
+  "Id": "T0310",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/checked-expr-negative-test-764bc995e0/checked-expr-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.06
+}

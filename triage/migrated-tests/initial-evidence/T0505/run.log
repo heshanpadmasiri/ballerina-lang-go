@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at file01.bal:41-41 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at file01.bal:44-44 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at file01.bal:44-44 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at file01.bal:48-48 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at file01.bal:1-1 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at file01.bal:8-8 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at file01.bal:4 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

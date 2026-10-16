@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: string index out of range: index: 5, size: 3\n        at main(string-index-five-p.bal:3)\n","Diagnostics":null}

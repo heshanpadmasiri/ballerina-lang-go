@@ -1,0 +1,1 @@
+{"Stdout":"\u003cp:person xmlns:p=\"foo\" xmlns:q=\"bar\"\u003ehello\u003c/p:person\u003e\n\u003cns1:student xmlns:ns1=\"http://ballerina.com/b\"\u003ehello\u003c/ns1:student\u003e\n","Stderr":"","Diagnostics":null}

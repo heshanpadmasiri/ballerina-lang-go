@@ -1,0 +1,12 @@
+{
+  "id": "T0538",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/removal-from-frozen-inner-json-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: (includes map:remove and value:cloneWithType; excludes value:cloneReadOnly)."
+  ],
+  "reason": "The expected panic from removing a nested JSON map entry depends on cloneReadOnly() recursively freezing the cloned map. cloneReadOnly is absent from both the supported lang.value methods and the langlib method-call allowlist, so this essential operation is outside subset 10 even though map:remove is supported.",
+  "unsupported_constructs": ["value:cloneReadOnly() and its recursive freezing behavior"],
+  "test_design_notes": ["The @panic assertion targets removal from the frozen inner map, not ordinary map removal."]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "T1480",
+  "name": "type-guard-test-74355f2266/type-narrow-2-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition; supports required-params in the signature",
+    "Statements: If/else; Local variable declarations; Return",
+    "Expressions: Equality expression; Type test expression; Nested expressions (`(expression)`)",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Operators: Equality ops `==`, `!=`, `===`, `!==`; numeric ops `+`, `-`",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "The case exercises static assignment compatibility and equality/type-test narrowing of scalar singleton unions and nullable types through supported conditionals, returns, literals, grouping and numeric signs. No applicable subset restriction excludes these operations; there are no library calls or runtime expectations. Negative assignment checks within this supported grammar/type system are in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The file mixes ordinary incompatible-type expectations with historical compiler limitations: @error markers in tests 3 and 10–15 explicitly cite failures to narrow (issues #34928, #34307, #30598 and #33217). Such markers may expect rejection of code that should become valid when narrowing is corrected; review these expectations before treating every missing diagnostic as a regression.",
+    "Test 13 includes unmarked assignments annotated 'No error. issue #34928', so the fixture also records historical acceptance behavior in impossible branches.",
+    "No @args, @panic or @output markers occur; this is a compile-time diagnostic fixture."
+  ]
+}

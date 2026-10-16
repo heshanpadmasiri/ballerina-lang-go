@@ -1,0 +1,13 @@
+{
+  "id": "T1268",
+  "name": "record-to-jsontest-a7c9a96935/record-to-json-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive list includes \"Type cast expression\" and \"Type test expression\", but does not include typeof expressions.",
+    "## Expressions: \"Mapping constructor\", \"Field access expression\", \"Member access expression\", and \"Check expression\".",
+    "### Other invocation restrictions: \"value:toString\" and \"value:toBalString\"."
+  ],
+  "reason": "The case asserts that records assignable to json retain their fields and that updates through map<json> casts, including a nested alias, appear in the original JSON value. Its assertion helper also contains typeof expected and typeof actual; typeof expressions are absent from the subset's positive expression list, so the whole case requires an uncovered construct.",
+  "unsupported_constructs": ["typeof expressions in the assertion helper"],
+  "test_design_notes": ["The typeof expressions occur on assertion failure but still require compiler support; the helper's toString calls are explicitly supported."]
+}

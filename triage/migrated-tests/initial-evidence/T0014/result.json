@@ -1,0 +1,14 @@
+{
+  "Name": "annotation-declaration-test-133dc37eee/annots-with-invalid-consts-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/annotation-declaration-test-133dc37eee/annots-with-invalid-consts-e.bal",
+  "Project": false,
+  "Id": "T0014",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/annotation-declaration-test-133dc37eee/annots-with-invalid-consts-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

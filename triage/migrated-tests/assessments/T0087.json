@@ -1,0 +1,24 @@
+{
+  "id": "T0087",
+  "name": "argument-parser-positive-test-e41e5b8a0a/byte-v",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Module-level declarations",
+      "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"
+    },
+    {
+      "heading": "Supported language features (subset 10)",
+      "quote": "**Supported Ballerina code:** see [corpus/bal](../../corpus/bal)—the [corpus/bal/subset10](../../corpus/bal/subset10) directory contains the tests and examples that define what is supported in this subset."
+    }
+  ],
+  "reason": "The function's required parameter and ordinary output call fit the listed language constructs, but the complete case requires the launcher to parse command-line string \"10\" into the byte parameter of main. Command-line argument conversion/entry-point argument parsing is not covered in subset10.md; support for required parameter syntax does not specify that launcher behavior.",
+  "unsupported_constructs": [
+    "Command-line string-to-byte conversion for public function main(byte i)."
+  ],
+  "test_design_notes": [
+    "Positive case: // @args [\"10\"] and // @output 10 make launcher argument conversion essential.",
+    "io:println and @output are output instrumentation, not a basis for the feature classification.",
+    "No execution evidence or other sources consulted."
+  ]
+}

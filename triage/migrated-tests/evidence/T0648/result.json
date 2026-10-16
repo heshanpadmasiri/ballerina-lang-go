@@ -1,0 +1,14 @@
+{
+  "Name": "inner-query-test-63f3c0e826/inner-queries-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/inner-query-test-63f3c0e826/inner-queries-negative-e.bal",
+  "Project": false,
+  "Id": "T0648",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/inner-query-test-63f3c0e826/inner-queries-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

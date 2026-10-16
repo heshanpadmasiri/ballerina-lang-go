@@ -1,0 +1,17 @@
+{
+  "id": "T1443",
+  "name": "tuple-mutability-test-4a07e00b3d/different-type-covariance-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition], [Module variable declarations], [Function definition]",
+    "Statements: [Assignment] — See supported lvexpr; [Local variable declarations]",
+    "Expressions: [List constructor], [Mapping constructor], [Member access expression], [Type test expression], [Conditional expression], [Variable reference]",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "The case uses supported type definitions, record mappings, tuple list constructors, covariant assignments, indexed reads/writes, a union member, and a type-test conditional. No stated restriction excludes these types or tuple covariance/mutation. Writes through the widened tuple type retain values compatible with the original tuple members, so the asserted output 12 follows the supported operations. io:println is instrumentation; the lang-library restrictions introduce no relevant exclusion.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The sole marker is @output 12; no @args or @panic behavior is asserted.",
+    "The first covariant tuple assignment is unused afterward; the output exercises only the first member of the second tuple. Record-member writes are executed but their results are not independently asserted."
+  ]
+}

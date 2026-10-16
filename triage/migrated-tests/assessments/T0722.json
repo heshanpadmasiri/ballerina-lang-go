@@ -1,0 +1,19 @@
+{
+  "id": "T0722",
+  "name": "list-constructor-spread-operator-test-ae223889d2/inference-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions > Import declarations: ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType; value:fromJsonWithType; value:toString and value:toBalString"
+  ],
+  "reason": "List constructors are supported, but the readonly spread assertions depend on actualArr.ensureType(AnyArr). The lang.value ensureType function is absent from both the supported langlib methods and the method-call whitelist, so the complete case requires unsupported behavior.",
+  "unsupported_constructs": [
+    "actualArr.ensureType(AnyArr) in assertReadonlyArrayEquality"
+  ],
+  "test_design_notes": [
+    "The case asserts spread inference and element values for fixed arrays, variable-length arrays, tuples, readonly lists, typedesc targets and never rest descriptors.",
+    "The io:println reference in main is instrumentation and does not determine classification."
+  ]
+}

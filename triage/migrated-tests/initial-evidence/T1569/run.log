@@ -1,0 +1,165 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/send-receive-mismatch-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> main.bal:68:5
+           |
+        68 |     fork {
+           |     ^^^^^^
+        69 |         worker w1 {
+           |         ^^^^^^^^^^^
+        70 |             int a = 5;
+           |             ^^^^^^^^^^
+        71 |             int b = 0; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^
+        72 |             a -> w2;
+           |             ^^^^^^^^
+        73 |             b = <- w3; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^
+        74 |         }
+           |         ^
+        75 |         worker w2 {
+           |         ^^^^^^^^^^^
+        76 |             int a = 0;
+           |             ^^^^^^^^^^
+        77 |             int b = 15; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        78 |             a = <- w1;
+           |             ^^^^^^^^^^
+        79 |             a -> w3;
+           |             ^^^^^^^^
+        80 |         }
+           |         ^
+        81 |         worker w3 {
+           |         ^^^^^^^^^^^
+        82 |             int a = 0; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^
+        83 |             int b = 15; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        84 |             a = <- w2;
+           |             ^^^^^^^^^^
+        85 |         }
+           |         ^
+        86 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:11:5
+           |
+        11 |     worker w1 {
+           |     ^^^^^^^^^^^
+        12 |         int _ = <- w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |     }
+           |     ^
+        14 |     worker w2 {
+           |     ^^^^^^^^^^^
+        15 |         string _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:20:5
+           |
+        20 |     boolean foo = true;
+           |     ^^^^^^^^^^^^^^^^^^^
+        21 |     worker w1 {
+           |     ^^^^^^^^^^^
+        22 |         if foo {
+           |         ^^^^^^^^
+        23 |             2 -> w2;
+           |             ^^^^^^^^
+        24 |         } else {
+           |         ^^^^^^^^
+        25 |             3 -> w2;
+           |             ^^^^^^^^
+        26 |         }
+           |         ^
+        27 |         4 -> w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^
+        28 |     }
+           |     ^
+        29 |     worker w2 returns error? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        30 |         _ = check <- w1;
+           |         ^^^^^^^^^^^^^^^^
+        31 |         _ = check <- w1;
+           |         ^^^^^^^^^^^^^^^^
+        32 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:36:5
+           |
+        36 |     worker w1 {
+           |     ^^^^^^^^^^^
+        37 |         "xxx" -> w2;
+           |         ^^^^^^^^^^^^
+        38 |     }
+           |     ^
+        39 |     worker w2 {
+           |     ^^^^^^^^^^^
+        40 |         _ = <- w1|w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        41 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:45:5
+           |
+        45 |     worker w1 {
+           |     ^^^^^^^^^^^
+        46 |         "xxx" -> w2;
+           |         ^^^^^^^^^^^^
+        47 |     }
+           |     ^
+        48 |     worker w2 {
+           |     ^^^^^^^^^^^
+        49 |         _ = <- {a: w1, b: w3, c: w3}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        50 |     }
+           |     ^
+        51 |     worker w3 {
+           |     ^^^^^^^^^^^
+        52 |         "yyy" -> w2;
+           |         ^^^^^^^^^^^^
+        53 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:57:5
+           |
+        57 |     worker w1 {
+           |     ^^^^^^^^^^^
+        58 |     }
+           |     ^
+        59 |     worker w2 {
+           |     ^^^^^^^^^^^
+        60 |         _ = <- {a: w1, b: w3, c: w3}; // @error @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |     }
+           |     ^
+        62 |     worker w3 {
+           |     ^^^^^^^^^^^
+        63 |         "yyy" -> w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        64 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+         --> main.bal:2:5
+          |
+        2 |     worker w1 {
+          |     ^^^^^^^^^^^
+        3 |         20 -> w2; // @error
+          |         ^^^^^^^^^^^^^^^^^^^
+        4 |     }
+          |     ^
+        5 |     worker w2 {
+          |     ^^^^^^^^^^^
+        6 |         "xxx" -> w1; // @error
+          |         ^^^^^^^^^^^^^^^^^^^^^^
+        7 |     }
+          |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

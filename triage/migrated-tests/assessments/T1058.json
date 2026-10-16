@@ -1,0 +1,15 @@
+{
+  "id": "T1058",
+  "name": "numeric-conversion-test-6b3e1e5e00/out-of-range-positive-float-as-int-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\"",
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"; \"[Call](https://ballerina.io/spec/lang/master/#call-stmt)\"",
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; \"[Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)\""
+  ],
+  "reason": "The case asserts that casting a positive float outside the int range to int panics. Numeric literals, local declarations, function definitions/calls, and type casts are explicitly supported; no restriction excludes numeric cast range checking or its panic behavior. The complete case is within the supported subset.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The // @panic comment marks the expected runtime failure at the cast; the test does not assert an error message."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T0930",
+  "name": "multiple-where-clause-test-4d076677b8/multiple-where-clauses-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "## Expressions: Mapping constructor; List constructor; Field access expression; Member access expression; Relational expression; Equality expression; Logical expression",
+    "## Operators: Equality ops `==`, `!=`, `===`, `!==`; Relational ops `<`, `<=`, `>`, `>=`; Logical ops `&&`, `||`",
+    "## Module-level declarations: Type definition; Function definition",
+    "## Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern"
+  ],
+  "reason": "All asserted behavior falls within supported query expressions: repeated from clauses produce ordered person/department combinations, consecutive where clauses filter those combinations, record binding patterns bind query variables, and select constructs result records. The logical predicate uses supported equality, relational and logical operators and its surviving student is Ranjan with score 90.6. There is no query binding-pattern restriction; the wildcard-only restriction applies to destructuring assignment statements, which this test does not use.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Assertions check selected result fields and order for two departments, record-pattern query binding with filtering, and logical predicates across successive where clauses.",
+    "The test does not assert result lengths, so additional trailing results could go undetected.",
+    "io:println is output instrumentation only."
+  ]
+}

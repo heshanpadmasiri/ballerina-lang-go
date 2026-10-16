@@ -1,0 +1,16 @@
+{
+  "id": "T1274",
+  "name": "record-variable-definition-test-0c506ca119/record-variable-definition-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Destructuring assignment statement\" — \"Only supports wildcard-binding-pattern\"",
+    "Statements: \"Local variable declarations\""
+  ],
+  "reason": "The negative test includes record destructuring assignments such as {name: s, ...rest} = p and {x: xx, y: yy, ...extra} = <ClosedXY>{...}, asserting rest-field and field-type assignability diagnostics. These require mapping binding patterns in destructuring assignments, while the subset explicitly supports only wildcard binding patterns there. This essential unsupported construct makes the whole case a feature request even though record variable declarations and many other type-error checks are in scope.",
+  "unsupported_constructs": [
+    "Mapping binding patterns (including named fields and rest bindings) in destructuring assignment statements"
+  ],
+  "test_design_notes": [
+    "Negative diagnostic test with @error markers; unsupported assignment patterns are directly involved in asserted assignability errors."
+  ]
+}

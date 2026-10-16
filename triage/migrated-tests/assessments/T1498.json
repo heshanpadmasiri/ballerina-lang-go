@@ -1,0 +1,20 @@
+{
+  "id": "T1498",
+  "name": "unary-expr-test-6a6cdd6e72/unary-operations-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Operators: Unary operators \u2014 logical `!`; numeric ops `+`, `-`; bitwise complement `~`",
+    "## Expressions: [Nil lifted expression](https://ballerina.io/spec/lang/master/#nil-lifted-expr)",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "## Expressions: Literal \u2014 Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Import declarations: `ballerina/lang.int` \u2014 `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`",
+    "### Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "Unary logical, numeric and complement operations are explicitly supported, including the nil-lifted expressions used with nullable operands. Integer subtypes and diagnostic toString method calls are explicitly allowed. Numeric literals, user-defined types, tuple/list construction and indexing, type tests, equality, calls, returns and panic are covered by the positive lists; no applicable restriction excludes the asserted numeric values or unary-plus subtype preservation. The output markers assert ordinary supported unary results; io:println is instrumentation.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixed coverage spans primitive, subtype, union, singleton-alias and nullable unary operations, all within supported scope.",
+    "Copy/paste coverage gaps: testComplementOperator computes b3 and b4 from a2 instead of a3/a4; testUnaryOperationsWithIntSubtypes computes y5 from x6 instead of x11.",
+    "Only the initial primitive results have @output markers; subsequent coverage relies on assertEquality panicking on failure."
+  ]
+}

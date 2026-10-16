@@ -1,0 +1,18 @@
+{
+  "id": "T0834",
+  "name": "mapping-constructor-expr-test-833706cb84/readonly-field-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Type definition; Function definition",
+    "## Expressions: Mapping constructor — Currently spread-field not supported",
+    "## Expressions: Start action; List constructor; Field access expression; Variable reference",
+    "## Statements: Assignment; Local variable declarations",
+    "## Import declarations: ballerina/lang.array — toStream",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: array:toStream"
+  ],
+  "reason": "The asserted errors concern readonly mapping fields initialized with mutable record/list values or never-readonly future/stream values, incompatible inferred record assignment, and updates to readonly fields/values. These are negative type-system checks within supported mapping constructors, declarations, assignments, field access, start actions and array:toStream calls. No spread fields or excluded langlib methods occur; the document imposes no restriction excluding these readonly mapping checks.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "This is a compile-negative case with inline @error annotations; illegal readonly initializers and updates are the intended assertions."
+  ]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: redeclared symbol 'init'\n --\u003e main.bal:5:5\n  |\n5 |     function init() {} // @error\n  |     ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":5,"EndLine":5}]}

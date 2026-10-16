@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want json-incompatible-struct-p.bal:18, got json-incompatible-struct-p.bal:22
+        stderr:
+        error: '{| json... |}' value cannot be converted to 'nil|{| a: anydata, address: nil|{| anydata... |}, age: int, alive: boolean, children: nil|[......], info: json, marks: nil|[int...], name: string, parent: nil|..., score: float, never... |}'
+                at trigger(json-incompatible-struct-p.bal:22)
+                   main(json-incompatible-struct-p.bal:26)
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

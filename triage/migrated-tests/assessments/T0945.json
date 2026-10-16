@@ -1,0 +1,17 @@
+{
+  "id": "T0945",
+  "name": "native-conversion-test-4a94bbda4e/json-missing-required-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition]",
+    "Expressions: [Method call], [Mapping constructor], [List constructor], [Type test expression]",
+    "Statements: [Local variable declarations], [If/else], [Return], [Panic]",
+    "Subset restrictions / Import declarations: ballerina/lang.value — cloneWithType",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType"
+  ],
+  "reason": "The case converts JSON to a record with cloneWithType and expects failure because the required children field is absent. Although children has a nullable type, it is not optional and has no default. The supported cloneWithType operation, type definitions, constructors, type test and panic cover the asserted conversion-error behavior; no applicable restriction excludes these record fields or recursive record types.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic comment marks the conversion line, but the executable code explicitly panics with the returned conversion error after excluding a successful PersonWithChildren result."
+  ]
+}

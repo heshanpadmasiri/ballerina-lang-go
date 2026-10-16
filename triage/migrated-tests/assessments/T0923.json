@@ -1,0 +1,20 @@
+{
+  "id": "T0923",
+  "name": "multiple-from-clause-test-c70b0738f9/multiple-from-clauses-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: Query expressions \u2014 Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "## Expressions: Supports `list` and `map` as `query-constructor-type`",
+    "## Module-level declarations: Type definition; Function definition",
+    "## Statements: Local variable declarations; Return",
+    "## Expressions: List constructor; Mapping constructor; Field access expression; Equality expression",
+    "## Import declarations: `ballerina/lang.array` \u2014 `toStream`",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `array:toStream`",
+    "## Statements: Destructuring assignment statement \u2014 Only supports wildcard-binding-pattern"
+  ],
+  "reason": "All constructs and asserted unused-variable diagnostics are within the supported query, declaration and expression features. Repeated from clauses, record and tuple binding patterns, nested record bindings, where and let clauses, and list results have no stated query restriction. The stream inputs use explicitly supported array:toStream method syntax. The wildcard-only restriction applies to destructuring assignment statements, not query binding patterns.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error annotations assert unused variables introduced by query binding patterns; the file also defines query-result behavior and a list equality result."
+  ]
+}

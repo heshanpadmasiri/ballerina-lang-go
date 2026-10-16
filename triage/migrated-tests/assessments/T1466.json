@@ -1,0 +1,18 @@
+{
+  "id": "T1466",
+  "name": "type-definitions-test-dce7ce211b/record-type-field-resolving-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists Type test expression, but does not list typeof expression.",
+    "## Module-level declarations: Type definition",
+    "## Expressions: Optional field access expression; Member access expression; Mapping constructor; List constructor",
+    "### Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The case contains typeof expressions in both assertion-failure branches, `(typeof reasons).toString()` and `(typeof right).toString()`. The supported expression list does not cover typeof. These expressions must compile even when successful execution avoids their branches, so this is a feature case regardless of the record-resolution assertions.",
+  "unsupported_constructs": ["typeof expression"],
+  "test_design_notes": [
+    "The main assertions exercise readonly record field resolution, record inclusion, recursive record/union types, optional fields and type narrowing; the unsupported typeof diagnostic expressions broaden the case's scope.",
+    "No @args, @panic or @output markers are present. main executes both tests and expects normal completion; io:println is suppressed instrumentation.",
+    "toString method syntax is explicitly supported; it is the typeof operand that is not covered."
+  ]
+}

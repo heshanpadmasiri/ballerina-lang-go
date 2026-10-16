@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at main.bal:15
+        stderr:
+        fatal[INTERNAL_ERROR]: syntax node *st.RemoteMethodCallActionNode transformed to non-expression node *ast.BLangRemoteMethodCallAction
+          --> main.bal:15:24
+           |
+        15 |     string s = <string>foo->getValue(); // @panic
+           |                        ^^^^^^^^^^^^^^^
+        
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

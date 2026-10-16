@@ -1,0 +1,18 @@
+{
+  "id": "T1555",
+  "name": "worker-fail-test-278d4f50a4/invalid-receive-with-check-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"Local variable declarations\" and \"Return\" are listed; named worker declarations and worker send statements are not listed.",
+    "## Expressions: \"Check expression\", \"Start action\" and \"Wait action\" are listed; worker receive actions are not listed."
+  ],
+  "reason": "The negative test requires named workers and asynchronous/synchronous worker communication, which subset 10 does not cover. Supporting check expressions does not establish support for check applied to worker receives or their diagnostics. This essential unsupported scope determines the whole-case classification.",
+  "unsupported_constructs": [
+    "Named worker declarations, including worker return types",
+    "Worker asynchronous send (->), synchronous send (->>), and receive (<-) actions and their checking diagnostics"
+  ],
+  "test_design_notes": [
+    "Negative compile-time assertions occur in both foo and bar; the second receive has two @error markers while the first has one. No diagnostic text is supplied, so the duplicate marker's intended diagnostics cannot be distinguished.",
+    "No @args, @panic or @output assertions are present."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "T1403",
+  "name": "table-negative-test-f923667200/table-value-any-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: supported constructors include 'List constructor' and 'Mapping constructor'; table constructor expressions are not listed.",
+    "## Expressions / Query expressions: 'Supports `list` and `map` as `query-constructor-type`'.",
+    "## Statements: 'Local variable declarations' and 'Call' are supported.",
+    "## Module-level declarations / Function definition: 'Supports ... required-params ... in the signature'."
+  ],
+  "reason": "Both expected compile errors depend on keyed table constructor expressions (table key(name) [...]) and their contextual compatibility with any. Table constructors are absent from the supported expression list, so this essential construct is outside the documented subset even though local declarations, functions and calls are supported. Negative rejection is in scope only within supported grammar/type behavior.",
+  "unsupported_constructs": ["Keyed table constructor expressions and their contextual typing against any"],
+  "test_design_notes": ["Both @error markers concern the same unsupported table-constructor behavior; no obvious mixed-scope or marker issue.", "No @args, @panic or @output assertions are present."]
+}

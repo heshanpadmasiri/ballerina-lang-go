@@ -1,0 +1,14 @@
+{
+  "Name": "builtin-loading-test-f8091e705a/builtin-loading-test-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/builtin-loading-test-f8091e705a/builtin-loading-test-e.bal",
+  "Project": false,
+  "Id": "T0285",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/builtin-loading-test-f8091e705a/builtin-loading-test-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 2,
+  "Seconds": 1.268
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0712",
+  "name": "list-binding-pattern-test-b87d28a686/list-binding-pattern-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted diagnostics concern list and variable-binding match patterns: unreachable duplicate or subsumed patterns, incompatible list lengths, and inconsistent variables across alternatives. These require match-pattern forms explicitly outside the supported constant and wildcard forms.",
+  "unsupported_constructs": [
+    "Variable-binding match patterns such as var a",
+    "List match patterns, including nested and rest patterns such as var [a, ...b]"
+  ],
+  "test_design_notes": [
+    "This is a negative diagnostic test; its essential unsupported pattern forms prevent whole-case classification as a supported-language bug."
+  ]
+}

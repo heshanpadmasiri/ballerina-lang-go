@@ -1,0 +1,16 @@
+{
+  "Name": "wait-for-all-workers-test-5f151baf9b/wait-for-all-workers-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-workers-test-5f151baf9b/wait-for-all-workers-v",
+  "Project": true,
+  "Id": "T1532",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-workers-test-5f151baf9b/wait-for-all-workers-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-workers-test-5f151baf9b/wait-for-all-workers-v/Dependencies.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/wait-for-all-workers-test-5f151baf9b/wait-for-all-workers-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.034
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "type-guard-test-74355f2266/type-narrow-3-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-narrow-3-e.bal",
+  "Project": false,
+  "Id": "T1481",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/type-narrow-3-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.092
+}

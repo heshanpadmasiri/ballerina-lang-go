@@ -1,0 +1,23 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:62-62 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:62-62 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:66-66 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:66-66 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:69-69 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:69-69 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:72-72 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:72-72 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:262-262 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-variable-reference-semantics-negative-e.bal:262-262 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at record-variable-reference-semantics-negative-e.bal:95 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at record-variable-reference-semantics-negative-e.bal:96 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at record-variable-reference-semantics-negative-e.bal:97 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at record-variable-reference-semantics-negative-e.bal:106 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at record-variable-reference-semantics-negative-e.bal:108 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at record-variable-reference-semantics-negative-e.bal:123 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at record-variable-reference-semantics-negative-e.bal:128 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at record-variable-reference-semantics-negative-e.bal:265 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

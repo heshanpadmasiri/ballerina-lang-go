@@ -1,0 +1,13 @@
+{
+  "id": "T1043",
+  "name": "numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-union-3055-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition; Supports required-params",
+    "## Statements: Local variable declarations; Call",
+    "## Expressions: Type cast expression; Variable reference; Literal — Currently support nil-literal, boolean-literal, numeric-literal and string-literal only"
+  ],
+  "reason": "The case expects a panic when casting an int|boolean value containing 3055 to byte|boolean, since that integer is outside byte's range. Type casts, local declarations, numeric literals and required-parameter function calls are supported, and the supplied restrictions exclude neither union casts nor their runtime range/type failures. The entire asserted behavior is within scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment marks the expected runtime failure; no explicit assertion is present in the source."]
+}

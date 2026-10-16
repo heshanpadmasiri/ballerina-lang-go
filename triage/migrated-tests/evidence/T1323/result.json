@@ -1,0 +1,14 @@
+{
+  "Name": "return-stmt-test-af437eb847/return-stmt-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/return-stmt-test-af437eb847/return-stmt-v.bal",
+  "Project": false,
+  "Id": "T1323",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/return-stmt-test-af437eb847/return-stmt-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.056
+}

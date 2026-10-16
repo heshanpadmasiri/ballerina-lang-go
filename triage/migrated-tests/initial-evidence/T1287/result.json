@@ -1,0 +1,14 @@
+{
+  "Name": "reg-exp-type-test-eebfd88fd8/regexp-type-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/reg-exp-type-test-eebfd88fd8/regexp-type-v.bal",
+  "Project": false,
+  "Id": "T1287",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/reg-exp-type-test-eebfd88fd8/regexp-type-v.bal"
+  ],
+  "Args": null,
+  "Status": "timeout",
+  "ExitCode": 2,
+  "Seconds": 25.028
+}

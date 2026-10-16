@@ -1,0 +1,14 @@
+{
+  "Name": "record-def-negative-test-2a404858e4/record-destructure-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-def-negative-test-2a404858e4/record-destructure-negative-e.bal",
+  "Project": false,
+  "Id": "T1258",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-def-negative-test-2a404858e4/record-destructure-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.038
+}

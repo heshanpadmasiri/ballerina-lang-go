@@ -1,0 +1,15 @@
+{
+  "id": "T1021",
+  "name": "numeric-conversion-test-6b3e1e5e00/infinite-float-union-as-int-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition",
+    "## Statements: Local variable declarations; Call; Panic",
+    "## Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Expressions: Type cast expression; Variable reference",
+    "## Operators: Multiplicative ops `*`, `%`, `/`"
+  ],
+  "reason": "The case computes positive float infinity through supported division, stores it in a float|boolean union, and asserts a panic when casting that value to int. Numeric literals, division, local declarations, calls and type casts are supported without a restriction excluding infinite values or union-source casts. No restricted langlib call is involved.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment asserts failure at the int cast; there is no explicit runtime assertion in the source."]
+}

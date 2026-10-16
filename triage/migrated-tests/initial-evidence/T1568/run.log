@@ -1,0 +1,155 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/send-receive-failure-type-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:32:5
+           |
+        32 |     worker w1 returns boolean|ErrorA|ErrorB {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |         ErrorA|ErrorB e = error ErrorA("error A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |         if b { return e; }
+           |         ^^^^^^^^^^^^^^^^^^
+        35 |         11 -> w2;
+           |         ^^^^^^^^^
+        36 |         return true;
+           |         ^^^^^^^^^^^^
+        37 |     }
+           |     ^
+        38 |     worker w2 {
+           |     ^^^^^^^^^^^
+        39 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:44:5
+           |
+        44 |     worker w1 returns boolean|ErrorA|ErrorB {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |         ErrorA|ErrorB|boolean e = error ErrorA("error A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |         if b { return e; }
+           |         ^^^^^^^^^^^^^^^^^^
+        47 |         22 -> w2;
+           |         ^^^^^^^^^
+        48 |         return true;
+           |         ^^^^^^^^^^^^
+        49 |     }
+           |     ^
+        50 |     worker w2 {
+           |     ^^^^^^^^^^^
+        51 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        52 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:56:5
+           |
+        56 |     worker w1 returns boolean|ErrorA|ErrorB {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        57 |         int i = 2;
+           |         ^^^^^^^^^^
+        58 |         _ = <- w2;
+           |         ^^^^^^^^^^
+        59 |         if 0 > 1 { return true; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        60 |         i = i + 1;
+           |         ^^^^^^^^^^
+        61 |         _ = <- w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        62 |         if b { return error ErrorA("error A"); }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        63 |         _ = <- w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        64 |         if c { return error ErrorB("error B"); }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        65 |         _ = <- w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        66 |         _ = <- w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        67 |         _ = <- w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        68 |         return true;
+           |         ^^^^^^^^^^^^
+        69 |     }
+           |     ^
+        70 |     worker w2 {
+           |     ^^^^^^^^^^^
+        71 |         () _ = 1 ->> w1;
+           |         ^^^^^^^^^^^^^^^^
+        72 |         () _ = 2 ->> w1;
+           |         ^^^^^^^^^^^^^^^^
+        73 |         () p = 3 ->> w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        74 |         () q = 4 ->> w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        75 |         ErrorA|ErrorB? r = 5 ->> w1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        76 |         error? s = 6 ->> w1;
+           |         ^^^^^^^^^^^^^^^^^^^^
+        77 |         println(p);
+           |         ^^^^^^^^^^^
+        78 |         println(q);
+           |         ^^^^^^^^^^^
+        79 |         println(r);
+           |         ^^^^^^^^^^^
+        80 |         println(s);
+           |         ^^^^^^^^^^^
+        81 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:5:5
+           |
+         5 |     worker w1 returns boolean|ErrorA|ErrorB {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         6 |         int i = 2;
+           |         ^^^^^^^^^^
+         7 |         i -> w2;
+           |         ^^^^^^^^
+         8 |         if 0 > 1 { return true; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         i = i + 1;
+           |         ^^^^^^^^^^
+        10 |         i -> w2;
+           |         ^^^^^^^^
+        11 |         if b { return error ErrorA("error A"); }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        12 |         44 -> w2;
+           |         ^^^^^^^^^
+        13 |         if c { return error ErrorB("error B"); }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |         "xxx" -> w2;
+           |         ^^^^^^^^^^^^
+        15 |         "yyy" -> w2;
+           |         ^^^^^^^^^^^^
+        16 |         "zzz" -> w2;
+           |         ^^^^^^^^^^^^
+        17 |         return true;
+           |         ^^^^^^^^^^^^
+        18 |     }
+           |     ^
+        19 |     worker w2 {
+           |     ^^^^^^^^^^^
+        20 |         int _ = <- w1;
+           |         ^^^^^^^^^^^^^^
+        21 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        23 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |         string|ErrorA|ErrorB|error:NoMessage m = <- w1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |         string|error n = <- w1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        26 |         println(m);
+           |         ^^^^^^^^^^^
+        27 |         println(n);
+           |         ^^^^^^^^^^^
+        28 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

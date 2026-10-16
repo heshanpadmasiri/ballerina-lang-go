@@ -1,0 +1,14 @@
+{
+  "Name": "array-mutability-test-f73ad51ac1/array-mutability-union-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-mutability-test-f73ad51ac1/array-mutability-union-p.bal",
+  "Project": false,
+  "Id": "T0174",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-mutability-test-f73ad51ac1/array-mutability-union-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.026
+}

@@ -1,0 +1,34 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "field-access-test-e922449994/field-access-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'ASSERTION_ERROR_REASON'
+          --> field-access-v.bal:19:1
+           |
+        19 | const ASSERTION_ERROR_REASON = "AssertionError";
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'jsonTypedRecordFields'
+           --> field-access-v.bal:633:5
+            |
+        633 |     error? jsonTypedRecordFields = testFieldAccessOnJsonTypedRecordFields();
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'laxFieldAccess'
+           --> field-access-v.bal:619:5
+            |
+        619 |     boolean|error? laxFieldAccess = testLaxFieldAccessWithCheckOnVariableDefinedAtModuleLevel();
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'negativeLaxFieldAccess'
+           --> field-access-v.bal:620:5
+            |
+        620 |     boolean|error? negativeLaxFieldAccess = negativeTestLaxFieldAccessWithCheckOnVariableDefinedAtModuleLevel();
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'optionalJsonTypedRecordFields'
+           --> field-access-v.bal:636:5
+            |
+        636 |     error? optionalJsonTypedRecordFields = testOptionalFieldAccessOnOptionalJsonTypedRecordFields();
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

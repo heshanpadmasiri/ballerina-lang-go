@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "record-def-negative-test-2a404858e4/record-destructure-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-destructure-negative-e.bal:11:5
+           |
+        11 |     {firstName:g, lastName:h, _} = fooPerson(1, false); // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-destructure-negative-e.bal:34:5
+           |
+        34 |     {a: empOneName, age: [{b: empOneAge}]} = emp; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> record-destructure-negative-e.bal:39:5
+           |
+        39 |     {age:empAge, name:{first:empName}} = empTwo; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-destructure-negative-e.bal:11:5
+           |
+        11 |     {firstName:g, lastName:h, _} = fooPerson(1, false); // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-destructure-negative-e.bal:34:5
+           |
+        34 |     {a: empOneName, age: [{b: empOneAge}]} = emp; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> record-destructure-negative-e.bal:39:5
+           |
+        39 |     {age:empAge, name:{first:empName}} = empTwo; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

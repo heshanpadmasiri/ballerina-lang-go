@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "comment-stmt-test-6d92f6e13d/comment-stmt-test-6d92f6e13d-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'concat'
+          --> comment-stmt-test-6d92f6e13d-v.bal:13:5
+           |
+        13 |     xml concat = xml:concat(x);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'endName'
+         --> comment-stmt-test-6d92f6e13d-v.bal:8:5
+          |
+        8 |     string endName = "bar"; // defining end  name inline
+          |     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'startName'
+         --> comment-stmt-test-6d92f6e13d-v.bal:5:5
+          |
+        5 |     string startName = "foo";
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'strConcat'
+          --> comment-stmt-test-6d92f6e13d-v.bal:18:9
+           |
+        18 |         string strConcat = "day is wrong!";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

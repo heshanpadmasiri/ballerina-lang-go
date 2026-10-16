@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'v'\n --\u003e modules/B/functions.bal:1:25\n  |\n1 | public function println((any|error)... v) {\n  |                         ^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"modules/B/functions.bal","StartLine":1,"EndLine":1}]}

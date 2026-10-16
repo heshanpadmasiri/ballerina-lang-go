@@ -1,0 +1,29 @@
+{
+  "id": "T0027",
+  "name": "anonymous-record-negative-test-493ce47c85/anon-record-semantic-analysis-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Module-level declarations",
+      "quote": "- [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)"
+    },
+    {
+      "heading": "Statements",
+      "quote": "- [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)"
+    },
+    {
+      "heading": "Supported language features (subset 10)",
+      "quote": "the tests and examples that define what is supported in this subset."
+    }
+  ],
+  "reason": "The intended rejection is incompatible anonymous-record field defaults: string literals assigned to int fields and an integer assigned to a string field. This is a semantic negative test, not an unsupported-syntax test. Function declarations, local declarations, record/type declarations, class fields, panic, error construction, and mapping/list constructors have corresponding supported entries. However, the whole case also embeds these records in table and stream type descriptors, neither of which is covered by the supplied subset specification. Their presence prevents treating every construct as expressly supported; the general type-definition entry does not enumerate all parameterized type constructors.",
+  "unsupported_constructs": [
+    "table<record ...> descriptors, including readonly-intersection constraints: not covered",
+    "stream<record ...>, stream<record ...[]> and optional/intersection variants: not covered"
+  ],
+  "test_design_notes": [
+    "Mixed case: ordinary record-default type errors appear alongside uncovered table/stream contexts.",
+    "Several lines repeat @error markers to represent multiple invalid defaults; verify diagnostic-count conventions separately.",
+    "No obvious malformed migration syntax or stray marker is visible; deliberate incompatible defaults are the intended errors."
+  ]
+}

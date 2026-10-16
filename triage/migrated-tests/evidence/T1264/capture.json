@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: AssertionError\n        at testRemoveRequiredOpen(record-remove-required-v.bal:31)\n           main(record-remove-required-v.bal:54)\n","Diagnostics":null}

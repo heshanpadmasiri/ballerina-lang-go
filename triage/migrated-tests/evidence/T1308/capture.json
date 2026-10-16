@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible type: expected string, got [string, int, never...]\n --\u003e multi-value-in-single-context-e.bal:2:13\n  |\n2 |     return [split(s), 5, \"ss\"]; // @error\n  |             ^^^^^^^^\n\n","Diagnostics":[{"File":"multi-value-in-single-context-e.bal","StartLine":2,"EndLine":2}]}

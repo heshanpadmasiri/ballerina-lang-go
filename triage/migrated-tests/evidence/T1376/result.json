@@ -1,0 +1,14 @@
+{
+  "Name": "struct-access-with-index-test-2fbf1b5e54/struct-access-with-index-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-access-with-index-test-2fbf1b5e54/struct-access-with-index-v.bal",
+  "Project": false,
+  "Id": "T1376",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-access-with-index-test-2fbf1b5e54/struct-access-with-index-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.112
+}

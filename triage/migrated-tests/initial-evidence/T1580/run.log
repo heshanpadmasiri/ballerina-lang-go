@@ -1,0 +1,53 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: stderr does not contain a runtime error message for @panic at multiple-sync-send-with-panic-in-send-p.bal:7
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> multiple-sync-send-with-panic-in-send-p.bal:2:5
+           |
+         2 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+         3 |     worker w1 returns int {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+         4 |         int a = 10;
+           |         ^^^^^^^^^^^
+         5 |         () r1 = a ->> w2;
+           |         ^^^^^^^^^^^^^^^^^
+         6 |         if 0 < 1 {
+           |         ^^^^^^^^^^
+         7 |             error err = error("err from panic from w1 w1"); // @panic
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         8 |             panic err;
+           |             ^^^^^^^^^^
+         9 |         }
+           |         ^
+        10 |         () r2 = a + 10 ->> w2;
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        11 |         if 0 < 1 {
+           |         ^^^^^^^^^^
+        12 |             error err = error("err from panic from w1 w1");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |             panic err;
+           |             ^^^^^^^^^^
+        14 |         }
+           |         ^
+        15 |         return a;
+           |         ^^^^^^^^^
+        16 |     }
+           |     ^
+        17 | 
+           | 
+        18 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+        19 |     worker w2 {
+           |     ^^^^^^^^^^^
+        20 |         int b = 0;
+           |         ^^^^^^^^^^
+        21 |         b = <- w1;
+           |         ^^^^^^^^^^
+        22 |         b = <- w1;
+           |         ^^^^^^^^^^
+        23 |     }
+           |     ^
+        
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

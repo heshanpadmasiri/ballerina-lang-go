@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "type-guard-test-74355f2266/always-true-hint-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> always-true-hint-v.bal:21:17
+           |
+        21 |     byte code = x.detail().code;
+           |                 ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

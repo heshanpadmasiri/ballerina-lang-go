@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: stderr does not contain a runtime error message for @panic at wait-test-13-p.bal:15
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+         --> wait-test-13-p.bal:6:22
+          |
+        6 |     future<int> f1 = @strand{thread:"any"} start add_panic(20, 66);
+          |                      ^^^^^^^^^^^^^^^^^^^^^
+        
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

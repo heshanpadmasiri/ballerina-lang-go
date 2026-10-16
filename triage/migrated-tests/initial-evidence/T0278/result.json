@@ -1,0 +1,15 @@
+{
+  "Name": "bstream-value-test-dc50cbbb1f/stream-value-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-value-v",
+  "Project": true,
+  "Id": "T0278",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-value-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/bstream-value-test-dc50cbbb1f/stream-value-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.068
+}

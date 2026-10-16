@@ -1,0 +1,14 @@
+{
+  "Name": "function-pointers-test-229c021698/function-pointer-with-closure-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/function-pointer-with-closure-v.bal",
+  "Project": false,
+  "Id": "T0561",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/function-pointer-with-closure-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.047
+}

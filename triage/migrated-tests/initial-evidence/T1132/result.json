@@ -1,0 +1,15 @@
+{
+  "Name": "open-record-test-d43d4bfeae/attached-functions-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/attached-functions-e",
+  "Project": true,
+  "Id": "T1132",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/attached-functions-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/attached-functions-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.042
+}

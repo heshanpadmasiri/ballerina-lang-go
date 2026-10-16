@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-mutability-test-4a07e00b3d/covariance-boolean-or-float-or-record-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/covariance-boolean-or-float-or-record-p.bal",
+  "Project": false,
+  "Id": "T1441",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/covariance-boolean-or-float-or-record-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.031
+}

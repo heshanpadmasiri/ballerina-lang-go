@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "client-object-test-cc3f260977/endpoint-project-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+         --> modules/mod.ab/pkg-a.bal:2:29
+          |
+        2 |     remote function invoke1(string a) returns error? {
+          |                             ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

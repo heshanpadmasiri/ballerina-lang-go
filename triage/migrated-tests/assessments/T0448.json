@@ -1,0 +1,12 @@
+{
+  "id": "T0448",
+  "name": "error-destructure-negetive-test-6c1d1c393d/error_destructure_binding_pattern_error_cause-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)",
+    "Expressions: Error constructor"
+  ],
+  "reason": "The expected compile error targets nested error destructuring in an assignment. Error binding patterns, including the nested cause pattern, fall outside the explicit wildcard-only destructuring restriction, even though the right-hand error constructors are supported.",
+  "unsupported_constructs": ["Error destructuring assignment with nested error cause binding pattern: error(errorMsg, error(errorCause))"],
+  "test_design_notes": ["The @error marker asserts rejection; there are no @args, @panic, or @output assertions. The negative case depends on unsupported destructuring syntax."]
+}

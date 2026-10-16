@@ -1,0 +1,12 @@
+{
+  "id": "T0431",
+  "name": "elvis-expression-test-1c927d1f30/elvis-expression-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists Conditional expression and Nil lifted expression, but does not list Elvis expression.",
+    "## Operators: Binary operators lists equality, multiplicative, bitwise, relational, additive, shift and logical operators; ?: is not listed."
+  ],
+  "reason": "The negative tests require Elvis (?:) expression typing and rejection rules, including nested optional unions and invalid operand types. Elvis expressions are absent from the subset's positive expression/operator lists, so this essential behavior is not covered.",
+  "unsupported_constructs": ["Elvis expressions (?:) and their static typing/rejection rules"],
+  "test_design_notes": ["The file asserts compile-time errors with @error; it has no @args, @panic or @output assertions. Invalid code alone is not the reason for classification."]
+}

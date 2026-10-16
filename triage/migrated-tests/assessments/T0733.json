@@ -1,0 +1,19 @@
+{
+  "id": "T0733",
+  "name": "locks-in-main-test-617c6c002d/worker-send-receive-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"- [Lock statement](https://ballerina.io/spec/lang/master/#lock-stmt)\"; named worker declarations and worker send statements are absent from the supported list.",
+    "## Expressions: \"- [Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are listed, but worker send and receive actions are not."
+  ],
+  "reason": "The case asserts diagnostics for synchronous and asynchronous worker sends and worker receives inside locks. Although lock statements are supported, named workers and their communication actions are not covered by subset 10, and these are essential to every asserted lock/communication rejection.",
+  "unsupported_constructs": [
+    "Named worker declarations",
+    "Synchronous worker send action (->>)",
+    "Asynchronous worker send action (->)",
+    "Worker receive action (<-) and its prohibition inside locks"
+  ],
+  "test_design_notes": [
+    "Negative compilation case with @error markers; one marker also covers an unused-variable warning."
+  ]
+}

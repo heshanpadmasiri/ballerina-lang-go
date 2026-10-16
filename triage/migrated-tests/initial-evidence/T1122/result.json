@@ -1,0 +1,14 @@
+{
+  "Name": "open-record-negative-test-5c62171999/open-record-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-negative-test-5c62171999/open-record-negative-e.bal",
+  "Project": false,
+  "Id": "T1122",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-negative-test-5c62171999/open-record-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.076
+}

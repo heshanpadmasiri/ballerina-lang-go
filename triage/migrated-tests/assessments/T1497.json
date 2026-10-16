@@ -1,0 +1,17 @@
+{
+  "id": "T1497",
+  "name": "unary-expr-test-6a6cdd6e72/unary-operations-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Operators: Unary operators — logical `!`; numeric ops `+`, `-`; bitwise complement `~`",
+    "## Module-level declarations: Type definition; Constant declarations; Function definition",
+    "## Statements: Assignment; Local variable declarations; Return",
+    "## Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only; Mapping constructor; Variable reference",
+    "# Subset restrictions / ## Import declarations: `ballerina/lang.int` — `Signed8`, `Unsigned8`"
+  ],
+  "reason": "The case checks rejection and static result typing of explicitly supported unary operators on JSON, numeric subtypes, decimal/float values and finite/union types. Its declarations, literals, mappings and assignments are supported, and the referenced int subtypes are explicitly allowed. Negative type errors remain within the supported grammar and type system; no applicable restriction excludes these checks.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case: each intended failure has an @error marker; no @args, @panic or @output behavior is asserted."
+  ]
+}

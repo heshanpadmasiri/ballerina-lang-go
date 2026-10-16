@@ -1,0 +1,15 @@
+{
+  "id": "T1004",
+  "name": "never-type-test-35205a329e/never-code-analysis-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"; \"Type definition\"",
+    "Statements: \"Local variable declarations\", \"Return\", \"Panic\", \"Call\"",
+    "Expressions: \"Call\", \"Error constructor\", \"Check expression\", \"Mapping constructor\", \"Anonymous function expression\", \"Nested expressions (`(expression)`)\""
+  ],
+  "reason": "The negative case asserts never-type checking for missing returns, never-valued calls in panic/check/checkpanic/argument/return contexts, grouped expressions, uninhabitable recursive records, union aliases, and anonymous function returns. These use supported function/type definitions, statements and expressions; no applicable subset restriction excludes never, unions, record inclusions, or these rejection rules. Illegal uses remain within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Expected diagnostics are marked with @error; Bar initialization is explicitly expected to remain valid. Assessment covers these asserted static behaviors, not execution."
+  ]
+}

@@ -1,0 +1,42 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: stderr does not contain a runtime error message for @panic at defaultable-too-many-p.bal:2
+        stderr:
+        error[SEMANTIC_ERROR]: unused variable 'val'
+         --> defaultable-too-many-p.bal:2:22
+          |
+        2 | public function main(int val, string s = "default", int i = 1, float j = 2.0, decimal k = 1e100, byte l = 34) { // @panic
+          |                      ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+         --> defaultable-too-many-p.bal:2:31
+          |
+        2 | public function main(int val, string s = "default", int i = 1, float j = 2.0, decimal k = 1e100, byte l = 34) { // @panic
+          |                               ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'i'
+         --> defaultable-too-many-p.bal:2:53
+          |
+        2 | public function main(int val, string s = "default", int i = 1, float j = 2.0, decimal k = 1e100, byte l = 34) { // @panic
+          |                                                     ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'j'
+         --> defaultable-too-many-p.bal:2:64
+          |
+        2 | public function main(int val, string s = "default", int i = 1, float j = 2.0, decimal k = 1e100, byte l = 34) { // @panic
+          |                                                                ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'k'
+         --> defaultable-too-many-p.bal:2:79
+          |
+        2 | public function main(int val, string s = "default", int i = 1, float j = 2.0, decimal k = 1e100, byte l = 34) { // @panic
+          |                                                                               ^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'l'
+         --> defaultable-too-many-p.bal:2:98
+          |
+        2 | public function main(int val, string s = "default", int i = 1, float j = 2.0, decimal k = 1e100, byte l = 34) { // @panic
+          |                                                                                                  ^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

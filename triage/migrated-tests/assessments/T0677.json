@@ -1,0 +1,19 @@
+{
+  "id": "T0677",
+  "name": "isolated-worker-test-8e649817ff/strand-deprecation-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: the supported statement list does not include named worker declarations.",
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\" is supported, but the expression list does not include object constructor expressions.",
+    "## Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"."
+  ],
+  "reason": "This negative test asserts rejection of deprecated @strand attachments on start actions and named workers. Named worker declarations in f5–f8 are outside the subset's positive statement list; the object constructor expressions in f3, f4 and f8 are also outside its positive expression list. General annotation and start-action support does not establish coverage of these essential worker cases.",
+  "unsupported_constructs": [
+    "Named worker declarations, including @strand attachments on workers",
+    "Object constructor expressions, including client object constructors"
+  ],
+  "test_design_notes": [
+    "The @error markers assert compile-time diagnostics; no runtime assertion is present.",
+    "Negative rejection tests can be in scope, but this whole case requires constructs absent from the supported positive lists."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0287",
+  "name": "builtin-operations-test-357c94d6b5/builtin-operations-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Statements: Local variable declarations",
+    "Expressions: Method call",
+    "Operators: Multiplicative ops `*`, `%`, `/`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `float:isFinite`, `float:isInfinite`, `float:isNaN`, `float:sum`, `float:max`, `float:min` and `float:avg`",
+    "Subset restrictions / Import declarations: `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString`"
+  ],
+  "reason": "This negative compilation case expects rejection of isNaN(), isInfinite(), and isFinite() calls on int receivers. Method-call syntax, local declarations, and integer division are supported; these predicates are supported float methods, not int methods. Rejecting their use on int receivers is a type-system negative test within scope, not a request to implement unsupported int predicates.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Five calls carry @error markers. There are no @args, @panic, or @output assertions.",
+    "The 0 / 0 and 7 / 0 expressions occur in a compile-negative function; the case does not assert NaN/Infinity results or division-by-zero runtime behavior."
+  ]
+}

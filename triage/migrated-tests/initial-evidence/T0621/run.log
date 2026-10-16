@@ -1,0 +1,58 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:21-21 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:21-21 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:27-27 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:27-27 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:30-30 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:30-30 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:33-33 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:33-33 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:37-37 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:37-37 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:40-40 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:40-40 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:43-43 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:43-43 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:50-50 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:50-50 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:97-97 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:97-97 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:105-105 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:105-105 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:109-109 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:109-109 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:156-156 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:156-156 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:165-165 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:165-165 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:168-168 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:168-168 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:187-187 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:187-187 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:188-188 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at group-by-negative-e.bal:188-188 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:39 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:42 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:45 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:52 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:78 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:99 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:107 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:111 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:124 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:127 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:130 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:133 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:136 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:139 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:145 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:148 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:166 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:169 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at group-by-negative-e.bal:191 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

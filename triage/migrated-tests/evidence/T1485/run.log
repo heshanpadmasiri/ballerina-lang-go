@@ -1,0 +1,40 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "type-reference-tests-fcb8264969/type-reference-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> type-reference-e.bal:59:19
+           |
+        59 |     BTable tab2 = table key(a) [{a: "a"}];
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> type-reference-e.bal:51:13
+           |
+        51 | type BTable table<map<int>>|BarTable;
+           |             ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> type-reference-e.bal:52:15
+           |
+        52 | type BarTable table<BarRec> key(a);
+           |               ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> type-reference-e.bal:59:19
+           |
+        59 |     BTable tab2 = table key(a) [{a: "a"}];
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> type-reference-e.bal:51:13
+           |
+        51 | type BTable table<map<int>>|BarTable;
+           |             ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> type-reference-e.bal:52:15
+           |
+        52 | type BarTable table<BarRec> key(a);
+           |               ^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

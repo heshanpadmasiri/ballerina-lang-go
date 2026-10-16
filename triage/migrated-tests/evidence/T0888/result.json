@@ -1,0 +1,14 @@
+{
+  "Name": "member-access-test-10fc9644e0/member-access-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/member-access-test-10fc9644e0/member-access-v.bal",
+  "Project": false,
+  "Id": "T0888",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/member-access-test-10fc9644e0/member-access-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

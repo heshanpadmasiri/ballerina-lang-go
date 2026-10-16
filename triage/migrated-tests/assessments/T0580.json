@@ -1,0 +1,18 @@
+{
+  "id": "T0580",
+  "name": "function-with-included-record-param-4dd158ffbe/included-record-params-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition",
+    "Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.",
+    "Object/class definitions: Supports included-record-param, rest-param and defaultable-param in methods",
+    "Expressions: Field access expression; Optional field access expression; Member access expression; Mapping constructor; New expression"
+  ],
+  "reason": "This negative case checks included-record parameter declarations and argument binding: duplicate exposed names, missing or invalid arguments, forbidden mixtures of whole-record and field arguments, invalid parameter ordering/types, and invalid record field access. Included record parameters and named calls to these statically known functions and class methods are supported. Record types, optional never fields, open/closed rest fields, and the remaining expressions have no applicable exclusion. Rejection of undefined Boo and nonrecord included parameters is within the supported declaration/type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error annotations assert compile-time rejection; invalid declarations and calls do not by themselves make this a feature case.",
+    "Some calls intentionally exercise recovery after invalid included parameter types without asserting additional errors."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0182",
+  "name": "array-test-774a6d4802/array-cyclic-p2-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: 'Class definition' and 'Supports `object-field`, `method-defn` and `object-type-inclusion` members'",
+    "Expressions: 'New expression'",
+    "Statements: 'Panic'"
+  ],
+  "reason": "The @panic assertion depends on handling unbounded mutually recursive object initialization as a language panic: constructing Q1 constructs P1, which constructs Q1 again without a base case. Although classes and new expressions are supported, subset10 does not cover stack-exhaustion conversion to a language panic. Support for the panic statement does not establish that execution behavior.",
+  "unsupported_constructs": [
+    "Language-panic behavior for stack exhaustion during mutually recursive class initialization"
+  ],
+  "test_design_notes": [
+    "The RHS new in arr[3] = new recursively initializes objects before an array insertion can complete, so this does not isolate array gap-filling behavior.",
+    "There are no @args or @output assertions."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "worker-test-0f3493dd03/12-future-race-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/12-future-race-v.bal",
+  "Project": false,
+  "Id": "T1597",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/12-future-race-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

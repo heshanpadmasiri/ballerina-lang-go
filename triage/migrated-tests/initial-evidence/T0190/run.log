@@ -1,0 +1,93 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "arrow-expr-test-733bf0507c/arrow-expressions-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'integerVar'
+           --> arrow-expressions-v.bal:163:10
+            |
+        163 |         (integerVar, stringVar) => (integerVar2, stringVar2) =>
+            |          ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar'
+           --> arrow-expressions-v.bal:172:10
+            |
+        172 |         (integerVar, stringVar) => (integerVar2, stringVar2) =>
+            |          ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar'
+           --> arrow-expressions-v.bal:182:10
+            |
+        182 |         (integerVar, stringVar) => (integerVar2, stringVar2) =>
+            |          ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar2'
+           --> arrow-expressions-v.bal:156:37
+            |
+        156 |         (integerVar, stringVar) => (integerVar2, stringVar2) => stringVar + integerVar.toString();
+            |                                     ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar2'
+           --> arrow-expressions-v.bal:163:37
+            |
+        163 |         (integerVar, stringVar) => (integerVar2, stringVar2) =>
+            |                                     ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar2'
+           --> arrow-expressions-v.bal:172:37
+            |
+        172 |         (integerVar, stringVar) => (integerVar2, stringVar2) =>
+            |                                     ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar2'
+           --> arrow-expressions-v.bal:182:37
+            |
+        182 |         (integerVar, stringVar) => (integerVar2, stringVar2) =>
+            |                                     ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar3'
+           --> arrow-expressions-v.bal:164:14
+            |
+        164 |             (integerVar3, stringVar3) => stringVar + stringVar2 + stringVar3;
+            |              ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar3'
+           --> arrow-expressions-v.bal:173:14
+            |
+        173 |             (integerVar3, stringVar3) => (integerVar4, stringVar4) => stringVar + stringVar2 + stringVar3 + stringVar4;
+            |              ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar3'
+           --> arrow-expressions-v.bal:183:23
+            |
+        183 |             function (int integerVar3, string stringVar3) returns function (int, string) returns string {
+            |                       ^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar4'
+           --> arrow-expressions-v.bal:173:43
+            |
+        173 |             (integerVar3, stringVar3) => (integerVar4, stringVar4) => stringVar + stringVar2 + stringVar3 + stringVar4;
+            |                                           ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'integerVar4'
+           --> arrow-expressions-v.bal:184:25
+            |
+        184 |                 return (integerVar4, stringVar4) => stringVar + stringVar2 + stringVar3 + stringVar4;
+            |                         ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'param2'
+          --> arrow-expressions-v.bal:93:58
+           |
+        93 |     function (int, string) returns int lambda = (param1, param2) => closureVar + param1;
+           |                                                          ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'param2'
+          --> arrow-expressions-v.bal:99:60
+           |
+        99 |     function (int, string) returns float lambda = (param1, param2) => <float>closureVar + <float>param1;
+           |                                                            ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'stringVar2'
+           --> arrow-expressions-v.bal:156:50
+            |
+        156 |         (integerVar, stringVar) => (integerVar2, stringVar2) => stringVar + integerVar.toString();
+            |                                                  ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

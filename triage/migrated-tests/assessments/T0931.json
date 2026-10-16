@@ -1,0 +1,17 @@
+{
+  "id": "T0931",
+  "name": "multiple-where-clause-with-var-type-test-98909c64ee/multiple-where-clauses-with-var-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions: List constructor; Mapping constructor; Field access expression; Member access expression; Equality expression",
+    "Module-level declarations: Type definition; Function definition",
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern"
+  ],
+  "reason": "Both queries use supported from, where and select clauses over record arrays. Their asserted results require nested iteration in input order, consecutive filtering, inferred simple and record bindings, and construction of selected records. No query restriction excludes repeated clauses or record binding patterns; the wildcard-only restriction applies to destructuring assignment statements, which this case does not use.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println only exposes asserted field values.",
+    "Assertions check two ordered rows from the simple-binding query and the matching Operations row from the record-binding query; they do not explicitly assert result lengths."
+  ]
+}

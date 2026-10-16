@@ -1,0 +1,14 @@
+{
+  "Name": "group-by-clause-test-38c059a6f0/group-by-list-ctr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/group-by-clause-test-38c059a6f0/group-by-list-ctr-v.bal",
+  "Project": false,
+  "Id": "T0620",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/group-by-clause-test-38c059a6f0/group-by-list-ctr-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.195
+}

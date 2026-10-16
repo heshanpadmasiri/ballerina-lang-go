@@ -1,0 +1,35 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	1
+        	2
+        	3
+        	10
+        	Ten
+        	{"Five":5}
+        	Ballerina
+        	{"f":"Ballerina"}
+        	{}
+        	{g:}
+        	[1,2]
+        	[3,4]
+        	[2,"Two"]
+        	{"k":"v"}
+        	{"k":1}
+        	Ballerina
+        	10
+        	{"f":"Ballerina"}
+        	{g:}
+        	error Err ("reason")
+        	4
+        	5
+        	6
+        	[4,5,6]
+        	[10,20]
+        	<name>ballerina</name>
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,14 @@
+{
+  "Name": "array-access-expr-test-36e8f0c67c/access-primitive-as-array-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-access-expr-test-36e8f0c67c/access-primitive-as-array-e.bal",
+  "Project": false,
+  "Id": "T0125",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-access-expr-test-36e8f0c67c/access-primitive-as-array-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.061
+}

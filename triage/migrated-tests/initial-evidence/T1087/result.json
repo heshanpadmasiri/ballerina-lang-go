@@ -1,0 +1,14 @@
+{
+  "Name": "object-type-reference-test-19fd51d776/object-inclusion-with-qualifiers-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-inclusion-with-qualifiers-v.bal",
+  "Project": false,
+  "Id": "T1087",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-inclusion-with-qualifiers-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.073
+}

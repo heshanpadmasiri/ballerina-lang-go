@@ -1,0 +1,14 @@
+{
+  "Name": "checked-expr-negative-test-764bc995e0/checked-expr-readonly-union-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/checked-expr-negative-test-764bc995e0/checked-expr-readonly-union-e.bal",
+  "Project": false,
+  "Id": "T0311",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/checked-expr-negative-test-764bc995e0/checked-expr-readonly-union-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

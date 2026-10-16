@@ -1,0 +1,18 @@
+{
+  "id": "T1342",
+  "name": "selectively-immutable-type-test-08053ceb2e/immutable-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions \u2192 Mapping constructor: \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\"",
+    "Subset restrictions \u2192 Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.string lists Char but not RegExp."
+  ],
+  "reason": "The whole negative case includes essential unsupported constructs: mapping spreads exercise readonly compatibility and rejection, and the final asserted rejection depends on string:RegExp, which is absent from the permitted lang.string types. Either suffices for feature classification despite other supported readonly checks.",
+  "unsupported_constructs": [
+    "Mapping spread fields ...rec and ...y in readonly initialization/cast rejection checks.",
+    "string:RegExp in the asserted unsupported readonly intersection (stream<int>|string:RegExp) & readonly."
+  ],
+  "test_design_notes": [
+    "Negative rejection checks for supported syntax remain in scope; classification follows the essential explicitly unsupported spread fields and unlisted langlib type.",
+    "array:toStream and xml:Element/Text are explicitly permitted and are not classification grounds."
+  ]
+}

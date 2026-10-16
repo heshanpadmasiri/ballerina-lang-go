@@ -1,0 +1,14 @@
+{
+  "Name": "mapping-constructor-expr-test-833706cb84/readonly-field-code-analysis-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/readonly-field-code-analysis-negative-e.bal",
+  "Project": false,
+  "Id": "T0833",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mapping-constructor-expr-test-833706cb84/readonly-field-code-analysis-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.046
+}

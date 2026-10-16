@@ -1,0 +1,18 @@
+{
+  "id": "T1077",
+  "name": "object-initializer-test-9aa531bbdf/object-initializer-v",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\" but not error:detail.",
+    "Subset restrictions > Invocations > Named and default arguments: \"Object constructor calls support named and default arguments while selecting a unique class from an object union; they do not have the atomic-target restriction above.\"",
+    "Subset restrictions > Object/class definitions: \"Supports included-record-param, rest-param and defaultable-param in methods\"."
+  ],
+  "reason": "The case asserts custom initializer-error detail contents through custom1.detail(), custom2.detail(), multiple1.detail() and multiple2.detail(). The error detail langlib operation is outside the explicit supported langlib lists, so the whole case is a feature even though its class constructors and named/default/rest arguments are supported.",
+  "unsupported_constructs": [
+    "error:detail method calls, with asserted record outputs {\"id\":100}, {\"f\":\"foo\"} and {\"b\":\"bar\"}"
+  ],
+  "test_design_notes": [
+    "io:println is output instrumentation; the unsupported operation is the detail retrieval whose result is asserted."
+  ]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'b'\n   --\u003e while-stmt-v.bal:159:9\n    |\n159 |         5 b = a;\n    |         ^^^^^^^^\n\n","Diagnostics":[{"File":"while-stmt-v.bal","StartLine":159,"EndLine":159}]}

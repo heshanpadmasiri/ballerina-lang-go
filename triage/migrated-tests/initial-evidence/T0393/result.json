@@ -1,0 +1,14 @@
+{
+  "Name": "constrained-map-test-60915d9ec9/constrained-map-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constrained-map-test-60915d9ec9/constrained-map-v.bal",
+  "Project": false,
+  "Id": "T0393",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constrained-map-test-60915d9ec9/constrained-map-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.067
+}

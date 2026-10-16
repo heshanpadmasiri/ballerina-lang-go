@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: top stack frame mismatch for @panic: want never-call-stmt-p.bal:6, got never-call-stmt-p.bal:7
+        stderr:
+        error: Bad Sad!!
+                at foo(never-call-stmt-p.bal:7)
+                   main(never-call-stmt-p.bal:2)
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

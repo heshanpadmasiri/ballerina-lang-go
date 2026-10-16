@@ -1,0 +1,12 @@
+{
+  "id": "T0292",
+  "name": "byte-as-int-test-3342351ff8/readonly-warnings-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions\"; value entries list cloneWithType, fromJsonWithType, toString and toBalString."
+  ],
+  "reason": "The case asserts five deprecation diagnostics for ballerina/lang.value:isReadOnly calls. isReadOnly is absent from both the supported lang.value functions and the permitted langlib method-call list, so this essential asserted behavior is outside subset 10.",
+  "unsupported_constructs": ["ballerina/lang.value:isReadOnly method calls and their deprecation diagnostics"],
+  "test_design_notes": ["Five @error annotations assert deprecation diagnostics; there are no @args, @panic, or @output directives."]
+}

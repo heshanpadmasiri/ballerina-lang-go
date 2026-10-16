@@ -1,0 +1,19 @@
+{
+  "id": "T0871",
+  "name": "match-stmt-mapping-match-pattern-test-9627f13a97/mapping-match-pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements — Match statement: Currently only supports const-pattern and wildcard-match-pattern",
+    "## Import declarations — Only following lang libraries with given methods/types are supported; ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString, fromHexString"
+  ],
+  "reason": "The assertions require mapping match patterns, including field presence, ignored extra fields, nested mapping patterns, variable captures and guards. These essential patterns exceed the explicit const-pattern/wildcard-only match restriction. The case also references int:MAX_VALUE and int:MIN_VALUE, absent from the supported lang.int list.",
+  "unsupported_constructs": [
+    "Mapping match patterns, including nested mapping patterns and variable captures",
+    "Capture match pattern var z",
+    "int:MAX_VALUE and int:MIN_VALUE"
+  ],
+  "test_design_notes": [
+    "Assertions cover first matching clause, missing and extra fields, guard narrowing, captured values and closure capture, and wildcard behavior on errors.",
+    "The disabled io:println call is instrumentation only."
+  ]
+}

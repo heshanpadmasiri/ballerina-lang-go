@@ -1,0 +1,19 @@
+{
+  "id": "T0219",
+  "name": "basic-worker-test-0bffe305fe/worker-async-send-as-expression-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: the supported statements list does not include named worker declarations.",
+    "## Expressions: lists 'Start action' and 'Wait action', but does not list worker asynchronous send or receive actions."
+  ],
+  "reason": "The case essentially requires named workers communicating through asynchronous sends (5 -> w2) and receives (<- w1), including nil-valued sends in expression contexts and interaction with a receiver returning an error. Named workers and worker messaging are absent from the subset's positive lists; support for wait, check, trap, casts and match does not cover these essential actions.",
+  "unsupported_constructs": [
+    "Named worker declarations",
+    "Worker asynchronous send actions used as expressions",
+    "Worker receive actions and communication behavior when a receiver returns an error"
+  ],
+  "test_design_notes": [
+    "main invokes all seven tests and checks send results and received values through assertions; there are no @args, @panic or @output directives.",
+    "keepIoImport(false) makes io:println inactive instrumentation. The assertion helper's toString and error message method are listed supported langlib methods."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0249",
+  "name": "binteger-value-test-c66d8ec2ef/integer-value-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Import declarations; Function definition; Type definition",
+    "## Statements: Assignment; Call; Local variable declarations; Return",
+    "## Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only; Type cast expression; Mapping constructor; Optional field access expression; Nested expressions (`(expression)`)",
+    "## Operators: Multiplicative ops `*`, `%`, `/`; Additive ops `+`, `-`; numeric ops `+`, `-`",
+    "# Subset restrictions / ## Import declarations: Only following lang libraries with given methods/types are supported; `ballerina/lang.int` includes `Unsigned32`"
+  ],
+  "reason": "All exercised constructs and asserted behavior are covered: decimal and hexadecimal integer literals, unary signs, assignment, calls, integer arithmetic, a record with default and optional fields, Unsigned32 fields, mapping construction, optional field access, and decimal casting. The fourteen output expectations follow the supported integer operations. The four assertEquals calls check the initialized record fields. The import restriction concerns lang libraries and does not exclude ballerina/test.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args or @panic expectations; main specifies fourteen @output values and then executes four record-field assertions.",
+    "io:println is output instrumentation."
+  ]
+}

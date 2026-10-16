@@ -1,0 +1,105 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-structured-error-patterns-test-5636c50f57/structured_error_match_patterns-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:10:9
+           |
+        10 |         var error (reason, ... rest) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:11:9
+           |
+        11 |         var error (reason, detail = detail) => {return "A";} // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:15:9
+           |
+        15 |         var error (reason, detail = detail) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:16:9
+           |
+        16 |         var error (reason) => {return "A";} // @error
+           |         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:25:9
+           |
+        25 |         var error (reason, ...rest) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:26:9
+           |
+        26 |         var error (reason, s = s) => {return "A";} // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:30:9
+           |
+        30 |         var error (reason, s = s) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:31:9
+           |
+        31 |         var error (reason, s = s, ...rest) => {return "A";} // @error // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:32:9
+           |
+        32 |         var error (reason, s = s) => {return "A";} // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:41:9
+           |
+        41 |         var error (reason, ...rest) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:42:9
+           |
+        42 |         var error (reason, s = _) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:46:9
+           |
+        46 |         var error (reason, ...rest) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:47:9
+           |
+        47 |         var error (reason) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:61:9
+           |
+        61 |         var error (reason, message = message, ...rest) => {return "A";} // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:62:9
+           |
+        62 |         var error (reason, extra = extra) => {return "A";} // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:66:9
+           |
+        66 |         var error (reason, message = message, ...rest) => {return "A";} // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured_error_match_patterns-e.bal:67:9
+           |
+        67 |         var error (reason, message = message) => {return "A";} // @error // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

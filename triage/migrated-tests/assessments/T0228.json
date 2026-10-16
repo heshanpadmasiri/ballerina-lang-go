@@ -1,0 +1,17 @@
+{
+  "id": "T0228",
+  "name": "bbyte-value-test-94ec1c259b/byte-value-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations or worker send statements.",
+    "## Expressions: \"- [Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are listed, but worker receive actions are not."
+  ],
+  "reason": "The case requires named workers w1/w2 and byte-valued inter-worker send/receive actions, which are outside the subset positive lists. Consequently the asserted unused-variable diagnostics cannot make the whole case a supported-subset bug.",
+  "unsupported_constructs": [
+    "Named worker declarations (worker w1 / worker w2)",
+    "Worker message sends (a -> w2; b -> w1;) and receives (<- w2; <- w1)"
+  ],
+  "test_design_notes": [
+    "The file asserts unused-variable diagnostics for b and a inside workers; it has no @args, @panic, or @output assertions."
+  ]
+}

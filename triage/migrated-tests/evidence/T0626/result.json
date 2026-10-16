@@ -1,0 +1,14 @@
+{
+  "Name": "identifier-literal-test-7d241978d7/identifier-literal-undefined-variable-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-test-7d241978d7/identifier-literal-undefined-variable-e.bal",
+  "Project": false,
+  "Id": "T0626",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-test-7d241978d7/identifier-literal-undefined-variable-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.059
+}

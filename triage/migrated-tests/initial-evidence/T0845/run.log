@@ -1,0 +1,81 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-guard-analysis-test-cf5a6832da/match-guard-code-analysis-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> match-guard-code-analysis-e.bal:25:15
+           |
+        25 |         1 if (let Foo f2 = {x: 1, y: 2} in f2.x == 2) => { // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> match-guard-code-analysis-e.bal:27:15
+           |
+        27 |         2 if (let Foo f2 = {x: 1, "y": 2} in f2.x == 2) => {
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> match-guard-code-analysis-e.bal:29:15
+           |
+        29 |         3 if (let Foo f2 = {z: 0, x: 1, y: 2} in f2.x == 2) => { // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-code-analysis-e.bal:51:9
+           |
+        51 |         [1, 2] if function () { } is isolated function => {
+           |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-code-analysis-e.bal:60:9
+           |
+        60 |         [1, 2] if function (int a, string b) { } is isolated function => {
+           |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-code-analysis-e.bal:69:9
+           |
+        69 |         [1, 2] if function (int a, string b) returns int { return 1; } is isolated function => {
+           |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> match-guard-code-analysis-e.bal:78:9
+           |
+        78 |         [1, 2] if function () returns int { return 1; } is isolated function => {
+           |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-guard-code-analysis-e.bal:38:9
+           |
+        38 |         var {x, y} if y is int && f is record {int x; string y;} => { // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-guard-code-analysis-e.bal:40:9
+           |
+        40 |         var {x} if f is record {string x; int i;} || x is 1 => { // @error // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> match-guard-code-analysis-e.bal:42:9
+           |
+        42 |         var {x} if x == 2 || f is record {string x; int i;} => { // @error // @error
+           |         ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> match-guard-code-analysis-e.bal:25:15
+           |
+        25 |         1 if (let Foo f2 = {x: 1, y: 2} in f2.x == 2) => { // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> match-guard-code-analysis-e.bal:27:15
+           |
+        27 |         2 if (let Foo f2 = {x: 1, "y": 2} in f2.x == 2) => {
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> match-guard-code-analysis-e.bal:29:15
+           |
+        29 |         3 if (let Foo f2 = {z: 0, x: 1, y: 2} in f2.x == 2) => { // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

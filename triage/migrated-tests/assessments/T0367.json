@@ -1,0 +1,14 @@
+{
+  "id": "T0367",
+  "name": "collect-clause-test-c0e4163727/cases/collect-clause-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `group by` and `collect` clauses",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions / Import declarations: ballerina/lang.array lists length, push, map, indexOf, remove, removeAll, toStream, toBase64, toBase16, fromBase64, fromBase16",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: array:length, array:push, array:map, array:indexOf, array:remove, array:removeAll, array:toStream, array:toBase64, array:toBase16"
+  ],
+  "reason": "Although collect and group by are explicitly supported, testListConstructor requires array filter and some: [x].filter(n => n > 2) must yield [4, 6], and [x].some(n => n > 2) must yield true. Neither function is in the supported array langlib or method-call lists. This essential asserted behavior makes the whole case a feature.",
+  "unsupported_constructs": ["array:filter invoked as [x].filter(n => n > 2)", "array:some invoked as [x].some(n => n > 2)"],
+  "test_design_notes": ["main invokes the test functions and assertions check runtime collect results, including empty groups and nested queries. There are no @args, @panic, or @output directives. The final io:print(()) is instrumentation and does not determine this classification."]
+}

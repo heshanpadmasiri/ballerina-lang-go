@@ -1,0 +1,90 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	10
+        	23.45
+        	true
+        	Hello World!
+        	10
+        	23.45
+        	true
+        	Hello World!
+        	true
+        	20
+        	true
+        	35
+        	true
+        	Child
+        	25
+        	Parent
+        	true
+        	<book>The Lost World</book>
+        	true
+        	<book>Count of Monte Cristo</book>
+        	true
+        	{"name":"apple","color":"red","price":40}
+        	hello world!
+        	123
+        	23.45
+        	true
+        	255
+        	
+        	A
+        	Z
+        	123
+        	23.45
+        	true
+        	true
+        	1234
+        	23.45
+        	true
+        	Hello World!
+        	10
+        	{"a":15}
+        	{"name":"apple","color":"red","price":40}
+        	<book>The Lost World</book>
+        	33
+        	23.45
+        	true
+        	Hello World!
+        	true
+        	{"name":"apple","color":"red","price":40}
+        	true
+        	<book>The Lost World</book>
+        	true
+        	{"a":15}
+        	true
+        	true
+        	true
+        	true
+        	true
+        	10
+        	23.45
+        	hello world!
+        	true
+        	255
+        	true
+        	[123,23.45,true,"hello world!",255]
+        	true
+        	[{"name":"apple","color":"red","price":40},`<book>The Lost World</book>`]
+        	
+        	A
+        	Z
+        	123
+        	23.45
+        	true
+        	true
+        	10
+        	23.45
+        	true
+        	hello world!
+        	{"name":"apple","color":"red","price":40}
+        	<book>The Lost World</book>
+        	{"a":15}
+        	{"ca":15}
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

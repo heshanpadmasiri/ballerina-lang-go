@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-invocation-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unreachable code
+          --> main.bal:21:5
+           |
+        21 |     panic error("You are not supposed to reach this line");
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

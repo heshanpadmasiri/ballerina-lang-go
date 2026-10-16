@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at readonly-field-negative-e.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at readonly-field-negative-e.bal:54 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at readonly-field-negative-e.bal:109 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at readonly-field-negative-e.bal:113 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

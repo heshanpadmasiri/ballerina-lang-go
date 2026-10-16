@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:57: -e test "while-stmt-test-8fe83cda27/while-stmt-on-fail-negative-reachability-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

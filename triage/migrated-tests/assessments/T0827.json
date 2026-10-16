@@ -1,0 +1,15 @@
+{
+  "id": "T0827",
+  "name": "mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-with-rest-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted behavior depends on mapping match patterns with variable bindings and rest capture, including nested patterns, field-presence selection, and the values and inferred record types of captured rest mappings. These patterns exceed the explicit match-pattern support list.",
+  "unsupported_constructs": [
+    "Mapping match patterns with variable bindings and rest capture, such as var {x: a, y: b, ...r}, var {...rest}, and {name: var s, ...var rest}"
+  ],
+  "test_design_notes": [
+    "Runtime assertions check captured rest fields, omitted bound fields, record type tests, and first matching branch behavior; unsupported mapping patterns are essential to these assertions."
+  ]
+}

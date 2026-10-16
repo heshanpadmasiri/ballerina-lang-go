@@ -1,0 +1,94 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Error One
+        	Error One
+        	Error Two
+        	Error Two
+        	{"detail":"Detail Msg"}
+        	Msg One
+        	Msg Two
+        	true
+        	Msg Two
+        	Some Error One
+        	Some Error One
+        	Some Error Two
+        	Some Error Two
+        	Msg Three
+        	Msg Three
+        	Msg Four
+        	true
+        	Msg Four
+        	Error One
+        	Error One
+        	Error Two
+        	Error Two
+        	Msg One
+        	Msg One
+        	Msg Two
+        	true
+        	Msg Two
+        	Some Error One
+        	Some Error One
+        	Some Error Two
+        	Some Error Two
+        	Msg Three
+        	Msg Three
+        	Msg Four
+        	true
+        	Msg Four
+        	Error One
+        	Error One
+        	Something Wrong
+        	true
+        	Something Wrong
+        	12
+        	Bal
+        	Err
+        	Something Wrong2
+        	true
+        	12
+        	Bal
+        	Err
+        	Something Wrong2
+        	false
+        	12
+        	Bal
+        	Err2
+        	{"message":"Something Wrong2"}
+        	true
+        	12
+        	Bal
+        	Err2
+        	Something Wrong2
+        	true
+        	1000
+        	Err3
+        	Something Wrong3
+        	Error Code
+        	Fatal
+        	Error Code
+        	Error Code
+        	Error One
+        	Error One
+        	Error Two
+        	Error Two
+        	Error Two
+        	Error Two
+        	Msg One
+        	Something Wrong
+        	Something Wrong
+        	Msg
+        	false
+        	{"other":"k"}
+        	sealed
+        	{"message":"Msg"}
+        	Detail Info
+        	true
+        	{"A":"a","B":"b"}
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

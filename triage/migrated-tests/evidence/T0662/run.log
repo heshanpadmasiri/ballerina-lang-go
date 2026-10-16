@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "intersection-type-test-48ac088d43/readonly-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: type inclusion must be an object type or class
+           --> readonly-v.bal:169:6
+            |
+        169 |     *Atom;
+            |      ^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

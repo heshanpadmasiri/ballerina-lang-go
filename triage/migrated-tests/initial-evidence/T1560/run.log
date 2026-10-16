@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/invalid-send-in-lambda-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+         --> main.bal:4:9
+          |
+        4 |         i -> function; // @error
+          |         ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+         --> main.bal:4:9
+          |
+        4 |         i -> function; // @error
+          |         ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

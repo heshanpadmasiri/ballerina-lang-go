@@ -1,0 +1,15 @@
+{
+  "id": "T0865",
+  "name": "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-negative-semantics-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted duplicate-variable and incompatible-type diagnostics depend on list match patterns, including nested lists, variable captures and rest captures. Those patterns are essential to every test function and fall outside the explicitly supported match-pattern forms.",
+  "unsupported_constructs": [
+    "List match patterns with variable captures, nested list patterns and rest captures"
+  ],
+  "test_design_notes": [
+    "This is a negative semantic test with @error markers; its expected rejections require analysis of unsupported list match patterns."
+  ]
+}

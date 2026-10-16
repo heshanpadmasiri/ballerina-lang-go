@@ -1,0 +1,14 @@
+{
+  "Name": "type-definitions-test-dce7ce211b/record-type-field-resolving-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-definitions-test-dce7ce211b/record-type-field-resolving-v.bal",
+  "Project": false,
+  "Id": "T1466",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-definitions-test-dce7ce211b/record-type-field-resolving-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.066
+}

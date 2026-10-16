@@ -1,0 +1,15 @@
+{
+  "id": "T0940",
+  "name": "native-conversion-test-4a94bbda4e/json-incompatible-inner-type-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Expressions: Method call; Mapping constructor; List constructor; Type test expression",
+    "Statements: Local variable declarations; If/else; Return; Panic",
+    "Subset restrictions / Import declarations: ballerina/lang.value — cloneWithType",
+    "Subset restrictions / Invocations / Other invocation restrictions: value:cloneWithType"
+  ],
+  "reason": "The case converts a JSON mapping to a recursive record using explicitly supported cloneWithType method syntax. A nested parent.address string is incompatible with map<anydata>?, so conversion returns an error and the test explicitly panics with that error. Record definitions, constructors, type tests and panic are supported, and no listed restriction excludes this conversion failure behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic marker is satisfied by explicitly panicking when cloneWithType returns an error; it does not require cloneWithType itself to panic."]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0541",
+  "name": "func-invocation-expr-test-adcfe7c191/function-invocation-expr-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.array lists length, push, map, indexOf, remove, removeAll, toStream, toBase64, toBase16, fromBase64, fromBase16 (no reduce), and ballerina/lang.stream is absent.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (neither array:reduce nor stream:close is listed).",
+    "Module-level declarations > Function definition: \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"."
+  ],
+  "reason": "The invoked testTypeRefTypedRestArg asserts 15 from testFn, which computes its result with the unsupported array reduce langlib method. The invoked nil-return test also creates a stream and calls its unsupported close langlib method. Either essential call makes this whole case a feature request despite supported ordinary, nested, defaultable, rest and remote invocation constructs.",
+  "unsupported_constructs": [
+    "b.reduce(...) in testFn; its reduction result is asserted as 15",
+    "testStream.close() in testFuncWithNilReturnTypeWithoutVariableAssignment (lang.stream is not in the supported library list)"
+  ],
+  "test_design_notes": [
+    "main invokes both affected tests; io:println is output instrumentation and does not drive the classification."
+  ]
+}

@@ -1,0 +1,53 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	0
+        	200
+        	-10
+        	20
+        	2147483647
+        	-4
+        	-2147483647
+        	6
+        	200
+        	-10.0
+        	2.5
+        	2.1474836471E9
+        	4.3
+        	-2.1474836477E9
+        	6.9
+        	0
+        	0
+        	45
+        	
+        	
+        	{"name":"supun"}
+        	2390725
+        	
+        
+        got:
+        	0
+        	200
+        	-10
+        	20
+        	2147483647
+        	-4
+        	-2147483647
+        	6
+        	200
+        	-10.0
+        	2.5
+        	2.1474836471e9
+        	4.3
+        	-2.1474836477e9
+        	6.9
+        	0
+        	0
+        	45
+        	
+        	
+        	{"name":"supun"}
+        	2390725
+        	
+--- FAIL: TestMigrationTriage (0.26s)
+FAIL

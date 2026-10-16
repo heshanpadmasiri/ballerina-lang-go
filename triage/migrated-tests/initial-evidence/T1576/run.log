@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	1103
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

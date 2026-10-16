@@ -1,0 +1,15 @@
+{
+  "Name": "bbyte-array-value-negative-test-585d57db0d/byte-array-with-nil-literal-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bbyte-array-value-negative-test-585d57db0d/byte-array-with-nil-literal-e",
+  "Project": true,
+  "Id": "T0222",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bbyte-array-value-negative-test-585d57db0d/byte-array-with-nil-literal-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/bbyte-array-value-negative-test-585d57db0d/byte-array-with-nil-literal-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.03
+}

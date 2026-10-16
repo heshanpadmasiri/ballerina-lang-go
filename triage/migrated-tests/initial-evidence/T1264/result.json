@@ -1,0 +1,14 @@
+{
+  "Name": "record-remove-negative-test-655b94e746/record-remove-required-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-remove-negative-test-655b94e746/record-remove-required-v.bal",
+  "Project": false,
+  "Id": "T1264",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-remove-negative-test-655b94e746/record-remove-required-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.043
+}

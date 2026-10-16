@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: Bad Sad!!\n        at Bar.barFunc(never-method-call-p.bal:15)\n           main(never-method-call-p.bal:3)\n","Diagnostics":null}

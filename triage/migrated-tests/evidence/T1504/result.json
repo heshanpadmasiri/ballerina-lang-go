@@ -1,0 +1,14 @@
+{
+  "Name": "unused-variable-test-ea064cfdc1/unused-variable-analysis-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/unused-variable-test-ea064cfdc1/unused-variable-analysis-e.bal",
+  "Project": false,
+  "Id": "T1504",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/unused-variable-test-ea064cfdc1/unused-variable-analysis-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

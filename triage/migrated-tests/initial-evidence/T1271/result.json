@@ -1,0 +1,14 @@
+{
+  "Name": "record-value-test-1a630496b4/record-clear-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-value-test-1a630496b4/record-clear-p.bal",
+  "Project": false,
+  "Id": "T1271",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-value-test-1a630496b4/record-clear-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

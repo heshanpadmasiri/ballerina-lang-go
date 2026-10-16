@@ -1,0 +1,12 @@
+{
+  "id": "T1186",
+  "name": "option-test-1b0c555df9/undefined_short_option-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition"
+  ],
+  "reason": "The signature uses a supported included-record parameter, but the asserted panic for command-line argument -val requires main-entry command-line option parsing and undefined short-option rejection. subset10 does not specify this CLI behavior; signature support alone does not cover it.",
+  "unsupported_constructs": ["Command-line option parsing and rejection of -val for an included-record main parameter"],
+  "test_design_notes": ["The @args and @panic directives assert runtime entry-point argument handling; the empty main body does not itself panic."]
+}

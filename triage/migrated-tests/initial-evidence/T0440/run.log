@@ -1,0 +1,57 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-warning-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> equal-and-not-equal-warning-e.bal:23:44
+           |
+        23 |     table<WarningStudent> key(name) tbl1 = table [
+           |                                            ^^^^^^^
+        24 |             {name: "Amy", id: 1234},
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |             {name: "John", id: 4567}
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        26 |         ];
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> equal-and-not-equal-warning-e.bal:23:5
+           |
+        23 |     table<WarningStudent> key(name) tbl1 = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> equal-and-not-equal-warning-e.bal:27:49
+           |
+        27 |     var ids = checkpanic table key(id) from var {id} in tbl1 select {id}; // @error
+           |                                                 ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> equal-and-not-equal-warning-e.bal:27:49
+           |
+        27 |     var ids = checkpanic table key(id) from var {id} in tbl1 select {id}; // @error
+           |                                                 ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> equal-and-not-equal-warning-e.bal:27:26
+           |
+        27 |     var ids = checkpanic table key(id) from var {id} in tbl1 select {id}; // @error
+           |                          ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> equal-and-not-equal-warning-e.bal:23:44
+           |
+        23 |     table<WarningStudent> key(name) tbl1 = table [
+           |                                            ^^^^^^^
+        24 |             {name: "Amy", id: 1234},
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |             {name: "John", id: 4567}
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        26 |         ];
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> equal-and-not-equal-warning-e.bal:23:5
+           |
+        23 |     table<WarningStudent> key(name) tbl1 = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

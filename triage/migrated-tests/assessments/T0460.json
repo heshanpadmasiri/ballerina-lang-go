@@ -1,0 +1,21 @@
+{
+  "id": "T0460",
+  "name": "error-variable-reference-test-ab01ceefa3/error-variable-reference-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists message; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions; error:message"
+  ],
+  "reason": "The asserted outputs require error destructuring assignments that extract message, cause, named details and rest details into existing variables, plus nested tuple destructuring. The subset restricts destructuring assignments to wildcard binding patterns. Independently, the executed tuple test calls error.detail(), which is absent from both permitted lang.error functions and permitted langlib method calls, and signatures use the unlisted lang.value type Cloneable.",
+  "unsupported_constructs": [
+    "Error destructuring assignment, including typed patterns, named detail fields, cause and rest capture",
+    "Tuple destructuring assignment with nested tuple pattern",
+    "error.detail() langlib method",
+    "ballerina/lang.value:Cloneable type"
+  ],
+  "test_design_notes": [
+    "main exercises these unsupported constructs and asserts extracted values with @output, including the formatted CMS cause error; io:println itself is instrumentation.",
+    "No @args or @panic directives are present; assertEquality also checks mandatory fields and rest details."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "Name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v",
+  "Project": true,
+  "Id": "T0863",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v/modules/module1/module1.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.078
+}

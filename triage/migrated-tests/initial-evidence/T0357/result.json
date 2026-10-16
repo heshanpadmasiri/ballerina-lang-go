@@ -1,0 +1,14 @@
+{
+  "Name": "closed-record-test-6f9046ad8a/nested-sealed-record-inline-init-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/nested-sealed-record-inline-init-v.bal",
+  "Project": false,
+  "Id": "T0357",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/nested-sealed-record-inline-init-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.088
+}

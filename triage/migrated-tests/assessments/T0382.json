@@ -1,0 +1,16 @@
+{
+  "id": "T0382",
+  "name": "constant-type-test-27d6dffc1c/constant-type-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: Mapping constructor — Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported",
+    "## Module-level declarations: Constant declarations"
+  ],
+  "reason": "The case essentially uses unsupported mapping spread fields in constant initializers: CMS1_CLONE = {...CMS1} and CMS12_CLONE = {...CMS1, ...CMS2}. It also asserts rejection of the latter and uses the resulting constant types in further negative checks. The explicit spread-field restriction makes the whole case a feature case despite supported constant declarations and other type-error checks.",
+  "unsupported_constructs": [
+    "Mapping spread fields in CMS1_CLONE and CMS12_CLONE constant initializers."
+  ],
+  "test_design_notes": [
+    "Compile-time negative case with @error assertions; no @args, @panic, or @output directives."
+  ]
+}

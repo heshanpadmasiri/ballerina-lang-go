@@ -1,0 +1,132 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "object-functions-with-defaultable-arguments-83211a89c0/default-parameter-diagnostics-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> default-parameter-diagnostics-e.bal:53:23
+           |
+        53 |         object {} _ = object {
+           |                       ^^^^^^^^
+        54 |             int i = 0;
+           |             ^^^^^^^^^^
+        55 | 
+           | 
+        56 |             function foo(int arg2 = i) { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        57 |                 int _ = self.i;
+           |                 ^^^^^^^^^^^^^^^
+        58 |             }
+           |             ^
+        59 |         };
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> default-parameter-diagnostics-e.bal:67:23
+           |
+        67 |         object {} _ = object {
+           |                       ^^^^^^^^
+        68 | 
+           | 
+        69 |             function foo(int arg2 = i) { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        70 |             }
+           |             ^
+        71 |         };
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> default-parameter-diagnostics-e.bal:79:23
+           |
+        79 |         object {} _ = object {
+           |                       ^^^^^^^^
+        80 |             int i = 0;
+           |             ^^^^^^^^^^
+        81 | 
+           | 
+        82 |             function foo(int arg2 = i) { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        83 |                 int _ = self.i;
+           |                 ^^^^^^^^^^^^^^^
+        84 |                 object {} _ = object {
+           |                 ^^^^^^^^^^^^^^^^^^^^^^
+        85 |                     int i = 0;
+           |                     ^^^^^^^^^^
+        86 | 
+           | 
+        87 |                     function foo(int arg3 = i) { // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        88 |                         int _ = self.i;
+           |                         ^^^^^^^^^^^^^^^
+        89 |                     }
+           |                     ^
+        90 |                 };
+           |                 ^^
+        91 |             }
+           |             ^
+        92 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> default-parameter-diagnostics-e.bal:53:23
+           |
+        53 |         object {} _ = object {
+           |                       ^^^^^^^^
+        54 |             int i = 0;
+           |             ^^^^^^^^^^
+        55 | 
+           | 
+        56 |             function foo(int arg2 = i) { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        57 |                 int _ = self.i;
+           |                 ^^^^^^^^^^^^^^^
+        58 |             }
+           |             ^
+        59 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> default-parameter-diagnostics-e.bal:67:23
+           |
+        67 |         object {} _ = object {
+           |                       ^^^^^^^^
+        68 | 
+           | 
+        69 |             function foo(int arg2 = i) { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        70 |             }
+           |             ^
+        71 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> default-parameter-diagnostics-e.bal:79:23
+           |
+        79 |         object {} _ = object {
+           |                       ^^^^^^^^
+        80 |             int i = 0;
+           |             ^^^^^^^^^^
+        81 | 
+           | 
+        82 |             function foo(int arg2 = i) { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        83 |                 int _ = self.i;
+           |                 ^^^^^^^^^^^^^^^
+        84 |                 object {} _ = object {
+           |                 ^^^^^^^^^^^^^^^^^^^^^^
+        85 |                     int i = 0;
+           |                     ^^^^^^^^^^
+        86 | 
+           | 
+        87 |                     function foo(int arg3 = i) { // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        88 |                         int _ = self.i;
+           |                         ^^^^^^^^^^^^^^^
+        89 |                     }
+           |                     ^
+        90 |                 };
+           |                 ^^
+        91 |             }
+           |             ^
+        92 |         };
+           |         ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: missing type desc\n  --\u003e main.bal:17:15\n   |\n17 | type T stream\u003c\u003e; // @error\n   |               \n\n","Diagnostics":[{"File":"main.bal","StartLine":17,"EndLine":17}]}

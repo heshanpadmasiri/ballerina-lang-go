@@ -1,0 +1,35 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "mapping-constructor-expr-test-833706cb84/tuple-vs-array-readonly-violation-consistency-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: ballerina/test
+          --> tuple-vs-array-readonly-violation-consistency-v.bal:18:1
+           |
+        18 | import ballerina/test;
+           | ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+          --> tuple-vs-array-readonly-violation-consistency-v.bal:29:5
+           |
+        29 |     test:assertEquals(e.message(), "{ballerina/lang.map}InherentTypeViolation");
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+          --> tuple-vs-array-readonly-violation-consistency-v.bal:30:5
+           |
+        30 |     test:assertEquals(e.detail()["message"],
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        31 |         "cannot update 'readonly' field 'name' in record of type '(Employee & readonly)'");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> tuple-vs-array-readonly-violation-consistency-v.bal:27:5
+           |
+        27 |     test:assertTrue(actualError is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'ignored'
+          --> tuple-vs-array-readonly-violation-consistency-v.bal:53:5
+           |
+        53 |     error? ignored = testFrozenAnyArrayElementUpdate();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

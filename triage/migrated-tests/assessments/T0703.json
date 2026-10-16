@@ -1,0 +1,16 @@
+{
+  "id": "T0703",
+  "name": "length-of-operator-test-40bf142c3a/length-of-operator-negative-v",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Method call], [List constructor], [Mapping constructor]",
+    "## Statements: [Assignment], [Local variable declarations], [Return]",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `array:length`, `map:length`",
+    "## Import declarations: `ballerina/lang.array` — `length`; `ballerina/lang.map` — `length`"
+  ],
+  "reason": "The supplied case uses empty int arrays and map<anydata> values and invokes their length methods, both explicitly supported. Function calls, local declarations, assignment and returns are supported; there is no essential unsupported behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Despite its negative-v name and Null case names, the supplied source initializes empty non-null collections and contains no negative diagnostic expectation or value assertion; main merely calls both functions."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "stack-overflow-test-7d9240c754/stack_overflow_recursive_function-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/stack-overflow-test-7d9240c754/stack_overflow_recursive_function-p.bal",
+  "Project": false,
+  "Id": "T1353",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/stack-overflow-test-7d9240c754/stack_overflow_recursive_function-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.096
+}

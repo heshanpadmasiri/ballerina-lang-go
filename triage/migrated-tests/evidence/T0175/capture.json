@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: no filler value\n        at testValidArrayAssignment(array-mutability-v.bal:14)\n           main(array-mutability-v.bal:31)\n","Diagnostics":null}

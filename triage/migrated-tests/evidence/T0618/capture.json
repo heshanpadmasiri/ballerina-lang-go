@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'x16'\n   --\u003e greater-less-than-operation-v.bal:780:5\n    |\n780 |     boolean x16 = a2 \u003e= b2;\n    |     ^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"greater-less-than-operation-v.bal","StartLine":780,"EndLine":780}]}

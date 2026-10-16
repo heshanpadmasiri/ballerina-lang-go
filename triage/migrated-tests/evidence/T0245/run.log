@@ -1,0 +1,34 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "binary-bitwise-operation-test-84255fccd3/binary-bitwise-operation-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'PANIC_LIST_TOO_LONG'
+          --> binary-bitwise-operation-v.bal:24:1
+           |
+        24 | const PANIC_LIST_TOO_LONG = 6;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'POS_THIRTY_TWO'
+          --> binary-bitwise-operation-v.bal:43:1
+           |
+        43 | const POS_THIRTY_TWO = 32;
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'a8'
+           --> binary-bitwise-operation-v.bal:131:5
+            |
+        131 |     int a8 = 5 | 12;
+            |     ^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'a8'
+           --> binary-bitwise-operation-v.bal:207:5
+            |
+        207 |     int a8 = 5 ^ 12;
+            |     ^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'i'
+           --> binary-bitwise-operation-v.bal:242:5
+            |
+        242 |     int i = 43;
+            |     ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

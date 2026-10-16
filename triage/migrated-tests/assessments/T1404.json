@@ -1,0 +1,13 @@
+{
+  "id": "T1404",
+  "name": "table-to-jsonnegaive-test-4dd03ce530/table_to_json_negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: supported expression list includes 'List constructor', 'Mapping constructor' and 'Type cast expression', but does not include table constructors.",
+    "## Expressions / Query expressions: 'Supports `list` and `map` as `query-constructor-type`'",
+    "## Module-level declarations: 'Module variable declarations'; ## Statements: 'Local variable declarations'"
+  ],
+  "reason": "All ten expected errors depend on table constructor expressions (keyed or unkeyed, populated or empty) nested in JSON mapping constructors. Table constructors are absent from the supported expression list. Although mapping constructors, casts and variable declarations are supported, the essential table-to-JSON rejection behavior requires unsupported grammar, so the whole case is feature scope.",
+  "unsupported_constructs": ["Table constructor expressions: table key(id) [...] and table [...] (including empty variants)."],
+  "test_design_notes": ["Ten @error markers repeat five forms at module and function scope; each marks a table constructor. No @args, @panic or @output assertions occur."]
+}

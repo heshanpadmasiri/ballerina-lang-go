@@ -1,0 +1,19 @@
+{
+  "id": "T1281",
+  "name": "record-variable-reference-test-d23ea5efdc/record-variable-reference-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements — Destructuring assignment statement: Only supports wildcard-binding-pattern",
+    "## Expressions — Mapping constructor: Currently spread-field not supported"
+  ],
+  "reason": "The asserted results require mapping and nested list destructuring assignments, including named field bindings and rest captures. The subset explicitly limits destructuring assignments to wildcard binding patterns. Executed cases also require mapping constructor spread fields, explicitly excluded by the subset.",
+  "unsupported_constructs": [
+    "Mapping destructuring assignments with field bindings, nested patterns, and rest captures, e.g. {name: fName, married, age: {age: theAge, format}, ...theMap} = getPerson().",
+    "List destructuring assignments containing mapping patterns, e.g. [{var1: xVar1}, {var1: xVar11}] = r1.",
+    "Mapping constructor spread fields in testVarAssignmentOfRecordLiteral8 and testMappingBindingPatternAgainstOpenRecordInTupleDestructuring."
+  ],
+  "test_design_notes": [
+    "Assertions and printed outputs exercise the unsupported destructuring behavior directly; this is essential test functionality, not only a declared signature.",
+    "io:println is output instrumentation; array length and value toBalString methods appear in the supported langlib lists."
+  ]
+}

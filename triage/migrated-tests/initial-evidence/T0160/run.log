@@ -1,0 +1,22 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	2
+        	PersonObj
+        	John Doe
+        	PersonObj
+        	Pubudu
+        	3
+        	0
+        	0
+        	2
+        	PersonObj
+        	John Doe
+        	PersonObj
+        	John Doe
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

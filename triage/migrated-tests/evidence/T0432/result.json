@@ -1,0 +1,14 @@
+{
+  "Name": "elvis-expression-test-1c927d1f30/elvis-expression-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/elvis-expression-test-1c927d1f30/elvis-expression-v.bal",
+  "Project": false,
+  "Id": "T0432",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/elvis-expression-test-1c927d1f30/elvis-expression-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.059
+}

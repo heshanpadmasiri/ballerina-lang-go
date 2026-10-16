@@ -1,0 +1,14 @@
+{
+  "id": "T1057",
+  "name": "numeric-conversion-test-6b3e1e5e00/out-of-range-positive-decimal-union-as-int-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Function definition]",
+    "## Statements: [Local variable declarations]; [Call]",
+    "## Expressions: [Literal] — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Expressions: [Type cast expression]"
+  ],
+  "reason": "The case uses supported functions, local declarations, a decimal numeric literal, and a type cast from decimal|int to int. It expects the cast of the positive decimal value outside the int range to panic. No listed restriction excludes numeric casts, union sources, or their range-failure behavior, and no langlib call is involved.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment marks the expected runtime failure at the cast; the case does not assert a particular panic message."]
+}

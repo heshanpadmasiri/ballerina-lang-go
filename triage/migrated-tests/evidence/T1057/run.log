@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "numeric-conversion-test-6b3e1e5e00/out-of-range-positive-decimal-union-as-int-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+         --> out-of-range-positive-decimal-union-as-int-p.bal:4:5
+          |
+        4 |     int i = <int> f; // @panic
+          |     ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

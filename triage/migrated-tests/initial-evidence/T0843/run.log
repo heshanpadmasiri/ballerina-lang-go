@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at var-name-field-semantic-analysis-negative-e.bal:28-28 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at var-name-field-semantic-analysis-negative-e.bal:17-17 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

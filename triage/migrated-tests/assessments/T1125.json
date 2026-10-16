@@ -1,0 +1,14 @@
+{
+  "id": "T1125",
+  "name": "open-record-negative-test-5c62171999/open-record-uninit-access-semantics-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"[Conditional expression](https://ballerina.io/spec/lang/master/#conditional-expr)\" is listed, but Elvis expression is not listed.",
+    "Operators: the binary and unary operator lists do not include the Elvis operator `?:`.",
+    "Statements: \"Local variable declarations\", \"Assignment\", and \"Return\".",
+    "Expressions: \"Variable reference\", \"Field access expression\", and \"Member access expression\"."
+  ],
+  "reason": "The explicitly annotated negative line uses the Elvis expression p[\"name\"] ?: \"\". Elvis expressions are absent from the supported expression and operator lists; the listed conditional-expr refers to the ternary conditional form. Thus the whole case includes an unsupported construct, even though rejection of uninitialized record reads, argument passing, and returns otherwise concerns supported declarations and expressions.",
+  "unsupported_constructs": ["Elvis expression (`?:`) on the annotated negative-test line."],
+  "test_design_notes": ["The source marks only the Elvis assignment with @error, while also containing other uninitialized record uses; no external diagnostic expectations were supplied."]
+}

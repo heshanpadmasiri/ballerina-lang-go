@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "value-type-cast-expr-test-98fa22439c/value-type-cast-expr-test-98fa22439c-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> value-type-cast-expr-test-98fa22439c-v.bal:119:20
+            |
+        119 |         io:println(floatResult.detail()["message"]); // @output 'string' value '2222.333f' cannot be converted to 'float'
+            |                    ^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

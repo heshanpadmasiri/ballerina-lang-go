@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-mutability-test-4a07e00b3d/covariance-int-or-nil-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/covariance-int-or-nil-p.bal",
+  "Project": false,
+  "Id": "T1442",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/covariance-int-or-nil-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.053
+}

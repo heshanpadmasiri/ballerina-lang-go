@@ -1,0 +1,14 @@
+{
+  "Name": "module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-v.bal",
+  "Project": false,
+  "Id": "T0917",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.051
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0047",
+  "name": "argument-parser-negative-test-706c373f17/invalid-decimal-05-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params)\".",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\".",
+    "Subset restrictions / Import declarations: `ballerina/lang.decimal` lists `fromString`."
+  ],
+  "reason": "The entire executable source is an empty public main function with one required decimal parameter. Its negative behavior comes exclusively from the @args comment supplying -0X1EF.A2p-2 and the @panic expectation. Function definitions and required parameters are supported, but subset10 does not specify command-line argument binding, automatic string-to-decimal conversion for main parameters, or rejection behavior for malformed command-line decimal input. Numeric-literal support does not establish that behavior: the supplied text is an external argument, not a numeric literal in the program. Similarly, listed support for decimal:fromString does not promise an entry-point argument parser. Thus the tested rejection depends on a not-covered facility, making the whole case a feature assessment.",
+  "unsupported_constructs": [
+    "Command-line binding and decimal parsing for a required main parameter, including invalid-input panic behavior."
+  ],
+  "test_design_notes": [
+    "@args and @panic are comment markers; no panic statement or conversion call occurs in the function body.",
+    "The source combines supported function syntax with an unspecified entry-point parsing expectation; no obvious source migration error is visible."
+  ]
+}

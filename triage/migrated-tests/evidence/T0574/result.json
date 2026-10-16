@@ -1,0 +1,14 @@
+{
+  "Name": "function-signature-negative-test-2746ef5bfb/extern-resource-function-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-signature-negative-test-2746ef5bfb/extern-resource-function-negative-e.bal",
+  "Project": false,
+  "Id": "T0574",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-signature-negative-test-2746ef5bfb/extern-resource-function-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.025
+}

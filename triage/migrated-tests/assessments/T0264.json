@@ -1,0 +1,11 @@
+{
+  "id": "T0264",
+  "name": "block-stmt-test-58e33229dc/block-stmt-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists Assignment, Compound Assignment, Break, Continue, If/else, While, Local variable declarations, Return and Panic; standalone block statements are not listed."
+  ],
+  "reason": "The case requires standalone block statements in testUnreachableStmtInBlock and both testUninitializedVariableAssignInBlock functions. The subset's positive statement list does not cover standalone blocks, so the whole case is outside the documented subset even though its unreachable-code and uninitialized-variable assertions concern negative static checks.",
+  "unsupported_constructs": ["Standalone block statements used for nested local scopes"],
+  "test_design_notes": ["Assertions are @error and @warning diagnostics; there are no @args, @panic or @output expectations. Negative diagnostics alone do not make a supported construct out of scope."]
+}

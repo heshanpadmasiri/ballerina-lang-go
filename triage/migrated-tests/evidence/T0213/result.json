@@ -1,0 +1,14 @@
+{
+  "Name": "basic-fork-test-d6329f2450/basic-fork-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-fork-test-d6329f2450/basic-fork-v.bal",
+  "Project": false,
+  "Id": "T0213",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/basic-fork-test-d6329f2450/basic-fork-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.029
+}

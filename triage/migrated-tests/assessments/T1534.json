@@ -1,0 +1,16 @@
+{
+  "id": "T1534",
+  "name": "wait-for-one-actions-test-dad8f74b8b/wait-for-one-actions-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Start action], [Wait action], [Check expression], [Error constructor]",
+    "## Module-level declarations: [Annotation declarations and attachments]; Supports source-only, runtime, marker and repeated annotations",
+    "## Statements: [Panic], [While], [Compound Assignment], [If/else], [Local variable declarations], [Return]",
+    "## Operators: Additive ops `+`, `-`; Relational ops `<`, `<=`, `>`, `>=`"
+  ],
+  "reason": "The case starts an annotated asynchronous function, waits on its future with checkpanic, and expects the worker's error panic to propagate. Start, wait, checking expressions, annotation attachments, error construction and panic are explicitly supported, with no applicable restriction excluding this behavior. The arithmetic and delay loop are also supported.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is placed on the error variable declaration immediately preceding panic err, rather than on the panic statement; its intended assertion is the propagated panic."
+  ]
+}

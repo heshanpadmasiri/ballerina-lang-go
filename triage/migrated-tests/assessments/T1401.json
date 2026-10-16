@@ -1,0 +1,20 @@
+{
+  "id": "T1401",
+  "name": "table-negative-test-f923667200/table-key-violations-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: supported expression list includes List constructor and Mapping constructor but does not include table constructor expressions.",
+    "## Expressions: Literal \u2014 'Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only'",
+    "## Expressions: 'XML template expression' and 'String template expression'"
+  ],
+  "reason": "Duplicate-key rejection requires table constructors with key specifiers and structural key comparison, which are not covered by the supported expression list. This essential omission makes the whole case a feature even though negative rejection of supported syntax would be in scope. The base16 byte-array literal also falls outside the explicitly listed supported literal forms.",
+  "unsupported_constructs": [
+    "Table constructor expressions, key specifiers/key type constraints, and duplicate-key validation",
+    "base16 byte-array literal"
+  ],
+  "test_design_notes": [
+    "Mixed key scopes: primitive/composite keys, XML, list, nested-table and readonly byte-array keys.",
+    "Final duplicate-key table has a comment saying it should fail but lacks an @error marker.",
+    "No @args, @panic or @output markers are present."
+  ]
+}

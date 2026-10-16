@@ -1,0 +1,12 @@
+{
+  "id": "T0177",
+  "name": "array-size-definition-test-a34088ca39/array-size-scope-positive-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Constant declarations\"; \"Module variable declarations\"",
+    "Expressions: \"List constructor\"; \"Anonymous function expression\"; \"Variable reference\""
+  ],
+  "reason": "The case requires fixed-length array type descriptors whose length is a named constant, including a reference preceding the constant declaration and references from nested scopes. subset10.md supports constants, declarations and list constructors, but does not cover constant-sized array type descriptors or their size-name resolution behavior. These essential constructs are therefore outside the documented subset.",
+  "unsupported_constructs": ["int[constLength] fixed-length array type descriptors, including forward and nested-scope constant size references"],
+  "test_design_notes": ["main is empty and does not invoke arraySizeReferenceInDifferentScopeTest; nested-scope cases exercise compilation only. No @args, @panic or @output assertions are present."]
+}

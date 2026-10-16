@@ -1,0 +1,38 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "worker-fail-test-278d4f50a4/invalid-receive-with-trap-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:12:5
+           |
+        12 |     worker w1 {
+           |     ^^^^^^^^^^^
+        13 |         "hello" ->> w2;
+           |         ^^^^^^^^^^^^^^^
+        14 |     }
+           |     ^
+        15 |     worker w2 {
+           |     ^^^^^^^^^^^
+        16 |         string _ = trap <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        17 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+         --> main.bal:2:5
+          |
+        2 |     worker w1 {
+          |     ^^^^^^^^^^^
+        3 |         int i = 2;
+          |         ^^^^^^^^^^
+        4 |         i -> w2;
+          |         ^^^^^^^^
+        5 |     }
+          |     ^
+        6 |     worker w2 {
+          |     ^^^^^^^^^^^
+        7 |         int _ = trap <- w1; // @error
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        8 |     }
+          |     ^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

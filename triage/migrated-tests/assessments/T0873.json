@@ -1,0 +1,19 @@
+{
+  "id": "T0873",
+  "name": "match-stmt-target-actions-test-90c95509c7/match-stmt-target-actions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error: message",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message",
+    "Expressions: Start action; Wait action; Type cast expression; Anonymous function expression"
+  ],
+  "reason": "The asserted wait-result fallback and guarded time conversions require var capture match patterns, outside the explicitly supported const and wildcard patterns. The error-result assertion also depends on error.detail(), absent from both supported langlib lists. Supported start/wait actions and casts do not bring those essential behaviors into scope.",
+  "unsupported_constructs": [
+    "Capture match patterns var v, var undetermined, var seconds, var minutes, and var hours (including guarded clauses)",
+    "ballerina/lang.error detail() method used to obtain the asserted error message"
+  ],
+  "test_design_notes": [
+    "Assertions exercise the capture fallback with sum 23 and an error, and guarded captures for minute/hour/negative conversions."
+  ]
+}

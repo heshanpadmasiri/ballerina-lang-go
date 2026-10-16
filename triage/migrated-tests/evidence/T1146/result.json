@@ -1,0 +1,16 @@
+{
+  "Name": "operand-test-0e6612016b/operand_int_and_default_default-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operand_int_and_default_default-v.bal",
+  "Project": false,
+  "Id": "T1146",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operand_int_and_default_default-v.bal"
+  ],
+  "Args": [
+    "1"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.063
+}

@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "init-function-test-d2ccfe8a95/init-function-error-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> init-function-error-v.bal:17:20
+           |
+        17 |         io:println(result.detail()["i"]); // @output 24
+           |                    ^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "group-expression-test-a9a0af51cf/group-expression-test-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type: expected error|{| s: string, never... |}|{| f: float, never... |}, got error|typedesc<{| s: string, never... |}|{| f: float, never... |}>
+           --> group-expression-test-v.bal:100:23
+            |
+        100 |     Foo|Bar|error f = data.cloneWithType(FooBarTypedesc);
+            |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

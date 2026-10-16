@@ -1,0 +1,17 @@
+{
+  "id": "T0317",
+  "name": "checked-expression-operator-test-30b071e6cd/checked-expr-with-no-error-type-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)",
+    "Expressions: [Conditional expression](https://ballerina.io/spec/lang/master/#conditional-expr)",
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "Other invocation restrictions: `error:message`; `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The negative case checks rejection of check applied to boolean operands without an error alternative, including conditions with singleton and union types. Check and conditional expressions, type definitions, literals, calls, error construction, equality, string addition, and the helper's panic/return statements are covered. Both langlib methods used by the helper/assertions are explicitly supported. No essential unsupported behavior appears.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Five @error markers assert compile-time rejection; there are no @args, @panic, or @output directives. Runtime assertion and panic helpers do not replace these diagnostic expectations."
+  ]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible arguments for function call\n  --\u003e fp-struct-incorrect-arg-negative-e.bal:16:16\n   |\n16 |     string y = fp(tom.fname, tom); // @error\n   |                ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"fp-struct-incorrect-arg-negative-e.bal","StartLine":16,"EndLine":16}]}

@@ -1,0 +1,14 @@
+{
+  "Name": "locks-with-on-fail-test-044696e74b/locks-with-on-fail-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/locks-with-on-fail-test-044696e74b/locks-with-on-fail-v.bal",
+  "Project": false,
+  "Id": "T0735",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/locks-with-on-fail-test-044696e74b/locks-with-on-fail-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.066
+}

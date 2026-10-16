@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported\n --\u003e wait-for-one-actions-p.bal:2:22\n  |\n2 |     future\u003cint\u003e f1 = @strand {thread: \"any\"} start addPanic(5, 2);\n  |                      ^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"wait-for-one-actions-p.bal","StartLine":2,"EndLine":2}]}

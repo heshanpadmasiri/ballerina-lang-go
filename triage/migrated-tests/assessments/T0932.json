@@ -1,0 +1,17 @@
+{
+  "id": "T0932",
+  "name": "multiply-operation-test-50bdc62cff/multiply-operation-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Operators: \"Multiplicative ops `*`, `%`, `/`\"; \"numeric ops `+`, `-`\"",
+    "Module-level declarations: \"Constant declarations\"; \"Type definition\"; \"Function definition\"",
+    "Statements: \"Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; \"Mapping constructor\"; \"Variable reference\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\" includes `ballerina/lang.string` / `Char`"
+  ],
+  "reason": "This negative multiplication case uses supported numeric operators, declarations, literals and mapping constructors. Rejection of multiplication on json/string operands and incompatible numeric combinations is within the supported operator type system; mixed numeric conversion and constant-union operands likewise exercise multiplication typing. string:Char is explicitly allowed. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error on -9223372036854775808 is an asserted literal diagnostic, whereas the subsequent multiplication can overflow at runtime; subset10 does not specify that exact diagnostic. This annotation merits checking when validating expected diagnostics, rather than treating integer literals or multiplication as unsupported."
+  ]
+}

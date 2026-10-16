@@ -1,0 +1,19 @@
+{
+  "id": "T1287",
+  "name": "reg-exp-type-test-eebfd88fd8/regexp-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive list includes XML template expression and String template expression, but no regular expression template expression.",
+    "# Subset restrictions / ## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.regexp is absent, and the ballerina/lang.string list does not include RegExp."
+  ],
+  "reason": "The case requires regular expression templates and RegExp types to verify assignability to any/anydata/readonly, type tests, inferred and aliased types, readonly intersections, and equality of separately constructed regex values. Regular expression templates are outside the expression positive list; regexp:RegExp and string:RegExp also fall outside the permitted langlib types. These are essential to the asserted behavior.",
+  "unsupported_constructs": [
+    "Regular expression template expressions such as re `AB*|[^c-d]{1,5}`",
+    "ballerina/lang.regexp and regexp:RegExp",
+    "string:RegExp"
+  ],
+  "test_design_notes": [
+    "Some assertions reuse x2 or x5 instead of the immediately preceding variable, reducing coverage for those assignments; this does not alter the unsupported essential regex behavior.",
+    "The io:print call is instrumentation."
+  ]
+}

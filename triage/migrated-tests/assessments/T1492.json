@@ -1,0 +1,17 @@
+{
+  "id": "T1492",
+  "name": "typedesc-negative-runtime-tests-7992ec9ed7/typedesc-negative-runtime-v",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: 'Method call', 'Check expression', 'Type test expression'",
+    "Subset restrictions / Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.value lists 'cloneWithType', 'fromJsonWithType', 'toString', 'toBalString' but not ensureType",
+    "Subset restrictions / Invocations / Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes 'value:cloneWithType' and 'value:fromJsonWithType' but not value:ensureType"
+  ],
+  "reason": "The case essentially exercises value.ensureType against numerous typedesc targets. ensureType is absent from both the permitted lang.value functions and the permitted langlib method-call list, so this whole case requires an unsupported feature despite generic method-call/check/type-test support.",
+  "unsupported_constructs": ["lang.value ensureType invoked through method syntax"],
+  "test_design_notes": [
+    "Mixed scope: cloneWithType and fromJsonWithType are explicitly permitted, whereas the twenty ensureType calls are not.",
+    "No @args, @panic or @output markers occur. Empty 'if ... is error {}' branches consume results without asserting that an error was returned; main has no observable output assertion.",
+    "The io:println reference is instrumentation and is not the basis for classification."
+  ]
+}

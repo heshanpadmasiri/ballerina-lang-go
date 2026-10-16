@@ -1,0 +1,14 @@
+{
+  "id": "T1041",
+  "name": "numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-negative-255-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition; Supports required-params",
+    "## Statements: Local variable declarations; Call; Panic",
+    "## Expressions: Type cast expression; Literal — Currently support nil-literal, boolean-literal, numeric-literal and string-literal only",
+    "## Operators: Unary operators — numeric ops +, -"
+  ],
+  "reason": "The case expects a runtime panic when casting the int value -255 to byte. Type casts, numeric literals and unary minus, required int parameters, calls, and local variable declarations are supported, with no applicable restriction excluding the out-of-range cast behavior. The complete asserted behavior is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment marks the expected failure at the cast; no explicit panic statement is present."]
+}

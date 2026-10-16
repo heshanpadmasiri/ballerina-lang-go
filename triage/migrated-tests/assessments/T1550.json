@@ -1,0 +1,17 @@
+{
+  "id": "T1550",
+  "name": "worker-fail-test-278d4f50a4/invalid-async-send-in-foreach-e",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"[Foreach]\"; \"Currently only supports range, list, map, string and XML subtypes, and [iterable objects]\"",
+    "Expressions: \"[Start action]\" and \"[Wait action]\"; named workers, worker asynchronous send, and worker receive actions are absent from the supported lists."
+  ],
+  "reason": "The negative case requires named workers and rejection of asynchronous worker communication within a foreach. These essential worker constructs and their validation behavior are not covered by subset 10; supported range foreach and arithmetic do not bring worker communication into scope.",
+  "unsupported_constructs": [
+    "Named worker declarations (worker w1 and worker w2)",
+    "Asynchronous worker send (\"20\" -> w2) and worker receive (<- w1), including communication validation inside foreach"
+  ],
+  "test_design_notes": [
+    "Both communication lines have @error markers. The sent string and int receive also introduce a type mismatch alongside the intended invalid communication placement; no @args, @panic, or @output assertions occur."
+  ]
+}

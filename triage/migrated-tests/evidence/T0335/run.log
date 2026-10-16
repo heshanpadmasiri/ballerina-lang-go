@@ -1,0 +1,44 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "client-resource-access-action-negative-test-1519220005/client-transactional-resource-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+         --> client-transactional-resource-negative-e.bal:2:25
+          |
+        2 |     var successClient = client object {
+          |                         ^^^^^^^^^^^^^^^
+        3 |         transactional resource function get path/[string]() returns int {
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        4 |             return 1;
+          |             ^^^^^^^^^
+        5 |         }
+          |         ^
+        6 |         resource function get path2/[string]() {
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        7 |             testFunction(); // @error
+          |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        8 |         }
+          |         ^
+        9 |     };
+          |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+         --> client-transactional-resource-negative-e.bal:2:25
+          |
+        2 |     var successClient = client object {
+          |                         ^^^^^^^^^^^^^^^
+        3 |         transactional resource function get path/[string]() returns int {
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        4 |             return 1;
+          |             ^^^^^^^^^
+        5 |         }
+          |         ^
+        6 |         resource function get path2/[string]() {
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        7 |             testFunction(); // @error
+          |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        8 |         }
+          |         ^
+        9 |     };
+          |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

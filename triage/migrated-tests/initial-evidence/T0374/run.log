@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at modules/variable/constant-def.bal:9-9 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at constant-pkg-negative.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at constant-pkg-negative.bal:7 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at constant-pkg-negative.bal:9 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at constant-pkg-negative.bal:11 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

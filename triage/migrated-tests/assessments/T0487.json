@@ -1,0 +1,17 @@
+{
+  "id": "T0487",
+  "name": "finite-type-test-02d418a48f/finite-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive list includes 'Type test expression' and 'Type cast expression', but does not include typeof expression.",
+    "## Operators: 'Unary operators' lists 'logical `!`', 'numeric ops `+`, `-`', and 'bitwise complement `~`'."
+  ],
+  "reason": "The assertion helper contains `typedesc<any|error> tActual = typeof actual;`. The typeof expression is not covered by the subset's supported expression or unary-operator lists, so this whole case requires an unsupported construct even though the helper's failure branch should not run for the expected successful assertions.",
+  "unsupported_constructs": [
+    "typeof expression in assertEquality"
+  ],
+  "test_design_notes": [
+    "main checks finite-type conversions, precision and discriminated numeric values through @output annotations and assertion calls; no @args or @panic directives occur.",
+    "io:println is output instrumentation and is not the basis of this classification."
+  ]
+}

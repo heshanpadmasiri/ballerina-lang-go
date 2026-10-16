@@ -1,0 +1,16 @@
+{
+  "Name": "client-object-test-cc3f260977/endpoint-project-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/client-object-test-cc3f260977/endpoint-project-v",
+  "Project": true,
+  "Id": "T0329",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/client-object-test-cc3f260977/endpoint-project-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/client-object-test-cc3f260977/endpoint-project-v/modules/mod.ab/pkg-a.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/client-object-test-cc3f260977/endpoint-project-v/pkg-b.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.034
+}

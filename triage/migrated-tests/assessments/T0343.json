@@ -1,0 +1,12 @@
+{
+  "id": "T0343",
+  "name": "closed-record-iteration-test-6ab07291d1/closed-record-iteration-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.map lists length, keys, hasKey, get, remove.",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: map:length, map:keys, map:hasKey, map:get, map:remove."
+  ],
+  "reason": "The negative case requires diagnostics for invalid callbacks and result assignments involving closed-record map, filter and forEach langlib operations. These operations are outside the supported map langlib and method-call lists, so their callback/result typing behavior is not covered by subset 10.",
+  "unsupported_constructs": ["Closed-record langlib map, filter and forEach calls, including chained calls"],
+  "test_design_notes": ["Contains @error assertions only; no @args, @panic or @output directives. Negative assertions do not bring unsupported langlib operations into scope."]
+}

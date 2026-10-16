@@ -1,0 +1,14 @@
+{
+  "Name": "constrained-map-negative-test-9eb9ec4f69/map-closed-record-assignment-negative-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constrained-map-negative-test-9eb9ec4f69/map-closed-record-assignment-negative-p.bal",
+  "Project": false,
+  "Id": "T0385",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constrained-map-negative-test-9eb9ec4f69/map-closed-record-assignment-negative-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.042
+}

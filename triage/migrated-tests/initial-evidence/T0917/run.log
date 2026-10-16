@@ -1,0 +1,54 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Jhone
+        	true
+        	Peter
+        	29
+        	Y
+        	true
+        	Mac
+        	21
+        	Y
+        	false
+        	24
+        	myFormat
+        	Nicolette
+        	false
+        	Allen
+        	false
+        	8
+        	Ballerina
+        	NullPointer
+        	1
+        	2
+        	Flash
+        	15
+        	10
+        	50
+        	85
+        	90
+        	Arrow
+        	25
+        	20
+        	60
+        	95
+        	95
+        	Jo
+        	Ray
+        	1234
+        	4321
+        	{"i":15}
+        	{"i":15}
+        	2
+        	4
+        	2
+        	true
+        	true
+        	5
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

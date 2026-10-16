@@ -1,0 +1,14 @@
+{
+  "id": "T1139",
+  "name": "operand-compilation-test-fbca3afc7e/invalid-array-order-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Function definition]",
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature"
+  ],
+  "reason": "The negative test expects compile errors for a main signature combining a nilable string parameter, a defaultable float parameter and a trailing int rest parameter. Function definitions and required, defaultable and rest parameters are explicitly supported; no restriction excludes this signature validation. Invalid code in this supported signature system remains in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The two @error markers assert rejection at the first two parameters; the file contains no runtime assertions."
+  ]
+}

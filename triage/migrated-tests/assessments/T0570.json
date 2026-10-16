@@ -1,0 +1,18 @@
+{
+  "id": "T0570",
+  "name": "function-pointers-with-rest-args-test-c48bd49be9/function-pointers-with-rest-args-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition",
+    "Expressions: Call; Variable reference; Type test expression; List constructor; Mapping constructor; Field access expression; Member access expression",
+    "Statements: If/else; Local variable declarations; Return",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "All asserted behavior is in scope: function values retain and accept rest parameters, positional arguments and array rest expansion populate the returned arrays and tuples, function-type tests narrow union values before invocation, and a record-included Student value passes through a structured rest parameter. The invocation restrictions concerning named/default arguments do not apply to these positional calls. No listed restriction excludes these constructs or behaviors.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Output checks exercise rest argument collection, expansion, function-type discrimination (including parameter-name variants), and record field access through a rest array.",
+    "io:println is output instrumentation."
+  ]
+}

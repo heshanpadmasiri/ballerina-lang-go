@@ -1,0 +1,13 @@
+{
+  "id": "T0582",
+  "name": "functions-and-nil-test-b8a729fc06/functions_with_nil_basics-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list includes Type test expression, Anonymous function expression and Error constructor, but does not include typeof expression.",
+    "## Statements: [Return], [Panic], [If/else] and [Local variable declarations] are supported.",
+    "### Other invocation restrictions: `error:message` and `value:toString` and `value:toBalString` are supported with method call syntax."
+  ],
+  "reason": "The nil-return, optional-error return, anonymous-function invocation and nil-assignment checks use supported constructs, but their failure diagnostics contain `(typeof e).toString()`. The typeof expression is absent from the supported expression list, so the complete case requires an uncovered construct even though these panic branches are not reached on a successful run.",
+  "unsupported_constructs": ["typeof expression in the panic diagnostics of funcReturnNilOrError and funcReturnOptionallyError"],
+  "test_design_notes": ["io:println is output instrumentation. The unsupported typeof expressions occur only on assertion-failure paths; replacing their diagnostic text would leave the substantive nil-return checks within the listed constructs."]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "group-by-clause-test-38c059a6f0/group-by-invocation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/group-by-clause-test-38c059a6f0/group-by-invocation-v.bal",
+  "Project": false,
+  "Id": "T0619",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/group-by-clause-test-38c059a6f0/group-by-invocation-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.114
+}

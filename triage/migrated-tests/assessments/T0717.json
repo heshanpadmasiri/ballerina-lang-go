@@ -1,0 +1,17 @@
+{
+  "id": "T0717",
+  "name": "list-constant-test-204a1e5727/list-constant-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Constant declarations\"; \"Type definition\"",
+    "Expressions: \"List constructor\"; \"Mapping constructor\"; \"Type test expression\"; \"Member access expression\"",
+    "Import declarations: ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16 and Unsigned32",
+    "Other invocation restrictions: \"array:length\"; \"value:toString\" and \"value:toBalString\""
+  ],
+  "reason": "The case exercises supported constant declarations and list constructors: typed and inferred arrays/tuples, nested lists and records, list spreads, contextual numeric typing, union selection and filler members. Its length, element-type and exact string-value assertions use explicitly supported langlib methods. No listed restriction excludes these constant/list behaviors or the involved types.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "testTupleWithConstAsExpectedType is defined but not called by main; the remaining listed test functions run.",
+    "io:println occurs only in keepIoImport instrumentation and does not affect classification."
+  ]
+}

@@ -1,0 +1,343 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "record-constraint-table-test-5308103ca6/record-constraint-table-test-5308103ca6-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:16:20
+           |
+        16 | PersonTable tab1 = table [
+           |                    ^^^^^^^
+        17 |     {name: "AAA", age: 31},
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        18 |     {name: "AAA", age: 34} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        19 | ];
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:21:22
+           |
+        21 | CustomerTable tab2 = table [
+           |                      ^^^^^^^
+        22 |     {id: 13 , name: "Foo", lname: "QWER"},
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 |     {id: 13 , name: "Foo" , lname: "UYOR"} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 | ];
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:34:22
+           |
+        34 |     GlobalTable2 _ = table [
+           |                      ^^^^^^^
+        35 |         {m: {"AAA": "DDDD"}, age: 31},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         {m: {"AAA": "DDDD"}, age: 34} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:42:70
+           |
+        42 |     table<record {readonly int idNum; string name;}> key (idNum) _ = table [
+           |                                                                      ^^^^^^^
+        43 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        44 |         {idNum, name: "Chiran"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |         {idNum: 2, name: "Amy"}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        46 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:50:74
+           |
+        50 |     table<record {readonly int idNum = 2; string name;}> key (idNum) _ = table [
+           |                                                                          ^^^^^^^
+        51 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        52 |         {idNum, name: "Chiran"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        53 |         {idNum: 2, name: "Amy"}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        54 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:58:89
+           |
+        58 |     table<record {readonly int idNum = 2; readonly string name;}> key (idNum, name) _ = table [
+           |                                                                                         ^^^^^^^
+        59 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        60 |         {idNum, name: "Jo"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |         {idNum: 2, name: "Amy"}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        62 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:66:95
+           |
+        66 |     table<record {readonly int idNum = 2; readonly string name = "A";}> key (idNum, name) _ = table [
+           |                                                                                               ^^^^^^^
+        67 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        68 |         {idNum, name: "Jo"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        69 |         {idNum: 2, name: "Amy"}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        70 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:81:22
+           |
+        81 |     GlobalTable3 _ = table [
+           |                      ^^^^^^^
+        82 |         {m: {"AAA": "DDDD"}, age: 31},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        83 |         {m: {"AAA": "DDDD"}, age: 34} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        84 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> record-constraint-table-test-5308103ca6-e.bal:95:22
+           |
+        95 |     GlobalTable4 _ = table [
+           |                      ^^^^^^^
+        96 |         {m: {"AAA": "DDDD"}, age: 11},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        97 |         {m: {"AAA": "DDDD"}, age: 11} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        98 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:12:20
+           |
+        12 | type CustomerTable table<Customer> key(id, name);
+           |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:14:18
+           |
+        14 | type PersonTable table<Person> key(name);
+           |                  ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:31:19
+           |
+        31 | type GlobalTable2 table<Foo> key(m);
+           |                   ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:42:5
+           |
+        42 |     table<record {readonly int idNum; string name;}> key (idNum) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:50:5
+           |
+        50 |     table<record {readonly int idNum = 2; string name;}> key (idNum) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:58:5
+           |
+        58 |     table<record {readonly int idNum = 2; readonly string name;}> key (idNum, name) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:66:5
+           |
+        66 |     table<record {readonly int idNum = 2; readonly string name = "A";}> key (idNum, name) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:78:19
+           |
+        78 | type GlobalTable3 table<Foo2> key(m);
+           |                   ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> record-constraint-table-test-5308103ca6-e.bal:92:19
+           |
+        92 | type GlobalTable4 table<Foo3> key(m, age);
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:16:20
+           |
+        16 | PersonTable tab1 = table [
+           |                    ^^^^^^^
+        17 |     {name: "AAA", age: 31},
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        18 |     {name: "AAA", age: 34} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        19 | ];
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:21:22
+           |
+        21 | CustomerTable tab2 = table [
+           |                      ^^^^^^^
+        22 |     {id: 13 , name: "Foo", lname: "QWER"},
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 |     {id: 13 , name: "Foo" , lname: "UYOR"} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 | ];
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:34:22
+           |
+        34 |     GlobalTable2 _ = table [
+           |                      ^^^^^^^
+        35 |         {m: {"AAA": "DDDD"}, age: 31},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         {m: {"AAA": "DDDD"}, age: 34} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:42:70
+           |
+        42 |     table<record {readonly int idNum; string name;}> key (idNum) _ = table [
+           |                                                                      ^^^^^^^
+        43 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        44 |         {idNum, name: "Chiran"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |         {idNum: 2, name: "Amy"}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        46 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:50:74
+           |
+        50 |     table<record {readonly int idNum = 2; string name;}> key (idNum) _ = table [
+           |                                                                          ^^^^^^^
+        51 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        52 |         {idNum, name: "Chiran"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        53 |         {idNum: 2, name: "Amy"}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        54 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:58:89
+           |
+        58 |     table<record {readonly int idNum = 2; readonly string name;}> key (idNum, name) _ = table [
+           |                                                                                         ^^^^^^^
+        59 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        60 |         {idNum, name: "Jo"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |         {idNum: 2, name: "Amy"}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        62 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:66:95
+           |
+        66 |     table<record {readonly int idNum = 2; readonly string name = "A";}> key (idNum, name) _ = table [
+           |                                                                                               ^^^^^^^
+        67 |         {idNum, name: "Jo"},
+           |         ^^^^^^^^^^^^^^^^^^^^
+        68 |         {idNum, name: "Jo"}, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        69 |         {idNum: 2, name: "Amy"}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        70 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:81:22
+           |
+        81 |     GlobalTable3 _ = table [
+           |                      ^^^^^^^
+        82 |         {m: {"AAA": "DDDD"}, age: 31},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        83 |         {m: {"AAA": "DDDD"}, age: 34} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        84 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:95:22
+           |
+        95 |     GlobalTable4 _ = table [
+           |                      ^^^^^^^
+        96 |         {m: {"AAA": "DDDD"}, age: 11},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        97 |         {m: {"AAA": "DDDD"}, age: 11} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        98 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:12:20
+           |
+        12 | type CustomerTable table<Customer> key(id, name);
+           |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:14:18
+           |
+        14 | type PersonTable table<Person> key(name);
+           |                  ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:31:19
+           |
+        31 | type GlobalTable2 table<Foo> key(m);
+           |                   ^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:42:5
+           |
+        42 |     table<record {readonly int idNum; string name;}> key (idNum) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:50:5
+           |
+        50 |     table<record {readonly int idNum = 2; string name;}> key (idNum) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:58:5
+           |
+        58 |     table<record {readonly int idNum = 2; readonly string name;}> key (idNum, name) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:66:5
+           |
+        66 |     table<record {readonly int idNum = 2; readonly string name = "A";}> key (idNum, name) _ = table [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:78:19
+           |
+        78 | type GlobalTable3 table<Foo2> key(m);
+           |                   ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> record-constraint-table-test-5308103ca6-e.bal:92:19
+           |
+        92 | type GlobalTable4 table<Foo3> key(m, age);
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

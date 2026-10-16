@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at testInherentTypeViolationForMap(byte-as-json-map-inherent-type-violation-p.bal:12)\n           main(byte-as-json-map-inherent-type-violation-p.bal:2)\n","Diagnostics":null}

@@ -1,0 +1,12 @@
+{
+  "id": "T1567",
+  "name": "worker-fail-test-278d4f50a4/send-receive-allowed-positions-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists 'Lock statement', 'If/else', 'While', 'Foreach' and 'Local variable declarations', but does not list named worker declarations or worker on-fail clauses.",
+    "## Expressions: lists 'Start action', 'Wait action', 'Check expression' and 'Nested actions (`(action)`)'; worker send and receive actions are not listed."
+  ],
+  "reason": "The essential behavior is validation of permitted positions for named-worker sends and receives, including worker on-fail and alternate receive. Named workers and worker messaging are not covered by subset 10; supported start/wait actions do not establish support for these constructs. This decisive gap makes the whole negative case a feature.",
+  "unsupported_constructs": ["Named worker declarations", "Worker send and receive actions, including alternate receive", "Worker on-fail clauses"],
+  "test_design_notes": ["Negative test mixes marked illegal placements with unmarked worker messaging intended to be valid; supported loops, lock and check alone do not bring the worker-specific rejection rules into scope.", "The alternate receive line carries two @error markers. No @args, @panic or @output assertions are present."]
+}

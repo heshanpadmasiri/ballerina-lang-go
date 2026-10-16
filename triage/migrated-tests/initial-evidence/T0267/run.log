@@ -1,0 +1,35 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	1
+        	102
+        	51
+        	101
+        	101
+        	3
+        	0
+        	true
+        	true
+        	true
+        	{"key1":1,"key2":"foo","key3":`<bar>hello</bar>`}
+        	Lion
+        	item1
+        	5
+        	aString
+        	3
+        	item1
+        	item2
+        	Element 1
+        	Element 2
+        	Element 3
+        	{"key1":"Element 1","key2":"Element 2","key3":"Element 3"}
+        	{"key1":"Element 1","key2":"Element 2","key3":null}
+        	foo
+        	bar
+        	foobar
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

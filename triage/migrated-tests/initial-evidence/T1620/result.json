@@ -1,0 +1,14 @@
+{
+  "Name": "xmlattribute-access-test-c2d99d33fe/xml-attribute-access-syntax-neg-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlattribute-access-test-c2d99d33fe/xml-attribute-access-syntax-neg-e.bal",
+  "Project": false,
+  "Id": "T1620",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlattribute-access-test-c2d99d33fe/xml-attribute-access-syntax-neg-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

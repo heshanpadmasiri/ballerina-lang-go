@@ -1,0 +1,12 @@
+{
+  "id": "T0419",
+  "name": "distinct-object-test-d9a03dbe83/distinct-object-assignability-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "## Module-level declarations: Supports `client`, `service`, `isolated`, `readonly` and `distinct` `class-type-quals`"
+  ],
+  "reason": "The negative assignability checks fundamentally require distinct object type descriptors, including distinct object atoms in unions and readonly intersections. The object-type qualifier restriction excludes distinct. The positive distinct qualifier entry applies to classes and does not cover these object type descriptors.",
+  "unsupported_constructs": ["distinct object type descriptors and their nominal assignability"],
+  "test_design_notes": ["The @error markers assert compile-time rejection; no @args, @panic or @output behavior is asserted. Negative cases do not make the essential distinct object types supported."]
+}

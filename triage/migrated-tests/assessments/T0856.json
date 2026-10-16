@@ -1,0 +1,12 @@
+{
+  "id": "T0856",
+  "name": "match-statement-syntax-errors-test-3752146106/match-stmt-syntax-errors-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: [Match statement](https://ballerina.io/spec/lang/master/#match-stmt)",
+    "Statements: Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)"
+  ],
+  "reason": "The case asserts syntax diagnostics for several malformed match statements, including the malformed mapping match pattern `{a}` in func4. Mapping match patterns are outside the explicitly supported const and wildcard pattern forms, so this whole case requires unsupported pattern syntax and recovery behavior.",
+  "unsupported_constructs": ["Mapping match pattern syntax and diagnostics for `{a} => {}` in func4"],
+  "test_design_notes": ["Other assertions cover missing match expressions, braces, patterns and clause arrows; negative tests of supported match syntax remain in scope. The unsupported mapping-pattern assertion is sufficient for the whole-case feature classification."]
+}

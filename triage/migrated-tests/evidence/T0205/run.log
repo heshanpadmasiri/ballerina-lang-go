@@ -1,0 +1,18 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at async-non-native-basic10-p.bal:26
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+          --> async-non-native-basic10-p.bal:23:22
+           |
+        23 |     future<int> f1 = @strand {thread: "parent"} start addNum(5, 2);
+           |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+          --> async-non-native-basic10-p.bal:24:22
+           |
+        24 |     future<int> f2 = @strand {thread: "parent"} start subtract(5, 2);
+           |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

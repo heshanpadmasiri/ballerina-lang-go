@@ -1,0 +1,17 @@
+{
+  "id": "T1073",
+  "name": "object-functions-with-defaultable-arguments-83211a89c0/default-parameter-diagnostics-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' but does not list object-constructor expressions (object { ... }).",
+    "## Object/class definitions: 'Supports `included-record-param`, `rest-param` and `defaultable-param` in methods'",
+    "## Module-level declarations: Class definition 'Supports `object-field`, `method-defn` and `object-type-inclusion` members'"
+  ],
+  "reason": "The case asserts rejection of object fields and self references in method default expressions. Class and object method defaultable parameters are supported, so those negative checks alone are in scope. However, Class6\u2013Class8 also assert name-resolution diagnostics inside nested anonymous object-constructor expressions, which are absent from the supported expression list; these are essential to the whole case.",
+  "unsupported_constructs": [
+    "Anonymous object-constructor expressions object { ... }, including nested constructors with method default expressions in Class6\u2013Class8."
+  ],
+  "test_design_notes": [
+    "Negative diagnostic assertions were assessed as behavior; illegal references in otherwise supported class methods were not treated as unsupported features."
+  ]
+}

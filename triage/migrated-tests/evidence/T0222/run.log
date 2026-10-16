@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "bbyte-array-value-negative-test-585d57db0d/byte-array-with-nil-literal-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>
+         --> main.bal:2:9
+          |
+        2 |     int[*]? _ = (); // @error
+          |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented
+         --> main.bal:2:9
+          |
+        2 |     int[*]? _ = (); // @error
+          |         ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "tuple-mutability-test-4a07e00b3d/invalid-cast-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'e'
+          --> invalid-cast-p.bal:22:5
+           |
+        22 |     Intern e = <Intern> personTuple[0]; // @panic error: {ballerina}TypeCastError {"message":"incompatible types: 'Employee' cannot be cast to 'Intern'"}
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

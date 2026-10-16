@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at array-mutability-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at array-mutability-e.bal:12-12 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at array-mutability-e.bal:22-22 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at array-mutability-e.bal:23-23 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at array-mutability-e.bal:43 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

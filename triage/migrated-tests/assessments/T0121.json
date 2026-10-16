@@ -1,0 +1,15 @@
+{
+  "id": "T0121",
+  "name": "argument-parser-positive-test-e41e5b8a0a/rest-provided-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"
+  ],
+  "reason": "The asserted output restArg depends on the executable entry-point protocol binding command-line arguments to main's string rest parameter. Subset 10 supports rest parameters in function signatures but does not cover command-line argument parsing or entry-point argument binding; signature support alone does not establish that behavior.",
+  "unsupported_constructs": [
+    "Command-line argument binding to main(string... args), required by @args [\"restArg\"] and @output restArg"
+  ],
+  "test_design_notes": [
+    "Array member access args[0] is covered; io:println is output instrumentation and is not the decisive unsupported feature."
+  ]
+}

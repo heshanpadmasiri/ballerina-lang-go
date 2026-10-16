@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "array-test-774a6d4802/array-cyclic-p1-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: class definition P1 is empty
+         --> array-cyclic-p1-p.bal:1:1
+          |
+        1 | class P1 { Q1 q; string p1; function init() { self.q = new; self.p1 = "P1"; } } class Q1 { P1 p; string q1; function init() { self.p = new; self.q1 = "Q1"; } } // @panic
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: class definition Q1 is empty
+         --> array-cyclic-p1-p.bal:1:81
+          |
+        1 | class P1 { Q1 q; string p1; function init() { self.q = new; self.p1 = "P1"; } } class Q1 { P1 p; string q1; function init() { self.p = new; self.q1 = "Q1"; } } // @panic
+          |                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,151 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "isolation-analysis-test-71231d7fc4/object-field-default-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-field-default-e.bal:46:14
+           |
+        46 |     Foo f2 = object { // OK // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^
+        47 |         int i = x; // error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        48 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-field-default-e.bal:50:15
+           |
+        50 |     Bar br2 = object { // OK // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^
+        51 |         int j = x; // error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        52 | 
+           | 
+        53 |         isolated function init() {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        54 | 
+           | 
+        55 |         }
+           |         ^
+        56 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-field-default-e.bal:58:15
+           |
+        58 |     Baz bz2 = object { // error // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        59 |         int k = x; // OK
+           |         ^^^^^^^^^^^^^^^^
+        60 | 
+           | 
+        61 |         function init() {
+           |         ^^^^^^^^^^^^^^^^^
+        62 |             
+           | 
+        63 |         }
+           |         ^
+        64 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-field-default-e.bal:74:12
+           |
+        74 |     } ob = object { // @error
+           |            ^^^^^^^^^^^^^^^^^^
+        75 |         json j;
+           |         ^^^^^^^
+        76 |         object {
+           |         ^^^^^^^^
+        77 |             boolean b;
+           |             ^^^^^^^^^^
+        78 |         } innerOb = object {
+           |         ^^^^^^^^^^^^^^^^^^^^
+        79 |             boolean b = true;
+           |             ^^^^^^^^^^^^^^^^^
+        80 |         };
+           |         ^^
+        81 | 
+           | 
+        82 |         function init() {
+           |         ^^^^^^^^^^^^^^^^^
+        83 |             self.j = true;
+           |             ^^^^^^^^^^^^^^
+        84 |         }
+           |         ^
+        85 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-field-default-e.bal:46:14
+           |
+        46 |     Foo f2 = object { // OK // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^
+        47 |         int i = x; // error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        48 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-field-default-e.bal:50:15
+           |
+        50 |     Bar br2 = object { // OK // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^
+        51 |         int j = x; // error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        52 | 
+           | 
+        53 |         isolated function init() {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        54 | 
+           | 
+        55 |         }
+           |         ^
+        56 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-field-default-e.bal:58:15
+           |
+        58 |     Baz bz2 = object { // error // @error // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        59 |         int k = x; // OK
+           |         ^^^^^^^^^^^^^^^^
+        60 | 
+           | 
+        61 |         function init() {
+           |         ^^^^^^^^^^^^^^^^^
+        62 |             
+           | 
+        63 |         }
+           |         ^
+        64 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-field-default-e.bal:74:12
+           |
+        74 |     } ob = object { // @error
+           |            ^^^^^^^^^^^^^^^^^^
+        75 |         json j;
+           |         ^^^^^^^
+        76 |         object {
+           |         ^^^^^^^^
+        77 |             boolean b;
+           |             ^^^^^^^^^^
+        78 |         } innerOb = object {
+           |         ^^^^^^^^^^^^^^^^^^^^
+        79 |             boolean b = true;
+           |             ^^^^^^^^^^^^^^^^^
+        80 |         };
+           |         ^^
+        81 | 
+           | 
+        82 |         function init() {
+           |         ^^^^^^^^^^^^^^^^^
+        83 |             self.j = true;
+           |             ^^^^^^^^^^^^^^
+        84 |         }
+           |         ^
+        85 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

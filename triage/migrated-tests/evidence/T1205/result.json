@@ -1,0 +1,16 @@
+{
+  "Name": "printable-stack-trace-test-bd6e523221/printable-stack-trace-p",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/printable-stack-trace-test-bd6e523221/printable-stack-trace-p",
+  "Project": true,
+  "Id": "T1205",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/printable-stack-trace-test-bd6e523221/printable-stack-trace-p/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/printable-stack-trace-test-bd6e523221/printable-stack-trace-p/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/printable-stack-trace-test-bd6e523221/printable-stack-trace-p/modules/foo/foo.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.02
+}

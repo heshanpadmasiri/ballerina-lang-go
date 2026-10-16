@@ -1,0 +1,255 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "isolation-analysis-test-71231d7fc4/analysis-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:287:14
+            |
+        287 |    var fn3 = let int[] k = [i.length(), 1] in isolated function () returns int[] => k; // @error // @error
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:289:14
+            |
+        289 |    var fn4 = let int[] k = i in isolated function (int[] l) returns int[] { // @error
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        290 |       k.push(...l); // @error
+            |       ^^^^^^^^^^^^^^^^^^^^^^^
+        291 |       return k; // @error
+            |       ^^^^^^^^^^^^^^^^^^^
+        292 |    };
+            |    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:311:45
+            |
+        311 |    isolated function () returns int[] fn8 = let int[] k = i in () => k; // @error // @error
+            |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:313:50
+            |
+        313 |    isolated function (int[]) returns int[] fn9 = let int[] k = i in (l) => k; // @error // @error
+            |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:137:24
+            |
+        137 | service object {} s2 = service object {
+            |                        ^^^^^^^^^^^^^^^^
+        138 |     isolated resource function get res1(map<int> j) {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        139 |         int x = a + <int> j["val"]; // @error // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        140 |     }
+            |     ^
+        141 | 
+            | 
+        142 |     resource isolated function get res2(string str) returns error? {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        143 |         self.res3();
+            |         ^^^^^^^^^^^^
+        144 |         return error(str + c); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        145 |     }
+            |     ^
+        146 | 
+            | 
+        147 |     isolated function res3() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        148 |         int _ = d[1]; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        149 |     }
+            |     ^
+        150 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:325:73
+            |
+        325 | object {} testInvalidAccessOfSelfAsCapturedVariableInIsolatedFunction = object {
+            |                                                                         ^^^^^^^^
+        326 |     string[] words = [];
+            |     ^^^^^^^^^^^^^^^^^^^^
+        327 |     int length = 3;
+            |     ^^^^^^^^^^^^^^^
+        328 | 
+            | 
+        329 |     isolated function getCount() returns int =>
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        330 |         self.words.filter(
+            |         ^^^^^^^^^^^^^^^^^^
+        331 |             isolated function (string word) returns boolean => self.length == word.length()).length(); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        332 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:156:26
+            |
+        156 |     diffParamKinds(a, c, ...[bool, false]); // @error // @error // @error
+            |                          ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:158:26
+            |
+        158 |     diffParamKinds(a, c, ...d); // @error // @error // @error
+            |                          ^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:159:23
+            |
+        159 |     diffParamKinds(a, ...[c, bool, 1, a]); // @error // @error // @error // @error
+            |                       ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:282:17
+            |
+        282 |          j.push(...i); // @error // @error
+            |                 ^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+           --> analysis-negative-e.bal:300:17
+            |
+        300 |          y.push(...n); // @error
+            |                 ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+           --> analysis-negative-e.bal:208:5
+            |
+        208 |     fork {
+            |     ^^^^^^
+        209 |         worker w1 {
+            |         ^^^^^^^^^^^
+        210 | 
+            | 
+        211 |         }
+            |         ^
+        212 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> analysis-negative-e.bal:72:5
+           |
+        72 |     int _ = i + 1;
+           |     ^^^^^^^^^^^^^^
+        73 | 
+           | 
+        74 |     worker w1 {
+           |     ^^^^^^^^^^^
+        75 |         string _ = "hello world";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        76 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> analysis-negative-e.bal:287:14
+            |
+        287 |    var fn3 = let int[] k = [i.length(), 1] in isolated function () returns int[] => k; // @error // @error
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> analysis-negative-e.bal:289:14
+            |
+        289 |    var fn4 = let int[] k = i in isolated function (int[] l) returns int[] { // @error
+            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        290 |       k.push(...l); // @error
+            |       ^^^^^^^^^^^^^^^^^^^^^^^
+        291 |       return k; // @error
+            |       ^^^^^^^^^^^^^^^^^^^
+        292 |    };
+            |    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> analysis-negative-e.bal:311:45
+            |
+        311 |    isolated function () returns int[] fn8 = let int[] k = i in () => k; // @error // @error
+            |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> analysis-negative-e.bal:313:50
+            |
+        313 |    isolated function (int[]) returns int[] fn9 = let int[] k = i in (l) => k; // @error // @error
+            |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> analysis-negative-e.bal:137:24
+            |
+        137 | service object {} s2 = service object {
+            |                        ^^^^^^^^^^^^^^^^
+        138 |     isolated resource function get res1(map<int> j) {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        139 |         int x = a + <int> j["val"]; // @error // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        140 |     }
+            |     ^
+        141 | 
+            | 
+        142 |     resource isolated function get res2(string str) returns error? {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        143 |         self.res3();
+            |         ^^^^^^^^^^^^
+        144 |         return error(str + c); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        145 |     }
+            |     ^
+        146 | 
+            | 
+        147 |     isolated function res3() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        148 |         int _ = d[1]; // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        149 |     }
+            |     ^
+        150 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> analysis-negative-e.bal:325:73
+            |
+        325 | object {} testInvalidAccessOfSelfAsCapturedVariableInIsolatedFunction = object {
+            |                                                                         ^^^^^^^^
+        326 |     string[] words = [];
+            |     ^^^^^^^^^^^^^^^^^^^^
+        327 |     int length = 3;
+            |     ^^^^^^^^^^^^^^^
+        328 | 
+            | 
+        329 |     isolated function getCount() returns int =>
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        330 |         self.words.filter(
+            |         ^^^^^^^^^^^^^^^^^^
+        331 |             isolated function (string word) returns boolean => self.length == word.length()).length(); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        332 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> analysis-negative-e.bal:156:26
+            |
+        156 |     diffParamKinds(a, c, ...[bool, false]); // @error // @error // @error
+            |                          ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> analysis-negative-e.bal:158:26
+            |
+        158 |     diffParamKinds(a, c, ...d); // @error // @error // @error
+            |                          ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> analysis-negative-e.bal:159:23
+            |
+        159 |     diffParamKinds(a, ...[c, bool, 1, a]); // @error // @error // @error // @error
+            |                       ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> analysis-negative-e.bal:282:17
+            |
+        282 |          j.push(...i); // @error // @error
+            |                 ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+           --> analysis-negative-e.bal:300:17
+            |
+        300 |          y.push(...n); // @error
+            |                 ^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

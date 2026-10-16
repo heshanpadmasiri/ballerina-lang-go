@@ -1,0 +1,19 @@
+{
+  "id": "T1236",
+  "name": "reachability-analysis-test-a8532630b8/narrowing_with_if_without_else_not_completed_normally_test-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported list includes \"If/else\", \"While\", \"Return\", \"Panic\" and \"Foreach\", but does not include named worker declarations.",
+    "## Expressions: \"[Type test expression](https://ballerina.io/spec/lang/master/#section_6.28)\"; \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\"; \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\".",
+    "## Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"."
+  ],
+  "reason": "The whole case includes testReachabilityWithWorker1, which asserts a type error for assigning the narrowed protocol variable inside a named worker. Named worker declarations and narrowing across worker boundaries are not covered by the subset's positive feature lists. Supported start/wait actions and annotation attachments do not establish support for named workers. This essential unsupported construct suffices for feature classification even though the other negative narrowing checks use supported control flow and expressions.",
+  "unsupported_constructs": [
+    "Named worker declaration: worker w1 returns error?",
+    "Type narrowing and reachability across a named worker boundary"
+  ],
+  "test_design_notes": [
+    "The final function explicitly asserts an error inside a named worker; this is part of the tested behavior, not instrumentation.",
+    "Other @error assignments exercise negative type checking and are not excluded merely because they are invalid programs."
+  ]
+}

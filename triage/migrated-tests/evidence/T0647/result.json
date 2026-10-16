@@ -1,0 +1,16 @@
+{
+  "Name": "init-function-test-d2ccfe8a95/init-function-project-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/init-function-test-d2ccfe8a95/init-function-project-v",
+  "Project": true,
+  "Id": "T0647",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/init-function-test-d2ccfe8a95/init-function-project-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/init-function-test-d2ccfe8a95/init-function-project-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/init-function-test-d2ccfe8a95/init-function-project-v/modules/c_d/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.075
+}

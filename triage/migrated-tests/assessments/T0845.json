@@ -1,0 +1,18 @@
+{
+  "id": "T0845",
+  "name": "match-guard-analysis-test-cf5a6832da/match-guard-code-analysis-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "## Expressions: Query expressions — Supports from, where, let, join (including outer join), order by, limit, on conflict and select clauses"
+  ],
+  "reason": "The case requires record binding match patterns (var {x, y}, var {x}) and list match patterns ([1, 2]), outside the explicit restriction to constant and wildcard match patterns. Its guard diagnostics also use standalone let expressions, which are absent from the expression positive list; the documented let support is for query clauses.",
+  "unsupported_constructs": [
+    "Record binding match patterns",
+    "List match patterns",
+    "Standalone let expressions in match guards"
+  ],
+  "test_design_notes": [
+    "This is a negative analysis case with @error assertions, including guard type narrowing and incompatible type tests. Negative tests remain in scope when their underlying constructs are supported, but these unsupported match patterns suffice for the whole-case feature classification."
+  ]
+}

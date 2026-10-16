@@ -1,0 +1,14 @@
+{
+  "Name": "type-guard-test-74355f2266/sem-types-4-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/sem-types-4-e.bal",
+  "Project": false,
+  "Id": "T1473",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-guard-test-74355f2266/sem-types-4-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.053
+}

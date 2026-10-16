@@ -1,0 +1,14 @@
+{
+  "Name": "global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-02-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-02-e.bal",
+  "Project": false,
+  "Id": "T0606",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-02-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.029
+}

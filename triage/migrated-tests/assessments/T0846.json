@@ -1,0 +1,20 @@
+{
+  "id": "T0846",
+  "name": "match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-mutability-analysis-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value: cloneWithType, fromJsonWithType, toString, toBalString",
+    "Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: [list includes value:cloneWithType and value:fromJsonWithType, but not cloneReadOnly or clone]"
+  ],
+  "reason": "The case exercises match-guard call mutability analysis using mapping binding patterns (var {x, y}), list patterns ([1, 2]) and rest bindings ([1, ...var r]); these are outside the explicitly limited match-pattern support. It also requires cloneReadOnly and clone, which are absent from the lang.value and method-syntax positive lists. Thus the whole case requires unsupported features regardless of support for isolated functions and ordinary calls.",
+  "unsupported_constructs": [
+    "Mapping binding match patterns",
+    "List match patterns and rest binding patterns",
+    "value:cloneReadOnly and .cloneReadOnly() calls",
+    ".clone() call"
+  ],
+  "test_design_notes": [
+    "The supplied file has an empty main and no runtime assertions; its relevant behavior is compilation and static match-guard mutability analysis."
+  ]
+}

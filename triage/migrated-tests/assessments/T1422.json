@@ -1,0 +1,21 @@
+{
+  "id": "T1422",
+  "name": "trap-operator-test-ec322bfc54/trap-operator-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Trap expression](https://ballerina.io/spec/lang/master/#trap-expr)",
+    "Expressions: [Anonymous function expression](https://ballerina.io/spec/lang/master/#anonymous-function-expr)",
+    "Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "Expressions: [Type test expression](https://ballerina.io/spec/lang/master/#section_6.28)",
+    "Statements: [Panic](https://ballerina.io/spec/lang/master/#panic-stmt)",
+    "Statements / Foreach: Currently only supports range, list, map, string and XML subtypes, and [iterable objects](https://ballerina.io/spec/lang/master/#section_5.8.2)",
+    "Subset restrictions / Import declarations: `ballerina/lang.error` — `message`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `error:message`"
+  ],
+  "reason": "The case exercises supported trap expressions around function-value calls and an enclosing call whose argument panics, asserting error capture and the supported error.message() result. Its range foreach asserts that trapping a panic permits all ten iterations. Anonymous functions, calls, panic, error construction, type tests, range iteration, module variables and compound addition are covered; no applicable invocation or langlib restriction excludes the behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args, @panic or @output markers occur; main invokes both assertion-bearing helpers.",
+    "The unused io:println function reference is instrumentation. No obvious mixed-scope or marker issue."
+  ]
+}

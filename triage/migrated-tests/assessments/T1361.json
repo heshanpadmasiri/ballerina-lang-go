@@ -1,0 +1,16 @@
+{
+  "id": "T1361",
+  "name": "string-template-literal-negative-test-b1e3077176/string-template-literal-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [String template expression](https://ballerina.io/spec/lang/master/#string-template-expr)",
+    "Expressions: [Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)",
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn); [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt); [Return](https://ballerina.io/spec/lang/master/#return-stmt)"
+  ],
+  "reason": "All five negative cases exercise supported string-template expressions and ordinary variable/type checking: an undefined interpolation variable and interpolations with json, a nullable primitive union, nil, and an array union. Rejection of invalid expressions in this supported grammar/type system is in scope; no listed restriction excludes these cases.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @error annotations assert compile-time rejection; the file does not assert runtime string conversion behavior."]
+}

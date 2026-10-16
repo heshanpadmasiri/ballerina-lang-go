@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "greater-less-than-operation-test-18ca062550/greater-less-than-operation-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'x16'
+           --> greater-less-than-operation-v.bal:780:5
+            |
+        780 |     boolean x16 = a2 >= b2;
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

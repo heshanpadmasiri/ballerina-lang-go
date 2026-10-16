@@ -1,0 +1,14 @@
+{
+  "Name": "break-stmt-test-fef9973703/break-stmt-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/break-stmt-test-fef9973703/break-stmt-v.bal",
+  "Project": false,
+  "Id": "T0273",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/break-stmt-test-fef9973703/break-stmt-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.064
+}

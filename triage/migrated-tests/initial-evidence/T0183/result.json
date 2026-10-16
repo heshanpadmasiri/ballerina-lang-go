@@ -1,0 +1,14 @@
+{
+  "Name": "array-test-774a6d4802/array-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-test-774a6d4802/array-negative-e.bal",
+  "Project": false,
+  "Id": "T0183",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-test-774a6d4802/array-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.088
+}

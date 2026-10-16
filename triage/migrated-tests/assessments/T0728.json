@@ -1,0 +1,14 @@
+{
+  "id": "T0728",
+  "name": "locks-in-main-test-617c6c002d/locks-functions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Lock statement](https://ballerina.io/spec/lang/master/#lock-stmt)\" is supported; named worker declarations are not listed.",
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are supported, but named worker declarations are not listed.",
+    "## Import declarations: ballerina/lang.runtime lists sleep; ballerina/lang.int lists fromString.",
+    "### Other invocation restrictions: method-call syntax includes error:message and string:toBytes."
+  ],
+  "reason": "The case essentially depends on named worker declarations (worker w1/w2), which are outside the documented positive support lists. Its assertions require concurrent workers to contend for nested locks, preserve shared values across sleeps, release locks on return/break/panic, and propagate worker panic through trap wait. Support for lock, start and wait alone does not cover named worker declarations and their concurrency behavior.",
+  "unsupported_constructs": ["Named worker declarations and their concurrent execution/lock contention semantics"],
+  "test_design_notes": ["Several assertions depend on sleep-based scheduling and read shared globals outside locks.", "nextInsideLock increments i before checking i == 0, so its continue branch is never exercised."]
+}

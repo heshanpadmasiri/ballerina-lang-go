@@ -1,0 +1,45 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "xmltest-76e9a224a5/xml-literals-with-namespaces-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+           --> xml-literals-with-namespaces-v.bal:103:1
+            |
+        103 | 
+            | 
+        104 |     if true {
+            |     ^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+           --> xml-literals-with-namespaces-v.bal:107:36
+            |
+        107 |         xmlns "http://sample.com/wso2/a3" as ns1;
+            |                                    ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+           --> xml-literals-with-namespaces-v.bal:108:11
+            |
+        108 |         s2 = ns1:foo;
+            |           ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+          --> xml-literals-with-namespaces-v.bal:94:32
+           |
+        94 |     xmlns "http://sample.com/wso2/d2" as ns3;
+           |                                ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+          --> xml-literals-with-namespaces-v.bal:94:41
+           |
+        94 |     xmlns "http://sample.com/wso2/d2" as ns3;
+           |                                         ^^^^^
+        95 | 
+           | 
+        96 |     return [ns0:foo, ns1:foo, ns3:foo];
+           |
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+          --> xml-literals-with-namespaces-v.bal:96:3
+           |
+        96 |     return [ns0:foo, ns1:foo, ns3:foo];
+           |     ^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

@@ -1,0 +1,13 @@
+{
+  "id": "T0574",
+  "name": "function-signature-negative-test-2746ef5bfb/extern-resource-function-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)\" is listed; anonymous object-constructor expressions are not listed.",
+    "## Module-level declarations: \"Supports [`remote-method-defn`](https://ballerina.io/spec/lang/master/#remote-method-defn) for client classes and `resource-method-defn` for service classes\".",
+    "## Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\"."
+  ],
+  "reason": "The case asserts rejection of three external resource function definitions inside an anonymous service object constructor. Although service classes and resource method declarations are supported, the essential `service object { ... }` constructor expression is not covered by the expression support list. The supported class/new-expression forms do not establish support for this anonymous object expression.",
+  "unsupported_constructs": ["Anonymous service object constructor expression (`service object { ... }`)"],
+  "test_design_notes": ["The three @error markers assert rejection of external resource method bodies; negative code alone is not grounds for excluding a case."]
+}

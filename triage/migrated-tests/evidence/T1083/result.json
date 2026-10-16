@@ -1,0 +1,16 @@
+{
+  "Name": "object-subtyping-test-6d097e853f/object-subtyping-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtyping-v",
+  "Project": true,
+  "Id": "T1083",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtyping-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtyping-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtyping-v/modules/subtyping/objects.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.033
+}

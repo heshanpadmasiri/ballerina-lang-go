@@ -1,0 +1,14 @@
+{
+  "Name": "object-subtyping-test-6d097e853f/object-subtype-semantics-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtype-semantics-negative-e.bal",
+  "Project": false,
+  "Id": "T1081",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-subtyping-test-6d097e853f/object-subtype-semantics-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.03
+}

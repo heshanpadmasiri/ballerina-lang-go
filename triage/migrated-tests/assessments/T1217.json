@@ -1,0 +1,14 @@
+{
+  "id": "T1217",
+  "name": "query-expression-iterable-object-test-a42b42138e/query-expression-iterable-object-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: lists 'New expression' and 'Query expressions', but does not list object constructor expressions.",
+    "Expressions / Query expressions: 'Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses'.",
+    "Subset restrictions / Import declarations: '`ballerina/lang.object`' includes '`Iterable`'.",
+    "Module-level declarations / Class definition: 'Supports `object-field`, `method-defn` and `object-type-inclusion` members'."
+  ],
+  "reason": "The case requires anonymous object constructor expressions (`return object { ... };`) to implement both iterators. Object constructor expressions are absent from the supported expression list; support for class definitions and new expressions does not cover them. The marked errors otherwise concern rejection of objects that do not satisfy Iterable and an iterator with next1 instead of next.",
+  "unsupported_constructs": ["Anonymous object constructor expressions in both iterator implementations"],
+  "test_design_notes": ["Negative compilation case with three @error annotations; invalid iterable typing alone is not grounds for classifying a supported negative test as a feature."]
+}

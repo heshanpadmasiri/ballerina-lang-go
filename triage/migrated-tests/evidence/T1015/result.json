@@ -1,0 +1,14 @@
+{
+  "Name": "null-literal-usage-test-b7e4e13d5b/null_literal_usage-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/null-literal-usage-test-b7e4e13d5b/null_literal_usage-v.bal",
+  "Project": false,
+  "Id": "T1015",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/null-literal-usage-test-b7e4e13d5b/null_literal_usage-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.044
+}

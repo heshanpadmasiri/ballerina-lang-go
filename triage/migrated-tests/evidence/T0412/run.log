@@ -1,0 +1,52 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:3-3 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:17-17 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:28-28 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:35-35 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:49-49 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:74-74 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:75-75 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:84-84 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:87-87 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:103-103 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:106-106 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:108-108 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:123-123 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:135-135 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:154-154 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:154-154 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:164-164 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:183-183 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:190-190 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:200-200 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:200-200 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:204-204 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:239-239 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:237-237 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:246-246 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at deprecation-annotation-negative-e.bal:254-254 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:4 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:36 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:71 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:85 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:104 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:121 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:153 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:161 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:165 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:173 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:191 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:225 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:226 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:238 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:247 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at deprecation-annotation-negative-e.bal:257 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

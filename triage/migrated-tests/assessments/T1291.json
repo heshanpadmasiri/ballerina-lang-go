@@ -1,0 +1,16 @@
+{
+  "id": "T1291",
+  "name": "resource-method-return-type-test-61ebdf5ec4/resource-method-return-type-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list includes 'New expression' and 'Anonymous function expression', but does not include object constructor expressions.",
+    "## Object/class definitions: 'Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members'"
+  ],
+  "reason": "The negative test asserts rejection of client-object and function return types in resource methods, including unions, readonly intersections, nullable types and aliases. Its resource methods are defined inside anonymous client object constructor expressions, an essential expression form absent from the supported expression list. Support for object type members does not establish support for these constructor expressions.",
+  "unsupported_constructs": [
+    "Anonymous client object constructor expressions (`client object { ... }`), including constructors containing resource method definitions."
+  ],
+  "test_design_notes": [
+    "The @error markers assert compile-time rejection; negative tests are not out of scope solely because their code is illegal."
+  ]
+}

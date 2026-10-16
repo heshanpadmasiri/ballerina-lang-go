@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at ignore-values-negative-e.bal:17-17 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at ignore-values-negative-e.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ignore-values-negative-e.bal:22 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

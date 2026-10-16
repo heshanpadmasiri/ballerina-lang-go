@@ -1,0 +1,14 @@
+{
+  "Name": "basic-async-operations-test-5353eae739/async-operations-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-async-operations-test-5353eae739/async-operations-negative-e.bal",
+  "Project": false,
+  "Id": "T0209",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/basic-async-operations-test-5353eae739/async-operations-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.04
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "lvalue-test-e2785cbb54/frozen-value-update-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/frozen-value-update-p.bal",
+  "Project": false,
+  "Id": "T0740",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/frozen-value-update-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

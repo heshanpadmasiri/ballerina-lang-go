@@ -1,0 +1,17 @@
+{
+  "id": "T0953",
+  "name": "native-conversion-test-4a94bbda4e/null-json-to-struct-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only; Type test expression; Method call",
+    "Subset restrictions / Import declarations: `ballerina/lang.value` — `cloneWithType`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `value:cloneWithType`",
+    "Statements: Local variable declarations; If/else; Return; Panic"
+  ],
+  "reason": "The case converts nil-valued json to the Person record using explicitly supported cloneWithType method syntax, tests whether conversion produced Person, and panics with the conversion error otherwise. Record defaults, optional and nullable fields, recursive Person references, and the surrounding statements have no stated exclusion. The asserted failure when nil cannot convert to a non-nullable record is within the supported conversion behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is attached to cloneWithType, but the explicit panic p after the type test propagates the conversion error and supplies the expected panic behavior."
+  ]
+}

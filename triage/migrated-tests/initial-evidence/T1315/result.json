@@ -1,0 +1,14 @@
+{
+  "Name": "return-stmt-negative-test-c1f15d4b97/too-many-args-to-return-1-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/return-stmt-negative-test-c1f15d4b97/too-many-args-to-return-1-e.bal",
+  "Project": false,
+  "Id": "T1315",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/return-stmt-negative-test-c1f15d4b97/too-many-args-to-return-1-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.215
+}

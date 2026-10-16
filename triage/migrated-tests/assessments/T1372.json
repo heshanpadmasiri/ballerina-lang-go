@@ -1,0 +1,15 @@
+{
+  "id": "T1372",
+  "name": "struct-access-with-index-test-2fbf1b5e54/struct-access-with-index-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Type definition\"",
+    "Statements: \"Assignment\"; \"See supported lvexpr\"; \"Local variable declarations\"",
+    "Expressions: \"Variable reference\"; \"Member access expression\"; \"Mapping constructor\"; \"Currently spread-field not supported\""
+  ],
+  "reason": "Both expected rejections exercise supported variable references and indexed assignment: dpt1 is undeclared, and the closed Department record has no id field. Functions, local declarations, record type definition with field defaults, string/integer literals, and the empty mapping constructor use supported constructs; no applicable restriction excludes these negative type/name checks.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Two independent @error markers cover undeclared-variable access and an unknown field in a closed record. The unused uninitialized local string name in the second function is not read; no obvious mixed scope or marker issue."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0878",
+  "name": "match-structured-patterns-test-076cef5d9b/structured-match-patterns-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)"
+  ],
+  "reason": "The negative case requires diagnostics for structured record and tuple match patterns, including nested patterns and unreachable code following exhaustive structured matching. These essential patterns exceed the explicit const/wildcard-only match support.",
+  "unsupported_constructs": [
+    "Record binding match patterns such as var {s, i: integer} and nested var [a, b, {s, i}]",
+    "Tuple/list binding match patterns such as var [a, b, c]"
+  ],
+  "test_design_notes": [
+    "The @error markers assert rejection diagnostics; unsupported structured patterns remain essential even though some string constant patterns are supported."
+  ]
+}

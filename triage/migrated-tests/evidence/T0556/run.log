@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at fp-with-import-negative-e.bal:4-4 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

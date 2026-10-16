@@ -1,0 +1,17 @@
+{
+  "id": "T0659",
+  "name": "intersection-type-test-48ac088d43/error-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Type definition",
+    "## Module-level declarations: Function definition",
+    "## Statements: Local variable declarations",
+    "## Expressions: Error constructor",
+    "## Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported"
+  ],
+  "reason": "The case asserts static rejection of incompatible error-detail intersections, default-valued detail intersections, distinct error assignment, and missing or incorrectly typed error detail arguments, including readonly intersections. These exercise supported type definitions, local declarations and error constructors. No restriction excludes error/record/map intersections or distinct error types; the qualifier restriction applies to objects/classes, not errors. Invalid programs testing rejection within this type system remain in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compile-time case; @error markers assert diagnostics, with multiple diagnostics expected on some lines."
+  ]
+}

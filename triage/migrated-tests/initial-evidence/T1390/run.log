@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	{"name":"default first name","fname":"","lname":"Doe","adrs":{},"age":999,"family":{"spouse":"Jane","noOfChildren":0,"children":["Alex","Bob"]}}
+        	
+        
+        got:
+        	{"lname":"Doe","name":"default first name","fname":"","adrs":{},"age":999,"family":{"spouse":"Jane","noOfChildren":0,"children":["Alex","Bob"]}}
+        	
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

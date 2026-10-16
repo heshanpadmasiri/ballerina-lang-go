@@ -1,0 +1,14 @@
+{
+  "Name": "struct-access-with-index-test-2fbf1b5e54/struct-access-dynamic-index-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-access-with-index-test-2fbf1b5e54/struct-access-dynamic-index-v.bal",
+  "Project": false,
+  "Id": "T1371",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-access-with-index-test-2fbf1b5e54/struct-access-dynamic-index-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.065
+}

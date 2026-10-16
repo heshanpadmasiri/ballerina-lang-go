@@ -1,0 +1,17 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/invalid-multiple-float-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-multiple-float-p.bal",
+  "Project": false,
+  "Id": "T0085",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-multiple-float-p.bal"
+  ],
+  "Args": [
+    "10",
+    "5.5s"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.066
+}

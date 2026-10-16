@@ -1,0 +1,96 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	int: 5
+        	foo
+        	foo-bar
+        	hello
+        	12
+        	12
+        	int: 5
+        	boolean: true
+        	x is boolean and y is boolean: false
+        	1st round: x is boolean and y is boolean: false | 2nd round: x is boolean and y is boolean: false
+        	x is int: 5
+        	int: 5
+        	int: 5
+        	string
+        	string
+        	20
+        	BALLERINA - updated
+        	BALLERINA - updated once - updated via function
+        	true
+        	100
+        	int: 4
+        	boolean: true
+        	string: Hello
+        	int: 4
+        	boolean: true
+        	string: Hello
+        	float: 4.5
+        	John
+        	student: John
+        	status: 500
+        	some error
+        	int: 8
+        	int: 2 is < 5
+        	int: 6 is >= 5
+        	int: 4
+        	boolean: true
+        	string: Hello
+        	float: 4.5
+        	string: hello
+        	string: hello
+        	e1
+        	e2
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	true
+        	false
+        	true
+        	true
+        	true
+        	false
+        	true
+        	false
+        	true
+        	true
+        	false
+        	true
+        	false
+        	true
+        	false
+        	true
+        	false
+        	true
+        	true
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

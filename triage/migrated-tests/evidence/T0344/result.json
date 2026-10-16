@@ -1,0 +1,14 @@
+{
+  "Name": "closed-record-iteration-test-6ab07291d1/closed-record-iteration-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-iteration-test-6ab07291d1/closed-record-iteration-v.bal",
+  "Project": false,
+  "Id": "T0344",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-iteration-test-6ab07291d1/closed-record-iteration-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

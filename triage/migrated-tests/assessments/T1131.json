@@ -1,0 +1,15 @@
+{
+  "id": "T1131",
+  "name": "open-record-optional-fields-test-44a9434c47/open_record_optional_fields_optional_non_def_field3-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Statements: Local variable declarations; Call",
+    "Expressions: Mapping constructor; Method call",
+    "Subset restrictions / Import declarations: ballerina/lang.map lists get",
+    "Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: map:get"
+  ],
+  "reason": "The case constructs an empty record with an absent optional record-valued field and asserts that get(\"adrs\") panics. Record type definitions, mapping construction and local declarations have no applicable exclusion, and map:get is explicitly supported including method syntax. The nested record's default-valued fields do not make the optional outer field present; the asserted missing-key panic is within the supported operation.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The // @panic marker asserts failure of the missing-key get call; there is no explicit panic statement."]
+}

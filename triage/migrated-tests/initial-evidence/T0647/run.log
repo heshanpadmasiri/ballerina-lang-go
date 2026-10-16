@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "init-function-test-d2ccfe8a95/init-function-project-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> main.bal:22:20
+           |
+        22 |         io:println(result.detail()["i"]); // @output 110
+           |                    ^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> main.bal:23:20
+           |
+        23 |         io:println(result.detail()["s"]); // @output hello world
+           |                    ^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

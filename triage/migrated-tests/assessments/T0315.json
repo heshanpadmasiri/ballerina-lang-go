@@ -1,0 +1,12 @@
+{
+  "id": "T0315",
+  "name": "checked-expression-operator-test-30b071e6cd/check-expr-json-access-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only message; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes error:message but excludes error:detail and value:ensureType."
+  ],
+  "reason": "The error assertions essentially invoke f1Err.detail()/f2Err.detail() and ensureType() to inspect exact JSON-access and cast-error detail messages. These langlib operations are absent from the supported positive lists, so the whole case is outside subset 10 even though check and JSON field-access expressions are listed as supported.",
+  "unsupported_constructs": ["ballerina/lang.error detail()", "ballerina/lang.value ensureType()"],
+  "test_design_notes": ["No @args, @panic, or @output directives are present. main discards the returned error? and disables io:println with false, so an early returned error can skip remaining assertions without observable failure; reached assertion failures panic."]
+}

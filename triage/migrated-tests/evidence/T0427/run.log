@@ -1,0 +1,76 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "do-stmts-test-54fb85fbab/do-stmt-negative-2-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> do-stmt-negative-2-e.bal:18:5
+           |
+        18 |     do {
+           |     ^^^^
+        19 |         int d = 100;
+           |         ^^^^^^^^^^^^
+        20 |         c = a + b;
+           |         ^^^^^^^^^^
+        21 |         fail error("custom error", message = "error value");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |     } on fail error e {
+           |     ^^^^^^^^^^^^^^^^^^^
+        23 |         c += d; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        24 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+         --> do-stmt-negative-2-e.bal:3:5
+          |
+        3 |     do {
+          |     ^^^^
+        4 |         str += "Before failure throw";
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        5 |         fail str; // @error
+          |         ^^^^^^^^^^^^^^^^^^^
+        6 |     }
+          |     ^
+        7 |     on fail string e { // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        8 |         str += "-> Error caught ! ";
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        9 |     }
+          |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> do-stmt-negative-2-e.bal:18:5
+           |
+        18 |     do {
+           |     ^^^^
+        19 |         int d = 100;
+           |         ^^^^^^^^^^^^
+        20 |         c = a + b;
+           |         ^^^^^^^^^^
+        21 |         fail error("custom error", message = "error value");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |     } on fail error e {
+           |     ^^^^^^^^^^^^^^^^^^^
+        23 |         c += d; // @error
+           |         ^^^^^^^^^^^^^^^^^
+        24 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+         --> do-stmt-negative-2-e.bal:3:5
+          |
+        3 |     do {
+          |     ^^^^
+        4 |         str += "Before failure throw";
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        5 |         fail str; // @error
+          |         ^^^^^^^^^^^^^^^^^^^
+        6 |     }
+          |     ^
+        7 |     on fail string e { // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        8 |         str += "-> Error caught ! ";
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        9 |     }
+          |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

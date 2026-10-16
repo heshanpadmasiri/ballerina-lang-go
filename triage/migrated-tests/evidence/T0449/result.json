@@ -1,0 +1,14 @@
+{
+  "Name": "error-destructure-negetive-test-6c1d1c393d/error_destructure_field_binding_negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-destructure-negetive-test-6c1d1c393d/error_destructure_field_binding_negative-e.bal",
+  "Project": false,
+  "Id": "T0449",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-destructure-negetive-test-6c1d1c393d/error_destructure_field_binding_negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.052
+}

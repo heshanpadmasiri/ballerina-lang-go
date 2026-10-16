@@ -1,0 +1,14 @@
+{
+  "Name": "foreach-array-tests-6709ca3e0f/foreach-arrays-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/foreach-array-tests-6709ca3e0f/foreach-arrays-v.bal",
+  "Project": false,
+  "Id": "T0491",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/foreach-array-tests-6709ca3e0f/foreach-arrays-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.089
+}

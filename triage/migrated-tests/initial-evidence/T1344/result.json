@@ -1,0 +1,14 @@
+{
+  "Name": "service-object-test-97b54e47e4/service-object-assignment-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/service-object-test-97b54e47e4/service-object-assignment-e.bal",
+  "Project": false,
+  "Id": "T1344",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/service-object-test-97b54e47e4/service-object-assignment-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.047
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T1284",
+  "name": "ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Operators: Equality ops `==`, `!=`, `===`, `!==`",
+    "Expressions: [Equality expression]; [Logical expression]; [Unary logical expression]; [List constructor]; [Mapping constructor]; [XML template expression]; [New expression]",
+    "Module-level declarations: [Type definition]; [Class definition] — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Statements: [Local variable declarations]; [Return]; [Assignment]"
+  ],
+  "reason": "The case exercises reference-equality applicability and expected rejection for incompatible scalar, fixed-array, tuple, record and JSON/XML types, alongside accepted comparisons of empty arrays/maps and class instances. Reference equality and its surrounding expressions, declarations, constructors and class members are supported; no listed restriction excludes these comparisons. Expected static errors in supported grammar/type checking remain in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error comments mark expected compile-time diagnostics; the file contains no runtime assertion harness. Unmarked comparisons provide accepted type-checking cases."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0857",
+  "name": "match-stmt-const-pattern-test-fd23397e8d/const-pattern-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Statements: [Match statement] — Currently only supports const-pattern and wildcard-match-pattern",
+    "Statements: [Local variable declarations], [Assignment], [Return], [If/else]",
+    "Module-level declarations: [Function definition], [Constant declarations], [Type definition]",
+    "Expressions: [Literal] — Currently support nil-literal, boolean-literal, numeric-literal and string-literal only; [Mapping constructor]; [Equality expression]; [Relational expression]"
+  ],
+  "reason": "All match clauses use supported constant or wildcard patterns. The asserted diagnostics concern impossible constant patterns for primitive, record and finite-union subjects, unreachable patterns/code, definite assignment through nested matches, and missing returns through conditional branches. These are negative checks within the supported match, declaration and control-flow constructs; no listed restriction excludes them.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case: @error comments assert rejection rather than runtime results.",
+    "Includes integer constants matching float and byte subjects, named singleton constants in a union parameter, and nested wildcard matches."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-2d-object-arrays3-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-2d-object-arrays3-p.bal",
+  "Project": false,
+  "Id": "T0155",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-2d-object-arrays3-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.065
+}

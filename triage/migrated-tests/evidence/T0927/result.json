@@ -1,0 +1,14 @@
+{
+  "Name": "multiple-let-clause-test-b6bd5c9fd6/multiple-let-clauses-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/multiple-let-clause-test-b6bd5c9fd6/multiple-let-clauses-v.bal",
+  "Project": false,
+  "Id": "T0927",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/multiple-let-clause-test-b6bd5c9fd6/multiple-let-clauses-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.107
+}

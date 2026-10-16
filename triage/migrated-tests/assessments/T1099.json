@@ -1,0 +1,16 @@
+{
+  "id": "T1099",
+  "name": "object-with-private-fields-negative-test-2196e80b05/private-object-access1-semantics-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\"; \"Function definition\"; \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\"",
+    "Expressions: \"New expression\"; \"Method call\"; \"Field access expression\"; \"List constructor\"; \"Mapping constructor\""
+  ],
+  "reason": "The case asserts compile-time rejection of non-public classes exposed through public fields and public function parameter/return types, and of cross-module reference to a non-public class. These are visibility checks within supported imports, class/object fields, methods and function declarations. Private fields, structural object field types, inferred and explicit constructors, nullable arrays and map values introduce no stated exclusion. All asserted behavior is within the supported grammar and type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative diagnostics are marked with @error comments; no runtime assertions are present.",
+    "The imported module is a package-local module, so the restrictions on ballerina/lang.* imports do not exclude it."
+  ]
+}

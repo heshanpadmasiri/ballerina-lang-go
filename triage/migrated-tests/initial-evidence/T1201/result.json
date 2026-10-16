@@ -1,0 +1,14 @@
+{
+  "Name": "parallelism-test-f4e9b129d1/parallelism-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/parallelism-test-f4e9b129d1/parallelism-v.bal",
+  "Project": false,
+  "Id": "T1201",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/parallelism-test-f4e9b129d1/parallelism-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.047
+}

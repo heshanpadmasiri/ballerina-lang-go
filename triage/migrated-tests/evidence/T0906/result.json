@@ -1,0 +1,14 @@
+{
+  "Name": "module-error-variable-test-718d21c637/module-error-variable-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-error-variable-test-718d21c637/module-error-variable-v.bal",
+  "Project": false,
+  "Id": "T0906",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-error-variable-test-718d21c637/module-error-variable-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.067
+}

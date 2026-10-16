@@ -1,0 +1,120 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "anydata-negative-test-0fcaa4113f/anydata-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> anydata-negative-e.bal:145:17
+            |
+        145 |     TANY tany = table [{"a": 2}];
+            |                 ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> anydata-negative-e.bal:148:19
+            |
+        148 |     TERR terror = table [{"e": error("Message")}];
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> anydata-negative-e.bal:163:26
+            |
+        163 |    table<map<any>> tbl = table [
+            |                          ^^^^^^^
+        164 |             {a: "x", b: 3},
+            |             ^^^^^^^^^^^^^^^
+        165 |             {c: "z", d: 5}
+            |             ^^^^^^^^^^^^^^
+        166 |    ];
+            |    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> anydata-negative-e.bal:170:21
+            |
+        170 |    table<Foo1> tb = table[
+            |                     ^^^^^^
+        171 |          {id: 1, b: {id: 1, a: 5}}
+            |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+        172 |    ];
+            |    ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> anydata-negative-e.bal:141:11
+            |
+        141 | type TANY table<map<any>>;
+            |           ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> anydata-negative-e.bal:142:11
+            |
+        142 | type TERR table<map<error>>;
+            |           ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> anydata-negative-e.bal:163:4
+            |
+        163 |    table<map<any>> tbl = table [
+            |    ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> anydata-negative-e.bal:170:4
+            |
+        170 |    table<Foo1> tb = table[
+            |    ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> anydata-negative-e.bal:145:17
+            |
+        145 |     TANY tany = table [{"a": 2}];
+            |                 ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> anydata-negative-e.bal:148:19
+            |
+        148 |     TERR terror = table [{"e": error("Message")}];
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> anydata-negative-e.bal:163:26
+            |
+        163 |    table<map<any>> tbl = table [
+            |                          ^^^^^^^
+        164 |             {a: "x", b: 3},
+            |             ^^^^^^^^^^^^^^^
+        165 |             {c: "z", d: 5}
+            |             ^^^^^^^^^^^^^^
+        166 |    ];
+            |    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> anydata-negative-e.bal:170:21
+            |
+        170 |    table<Foo1> tb = table[
+            |                     ^^^^^^
+        171 |          {id: 1, b: {id: 1, a: 5}}
+            |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+        172 |    ];
+            |    ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> anydata-negative-e.bal:141:11
+            |
+        141 | type TANY table<map<any>>;
+            |           ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> anydata-negative-e.bal:142:11
+            |
+        142 | type TERR table<map<error>>;
+            |           ^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> anydata-negative-e.bal:163:4
+            |
+        163 |    table<map<any>> tbl = table [
+            |    ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> anydata-negative-e.bal:170:4
+            |
+        170 |    table<Foo1> tb = table[
+            |    ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

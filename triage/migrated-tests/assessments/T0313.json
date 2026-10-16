@@ -1,0 +1,16 @@
+{
+  "id": "T0313",
+  "name": "checked-expr-negative-test-764bc995e0/checked-expr-semantics-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"- [Call](https://ballerina.io/spec/lang/master/#call-stmt)\"; the supported statements list does not include checking statements.",
+    "## Expressions: \"- [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\""
+  ],
+  "reason": "The case includes the standalone checking statement `check line;` in testCheckedExprSemanticErrors6. The subset lists check expressions, but does not cover checking statements in its positive statement list. That essential negative-test form makes the whole case a feature case.",
+  "unsupported_constructs": [
+    "Standalone checking statement: `check line;`"
+  ],
+  "test_design_notes": [
+    "The @error markers assert compile-time rejection; there are no @args, @panic, or @output assertions. Other marked checks use supported check expressions; their illegal operand types alone do not make them unsupported."
+  ]
+}

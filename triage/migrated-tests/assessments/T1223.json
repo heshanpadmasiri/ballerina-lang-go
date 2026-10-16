@@ -1,0 +1,13 @@
+{
+  "id": "T1223",
+  "name": "query-negative-tests-39b4ca8ff2/query-dataflow-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [Query expressions](https://ballerina.io/spec/lang/master/#query-expr)",
+    "Expressions: Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions: Supports `group by` and `collect` clauses"
+  ],
+  "reason": "The asserted diagnostics concern reassignment of query-bound variables inside query actions ending in do blocks, including narrowed from/join variables and let bindings. Query actions and their do clauses are absent from the supported query-expression clause list and supported statements. They are essential to these assertions, so the whole case requires an unsupported feature.",
+  "unsupported_constructs": ["Query actions with terminal do blocks"],
+  "test_design_notes": ["Negative rejection is in scope for supported constructs, but these assertions specifically depend on query-action binding and reassignment semantics."]
+}

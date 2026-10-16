@@ -1,0 +1,132 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "worker-test-0f3493dd03/multiple-receive-type-checking-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> multiple-receive-type-checking-e.bal:18:5
+           |
+        18 |     worker w1 {
+           |     ^^^^^^^^^^^
+        19 |         50 -> w3;
+           |         ^^^^^^^^^
+        20 |     }
+           |     ^
+        21 | 
+           | 
+        22 |     worker w2 {
+           |     ^^^^^^^^^^^
+        23 |         100 -> w3;
+           |         ^^^^^^^^^^
+        24 |     }
+           |     ^
+        25 | 
+           | 
+        26 |     worker w3 {
+           |     ^^^^^^^^^^^
+        27 |         _ = <- {a: w1, a: w2}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        28 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> multiple-receive-type-checking-e.bal:32:5
+           |
+        32 |     worker w1 {
+           |     ^^^^^^^^^^^
+        33 |         50 -> w2;
+           |         ^^^^^^^^^
+        34 |         100 -> w2;
+           |         ^^^^^^^^^^
+        35 |     }
+           |     ^
+        36 | 
+           | 
+        37 |     worker w2 {
+           |     ^^^^^^^^^^^
+        38 |         _ = <- {a: w1, a: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        39 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> multiple-receive-type-checking-e.bal:53:5
+           |
+        53 |     worker w2 {
+           |     ^^^^^^^^^^^
+        54 |         // Non-union cases
+           |         ^^^^^^^^^^^^^^^^^^
+        55 |         int _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        56 |         map<int> _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        57 |         record {|int c; int a; int b;|} _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        58 |         record {|int c?; int a; int b;|} _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        59 |         record {|int a; int b;|} _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        60 |         record {|int a; int b; int...;|} _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |         record {|int...;|} _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        62 |         record {||} _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        63 |         record {} _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        64 |         MapOfInt _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        65 |         MapOfInt2 _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |         ABRecord _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        67 |         ABCRecord _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        68 | 
+           | 
+        69 |         // Union cases
+           |         ^^^^^^^^^^^^^^
+        70 |         string|int|map<int> _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |         string|record {int a; int b;}|int _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        72 |         string|record {int a; int b; int c;}|int _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        73 |         string|boolean|int _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        74 |         map<int>|record {int a; int b;} _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        75 |         map<int>|record {|int ...;|} _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        76 |         map<int>|record {int a; int c;} _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        77 |         int|record {int a; int c;} _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        78 | 
+           | 
+        79 |         // Special cases
+           |         ^^^^^^^^^^^^^^^^
+        80 |         readonly r = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        81 |         json _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        82 |         anydata _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        83 |         any _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        84 |         record {|int a; int b;|} & readonly _ = <- {a: w1, b: w1}; // OK
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        85 |         record {|int a; int c;|} & readonly _ = <- {a: w1, b: w1}; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        86 |     }
+           |     ^
+        87 | 
+           | 
+        88 |     worker w1 {
+           |     ^^^^^^^^^^^
+        89 |         1 ->> w2;
+           |         ^^^^^^^^^
+        90 |         2 ->> w2;
+           |         ^^^^^^^^^
+        91 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

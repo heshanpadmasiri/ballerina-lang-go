@@ -1,0 +1,18 @@
+{
+  "id": "T0026",
+  "name": "anonymous-record-negative-test-493ce47c85/anon-record-isolation-analysis-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: lists 'List constructor' and 'Mapping constructor', but does not list table constructor expressions.",
+    "Statements: 'Local variable declarations' and 'Panic' are supported.",
+    "Module-level declarations: 'Type definition' and 'Class definition' are supported."
+  ],
+  "reason": "This negative case tests anonymous record field defaults capturing mutable local or module variables across many enclosing types. Ordinary variable declarations, type definitions, classes, variable references and panic/error construction are covered. However, the complete case also contains a table constructor expression (`table []`), which the expression support list does not cover. Under the whole-case rule, that mixed unsupported construct makes this a feature case, regardless of whether rejection of the record-default captures should work in otherwise supported contexts. The spec does not separately describe these isolation diagnostics or enumerate every enclosing type descriptor.",
+  "unsupported_constructs": [
+    "Table constructor expression `table []` is not covered by the expression list."
+  ],
+  "test_design_notes": [
+    "Repeated @error markers accompany capture diagnostics and uninitialized declarations; marker counts alone do not establish required diagnostics.",
+    "The empty tuple initializers may also produce independent size/type errors. No obvious migration corruption is visible; intentional negative declarations are not themselves unsupported features."
+  ]
+}

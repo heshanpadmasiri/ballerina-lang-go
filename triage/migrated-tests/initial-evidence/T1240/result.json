@@ -1,0 +1,14 @@
+{
+  "Name": "reachability-analysis-test-a8532630b8/unreachability_test2-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/reachability-analysis-test-a8532630b8/unreachability_test2-e.bal",
+  "Project": false,
+  "Id": "T1240",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/reachability-analysis-test-a8532630b8/unreachability_test2-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.071
+}

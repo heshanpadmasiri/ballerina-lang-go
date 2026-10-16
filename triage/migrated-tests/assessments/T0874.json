@@ -1,0 +1,17 @@
+{
+  "id": "T0874",
+  "name": "match-stmt-type-narrowing-test-2f777af370/match-stmt-type-narrow-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "## Expressions: Type test expression"
+  ],
+  "reason": "The negative assertions concern duplicate/unreachable match clauses after type guards on variables bound by var and mapping patterns. These binding match patterns are essential to the test and exceed the explicit const-pattern/wildcard-match-pattern restriction, even though type-test expressions are supported.",
+  "unsupported_constructs": [
+    "Variable-binding match patterns such as var a with type guards",
+    "Mapping binding/match patterns, including rest bindings, in match clauses"
+  ],
+  "test_design_notes": [
+    "The @error markers assert compile-time rejection of guarded match clauses; negative testing does not remove the dependency on unsupported match patterns."
+  ]
+}

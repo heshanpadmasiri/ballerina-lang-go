@@ -1,0 +1,16 @@
+{
+  "id": "T0828",
+  "name": "mapping-constructor-expr-test-833706cb84/mapping-constructor-duplicate-fields-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\"",
+    "Expressions: \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\""
+  ],
+  "reason": "The negative test asserts duplicate-field rejection after escape normalization, including duplicates between a record spread and an explicit field. The two constructors containing ...recVar1 require explicitly unsupported mapping spread fields, so the whole case is a feature gap.",
+  "unsupported_constructs": [
+    "Mapping-constructor spread fields (...recVar1), used in both orders with an explicit duplicate field."
+  ],
+  "test_design_notes": [
+    "Other assertions test duplicate escaped identifier/string keys and shorthand fields; expected rejection alone does not make those assertions unsupported."
+  ]
+}

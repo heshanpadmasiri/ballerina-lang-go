@@ -1,0 +1,82 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at panic-with-multiple-send-stmts-p.bal:34
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> panic-with-multiple-send-stmts-p.bal:4:5
+           |
+         4 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+         5 |     worker w1 returns error? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+         6 |         int a = 10;
+           |         ^^^^^^^^^^^
+         7 |         a + 5 -> w2;
+           |         ^^^^^^^^^^^^
+         8 |         () result = a + 10 ->> w3;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         a + 15 -> w2;
+           |         ^^^^^^^^^^^^^
+        10 |         result = a + 20 ->> w3;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        11 |         return result;
+           |         ^^^^^^^^^^^^^^
+        12 |     }
+           |     ^
+        13 | 
+           | 
+        14 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+        15 |     worker w2 {
+           |     ^^^^^^^^^^^
+        16 |         int b1 = <- w1;
+           |         ^^^^^^^^^^^^^^^
+        17 |         b1 -> w3;
+           |         ^^^^^^^^^
+        18 |         int b2 = <- w1;
+           |         ^^^^^^^^^^^^^^^
+        19 |         () result = b2 ->> w3;
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        20 |         runtime:sleep(1.0);
+           |         ^^^^^^^^^^^^^^^^^^^
+        21 |     }
+           |     ^
+        22 | 
+           | 
+        23 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+        24 |     worker w3 returns string {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        25 |         int b = <- w1;
+           |         ^^^^^^^^^^^^^^
+        26 |         if b == 2 {
+           |         ^^^^^^^^^^^
+        27 |             error err = error("err returned from w3");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        28 |             panic err;
+           |             ^^^^^^^^^^
+        29 |         }
+           |         ^
+        30 |         b = <- w2;
+           |         ^^^^^^^^^^
+        31 |         b += b;
+           |         ^^^^^^^
+        32 |         b = <- w2;
+           |         ^^^^^^^^^^
+        33 |         if b > 10 {
+           |         ^^^^^^^^^^^
+        34 |             error err = error("err from panic from w3w3"); // @panic
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |             panic err;
+           |             ^^^^^^^^^^
+        36 |         }
+           |         ^
+        37 |         b = <- w1;
+           |         ^^^^^^^^^^
+        38 |         return "w3 received all send statments";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        39 |     }
+           |     ^
+        
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

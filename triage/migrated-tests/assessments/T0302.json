@@ -1,0 +1,17 @@
+{
+  "id": "T0302",
+  "name": "check-panic-expression-operator-test-baa47123b9/checkpanic-generic-detail-p",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)",
+    "Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "Statements: [Match statement] — Currently only supports const-pattern and wildcard-match-pattern",
+    "Statements: [Local variable declarations]; [Return]; [Panic]"
+  ],
+  "reason": "The case uses a supported checking expression (checkpanic), a generic error constructor with boolean/string detail fields, and a match with an integer constant pattern. Calling main selects the matching arm and checkpanic converts the returned error into a panic, satisfying the @panic expectation. No essential unsupported construct or behavior is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is placed on error construction, but construction itself does not panic; the expected panic occurs when checkpanic consumes the returned error.",
+    "There are no @args or @output expectations."
+  ]
+}

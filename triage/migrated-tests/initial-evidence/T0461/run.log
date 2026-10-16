@@ -1,0 +1,43 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "experimental-features-test-5fc632af97/experimental-features-negative-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.NaturalExpressionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:17:15
+           |
+        17 | int a = check natural (new MyGenerator()) { // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        18 |     What is 1 + 1?
+           |     ^^^^^^^^^^^^^^
+        19 | };
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.NaturalExpressionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:22:15
+           |
+        22 |     int[] _ = const natural { // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 |         Give me an array of length 10 with random values between 1 and 100.
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformNaturalExpression unimplemented
+          --> main.bal:17:15
+           |
+        17 | int a = check natural (new MyGenerator()) { // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        18 |     What is 1 + 1?
+           |     ^^^^^^^^^^^^^^
+        19 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformNaturalExpression unimplemented
+          --> main.bal:22:15
+           |
+        22 |     int[] _ = const natural { // @error
+           |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 |         Give me an array of length 10 with random values between 1 and 100.
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

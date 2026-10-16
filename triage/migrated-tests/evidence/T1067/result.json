@@ -1,0 +1,18 @@
+{
+  "Name": "object-equivalency-test-f65632eff0/object-equivalency-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-v",
+  "Project": true,
+  "Id": "T1067",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-v/modules/eq/eq1.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-v/modules/eq2/eq2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-v/modules/req/eq2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-equivalency-test-f65632eff0/object-equivalency-v/object-equivalency.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.073
+}

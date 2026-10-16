@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "code-annotation-test-df355339be/code-annotation-negative-e" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

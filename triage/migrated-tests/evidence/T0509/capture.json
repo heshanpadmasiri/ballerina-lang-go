@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n  --\u003e freeze-and-isfrozen-negative-e.bal:24:10\n   |\n24 |      _ = ageRec.cloneReadOnly(); // @error // @error\n   |          ^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"freeze-and-isfrozen-negative-e.bal","StartLine":24,"EndLine":24}]}

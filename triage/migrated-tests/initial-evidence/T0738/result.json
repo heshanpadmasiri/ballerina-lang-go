@@ -1,0 +1,14 @@
+{
+  "Name": "lvalue-test-e2785cbb54/filling-read-record-field-negative-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/filling-read-record-field-negative-p.bal",
+  "Project": false,
+  "Id": "T0738",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/filling-read-record-field-negative-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.052
+}

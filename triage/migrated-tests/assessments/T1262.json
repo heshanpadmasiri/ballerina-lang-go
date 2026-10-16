@@ -1,0 +1,18 @@
+{
+  "id": "T1262",
+  "name": "record-fields-access-negative-test-bbfa6baecd/record-project-access-2-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists ‘New expression’ but does not list object constructor expressions.",
+    "## Object/class definitions: ‘Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members’.",
+    "## Module-level declarations: ‘Type definition’, ‘Function definition’, and ‘Import declarations’.",
+    "## Expressions: ‘Field access expression’ and ‘Member access expression’."
+  ],
+  "reason": "The negative assertions concern exposure and access of private record types through public records and function signatures, within the supported declaration and field-access surface. However, the supplied case also requires an anonymous object constructor expression as the default for FooEmployee.job. The expression positive list supports new expressions but does not cover object constructor expressions; support for object type members does not supply that missing expression form. Thus the whole case includes an unsupported construct.",
+  "unsupported_constructs": [
+    "baz2.bal: FooEmployee.job default uses `object { public string desc = \"\"; public string title = \"\"; }`, an object constructor expression absent from the supported expression list."
+  ],
+  "test_design_notes": [
+    "The @error assertions cover private types exposed in public declarations and cross-module access to FooPerson.family, including through an array element; the anonymous address record access is unmarked."
+  ]
+}

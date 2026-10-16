@@ -1,0 +1,19 @@
+{
+  "id": "T0671",
+  "name": "isolated-worker-test-8e649817ff/inference-named-workers-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes 'Lock statement', 'Call', 'If/else', 'While', 'Local variable declarations', 'Return', 'Panic', 'Foreach' and 'Match statement', but does not include named worker declarations or fork statements.",
+    "## Module-level declarations: 'Supports [`isolated`](https://ballerina.io/spec/lang/master/#isolated-qual) function qualifier (see [isolated functions](https://ballerina.io/spec/lang/master/#isolated_functions))'",
+    "## Expressions: '[Start action](https://ballerina.io/spec/lang/master/#start-action)' and '[Type test expression](https://ballerina.io/spec/lang/master/#section_6.28)'"
+  ],
+  "reason": "The assertions depend on isolation inference for functions and methods containing named workers, including fork blocks and worker strand annotations. Named workers and fork statements are absent from the supported statement list. Support for isolated function qualifiers, start actions and type tests does not cover these essential worker constructs or their isolation-inference behavior.",
+  "unsupported_constructs": [
+    "Named worker declarations and their isolation-inference behavior",
+    "Fork statements containing named workers"
+  ],
+  "test_design_notes": [
+    "Assertions inspect inferred isolated function/object types rather than executing most worker bodies; worker-aware inference is nevertheless essential to the expected results.",
+    "The unreachable io:println call is instrumentation only."
+  ]
+}

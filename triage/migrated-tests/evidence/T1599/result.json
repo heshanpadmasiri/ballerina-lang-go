@@ -1,0 +1,14 @@
+{
+  "Name": "worker-test-0f3493dd03/14-worker-inside-lock-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/14-worker-inside-lock-p.bal",
+  "Project": false,
+  "Id": "T1599",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-test-0f3493dd03/14-worker-inside-lock-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.052
+}

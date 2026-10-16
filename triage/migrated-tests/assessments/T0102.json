@@ -1,0 +1,16 @@
+{
+  "id": "T0102",
+  "name": "argument-parser-positive-test-e41e5b8a0a/float-08-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\""
+  ],
+  "reason": "The asserted behavior requires the external main argument protocol to parse the command-line string \"0XFAf1p-25\" as a hexadecimal float and pass its value to main, producing 0.0019145309925079346. subset10 supports parameter signatures and numeric literals but does not cover command-line argument conversion; the string here is not a source numeric literal.",
+  "unsupported_constructs": [
+    "Command-line binding/conversion of a hexadecimal floating-point argument to main(float)."
+  ],
+  "test_design_notes": [
+    "@args [\"0XFAf1p-25\"] and @output jointly assert argument-parser behavior. io:println is output instrumentation."
+  ]
+}

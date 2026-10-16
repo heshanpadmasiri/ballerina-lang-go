@@ -1,0 +1,17 @@
+{
+  "id": "T1098",
+  "name": "object-with-private-fields-negative-test-2196e80b05/private-object-access1-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"[Import declarations](https://ballerina.io/spec/lang/master/#import-decl)\"",
+    "Module-level declarations: \"[Class definition](https://ballerina.io/spec/lang/master/#section_8.6)\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Expressions: \"[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)\"; \"[Method call](https://ballerina.io/spec/lang/master/#method-call-expr)\"",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\""
+  ],
+  "reason": "The case asserts rejection of construction from another module when public classes have non-public init methods, including nested inferred constructors and constructor arguments to public functions. It also exercises obtaining an instance through a public factory and calling its public method. Imports, classes with public/private fields and methods, new expressions, function calls, and method calls are supported; no listed restriction excludes constructor visibility checking across modules. The helper classes use ordinary fields, arrays, maps and constructors and introduce no essential unsupported construct. Negative visibility diagnostics are within the supported class/type-system scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error markers assert access rejection for non-public initializers, rather than direct reads of private fields; the class named PrivatePerson has public fields but a non-public init.",
+    "The public factory call is unmarked and supplies a valid contrast to direct construction."
+  ]
+}

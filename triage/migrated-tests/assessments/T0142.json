@@ -1,0 +1,15 @@
+{
+  "id": "T0142",
+  "name": "array-fill-negative-test-3d68a15e37/array-fill-object-init-param-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Statements: Assignment; Local variable declarations",
+    "Expressions: New expression; List constructor; Member access expression; Field access expression"
+  ],
+  "reason": "The case uses supported class fields and an initializer with a required integer parameter, object construction, an empty array, and indexed assignments. Appending at index 0 requires no filler; assigning index 3 requires filling intervening elements, but this class has no implicit default value because its initializer requires an argument. The asserted panic is part of supported indexed-assignment semantics, with no applicable subset restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The sole @panic assertion is on the gap-creating assignment; there are no @args or @output protocols to assess."
+  ]
+}

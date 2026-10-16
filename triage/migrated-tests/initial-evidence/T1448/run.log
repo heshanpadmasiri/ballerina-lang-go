@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "tuple-mutability-test-4a07e00b3d/valid-tuple-assignment-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'person1'
+          --> valid-tuple-assignment-v.bal:18:1
+           |
+        18 | Person person1 = {name: "John"};
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

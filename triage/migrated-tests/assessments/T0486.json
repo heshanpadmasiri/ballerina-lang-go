@@ -1,0 +1,18 @@
+{
+  "id": "T0486",
+  "name": "finite-type-test-02d418a48f/finite-type-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Class definition\"; \"Supports object-field, method-defn and object-type-inclusion members\"",
+    "Statements: \"Local variable declarations\"; \"Assignment\"; \"If/else\"; \"Return\"",
+    "Statements: \"Destructuring assignment statement\" — \"Only supports wildcard-binding-pattern\"",
+    "Expressions: \"List constructor\"; \"Mapping constructor\"; \"Field access expression\"; \"Equality expression\"",
+    "Object/class definitions: \"Supports included-record-param, rest-param and defaultable-param in methods\""
+  ],
+  "reason": "All exercised constructs are covered: finite singleton/union type definitions, records and structural assignment, optional class fields, defaultable initializer parameters, equality, and tuple binding in a local variable declaration. The wildcard-only restriction concerns destructuring assignment statements, not the local declaration `var [i, j] = b`. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The file asserts unused-variable diagnostics for p, i, j and rec2 through @error comments. These concern supported declarations; no @args, @panic or @output behavior is present.",
+    "No runtime entry point or function invocations are supplied; the case principally checks compilation and diagnostics."
+  ]
+}

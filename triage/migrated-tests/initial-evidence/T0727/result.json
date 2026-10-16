@@ -1,0 +1,14 @@
+{
+  "Name": "locks-in-main-test-617c6c002d/locks-down-chain-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/locks-down-chain-v.bal",
+  "Project": false,
+  "Id": "T0727",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/locks-down-chain-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.051
+}

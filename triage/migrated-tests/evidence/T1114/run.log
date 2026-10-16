@@ -1,0 +1,24 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:48: CLI exit: exit status 1
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: -v test leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'value'
+          --> open-record-iteration-chain-terminal-v.bal:10:79
+           |
+        10 |     int count = grades.'map(mapTo).filter(filter).reduce(function (int total, int value) returns int { return total + 1; }, 0);
+           |                                                                               ^^^^^^^^^
+        
+        ballerina: compilation contains errors
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	3
+        	264
+        	90
+        	86
+        	88.0
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

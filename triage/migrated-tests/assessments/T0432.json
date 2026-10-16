@@ -1,0 +1,17 @@
+{
+  "id": "T0432",
+  "name": "elvis-expression-test-1c927d1f30/elvis-expression-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\" (the list does not include ballerina/lang.regexp).",
+    "Expressions: \"Conditional expression\" is listed, but Elvis expressions (`?:`) are not in the supported expression list."
+  ],
+  "reason": "The whole case requires ballerina/lang.regexp and regexp:RegExp in AnydataWithoutNil, which are outside the explicit lang-library allowlist. This alone makes the case a feature request. The tested Elvis operator is also not explicitly covered by the supported expression list.",
+  "unsupported_constructs": [
+    "ballerina/lang.regexp import and regexp:RegExp type",
+    "Elvis expressions (`?:`)"
+  ],
+  "test_design_notes": [
+    "The @output annotations assert fallback selection across scalar, record, class and tuple values; later calls also assert conversions, nil removal and query fallback results. io:println is instrumentation only. No @args or @panic directive is present."
+  ]
+}

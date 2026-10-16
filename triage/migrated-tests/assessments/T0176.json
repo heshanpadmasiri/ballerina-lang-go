@@ -1,0 +1,15 @@
+{
+  "id": "T0176",
+  "name": "array-size-definition-test-a34088ca39/array-size-scope-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"Constant declarations\", \"Module variable declarations\", \"Function definition\"",
+    "## Statements: \"Local variable declarations\", \"Call\", \"If/else\"",
+    "## Expressions: \"List constructor\", \"Anonymous function expression\", \"Variable reference\", \"Equality expression\""
+  ],
+  "reason": "This is a compile-time negative test of fixed-length array declarations: three-element initializers for length two, nonconstant or noninteger size references, and unresolved size names, repeated at module, function, anonymous-function and block scope. These exercise the supported declaration, expression and scope/type-checking constructs; no subset restriction excludes fixed-length arrays or constant size references.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "All assertions are @error diagnostics; no @args, @panic or @output execution protocol is involved. The first declaration uses a later module constant, but its three-element initializer still exceeds the declared length two."
+  ]
+}

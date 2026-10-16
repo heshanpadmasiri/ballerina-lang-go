@@ -1,0 +1,17 @@
+{
+  "id": "T1295",
+  "name": "retry-stmt-test-5faabda7b4/retry-statement-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes Return and Panic but does not include retry or fail statements.",
+    "# Subset restrictions / ## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\"."
+  ],
+  "reason": "The assertions require retry execution with a custom retry manager and the default manager: successful retries preserve accumulated state, exhausted retries propagate errors, and returning an error bypasses retry. Retry and fail statements are absent from the supported statement list. Default retries also use error:Retriable, which is absent from the permitted lang.error types/methods. These essential behaviors make the whole case a feature request.",
+  "unsupported_constructs": [
+    "retry<MyRetryManager> (3) blocks and custom retry-manager behavior",
+    "retry blocks with default retry-manager behavior",
+    "fail statements",
+    "ballerina/lang.error Retriable type"
+  ],
+  "test_design_notes": []
+}

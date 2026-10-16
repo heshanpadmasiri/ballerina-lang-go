@@ -1,0 +1,16 @@
+{
+  "id": "T0954",
+  "name": "native-conversion-test-4a94bbda4e/struct-incompatible-info-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition",
+    "Expressions: XML template expression — Supports interpolation in XML content and attributes",
+    "Expressions: List constructor; Mapping constructor; Type test expression",
+    "Subset restrictions / Import declarations: ballerina/lang.value — cloneWithType",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType",
+    "Statements: Local variable declarations; If/else; Return; Panic"
+  ],
+  "reason": "The case checks that cloning a record containing a map containing an XML array to json fails and leads to panic. XML templates, arrays, mappings, record type definitions, cloneWithType (including method syntax), type tests and panic are supported. No listed restriction excludes this incompatible nested-value conversion or its error result.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic marker is exercised by explicitly panicking with the conversion error after ruling out a json result; no exact error message is asserted."]
+}

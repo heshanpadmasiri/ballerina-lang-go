@@ -1,0 +1,21 @@
+{
+  "id": "T1636",
+  "name": "xmltest-76e9a224a5/xml-literals-with-namespaces-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions \u2014 \"[Variable reference]\" / \"Currently `xml-qualified-names` not supported\"",
+    "## Expressions \u2014 \"[XML template expression]\" and \"[XML navigation expression]\"",
+    "## Module-level declarations \u2014 list includes function and class definitions but does not list xmlns declarations",
+    "## Import declarations \u2014 `ballerina/lang.xml` includes `length`; ### Other invocation restrictions \u2014 method syntax includes `xml:length`"
+  ],
+  "reason": "The executed testNamespaceDclr and testInnerScopeNamespaceDclr functions evaluate XML qualified-name expressions such as ns0:foo and ns1:foo as strings and assert expanded-name output; these are explicitly unsupported. This decisive exclusion makes the whole case a feature despite support for XML templates, XML navigation, classes, tuples and xml:length. Standalone module/block xmlns declarations are also not listed as supported.",
+  "unsupported_constructs": [
+    "XML qualified-name variable-reference expressions (ns0:foo, ns1:foo, ns3:foo), including namespace shadowing and expanded-name string results",
+    "Standalone module-level and block-level xmlns declarations are not covered by the supported declaration lists"
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported XML template/navigation/class behavior is bundled with explicitly unsupported XML qualified-name expressions.",
+    "The @output markers assert precise namespace serialization and prefix handling; the complex literal expects pre:tested from source ore:tested where both prefixes bind the same URI. This is a serialization-sensitive assertion.",
+    "io:println is instrumentation; xml:length is explicitly supported. No @args or @panic markers appear."
+  ]
+}

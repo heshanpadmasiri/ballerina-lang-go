@@ -1,0 +1,16 @@
+{
+  "id": "T0663",
+  "name": "intersection-type-test-48ac088d43/unsupported-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"",
+    "Module-level declarations: \"[Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)\"",
+    "Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\"; \"Supports [`required-params`]\""
+  ],
+  "reason": "The case asserts rejection of invalid primitive and function intersections and invalid intersection descriptors in variable and parameter declarations, while also declaring the unmarked alias II = int & int. These are type-definition and declaration type-checking behaviors covered by the positive declaration list; subset10 states no restriction excluding intersection type descriptors or these negative checks.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error markers assert compile-time rejection; illegal source does not by itself make a negative type-system test a feature request.",
+    "No runtime behavior or diagnostic wording is asserted in this file."
+  ]
+}

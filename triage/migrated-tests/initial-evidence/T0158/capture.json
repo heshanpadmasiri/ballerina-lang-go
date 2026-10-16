@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: no filler value\n        at testRecordsWithoutFillerValues(array-lvalue-fill-records-without-filler-values-p.bal:7)\n           main(array-lvalue-fill-records-without-filler-values-p.bal:2)\n","Diagnostics":null}

@@ -1,0 +1,12 @@
+{
+  "id": "T1266",
+  "name": "record-to-jsontest-a7c9a96935/record-to-json-closed-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: the supported expression list includes \"Type cast expression\" and \"Type test expression\", but does not include typeof expressions.",
+    "Invocations > Other invocation restrictions: \"value:toString\" and \"value:toBalString\" are supported method calls."
+  ],
+  "reason": "The assertion helper contains typeof expected and typeof actual. typeof expressions are absent from the subset's positive expression list, so the whole case includes an unsupported construct even though these expressions occur only on assertion failure. The primary assertion checks default-valued closed-record assignment to json and equality; the final mutation expects a panic when adding a field through a map<json> view of the closed record.",
+  "unsupported_constructs": ["typeof expressions in the assertion helper"],
+  "test_design_notes": ["The @panic annotation expects the final newField insertion to fail; successful JSON assignment must preserve the closed record's mutation constraint."]
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "coordinator": "/root/review_coordinator_1",
+    "case_ids": [
+      "T0003",
+      "T0008",
+      "T0012",
+      "T0018",
+      "T0021",
+      "T0024"
+    ],
+    "fork_turns": "none",
+    "one_new_reviewer_per_case": true,
+    "source": "Coordinator completion message; individual child paths were not retained by parent."
+  },
+  {
+    "coordinator": "/root/review_coordinator_2",
+    "case_ids": [
+      "T0005",
+      "T0009",
+      "T0013",
+      "T0019",
+      "T0022"
+    ],
+    "fork_turns": "none",
+    "one_new_reviewer_per_case": true,
+    "source": "Coordinator completion message; individual child paths were not retained by parent."
+  }
+]

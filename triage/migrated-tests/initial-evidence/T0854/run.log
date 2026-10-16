@@ -1,0 +1,189 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-statement-static-patterns-test-4828836871/static-match-patterns-unreachable-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unreachable-e.bal:135:26
+            |
+        135 |         "Ballerina"|true|["Ballerina", true] => {return "1";}
+            |                          ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unreachable-e.bal:136:37
+            |
+        136 |         { x: "Ballerina", y: true }|["Bal", "Lang"] => {return "2";}
+            |                                     ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unreachable-e.bal:138:15
+            |
+        138 |         false|["Ballerina", true] => {return "4";} // unreachable // @error
+            |               ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+           --> static-match-patterns-unreachable-e.bal:147:9
+            |
+        147 |         [] => {return "Matched with empty array literal";}
+            |         ^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:40:9
+           |
+        40 |         ["A", 15] => {return "T";}
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:41:9
+           |
+        41 |         ["A", 15] => {return "T";}// unreachable pattern // @error
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:42:9
+           |
+        42 |         ["B", 15] => {return "T";}
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:43:9
+           |
+        43 |         ["B", 15] => {return "T";} // unreachable pattern // @error
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:53:9
+           |
+        53 |         [12, 15] => {return "T";}
+           |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:57:9
+           |
+        57 |         [12, 15] => {return "T";} // unreachable pattern // @error
+           |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:67:9
+           |
+        67 |         [12, 15] => {return "T";}
+           |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unreachable-e.bal:136:9
+            |
+        136 |         { x: "Ballerina", y: true }|["Bal", "Lang"] => {return "2";}
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unreachable-e.bal:137:9
+            |
+        137 |         { x: "Ballerina", y: false } => {return "3";}
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unreachable-e.bal:139:12
+            |
+        139 |         12|{ x: "Ballerina", y: true } => {return "3";} // unreachable // @error
+            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+           --> static-match-patterns-unreachable-e.bal:149:9
+            |
+        149 |         {} => {return "Matched with empty record literal";}
+            |         ^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:24:9
+           |
+        24 |         {a: 200, b: "A"} => {return "A";}
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:25:9
+           |
+        25 |         {a: 200, b: "A"} => {return "A";} // unreachable pattern // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:26:9
+           |
+        26 |         {b: "A", a: 200} => {return "A";} // unreachable pattern // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:27:9
+           |
+        27 |         {a: 100, b: "A"} => {return "A";}
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:28:9
+           |
+        28 |         {a: 200, b: "B"} => {return "A";}
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:29:9
+           |
+        29 |         {a: 150, b: "A", c: true} => {return "A";}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:30:9
+           |
+        30 |         {a: 150, b: "A"} => {return "A";}
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN
+          --> static-match-patterns-unreachable-e.bal:31:9
+           |
+        31 |         {a: 150, b: "A", c: false} => {return "A";} // unreachable pattern // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> static-match-patterns-unreachable-e.bal:148:9
+            |
+        148 |         var [] => {return "Matched with empty array variable";} // unreachable // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> static-match-patterns-unreachable-e.bal:150:9
+            |
+        150 |         var {} => {return "Matched with empty record variable";} // unreachable // @error
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> static-match-patterns-unreachable-e.bal:151:9
+            |
+        151 |         var s => {return "Matched with default";} // @error
+            |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> static-match-patterns-unreachable-e.bal:157:9
+            |
+        157 |         var {} => {return "Matched with empty record";}
+            |         ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> static-match-patterns-unreachable-e.bal:158:9
+            |
+        158 |         var {a} => {return "Matched with {a}";} // unreachable // @error
+            |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> static-match-patterns-unreachable-e.bal:159:9
+            |
+        159 |         var {a, b} => {return "Matched with {a, b}";} // unreachable // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> static-match-patterns-unreachable-e.bal:160:9
+            |
+        160 |         var {a, b, c} => {return "Matched with {a, b, c}";} // unreachable // @error
+            |         ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> static-match-patterns-unreachable-e.bal:161:9
+            |
+        161 |         var s => {return "Matched with default";} // @error
+            |         ^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

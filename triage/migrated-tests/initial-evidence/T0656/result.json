@@ -1,0 +1,16 @@
+{
+  "Name": "inter-module-public-table-type-test-63565401da/public-table-type-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/inter-module-public-table-type-test-63565401da/public-table-type-v",
+  "Project": true,
+  "Id": "T0656",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/inter-module-public-table-type-test-63565401da/public-table-type-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/inter-module-public-table-type-test-63565401da/public-table-type-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/inter-module-public-table-type-test-63565401da/public-table-type-v/modules/foo/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.036
+}

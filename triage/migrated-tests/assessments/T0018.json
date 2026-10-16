@@ -1,0 +1,19 @@
+{
+  "id": "T0018",
+  "name": "annotation-expression-code-analysis-negative-4f892de7fb/annotation-expression-code-analysis-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports annotation values evaluated from constant and runtime expressions",
+    "## Expressions: Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)"
+  ],
+  "reason": "The whole case is feature because Bar3's annotation mapping explicitly uses the unsupported spread-field syntax ...fl. The file mixes that excluded mapping construct with supported record type definitions, module variables, numeric/string literals, annotation declarations and attachments, and empty class definitions. Its negative intent does not itself make these features unsupported: diagnosing annotation payload restrictions or duplicate mapping fields belongs to analysis of otherwise supported constructs. However, the explicit spread exclusion independently determines the whole-case classification, regardless of which diagnostics the original compiler intended.",
+  "unsupported_constructs": [
+    "Mapping spread field ...fl in the @f3 annotation payload."
+  ],
+  "test_design_notes": [
+    "Three @error markers appear: i: 1 in @f1, ...fl in @f3, and s: \"hi\" after the spread.",
+    "Foo1 explicitly permits int rest fields, so i: 1 is not an obvious ordinary record-field type error; any rejection would require annotation-specific rules not detailed in this spec.",
+    "Foo4 contributes both i and s through the spread, overlapping explicit fields. The two @f3 markers combine unsupported syntax with duplicate-field diagnostics; no obvious truncation or missing declaration is visible."
+  ]
+}

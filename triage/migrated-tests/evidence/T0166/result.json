@@ -1,0 +1,14 @@
+{
+  "Name": "array-mutability-test-f73ad51ac1/array-mutability-invalid-cast-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-mutability-test-f73ad51ac1/array-mutability-invalid-cast-p.bal",
+  "Project": false,
+  "Id": "T0166",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-mutability-test-f73ad51ac1/array-mutability-invalid-cast-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

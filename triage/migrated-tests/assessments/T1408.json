@@ -1,0 +1,21 @@
+{
+  "id": "T1408",
+  "name": "table-with-xmlkey-specifier-test-1076354dca/xml-type-table-key-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists \"List constructor\" and \"Mapping constructor\", but no table constructor expression.",
+    "## Expressions: \"XML template expression\" and \"Member access expression\" are supported.",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.table is absent.",
+    "### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; table:length and table:put are absent."
+  ],
+  "reason": "The case essentially requires table constructors and keyed table behavior (XML and composite XML/record keys), which the expression support list does not cover. It also invokes table langlib length() and put(), excluded by both langlib allowlists. Supported XML templates and member-access syntax do not establish table construction, lookup, mutation, or its asserted printed representations.",
+  "unsupported_constructs": [
+    "Table constructors, including table key(id) and inferred heterogeneous row types",
+    "XML-key and composite-key table lookup behavior",
+    "table:length and table:put langlib methods"
+  ],
+  "test_design_notes": [
+    "Whole case mixes keyed table construction/lookup with unkeyed inference and mutation; any essential table portion suffices for feature classification.",
+    "@output markers assert table formatting, successful key lookup, nil for missing keys, and row counts; no @args or @panic markers. io:println is instrumentation."
+  ]
+}

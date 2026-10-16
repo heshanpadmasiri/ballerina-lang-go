@@ -1,0 +1,17 @@
+{
+  "id": "T0420",
+  "name": "distinct-object-test-d9a03dbe83/distinct-object-subtyping-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "Supported language features (subset 10) > Module-level declarations > Class definition: Supports `client`, `service`, `isolated`, `readonly` and `distinct` `class-type-quals`"
+  ],
+  "reason": "The test essentially requires a distinct object type (`Status`) and its identity to survive inclusion/subtyping and contextual object construction. The object qualifier restriction excludes `distinct` object types. The positive allowance for distinct class qualifiers does not cover this object type declaration, so it does not resolve that unsupported requirement. Successful execution additionally asserts default field value 101 and assignment of a readonly object with code 102.",
+  "unsupported_constructs": [
+    "`public type Status distinct object { ... }` and the distinct object subtyping behavior exercised through `*Status`"
+  ],
+  "test_design_notes": [
+    "There are no @args, @panic or @output directives; main invokes the assertions and expects normal completion.",
+    "The unused io:println helper is instrumentation and does not determine classification."
+  ]
+}

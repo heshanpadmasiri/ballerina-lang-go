@@ -1,0 +1,18 @@
+{
+  "id": "T0905",
+  "name": "module-error-variable-test-718d21c637/module-error-variable-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "## Module-level declarations: [Annotation declarations and attachments](https://ballerina.io/spec/lang/master/#section_9.1); Supports source-only, runtime, marker and repeated annotations",
+    "## Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "## Statements: [Destructuring assignment statement](https://ballerina.io/spec/lang/master/#destructuring-assignment-stmt) — Only supports wildcard-binding-pattern"
+  ],
+  "reason": "The case checks rejection of invalid module error-variable declarations: duplicate bindings, isolated/configurable qualifiers on non-simple bindings, an annotation attached to a disallowed declaration, references to subsequently bound module variables, incompatible nested error/mapping bindings, and missing required error-detail fields. Module variable declarations, type definitions, annotations, error constructors, and the associated type checking are supported without a restriction excluding error binding patterns. The wildcard-only restriction is explicitly for destructuring assignment statements; these are variable declarations. The illegal qualifiers and attachments are negative assertions within supported declaration grammar, not evidence of an essential unsupported feature.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative source with inline @error markers; no runtime behavior is asserted.",
+    "Do not apply the destructuring-assignment restriction to module variable binding patterns."
+  ]
+}

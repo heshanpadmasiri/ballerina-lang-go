@@ -1,0 +1,43 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Jack
+        	USA
+        	CA
+        	25
+        	Jane
+        	USA
+        	emily
+        	emily
+        	default first name
+        	
+        	999
+        	default first name
+        	Smith
+        	999
+        	aaa
+        	25
+        	bbb
+        	50
+        	-9
+        	-8
+        	-88.234
+        	-24.99
+        	{"name":"aaa","lname":"","adrs":{},"age":25,"family":{"spouse":"","noOfChildren":0,"children":[]},"parent":{"name":"bbb","lname":"ccc","adrs":{},"age":50,"family":{"spouse":"","noOfChildren":0,"children":[]},"parent":null}}
+        	
+        
+        got:
+        	Jack
+        	USA
+        	CA
+        	25
+        	Jane
+        	USA
+        	emily
+        	emily
+        	default first name
+        	
+        	999
+        	
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

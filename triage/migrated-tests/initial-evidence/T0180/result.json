@@ -1,0 +1,14 @@
+{
+  "Name": "array-stamp-inbuilt-function-test-9aeaf1be1a/array-stamp-inbuilt-function-test-9aeaf1be1a-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-stamp-inbuilt-function-test-9aeaf1be1a/array-stamp-inbuilt-function-test-9aeaf1be1a-v.bal",
+  "Project": false,
+  "Id": "T0180",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-stamp-inbuilt-function-test-9aeaf1be1a/array-stamp-inbuilt-function-test-9aeaf1be1a-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

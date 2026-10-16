@@ -1,0 +1,18 @@
+{
+  "id": "T0718",
+  "name": "list-constructor-expr-test-039d73e3d9/list-constructor-expr-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\" is supported, but the positive expression list does not include typeof expressions.",
+    "## Module-level declarations: \"Supports dependently-typed functions using `typedesc` parameters with the `<>` inferred default\".",
+    "### Other invocation restrictions: \"`value:toString` and `value:toBalString`\"."
+  ],
+  "reason": "The case essentially uses typeof expressions to obtain runtime typedesc values and asserts their exact string representations for list constructors contextualized by any, anydata, and json unions. typeof is absent from the supported expression list; support for typedesc parameters does not establish support for obtaining runtime type descriptors. One essential uncovered construct suffices for the whole-case feature classification.",
+  "unsupported_constructs": [
+    "typeof a and typeof b in the any, anydata, and json contextual list-constructor tests"
+  ],
+  "test_design_notes": [
+    "Assertions check exact typedesc strings as well as nested list inference, fixed-array autofill, mutable union-context construction, tuple equality, and shared tuple mutation.",
+    "toString method calls are explicitly supported; io:println is output instrumentation. Neither is the basis for classification."
+  ]
+}

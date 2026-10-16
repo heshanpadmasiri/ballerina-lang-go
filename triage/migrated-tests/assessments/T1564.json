@@ -1,0 +1,18 @@
+{
+  "id": "T1564",
+  "name": "worker-fail-test-278d4f50a4/invalid-worksend-without-worker-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"Function definition\"",
+    "## Statements: \"Local variable declarations\"",
+    "## Expressions: \"Start action\"; \"Wait action\" (worker receive actions are not listed)"
+  ],
+  "reason": "The @error case requires rejecting a worker receive action (<- worker1) with no declared worker. Worker receive actions and their worker-resolution semantics are not covered by subset 10; supported function and local-variable syntax does not make this essential action supported.",
+  "unsupported_constructs": [
+    "Worker receive action (<- worker1) and validation of an undeclared worker target."
+  ],
+  "test_design_notes": [
+    "The case name says worksend, but its function and expression test worker receive.",
+    "The sole @error marker asserts compile-time rejection; there are no @args, @panic, or @output assertions."
+  ]
+}

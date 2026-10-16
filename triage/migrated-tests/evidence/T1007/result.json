@@ -1,0 +1,14 @@
+{
+  "Name": "never-type-test-35205a329e/never-runtime-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-runtime-v.bal",
+  "Project": false,
+  "Id": "T1007",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/never-type-test-35205a329e/never-runtime-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.068
+}

@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at checked-expr-resource-e.bal:25-25 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at checked-expr-resource-e.bal:25-25 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at checked-expr-resource-e.bal:22-22 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

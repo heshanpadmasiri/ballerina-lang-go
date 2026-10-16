@@ -1,0 +1,25 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at main.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:6 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:7 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:43 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:45 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:46 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:47 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:49 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:50 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:78 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:79 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:81 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:82 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

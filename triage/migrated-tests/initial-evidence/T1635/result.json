@@ -1,0 +1,14 @@
+{
+  "Name": "xmlstamp-inbuilt-function-test-cf12a71a06/xmlstamp-inbuilt-function-test-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlstamp-inbuilt-function-test-cf12a71a06/xmlstamp-inbuilt-function-test-v.bal",
+  "Project": false,
+  "Id": "T1635",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlstamp-inbuilt-function-test-cf12a71a06/xmlstamp-inbuilt-function-test-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.073
+}

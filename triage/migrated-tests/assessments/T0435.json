@@ -1,0 +1,16 @@
+{
+  "id": "T0435",
+  "name": "enum-test-f69b0643c8/enum-metadata-test-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Enum declarations](https://ballerina.io/spec/lang/master/#module-enum-decl)",
+    "## Module-level declarations: [Annotation declarations and attachments](https://ballerina.io/spec/lang/master/#section_9.1)",
+    "## Module-level declarations: Supports source-only, runtime, marker and repeated annotations"
+  ],
+  "reason": "This negative case checks duplicate enum-member declarations with documentation and source-only marker annotation metadata. Enum declarations and annotation declarations/attachments are explicitly supported without a restriction excluding enum-member metadata or duplicate-declaration diagnostics. Rejection of invalid duplicate declarations within this supported grammar is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error comments mark expected compile-time errors on duplicate enum members, including when documentation or annotations precede the member.",
+    "There are no @args, @panic or @output assertions or runtime operations."
+  ]
+}

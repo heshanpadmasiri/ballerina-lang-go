@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at checked-expr-readonly-union-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at checked-expr-readonly-union-e.bal:12-12 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at checked-expr-readonly-union-e.bal:7 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at checked-expr-readonly-union-e.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at checked-expr-readonly-union-e.bal:21 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

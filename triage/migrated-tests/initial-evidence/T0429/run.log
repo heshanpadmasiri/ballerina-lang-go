@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "do-stmts-test-54fb85fbab/do-stmt-v.bal" has a runtime panic in expected stdout:
+        panic: interface conversion: ast.BLangNode is nil, not *ast.BLangOnFailClause
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

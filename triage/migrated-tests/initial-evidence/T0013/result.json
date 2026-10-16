@@ -1,0 +1,14 @@
+{
+  "Name": "annotation-attachment-negative-test-eefa0f3f86/annotation-attachment-negative-test-eefa0f3f86-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/annotation-attachment-negative-test-eefa0f3f86/annotation-attachment-negative-test-eefa0f3f86-e.bal",
+  "Project": false,
+  "Id": "T0013",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/annotation-attachment-negative-test-eefa0f3f86/annotation-attachment-negative-test-eefa0f3f86-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.057
+}

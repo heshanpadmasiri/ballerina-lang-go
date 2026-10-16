@@ -1,0 +1,14 @@
+{
+  "Name": "isolated-worker-test-8e649817ff/inference-start-action-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/isolated-worker-test-8e649817ff/inference-start-action-v.bal",
+  "Project": false,
+  "Id": "T0672",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/isolated-worker-test-8e649817ff/inference-start-action-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.074
+}

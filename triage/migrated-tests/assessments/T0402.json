@@ -1,0 +1,20 @@
+{
+  "id": "T0402",
+  "name": "cyclic-type-definitions-test-3fce5ad632/cyclic-type-definitions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only `message`.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes `error:message` but not `error:detail`.",
+    "Supported language features (subset 10) > Expressions lists New expression, List constructor and Mapping constructor, but does not list table constructor or object constructor expressions."
+  ],
+  "reason": "The whole case requires unsupported behavior: both cyclic error tests invoke error2.detail() and assert the returned detail record's exact string representation. The error langlib and method-call allowlists support message only, so these assertions require an unsupported langlib operation. This alone establishes feature regardless of support for recursive types elsewhere in the case.",
+  "unsupported_constructs": [
+    "error:detail invoked as error2.detail() in testCyclicErrorTypeDefinition and testCyclicReadonlyErrorTypeDefinition",
+    "Table constructor expressions in the cyclic table tests and an object constructor expression in testCyclicObjectTypeDefinition are absent from the supported expression list"
+  ],
+  "test_design_notes": [
+    "main invokes all test functions; the detail assertions are part of the required execution path.",
+    "No @args, @panic or @output directives appear. Assertions require successful execution and panic only on mismatch.",
+    "The empty io:print call is instrumentation and does not determine classification."
+  ]
+}

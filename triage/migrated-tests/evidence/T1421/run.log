@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at trap-operator-e.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at trap-operator-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at trap-operator-e.bal:2 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at trap-operator-e.bal:3 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at trap-operator-e.bal:8 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

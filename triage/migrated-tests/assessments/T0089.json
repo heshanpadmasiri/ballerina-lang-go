@@ -1,0 +1,12 @@
+{
+  "id": "T0089",
+  "name": "argument-parser-positive-test-e41e5b8a0a/decimal-01-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Subset restrictions / Import declarations: ballerina/lang.decimal — fromString"
+  ],
+  "reason": "The case requires the external main-entry argument protocol to convert command-line string 10 into decimal parameter d and print 10. Subset 10 supports required parameter signatures and decimal fromString, but does not cover command-line argument conversion or main-entry binding; those language capabilities do not establish this execution protocol.",
+  "unsupported_constructs": ["Command-line argument parsing and binding of @args [\"10\"] to main(decimal d)"],
+  "test_design_notes": ["The asserted output 10 depends on successful CLI decimal conversion; io:println is instrumentation, not the unsupported feature."]
+}

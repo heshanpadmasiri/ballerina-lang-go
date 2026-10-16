@@ -1,0 +1,16 @@
+{
+  "id": "T0199",
+  "name": "bany-type-invalid-cast-error-a0bf9af855/invalid-any-casting-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"[Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)\"",
+    "## Expressions: \"[Trap expression](https://ballerina.io/spec/lang/master/#trap-expr)\" and \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"",
+    "## Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\"",
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\" and \"[Return](https://ballerina.io/spec/lang/master/#return-stmt)\""
+  ],
+  "reason": "The case uses supported calls, literals, local variables, returns, type casts, trap and check. Casting an any value containing a string to float raises TypeCastError; trap converts it to an error value and check returns it from invalidCastingError. The asserted output observes this supported failed-cast behavior. No essential unsupported construct or execution protocol is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @output assertion checks the returned TypeCastError reason and incompatible-types message. io:println is observation instrumentation. There are no @args or @panic directives."
+  ]
+}

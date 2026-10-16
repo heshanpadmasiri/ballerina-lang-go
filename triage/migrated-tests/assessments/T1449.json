@@ -1,0 +1,18 @@
+{
+  "id": "T1449",
+  "name": "tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Local variable declarations; Return",
+    "## Expressions: List constructor; Method call",
+    "## Module-level declarations: Function definition supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Invocations / ### Other invocation restrictions: value:toString and value:toBalString"
+  ],
+  "reason": "The essential negative checks concern tuple types with rest descriptors and their minimum-length/member-type assignability to other tuples and fixed arrays. subset10.md lists list constructors and local declarations, but does not cover tuple rest type descriptors or their assignability rules; function rest parameters do not establish support for tuple rest descriptors. The toString method is explicitly supported.",
+  "unsupported_constructs": [
+    "Tuple rest type descriptors such as [int, string, boolean...] and [boolean...], including union-typed rest members and tuple/array assignability constraints."
+  ],
+  "test_design_notes": [
+    "Compile-negative case with @error markers; no @args, @panic or @output behavior. Repeated same-line @error markers request multiple diagnostics."
+  ]
+}

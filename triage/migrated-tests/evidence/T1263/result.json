@@ -1,0 +1,14 @@
+{
+  "Name": "record-query-test-15a6dd75a6/record-query-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-query-test-15a6dd75a6/record-query-v.bal",
+  "Project": false,
+  "Id": "T1263",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-query-test-15a6dd75a6/record-query-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.083
+}

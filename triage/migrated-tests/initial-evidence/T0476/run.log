@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "final-access-test-b8abe5c420/final-access-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+          --> final-field-test.bal:36:5
+           |
+        36 |     int i = a;
+           |     ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

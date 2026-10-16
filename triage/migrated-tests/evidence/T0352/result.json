@@ -1,0 +1,14 @@
+{
+  "Name": "closed-record-test-6f9046ad8a/closed-record-mismatch-fields-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/closed-record-mismatch-fields-e.bal",
+  "Project": false,
+  "Id": "T0352",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/closed-record-mismatch-fields-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.039
+}

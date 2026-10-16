@@ -1,0 +1,30 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at subtyping-key-not-found-p.bal:16
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> subtyping-key-not-found-p.bal:25:34
+           |
+        25 |         typedesc<anydata> expT = typeof expected;
+           |                                  ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> subtyping-key-not-found-p.bal:25:34
+           |
+        25 |         typedesc<anydata> expT = typeof expected;
+           |                                  ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> subtyping-key-not-found-p.bal:26:34
+           |
+        26 |         typedesc<anydata> actT = typeof actual;
+           |                                  ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> subtyping-key-not-found-p.bal:26:34
+           |
+        26 |         typedesc<anydata> actT = typeof actual;
+           |                                  ^^^^^^^^^^^^^
+        
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

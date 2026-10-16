@@ -1,0 +1,22 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "forward-referencing-global-definition-test-c1122b914e/multi-file-reference-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+         --> file02.bal:8:1
+          |
+        8 | int i = 5;
+          | ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'pp'
+          --> file01.bal:22:1
+           |
+        22 | [Employee, Person] pp = [employee, person];
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'pp2'
+         --> file02.bal:6:1
+          |
+        6 | [Employee, Person] pp2 = [employee, person];
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

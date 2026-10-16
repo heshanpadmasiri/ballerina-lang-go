@@ -1,0 +1,14 @@
+{
+  "Name": "type-test-expr-test-70ad51e586/type-test-expr-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-negative-e.bal",
+  "Project": false,
+  "Id": "T1487",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.052
+}

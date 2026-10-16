@@ -1,0 +1,14 @@
+{
+  "Name": "map-initializer-expr-negative-test-c8c5e7b8b2/map-initializer-expr-duplicated-keys-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-negative-test-c8c5e7b8b2/map-initializer-expr-duplicated-keys-e.bal",
+  "Project": false,
+  "Id": "T0812",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-initializer-expr-negative-test-c8c5e7b8b2/map-initializer-expr-duplicated-keys-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.04
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0438",
+  "name": "equal-and-not-equal-operations-test-c0854d5721/equal-and-not-equal-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: '[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)' is listed; object-constructor expressions are not listed.",
+    "## Expressions: '[Equality expression](https://ballerina.io/spec/lang/master/#equality-expr)'",
+    "## Operators: 'Equality ops `==`, `!=`, `===`, `!==`'"
+  ],
+  "reason": "The negative equality tests include essential anonymous object-constructor expressions (`object {int i = 10;}`) in testEqualityWithNonAnydataType. These are distinct from the supported new expression and absent from the positive expression list, so the whole case requires an uncovered feature despite equality operators being supported.",
+  "unsupported_constructs": [
+    "Anonymous object-constructor expressions initializing obj and obj2."
+  ],
+  "test_design_notes": [
+    "@error annotations assert compile-time rejection of incompatible equality operands; negative tests in supported syntax remain in scope.",
+    "No @args, @panic or @output directives occur. Commented-out table comparisons are inactive."
+  ]
+}

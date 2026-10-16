@@ -1,0 +1,14 @@
+{
+  "Name": "string-function-invocation-expr-test-3580cd2282/string-function-invocation-expr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-function-invocation-expr-test-3580cd2282/string-function-invocation-expr-v.bal",
+  "Project": false,
+  "Id": "T1357",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-function-invocation-expr-test-3580cd2282/string-function-invocation-expr-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.091
+}

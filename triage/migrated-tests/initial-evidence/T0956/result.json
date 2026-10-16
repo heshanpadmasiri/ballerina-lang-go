@@ -1,0 +1,14 @@
+{
+  "Name": "native-conversion-with-stamp-types-test-c4af7d85fe/native-conversion-with-stamp-types-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/native-conversion-with-stamp-types-test-c4af7d85fe/native-conversion-with-stamp-types-v.bal",
+  "Project": false,
+  "Id": "T0956",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/native-conversion-with-stamp-types-test-c4af7d85fe/native-conversion-with-stamp-types-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.064
+}

@@ -1,0 +1,12 @@
+{
+  "id": "T1171",
+  "name": "option-test-1b0c555df9/option_defaultable_optional_with_arg-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "### Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The asserted outputs require command-line option processing: --name, --score and --height must populate main's included Student record, converting strings to int? and float. The subset supports included-record parameter signatures and ordinary invocation arguments but does not cover command-line option binding or conversion for main.",
+  "unsupported_constructs": ["Command-line --field=value option binding and typed conversion into an included record parameter of main"],
+  "test_design_notes": ["All three fields are explicitly supplied; omission behavior for optional, nilable and defaulted fields is not asserted.", "io:println is output instrumentation."]
+}

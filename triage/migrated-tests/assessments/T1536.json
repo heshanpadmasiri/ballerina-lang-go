@@ -1,0 +1,18 @@
+{
+  "id": "T1536",
+  "name": "while-stmt-test-8fe83cda27/while-stmt-infinite-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"[While](https://ballerina.io/spec/lang/master/#while-stmt)\"",
+    "Expressions: \"[Anonymous function expression](https://ballerina.io/spec/lang/master/#anonymous-function-expr)\"",
+    "Expressions lists \"Start action\" and \"Wait action\", but does not list named worker declarations."
+  ],
+  "reason": "The whole case includes a named worker declaration (worker name returns int) containing an infinite loop and returning its worker future. Named worker declarations are not covered by the supported feature lists; supported start/wait actions do not establish named worker support. This is decisive even though ordinary while loops and anonymous functions are supported.",
+  "unsupported_constructs": [
+    "Named worker declaration in testInfiniteLoopWhileStatementInWorker."
+  ],
+  "test_design_notes": [
+    "Mixed scope: ordinary, nested, conditional and anonymous-function infinite loops are combined with a named worker and client class methods.",
+    "main is empty and there are no @args, @panic or @output markers; the file exercises compilation/return-flow acceptance rather than executing or asserting infinite-loop runtime behavior."
+  ]
+}

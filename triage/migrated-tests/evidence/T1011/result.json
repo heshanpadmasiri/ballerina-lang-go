@@ -1,0 +1,14 @@
+{
+  "Name": "nil-optimization-test-dc36749029/nil_optimizations-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/nil-optimization-test-dc36749029/nil_optimizations-v.bal",
+  "Project": false,
+  "Id": "T1011",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/nil-optimization-test-dc36749029/nil_optimizations-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.056
+}

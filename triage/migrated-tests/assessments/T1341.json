@@ -1,0 +1,20 @@
+{
+  "id": "T1341",
+  "name": "selectively-immutable-type-test-08053ceb2e/immutable-langlib-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.array lists length, push, map, indexOf, remove, removeAll, toStream, toBase64, toBase16, fromBase64, fromBase16.",
+    "Subset restrictions / Import declarations: ballerina/lang.map lists length, keys, hasKey, get, remove; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString; ballerina/lang.table is not listed.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; array:setLength, array:sort, array:unshift, map:removeAll, table mutators and value:mergeJson are absent."
+  ],
+  "reason": "The case asserts readonly-mutation rejection across multiple langlibs, including functions excluded by the explicit supported-method lists. In particular, mergeJson must allow the scalar readonly receiver call while rejecting readonly mapping receivers, which requires unsupported mergeJson behavior. The whole case therefore requires unsupported features even though some array/map/XML mutators are listed.",
+  "unsupported_constructs": [
+    "array:setLength, reverse, sort, pop, shift and unshift",
+    "map:removeIfHasKey and removeAll",
+    "ballerina/lang.table and table put/add/remove/removeIfHasKey/removeAll",
+    "value:mergeJson, including its asserted acceptance for a scalar readonly receiver"
+  ],
+  "test_design_notes": [
+    "Negative @error calls still exercise the requested readonly rejection semantics; exclusion is based on explicit langlib restrictions, not merely on the source being illegal."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "func-invocation-expr-test-adcfe7c191/function-call-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/func-invocation-expr-test-adcfe7c191/function-call-negative-e.bal",
+  "Project": false,
+  "Id": "T0540",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/func-invocation-expr-test-adcfe7c191/function-call-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.133
+}

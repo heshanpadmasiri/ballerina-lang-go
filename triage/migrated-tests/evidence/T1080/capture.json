@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'mt'\n --\u003e object-subtype-negative-e.bal:6:5\n  |\n6 |     myType mt = to; // @error unused variable 'mt'\n  |     ^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"object-subtype-negative-e.bal","StartLine":6,"EndLine":6}]}

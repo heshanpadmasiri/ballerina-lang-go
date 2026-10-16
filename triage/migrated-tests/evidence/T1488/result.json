@@ -1,0 +1,15 @@
+{
+  "Name": "type-test-expr-test-70ad51e586/type-test-expr-semantics-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-semantics-negative-e",
+  "Project": true,
+  "Id": "T1488",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-semantics-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/type-test-expr-test-70ad51e586/type-test-expr-semantics-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.069
+}

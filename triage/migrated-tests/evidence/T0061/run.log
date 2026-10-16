@@ -1,0 +1,13 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at invalid-float-06-p.bal:2
+        stderr:
+        error[SEMANTIC_ERROR]: unused variable 'f'
+         --> invalid-float-06-p.bal:2:22
+          |
+        2 | public function main(float f) { // @panic
+          |                      ^^^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

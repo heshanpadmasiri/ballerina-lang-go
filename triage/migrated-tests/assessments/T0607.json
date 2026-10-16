@@ -1,0 +1,15 @@
+{
+  "id": "T0607",
+  "name": "global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-03-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "## Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "## Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)",
+    "## Expressions: [Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)"
+  ],
+  "reason": "The case asserts rejection of mutable array and record values used as configurable module-variable initializers, exercising the readonly typing required for configurable values. Module variable declarations, type definitions, constructors and variable references are supported; no subset restriction excludes configurable declarations or this negative type checking behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Both configurable declarations are marked @error; this is a compile-time negative test."]
+}

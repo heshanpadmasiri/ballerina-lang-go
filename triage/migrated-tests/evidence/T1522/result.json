@@ -1,0 +1,14 @@
+{
+  "Name": "variable-scope-test-6a8d57db07/scope-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/variable-scope-test-6a8d57db07/scope-negative-e.bal",
+  "Project": false,
+  "Id": "T1522",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/variable-scope-test-6a8d57db07/scope-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.032
+}

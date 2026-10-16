@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "while-stmt-test-8fe83cda27/while-stmt-type-narrowing-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> while-stmt-type-narrowing-e.bal:78:9
+           |
+        78 |         do {
+           |         ^^^^
+        79 |             if x is boolean { return; }
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |             string _ = x;
+           |             ^^^^^^^^^^^^^
+        81 |         }
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> while-stmt-type-narrowing-e.bal:78:9
+           |
+        78 |         do {
+           |         ^^^^
+        79 |             if x is boolean { return; }
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |             string _ = x;
+           |             ^^^^^^^^^^^^^
+        81 |         }
+           |         ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

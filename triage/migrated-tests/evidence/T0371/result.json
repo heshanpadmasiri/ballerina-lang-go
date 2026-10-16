@@ -1,0 +1,14 @@
+{
+  "Name": "compound-assignment-test-dfbd0a78b0/compound-assignment-dataflow-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/compound-assignment-test-dfbd0a78b0/compound-assignment-dataflow-e.bal",
+  "Project": false,
+  "Id": "T0371",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/compound-assignment-test-dfbd0a78b0/compound-assignment-dataflow-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.032
+}

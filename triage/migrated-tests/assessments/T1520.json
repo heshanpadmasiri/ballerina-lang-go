@@ -1,0 +1,19 @@
+{
+  "id": "T1520",
+  "name": "variable-definition-test-ff080c840f/variable-definition-e",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: supported expression list includes \"Query expressions\" with \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"; standalone let expressions are not listed.",
+    "Statements: \"Local variable declarations\"; Module-level declarations: \"Module variable declarations\".",
+    "Invocations / Other invocation restrictions: \"`value:toString` and `value:toBalString`\" are supported in method call syntax."
+  ],
+  "reason": "Both module x and local xx use standalone let expressions (let var _ = 10 in 10 * 20), which are absent from the supported expression list; support for a query let clause does not cover these. This decisive unsupported construct makes the whole case feature despite otherwise supported basic variable initialization, assignment, arithmetic and assertion helper operations.",
+  "unsupported_constructs": [
+    "Standalone let expressions in module and local variable initializers."
+  ],
+  "test_design_notes": [
+    "Mixed scope: ordinary variable initialization and updates coexist with standalone let and wildcard declarations.",
+    "The sole @error marker appears after the multiplication operator in a line-broken local let initializer; no matching marker appears on the similar module initializer. The supplied file provides no diagnostic text explaining the expected rejection.",
+    "No @args, @panic or @output markers are present, and no entry point invokes the helper functions."
+  ]
+}

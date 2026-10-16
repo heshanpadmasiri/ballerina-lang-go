@@ -1,0 +1,18 @@
+{
+  "id": "T1257",
+  "name": "record-def-negative-test-2a404858e4/field-ref-in-own-record-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the positive expression list does not include let expressions or object-constructor expressions.",
+    "## Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "## Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members"
+  ],
+  "reason": "The negative test asserts rejection of sibling-record-field references in defaults, including a reference inside a standalone let expression and references inside anonymous object constructors. Standalone let expressions and object-constructor expressions are not in the supported expression list; support for a query let clause does not cover the standalone let expression used here. These constructs are essential to the marked negative cases, so the whole case is a feature.",
+  "unsupported_constructs": [
+    "Standalone let expression in the marks field default: let int e = 3, int z = 5 in z * e + x",
+    "Anonymous object-constructor expressions containing record-field defaults or references to enclosing record fields"
+  ],
+  "test_design_notes": [
+    "The @error annotations assert compile-time rejection; illegal references alone do not make a negative test unsupported."
+  ]
+}

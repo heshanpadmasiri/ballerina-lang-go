@@ -1,0 +1,19 @@
+{
+  "id": "T0312",
+  "name": "checked-expr-negative-test-764bc995e0/checked-expr-resource-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Service declarations]",
+    "Module-level declarations: [Class definition]; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Module-level declarations: Supports the `isolated` function qualifier",
+    "Expressions: [Check expression]",
+    "Expressions: [New expression]",
+    "Statements: [Local variable declarations]; [Return]",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported; Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members; Supports `included-record-param`, `rest-param` and `defaultable-param` in methods"
+  ],
+  "reason": "The negative case checks rejection of error propagation from check f2() in a resource function with an implicit nil return type. Services, resource methods, custom listener classes, isolated methods, defaultable parameters and check expressions are covered by the subset. No applicable restriction excludes this diagnostic behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Two @error markers annotate the check expression; this is a compile-time rejection case with no @args, @panic or @output assertions."
+  ]
+}

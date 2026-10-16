@@ -1,0 +1,14 @@
+{
+  "Name": "worker-calling-function-f3c5c98d1c/worker-calling-function-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-calling-function-f3c5c98d1c/worker-calling-function-v.bal",
+  "Project": false,
+  "Id": "T1546",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-calling-function-f3c5c98d1c/worker-calling-function-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

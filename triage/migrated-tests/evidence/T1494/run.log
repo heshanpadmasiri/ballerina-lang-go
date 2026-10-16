@@ -1,0 +1,32 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	5
+        	typedesc int
+        	typedesc string
+        	typedesc float
+        	typedesc boolean
+        	typedesc byte
+        	2
+        	typedesc Person
+        	true
+        	2
+        	typedesc intArray
+        	typedesc intArrayArray
+        	2
+        	typedesc stringOrPerson
+        	typedesc intOrString
+        	typedesc [string,int,[string,string,string],string,int]
+        	2
+        	typedesc RecordA
+        	true
+        	typedesc int
+        	true
+        	true
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

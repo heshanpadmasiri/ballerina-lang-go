@@ -1,0 +1,13 @@
+{
+  "id": "T1349",
+  "name": "simple-constant-test-a426694281/simple-constant-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.string lists Char, length, indexOf, includes, substring, equalsIgnoreCaseAscii, toLowerAscii, toUpperAscii, trim, toBytes and fromBytes, but not startsWith.",
+    "Module-level declarations: \"Constant declarations\"",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"value:toString\" and \"value:toBalString\""
+  ],
+  "reason": "Three invoked tests assert that strings:startsWith returns true for a constant, an array element initialized with that constant, and a record field initialized with that constant. startsWith is absent from the explicitly exhaustive supported ballerina/lang.string method list, so this whole case requires an unsupported langlib function even though constant declarations and the value conversion methods are supported.",
+  "unsupported_constructs": ["ballerina/lang.string:startsWith"],
+  "test_design_notes": ["io:println calls serve as output instrumentation; they are not the basis of the feature classification."]
+}

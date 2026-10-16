@@ -1,0 +1,14 @@
+{
+  "Name": "bbyte-value-test-94ec1c259b/byte-value-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bbyte-value-test-94ec1c259b/byte-value-e.bal",
+  "Project": false,
+  "Id": "T0228",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bbyte-value-test-94ec1c259b/byte-value-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

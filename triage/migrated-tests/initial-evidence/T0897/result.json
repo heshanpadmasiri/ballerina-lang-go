@@ -1,0 +1,14 @@
+{
+  "Name": "member-access-test-10fc9644e0/string-negative-index-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/member-access-test-10fc9644e0/string-negative-index-p.bal",
+  "Project": false,
+  "Id": "T0897",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/member-access-test-10fc9644e0/string-negative-index-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.049
+}

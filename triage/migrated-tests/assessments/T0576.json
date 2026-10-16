@@ -1,0 +1,20 @@
+{
+  "id": "T0576",
+  "name": "function-signature-test-d3becf86ae/function-signatures-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for method calls and client remote method call actions only when the receiver type has one positive object atom.",
+    "Object/class definitions: Supports included-record-param, rest-param and defaultable-param in methods",
+    "Expressions: Call; Method call; Trap expression; Error constructor; New expression; List constructor; Mapping constructor; Type test expression",
+    "Statements: Panic; If/else; Return; Local variable declarations",
+    "Invocations / Other invocation restrictions: array:length; value:toString and value:toBalString"
+  ],
+  "reason": "The asserted results exercise supported positional/named/default/rest argument binding, array rest spreads, nil/union defaults, concrete-class initialization and methods, first-class rest-parameter functions, and trapping a panic. Function targets have known signatures and method receivers are concrete classes. Array/tuple indexing and lengths, arithmetic/string concatenation, equality/type tests and error construction used by assertions are supported. No essential construct violates an invocation or langlib restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println is output instrumentation.",
+    "The two first-class-function tests assert returned values; the final test asserts that trap converts the panic to an error."
+  ]
+}

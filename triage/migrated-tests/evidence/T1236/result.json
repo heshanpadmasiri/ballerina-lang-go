@@ -1,0 +1,14 @@
+{
+  "Name": "reachability-analysis-test-a8532630b8/narrowing_with_if_without_else_not_completed_normally_test-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/reachability-analysis-test-a8532630b8/narrowing_with_if_without_else_not_completed_normally_test-e.bal",
+  "Project": false,
+  "Id": "T1236",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/reachability-analysis-test-a8532630b8/narrowing_with_if_without_else_not_completed_normally_test-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.019
+}

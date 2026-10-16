@@ -1,0 +1,14 @@
+{
+  "Name": "array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-records-without-filler-values-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-records-without-filler-values-p.bal",
+  "Project": false,
+  "Id": "T0158",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-lvalue-fill-test-0bbe464a51/array-lvalue-fill-records-without-filler-values-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.049
+}

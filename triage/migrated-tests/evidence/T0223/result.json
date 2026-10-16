@@ -1,0 +1,14 @@
+{
+  "Name": "bbyte-array-value-test-e70b15d057/byte-array-value-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bbyte-array-value-test-e70b15d057/byte-array-value-v.bal",
+  "Project": false,
+  "Id": "T0223",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bbyte-array-value-test-e70b15d057/byte-array-value-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

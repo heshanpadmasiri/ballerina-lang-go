@@ -1,0 +1,17 @@
+{
+  "id": "T1251",
+  "name": "record-assignability-test-a5cb3cb04b/record-assignability-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\" and \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"",
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"",
+    "## Expressions: \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\"; \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\"",
+    "## Expressions: \"[Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)\""
+  ],
+  "reason": "The case asserts rejection of incompatible record assignments in local declarations: incompatible union-valued fields and rest descriptors, incompatible optional fields reachable through open/rest fields, and an optional-valued readonly field assigned to a required int field. These are static assignability checks within supported declarations, type definitions, mapping constructors and variable references. No subset restriction excludes record descriptors, unions, optional fields, rest descriptors or readonly record fields; no mapping spread or restricted library invocation occurs.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error comments assert compile-time rejection; the intentionally invalid assignments are the tested behavior, not evidence of an unsupported feature.",
+    "Several assignments use wildcard binding patterns; local declarations remain subject to initializer type compatibility."
+  ]
+}

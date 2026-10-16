@@ -1,0 +1,14 @@
+{
+  "Name": "string-template-literal-negative-test-b1e3077176/string-template-literal-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-template-literal-negative-test-b1e3077176/string-template-literal-negative-e.bal",
+  "Project": false,
+  "Id": "T1361",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-template-literal-negative-test-b1e3077176/string-template-literal-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.047
+}

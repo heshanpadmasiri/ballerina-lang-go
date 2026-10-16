@@ -1,0 +1,14 @@
+{
+  "Name": "package-import-test-60d02fba3a/import-different-pkgs-same-alias-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/import-different-pkgs-same-alias-e.bal",
+  "Project": false,
+  "Id": "T1192",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/import-different-pkgs-same-alias-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.037
+}

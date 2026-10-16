@@ -1,0 +1,81 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "mapping-constructor-expr-test-833706cb84/spread-op-field-code-analysis-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-code-analysis-negative-e.bal:100:19
+            |
+        100 |     map<int> _ = {...m1, ...m2}; // @error
+            |                   ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-code-analysis-negative-e.bal:106:23
+            |
+        106 |     map<anydata> _ = {...m1, ...beta}; // @error
+            |                       ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:30:28
+           |
+        30 |     Bar b = {i: 1, f: 1.0, ...f, s: "hi"}; // @error // @error
+           |                            ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:31:44
+           |
+        31 |     map<string|int|float> _ = {s: "hello", ...b, f: 1.0, i: "bye"}; // @error // @error // @error
+           |                                            ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:32:35
+           |
+        32 |     map<anydata> _ = {s: "hello", ...{s: "hi", i: 1}, f: 1.0, i: "bye"}; // @error // @error
+           |                                   ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:41:24
+           |
+        41 |     map<int> _ = {i:1, ...alpha}; // @error
+           |                        ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:50:25
+           |
+        50 |     map<int> _ = {i: 1, ...a}; // @error
+           |                         ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:59:29
+           |
+        59 |     map<anydata> _ = {i: 0, ...b}; // @error
+           |                             ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:64:23
+           |
+        64 |     map<anydata> _ = {...b, i:3}; // @error
+           |                       ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:69:22
+           |
+        69 |     map<string> _ = {...m1, y: "cc"}; // @error
+           |                      ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:74:31
+           |
+        74 |     map<string> _ = {y: "cc", ...m1}; // @error
+           |                               ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:84:25
+           |
+        84 |     map<any|error> _ = {...b1, ...b2}; // @error // @error
+           |                         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-code-analysis-negative-e.bal:94:25
+           |
+        94 |     map<any|error> _ = {...b2, ...b3}; // @error // @error
+           |                         ^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

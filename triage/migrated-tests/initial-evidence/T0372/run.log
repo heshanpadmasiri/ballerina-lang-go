@@ -1,0 +1,36 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:39 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:49 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:54 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:61 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:65 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:72 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:77 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:82 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:87 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:92 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:97 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:119 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:120 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:121 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:123 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:124 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:125 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:127 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:128 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:129 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:134 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:136 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:138 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:140 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:141 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:143 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:146 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:154 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at compound-assignment-negative-e.bal:156 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (1.50s)
+FAIL

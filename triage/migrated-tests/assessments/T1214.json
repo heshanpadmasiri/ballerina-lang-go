@@ -1,0 +1,15 @@
+{
+  "id": "T1214",
+  "name": "query-expr-with-query-construct-type-test-397e030880/query-expr-with-query-construct-type-update-key-1-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Query expressions: Supports `list` and `map` as `query-constructor-type`"
+  ],
+  "reason": "The invoked test constructs a keyed table using `table key(id, name) from ... select ...`, retrieves its row by composite key, and expects assigning even the same value to the table's readonly key field to panic. Table query construction is outside the specified list/map query-constructor support, so the essential setup and asserted key-immutability behavior are not wholly supported.",
+  "unsupported_constructs": [
+    "Table query constructor `table key(id, name) from var user in users ... select ...`"
+  ],
+  "test_design_notes": [
+    "main invokes testQueryConstructingTableUpdateKeyPanic1; its `r2.id = 1` assignment is marked @panic."
+  ]
+}

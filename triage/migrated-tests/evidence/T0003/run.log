@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at abstract-object-negative-e.bal:26 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

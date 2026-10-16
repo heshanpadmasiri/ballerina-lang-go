@@ -1,0 +1,63 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "array-destructure-test-4a8c5609c2/array-destructure-test-4a8c5609c2-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> array-destructure-test-4a8c5609c2-e.bal:27:5
+           |
+        27 |     [a, b, c, d, e] = intArray; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> array-destructure-test-4a8c5609c2-e.bal:30:5
+           |
+        30 |     [a, b, c, f] = intArray; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> array-destructure-test-4a8c5609c2-e.bal:33:5
+           |
+        33 |     [a, ...g] = intArrayUnsealed; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> array-destructure-test-4a8c5609c2-e.bal:36:5
+           |
+        36 |     [h] = fooArray; // @error
+           |     ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> array-destructure-test-4a8c5609c2-e.bal:39:5
+           |
+        39 |     [i, j] = fooArray; // @error
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> array-destructure-test-4a8c5609c2-e.bal:27:5
+           |
+        27 |     [a, b, c, d, e] = intArray; // @error
+           |     ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> array-destructure-test-4a8c5609c2-e.bal:30:5
+           |
+        30 |     [a, b, c, f] = intArray; // @error
+           |     ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> array-destructure-test-4a8c5609c2-e.bal:33:5
+           |
+        33 |     [a, ...g] = intArrayUnsealed; // @error
+           |     ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> array-destructure-test-4a8c5609c2-e.bal:36:5
+           |
+        36 |     [h] = fooArray; // @error
+           |     ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> array-destructure-test-4a8c5609c2-e.bal:39:5
+           |
+        39 |     [i, j] = fooArray; // @error
+           |     ^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

@@ -1,0 +1,23 @@
+{
+  "id": "T1478",
+  "name": "type-guard-test-74355f2266/type-guard-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Destructuring assignment statement\" / \"Only supports wildcard-binding-pattern\"",
+    "Statements: \"Match statement\" / \"Currently only supports const-pattern and wildcard-match-pattern\"",
+    "Expressions: \"Type test expression\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; \"ballerina/lang.error\" lists only \"message\"; \"ballerina/lang.value\" lists \"cloneWithType\", \"fromJsonWithType\", \"toString\", \"toBalString\"",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\" but not error:detail"
+  ],
+  "reason": "Whole case mixes supported type tests and control flow with explicitly unsupported constructs. Called tests require tuple, record, and error destructuring assignments to reset narrowed variables; these exceed the wildcard-only restriction. The called error-match test also uses var patterns and a guard, outside the match pattern list. Error detail access is essential to the asserted status: 500 and custom-error results, but error:detail is absent from permitted langlib operations. Any one of these makes this a feature case.",
+  "unsupported_constructs": [
+    "Non-wildcard tuple, record, and error destructuring assignments in testTypeGuardFor*DestructuringAssignment*",
+    "Guarded var match patterns in testTypeGuardsWithErrorInmatch",
+    "error.detail() calls; ballerina/lang.value:Cloneable type and toJsonString() are also absent from the permitted langlib lists"
+  ],
+  "test_design_notes": [
+    "Large mixed-scope main combines basic supported narrowing tests with unsupported operations and direct assertion calls. io:println is instrumentation.",
+    "@output markers include results of unsupported paths (notably status: 500 and some error); main also runs assertion-only checks without output markers. No @args or @panic expectations appear.",
+    "The readonly class also encounters conflicting class qualifier coverage: Module-level declarations lists readonly, while Object/class definitions restrict qualifiers to client, service and isolated. This ambiguity does not change the decisive feature classification."
+  ]
+}

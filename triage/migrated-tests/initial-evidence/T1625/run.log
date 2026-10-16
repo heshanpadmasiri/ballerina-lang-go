@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "xmliteration-test-c9c3cad714/xml_iteration_negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> xml_iteration_negative-e.bal:13:13
+           |
+        13 |     foreach var [i, x, y] in xdata { // @error
+           |             ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> xml_iteration_negative-e.bal:13:13
+           |
+        13 |     foreach var [i, x, y] in xdata { // @error
+           |             ^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

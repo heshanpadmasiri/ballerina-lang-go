@@ -1,0 +1,19 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:14 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:15 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:38 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at enums-negative-e.bal:39 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

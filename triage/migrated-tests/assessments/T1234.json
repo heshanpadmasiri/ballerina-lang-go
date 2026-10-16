@@ -1,0 +1,21 @@
+{
+  "id": "T1234",
+  "name": "raw-template-literal-test-73d1c4c5ea/raw-template-literal-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'XML template expression' and 'String template expression', but does not list raw template expressions or typeof expressions.",
+    "# Subset restrictions / ## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.object includes 'RawTemplate', while ballerina/lang.error includes only 'message'.",
+    "## Invocations / ### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes 'error:message', but not error:detail."
+  ],
+  "reason": "The case requires raw template expression construction and asserts its strings/insertions, subtype and readonly behavior. RawTemplate is an allowed imported type, but raw template expressions are absent from the supported expression list. It additionally requires unsupported error detail access and typeof expressions; one essential unsupported construct suffices for whole-case feature classification.",
+  "unsupported_constructs": [
+    "Raw template expressions such as `Hello ${name}!` and their construction semantics",
+    "typeof expressions used to inspect inferred raw-template types",
+    "error:detail method calls used to assert exact runtime error details"
+  ],
+  "test_design_notes": [
+    "The inferred-type assertions require exact generated names ending in $_17 and $_18, making them sensitive to generated-name numbering.",
+    "In the temp3 assertions in testSubtyping2, the first insertion is read from temp2 instead of temp3.",
+    "io:println is assertion-failure instrumentation and is not a classification basis."
+  ]
+}

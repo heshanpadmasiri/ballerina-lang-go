@@ -1,0 +1,17 @@
+{
+  "Name": "option-test-1b0c555df9/missing_option_value_before_another_option-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/missing_option_value_before_another_option-p.bal",
+  "Project": false,
+  "Id": "T1166",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/missing_option_value_before_another_option-p.bal"
+  ],
+  "Args": [
+    "--val",
+    "--name"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

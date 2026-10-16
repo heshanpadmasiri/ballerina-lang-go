@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: cannot infer type for implicit new expression\n --\u003e array-fill-failure-p.bal:7:14\n  |\n7 |     G[] a = [new(\"hello\"), new(\"world\")];\n  |              ^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"array-fill-failure-p.bal","StartLine":7,"EndLine":7}]}

@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at module-listener-declaration-negative-e.bal:11-11 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at module-listener-declaration-negative-e.bal:11-11 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at module-listener-declaration-negative-e.bal:14-14 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at module-listener-declaration-negative-e.bal:32-32 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

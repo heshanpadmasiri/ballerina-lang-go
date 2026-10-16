@@ -1,0 +1,12 @@
+{
+  "id": "T0276",
+  "name": "bstream-value-test-dc50cbbb1f/stream-negative-e",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\" (ballerina/lang.stream is absent).",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (stream:next is absent)."
+  ],
+  "reason": "The negative test relies on stream next() result types and stream iterator compatibility. Its streamA.next(), streamB.next(), and numberStream.next() calls require the stream langlib next operation, which is absent from both supported langlib lists. Thus the whole case requires an unsupported operation even though many surrounding declarations and negative type checks use supported syntax.",
+  "unsupported_constructs": ["Stream langlib next() invocation and its result typing"],
+  "test_design_notes": ["The file asserts compile-time errors with @error comments; it contains no @args, @panic, or @output assertions."]
+}

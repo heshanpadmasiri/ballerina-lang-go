@@ -1,0 +1,17 @@
+{
+  "id": "T1178",
+  "name": "option-test-1b0c555df9/option_with_boolean_array_one-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Expressions: Field access expression; Member access expression"
+  ],
+  "reason": "The assertion requires command-line argument binding: a bare --array option must populate the included Student record's boolean array with true. subset10 supports included-record parameter signatures and field/member access, but does not cover command-line option parsing or implicit true values for boolean-array options. This essential runtime behavior makes the whole case a feature.",
+  "unsupported_constructs": [
+    "Binding bare --array command-line option to boolean[] in an included-record main parameter, supplying true as the first element"
+  ],
+  "test_design_notes": [
+    "The @args and @output directives assert CLI behavior, beyond successful compilation of the main signature.",
+    "io:println is output instrumentation and is not the reason for classification."
+  ]
+}

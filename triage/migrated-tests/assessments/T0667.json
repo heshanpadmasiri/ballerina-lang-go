@@ -1,0 +1,18 @@
+{
+  "id": "T0667",
+  "name": "isolated-object-test-4801b67a5e/isolated-objects-warnings-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports `client`, `service`, `isolated`, `readonly` and `distinct` class-type-quals",
+    "# Subset restrictions / ## Import declarations: Only following lang libraries with given methods/types are supported",
+    "## Import declarations / ballerina/lang.value: `cloneWithType`, `fromJsonWithType`, `toString`, `toBalString`",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: ... `value:cloneWithType` ... `value:fromJsonWithType` ... `value:toString` and `value:toBalString`"
+  ],
+  "reason": "Isolated classes and lock statements are supported, but the case repeatedly relies on clone() and cloneReadOnly() to establish valid transfers into and out of isolated state. These lang.value methods are absent from both the allowed library methods and the method-call list. Their copy semantics are essential to the isolation behavior being tested, so the whole case requires an unsupported feature.",
+  "unsupported_constructs": [
+    "lang.value clone() and cloneReadOnly() method calls, including self.d = d.clone(), copied values passed into isolated functions, and protected-field values copied out of locks"
+  ],
+  "test_design_notes": [
+    "The source includes @error diagnostic markers and runtime isolated-object type assertions. Negative diagnostics alone do not make a supported construct out of scope; the essential unsupported copying operations determine this classification."
+  ]
+}

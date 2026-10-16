@@ -1,0 +1,20 @@
+{
+  "id": "T0012",
+  "name": "add-operation-test-7854f6d108/add-operation-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    {"heading": "Subset restrictions / Import declarations", "quote": "Only following lang libraries with given methods/types are supported", "application": "The exhaustive list does not include ballerina/io or println; the test imports ballerina/io and calls io:println in main."},
+    {"heading": "Operators", "quote": "Additive ops `+`, `-`", "application": "Addition itself is listed without operand-type restrictions, including the numeric, nullable, string and XML cases in this source."},
+    {"heading": "Expressions", "quote": "[Nil lifted expression](https://ballerina.io/spec/lang/master/#nil-lifted-expr)", "application": "Nullable addition is covered; XML template, equality, logical and type-test expressions are also listed here."},
+    {"heading": "Module-level declarations", "quote": "[Constant declarations](https://ballerina.io/spec/lang/master/#module-const-decl)", "application": "The same heading lists function definitions, module variables and type definitions, covering the declarations used by the addition tests."},
+    {"heading": "Subset restrictions / Import declarations", "quote": "`Signed8`", "application": "The lang.int list includes Signed8/16/32 and Unsigned8/16/32; lang.string includes Char; lang.xml includes Element, Text, Comment and ProcessingInstruction."},
+    {"heading": "Invocations / Other invocation restrictions", "quote": "`value:toString` and `value:toBalString`", "application": "toString method calls are explicitly supported; the same list includes xml:length."}
+  ],
+  "reason": "Mixed case: the core addition tests use listed operators, nil lifting, XML templates, constants/type definitions, listed langlib subtype names and supported method calls. However, the executable wrapper imports ballerina/io and invokes io:println, which is outside the spec's exclusive supported-library list. This makes the whole source a feature case under the requested any-unsupported-construct rule.",
+  "unsupported_constructs": ["import ballerina/io and io:println calls in main (library absent from the exclusive supported list)"],
+  "test_design_notes": [
+    "Supported addition coverage and unsupported output scaffolding are mixed in one source; isolating the wrapper would allow separate assessment of the addition behavior.",
+    "All named test functions are called from main; assertion failures panic. No obvious omitted invocation or malformed output marker is visible in the supplied source.",
+    "The nullable side-effect test relies on the initial module variable intVal = 10 and main invokes it before the nonnullable test resets intVal; the visible call order is consistent with its assertions."
+  ]
+}

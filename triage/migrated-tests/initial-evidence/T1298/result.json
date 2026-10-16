@@ -1,0 +1,15 @@
+{
+  "Name": "retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v",
+  "Project": true,
+  "Id": "T1298",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.064
+}

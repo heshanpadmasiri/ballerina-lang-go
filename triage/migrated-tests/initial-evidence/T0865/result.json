@@ -1,0 +1,15 @@
+{
+  "Name": "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-negative-semantics-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-negative-semantics-e",
+  "Project": true,
+  "Id": "T0865",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-negative-semantics-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-negative-semantics-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.058
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T1078",
+  "name": "object-query-test-e93b4bd78f/object-query-test-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses; Supports `list` and `map` as `query-constructor-type`",
+    "Expressions: New expression; Mapping constructor; Optional field access expression; Member access expression",
+    "Named and default arguments: Object constructor calls support named and default arguments while selecting a unique class from an object union; they do not have the atomic-target restriction above.",
+    "Object/class definitions: Supports `included-record-param`, `rest-param` and `defaultable-param` in methods",
+    "Other invocation restrictions: `array:length`; `value:toString` and `value:toBalString`"
+  ],
+  "reason": "All exercised behavior is supported: list queries construct Student instances with contextual new expressions, preserve explicit and default constructor field values, filter by address, and execute a record-producing query inside an Employee method. Assertions check resulting addresses, filtered length, and nil-valued optional access. Classes, constructor defaults, field access, record construction, optional access, equality, and assertion-helper operations are covered with no applicable restriction excluding this case.",
+  "unsupported_constructs": [],
+  "test_design_notes": []
+}

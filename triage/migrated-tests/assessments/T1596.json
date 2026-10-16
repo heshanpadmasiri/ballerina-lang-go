@@ -1,0 +1,19 @@
+{
+  "id": "T1596",
+  "name": "worker-test-0f3493dd03/11-future-cancel-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.future and cancel are absent.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; future:cancel is absent.",
+    "Supported language features (subset 10) / Expressions: \"Start action\" and \"Wait action\" are listed; worker declarations and worker send/receive actions are not listed."
+  ],
+  "reason": "The executed workerWithFutureTest1 requires f1.cancel(), an unsupported future langlib method. Start/wait support does not establish cancellation semantics or the asserted cancellation panic. The whole source also requires named workers and worker messaging, which are not covered by the positive lists. runtime:sleep itself is expressly supported.",
+  "unsupported_constructs": [
+    "future.cancel() and cancellation-induced wait failure/panic",
+    "Named worker declarations and worker send/receive actions (including synchronous sends)"
+  ],
+  "test_design_notes": [
+    "Mixed scope: extensive retained worker messaging, panic, lock, query, and binding-pattern tests accompany the future-cancellation entry point.",
+    "The sole @panic marker is inline on wait f1 inside worker w2; main invokes the path via checkpanic, so marker placement does not directly identify the entry-point panic. Cancellation timing also depends on sleep and scheduling."
+  ]
+}

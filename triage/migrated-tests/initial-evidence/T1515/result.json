@@ -1,0 +1,15 @@
+{
+  "Name": "variable-definition-test-ff080c840f/array-constants-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/array-constants-e",
+  "Project": true,
+  "Id": "T1515",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/array-constants-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/array-constants-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.044
+}

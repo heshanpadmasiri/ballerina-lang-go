@@ -1,0 +1,18 @@
+{
+  "id": "T0042",
+  "name": "argument-parser-negative-test-706c373f17/invalid-char-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: ‘Function definition’ supports ‘required-params’, ‘defaultable-params’, ‘included-record-param’ and ‘rest-param’ in the signature.",
+    "Subset restrictions / Import declarations: ‘Only following lang libraries with given methods/types are supported’; the ballerina/lang.string list includes ‘Char’.",
+    "Subset restrictions / Invocations / Named and default arguments: ‘Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.’"
+  ],
+  "reason": "The complete case declares an empty public main function with one required string:Char parameter and supplies the command-line argument ABC through a harness comment. Its apparent expected failure is rejection of a multi-character command-line value during conversion to Char. The function declaration, required parameter, and Char type are expressly supported. However, subset10 does not describe command-line argument parsing, conversion of command-line strings to main parameter types, or the expected panic behavior for invalid arguments. Its invocation provisions describe language calls rather than program startup. The whole-case expectation therefore depends on a not-covered runtime entry-point feature, despite using supported declaration and type syntax.",
+  "unsupported_constructs": [
+    "Command-line argument conversion and validation for a string:Char main parameter (not covered)."
+  ],
+  "test_design_notes": [
+    "The @args and @panic comments are harness markers, not Ballerina syntax errors.",
+    "No mixed language constructs or obvious migration corruption appear; the expected panic must originate before the empty function body executes."
+  ]
+}

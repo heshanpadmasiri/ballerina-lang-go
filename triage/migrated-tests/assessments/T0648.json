@@ -1,0 +1,18 @@
+{
+  "id": "T0648",
+  "name": "inner-query-test-63f3c0e826/inner-queries-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"",
+    "Expressions: \"Supports `list` and `map` as `query-constructor-type`\""
+  ],
+  "reason": "The scope and redeclaration negatives depend on nested queries, including explicit stream and table key() query constructors. The supported constructor list includes only list and map, so this whole case requires unsupported query constructors. It also tests nested query actions with do clauses, which are not covered by the supported query clauses or statement list.",
+  "unsupported_constructs": [
+    "stream query constructor",
+    "table key() query constructor",
+    "query actions with do clauses"
+  ],
+  "test_design_notes": [
+    "The @error annotations assert let/join scope restrictions and redeclaration diagnostics; being negative code alone does not put them out of scope. Other nested select queries use supported clauses, but unsupported constructors/actions suffice for whole-case feature classification."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0271",
+  "name": "bnull-value-test-edd6349666/null-value-semantics-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\" and \"Type definition\"",
+    "Statements: \"Local variable declarations\" and \"Return\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; \"List constructor\"; \"Relational expression\"; \"Nested expressions (`(expression)`)\"",
+    "Operators: \"Relational ops `<`, `<=`, `>`, `>=`\" and \"Additive ops `+`, `-`\""
+  ],
+  "reason": "The case checks rejection of nil assigned to non-nullable scalar, union, map, recursive array union, array element, tuple element and record types, and invalid nil arithmetic/comparison. These are negative type checks using supported declarations, literals, constructors and operators; subset10 specifies no applicable exclusion. The nullable parameter/call/return and json nil initialization also use supported constructs.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The asserted behavior is compile-time rejection at @error markers; there are no @args, @panic or @output assertions.",
+    "Unmarked nullable string calls and json null initialization must remain valid."
+  ]
+}

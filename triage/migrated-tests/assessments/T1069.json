@@ -1,0 +1,18 @@
+{
+  "id": "T1069",
+  "name": "object-field-function-pointer-invocation-test-5833b5a158/object-field-function-pointer-invocation-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `client`, `service`, `isolated`, `readonly` and `distinct` class-type-quals; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported; Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members",
+    "Expressions: Anonymous function expression; Variable reference; Field access expression; Method call; `Call`; New expression",
+    "Statements: Lock statement; Assignment; Call; Return; If/else; Panic",
+    "Module-level declarations: Supports the `isolated` function qualifier",
+    "Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "All essential constructs and asserted behavior are supported: function-valued object fields initialized from an anonymous function or module function, bound method references assigned to fields, calls through structural object types, and isolated proxy fields retaining their mutable receiver state. The assertions check results 1, 222, 333 and successive state changes 10 to 11 to 10 to 5. Class/object fields, isolated qualifiers, method references and calls, initialization and locked mutation fit the positive support lists; no applicable invocation restriction excludes these positional calls.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The assertion helper uses supported equality, type tests, conditional expressions, error construction and value:toString; io:println is failure instrumentation only."
+  ]
+}

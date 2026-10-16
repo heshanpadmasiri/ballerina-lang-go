@@ -1,0 +1,53 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	4
+        	8
+        	7
+        	-8
+        	4
+        	5
+        	7
+        	2
+        	20
+        	9.9
+        	5
+        	5.5
+        	-3.3
+        	9.9
+        	4
+        	5.5
+        	1.1
+        	13.200000000000001
+        	HELLO:hello WORLD..!:world..! I:i AM:am BALLERINA.!!!:ballerina.!!!
+        	0Hello 1World..! 2I 3am 4Ballerina.!!!
+        	5
+        	{"a":"a","e":"e"}
+        	["aA","eE"]
+        	7
+        	3
+        	<p:city xmlns:p="foo">NY</p:city><q:country xmlns:q="bar">US</q:country>
+        	2
+        	["bob","tom","sam"]
+        	abc pqr
+        	total count 2
+        	7
+        	4
+        	10
+        	true
+        	true
+        	true
+        	true
+        	3
+        	-8
+        	7
+        	4
+        	isolated function (int) returns (boolean)
+        	isolated function (int) returns (boolean)
+        	isolated function (int) returns (boolean)
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

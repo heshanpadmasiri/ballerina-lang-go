@@ -1,0 +1,62 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	18
+        	36
+        	50
+        	43
+        	10
+        	316
+        	22
+        	50
+        	23
+        	20
+        	10
+        	10
+        	9
+        	HelloBallerinaWorld!!!
+        	ImBallerina15.0Program !!!Hello11.1World !!!
+        	I'mHello11.1World !!!Ballerina15.0Program!!!HelloInner44.8World Inner!!!
+        	16
+        	Hello Ballerina7.4K43
+        	7.354Ballerina !!!
+        	7InnerInt41.2InnerFloat4.5Ballerina !!!
+        	Ballerina31
+        	Out31In65Ballerina!!!
+        	OutMost31Out46In80Ballerina!!!
+        	OutMost47Out47In36Ballerina!!!
+        	9.9
+        	3
+        	13
+        	7
+        	4
+        	3
+        	3
+        	13
+        	5
+        	7
+        	3
+        	1
+        	2
+        	3
+        	13
+        	7
+        	58
+        	167
+        	true
+        	false
+        	true
+        	false
+        	true
+        	false
+        	true
+        	false
+        	aa
+        	Hello, From, Ballerina
+        	60
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

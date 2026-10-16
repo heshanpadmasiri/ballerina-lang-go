@@ -1,0 +1,14 @@
+{
+  "Name": "checked-expression-operator-test-30b071e6cd/checked-expr-within-resource-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/checked-expression-operator-test-30b071e6cd/checked-expr-within-resource-v.bal",
+  "Project": false,
+  "Id": "T0319",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/checked-expression-operator-test-30b071e6cd/checked-expr-within-resource-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.06
+}

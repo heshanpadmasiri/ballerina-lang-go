@@ -1,0 +1,18 @@
+{
+  "id": "T1632",
+  "name": "xmlnstest-f41d1c0429/xmlns-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Variable reference: \"Currently `xml-qualified-names` not supported\"",
+    "Module-level declarations: \"Constant declarations\"; \"Module variable declarations\" (XML namespace declarations are not listed)",
+    "Subset restrictions > Import declarations > ballerina/lang.xml: \"XMLNS_NAMESPACE_URI\""
+  ],
+  "reason": "The assertions essentially require XML-qualified names such as ns0:foo to evaluate to expanded-name strings. Variable-reference XML-qualified names are explicitly unsupported. Module-level and statement xmlns declarations also lack positive coverage; support for the XMLNS_NAMESPACE_URI constant does not cover these constructs.",
+  "unsupported_constructs": [
+    "XML-qualified-name variable references used as string values",
+    "Module-level and local xmlns declarations"
+  ],
+  "test_design_notes": [
+    "No @args, @panic, or @output markers occur. main executes the expanded-name assertions; io:println is unused instrumentation."
+  ]
+}

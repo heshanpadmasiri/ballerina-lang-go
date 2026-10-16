@@ -1,0 +1,21 @@
+{
+  "id": "T1389",
+  "name": "struct-negative-test-2ccd0a79e0/structs-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Statements: [Assignment](https://ballerina.io/spec/lang/master/#assignment-stmt)",
+    "Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr); Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported",
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "Expressions: [Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)",
+    "Expressions: [Field access expression](https://ballerina.io/spec/lang/master/#section_6.10)"
+  ],
+  "reason": "All negative cases exercise supported declarations, local variables, mapping constructors and field assignments: duplicate type and record-field declarations, undefined type and variable names, unknown fields in closed records, and incompatible field initializer types. The subset states no restriction excluding record type definitions or these static rejections. No spread fields, imports, restricted invocations or runtime assertions occur.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Seven @error markers request static rejection; there are no @args, @panic or @output assertions.",
+    "Duplicate Department declarations can cause cascading diagnostics in later tests; all cases nevertheless remain within supported scope."
+  ]
+}

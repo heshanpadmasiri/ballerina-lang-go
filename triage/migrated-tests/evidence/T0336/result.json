@@ -1,0 +1,14 @@
+{
+  "Name": "client-resource-access-action-test-f2b4b23dd8/client_resource_access_action-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/client-resource-access-action-test-f2b4b23dd8/client_resource_access_action-e.bal",
+  "Project": false,
+  "Id": "T0336",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/client-resource-access-action-test-f2b4b23dd8/client_resource_access_action-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.055
+}

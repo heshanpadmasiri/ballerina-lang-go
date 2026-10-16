@@ -1,0 +1,23 @@
+{
+  "id": "T1504",
+  "name": "unused-variable-test-ea064cfdc1/unused-variable-analysis-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements \u2192 Destructuring assignment statement: Only supports wildcard-binding-pattern",
+    "Statements \u2192 Match statement: Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions \u2192 Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value: cloneWithType, fromJsonWithType, toString, toBalString"
+  ],
+  "reason": "The whole case includes explicitly unsupported non-wildcard destructuring assignment ([d, f] = ...), variable/list/error/mapping match patterns in f15, and unlisted value langlib methods clone and toJsonString. These suffice for feature classification despite many supported local-variable, query, annotation, service and class constructs.",
+  "unsupported_constructs": [
+    "Non-wildcard destructuring assignment in f3",
+    "Variable/list/error/mapping match patterns in f15",
+    "value:clone method in service resource bar and value:toJsonString in f16",
+    "Named worker in f6 and do/on-fail, fail, and while on-fail constructs are not covered by the supported statements list",
+    "Standalone let expressions in f13 are not listed (query let clauses are listed)"
+  ],
+  "test_design_notes": [
+    "Mixed scope: unused-variable diagnostics are exercised across supported and unsupported constructs.",
+    "Comments describe warnings but use @error markers; f4's error-binding declaration has three @error markers while its comment names two unused variables.",
+    "No @args, @panic, or @output behavior is asserted."
+  ]
+}

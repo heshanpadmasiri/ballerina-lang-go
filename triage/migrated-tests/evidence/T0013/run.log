@@ -1,0 +1,668 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "annotation-attachment-negative-test-eefa0f3f86/annotation-attachment-negative-test-eefa0f3f86-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:530:9
+            |
+        530 | int b = let @v1 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^
+        531 |                 val: "v1"
+            |                 ^^^^^^^^^
+        532 |             }
+            |             ^
+        533 |             @v2 { // @error
+            |             ^^^^^^^^^^^^^^^
+        534 |                 val: "v2"
+            |                 ^^^^^^^^^
+        535 |             }
+            |             ^
+        536 |             @v3 { // @error
+            |             ^^^^^^^^^^^^^^^
+        537 |                 val: "v3"
+            |                 ^^^^^^^^^
+        538 |             }
+            |             ^
+        539 |             @v4 { // @error
+            |             ^^^^^^^^^^^^^^^
+        540 |                 val: 4
+            |                 ^^^^^^
+        541 |             }
+            |             ^
+        542 |             @v5 { // @error
+            |             ^^^^^^^^^^^^^^^
+        543 |                 val: "v5"
+            |                 ^^^^^^^^^
+        544 |             }
+            |             ^
+        545 |             @v6 { // @error
+            |             ^^^^^^^^^^^^^^^
+        546 |                 val: "v6"
+            |                 ^^^^^^^^^
+        547 |             }
+            |             ^
+        548 |             @v7 // @error
+            |             ^^^^^^^^^^^^^
+        549 |             @v8 { // @error
+            |             ^^^^^^^^^^^^^^^
+        550 |                 val: "v8"
+            |                 ^^^^^^^^^
+        551 |             }
+            |             ^
+        552 |             @v9 { // @error
+            |             ^^^^^^^^^^^^^^^
+        553 |                 val: "v9"
+            |                 ^^^^^^^^^
+        554 |             }
+            |             ^
+        555 |             @v10 { // @error
+            |             ^^^^^^^^^^^^^^^^
+        556 |                 val: "v10"
+            |                 ^^^^^^^^^^
+        557 |             }
+            |             ^
+        558 |             @v12 { // @error
+            |             ^^^^^^^^^^^^^^^^
+        559 |                 val: "v12"
+            |                 ^^^^^^^^^^
+        560 |             }
+            |             ^
+        561 |             @v13 { // @error
+            |             ^^^^^^^^^^^^^^^^
+        562 |                 val: "v13"
+            |                 ^^^^^^^^^^
+        563 |             }
+            |             ^
+        564 |             @v15 { // @error
+            |             ^^^^^^^^^^^^^^^^
+        565 |                 val: false
+            |                 ^^^^^^^^^^
+        566 |             } int x = 4 in 2 * x;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:649:1
+            |
+        649 | @v1 { // @error
+            | ^^^^^^^^^^^^^^^
+        650 |     val: "v1"
+            |     ^^^^^^^^^
+        651 | }
+            | ^
+        652 | @v2 { // @error
+            | ^^^^^^^^^^^^^^^
+        653 |     val: "v2"
+            |     ^^^^^^^^^
+        654 | }
+            | ^
+        655 | @v3 { // @error
+            | ^^^^^^^^^^^^^^^
+        656 |     val: "v3"
+            |     ^^^^^^^^^
+        657 | }
+            | ^
+        658 | @v4 { // @error
+            | ^^^^^^^^^^^^^^^
+        659 |     val: 4
+            |     ^^^^^^
+        660 | }
+            | ^
+        661 | @v5 { // @error
+            | ^^^^^^^^^^^^^^^
+        662 |     val: "v5"
+            |     ^^^^^^^^^
+        663 | }
+            | ^
+        664 | @v6 { // @error
+            | ^^^^^^^^^^^^^^^
+        665 |     val: "v6"
+            |     ^^^^^^^^^
+        666 | }
+            | ^
+        667 | @v7 // @error
+            | ^^^^^^^^^^^^^
+        668 | @v9 { // @error
+            | ^^^^^^^^^^^^^^^
+        669 |     val: "v9"
+            |     ^^^^^^^^^
+        670 | }
+            | ^
+        671 | @v10 { // @error
+            | ^^^^^^^^^^^^^^^^
+        672 |     val: "v10"
+            |     ^^^^^^^^^^
+        673 | }
+            | ^
+        674 | @v11 { // @error
+            | ^^^^^^^^^^^^^^^^
+        675 |     val: 11
+            |     ^^^^^^^
+        676 | }
+            | ^
+        677 | @v12 { // @error
+            | ^^^^^^^^^^^^^^^^
+        678 |     val: "v12"
+            |     ^^^^^^^^^^
+        679 | }
+            | ^
+        680 | @v13 { // @error
+            | ^^^^^^^^^^^^^^^^
+        681 |     val: "v13"
+            |     ^^^^^^^^^^
+        682 | }
+            | ^
+        683 | @v15 { // @error
+            | ^^^^^^^^^^^^^^^^
+        684 |     val: false
+            |     ^^^^^^^^^^
+        685 | }
+            | ^
+        686 | service object {
+            | ^^^^^^^^^^^^^^^^
+        687 | 
+            | 
+        688 |     resource function get res() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        689 | 
+            | 
+        690 |     }
+            |     ^
+        691 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: type cast param node type is not present
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:810:16
+            |
+        810 |     string k = <@v19> s;
+            |                ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: type cast param node type is not present
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:811:16
+            |
+        811 |     string j = <@v16> s; // @error
+            |                ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1005:44
+             |
+        1005 |     error<map<[@UndefinedAnnotation int]>> error () = error("err"); // @error
+             |                                            ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1006:56
+             |
+        1006 |     error<record {|@UndefinedAnnotation int x = 10;|}> error () = error("err"); // @error
+             |                                                        ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1000:37
+             |
+        1000 |     [@UndefinedAnnotation int, int] [first, second] = [1, 2]; // @error
+             |                                     ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1001:42
+             |
+        1001 |     [@UndefinedAnnotation int, int, int] [a, b, c] = [1, 2, 3]; // @error
+             |                                          ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1002:44
+             |
+        1002 |     [[@UndefinedAnnotation int, int], int] [[a1, b1], c1] = [[1, 2], 3]; // @error
+             |                                            ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1003:65
+             |
+        1003 |     record {|@UndefinedAnnotation string fname; string lname;|} {fname, lname} = getPerson(); // @error
+             |                                                                 ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:739:5
+            |
+        739 |     @v1 { // @error
+            |     ^^^^^^^^^^^^^^^
+        740 |         val: "v1"
+            |         ^^^^^^^^^
+        741 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:742:5
+            |
+        742 |     @v2 { // @error
+            |     ^^^^^^^^^^^^^^^
+        743 |         val: "v2"
+            |         ^^^^^^^^^
+        744 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:745:5
+            |
+        745 |     @v3 { // @error
+            |     ^^^^^^^^^^^^^^^
+        746 |         val: "v3"
+            |         ^^^^^^^^^
+        747 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:748:5
+            |
+        748 |     @v4 { // @error
+            |     ^^^^^^^^^^^^^^^
+        749 |         val: 4
+            |         ^^^^^^
+        750 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:751:5
+            |
+        751 |     @v5 { // @error
+            |     ^^^^^^^^^^^^^^^
+        752 |         val: "v5"
+            |         ^^^^^^^^^
+        753 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:754:5
+            |
+        754 |     @v6 { // @error
+            |     ^^^^^^^^^^^^^^^
+        755 |         val: "v6"
+            |         ^^^^^^^^^
+        756 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:757:5
+            |
+        757 |     @v7 // @error
+            |     ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:758:5
+            |
+        758 |     @v8 { // @error
+            |     ^^^^^^^^^^^^^^^
+        759 |         val: "v8"
+            |         ^^^^^^^^^
+        760 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:761:5
+            |
+        761 |     @v9 { // @error
+            |     ^^^^^^^^^^^^^^^
+        762 |         val: "v9"
+            |         ^^^^^^^^^
+        763 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:764:5
+            |
+        764 |     @v10 { // @error
+            |     ^^^^^^^^^^^^^^^^
+        765 |         val: "v10"
+            |         ^^^^^^^^^^
+        766 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:767:5
+            |
+        767 |     @v11 { // @error
+            |     ^^^^^^^^^^^^^^^^
+        768 |         val: 11
+            |         ^^^^^^^
+        769 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:770:5
+            |
+        770 |     @v12 { // @error
+            |     ^^^^^^^^^^^^^^^^
+        771 |         val: "v12"
+            |         ^^^^^^^^^^
+        772 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:773:5
+            |
+        773 |     @v13 { // @error
+            |     ^^^^^^^^^^^^^^^^
+        774 |         val: "v13"
+            |         ^^^^^^^^^^
+        775 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1000:37
+             |
+        1000 |     [@UndefinedAnnotation int, int] [first, second] = [1, 2]; // @error
+             |                                     ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1001:42
+             |
+        1001 |     [@UndefinedAnnotation int, int, int] [a, b, c] = [1, 2, 3]; // @error
+             |                                          ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1002:44
+             |
+        1002 |     [[@UndefinedAnnotation int, int], int] [[a1, b1], c1] = [[1, 2], 3]; // @error
+             |                                            ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1003:65
+             |
+        1003 |     record {|@UndefinedAnnotation string fname; string lname;|} {fname, lname} = getPerson(); // @error
+             |                                                                 ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1005:44
+             |
+        1005 |     error<map<[@UndefinedAnnotation int]>> error () = error("err"); // @error
+             |                                            ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> annotation-attachment-negative-test-eefa0f3f86-e.bal:1006:56
+             |
+        1006 |     error<record {|@UndefinedAnnotation int x = 10;|}> error () = error("err"); // @error
+             |                                                        ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:989:33
+            |
+        989 | [@UndefinedAnnotation int, int] [f1, s2] = [1, 2]; // @error
+            |                                 ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:991:61
+            |
+        991 | record {|@UndefinedAnnotation string fname; string lname;|} {fname, lname} = getPerson(); // @error
+            |                                                             ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:995:40
+            |
+        995 | error<map<[@UndefinedAnnotation int]>> error () = error("err"); // @error
+            |                                        ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:997:52
+            |
+        997 | error<record {|@UndefinedAnnotation int x = 10;|}> error () = error("err"); // @error
+            |                                                    ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:695:5
+            |
+        695 |     @v1 { // @error
+            |     ^^^^^^^^^^^^^^^
+        696 |         val: "v1"
+            |         ^^^^^^^^^
+        697 |     }
+            |     ^
+        698 |     @v2 { // @error
+            |     ^^^^^^^^^^^^^^^
+        699 |         val: "v2"
+            |         ^^^^^^^^^
+        700 |     }
+            |     ^
+        701 |     @v3 { // @error
+            |     ^^^^^^^^^^^^^^^
+        702 |         val: "v3"
+            |         ^^^^^^^^^
+        703 |     }
+            |     ^
+        704 |     @v4 { // @error
+            |     ^^^^^^^^^^^^^^^
+        705 |         val: 4
+            |         ^^^^^^
+        706 |     }
+            |     ^
+        707 |     @v5 { // @error
+            |     ^^^^^^^^^^^^^^^
+        708 |         val: "v5"
+            |         ^^^^^^^^^
+        709 |     }
+            |     ^
+        710 |     @v6 { // @error
+            |     ^^^^^^^^^^^^^^^
+        711 |         val: "v6"
+            |         ^^^^^^^^^
+        712 |     }
+            |     ^
+        713 |     @v7 // @error
+            |     ^^^^^^^^^^^^^
+        714 |     @v8 { // @error
+            |     ^^^^^^^^^^^^^^^
+        715 |         val: "v8"
+            |         ^^^^^^^^^
+        716 |     }
+            |     ^
+        717 |     @v9 { // @error
+            |     ^^^^^^^^^^^^^^^
+        718 |         val: "v9"
+            |         ^^^^^^^^^
+        719 |     }
+            |     ^
+        720 |     @v10 { // @error
+            |     ^^^^^^^^^^^^^^^^
+        721 |         val: "v10"
+            |         ^^^^^^^^^^
+        722 |     }
+            |     ^
+        723 |     @v11 { // @error
+            |     ^^^^^^^^^^^^^^^^
+        724 |         val: 11
+            |         ^^^^^^^
+        725 |     }
+            |     ^
+        726 |     @v12 { // @error
+            |     ^^^^^^^^^^^^^^^^
+        727 |         val: "v12"
+            |         ^^^^^^^^^^
+        728 |     }
+            |     ^
+        729 |     @v13 { // @error
+            |     ^^^^^^^^^^^^^^^^
+        730 |         val: "v13"
+            |         ^^^^^^^^^^
+        731 |     }
+            |     ^
+        732 |     worker w1 {
+            |     ^^^^^^^^^^^
+        733 |         // do nothing
+            |         ^^^^^^^^^^^^^
+        734 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:530:9
+            |
+        530 | int b = let @v1 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^
+        531 |                 val: "v1"
+            |                 ^^^^^^^^^
+        532 |             }
+            |             ^
+        533 |             @v2 { // @error
+            |             ^^^^^^^^^^^^^^^
+        534 |                 val: "v2"
+            |                 ^^^^^^^^^
+        535 |             }
+            |             ^
+        536 |             @v3 { // @error
+            |             ^^^^^^^^^^^^^^^
+        537 |                 val: "v3"
+            |                 ^^^^^^^^^
+        538 |             }
+            |             ^
+        539 |             @v4 { // @error
+            |             ^^^^^^^^^^^^^^^
+        540 |                 val: 4
+            |                 ^^^^^^
+        541 |             }
+            |             ^
+        542 |             @v5 { // @error
+            |             ^^^^^^^^^^^^^^^
+        543 |                 val: "v5"
+            |                 ^^^^^^^^^
+        544 |             }
+            |             ^
+        545 |             @v6 { // @error
+            |             ^^^^^^^^^^^^^^^
+        546 |                 val: "v6"
+            |                 ^^^^^^^^^
+        547 |             }
+            |             ^
+        548 |             @v7 // @error
+            |             ^^^^^^^^^^^^^
+        549 |             @v8 { // @error
+            |             ^^^^^^^^^^^^^^^
+        550 |                 val: "v8"
+            |                 ^^^^^^^^^
+        551 |             }
+            |             ^
+        552 |             @v9 { // @error
+            |             ^^^^^^^^^^^^^^^
+        553 |                 val: "v9"
+            |                 ^^^^^^^^^
+        554 |             }
+            |             ^
+        555 |             @v10 { // @error
+            |             ^^^^^^^^^^^^^^^^
+        556 |                 val: "v10"
+            |                 ^^^^^^^^^^
+        557 |             }
+            |             ^
+        558 |             @v12 { // @error
+            |             ^^^^^^^^^^^^^^^^
+        559 |                 val: "v12"
+            |                 ^^^^^^^^^^
+        560 |             }
+            |             ^
+        561 |             @v13 { // @error
+            |             ^^^^^^^^^^^^^^^^
+        562 |                 val: "v13"
+            |                 ^^^^^^^^^^
+        563 |             }
+            |             ^
+        564 |             @v15 { // @error
+            |             ^^^^^^^^^^^^^^^^
+        565 |                 val: false
+            |                 ^^^^^^^^^^
+        566 |             } int x = 4 in 2 * x;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformListenerDeclaration: annotations not yet supported
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:311:1
+            |
+        311 | @v1 { // @error
+            | ^^^^^^^^^^^^^^^
+        312 |     val: "v1"
+            |     ^^^^^^^^^
+        313 | }
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> annotation-attachment-negative-test-eefa0f3f86-e.bal:649:1
+            |
+        649 | @v1 { // @error
+            | ^^^^^^^^^^^^^^^
+        650 |     val: "v1"
+            |     ^^^^^^^^^
+        651 | }
+            | ^
+        652 | @v2 { // @error
+            | ^^^^^^^^^^^^^^^
+        653 |     val: "v2"
+            |     ^^^^^^^^^
+        654 | }
+            | ^
+        655 | @v3 { // @error
+            | ^^^^^^^^^^^^^^^
+        656 |     val: "v3"
+            |     ^^^^^^^^^
+        657 | }
+            | ^
+        658 | @v4 { // @error
+            | ^^^^^^^^^^^^^^^
+        659 |     val: 4
+            |     ^^^^^^
+        660 | }
+            | ^
+        661 | @v5 { // @error
+            | ^^^^^^^^^^^^^^^
+        662 |     val: "v5"
+            |     ^^^^^^^^^
+        663 | }
+            | ^
+        664 | @v6 { // @error
+            | ^^^^^^^^^^^^^^^
+        665 |     val: "v6"
+            |     ^^^^^^^^^
+        666 | }
+            | ^
+        667 | @v7 // @error
+            | ^^^^^^^^^^^^^
+        668 | @v9 { // @error
+            | ^^^^^^^^^^^^^^^
+        669 |     val: "v9"
+            |     ^^^^^^^^^
+        670 | }
+            | ^
+        671 | @v10 { // @error
+            | ^^^^^^^^^^^^^^^^
+        672 |     val: "v10"
+            |     ^^^^^^^^^^
+        673 | }
+            | ^
+        674 | @v11 { // @error
+            | ^^^^^^^^^^^^^^^^
+        675 |     val: 11
+            |     ^^^^^^^
+        676 | }
+            | ^
+        677 | @v12 { // @error
+            | ^^^^^^^^^^^^^^^^
+        678 |     val: "v12"
+            |     ^^^^^^^^^^
+        679 | }
+            | ^
+        680 | @v13 { // @error
+            | ^^^^^^^^^^^^^^^^
+        681 |     val: "v13"
+            |     ^^^^^^^^^^
+        682 | }
+            | ^
+        683 | @v15 { // @error
+            | ^^^^^^^^^^^^^^^^
+        684 |     val: false
+            |     ^^^^^^^^^^
+        685 | }
+            | ^
+        686 | service object {
+            | ^^^^^^^^^^^^^^^^
+        687 | 
+            | 
+        688 |     resource function get res() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        689 | 
+            | 
+        690 |     }
+            |     ^
+        691 | };
+            | ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

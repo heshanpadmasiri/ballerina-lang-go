@@ -1,0 +1,17 @@
+{
+  "id": "T1328",
+  "name": "sealed-array-test-916de22362/sealed-array-code-analysis-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Module variable declarations",
+    "Statements: Local variable declarations; Return; If/else",
+    "Expressions: Anonymous function expression; List constructor; Mapping constructor; Variable reference"
+  ],
+  "reason": "This negative case checks rejection of inferred-length array types in invalid contexts: record fields, function parameters and returns, and nested tuple, union, intersection and map types. It also includes valid directly initialized local inferred-length arrays. These are static checks within supported declarations, signatures, anonymous functions and constructors; subset10 states no restriction excluding inferred-length arrays or these type combinations. No unsupported operation is essential to the asserted diagnostics.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error comments assert compile-time rejection; illegal placements do not themselves make this a feature request.",
+    "The file supplies error markers but no expected diagnostic messages."
+  ]
+}

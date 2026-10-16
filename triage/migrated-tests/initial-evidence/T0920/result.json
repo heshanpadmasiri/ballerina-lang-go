@@ -1,0 +1,14 @@
+{
+  "Name": "module-tuple-variable-test-4b19fdd529/module-tuple-variable-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-tuple-variable-test-4b19fdd529/module-tuple-variable-negative-e.bal",
+  "Project": false,
+  "Id": "T0920",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-tuple-variable-test-4b19fdd529/module-tuple-variable-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.023
+}

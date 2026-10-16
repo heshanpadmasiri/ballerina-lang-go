@@ -1,0 +1,17 @@
+{
+  "id": "T0410",
+  "name": "dataflow-analysis-test-00b490139e/uninitialized-variables-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements — Destructuring assignment statement: Only supports wildcard-binding-pattern",
+    "Statements — Match statement: Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The whole case requires unsupported binding patterns: testVariableAssignment uses a mapping destructuring assignment with nested fields and a rest binding, and several match tests use variable, list and mapping binding patterns. Their expected initialization diagnostics and successful paths cannot be assessed entirely within subset 10.",
+  "unsupported_constructs": [
+    "Mapping destructuring assignment {name: fName, married, age: {age: theAge, format}, ...theMap} = getPerson()",
+    "Match patterns var y, var [a, b], var {a, b}, and var x"
+  ],
+  "test_design_notes": [
+    "Negative compilation test with @error markers; no @args, @panic or @output directives. Many ordinary local-variable initialization and reachability checks use supported statements, but unsupported constructs are essential to the combined case."
+  ]
+}

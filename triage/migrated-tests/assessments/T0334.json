@@ -1,0 +1,17 @@
+{
+  "id": "T0334",
+  "name": "client-resource-access-action-negative-test-1519220005/client-resource-path-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)\" is listed; object-constructor-expr is not listed.",
+    "## Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\"",
+    "### Other invocation restrictions: \"Client resource access actions require an atomic client receiver. Dispatch is not supported when more than one resource method matches the access path.\""
+  ],
+  "reason": "The negative cases depend on an anonymous client object constructor (`var successClient = client object { ... };`). Object constructor expressions are not covered by the Expressions positive list; support for object/class members and new expressions does not establish this expression form. This essential uncovered construct suffices for whole-case feature classification.",
+  "unsupported_constructs": [
+    "Anonymous client object constructor expression: `client object { resource function ... }`."
+  ],
+  "test_design_notes": [
+    "The file asserts compile-time rejection via @error comments for invalid resource paths and path argument types; there are no @args, @panic, or @output directives. Negative rejection alone would remain in scope if all prerequisite constructs were supported."
+  ]
+}

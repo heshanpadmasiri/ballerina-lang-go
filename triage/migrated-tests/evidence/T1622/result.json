@@ -1,0 +1,14 @@
+{
+  "Name": "xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal",
+  "Project": false,
+  "Id": "T1622",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.066
+}

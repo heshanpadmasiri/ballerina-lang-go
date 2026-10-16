@@ -1,0 +1,375 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "read-only-object-bala-test-38fd1e4394/readonly-objects-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: testorg/readonly_objects
+         --> main.bal:2:1
+          |
+        2 | import testorg/readonly_objects as ro;
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Config
+           --> main.bal:114:5
+            |
+        114 |     ro:Config & readonly cn = {c1: new ro:DefaultController(), c2, c3: new ro:CustomController("other immutable")};
+            |     ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Config
+          --> main.bal:89:5
+           |
+        89 |     ro:Config cn = {c1: new ro:DefaultController(), c2, c3: new ro:MutableController()};
+           |     ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+           --> main.bal:116:31
+            |
+        116 |     assertTrue(<any> cn.c1 is ro:Controller);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+           --> main.bal:117:31
+            |
+        117 |     assertTrue(<any> cn.c1 is ro:Controller & readonly);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+           --> main.bal:118:31
+            |
+        118 |     assertTrue(<any> cn.c2 is ro:Controller);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+           --> main.bal:119:31
+            |
+        119 |     assertTrue(<any> cn.c2 is ro:Controller & readonly);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+           --> main.bal:120:31
+            |
+        120 |     assertTrue(<any> cn.c3 is ro:Controller);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+           --> main.bal:121:31
+            |
+        121 |     assertTrue(<any> cn.c3 is ro:Controller & readonly);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+          --> main.bal:88:5
+           |
+        88 |     ro:Controller c2 = new ro:CustomController("immutable");
+           |     ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+          --> main.bal:91:31
+           |
+        91 |     assertTrue(<any> cn.c1 is ro:Controller);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+          --> main.bal:92:31
+           |
+        92 |     assertTrue(<any> cn.c1 is ro:Controller & readonly);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+          --> main.bal:93:31
+           |
+        93 |     assertTrue(<any> cn.c2 is ro:Controller);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+          --> main.bal:94:31
+           |
+        94 |     assertTrue(<any> cn.c2 is ro:Controller & readonly);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+          --> main.bal:95:31
+           |
+        95 |     assertTrue(<any> cn.c3 is ro:Controller);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Controller
+          --> main.bal:96:32
+           |
+        96 |     assertFalse(<any> cn.c3 is ro:Controller & readonly);
+           |                                ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+           --> main.bal:113:34
+            |
+        113 |     ro:CustomController c2 = new ro:CustomController("immutable");
+            |                                  ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+           --> main.bal:113:5
+            |
+        113 |     ro:CustomController c2 = new ro:CustomController("immutable");
+            |     ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+           --> main.bal:114:76
+            |
+        114 |     ro:Config & readonly cn = {c1: new ro:DefaultController(), c2, c3: new ro:CustomController("other immutable")};
+            |                                                                            ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+           --> main.bal:124:31
+            |
+        124 |     ro:CustomController v2 = <ro:CustomController> cn.c2;
+            |                               ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+           --> main.bal:124:5
+            |
+        124 |     ro:CustomController v2 = <ro:CustomController> cn.c2;
+            |     ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+           --> main.bal:125:31
+            |
+        125 |     ro:CustomController v3 = <ro:CustomController> cn.c3;
+            |                               ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+           --> main.bal:125:5
+            |
+        125 |     ro:CustomController v3 = <ro:CustomController> cn.c3;
+            |     ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+          --> main.bal:88:28
+           |
+        88 |     ro:Controller c2 = new ro:CustomController("immutable");
+           |                            ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+          --> main.bal:99:31
+           |
+        99 |     ro:CustomController v2 = <ro:CustomController> cn.c2;
+           |                               ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: CustomController
+          --> main.bal:99:5
+           |
+        99 |     ro:CustomController v2 = <ro:CustomController> cn.c2;
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: DefaultController
+           --> main.bal:114:40
+            |
+        114 |     ro:Config & readonly cn = {c1: new ro:DefaultController(), c2, c3: new ro:CustomController("other immutable")};
+            |                                        ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: DefaultController
+           --> main.bal:123:32
+            |
+        123 |     ro:DefaultController v1 = <ro:DefaultController> cn.c1;
+            |                                ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: DefaultController
+           --> main.bal:123:5
+            |
+        123 |     ro:DefaultController v1 = <ro:DefaultController> cn.c1;
+            |     ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: DefaultController
+          --> main.bal:89:29
+           |
+        89 |     ro:Config cn = {c1: new ro:DefaultController(), c2, c3: new ro:MutableController()};
+           |                             ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: DefaultController
+          --> main.bal:98:32
+           |
+        98 |     ro:DefaultController v1 = <ro:DefaultController> cn.c1;
+           |                                ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: DefaultController
+          --> main.bal:98:5
+           |
+        98 |     ro:DefaultController v1 = <ro:DefaultController> cn.c1;
+           |     ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Department
+          --> main.bal:31:16
+           |
+        31 |         public ro:Department dept;
+           |                ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Department
+          --> main.bal:40:28
+           |
+        40 |     assertTrue(obj.dept is ro:Department & readonly);
+           |                            ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Department
+          --> main.bal:41:21
+           |
+        41 |     assertEquality(<ro:Department> {name: "IT"}, obj.dept);
+           |                     ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Department
+          --> main.bal:51:16
+           |
+        51 |         public ro:Department dept;
+           |                ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Details
+          --> main.bal:30:16
+           |
+        30 |         public ro:Details details;
+           |                ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Details
+          --> main.bal:36:31
+           |
+        36 |     assertTrue(obj.details is ro:Details & readonly);
+           |                               ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Details
+          --> main.bal:37:21
+           |
+        37 |     assertEquality(<ro:Details> {name: "Jo", yob: 2000}, obj.details);
+           |                     ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Details
+          --> main.bal:50:16
+           |
+        50 |         public ro:Details details;
+           |                ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Employee
+          --> main.bal:23:5
+           |
+        23 |     ro:Employee emp = new({name: "Jo", yob: 2000}, {}, 1234);
+           |     ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Employee
+          --> main.bal:27:26
+           |
+        27 |     assertTrue(anyVal is ro:Employee);
+           |                          ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: Employee
+          --> main.bal:47:5
+           |
+        47 |     ro:Employee emp = new({name: "Jo", yob: 2000}, {}, 1234);
+           |     ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MutableController
+           --> main.bal:100:32
+            |
+        100 |     ro:MutableController v3 = <ro:MutableController> cn.c3;
+            |                                ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MutableController
+           --> main.bal:100:5
+            |
+        100 |     ro:MutableController v3 = <ro:MutableController> cn.c3;
+            |     ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MutableController
+          --> main.bal:89:65
+           |
+        89 |     ro:Config cn = {c1: new ro:DefaultController(), c2, c3: new ro:MutableController()};
+           |                                                                 ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Config
+           --> main.bal:114:5
+            |
+        114 |     ro:Config & readonly cn = {c1: new ro:DefaultController(), c2, c3: new ro:CustomController("other immutable")};
+            |     ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+           --> main.bal:116:31
+            |
+        116 |     assertTrue(<any> cn.c1 is ro:Controller);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+           --> main.bal:117:31
+            |
+        117 |     assertTrue(<any> cn.c1 is ro:Controller & readonly);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+           --> main.bal:118:31
+            |
+        118 |     assertTrue(<any> cn.c2 is ro:Controller);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+           --> main.bal:119:31
+            |
+        119 |     assertTrue(<any> cn.c2 is ro:Controller & readonly);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+           --> main.bal:120:31
+            |
+        120 |     assertTrue(<any> cn.c3 is ro:Controller);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+           --> main.bal:121:31
+            |
+        121 |     assertTrue(<any> cn.c3 is ro:Controller & readonly);
+            |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+          --> main.bal:91:31
+           |
+        91 |     assertTrue(<any> cn.c1 is ro:Controller);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+          --> main.bal:92:31
+           |
+        92 |     assertTrue(<any> cn.c1 is ro:Controller & readonly);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+          --> main.bal:93:31
+           |
+        93 |     assertTrue(<any> cn.c2 is ro:Controller);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+          --> main.bal:94:31
+           |
+        94 |     assertTrue(<any> cn.c2 is ro:Controller & readonly);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+          --> main.bal:95:31
+           |
+        95 |     assertTrue(<any> cn.c3 is ro:Controller);
+           |                               ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Controller
+          --> main.bal:96:32
+           |
+        96 |     assertFalse(<any> cn.c3 is ro:Controller & readonly);
+           |                                ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Department
+          --> main.bal:40:28
+           |
+        40 |     assertTrue(obj.dept is ro:Department & readonly);
+           |                            ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Details
+          --> main.bal:36:31
+           |
+        36 |     assertTrue(obj.details is ro:Details & readonly);
+           |                               ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown type: Employee
+          --> main.bal:27:26
+           |
+        27 |     assertTrue(anyVal is ro:Employee);
+           |                          ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

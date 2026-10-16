@@ -1,0 +1,21 @@
+{
+  "id": "T1467",
+  "name": "type-definitions-test-dce7ce211b/type-definitions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"[New expression]\" and \"[Anonymous function expression]\" are listed, but object constructor expressions are not listed.",
+    "Expressions: \"[Annotation access expression]\" is listed, but typeof expressions are not listed.",
+    "Module-level declarations: \"[Type definition]\", \"[Class definition]\", and \"[Annotation declarations and attachments]\"; \"Supports source-only, runtime, marker and repeated annotations\".",
+    "Subset restrictions / Import declarations: ballerina/lang.value supports \"cloneWithType\" and \"toString\".",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"value:cloneWithType\" and \"value:toString\" are supported through method call syntax."
+  ],
+  "reason": "The whole case includes essential uncovered expression forms: testUnion and testComplexTuple construct anonymous objects with object {...}, and the annotation assertion evaluates typeof foo. Neither expression form appears in the supported expression list. Class declarations/new expressions and annotation access support do not establish support for these separate forms. The otherwise supported type-alias, cloning, and annotation checks make this a mixed-scope case.",
+  "unsupported_constructs": [
+    "Anonymous object constructor expressions: var o = object {public G g = \"\";};",
+    "typeof expression: typedesc<any> t = typeof foo;"
+  ],
+  "test_design_notes": [
+    "Mixed scope: many supported type definitions, classes, constructors, arithmetic, XML templates, cloneWithType calls, and runtime annotation assertions are bundled with uncovered expressions.",
+    "The @output markers assert returned values and formatting, including the named error representation; io:println is instrumentation. No @args or @panic markers occur."
+  ]
+}

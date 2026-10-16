@@ -1,0 +1,121 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	2
+        	typedesc map<anydata>
+        	typedesc map<anydata>
+        	2
+        	typedesc Teacher
+        	typedesc Teacher
+        	2
+        	typedesc Employee
+        	typedesc 25
+        	typedesc Hindu College
+        	typedesc Employee
+        	typedesc 30
+        	typedesc Hindu College
+        	2
+        	typedesc Employee
+        	typedesc 25
+        	typedesc Hindu College
+        	typedesc Employee
+        	typedesc 30
+        	typedesc Hindu College
+        	2
+        	typedesc map<json>
+        	4
+        	LK2014
+        	typedesc LK2014
+        	typedesc map<json>
+        	4
+        	LK2014
+        	typedesc LK2014
+        	2
+        	typedesc map<anydata>
+        	typedesc map<anydata>
+        	2
+        	typedesc map<anydata>
+        	typedesc map<anydata>
+        	2
+        	typedesc Employee
+        	typedesc 25
+        	typedesc Hindu College
+        	typedesc Employee
+        	typedesc 30
+        	typedesc Hindu College
+        	2
+        	typedesc Employee
+        	typedesc Student
+        	4
+        	Raja
+        	typedesc Raja
+        	single
+        	typedesc single
+        	LK2014
+        	typedesc LK2014
+        	Hindu College
+        	typedesc Hindu College
+        	Royal College
+        	typedesc Royal College
+        	4
+        	typedesc IntArray
+        	1
+        	2
+        	3
+        	4
+        	4
+        	typedesc IntArray
+        	1
+        	2
+        	3
+        	4
+        	4
+        	typedesc IntArray
+        	1
+        	2
+        	3
+        	4
+        	4
+        	typedesc IntArray
+        	1
+        	2
+        	3
+        	4
+        	1
+        	2
+        	3
+        	4
+        	1
+        	2
+        	3
+        	4
+        	1
+        	2
+        	3
+        	4
+        	1
+        	2
+        	3
+        	4
+        	1
+        	2
+        	1
+        	2
+        	1
+        	2
+        	1
+        	2
+        	typedesc map<anydata>
+        	typedesc map<anydata>
+        	typedesc map<json>
+        	typedesc map<json>
+        	Waruna
+        	Heshitha
+        	10
+        	15
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

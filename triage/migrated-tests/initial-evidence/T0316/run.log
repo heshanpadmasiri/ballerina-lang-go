@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	true
+        	true
+        	true
+        	true
+        	true
+        	Diayasena
+        	io error
+        	io error
+        	hello, Ballerina
+        	io error
+        	io error
+        	custom io error
+        	foo.txt
+        	hello, Hello, World!!!
+        	((((S|S)|(S|S))|((S|S)|(S|S)))|(((S|S)|(S|S))|((S|S)|(S|S)))) ((A|A)|(A|A)) (((M|M)|(M|M))|((M|M)|(M|M))) done
+        	30
+        	2
+        	false
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

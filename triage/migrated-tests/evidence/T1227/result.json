@@ -1,0 +1,15 @@
+{
+  "Name": "query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e",
+  "Project": true,
+  "Id": "T1227",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.075
+}

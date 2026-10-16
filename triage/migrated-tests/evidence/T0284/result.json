@@ -1,0 +1,14 @@
+{
+  "Name": "bstring-to-string-test-a1480c4de1/bstring-tostring-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstring-to-string-test-a1480c4de1/bstring-tostring-v.bal",
+  "Project": false,
+  "Id": "T0284",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstring-to-string-test-a1480c4de1/bstring-tostring-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 2.054
+}

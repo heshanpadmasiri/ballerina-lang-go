@@ -1,0 +1,13 @@
+{
+  "id": "T0336",
+  "name": "client-resource-access-action-test-f2b4b23dd8/client_resource_access_action-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: 'Annotation declarations and attachments' / 'Supports source-only, runtime, marker and repeated annotations'",
+    "Expressions: 'Client resource access action'",
+    "Other invocation restrictions: 'Client resource access actions require an atomic client receiver. Dispatch is not supported when more than one resource method matches the access path.'"
+  ],
+  "reason": "The three @error assertions exercise diagnostics for accessing resource methods annotated @deprecated. General annotation attachment support does not specify the built-in deprecation diagnostic behavior; that essential asserted behavior is not covered by subset 10. The accesses otherwise have an atomic client receiver and individually matching paths.",
+  "unsupported_constructs": ["Deprecation diagnostics on client resource access actions"],
+  "test_design_notes": ["All three accesses carry @error markers; there are no @args, @panic, or @output assertions.", "io:println calls are instrumentation and do not determine classification."]
+}

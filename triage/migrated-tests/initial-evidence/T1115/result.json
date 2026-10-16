@@ -1,0 +1,14 @@
+{
+  "Name": "open-record-iteration-test-4a36ef124f/open-record-iteration-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-iteration-test-4a36ef124f/open-record-iteration-e.bal",
+  "Project": false,
+  "Id": "T1115",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-iteration-test-4a36ef124f/open-record-iteration-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.081
+}

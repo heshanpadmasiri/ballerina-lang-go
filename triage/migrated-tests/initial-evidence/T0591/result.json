@@ -1,0 +1,14 @@
+{
+  "Name": "future-negative-tests-7e2663cfde/cases/future_multiple_wait-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/future-negative-tests-7e2663cfde/cases/future_multiple_wait-v.bal",
+  "Project": false,
+  "Id": "T0591",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/future-negative-tests-7e2663cfde/cases/future_multiple_wait-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.063
+}

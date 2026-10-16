@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "constant-access-test-53bc132680/constant-access-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'address'
+         --> modules/variable/constant-def.bal:9:1
+          |
+        9 | const string address = "Colombo";
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

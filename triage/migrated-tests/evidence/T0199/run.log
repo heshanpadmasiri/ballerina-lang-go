@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "bany-type-invalid-cast-error-a0bf9af855/invalid-any-casting-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'val'
+         --> invalid-any-casting-v.bal:9:5
+          |
+        9 |     float val = check trap <float> abc;
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

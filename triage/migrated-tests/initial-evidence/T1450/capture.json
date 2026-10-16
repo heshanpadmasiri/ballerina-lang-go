@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'tempStringC'\n --\u003e tuple-rest-descriptor-index-p.bal:7:5\n  |\n7 |     string tempStringC = t[4]; // @panic\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"tuple-rest-descriptor-index-p.bal","StartLine":7,"EndLine":7}]}

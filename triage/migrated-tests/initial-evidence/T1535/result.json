@@ -1,0 +1,14 @@
+{
+  "Name": "wait-for-one-actions-test-dad8f74b8b/wait-for-one-actions-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/wait-for-one-actions-test-dad8f74b8b/wait-for-one-actions-v.bal",
+  "Project": false,
+  "Id": "T1535",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/wait-for-one-actions-test-dad8f74b8b/wait-for-one-actions-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

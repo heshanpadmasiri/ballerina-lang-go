@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'e2'\n  --\u003e frozen-any-array-update-p.bal:11:5\n   |\n11 |     Employee e2 = check \u003cEmployee\u003ei2[1];\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-any-array-update-p.bal","StartLine":11,"EndLine":11}]}

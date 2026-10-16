@@ -1,0 +1,17 @@
+{
+  "id": "T0266",
+  "name": "block-stmt-test-58e33229dc/block-stmt-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements including \"- [If/else]\", \"- [While]\", \"- [Local variable declarations]\" and \"- [Return]\", but does not include standalone block statements.",
+    "## Expressions: \"- [Anonymous function expression]\" and \"- [Type cast expression]\".",
+    "### Other invocation restrictions: \"`value:toString` and `value:toBalString`\"."
+  ],
+  "reason": "The case essentially tests standalone block statements: nested bare braces establish a local shadowing scope, contain a while loop, and contain assignments and returns. Standalone block statements are not covered by the supported Statements list, so the whole case is a feature even though its closure, arithmetic, casts and toString calls are covered.",
+  "unsupported_constructs": [
+    "Standalone block statements, including block-local shadowing and return from a bare block."
+  ],
+  "test_design_notes": [
+    "main asserts outputs 9, 8 and K25 and invokes equality checks for block scope, mutation and return behavior. No @args or @panic directives occur. io:println is output instrumentation."
+  ]
+}

@@ -1,0 +1,88 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	Jane
+        	USA
+        	emily
+        	emily
+        	default first name
+        	Smith
+        	999
+        	aaa
+        	25
+        	bbb
+        	50
+        	-9
+        	-8
+        	-88.234
+        	-24.99
+        	{"name":"aaa","lname":"","adrs":{},"age":25,"family":{"spouse":"","noOfChildren":0,"children":[]},"parent":{"name":"bbb","lname":"ccc","adrs":{},"age":50,"family":{"spouse":"","noOfChildren":0,"children":[]},"parent":null}}
+        	Bar
+        	5.9
+        	John
+        	{"name":"Foo","lname":"","adrs":{},"age":25,"family":{"spouse":"","noOfChildren":0,"children":[]},"parent":null,"mname":"Bar","height":5.9,"firstName":"John"}
+        	
+        	Bar
+        	Colombo
+        	{"name":"Foo","age":25,"lname":"Bar","address":"Colombo"}
+        	
+        	
+        	3
+        	{"name":"Foo","age":25,"year":3}
+        	0
+        	
+        	5.9
+        	{"name":"Foo","age":25,"height":5.9}
+        	61.5
+        	
+        	true
+        	{"name":"Foo","age":25,"isEmployed":true}
+        	true
+        	
+        	{"lname":"Bar","height":5.9,"isEmployed":true}
+        	{"name":"Foo","age":25,"misc":{"lname":"Bar","height":5.9,"isEmployed":true}}
+        	0
+        	
+        	{"name":"Foo","age":25,"lname":"Bar","height":5.9,"isEmployed":true}
+        	Foo
+        	
+        	
+        	{"name":"Foo","age":25,"lname":null}
+        	{"dptName":"Engineering","employees":[]}
+        	{"name":"Foo","age":25,"dpt":{"dptName":"Engineering","employees":[]}}
+        	{"dptName":"","employees":[]}
+        	
+        	{kind:Cat, name:Miaw}
+        	{"name":"Foo","age":25,"pet":object Animal}
+        	Animal
+        	Dog
+        	Rocky
+        	
+        	{"name":"Foo","age":25,"misc":[5.9,"Bar",object Animal]}
+        	4.5
+        	foo
+        	Animal
+        	
+        	Animal?[]
+        	{"name":"Foo","age":25,"pets":[object Animal,object Animal]}
+        	Animal?[]
+        	[object Animal,object Animal]
+        	
+        	Doe, John
+        	John Doe
+        	25
+        	{"city":"Colombo","country":"Sri Lanka"}
+        	WSO2
+        	
+        	{"b":56,"a":777}
+        	true
+        	true
+        	true
+        	44
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

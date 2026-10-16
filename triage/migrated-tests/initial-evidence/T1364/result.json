@@ -1,0 +1,14 @@
+{
+  "Name": "string-test-618b121b6c/string-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-test-618b121b6c/string-negative-e.bal",
+  "Project": false,
+  "Id": "T1364",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-test-618b121b6c/string-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 1.833
+}

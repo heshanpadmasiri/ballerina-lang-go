@@ -1,0 +1,13 @@
+{
+  "id": "T0823",
+  "name": "map-to-record-assignability-test-c5ae90a3ca/subtyping-key-not-found-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list includes Type cast expression, Mapping constructor, Member access expression and Equality expression, but does not include typeof expression.",
+    "## Module-level declarations: Supports dependently-typed functions using `typedesc` parameters with the `<>` inferred default.",
+    "### Other invocation restrictions: method-call list includes `map:get` and `value:toString` and `value:toBalString`."
+  ],
+  "reason": "The case checks assigning map<Bar> to a rest-field record of Foo, preserving the underlying sealed Bar value and panicking when a new field is inserted. Its assertion helper additionally evaluates typeof expected and typeof actual, an expression form absent from the supported positive list. The narrow typedesc-parameter support does not establish typeof-expression support, so the whole case is not fully covered.",
+  "unsupported_constructs": ["typeof expressions in the assertion failure diagnostic"],
+  "test_design_notes": ["The main assertion is a runtime panic on f1[\"cc\"] = 20 after widening the static type; it requires preserving the original record's field restrictions.", "The unsupported typeof expressions occur only in the assertion-failure branch; replacing that diagnostic would isolate the map/record behavior."]
+}

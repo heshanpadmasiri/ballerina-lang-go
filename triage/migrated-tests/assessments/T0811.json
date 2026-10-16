@@ -1,0 +1,18 @@
+{
+  "id": "T0811",
+  "name": "map-constraint-table-test-5e26103df7/map-constraint-table-test-5e26103df7-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: the supported expression list includes List constructor and Mapping constructor, but does not include table constructors.",
+    "Expressions > Mapping constructor: \"Currently spread-field not supported\"",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"value:toString and value:toBalString\" are supported with method call syntax."
+  ],
+  "reason": "The asserted table construction, inferred row typing and serialized table contents depend on table constructor expressions, which are absent from the supported expression list. The inferred-table case also explicitly uses the unsupported mapping spread field {...m}. These essential unsupported constructs make the whole case a feature request; toString itself is supported.",
+  "unsupported_constructs": [
+    "Table constructor expressions table [...] with map-constrained and inferred row types",
+    "Mapping spread field {...m} inside a table row"
+  ],
+  "test_design_notes": [
+    "io:println only exposes the expected serialized table values and is instrumentation."
+  ]
+}

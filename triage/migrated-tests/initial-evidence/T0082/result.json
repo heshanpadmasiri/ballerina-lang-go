@@ -1,0 +1,16 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/invalid-int-14-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-14-p.bal",
+  "Project": false,
+  "Id": "T0082",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-int-14-p.bal"
+  ],
+  "Args": [
+    "-128D"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.09
+}

@@ -1,0 +1,20 @@
+{
+  "id": "T1289",
+  "name": "reg-exp-value-test-30e03bfeee/regexp-value-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; the positive expression list includes XML and string template expressions but no regular-expression template expression.",
+    "# Subset restrictions / ## Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.string` lists `Char` and string operations but not `RegExp`; `ballerina/lang.error` lists only `message`.",
+    "## Invocations / ### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes `error:message` and `value:toString`, but not `error:detail`."
+  ],
+  "reason": "The case fundamentally requires regular-expression templates and string:RegExp, neither covered by the subset's positive lists. It asserts preservation of regex syntax through toString, interpolation and invalid-insertion parsing errors, regex equality and exact equality, and regex values in runtime annotations. These essential regex behaviors are outside the supported subset. Invalid-insertion assertions additionally call the unsupported error.detail langlib method.",
+  "unsupported_constructs": [
+    "Regular-expression template expressions (re backtick syntax), including interpolation, character classes, flags and groups",
+    "string:RegExp type and its asserted serialization, equality, parsing-error and annotation-value behavior",
+    "error.detail()"
+  ],
+  "test_design_notes": [
+    "io:println calls only instrument completed test functions and do not determine classification.",
+    "Supported value:toString, equality operators, trap and annotation syntax do not establish support for regex-specific behavior."
+  ]
+}

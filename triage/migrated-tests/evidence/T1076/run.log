@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:57: -e test "object-initializer-test-9aa531bbdf/object-initializer-negative-project-e" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

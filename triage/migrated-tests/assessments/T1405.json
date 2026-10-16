@@ -1,0 +1,19 @@
+{
+  "id": "T1405",
+  "name": "table-value-assign-test-98960d90ac/table-value-assign-test-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Query expressions: Supports `list` and `map` as `query-constructor-type`",
+    "Expressions: [List constructor]; [Mapping constructor] (table constructors are not listed)",
+    "Subset restrictions > Invocations > Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The essential query uses `table key(id) from ... select ...`, whereas supported query constructor types are list and map. The case also relies on keyed table constructors and table assignment/equality behavior, which are not covered by the positive expression list. The supported assertion helper and toString calls do not bring the table query into scope.",
+  "unsupported_constructs": [
+    "Table query constructor `table key(id) from var {id} in tbl1 select {id}`",
+    "Keyed table constructors and keyed table assignment/equality behavior"
+  ],
+  "test_design_notes": [
+    "The inline @error marker expects a WARNING about unnecessary checkpanic, rather than a negative type error; unsupported table syntax remains decisive regardless of that diagnostic.",
+    "No @args, @panic, or @output markers appear; runtime equality assertions are embedded in an uninvoked test function."
+  ]
+}

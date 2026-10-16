@@ -1,0 +1,16 @@
+{
+  "id": "T0412",
+  "name": "deprecation-annotation-negative-test-3198403fd2/deprecation-annotation-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"",
+    "Module-level declarations: \"Function definition\", \"Constant declarations\", \"Service declarations\", \"Type definition\", \"Class definition\""
+  ],
+  "reason": "The essential asserted errors validate Markdown deprecation documentation against @deprecated annotations, including missing Deprecated sections and mismatched Deprecated parameters entries. Although annotation attachments and the surrounding declarations are supported, subset 10 does not cover documentation syntax or deprecation-documentation consistency diagnostics. Thus the whole negative case requires behavior beyond the stated subset.",
+  "unsupported_constructs": [
+    "Deprecation documentation validation (# # Deprecated and # # Deprecated parameters), including consistency with annotations on declarations, parameters, and fields"
+  ],
+  "test_design_notes": [
+    "The file asserts compile-time errors with @error comments; it has no @args, @panic, or @output behavior. Many assertions concern documentation consistency rather than rejection of an illegal annotation attachment."
+  ]
+}

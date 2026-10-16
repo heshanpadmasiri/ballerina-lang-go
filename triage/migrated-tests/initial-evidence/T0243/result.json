@@ -1,0 +1,14 @@
+{
+  "Name": "bfunction-type-test-98284c9ab0/bfunction-type-test-98284c9ab0-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bfunction-type-test-98284c9ab0/bfunction-type-test-98284c9ab0-v.bal",
+  "Project": false,
+  "Id": "T0243",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bfunction-type-test-98284c9ab0/bfunction-type-test-98284c9ab0-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.095
+}

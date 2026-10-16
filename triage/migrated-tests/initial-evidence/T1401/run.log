@@ -1,0 +1,631 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "table-negative-test-f923667200/table-key-violations-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> table-key-violations-e.bal:129:38
+            |
+        129 | table<CustomerWithByteArrId> key(id) _ = table [
+            |                                      ^^^^^^^^^^^
+        130 |         {id: <byte[] & readonly>(base16 `5A`), firstName: "Foo", lastName: "QWER"},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        131 |         {id: <byte[] & readonly>(base16 `5A`), firstName: "Bar", lastName: "UYOR"} // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        132 |     ];
+            |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> table-key-violations-e.bal:137:25
+            |
+        137 | table<Customer> key(id) _ = table [
+            |                         ^^^^^^^^^^^
+        138 |         {id: ID1, firstName: "Foo", lastName: "QWER"},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        139 |         {id: ID2, firstName: "Bar", lastName: "UYOR"} // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        140 |     ];
+            |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> table-key-violations-e.bal:143:25
+            |
+        143 | table<Customer> key(id) _ = table [
+            |                         ^^^^^^^^^^^
+        144 |         {id: ID1, firstName: "Foo", lastName: "QWER"},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        145 |         {id: 13, firstName: "Bar", lastName: "UYOR"}
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        146 |     ];
+            |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> table-key-violations-e.bal:88:47
+            |
+         88 | table<CustomerWithTableId> key<table<Record>> _ = table key(id) [
+            |                                               ^^^^^^^^^^^^^^^^^^^
+         89 |         {
+            |         ^
+         90 |             id: table [
+            |             ^^^^^^^^^^^
+         91 |                     {
+            |                     ^
+         92 |                         x: "x4",
+            |                         ^^^^^^^^
+         93 |                         y: "2022/02/10",
+            |                         ^^^^^^^^^^^^^^^^
+         94 |                         z: 100
+            |                         ^^^^^^
+         95 |                     },
+            |                     ^^
+         96 |                     {
+            |                     ^
+         97 |                         x: "x1",
+            |                         ^^^^^^^^
+         98 |                         y: "2022/02/40",
+            |                         ^^^^^^^^^^^^^^^^
+         99 |                         z: 100
+            |                         ^^^^^^
+        100 |                     }
+            |                     ^
+        101 |                 ],
+            |                 ^^
+        102 |             firstName: "James",
+            |             ^^^^^^^^^^^^^^^^^^^
+        103 |             lastName: "Gordon"
+            |             ^^^^^^^^^^^^^^^^^^
+        104 |         },
+            |         ^^
+        105 |         {
+            |         ^
+        106 |             id: table [
+            |             ^^^^^^^^^^^
+        107 |                     {
+            |                     ^
+        108 |                         x: "x4",
+            |                         ^^^^^^^^
+        109 |                         y: "2022/02/10",
+            |                         ^^^^^^^^^^^^^^^^
+        110 |                         z: 100
+            |                         ^^^^^^
+        111 |                     },
+            |                     ^^
+        112 |                     {
+            |                     ^
+        113 |                         x: "x1",
+            |                         ^^^^^^^^
+        114 |                         y: "2022/02/40",
+            |                         ^^^^^^^^^^^^^^^^
+        115 |                         z: 100
+            |                         ^^^^^^
+        116 |                     }
+            |                     ^
+        117 |                 ],
+            |                 ^^
+        118 |             firstName: "Bruce",
+            |             ^^^^^^^^^^^^^^^^^^^
+        119 |             lastName: "Wayne"
+            |             ^^^^^^^^^^^^^^^^^
+        120 |         } // @error
+            |         ^^^^^^^^^^^
+        121 |     ];
+            |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-violations-e.bal:12:40
+           |
+        12 | table<Customer> key(id, firstName) _ = table [
+           |                                        ^^^^^^^
+        13 |         {id: 13, firstName: "Foo", lastName: "QWER"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |         {id: 13, firstName: "Bar", lastName: "UYOR"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |         {id: 13, firstName: "Foo", lastName: "XYZD"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-violations-e.bal:24:29
+           |
+        24 | table<Record> key(x, y) _ = table [
+           |                             ^^^^^^^
+        25 |         {
+           |         ^
+        26 |             x: "x4",
+           |             ^^^^^^^^
+        27 |             y: "2022/02/10",
+           |             ^^^^^^^^^^^^^^^^
+        28 |             z: 100
+           |             ^^^^^^
+        29 |         },
+           |         ^^
+        30 |         {
+           |         ^
+        31 |             x: "x1",
+           |             ^^^^^^^^
+        32 |             y: "2022/02/40",
+           |             ^^^^^^^^^^^^^^^^
+        33 |             z: 100
+           |             ^^^^^^
+        34 |         }
+           |         ^
+        35 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-violations-e.bal:43:38
+           |
+        43 | table<CustomerWithXmlId> key(id) _ = table [
+           |                                      ^^^^^^^
+        44 |         {id: xml `<id>123</id>`, firstName: "Sanjiva", lastName: "Weerawarana"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |         {id: xml `<id>123</id>`, firstName: "James", lastName: "Clark"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-violations-e.bal:48:39
+           |
+        48 | table<CustomerWithXmlId> key<xml> _ = table key(id) [
+           |                                       ^^^^^^^^^^^^^^^
+        49 |         {
+           |         ^
+        50 |             id: xml `<p:id xmlns:p="http://sample.com/wso2/e"><?target data?><!--Contents--><p:empId>5005</p:empId></p:id>`,
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        51 |             firstName: "Sanjiva",
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        52 |             lastName: "Weerawarana"
+           |             ^^^^^^^^^^^^^^^^^^^^^^^
+        53 |         },
+           |         ^^
+        54 |         {
+           |         ^
+        55 |             id: xml `<p:id xmlns:p="http://sample.com/wso2/e"><?target data?><!--Contents--><p:empId>5005</p:empId></p:id>`, // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        56 |             firstName: "James",
+           |             ^^^^^^^^^^^^^^^^^^^
+        57 |             lastName: "Clark"
+           |             ^^^^^^^^^^^^^^^^^
+        58 |         }
+           |         ^
+        59 |     ];
+           |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-violations-e.bal:65:33
+           |
+        65 |     table<Customer> key<string> _ = table key(firstName) [
+           |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |         {id: 5005, firstName: <string> (val > 10 && !(val < 10) ? (string `Hello ${name}!!!`) : "James"), lastName: "Gordon"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        67 |         {id: 5005, firstName: <string> (val > 10 && !(val < 10) ? (string `Hello ${name}!!!`) : "James"), lastName: "Wayne"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        68 |     ];
+           |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-violations-e.bal:77:38
+           |
+        77 | table<CustomerWithListId> key<int[]> _ = table key(id) [
+           |                                      ^^^^^^^^^^^^^^^^^^^
+        78 |     {id: [5005, 5006], firstName: "James", lastName: "Gordon"},
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |     {id: [5005, 5006], firstName: "Bruce", lastName: "Wayne"} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-key-violations-e.bal:7:29
+           |
+         7 | table<Customer> key(id) _ = table [
+           |                             ^^^^^^^
+         8 |         {id: 13, firstName: "Foo", lastName: "QWER"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         {id: 13, firstName: "Bar", lastName: "UYOR"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> table-key-violations-e.bal:127:1
+            |
+        127 | };
+            | ^^
+        128 | 
+            | 
+        129 | table<CustomerWithByteArrId> key(id) _ = table [
+            | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> table-key-violations-e.bal:135:18
+            |
+        135 | const int ID2 = 13;
+            |                  ^^
+        136 | 
+            | 
+        137 | table<Customer> key(id) _ = table [
+            | ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> table-key-violations-e.bal:142:74
+            |
+        142 | //Should throw a duplicate key error. Related to ballerina-lang/issues/35584
+            |                                                                          ^^^
+        143 | table<Customer> key(id) _ = table [
+            | ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-violations-e.bal:12:1
+           |
+        12 | table<Customer> key(id, firstName) _ = table [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-violations-e.bal:24:1
+           |
+        24 | table<Record> key(x, y) _ = table [
+           | ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-violations-e.bal:43:1
+           |
+        43 | table<CustomerWithXmlId> key(id) _ = table [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-violations-e.bal:48:1
+           |
+        48 | table<CustomerWithXmlId> key<xml> _ = table key(id) [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-violations-e.bal:65:1
+           |
+        65 |     table<Customer> key<string> _ = table key(firstName) [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-violations-e.bal:75:1
+           |
+        75 | };
+           | ^^
+        76 | 
+           | 
+        77 | table<CustomerWithListId> key<int[]> _ = table key(id) [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-violations-e.bal:83:10
+           |
+        83 |     readonly table<Record> id;
+           |          ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-key-violations-e.bal:86:1
+           |
+        86 | };
+           | ^^
+        87 | 
+           | 
+        88 | table<CustomerWithTableId> key<table<Record>> _ = table key(id) [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+         --> table-key-violations-e.bal:7:1
+          |
+        7 | table<Customer> key(id) _ = table [
+          | ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> table-key-violations-e.bal:129:38
+            |
+        129 | table<CustomerWithByteArrId> key(id) _ = table [
+            |                                      ^^^^^^^^^^^
+        130 |         {id: <byte[] & readonly>(base16 `5A`), firstName: "Foo", lastName: "QWER"},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        131 |         {id: <byte[] & readonly>(base16 `5A`), firstName: "Bar", lastName: "UYOR"} // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        132 |     ];
+            |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> table-key-violations-e.bal:137:25
+            |
+        137 | table<Customer> key(id) _ = table [
+            |                         ^^^^^^^^^^^
+        138 |         {id: ID1, firstName: "Foo", lastName: "QWER"},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        139 |         {id: ID2, firstName: "Bar", lastName: "UYOR"} // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        140 |     ];
+            |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> table-key-violations-e.bal:143:25
+            |
+        143 | table<Customer> key(id) _ = table [
+            |                         ^^^^^^^^^^^
+        144 |         {id: ID1, firstName: "Foo", lastName: "QWER"},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        145 |         {id: 13, firstName: "Bar", lastName: "UYOR"}
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        146 |     ];
+            |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> table-key-violations-e.bal:88:47
+            |
+         88 | table<CustomerWithTableId> key<table<Record>> _ = table key(id) [
+            |                                               ^^^^^^^^^^^^^^^^^^^
+         89 |         {
+            |         ^
+         90 |             id: table [
+            |             ^^^^^^^^^^^
+         91 |                     {
+            |                     ^
+         92 |                         x: "x4",
+            |                         ^^^^^^^^
+         93 |                         y: "2022/02/10",
+            |                         ^^^^^^^^^^^^^^^^
+         94 |                         z: 100
+            |                         ^^^^^^
+         95 |                     },
+            |                     ^^
+         96 |                     {
+            |                     ^
+         97 |                         x: "x1",
+            |                         ^^^^^^^^
+         98 |                         y: "2022/02/40",
+            |                         ^^^^^^^^^^^^^^^^
+         99 |                         z: 100
+            |                         ^^^^^^
+        100 |                     }
+            |                     ^
+        101 |                 ],
+            |                 ^^
+        102 |             firstName: "James",
+            |             ^^^^^^^^^^^^^^^^^^^
+        103 |             lastName: "Gordon"
+            |             ^^^^^^^^^^^^^^^^^^
+        104 |         },
+            |         ^^
+        105 |         {
+            |         ^
+        106 |             id: table [
+            |             ^^^^^^^^^^^
+        107 |                     {
+            |                     ^
+        108 |                         x: "x4",
+            |                         ^^^^^^^^
+        109 |                         y: "2022/02/10",
+            |                         ^^^^^^^^^^^^^^^^
+        110 |                         z: 100
+            |                         ^^^^^^
+        111 |                     },
+            |                     ^^
+        112 |                     {
+            |                     ^
+        113 |                         x: "x1",
+            |                         ^^^^^^^^
+        114 |                         y: "2022/02/40",
+            |                         ^^^^^^^^^^^^^^^^
+        115 |                         z: 100
+            |                         ^^^^^^
+        116 |                     }
+            |                     ^
+        117 |                 ],
+            |                 ^^
+        118 |             firstName: "Bruce",
+            |             ^^^^^^^^^^^^^^^^^^^
+        119 |             lastName: "Wayne"
+            |             ^^^^^^^^^^^^^^^^^
+        120 |         } // @error
+            |         ^^^^^^^^^^^
+        121 |     ];
+            |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-violations-e.bal:12:40
+           |
+        12 | table<Customer> key(id, firstName) _ = table [
+           |                                        ^^^^^^^
+        13 |         {id: 13, firstName: "Foo", lastName: "QWER"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |         {id: 13, firstName: "Bar", lastName: "UYOR"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |         {id: 13, firstName: "Foo", lastName: "XYZD"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-violations-e.bal:24:29
+           |
+        24 | table<Record> key(x, y) _ = table [
+           |                             ^^^^^^^
+        25 |         {
+           |         ^
+        26 |             x: "x4",
+           |             ^^^^^^^^
+        27 |             y: "2022/02/10",
+           |             ^^^^^^^^^^^^^^^^
+        28 |             z: 100
+           |             ^^^^^^
+        29 |         },
+           |         ^^
+        30 |         {
+           |         ^
+        31 |             x: "x1",
+           |             ^^^^^^^^
+        32 |             y: "2022/02/40",
+           |             ^^^^^^^^^^^^^^^^
+        33 |             z: 100
+           |             ^^^^^^
+        34 |         }
+           |         ^
+        35 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-violations-e.bal:43:38
+           |
+        43 | table<CustomerWithXmlId> key(id) _ = table [
+           |                                      ^^^^^^^
+        44 |         {id: xml `<id>123</id>`, firstName: "Sanjiva", lastName: "Weerawarana"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |         {id: xml `<id>123</id>`, firstName: "James", lastName: "Clark"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-violations-e.bal:48:39
+           |
+        48 | table<CustomerWithXmlId> key<xml> _ = table key(id) [
+           |                                       ^^^^^^^^^^^^^^^
+        49 |         {
+           |         ^
+        50 |             id: xml `<p:id xmlns:p="http://sample.com/wso2/e"><?target data?><!--Contents--><p:empId>5005</p:empId></p:id>`,
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        51 |             firstName: "Sanjiva",
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        52 |             lastName: "Weerawarana"
+           |             ^^^^^^^^^^^^^^^^^^^^^^^
+        53 |         },
+           |         ^^
+        54 |         {
+           |         ^
+        55 |             id: xml `<p:id xmlns:p="http://sample.com/wso2/e"><?target data?><!--Contents--><p:empId>5005</p:empId></p:id>`, // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        56 |             firstName: "James",
+           |             ^^^^^^^^^^^^^^^^^^^
+        57 |             lastName: "Clark"
+           |             ^^^^^^^^^^^^^^^^^
+        58 |         }
+           |         ^
+        59 |     ];
+           |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-violations-e.bal:65:33
+           |
+        65 |     table<Customer> key<string> _ = table key(firstName) [
+           |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        66 |         {id: 5005, firstName: <string> (val > 10 && !(val < 10) ? (string `Hello ${name}!!!`) : "James"), lastName: "Gordon"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        67 |         {id: 5005, firstName: <string> (val > 10 && !(val < 10) ? (string `Hello ${name}!!!`) : "James"), lastName: "Wayne"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        68 |     ];
+           |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-violations-e.bal:77:38
+           |
+        77 | table<CustomerWithListId> key<int[]> _ = table key(id) [
+           |                                      ^^^^^^^^^^^^^^^^^^^
+        78 |     {id: [5005, 5006], firstName: "James", lastName: "Gordon"},
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |     {id: [5005, 5006], firstName: "Bruce", lastName: "Wayne"} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-key-violations-e.bal:7:29
+           |
+         7 | table<Customer> key(id) _ = table [
+           |                             ^^^^^^^
+         8 |         {id: 13, firstName: "Foo", lastName: "QWER"},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         {id: 13, firstName: "Bar", lastName: "UYOR"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> table-key-violations-e.bal:127:1
+            |
+        127 | };
+            | ^^
+        128 | 
+            | 
+        129 | table<CustomerWithByteArrId> key(id) _ = table [
+            | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> table-key-violations-e.bal:135:18
+            |
+        135 | const int ID2 = 13;
+            |                  ^^
+        136 | 
+            | 
+        137 | table<Customer> key(id) _ = table [
+            | ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> table-key-violations-e.bal:142:74
+            |
+        142 | //Should throw a duplicate key error. Related to ballerina-lang/issues/35584
+            |                                                                          ^^^
+        143 | table<Customer> key(id) _ = table [
+            | ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-violations-e.bal:12:1
+           |
+        12 | table<Customer> key(id, firstName) _ = table [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-violations-e.bal:24:1
+           |
+        24 | table<Record> key(x, y) _ = table [
+           | ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-violations-e.bal:43:1
+           |
+        43 | table<CustomerWithXmlId> key(id) _ = table [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-violations-e.bal:48:1
+           |
+        48 | table<CustomerWithXmlId> key<xml> _ = table key(id) [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-violations-e.bal:65:1
+           |
+        65 |     table<Customer> key<string> _ = table key(firstName) [
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-violations-e.bal:75:1
+           |
+        75 | };
+           | ^^
+        76 | 
+           | 
+        77 | table<CustomerWithListId> key<int[]> _ = table key(id) [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-violations-e.bal:83:10
+           |
+        83 |     readonly table<Record> id;
+           |          ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-key-violations-e.bal:86:1
+           |
+        86 | };
+           | ^^
+        87 | 
+           | 
+        88 | table<CustomerWithTableId> key<table<Record>> _ = table key(id) [
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+         --> table-key-violations-e.bal:7:1
+          |
+        7 | table<Customer> key(id) _ = table [
+          | ^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

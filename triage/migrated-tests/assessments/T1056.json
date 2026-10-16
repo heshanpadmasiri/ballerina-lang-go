@@ -1,0 +1,14 @@
+{
+  "id": "T1056",
+  "name": "numeric-conversion-test-6b3e1e5e00/out-of-range-positive-decimal-as-int-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition",
+    "Statements: Local variable declarations; Call",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Expressions: Type cast expression"
+  ],
+  "reason": "The case asserts that casting decimal 9223372036854775807.5 to int panics because it is outside the int range. Numeric literals, local declarations, function calls and type casts are explicitly supported, and no subset restriction excludes decimal-to-int conversion or its range-error behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The expected panic is recorded by the inline @panic comment; the program contains no explicit panic assertion or recovery."]
+}

@@ -1,0 +1,15 @@
+{
+  "Name": "worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e",
+  "Project": true,
+  "Id": "T1551",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.036
+}

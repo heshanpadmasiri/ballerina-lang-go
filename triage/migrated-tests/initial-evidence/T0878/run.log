@@ -1,0 +1,63 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-structured-patterns-test-076cef5d9b/structured-match-patterns-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:14:9
+           |
+        14 |         var {s, i: integer} => {return "A";} // @error
+           |         ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:15:9
+           |
+        15 |         var {s} => {return "A";} // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:21:9
+           |
+        21 |         var {s, i: integer, f: [a, b, c]} => {return "A";} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:22:9
+           |
+        22 |         var {s, i: integer, f} => {return "A";} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:23:9
+           |
+        23 |         var {s, i: integer} => {return "A";} // @error
+           |         ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:24:9
+           |
+        24 |         var {s} => {return "A";} // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:25:9
+           |
+        25 |         var {a} => {return "A";} // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:37:9
+           |
+        37 |         var [a, b, {s}] => {return "A";} // @error
+           |         ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:38:9
+           |
+        38 |         var [a, b, {s, i}] => {return "A";} // @error
+           |         ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> structured-match-patterns-negative-e.bal:39:9
+           |
+        39 |         var [a, b, c] => {return "A";} // @error
+           |         ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

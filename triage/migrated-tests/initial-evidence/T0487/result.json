@@ -1,0 +1,14 @@
+{
+  "Name": "finite-type-test-02d418a48f/finite-type-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/finite-type-test-02d418a48f/finite-type-v.bal",
+  "Project": false,
+  "Id": "T0487",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/finite-type-test-02d418a48f/finite-type-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.056
+}

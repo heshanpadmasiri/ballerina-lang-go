@@ -1,0 +1,14 @@
+{
+  "Name": "xmliteration-test-c9c3cad714/xml_iteration_negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmliteration-test-c9c3cad714/xml_iteration_negative-e.bal",
+  "Project": false,
+  "Id": "T1625",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmliteration-test-c9c3cad714/xml_iteration_negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.078
+}

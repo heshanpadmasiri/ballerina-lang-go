@@ -1,0 +1,30 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:1 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:3 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:7 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:30 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:31 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:36 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:38 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:42 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:43 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:46 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:47 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:48 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:50 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:51 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:54 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:56 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:57 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:60 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:61 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:62 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at elvis-expression-e.bal:63 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

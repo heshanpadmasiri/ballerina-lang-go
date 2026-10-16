@@ -1,0 +1,13 @@
+{
+  "id": "T0573",
+  "name": "function-signature-negative-test-2746ef5bfb/different-function-signatures-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Import declarations: Only following lang libraries with given methods/types are supported",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: array:length, array:push, array:map, array:indexOf, array:remove, array:removeAll, array:toStream, array:toBase64, array:toBase16"
+  ],
+  "reason": "The whole case includes an asserted error for arr.filter(f3), requiring array:filter callback type checking. array:filter is absent from both the supported lang.array methods and the method-call whitelist, so this essential negative assertion is outside subset 10 even though ordinary signature and argument errors are in scope.",
+  "unsupported_constructs": ["array:filter invocation via arr.filter(f3), including rejection of its untyped function callback"],
+  "test_design_notes": ["Most assertions exercise supported function parameter and invocation checking; the unsupported array:filter assertion suffices to classify the whole case as feature."]
+}

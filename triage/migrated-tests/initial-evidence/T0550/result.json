@@ -1,0 +1,14 @@
+{
+  "Name": "function-pointers-negative-test-87e21adb7c/fp-invalid-invocation-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-negative-test-87e21adb7c/fp-invalid-invocation-negative-e.bal",
+  "Project": false,
+  "Id": "T0550",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-negative-test-87e21adb7c/fp-invalid-invocation-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.036
+}

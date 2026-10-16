@@ -1,0 +1,14 @@
+{
+  "Name": "anonymous-closed-record-test-dd78432cc7/anonymous-closed-record-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-closed-record-test-dd78432cc7/anonymous-closed-record-v.bal",
+  "Project": false,
+  "Id": "T0019",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anonymous-closed-record-test-dd78432cc7/anonymous-closed-record-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.053
+}

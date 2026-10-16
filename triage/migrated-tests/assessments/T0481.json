@@ -1,0 +1,12 @@
+{
+  "id": "T0481",
+  "name": "final-object-field-test-de73e9a2aa/final-object-fields-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' and 'Anonymous function expression', but does not list object-constructor expressions.",
+    "## Module-level declarations: 'Class definition' — 'Supports `object-field`, `method-defn` and `object-type-inclusion` members'."
+  ],
+  "reason": "The case essentially uses anonymous object-constructor expressions (`var b = object { ... }` and `var ob = object { ... }`) as sources for expected assignment errors. These expressions are not covered by the supported expression list; class-definition and new-expression support does not cover anonymous object construction. This decisive unsupported construct makes the whole case a feature assessment.",
+  "unsupported_constructs": ["Anonymous object-constructor expressions with final fields and an inline init method"],
+  "test_design_notes": ["Compile-negative case with @error markers; no @args, @panic, or @output assertions. Expected rejection alone does not make supported negative tests out of scope, but the anonymous object expressions here are not covered."]
+}

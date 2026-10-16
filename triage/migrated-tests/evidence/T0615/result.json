@@ -1,0 +1,14 @@
+{
+  "Name": "global-var-test-297b184697/global_variable_init_in_reverse_order-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/global_variable_init_in_reverse_order-v.bal",
+  "Project": false,
+  "Id": "T0615",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-test-297b184697/global_variable_init_in_reverse_order-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.098
+}

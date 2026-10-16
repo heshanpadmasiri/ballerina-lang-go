@@ -1,0 +1,14 @@
+{
+  "Name": "xmlattributes-test-067a6f32b7/xmlattributes-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlattributes-test-067a6f32b7/xmlattributes-v.bal",
+  "Project": false,
+  "Id": "T1623",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlattributes-test-067a6f32b7/xmlattributes-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.08
+}

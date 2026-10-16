@@ -1,0 +1,17 @@
+{
+  "id": "T0284",
+  "name": "bstring-to-string-test-a1480c4de1/bstring-tostring-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Start action], [Method call], [New expression], [List constructor] and [Mapping constructor] are supported.",
+    "Module-level declarations: [Class definition] supports `object-field`, `method-defn` and `object-type-inclusion` members.",
+    "Subset restrictions / Import declarations: `ballerina/lang.value` includes `toString`; `ballerina/lang.string` includes `length`; `ballerina/lang.runtime` includes `sleep`.",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for `value:toString` and `value:toBalString`, and `string:length`."
+  ],
+  "reason": "All essential operations are supported: value:toString in direct and method syntax, Unicode string length, function values, maps, arrays, tuples, JSON, class instances, and futures created with start. The permitted runtime:sleep call precedes future stringification. The asserted numeric lengths and completed-future strings exercise the supported toString behavior; the specification gives no receiver-type restriction on that operation.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args or @panic directives; @output checks lengths and exact future representations.",
+    "Future completion is assumed after a one-second sleep rather than synchronized with wait, so scheduling could make the final two output assertions timing-sensitive."
+  ]
+}

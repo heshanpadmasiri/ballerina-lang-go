@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "mapping-constructor-expr-test-833706cb84/mapping-constructor-infer-record-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> mapping-constructor-infer-record-negative-e.bal:116:9
+            |
+        116 |         ...rec1,
+            |         ^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

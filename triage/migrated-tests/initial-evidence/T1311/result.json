@@ -1,0 +1,14 @@
+{
+  "Name": "return-stmt-negative-test-c1f15d4b97/not-enough-args-to-return-3-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/return-stmt-negative-test-c1f15d4b97/not-enough-args-to-return-3-e.bal",
+  "Project": false,
+  "Id": "T1311",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/return-stmt-negative-test-c1f15d4b97/not-enough-args-to-return-3-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.189
+}

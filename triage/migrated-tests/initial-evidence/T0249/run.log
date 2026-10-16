@@ -1,0 +1,33 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "binteger-value-test-c66d8ec2ef/integer-value-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: ballerina/test
+         --> integer-value-v.bal:2:1
+          |
+        2 | import ballerina/test;
+          | ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> integer-value-v.bal:108:5
+            |
+        108 |     test:assertEquals(val?.days, 11);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> integer-value-v.bal:109:5
+            |
+        109 |     test:assertEquals(val?.hours, 10);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> integer-value-v.bal:110:5
+            |
+        110 |     test:assertEquals(val?.minutes, 9);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> integer-value-v.bal:111:5
+            |
+        111 |     test:assertEquals(val?.seconds, <decimal>8.555);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

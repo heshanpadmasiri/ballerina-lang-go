@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: cloneReadOnly\n --\u003e frozen-map-removal-p.bal:4:23\n  |\n4 |     map\u003canydata\u003e m3 = m2.cloneReadOnly();\n  |                       ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"frozen-map-removal-p.bal","StartLine":4,"EndLine":4}]}

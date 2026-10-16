@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented\n  --\u003e query-with-mismatch-return-e.bal:45:5\n   |\n45 |     ...fs,\n   |     ^^^^^\n\n","Diagnostics":[{"File":"query-with-mismatch-return-e.bal","StartLine":45,"EndLine":45}]}

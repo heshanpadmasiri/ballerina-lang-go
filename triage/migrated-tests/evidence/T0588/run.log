@@ -1,0 +1,64 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+          --> mapping-type-rest-argument-negative-e.bal:50:30
+           |
+        50 |     int sum = getSum(10, 15, ...f); // @error
+           |                              ^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+          --> mapping-type-rest-argument-negative-e.bal:53:22
+           |
+        53 |     int avg = getAvg(...b1); // @error
+           |                      ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+          --> mapping-type-rest-argument-negative-e.bal:56:35
+           |
+        56 |     int avg1 = getAvg(10, b = 10, ...z); // @error // @error
+           |                                   ^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+          --> mapping-type-rest-argument-negative-e.bal:59:26
+           |
+        59 |     int total = getTotal(...b2); // @error
+           |                          ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RestArgumentNode transformed to non-action-or-expression node <nil>
+          --> mapping-type-rest-argument-negative-e.bal:62:39
+           |
+        62 |     int total1 = getTotal(10, 10, 10, ...v); // @error
+           |                                       ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+          --> mapping-type-rest-argument-negative-e.bal:50:30
+           |
+        50 |     int sum = getSum(10, 15, ...f); // @error
+           |                              ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+          --> mapping-type-rest-argument-negative-e.bal:53:22
+           |
+        53 |     int avg = getAvg(...b1); // @error
+           |                      ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+          --> mapping-type-rest-argument-negative-e.bal:56:35
+           |
+        56 |     int avg1 = getAvg(10, b = 10, ...z); // @error // @error
+           |                                   ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+          --> mapping-type-rest-argument-negative-e.bal:59:26
+           |
+        59 |     int total = getTotal(...b2); // @error
+           |                          ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRestArgument unimplemented
+          --> mapping-type-rest-argument-negative-e.bal:62:39
+           |
+        62 |     int total1 = getTotal(10, 10, 10, ...v); // @error
+           |                                       ^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

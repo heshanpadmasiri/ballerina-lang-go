@@ -1,0 +1,20 @@
+{
+  "id": "T0194",
+  "name": "assign-stmt-test-4075ad6286/assign-stmt-values-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern",
+    "Expressions: Query expressions — Supports list and map as query-constructor-type",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value: cloneWithType, fromJsonWithType, toString, toBalString"
+  ],
+  "reason": "The executed testMultiReturn uses [a, name, b] = testMultiReturnInternal(), a list destructuring assignment outside the wildcard-only restriction. The whole case therefore requires unsupported functionality regardless of its supported scalar assignment/output checks.",
+  "unsupported_constructs": [
+    "List destructuring assignment [a, name, b] = testMultiReturnInternal()",
+    "Explicit stream query constructor in testAssignVarInQueryExpression (stream from ... select ...); only list and map constructors are listed",
+    "value:Cloneable type, absent from the supported ballerina/lang.value methods/types"
+  ],
+  "test_design_notes": [
+    "main invokes testMultiReturn and asserts its components through @output 5, john, and 6; the unsupported assignment is required for asserted execution.",
+    "io:println is output instrumentation and is not the basis of classification. No @args or @panic annotations occur."
+  ]
+}

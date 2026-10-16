@@ -1,0 +1,16 @@
+{
+  "id": "T0919",
+  "name": "module-tuple-variable-test-4b19fdd529/module-tuple-variable-annotation-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"",
+    "Module-level declarations: \"Module variable declarations\"",
+    "Expressions: \"List constructor\""
+  ],
+  "reason": "The case asserts rejection of @deprecated on a module variable declaration using a tuple binding pattern. Module variable declarations and annotation attachments are explicitly supported, with no restriction excluding tuple bindings or this invalid attachment. Checking the attachment's legality is within the supported grammar/type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error marker asserts a compile-time rejection, not successful execution.",
+    "The wildcard-only restriction concerns destructuring assignment statements; this case is a module variable declaration."
+  ]
+}

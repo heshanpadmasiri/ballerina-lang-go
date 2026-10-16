@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "query-negative-tests-39b4ca8ff2/query-empty-tuple-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> query-empty-tuple-negative-e.bal:46:18
+           |
+        46 |     error? err = from var item in [] // @error
+           |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        47 |         do {
+           |         ^^^^
+        48 |             _ = item; // @error
+           |             ^^^^^^^^^^^^^^^^^^^
+        49 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> query-empty-tuple-negative-e.bal:46:18
+           |
+        46 |     error? err = from var item in [] // @error
+           |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        47 |         do {
+           |         ^^^^
+        48 |             _ = item; // @error
+           |             ^^^^^^^^^^^^^^^^^^^
+        49 |         };
+           |         ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

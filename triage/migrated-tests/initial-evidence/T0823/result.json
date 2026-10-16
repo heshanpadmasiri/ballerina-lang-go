@@ -1,0 +1,14 @@
+{
+  "Name": "map-to-record-assignability-test-c5ae90a3ca/subtyping-key-not-found-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/subtyping-key-not-found-p.bal",
+  "Project": false,
+  "Id": "T0823",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/subtyping-key-not-found-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.036
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "arrow-expr-test-733bf0507c/arrow-expression-type-narrow-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/arrow-expr-test-733bf0507c/arrow-expression-type-narrow-e.bal",
+  "Project": false,
+  "Id": "T0188",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/arrow-expr-test-733bf0507c/arrow-expression-type-narrow-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.023
+}

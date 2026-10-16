@@ -1,0 +1,20 @@
+{
+  "id": "T1576",
+  "name": "worker-in-function-test-bde1b19edb/worker-multiple-interactions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists Assignment, Call, Local variable declarations and Return, but does not list named worker declarations or worker send statements.",
+    "## Expressions: explicitly lists [Start action] and [Wait action], but does not list worker receive actions.",
+    "## Module-level declarations: Annotation declarations and attachments — Supports source-only, runtime, marker and repeated annotations"
+  ],
+  "reason": "The asserted output 1103 depends on four named workers exchanging an integer through asynchronous sends and receives, adding one in each of w1, w2 and w3. Named workers and worker messaging are not covered by the subset's positive lists. Explicit support for wait actions and annotation attachments does not establish support for the worker declarations and communication required here.",
+  "unsupported_constructs": [
+    "Named worker declarations, including a worker returning int",
+    "Worker send statements (x -> worker)",
+    "Worker receive actions (<-worker)"
+  ],
+  "test_design_notes": [
+    "The @output 1103 marker tests completion and value propagation around the worker cycle; it is not merely a signature check.",
+    "io:println is instrumentation. No obvious output marker mismatch or mixed-scope issue."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "T1209",
+  "name": "query-action-or-expr-test-cc451d1303/query-action-or-expr-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions \u2192 Query expressions: \"Supports `list` and `map` as `query-constructor-type`\"",
+    "Expressions \u2192 Query expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"",
+    "Subset restrictions \u2192 Import declarations: \"Only following lang libraries with given methods/types are supported\"",
+    "Subset restrictions \u2192 Invocations \u2192 Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\""
+  ],
+  "reason": "The whole case requires unsupported query constructors and regexp functionality. It asserts table query results and duplicate-key conflict errors, consumes stream query results with next(), and asserts regexp matching and interpolated regexp matching. The query constructor positive list permits only list and map; neither lang.regexp/isFullMatch nor lang.stream/next is included in the permitted langlib lists. Supported remote/start/wait actions and ordinary query clauses do not make the entire case supported.",
+  "unsupported_constructs": [
+    "table key(...) query constructors, including asserted duplicate-key conflict behavior",
+    "stream query constructors and stream next() langlib calls",
+    "regexp templates (including interpolation) and isFullMatch() langlib calls",
+    "query actions with do blocks (absent from the positive expression/statement lists)",
+    "standalone let expressions (absent from the positive expression list; query let clauses alone are listed)"
+  ],
+  "test_design_notes": [
+    "io:print instrumentation is not a classification reason.",
+    "The assertions exercise table contents, conflict error messages, stream element order, and regexp filtering; these are essential tested behaviors."
+  ]
+}

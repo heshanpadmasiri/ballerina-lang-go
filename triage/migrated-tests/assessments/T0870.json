@@ -1,0 +1,17 @@
+{
+  "id": "T0870",
+  "name": "match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-warnings-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted diagnostics concern incompatible, duplicate and unreachable mapping match patterns, including captured fields, rest captures and mapping binding patterns. These require mapping-pattern matching and analysis, while the subset explicitly limits match patterns to constants and wildcards.",
+  "unsupported_constructs": [
+    "Mapping match patterns with field subpatterns",
+    "Mapping match patterns with variable and rest captures",
+    "Mapping binding patterns in match clauses"
+  ],
+  "test_design_notes": [
+    "Negative diagnostic assertions do not bring the explicitly unsupported mapping-pattern grammar into scope."
+  ]
+}

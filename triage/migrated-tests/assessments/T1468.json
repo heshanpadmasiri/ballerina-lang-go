@@ -1,0 +1,18 @@
+{
+  "id": "T1468",
+  "name": "type-descriptor-test-d6260bd9fd/typedesc-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list includes \"Type test expression\" but does not list typeof/type-of expressions.",
+    "## Module-level declarations: \"Supports dependently-typed functions using `typedesc` parameters with the [`<>` inferred default]\".",
+    "## Operators: \"Equality ops `==`, `!=`, `===`, `!==`\".",
+    "### Other invocation restrictions: \"`value:toString` and `value:toBalString`\"."
+  ],
+  "reason": "The central assertions require typeof expressions to obtain and compare runtime type descriptors for tuple, record and typedesc values. typeof is not covered by the supported expression list; support for typedesc parameters does not establish support for this operation. This essential missing construct makes the whole case a feature. Equality operators and helper toString method calls are explicitly supported.",
+  "unsupported_constructs": [
+    "typeof expressions, including typeof a1, typeof r1 and typeof td1"
+  ],
+  "test_design_notes": [
+    "No @args, @panic or @output markers are present. main invokes the assertions; failure-only io:println is instrumentation. The case also contains direct descriptor equality assertions, but the essential typeof checks determine whole-case scope."
+  ]
+}

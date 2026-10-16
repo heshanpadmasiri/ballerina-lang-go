@@ -1,0 +1,16 @@
+{
+  "id": "T1160",
+  "name": "option-test-1b0c555df9/decimal_option_invalid_value-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)"
+  ],
+  "reason": "The record type and included record parameter are supported, but the asserted panic depends on command-line option binding: converting --val=name to the decimal field of main's included record parameter and rejecting the invalid value. Subset 10 does not cover command-line option parsing, conversion, or its failure behavior.",
+  "unsupported_constructs": [
+    "Command-line option binding to an included record parameter and rejection of an invalid decimal option value"
+  ],
+  "test_design_notes": [
+    "The empty main body makes the @panic assertion depend entirely on entry-point argument processing; this is not a negative grammar or type-system test."
+  ]
+}

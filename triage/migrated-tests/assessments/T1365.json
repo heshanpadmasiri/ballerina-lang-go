@@ -1,0 +1,13 @@
+{
+  "id": "T1365",
+  "name": "string-test-618b121b6c/string-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.string lists length, indexOf, includes, substring, equalsIgnoreCaseAscii, toLowerAscii, toUpperAscii, trim, toBytes and fromBytes, but not startsWith or endsWith.",
+    "Subset restrictions > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' lists string:indexOf, string:includes, string:substring and string:equalsIgnoreCaseAscii, but not string:startsWith or string:endsWith.",
+    "Subset restrictions > Import declarations: ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString; toJsonString is not listed."
+  ],
+  "reason": "The asserted prefix/suffix results require startsWith and endsWith, which are absent from both supported lang.string functions and method-call lists. The asserted JSON serialization also requires unlisted toJsonString. These essential unsupported calls make the whole case a feature request.",
+  "unsupported_constructs": ["string.startsWith", "string.endsWith", "json.toJsonString"],
+  "test_design_notes": ["io:println is output instrumentation. The case also asserts Unicode code-point indexing/substrings, ASCII casing, trimming, value string conversion and byte-array contents; the unsupported calls alone determine classification."]
+}

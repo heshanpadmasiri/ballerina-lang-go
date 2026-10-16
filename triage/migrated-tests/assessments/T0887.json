@@ -1,0 +1,17 @@
+{
+  "id": "T0887",
+  "name": "member-access-test-10fc9644e0/member-access-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"[Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)\"",
+    "## Expressions: \"[lvexpr](https://ballerina.io/spec/lang/master/#lvexpr)\", \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\", and \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\"",
+    "## Module-level declarations: \"Type definition\", \"Constant declarations\", and \"Module variable declarations\"",
+    "## Statements: \"Assignment\" and \"Local variable declarations\"",
+    "## Import declarations: ballerina/lang.int lists \"Signed32\"; ballerina/lang.string lists \"Char\""
+  ],
+  "reason": "The case asserts compile-time rejection of invalid member access and incompatible result assignments across arrays, tuples (including rest and named tuples), strings, records, maps, nullable and union types, and readonly record intersections. Member access, assignment, constructors and type declarations are supported with no applicable restriction excluding these checks. The explicit int:Signed32 and string:Char types are also allowed. Invalid key types, missing indices, constant out-of-range indices, nullable results and immutable string assignment are negative checks within the supported grammar/type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "All @error assertions concern static rejection; deliberately malformed missing-index expressions do not by themselves establish an unsupported feature."
+  ]
+}

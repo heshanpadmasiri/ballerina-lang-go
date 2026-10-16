@@ -1,0 +1,22 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "string-test-618b121b6c/string-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: endsWith
+         --> string-v.bal:8:12
+          |
+        8 |     return s.endsWith(suffix);
+          |            ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: startsWith
+         --> string-v.bal:4:12
+          |
+        4 |     return s.startsWith(prefix);
+          |            ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: toJsonString
+          --> string-v.bal:52:12
+           |
+        52 |     return j.toJsonString();
+           |            ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

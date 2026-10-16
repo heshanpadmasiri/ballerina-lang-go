@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at tuple-literal-assignments-e.bal:15-15 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at tuple-literal-assignments-e.bal:19-19 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at tuple-literal-assignments-e.bal:23-23 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

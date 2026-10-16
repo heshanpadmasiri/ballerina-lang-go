@@ -1,0 +1,14 @@
+{
+  "Name": "closed-record-test-6f9046ad8a/sealed-record-literals-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/sealed-record-literals-v.bal",
+  "Project": false,
+  "Id": "T0359",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/sealed-record-literals-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.066
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T1168",
+  "name": "option-test-1b0c555df9/option_all_equals-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"
+  ],
+  "reason": "Included record parameter syntax is supported, but this case essentially asserts command-line option binding into main's included Student record. The subset does not cover CLI option parsing: splitting --name=Riyafa=Riyafa at the first equals sign, converting numeric values, interpreting bare boolean options, and accumulating repeated options into arrays.",
+  "unsupported_constructs": [
+    "Command-line option binding and conversion for an included record parameter of main, including equals-containing values, boolean flags, and repeated array options"
+  ],
+  "test_design_notes": [
+    "The @args and @output annotations make CLI binding behavior essential to the case; signature support alone does not establish that behavior.",
+    "io:println serves as output instrumentation."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "T0086",
+  "name": "argument-parser-negative-test-706c373f17/too-many-args-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Invocations / ### Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The function and required int parameter are supported, but the assertion requires the external command-line argument parser to reject two arguments for main(int i) with a panic. The subset does not cover command-line main argument binding or excess-argument rejection; function signature and invocation support do not establish this execution protocol.",
+  "unsupported_constructs": ["Command-line main argument binding and panic on excess command-line arguments"],
+  "test_design_notes": ["@args supplies two strings while main declares one required parameter; @panic asserts rejection before the empty body executes."]
+}

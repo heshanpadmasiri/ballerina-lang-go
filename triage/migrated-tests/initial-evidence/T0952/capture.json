@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: 'nil' value cannot be converted to '{| a: [string...], never... |}'\n        at trigger(null-json-to-array-p.bal:11)\n           main(null-json-to-array-p.bal:15)\n","Diagnostics":null}

@@ -1,0 +1,16 @@
+{
+  "Name": "module-listener-decl-test-9b9489d763/module-listener-declaration-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/module-listener-declaration-v",
+  "Project": true,
+  "Id": "T0910",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/module-listener-declaration-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/module-listener-declaration-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/module-listener-declaration-v/modules/declarations/declarations.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.038
+}

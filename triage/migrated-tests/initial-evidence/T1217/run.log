@@ -1,0 +1,103 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "query-expression-iterable-object-test-a42b42138e/query-expression-iterable-object-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> query-expression-iterable-object-e.bal:32:16
+           |
+        32 |         return object {
+           |                ^^^^^^^^
+        33 |             int cursorIndex = 0;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        34 |             public isolated function next() returns record {|IterableObject value;|}? {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |                 self.cursorIndex += 1;
+           |                 ^^^^^^^^^^^^^^^^^^^^^^
+        36 |                 if self.cursorIndex <= 2 {
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |                     return {value: new IterableObject()};
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |                 }
+           |                 ^
+        39 |                 return ();
+           |                 ^^^^^^^^^^
+        40 |             }
+           |             ^
+        41 |         };
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> query-expression-iterable-object-e.bal:7:16
+           |
+         7 |         return object {
+           |                ^^^^^^^^
+         8 |             int[] integers = [12, 34, 56, 34, 78, 21, 90];
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |             int cursorIndex = 0;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        10 |             public isolated function next() returns record {|int value;|}? {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |                 self.cursorIndex += 1;
+           |                 ^^^^^^^^^^^^^^^^^^^^^^
+        12 |                 if self.cursorIndex <= 7 {
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |                     return {value: self.integers[self.cursorIndex - 1]};
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |                 }
+           |                 ^
+        15 |                 return ();
+           |                 ^^^^^^^^^^
+        16 |             }
+           |             ^
+        17 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> query-expression-iterable-object-e.bal:32:16
+           |
+        32 |         return object {
+           |                ^^^^^^^^
+        33 |             int cursorIndex = 0;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        34 |             public isolated function next() returns record {|IterableObject value;|}? {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |                 self.cursorIndex += 1;
+           |                 ^^^^^^^^^^^^^^^^^^^^^^
+        36 |                 if self.cursorIndex <= 2 {
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |                     return {value: new IterableObject()};
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |                 }
+           |                 ^
+        39 |                 return ();
+           |                 ^^^^^^^^^^
+        40 |             }
+           |             ^
+        41 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> query-expression-iterable-object-e.bal:7:16
+           |
+         7 |         return object {
+           |                ^^^^^^^^
+         8 |             int[] integers = [12, 34, 56, 34, 78, 21, 90];
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |             int cursorIndex = 0;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        10 |             public isolated function next() returns record {|int value;|}? {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |                 self.cursorIndex += 1;
+           |                 ^^^^^^^^^^^^^^^^^^^^^^
+        12 |                 if self.cursorIndex <= 7 {
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |                     return {value: self.integers[self.cursorIndex - 1]};
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |                 }
+           |                 ^
+        15 |                 return ();
+           |                 ^^^^^^^^^^
+        16 |             }
+           |             ^
+        17 |         };
+           |         ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

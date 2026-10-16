@@ -1,0 +1,17 @@
+{
+  "Name": "module-listener-decl-test-9b9489d763/imported-module-listeners-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v",
+  "Project": true,
+  "Id": "T0908",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v/modules/module1/module1.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/imported-module-listeners-v/modules/module2/module2.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.037
+}

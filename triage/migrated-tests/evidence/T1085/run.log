@@ -1,0 +1,260 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "object-type-reference-test-19fd51d776/object-inclusion-with-private-members-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> object-inclusion-with-private-members-negative-e.bal:124:27
+            |
+        124 | object {} objectConstr3 = object ClassWithPrivateFieldsAndMethods { // @error
+            |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        125 |     function init() {
+            |     ^^^^^^^^^^^^^^^^^
+        126 |         self.h = 2;
+            |         ^^^^^^^^^^^
+        127 |         self.j = 3;
+            |         ^^^^^^^^^^^
+        128 |         self.k = 4;
+            |         ^^^^^^^^^^^
+        129 |     }
+            |     ^
+        130 | 
+            | 
+        131 |     private function fn() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        132 |     }
+            |     ^
+        133 | 
+            | 
+        134 |     function fn2() {
+            |     ^^^^^^^^^^^^^^^^
+        135 |     }
+            |     ^
+        136 | 
+            | 
+        137 |     public function fn3() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        138 |     }
+            |     ^
+        139 | };
+            | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> object-inclusion-with-private-members-negative-e.bal:166:15
+            |
+        166 |     var ob1 = object ClassWithMultipleFieldsIncludingPrivateFields { // @error
+            |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        167 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+        168 |             self.i = 1;
+            |             ^^^^^^^^^^^
+        169 |             self.j = 1;
+            |             ^^^^^^^^^^^
+        170 |             self.k = 1;
+            |             ^^^^^^^^^^^
+        171 |         }
+            |         ^
+        172 | 
+            | 
+        173 |         function fn() {
+            |         ^^^^^^^^^^^^^^^
+        174 |         }
+            |         ^
+        175 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> object-inclusion-with-private-members-negative-e.bal:177:15
+            |
+        177 |     var ob2 = client object ClassWithMultipleMethodsIncludingPrivateMethods { // @error
+            |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        178 |         int i = 0;
+            |         ^^^^^^^^^^
+        179 | 
+            | 
+        180 |         remote function fn() {
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        181 |         }
+            |         ^
+        182 | 
+            | 
+        183 |         private function fn2() {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        184 |         }
+            |         ^
+        185 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-inclusion-with-private-members-negative-e.bal:35:27
+           |
+        35 | object {} objectConstr1 = object ClassWithPrivateField { // @error
+           |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |     function init() {
+           |     ^^^^^^^^^^^^^^^^^
+        37 |         self.i = 2;
+           |         ^^^^^^^^^^^
+        38 |     }
+           |     ^
+        39 | 
+           | 
+        40 |     function fn() {
+           |     ^^^^^^^^^^^^^^^
+        41 |     }
+           |     ^
+        42 | };
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> object-inclusion-with-private-members-negative-e.bal:73:27
+           |
+        73 | object {} objectConstr2 = object ClassWithPrivateMethod { // @error
+           |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        74 |     function init() {
+           |     ^^^^^^^^^^^^^^^^^
+        75 |         self.i = 2;
+           |         ^^^^^^^^^^^
+        76 |     }
+           |     ^
+        77 | 
+           | 
+        78 |     private function fn() {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        79 |     }
+           |     ^
+        80 | 
+           | 
+        81 |     function fn2() {
+           |     ^^^^^^^^^^^^^^^^
+        82 |     }
+           |     ^
+        83 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> object-inclusion-with-private-members-negative-e.bal:124:27
+            |
+        124 | object {} objectConstr3 = object ClassWithPrivateFieldsAndMethods { // @error
+            |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        125 |     function init() {
+            |     ^^^^^^^^^^^^^^^^^
+        126 |         self.h = 2;
+            |         ^^^^^^^^^^^
+        127 |         self.j = 3;
+            |         ^^^^^^^^^^^
+        128 |         self.k = 4;
+            |         ^^^^^^^^^^^
+        129 |     }
+            |     ^
+        130 | 
+            | 
+        131 |     private function fn() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        132 |     }
+            |     ^
+        133 | 
+            | 
+        134 |     function fn2() {
+            |     ^^^^^^^^^^^^^^^^
+        135 |     }
+            |     ^
+        136 | 
+            | 
+        137 |     public function fn3() {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^
+        138 |     }
+            |     ^
+        139 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> object-inclusion-with-private-members-negative-e.bal:166:15
+            |
+        166 |     var ob1 = object ClassWithMultipleFieldsIncludingPrivateFields { // @error
+            |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        167 |         function init() {
+            |         ^^^^^^^^^^^^^^^^^
+        168 |             self.i = 1;
+            |             ^^^^^^^^^^^
+        169 |             self.j = 1;
+            |             ^^^^^^^^^^^
+        170 |             self.k = 1;
+            |             ^^^^^^^^^^^
+        171 |         }
+            |         ^
+        172 | 
+            | 
+        173 |         function fn() {
+            |         ^^^^^^^^^^^^^^^
+        174 |         }
+            |         ^
+        175 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> object-inclusion-with-private-members-negative-e.bal:177:15
+            |
+        177 |     var ob2 = client object ClassWithMultipleMethodsIncludingPrivateMethods { // @error
+            |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        178 |         int i = 0;
+            |         ^^^^^^^^^^
+        179 | 
+            | 
+        180 |         remote function fn() {
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        181 |         }
+            |         ^
+        182 | 
+            | 
+        183 |         private function fn2() {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        184 |         }
+            |         ^
+        185 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-inclusion-with-private-members-negative-e.bal:35:27
+           |
+        35 | object {} objectConstr1 = object ClassWithPrivateField { // @error
+           |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |     function init() {
+           |     ^^^^^^^^^^^^^^^^^
+        37 |         self.i = 2;
+           |         ^^^^^^^^^^^
+        38 |     }
+           |     ^
+        39 | 
+           | 
+        40 |     function fn() {
+           |     ^^^^^^^^^^^^^^^
+        41 |     }
+           |     ^
+        42 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> object-inclusion-with-private-members-negative-e.bal:73:27
+           |
+        73 | object {} objectConstr2 = object ClassWithPrivateMethod { // @error
+           |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        74 |     function init() {
+           |     ^^^^^^^^^^^^^^^^^
+        75 |         self.i = 2;
+           |         ^^^^^^^^^^^
+        76 |     }
+           |     ^
+        77 | 
+           | 
+        78 |     private function fn() {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        79 |     }
+           |     ^
+        80 | 
+           | 
+        81 |     function fn2() {
+           |     ^^^^^^^^^^^^^^^^
+        82 |     }
+           |     ^
+        83 | };
+           | ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

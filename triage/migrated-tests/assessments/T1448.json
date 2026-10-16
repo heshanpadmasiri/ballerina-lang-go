@@ -1,0 +1,14 @@
+{
+  "id": "T1448",
+  "name": "tuple-mutability-test-4a07e00b3d/valid-tuple-assignment-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Module variable declarations; Function definition",
+    "Statements: Assignment \u2014 See supported lvexpr; Local variable declarations",
+    "Expressions: Type cast expression; List constructor; Mapping constructor; Field access expression; Member access expression",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "All essential constructs are supported: record definitions and values, tuple construction and structural assignment, indexed mutation through the wider tuple type, casts back to Employee/Intern, and field reads. The asserted true and 100 verify preservation of record values across tuple aliasing and mutation; no listed restriction excludes this behavior. io:println is instrumentation, not a restricted ballerina/lang.* call.",
+  "unsupported_constructs": [],
+  "test_design_notes": []
+}

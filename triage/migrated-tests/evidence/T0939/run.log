@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want json-array-to-struct-p.bal:16, got json-array-to-struct-p.bal:20
+        stderr:
+        error: '[json...]' value cannot be converted to '{| a: anydata, address: nil|{| anydata... |}, age: int, alive: boolean, children: nil|[{| a: anydata, address: nil|{| anydata... |}, age: int, alive: boolean, children: nil|..., info: json, marks: nil|[int...], name: string, parent: nil|..., score: float, never... |}...], info: json, marks: nil|[int...], name: string, parent: nil|{| a: anydata, address: nil|{| anydata... |}, age: int, alive: boolean, children: nil|[......], info: json, marks: nil|[int...], name: string, parent: nil|..., score: float, never... |}, score: float, never... |}'
+                at trigger(json-array-to-struct-p.bal:20)
+                   main(json-array-to-struct-p.bal:24)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

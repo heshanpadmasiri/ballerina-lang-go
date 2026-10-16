@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at ref-equal-and-not-equal-operations-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ref-equal-and-not-equal-operations-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ref-equal-and-not-equal-operations-e.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ref-equal-and-not-equal-operations-e.bal:37 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ref-equal-and-not-equal-operations-e.bal:45 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ref-equal-and-not-equal-operations-e.bal:52 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

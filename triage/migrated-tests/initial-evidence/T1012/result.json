@@ -1,0 +1,15 @@
+{
+  "Name": "not-so-basic-worker-test-0fe9cb09ab/void-workers-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/not-so-basic-worker-test-0fe9cb09ab/void-workers-v",
+  "Project": true,
+  "Id": "T1012",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/not-so-basic-worker-test-0fe9cb09ab/void-workers-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/not-so-basic-worker-test-0fe9cb09ab/void-workers-v/void_workers.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.044
+}

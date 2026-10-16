@@ -1,0 +1,20 @@
+{
+  "id": "T0830",
+  "name": "mapping-constructor-expr-test-833706cb84/mapping-constructor-infer-record-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Mapping constructor — Currently spread-field not supported",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists message; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message; value:cloneWithType; value:fromJsonWithType; value:toString and value:toBalString"
+  ],
+  "reason": "The executed tests require mapping spread fields to infer record fields and optional/rest types, explicitly excluded by the subset. They also assert readonly status through isReadOnly() and inspect trapped error details through detail(), neither included in the supported langlib methods. These are essential asserted behaviors, so the whole case is a feature case.",
+  "unsupported_constructs": [
+    "Mapping constructor spread fields (...rec1, ...{e: \"hello\", fb}, ...rec, ...a)",
+    "Langlib isReadOnly() calls used to assert inferred readonly behavior",
+    "Langlib error detail() calls used to assert readonly-update error messages"
+  ],
+  "test_design_notes": [
+    "main invokes the spread-field and readonly assertion tests; the unsupported constructs are exercised.",
+    "The empty io:print call is instrumentation and does not determine classification."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0464",
+  "name": "expr-bodied-function-test-d60970291b/expr-bodied-functions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: supported-expression list includes \u2018Anonymous function expression\u2019 but does not include let expressions.",
+    "## Expressions \u2014 Query expressions: \u2018Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\u2019"
+  ],
+  "reason": "The executed testLetExprAsExprBody calls letAsBody, whose expression body uses nested standalone let expressions and asserts the result is 1234.0. Standalone let expressions are not in the supported expression list; the documented let support is specifically for query clauses. This essential behavior makes the whole case a feature request.",
+  "unsupported_constructs": [
+    "Standalone nested let expressions: let float a = 12.34 in let int b = 100 in a * <float>b"
+  ],
+  "test_design_notes": [
+    "main invokes testLetExprAsExprBody, so the unsupported expression is exercised and its result asserted.",
+    "No @args, @panic, or @output directives are present; assertions signal failures by panic."
+  ]
+}

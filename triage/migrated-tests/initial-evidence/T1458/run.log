@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> tuple-variable-reference-negative-e.bal:10:5
+           |
+        10 |     [a, [a, a]] = x; // @error
+           |     ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+         --> tuple-variable-reference-negative-e.bal:4:5
+          |
+        4 |     [a, a] = x; // @error
+          |     ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> tuple-variable-reference-negative-e.bal:10:5
+           |
+        10 |     [a, [a, a]] = x; // @error
+           |     ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+         --> tuple-variable-reference-negative-e.bal:4:5
+          |
+        4 |     [a, a] = x; // @error
+          |     ^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

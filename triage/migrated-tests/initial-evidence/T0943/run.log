@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: top stack frame mismatch for @panic: want json-incompatible-type-p.bal:17, got json-incompatible-type-p.bal:21
+        stderr:
+        error: '"25"' value cannot be converted to 'int'
+                at trigger(json-incompatible-type-p.bal:21)
+                   main(json-incompatible-type-p.bal:25)
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

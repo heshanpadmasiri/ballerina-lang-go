@@ -1,0 +1,14 @@
+{
+  "Name": "reg-exp-value-test-30e03bfeee/regexp-value-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/reg-exp-value-test-30e03bfeee/regexp-value-negative-e.bal",
+  "Project": false,
+  "Id": "T1288",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/reg-exp-value-test-30e03bfeee/regexp-value-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "timeout",
+  "ExitCode": 2,
+  "Seconds": 25.053
+}

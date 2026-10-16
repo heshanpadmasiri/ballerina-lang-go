@@ -1,0 +1,16 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/insufficient-args-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/insufficient-args-p.bal",
+  "Project": false,
+  "Id": "T0040",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/insufficient-args-p.bal"
+  ],
+  "Args": [
+    "1"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.066
+}

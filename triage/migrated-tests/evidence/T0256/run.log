@@ -1,0 +1,84 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	Supun
+        	5
+        	7.65
+        	5
+        	7.65
+        	true
+        	
+        	{"name":"aaa","age":25,"parent":{"name":"bbb","age":50},"address":{"city":"Colombo","country":"SriLanka"},"array":[1,5,7]}
+        	{"name":null}
+        	
+        	Supun
+        	Setunga
+        	25
+        	43
+        	9.73
+        	9.5
+        	true
+        	{"city":"Colombo","country":"SriLanka"}
+        	key 'name' not found in JSON mapping
+        	{"fname":"Supun","lname":"Setunga"}
+        	{"fname":"Supun","age":25}
+        	{"fname":"Supun","score":4.37}
+        	{"fname":"Supun","score":4.37}
+        	{"fname":"Supun","status":true}
+        	{"fname":"Supun","address":{"country":"SriLanka"}}
+        	{"fname":"Supun","lname":"Setunga"}
+        	{"fname":"Supun","age":25}
+        	{"fname":"Supun","score":4.37}
+        	{"fname":"Supun","status":true}
+        	{"fname":"Supun","address":{"country":"SriLanka"}}
+        	["a","d","c"]
+        	["a",64,"c"]
+        	["a",4.72,"c"]
+        	["a",4.72,"c"]
+        	["a",true,"c"]
+        	["a",null,"c"]
+        	["a",{"country":"SriLanka"},"c"]
+        	["a",[1,2,3],"c"]
+        	Colombo
+        	[1,2,3,null,null,null,null,8]
+        	b
+        	JSON value is not a mapping
+        	{"details":{"fname":"Supun","lname":"Setunga"}}
+        	
+        	{"name", "supun"}
+        	{\"name\", "supun"}
+        	[[1,2,3],[3,4,5],[7,8,9]]
+        	[[1,2,3],[3,4,5],[7,8,9]]
+        	incompatible types: 'json[]' cannot be cast to 'json[][]'
+        	[[1,2,3],[3,4,5],[7,8,9]]
+        	'json[]' value cannot be converted to 'Json3DArray':
+        			array element '[0][0]' should be of type 'json[]', found '1'
+        			array element '[0][1]' should be of type 'json[]', found '2'
+        			array element '[0][2]' should be of type 'json[]', found '3'
+        			array element '[1][0]' should be of type 'json[]', found '3'
+        			array element '[1][1]' should be of type 'json[]', found '4'
+        			array element '[1][2]' should be of type 'json[]', found '5'
+        			array element '[2][0]' should be of type 'json[]', found '7'
+        			array element '[2][1]' should be of type 'json[]', found '8'
+        			array element '[2][2]' should be of type 'json[]', found '9'
+        	3
+        	JSON value is not a mapping
+        	{"name":"Supun","address":{"country":"SriLanka"}}
+        	4.0
+        	[1,5,9,4]
+        	5
+        	[1.3,5.4,9.4,4.5]
+        	5.4
+        	[1.3,1.234,4.1,4.54]
+        	1.234
+        	["apple","orange","grape"]
+        	orange
+        	[true,true,false,true]
+        	true
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

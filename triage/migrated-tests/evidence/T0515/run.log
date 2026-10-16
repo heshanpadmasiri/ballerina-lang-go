@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "freeze-and-is-frozen-test-c0f3b0e88b/frozen-boolean-array-modification-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: method not found: cloneReadOnly
+         --> frozen-boolean-array-modification-p.bal:3:19
+          |
+        3 |     boolean[] b = a.cloneReadOnly();
+          |                   ^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

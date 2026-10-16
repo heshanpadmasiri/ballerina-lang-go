@@ -1,0 +1,14 @@
+{
+  "Name": "dataflow-analysis-test-00b490139e/initialized-vars-with-while-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/initialized-vars-with-while-v.bal",
+  "Project": false,
+  "Id": "T0407",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/initialized-vars-with-while-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.123
+}

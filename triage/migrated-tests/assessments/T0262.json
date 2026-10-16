@@ -1,0 +1,17 @@
+{
+  "id": "T0262",
+  "name": "bjsonvalue-test-248ac7be19/null-json-to-map-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\" and \"Function definition\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; \"Type test expression\"",
+    "Statements: \"Local variable declarations\", \"If/else\", \"Return\" and \"Panic\"",
+    "Subset restrictions / Import declarations: `ballerina/lang.value` includes `cloneWithType`",
+    "Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes `value:cloneWithType`"
+  ],
+  "reason": "The case converts nil JSON to the named map<json> type using explicitly supported cloneWithType method syntax, narrows its map-or-error result, and panics with the conversion error. The asserted ConversionError for converting () to JsonMap is part of that supported conversion failure behavior; no essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic annotation expects the propagated ConversionError with message cannot convert '()' to type 'JsonMap'; the explicit panic m after failed type narrowing is what propagates the returned error."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "T1329",
+  "name": "sealed-array-test-916de22362/sealed-array-invalid-index-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition; Supports required-params",
+    "Statements: Local variable declarations; Call",
+    "Expressions: List constructor; Member access expression; Literal"
+  ],
+  "reason": "The case constructs a fixed-length boolean array and indexes it with the integer parameter 5, asserting a runtime panic for access beyond length 3. Function calls, local declarations, list construction and member access are supported, with no applicable restriction excluding fixed-length arrays or their bounds checks.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic marker asserts out-of-bounds runtime failure, not successful element access."]
+}

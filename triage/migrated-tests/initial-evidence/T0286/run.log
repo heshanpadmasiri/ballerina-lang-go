@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "builtin-method-test-2384a81445/builtin-methods-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: clone
+          --> builtin-methods-v.bal:17:12
+           |
+        17 |     return m.clone();
+           |            ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: clone
+          --> builtin-methods-v.bal:22:12
+           |
+        22 |     return m.clone();
+           |            ^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

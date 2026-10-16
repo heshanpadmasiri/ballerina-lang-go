@@ -1,0 +1,14 @@
+{
+  "Name": "checked-expression-operator-test-30b071e6cd/check-expr-json-access-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/checked-expression-operator-test-30b071e6cd/check-expr-json-access-negative-e.bal",
+  "Project": false,
+  "Id": "T0314",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/checked-expression-operator-test-30b071e6cd/check-expr-json-access-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.045
+}

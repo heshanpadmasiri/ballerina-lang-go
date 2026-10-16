@@ -1,0 +1,19 @@
+{
+  "id": "T1412",
+  "name": "ternary-expression-test-915619b7bf/ternary-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Conditional expression](https://ballerina.io/spec/lang/master/#conditional-expr)",
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Subset restrictions / Import declarations: ballerina/lang.array — push",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: array:push"
+  ],
+  "reason": "All essential constructs are supported: conditional expressions (including nesting), comparisons, local declarations, literals, arrays and array:push method calls. The error markers request type rejection for incompatible conditional results, a non-boolean condition, and invalid array element arguments (including a byte-range violation). These are negative checks within the supported grammar and type system; no applicable restriction excludes them.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Contains five @error markers and one unmarked heterogeneous conditional assigned to any; this valid control is within the same supported scope.",
+    "No @args, @panic or @output markers; helper functions need not execute for compile-time rejection."
+  ]
+}

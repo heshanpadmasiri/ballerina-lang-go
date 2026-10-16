@@ -1,0 +1,14 @@
+{
+  "Name": "array-size-definition-test-a34088ca39/array-size-scope-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-size-definition-test-a34088ca39/array-size-scope-negative-e.bal",
+  "Project": false,
+  "Id": "T0176",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-size-definition-test-a34088ca39/array-size-scope-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.032
+}

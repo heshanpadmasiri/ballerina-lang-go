@@ -1,0 +1,15 @@
+{
+  "id": "T1008",
+  "name": "never-type-test-35205a329e/never-type-is-expr-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"Type definition\"; \"Function definition\"",
+    "## Statements: \"Local variable declarations\"",
+    "## Expressions: \"Type test expression\"; \"List constructor\"; \"Mapping constructor\""
+  ],
+  "reason": "The case asserts compile-time rejection of impossible type tests against never and records with optional never fields, including nullable fields and readonly record intersections. Type tests, declarations and the constructors used here are supported, and no subset restriction excludes these record/never type relationships. Negative rejection within the supported type system is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Seven type-test expressions carry @error markers; the asserted behavior is static rejection, despite the Runtime names of two functions."
+  ]
+}

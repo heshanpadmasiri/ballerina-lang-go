@@ -1,0 +1,13 @@
+{
+  "id": "T0321",
+  "name": "checking-stmt-test-a7188c6c31/checking-stmt-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: positive list includes Call and Return but does not include checking statements.",
+    "## Expressions: \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"",
+    "### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\"."
+  ],
+  "reason": "The case essentially tests standalone checking statements, including check ();, check n;, check rec.n;, and check errMap[\"e2\"];. Subset 10 lists check expressions but does not cover checking statements in its supported statement list. Supporting an expression does not establish support for its distinct statement form, particularly the non-call operands used here.",
+  "unsupported_constructs": ["Standalone checking statements with nil, variable, field-access, and member-access operands"],
+  "test_design_notes": ["All eight @output assertions expect true and exercise error propagation or successful nil completion; there are no @args or @panic directives. error.message() is explicitly supported, and io:println is instrumentation. The decisive coverage gap is the checking-statement form."]
+}

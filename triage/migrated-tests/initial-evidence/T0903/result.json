@@ -1,0 +1,14 @@
+{
+  "Name": "mod-operation-test-bd4a47c2f4/mod-zero-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-zero-p.bal",
+  "Project": false,
+  "Id": "T0903",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mod-operation-test-bd4a47c2f4/mod-zero-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.021
+}

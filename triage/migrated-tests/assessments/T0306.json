@@ -1,0 +1,18 @@
+{
+  "id": "T0306",
+  "name": "check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-invocation-v",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)",
+    "Expressions: [Conditional expression](https://ballerina.io/spec/lang/master/#conditional-expr)",
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Statements: [If/else], [Return], [Panic], [Local variable declarations]",
+    "Other invocation restrictions: `error:message`; `value:toString` and `value:toBalString`"
+  ],
+  "reason": "All essential constructs are covered: checkpanic is a checking expression, including its use with non-error boolean operands; conditional expressions, boolean singleton type definitions and unions, error construction, equality and supported langlib methods are used without an applicable restriction. Successful execution requires checkpanic true to yield true and checkpanic on the boolean conditions to preserve the conditional result error values, whose messages are asserted equal to Error!.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args, @panic or @output directives are present. main invokes both tests and should finish without panic or output; assertion failure panics are test checks.",
+    "retainIoImport is uncalled io:println instrumentation and does not determine classification."
+  ]
+}

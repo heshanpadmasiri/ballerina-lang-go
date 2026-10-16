@@ -1,0 +1,14 @@
+{
+  "Name": "xmltext-to-string-conversion-negative-test-4c141e2d03/xml_text_to_string_conversion-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmltext-to-string-conversion-negative-test-4c141e2d03/xml_text_to_string_conversion-negative-e.bal",
+  "Project": false,
+  "Id": "T1638",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmltext-to-string-conversion-negative-test-4c141e2d03/xml_text_to_string_conversion-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.026
+}

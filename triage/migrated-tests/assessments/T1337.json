@@ -1,0 +1,16 @@
+{
+  "id": "T1337",
+  "name": "sealed-array-test-916de22362/sealed-array-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: [Destructuring assignment statement] — Only supports [`wildcard-binding-pattern`]",
+    "## Expressions: [List constructor]"
+  ],
+  "reason": "The executed functionParametersAndReturns and functionParametersAndReturnsAutoFilling functions use list destructuring assignment, [returnedBoolArray, returnedStrArray] = mockFunction(sealedArray), and assert the assigned arrays' lengths. This essential behavior exceeds the explicit restriction to wildcard binding patterns, so the whole case is a feature case even though list constructors are supported.",
+  "unsupported_constructs": [
+    "List destructuring assignment into returnedBoolArray and returnedStrArray in both parameter/return tests."
+  ],
+  "test_design_notes": [
+    "io:println calls are output instrumentation and do not determine this classification."
+  ]
+}

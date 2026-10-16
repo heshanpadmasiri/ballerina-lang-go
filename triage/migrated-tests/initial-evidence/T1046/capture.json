@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'i'\n --\u003e nan-float-as-byte-p.bal:3:5\n  |\n3 |     byte i = \u003cbyte\u003e f; // @panic\n  |     ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"nan-float-as-byte-p.bal","StartLine":3,"EndLine":3}]}

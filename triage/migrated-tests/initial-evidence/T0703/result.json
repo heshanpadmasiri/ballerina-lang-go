@@ -1,0 +1,15 @@
+{
+  "Name": "length-of-operator-test-40bf142c3a/length-of-operator-negative-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-negative-v",
+  "Project": true,
+  "Id": "T0703",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-negative-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-negative-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

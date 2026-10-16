@@ -1,0 +1,14 @@
+{
+  "Name": "member-access-test-10fc9644e0/open-array-const-out-of-range-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/member-access-test-10fc9644e0/open-array-const-out-of-range-p.bal",
+  "Project": false,
+  "Id": "T0889",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/member-access-test-10fc9644e0/open-array-const-out-of-range-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.044
+}

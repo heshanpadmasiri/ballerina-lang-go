@@ -1,0 +1,18 @@
+{
+  "id": "T1109",
+  "name": "open-record-equivalency-rules-test-7770622aa6/open-to-open-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "## Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "## Statements: [Return](https://ballerina.io/spec/lang/master/#return-stmt)",
+    "## Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr); Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported"
+  ],
+  "reason": "The case checks rejection of record assignments with missing required fields, optional source fields where a required target field is needed, and incompatible additional/rest field types. Record type definitions, local declarations, mapping constructors, variable references and returns are supported, with no restriction excluding these record compatibility checks. The explicit any rest descriptor is a record type member, not an unsupported mapping spread field.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Five assignments marked @error assert compile-time rejection; negative checks remain within the supported type system.",
+    "The final assignment also lacks required age; optional target weight does not remove that incompatibility."
+  ]
+}

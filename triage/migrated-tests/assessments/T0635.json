@@ -1,0 +1,17 @@
+{
+  "id": "T0635",
+  "name": "identifier-test-a7ab8ef694/underscore_as_quoted_identifier_negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: [Match statement] — Currently only supports [const-pattern] and [wildcard-match-pattern]",
+    "Module-level declarations: [Function definition], [Module variable declarations], [Type definition]",
+    "Statements: [Local variable declarations]"
+  ],
+  "reason": "The case asserts rejection of quoted underscore identifiers in several declaration contexts and in an error binding match pattern. The latter pattern is outside the explicitly supported constant and wildcard match patterns, so the whole case requires unsupported grammar despite its negative diagnostic purpose.",
+  "unsupported_constructs": [
+    "Error binding match pattern: var error (message, ...'_)"
+  ],
+  "test_design_notes": [
+    "The declaration diagnostics exercise supported declaration contexts, but the final asserted diagnostic occurs inside an unsupported match pattern."
+  ]
+}

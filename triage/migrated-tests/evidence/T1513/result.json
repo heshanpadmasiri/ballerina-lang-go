@@ -1,0 +1,14 @@
+{
+  "Name": "variable-declared-with-with-var-including-error-test-1fe4adcb27/var-inferred-including-error-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/variable-declared-with-with-var-including-error-test-1fe4adcb27/var-inferred-including-error-negative-e.bal",
+  "Project": false,
+  "Id": "T1513",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/variable-declared-with-with-var-including-error-test-1fe4adcb27/var-inferred-including-error-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.028
+}

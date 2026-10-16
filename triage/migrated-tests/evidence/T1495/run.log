@@ -1,0 +1,256 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "typeof-over-literal-expression-test-2703e4397a/typeof-over-literal-expression-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:14:46
+           |
+        14 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |                                              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:15:41
+           |
+        15 |     table<map<anydata>> clonableTable = table [{s: "test"}];
+           |                                         ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:31:46
+           |
+        31 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |                                              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:32:41
+           |
+        32 |     table<map<anydata>> clonableTable = table [{s: "test", a: "test 2"}];
+           |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:48:46
+           |
+        48 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |                                              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:49:52
+           |
+        49 |     table<map<anydata>> & readonly clonableTable = table [{s: "test"}];
+           |                                                    ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> typeof-over-literal-expression-e.bal:14:5
+           |
+        14 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> typeof-over-literal-expression-e.bal:15:5
+           |
+        15 |     table<map<anydata>> clonableTable = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> typeof-over-literal-expression-e.bal:31:5
+           |
+        31 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> typeof-over-literal-expression-e.bal:32:5
+           |
+        32 |     table<map<anydata>> clonableTable = table [{s: "test", a: "test 2"}];
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> typeof-over-literal-expression-e.bal:48:5
+           |
+        48 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> typeof-over-literal-expression-e.bal:49:5
+           |
+        49 |     table<map<anydata>> & readonly clonableTable = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:11:43
+           |
+        11 |     val = check clonableMap.cloneWithType(typeof mapVal);
+           |                                           ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:16:45
+           |
+        16 |     val = check clonableTable.cloneWithType(typeof tableVal);
+           |                                             ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:23:51
+           |
+        23 |     anydata val = check clonableRec.cloneWithType(typeof rec);
+           |                                                   ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:28:43
+           |
+        28 |     val = check clonableMap.cloneWithType(typeof mapVal);
+           |                                           ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:33:45
+           |
+        33 |     val = check clonableTable.cloneWithType(typeof tableVal);
+           |                                             ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:40:48
+           |
+        40 |     anydata val = check clonableRec.ensureType(typeof rec);
+           |                                                ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:45:40
+           |
+        45 |     val = check clonableMap.ensureType(typeof mapVal);
+           |                                        ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+          --> typeof-over-literal-expression-e.bal:50:42
+           |
+        50 |     val = check clonableTable.ensureType(typeof tableVal);
+           |                                          ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+         --> typeof-over-literal-expression-e.bal:6:51
+          |
+        6 |     anydata val = check clonableRec.cloneWithType(typeof rec);
+          |                                                   ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:14:46
+           |
+        14 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |                                              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:15:41
+           |
+        15 |     table<map<anydata>> clonableTable = table [{s: "test"}];
+           |                                         ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:31:46
+           |
+        31 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |                                              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:32:41
+           |
+        32 |     table<map<anydata>> clonableTable = table [{s: "test", a: "test 2"}];
+           |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:48:46
+           |
+        48 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |                                              ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:49:52
+           |
+        49 |     table<map<anydata>> & readonly clonableTable = table [{s: "test"}];
+           |                                                    ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> typeof-over-literal-expression-e.bal:14:5
+           |
+        14 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> typeof-over-literal-expression-e.bal:15:5
+           |
+        15 |     table<map<anydata>> clonableTable = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> typeof-over-literal-expression-e.bal:31:5
+           |
+        31 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> typeof-over-literal-expression-e.bal:32:5
+           |
+        32 |     table<map<anydata>> clonableTable = table [{s: "test", a: "test 2"}];
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> typeof-over-literal-expression-e.bal:48:5
+           |
+        48 |     table<map<string>> & readonly tableVal = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> typeof-over-literal-expression-e.bal:49:5
+           |
+        49 |     table<map<anydata>> & readonly clonableTable = table [{s: "test"}];
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:11:43
+           |
+        11 |     val = check clonableMap.cloneWithType(typeof mapVal);
+           |                                           ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:16:45
+           |
+        16 |     val = check clonableTable.cloneWithType(typeof tableVal);
+           |                                             ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:23:51
+           |
+        23 |     anydata val = check clonableRec.cloneWithType(typeof rec);
+           |                                                   ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:28:43
+           |
+        28 |     val = check clonableMap.cloneWithType(typeof mapVal);
+           |                                           ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:33:45
+           |
+        33 |     val = check clonableTable.cloneWithType(typeof tableVal);
+           |                                             ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:40:48
+           |
+        40 |     anydata val = check clonableRec.ensureType(typeof rec);
+           |                                                ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:45:40
+           |
+        45 |     val = check clonableMap.ensureType(typeof mapVal);
+           |                                        ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+          --> typeof-over-literal-expression-e.bal:50:42
+           |
+        50 |     val = check clonableTable.ensureType(typeof tableVal);
+           |                                          ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+         --> typeof-over-literal-expression-e.bal:6:51
+          |
+        6 |     anydata val = check clonableRec.cloneWithType(typeof rec);
+          |                                                   ^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

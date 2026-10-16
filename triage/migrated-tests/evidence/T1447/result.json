@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-mutability-test-4a07e00b3d/tuple-literal-assignments-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/tuple-literal-assignments-e.bal",
+  "Project": false,
+  "Id": "T1447",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-mutability-test-4a07e00b3d/tuple-literal-assignments-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.063
+}

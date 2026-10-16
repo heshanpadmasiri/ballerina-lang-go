@@ -1,0 +1,17 @@
+{
+  "id": "T0437",
+  "name": "enum-test-f69b0643c8/enums-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Enum declarations\", \"Constant declarations\", \"Module variable declarations\", \"Type definition\", \"Function definition\"",
+    "Expressions: \"Literal\" supports \"nil-literal\", \"boolean-literal\", \"numeric-literal\" and \"string-literal\"; \"Variable reference\", \"Equality expression\", \"Error constructor\"",
+    "Operators: \"Additive ops `+`, `-`\"; \"Equality ops `==`, `!=`, `===`, `!==`\"",
+    "Statements: \"Call\", \"If/else\", \"Local variable declarations\", \"Panic\""
+  ],
+  "reason": "The case exercises supported enum declarations and their string-valued members: implicit and constant-expression values, enum/member types, global references, recursive union/array type aliases, and quoted or numerically escaped member identifiers. The specification lists enum and type definitions without a restriction excluding these forms. Assertions use supported string equality, calls, conditionals and panic/error construction; no essential unsupported operation appears.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "main invokes all six assertion groups and should complete without panic or output; there are no @args, @panic or @output directives.",
+    "io:println occurs only in an uncalled harness-retention function and does not introduce an essential feature requirement. The lang-library allowlist applies to ballerina/lang.*."
+  ]
+}

@@ -1,0 +1,452 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "resource-method-return-type-test-61ebdf5ec4/resource-method-return-type-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> resource-method-return-type-e.bal:108:31
+            |
+        108 |     var successClientObject = client object {
+            |                               ^^^^^^^^^^^^^^^
+        109 |         resource function get functionReturnPath() returns CustomType2 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        110 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        111 |         }
+            |         ^
+        112 | 
+            | 
+        113 |         resource function get readonlyFunctionReturnPath() returns readonly & CustomType2 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        114 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        115 |         }
+            |         ^
+        116 | 
+            | 
+        117 |         resource function get nullableFunctionReturnPath() returns CustomType2? { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        118 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        119 |         }
+            |         ^
+        120 | 
+            | 
+        121 |         resource function get nullableReadonlyFunctionReturnPath()
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        122 |                 returns CustomType2? & readonly { // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        123 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        124 |         }
+            |         ^
+        125 | 
+            | 
+        126 |         resource function get functionAndClientObjectUnionReturnPath() returns CustomType1|CustomType2 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        127 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        128 |         }
+            |         ^
+        129 | 
+            | 
+        130 |         resource function get functionAndClientObjectUnionReturnPath2() returns CustomType3 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        131 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        132 |         }
+            |         ^
+        133 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> resource-method-return-type-e.bal:137:31
+            |
+        137 |     var successClientObject = client object {
+            |                               ^^^^^^^^^^^^^^^
+        138 |         resource function get functionUnionClientObjectCustomTypeReturnPath() returns CustomType7 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        139 |             return successClient;
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        140 |         }
+            |         ^
+        141 | 
+            | 
+        142 |         resource function get functionUnionClientObjectCustomTypeReturnPath2() returns CustomType10 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        143 |             return successClient;
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        144 |         }
+            |         ^
+        145 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> resource-method-return-type-e.bal:91:31
+            |
+         91 |     var successClientObject = client object {
+            |                               ^^^^^^^^^^^^^^^
+         92 |         resource function get clientReturnPath() returns CustomType1 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         93 |             return successClient;
+            |             ^^^^^^^^^^^^^^^^^^^^^
+         94 |         }
+            |         ^
+         95 | 
+            | 
+         96 |         resource function get clientUnionFunctionReturnPath()
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         97 |                 returns int|CustomType1|CustomType2 { // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         98 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+         99 |         }
+            |         ^
+        100 | 
+            | 
+        101 |         resource function get readonlyClientReturnPath() returns CustomType1 & readonly { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        102 |             return successClient;
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        103 |         }
+            |         ^
+        104 |     };
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> resource-method-return-type-e.bal:28:44
+           |
+        28 | client object{} & readonly successClient = client object {
+           |                                            ^^^^^^^^^^^^^^^
+        29 | 
+           | 
+        30 | };
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> resource-method-return-type-e.bal:37:31
+           |
+        37 |     var successClientObject = client object {
+           |                               ^^^^^^^^^^^^^^^
+        38 |         resource function get clientReturnPath() returns client object {} { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        39 |             return successClient;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        40 |         }
+           |         ^
+        41 | 
+           | 
+        42 |         resource function get clientUnionFunctionReturnPath() returns int|client object {}| // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |                 (function (int a, string b) returns int|string)|string|record{int a;} {
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        44 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        45 |         }
+           |         ^
+        46 | 
+           | 
+        47 |         resource function get readonlyClientReturnPath() returns client object {} & readonly { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        48 |             return successClient;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        49 |         }
+           |         ^
+        50 | 
+           | 
+        51 |         resource function get nullableClientReturnPath() returns client object {}? { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        52 |             return successClient;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        53 |         }
+           |         ^
+        54 | 
+           | 
+        55 |         resource function get nullableClientUnionFunctionReturnPath()
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        56 |             returns (int|client object {}|(function (int a, string b) returns int|string)|xml)? { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        57 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        58 |         }
+           |         ^
+        59 | 
+           | 
+        60 |         resource function get nullableReadonlyClientReturnPath()
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |             returns client object {}? & readonly { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        62 |             return successClient;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        63 |         }
+           |         ^
+        64 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> resource-method-return-type-e.bal:68:31
+           |
+        68 |     var successClientObject = client object {
+           |                               ^^^^^^^^^^^^^^^
+        69 |         resource function get functionReturnPath() returns function (int a, string b) returns int|string { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        70 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        71 |         }
+           |         ^
+        72 | 
+           | 
+        73 |         resource function get readonlyFunctionReturnPath() returns
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        74 |                 function (int a, string b) returns int|string & readonly { // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        75 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        76 |         }
+           |         ^
+        77 | 
+           | 
+        78 |         resource function get nullableFunctionReturnPath() returns
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |                 (function (int a, string b) returns int|string)? { // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        81 |         }
+           |         ^
+        82 | 
+           | 
+        83 |         resource function get nullableReadonlyFunctionReturnPath() returns
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        84 |                 (function (int a, string b) returns int|string)? & readonly { // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        85 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        86 |         }
+           |         ^
+        87 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> resource-method-return-type-e.bal:108:31
+            |
+        108 |     var successClientObject = client object {
+            |                               ^^^^^^^^^^^^^^^
+        109 |         resource function get functionReturnPath() returns CustomType2 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        110 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        111 |         }
+            |         ^
+        112 | 
+            | 
+        113 |         resource function get readonlyFunctionReturnPath() returns readonly & CustomType2 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        114 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        115 |         }
+            |         ^
+        116 | 
+            | 
+        117 |         resource function get nullableFunctionReturnPath() returns CustomType2? { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        118 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        119 |         }
+            |         ^
+        120 | 
+            | 
+        121 |         resource function get nullableReadonlyFunctionReturnPath()
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        122 |                 returns CustomType2? & readonly { // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        123 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        124 |         }
+            |         ^
+        125 | 
+            | 
+        126 |         resource function get functionAndClientObjectUnionReturnPath() returns CustomType1|CustomType2 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        127 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        128 |         }
+            |         ^
+        129 | 
+            | 
+        130 |         resource function get functionAndClientObjectUnionReturnPath2() returns CustomType3 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        131 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+        132 |         }
+            |         ^
+        133 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> resource-method-return-type-e.bal:137:31
+            |
+        137 |     var successClientObject = client object {
+            |                               ^^^^^^^^^^^^^^^
+        138 |         resource function get functionUnionClientObjectCustomTypeReturnPath() returns CustomType7 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        139 |             return successClient;
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        140 |         }
+            |         ^
+        141 | 
+            | 
+        142 |         resource function get functionUnionClientObjectCustomTypeReturnPath2() returns CustomType10 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        143 |             return successClient;
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        144 |         }
+            |         ^
+        145 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> resource-method-return-type-e.bal:91:31
+            |
+         91 |     var successClientObject = client object {
+            |                               ^^^^^^^^^^^^^^^
+         92 |         resource function get clientReturnPath() returns CustomType1 { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         93 |             return successClient;
+            |             ^^^^^^^^^^^^^^^^^^^^^
+         94 |         }
+            |         ^
+         95 | 
+            | 
+         96 |         resource function get clientUnionFunctionReturnPath()
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         97 |                 returns int|CustomType1|CustomType2 { // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         98 |             return testFunction;
+            |             ^^^^^^^^^^^^^^^^^^^^
+         99 |         }
+            |         ^
+        100 | 
+            | 
+        101 |         resource function get readonlyClientReturnPath() returns CustomType1 & readonly { // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        102 |             return successClient;
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        103 |         }
+            |         ^
+        104 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> resource-method-return-type-e.bal:28:44
+           |
+        28 | client object{} & readonly successClient = client object {
+           |                                            ^^^^^^^^^^^^^^^
+        29 | 
+           | 
+        30 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> resource-method-return-type-e.bal:37:31
+           |
+        37 |     var successClientObject = client object {
+           |                               ^^^^^^^^^^^^^^^
+        38 |         resource function get clientReturnPath() returns client object {} { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        39 |             return successClient;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        40 |         }
+           |         ^
+        41 | 
+           | 
+        42 |         resource function get clientUnionFunctionReturnPath() returns int|client object {}| // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |                 (function (int a, string b) returns int|string)|string|record{int a;} {
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        44 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        45 |         }
+           |         ^
+        46 | 
+           | 
+        47 |         resource function get readonlyClientReturnPath() returns client object {} & readonly { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        48 |             return successClient;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        49 |         }
+           |         ^
+        50 | 
+           | 
+        51 |         resource function get nullableClientReturnPath() returns client object {}? { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        52 |             return successClient;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        53 |         }
+           |         ^
+        54 | 
+           | 
+        55 |         resource function get nullableClientUnionFunctionReturnPath()
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        56 |             returns (int|client object {}|(function (int a, string b) returns int|string)|xml)? { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        57 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        58 |         }
+           |         ^
+        59 | 
+           | 
+        60 |         resource function get nullableReadonlyClientReturnPath()
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |             returns client object {}? & readonly { // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        62 |             return successClient;
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        63 |         }
+           |         ^
+        64 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> resource-method-return-type-e.bal:68:31
+           |
+        68 |     var successClientObject = client object {
+           |                               ^^^^^^^^^^^^^^^
+        69 |         resource function get functionReturnPath() returns function (int a, string b) returns int|string { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        70 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        71 |         }
+           |         ^
+        72 | 
+           | 
+        73 |         resource function get readonlyFunctionReturnPath() returns
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        74 |                 function (int a, string b) returns int|string & readonly { // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        75 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        76 |         }
+           |         ^
+        77 | 
+           | 
+        78 |         resource function get nullableFunctionReturnPath() returns
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |                 (function (int a, string b) returns int|string)? { // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        81 |         }
+           |         ^
+        82 | 
+           | 
+        83 |         resource function get nullableReadonlyFunctionReturnPath() returns
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        84 |                 (function (int a, string b) returns int|string)? & readonly { // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        85 |             return testFunction;
+           |             ^^^^^^^^^^^^^^^^^^^^
+        86 |         }
+           |         ^
+        87 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

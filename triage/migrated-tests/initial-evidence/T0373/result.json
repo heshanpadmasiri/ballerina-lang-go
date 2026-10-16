@@ -1,0 +1,14 @@
+{
+  "Name": "compound-assignment-test-dfbd0a78b0/compound-assignment-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/compound-assignment-test-dfbd0a78b0/compound-assignment-v.bal",
+  "Project": false,
+  "Id": "T0373",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/compound-assignment-test-dfbd0a78b0/compound-assignment-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.081
+}

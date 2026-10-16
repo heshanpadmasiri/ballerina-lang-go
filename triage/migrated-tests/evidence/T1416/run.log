@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:57: -e test "test-error-return-f3f8de5f6c/error-return-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

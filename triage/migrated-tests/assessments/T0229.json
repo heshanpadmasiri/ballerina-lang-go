@@ -1,0 +1,12 @@
+{
+  "id": "T0229",
+  "name": "bbyte-value-test-94ec1c259b/byte-value-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statements include Assignment, Call, If/else, Return, Panic and Foreach; named worker declarations are not listed.",
+    "## Expressions: \"Start action\" and \"Wait action\" are listed; worker message send and receive actions are not listed."
+  ],
+  "reason": "main invokes testWorkerWithByteVariable(), which declares named workers w1 and w2 and exchanges byte values using a -> w2, b = <- w2, a = <- w1 and b -> w1. Named workers and worker message send/receive actions are outside the subset's positive supported lists. The case therefore requires an unsupported feature regardless of its otherwise supported byte operations and asserted output.",
+  "unsupported_constructs": ["Named worker declarations", "Worker message send and receive actions"],
+  "test_design_notes": ["Worker exchange is exercised by main and checked by panic assertions for received values 15 and 10; successful completion is part of the tested behavior."]
+}

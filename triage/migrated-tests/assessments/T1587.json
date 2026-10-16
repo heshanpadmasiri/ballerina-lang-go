@@ -1,0 +1,20 @@
+{
+  "id": "T1587",
+  "name": "worker-test-0f3493dd03/02-sync-send-check-panic-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: lists \"Lock statement\", \"Panic\" and \"Local variable declarations\", but does not list named worker declarations or worker send statements.",
+    "Expressions: lists \"Start action\", \"Wait action\", \"Check expression\" and \"Trap expression\", but does not list worker receive actions or synchronous send actions.",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.runtime lists \"sleep\", \"onGracefulStop\", \"StopHandler\"; no lang.future cancel support is listed.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (list does not include future:cancel)."
+  ],
+  "reason": "The executed main calls syncSendReceiveWithCheckpanic, which requires named workers, synchronous worker send (->>), worker receive (<-), and propagation of an error returned before sending into a receiver checkpanic and wait. Worker declarations and messaging behavior are not covered by subset10, despite support for start/wait and ordinary error handling. This essential unsupported behavior suffices for feature classification.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker-to-worker/default-worker message passing, including synchronous sends and receive error/panic propagation.",
+    "Future cancellation via f1.cancel() in retained auxiliary functions is not in the supported langlib method list."
+  ],
+  "test_design_notes": [
+    "Whole file retains many unrelated worker, cancellation, query, binding-pattern and lock/start scenarios, while main exercises only syncSendReceiveWithCheckpanic.",
+    "The single @panic marker is on construction of error(\"err\", message = \"sync send err msg\"); the panic is induced later by checkpanic <- w1. No @args or @output markers occur."
+  ]
+}

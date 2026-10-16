@@ -1,0 +1,14 @@
+{
+  "Name": "isolated-object-test-4801b67a5e/isolated-objects-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/isolated-object-test-4801b67a5e/isolated-objects-v.bal",
+  "Project": false,
+  "Id": "T0666",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/isolated-object-test-4801b67a5e/isolated-objects-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.082
+}

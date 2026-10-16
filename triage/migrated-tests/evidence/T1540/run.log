@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:57: -v test "while-stmt-test-8fe83cda27/while-stmt-on-fail-v.bal" has a runtime panic in expected stdout:
+        panic: interface conversion: ast.BLangNode is nil, not *ast.BLangOnFailClause
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

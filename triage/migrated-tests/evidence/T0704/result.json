@@ -1,0 +1,15 @@
+{
+  "Name": "length-of-operator-test-40bf142c3a/length-of-operator-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-v",
+  "Project": true,
+  "Id": "T0704",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/length-of-operator-test-40bf142c3a/length-of-operator-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.091
+}

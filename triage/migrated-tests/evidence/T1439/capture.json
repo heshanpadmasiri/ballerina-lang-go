@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at main(assignment-of-supertype-member-p.bal:16)\n","Diagnostics":null}

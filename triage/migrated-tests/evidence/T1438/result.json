@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-lvalue-fill-test-201b212a3c/tuple-lvalue-fill-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-lvalue-fill-test-201b212a3c/tuple-lvalue-fill-v.bal",
+  "Project": false,
+  "Id": "T1438",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-lvalue-fill-test-201b212a3c/tuple-lvalue-fill-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.072
+}

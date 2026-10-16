@@ -1,0 +1,16 @@
+{
+  "id": "T0822",
+  "name": "map-to-record-assignability-test-c5ae90a3ca/map-to-record-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists \"cloneWithType\", \"fromJsonWithType\", \"toString\", \"toBalString\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString, but not value:cloneReadOnly."
+  ],
+  "reason": "Both quoted-field tests require jsonMapping.cloneReadOnly() before casting JSON to a record and asserting escaped field values. cloneReadOnly is absent from the explicit supported lang.value functions and method-call list, so the whole case requires an unsupported operation.",
+  "unsupported_constructs": [
+    "lang.value cloneReadOnly() method calls in testQuotedFieldNamesWithEscapeCharacters and testQuotedSubFieldNamesWithEscapeCharacters"
+  ],
+  "test_design_notes": [
+    "io:println is instrumentation only. Other conversion calls cloneWithType and fromJsonWithType are explicitly listed as supported."
+  ]
+}

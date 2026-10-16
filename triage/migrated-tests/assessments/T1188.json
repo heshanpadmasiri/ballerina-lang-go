@@ -1,0 +1,13 @@
+{
+  "id": "T1188",
+  "name": "optional-field-access-test-22573a3d33/optional-field-access-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Optional field access expression",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message"
+  ],
+  "reason": "Although optional field access is supported, the executed non-mapping JSON error assertions call je.detail() and inspect its message field. error:detail is absent from both the supported lang.error functions and method-call whitelist, so these essential assertions require an unsupported langlib operation.",
+  "unsupported_constructs": ["ballerina/lang.error detail invoked as je.detail() in assertNonMappingJsonError"],
+  "test_design_notes": ["main executes assertNonMappingJsonError through several optional-access error and error-lifting tests; detail inspection is asserted behavior, not instrumentation."]
+}

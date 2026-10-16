@@ -1,0 +1,24 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at type-definitions-semantics-negative-e.bal:24-24 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:1 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:3 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:7 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:9 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:15 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:17 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:37 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:43 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:48 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:52 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:54 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:56 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-definitions-semantics-negative-e.bal:58 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

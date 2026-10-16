@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Unreachable code\n  --\u003e checking-stmt-v.bal:72:5\n   |\n72 |     return error(\"new msg\");\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"checking-stmt-v.bal","StartLine":72,"EndLine":72}]}

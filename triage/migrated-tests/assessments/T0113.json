@@ -1,0 +1,18 @@
+{
+  "id": "T0113",
+  "name": "argument-parser-positive-test-e41e5b8a0a/multiple-typed-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "### Other invocation restrictions: int:toHexString",
+    "### Other invocation restrictions: value:toString and value:toBalString"
+  ],
+  "reason": "The asserted output requires the execution harness to parse CLI strings into int and float main parameters and collect the remaining CLI arguments into the string rest parameter. Subset 10 supports these parameter signatures but does not cover the command-line entry-point conversion and argument-binding protocol. The supported method calls and body constructs do not establish that protocol.",
+  "unsupported_constructs": [
+    "Typed main command-line argument parsing and binding, including collection of trailing arguments into a rest parameter"
+  ],
+  "test_design_notes": [
+    "@args supplies 1000 and 1.0 as strings; @output asserts their typed conversions and preservation/order of the trailing string arguments.",
+    "io:println is output instrumentation; int.toHexString and value.toString method syntax are explicitly supported."
+  ]
+}

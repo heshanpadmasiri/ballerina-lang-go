@@ -1,0 +1,16 @@
+{
+  "id": "T0864",
+  "name": "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-negative-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Match statement](https://ballerina.io/spec/lang/master/#match-stmt)\"; \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\""
+  ],
+  "reason": "The asserted diagnostics concern list match patterns: impossible lengths/types, duplicate or subsumed patterns, alternative patterns with differing capture variables, and unreachable code after exhaustive tuple matching. These require list and variable-binding match patterns outside the explicitly supported const/wildcard patterns.",
+  "unsupported_constructs": [
+    "List match patterns, including nested patterns, variable captures, and rest captures such as [var a, ...var b].",
+    "Reachability, exhaustiveness and alternative-binding consistency diagnostics for list match patterns."
+  ],
+  "test_design_notes": [
+    "Negative compilation case with @error annotations; rejecting unsupported list syntax alone does not implement the asserted list-pattern diagnostics."
+  ]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"Jack\nUSA\nCA\n25\nJane\nUSA\nemily\nemily\ndefault first name\n\n999\n","Stderr":"error: no filler value\n        at testNestedFieldDefaultVal(struct-access-with-index-v.bal:77)\n           main(struct-access-with-index-v.bal:108)\n","Diagnostics":null}

@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at group-by-negative-semantic-e.bal:22-22 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at group-by-negative-semantic-e.bal:24 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,18 @@
+{
+  "id": "T0014",
+  "name": "annotation-declaration-test-133dc37eee/annots-with-invalid-consts-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports source-only, runtime, marker and repeated annotations; Supports annotation values evaluated from constant and runtime expressions",
+    "Module-level declarations / Class definition: Supports `client`, `service`, `isolated`, `readonly` and `distinct` [`class-type-quals`]",
+    "Subset restrictions / Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported"
+  ],
+  "reason": "The negative annotation tests exercise supported annotation declarations, repeated attachments, constant declarations, variable references, and list/mapping constructors. Rejecting nonconstant references inside const annotation values belongs to that supported grammar/type system; the deliberate invalid values do not themselves establish a missing feature. However, the whole source also declares `readonly class Qux {}` and uses it as an optional record field. The explicit object/class restriction excludes that qualifier, making this a mixed case and therefore feature under the whole-case rule. The earlier class-definition bullet expressly includes readonly, so the document is internally inconsistent on this particular qualifier; this classification gives the explicit subset restriction precedence.",
+  "unsupported_constructs": [
+    "`readonly class Qux {}` under the explicit Object/class definitions qualifier restriction (contradicted by the earlier support bullet)."
+  ],
+  "test_design_notes": [
+    "The final `[i, i]` contains two @error markers, plausibly one for each nonconstant reference.",
+    "The v2 attachment and readonly class declaration have no @error markers; no obvious marker corruption is evident from the source alone."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "identifier-test-a7ab8ef694/underscore_as_unquoted_identifier_negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-test-a7ab8ef694/underscore_as_unquoted_identifier_negative-e.bal",
+  "Project": false,
+  "Id": "T0636",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/identifier-test-a7ab8ef694/underscore_as_unquoted_identifier_negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.038
+}

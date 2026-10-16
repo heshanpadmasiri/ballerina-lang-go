@@ -1,0 +1,76 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "locks-in-main-test-617c6c002d/worker-send-receive-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> worker-send-receive-negative-e.bal:24:5
+           |
+        24 |     worker A {
+           |     ^^^^^^^^^^
+        25 |         lock {
+           |         ^^^^^^
+        26 |             int num = 10;
+           |             ^^^^^^^^^^^^^
+        27 |             num -> B; // @error
+           |             ^^^^^^^^^^^^^^^^^^^
+        28 |             // This marker covers both the unused-variable warning and the receive-action error.
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        29 |             string msg = <- B; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        30 |         }
+           |         ^
+        31 |     }
+           |     ^
+        32 |     worker B {
+           |     ^^^^^^^^^^
+        33 |         lock {
+           |         ^^^^^^
+        34 |             int num;
+           |             ^^^^^^^^
+        35 |             num = <- A; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        36 |             string msg = "Hello";
+           |             ^^^^^^^^^^^^^^^^^^^^^
+        37 |             msg -> A; // @error
+           |             ^^^^^^^^^^^^^^^^^^^
+        38 |             num += 1;
+           |             ^^^^^^^^^
+        39 |         }
+           |         ^
+        40 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> worker-send-receive-negative-e.bal:6:5
+           |
+         6 |     worker w1 {
+           |     ^^^^^^^^^^^
+         7 |         lock {
+           |         ^^^^^^
+         8 |             a += 1;
+           |             ^^^^^^^
+         9 |             3 ->> w2; // @error
+           |             ^^^^^^^^^^^^^^^^^^^
+        10 |             b += 1;
+           |             ^^^^^^^
+        11 |         }
+           |         ^
+        12 |     }
+           |     ^
+        13 |     worker w2 {
+           |     ^^^^^^^^^^^
+        14 |         lock {
+           |         ^^^^^^
+        15 |             b += 1;
+           |             ^^^^^^^
+        16 |             int x = <- w1; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        17 |             a += 1;
+           |             ^^^^^^^
+        18 |             x += 1;
+           |             ^^^^^^^
+        19 |         }
+           |         ^
+        20 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

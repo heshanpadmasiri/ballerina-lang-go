@@ -1,0 +1,17 @@
+{
+  "id": "T0755",
+  "name": "main-functions-test-f228557f7d/main-with-stack-overflow-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Class definition; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "## Expressions: Method call; New expression",
+    "## Statements: Panic"
+  ],
+  "reason": "The case recursively invokes self.init() without a base case and marks that invocation @panic, asserting stack-overflow panic behavior during object initialization. Classes, methods and new expressions are supported, but subset10 does not specify stack exhaustion detection or its conversion into a Ballerina panic; support for the panic statement does not cover this runtime-generated failure.",
+  "unsupported_constructs": [
+    "Stack-overflow detection and runtime-generated panic from unbounded recursive initializer invocation"
+  ],
+  "test_design_notes": [
+    "The @panic marker asserts resource-exhaustion behavior, rather than successful ordinary method invocation."
+  ]
+}

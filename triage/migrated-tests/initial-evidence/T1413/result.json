@@ -1,0 +1,14 @@
+{
+  "Name": "ternary-expression-test-915619b7bf/ternary-type-narrow-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/ternary-expression-test-915619b7bf/ternary-type-narrow-e.bal",
+  "Project": false,
+  "Id": "T1413",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/ternary-expression-test-915619b7bf/ternary-type-narrow-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.058
+}

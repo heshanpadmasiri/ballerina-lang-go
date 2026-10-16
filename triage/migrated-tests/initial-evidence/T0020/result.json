@@ -1,0 +1,14 @@
+{
+  "Name": "anonymous-functions-test-b0ebc24edd/anonymous-functions-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-functions-test-b0ebc24edd/anonymous-functions-v.bal",
+  "Project": false,
+  "Id": "T0020",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anonymous-functions-test-b0ebc24edd/anonymous-functions-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

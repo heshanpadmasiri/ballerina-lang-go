@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "type-unification-test-b44c903fb3/map-struct-json-unified-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: ensureType
+          --> map-struct-json-unified-v.bal:69:27
+           |
+        69 |         city = checkpanic result.address[cityKey].ensureType();
+           |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

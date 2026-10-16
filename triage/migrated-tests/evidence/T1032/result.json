@@ -1,0 +1,14 @@
+{
+  "Name": "numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-negative-1-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-negative-1-p.bal",
+  "Project": false,
+  "Id": "T1032",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-negative-1-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.031
+}

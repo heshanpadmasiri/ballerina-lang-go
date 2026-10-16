@@ -1,0 +1,19 @@
+{
+  "id": "T1210",
+  "name": "query-action-with-action-or-expr-59ba5e02bb/query-action-with-action-or-expr-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[Query expressions](https://ballerina.io/spec/lang/master/#query-expr)\"; \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\"; \"Supports `group by` and `collect` clauses\"",
+    "## Module-level declarations: \"Supports [`remote-method-defn`](https://ballerina.io/spec/lang/master/#remote-method-defn) for client classes and `resource-method-defn` for service classes\""
+  ],
+  "reason": "The assertions essentially exercise query actions ending in do blocks, including nested query actions in let clauses and mutations whose resulting sums and arrays are checked. The positive query support list covers query expressions and enumerates clauses without do; query actions are not listed. This essential behavior is outside the documented subset. The case also defines resource methods on client classes, beyond the module-level resource-method support stated for service classes.",
+  "unsupported_constructs": [
+    "Query actions with terminal do clauses, including nested actions and observable mutations",
+    "Resource-method definitions in client classes"
+  ],
+  "test_design_notes": [
+    "Main executes internal equality assertions on sums, arrays and successful query completion; these are behavioral checks.",
+    "The guarded io:println call is instrumentation only and does not determine classification."
+  ],
+  "reviewer_name": "query-action-with-action-or-expr-v.bal"
+}

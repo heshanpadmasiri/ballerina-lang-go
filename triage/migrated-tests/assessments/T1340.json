@@ -1,0 +1,15 @@
+{
+  "id": "T1340",
+  "name": "sealed-arrays-of-arrays-test-51b52f77c7/sealed-arrays-of-arrays-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition — Supports required-params",
+    "## Statements: Local variable declarations; Return",
+    "## Expressions: List constructor; Member access expression; Method call; Call",
+    "## Import declarations: ballerina/lang.array — length",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: array:length"
+  ],
+  "reason": "The case constructs nested fixed-length and inferred-length arrays, returns tuples, passes fixed-length array arguments, reads nested elements, and asserts array lengths and element values. These use supported list constructors, declarations, calls, member access and array:length; no stated restriction excludes sealed or multidimensional arrays or their length behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["io:println is output instrumentation only.", "Assertions cover outer-to-inner dimensions and reuse of array values in nested list constructors."]
+}

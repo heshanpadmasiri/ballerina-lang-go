@@ -1,0 +1,395 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/send-receive-allowed-positions-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:76:5
+           |
+        76 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:77:5
+           |
+        77 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:78:5
+           |
+        78 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:79:5
+           |
+        79 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:80:5
+           |
+        80 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:81:5
+           |
+        81 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:82:5
+           |
+        82 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:83:5
+           |
+        83 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:84:5
+           |
+        84 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:85:5
+           |
+        85 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:86:5
+           |
+        86 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:30:9
+           |
+        30 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:31:15
+           |
+        31 |     _ = check <- w1;
+           |               ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:32:15
+           |
+        32 |     _ = check <- w1;
+           |               ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:33:9
+           |
+        33 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:34:9
+           |
+        34 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:35:9
+           |
+        35 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:36:9
+           |
+        36 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:37:9
+           |
+        37 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:38:9
+           |
+        38 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:39:9
+           |
+        39 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> main.bal:40:9
+           |
+        40 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:2:5
+           |
+         2 |     worker w1 {
+           |     ^^^^^^^^^^^
+         3 |         foreach var i in [1, 2, 3] {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         4 |             i -> function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+         5 |         }
+           |         ^
+         6 |         while b {
+           |         ^^^^^^^^^
+         7 |             119 -> function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+         8 |         }
+           |         ^
+         9 |         lock {
+           |         ^^^^^^
+        10 |             120 -> function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |         }
+           |         ^
+        12 |         1 -> function;
+           |         ^^^^^^^^^^^^^^
+        13 |         if b {
+           |         ^^^^^^
+        14 |             2 -> function;
+           |             ^^^^^^^^^^^^^^
+        15 |             if b {
+           |             ^^^^^^
+        16 |                 3 -> function;
+           |                 ^^^^^^^^^^^^^^
+        17 |             }
+           |             ^
+        18 |         }
+           |         ^
+        19 |         () _ = 4 -> function;
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        20 |         () _ = (4 -> function);
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        21 |         do {
+           |         ^^^^
+        22 |             5 -> function;
+           |             ^^^^^^^^^^^^^^
+        23 |         }
+           |         ^
+        24 |         {
+           |         ^
+        25 |             5 -> function;
+           |             ^^^^^^^^^^^^^^
+        26 |         }
+           |         ^
+        27 |     } on fail {
+           |     ^^^^^^^^^^^
+        28 |         6 -> function;
+           |         ^^^^^^^^^^^^^^
+        29 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:44:5
+           |
+        44 |     worker w1 {
+           |     ^^^^^^^^^^^
+        45 |         foreach int _ in [1, 2, 3] {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |             _ = <- function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        47 |         }
+           |         ^
+        48 |         while b {
+           |         ^^^^^^^^^
+        49 |             _ = <- function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        50 |         }
+           |         ^
+        51 |         lock {
+           |         ^^^^^^
+        52 |             _ = <- function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        53 |         }
+           |         ^
+        54 |         _ = <- function;
+           |         ^^^^^^^^^^^^^^^^
+        55 |         if b {
+           |         ^^^^^^
+        56 |             _ = <- function; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        57 |             if b {
+           |             ^^^^^^
+        58 |                 _ = <- function; // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        59 |             }
+           |             ^
+        60 |         }
+           |         ^
+        61 |         _ = <- function;
+           |         ^^^^^^^^^^^^^^^^
+        62 |         _ = (<- function);
+           |         ^^^^^^^^^^^^^^^^^^
+        63 |         do {
+           |         ^^^^
+        64 |             _ = <- function;
+           |             ^^^^^^^^^^^^^^^^
+        65 |         }
+           |         ^
+        66 |         {
+           |         ^
+        67 |             _ = <- function;
+           |             ^^^^^^^^^^^^^^^^
+        68 |         }
+           |         ^
+        69 |     } on fail {
+           |     ^^^^^^^^^^^
+        70 |         _ = <- function; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |         _ = <- w2|function; // @error @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        72 |     }
+           |     ^
+        73 |     worker w2 {
+           |     ^^^^^^^^^^^
+        74 |         1 -> w1;
+           |         ^^^^^^^^
+        75 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:76:5
+           |
+        76 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:77:5
+           |
+        77 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:78:5
+           |
+        78 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:79:5
+           |
+        79 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:80:5
+           |
+        80 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:81:5
+           |
+        81 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:82:5
+           |
+        82 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:83:5
+           |
+        83 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:84:5
+           |
+        84 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:85:5
+           |
+        85 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> main.bal:86:5
+           |
+        86 |     1 -> w1;
+           |     ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:30:9
+           |
+        30 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:31:15
+           |
+        31 |     _ = check <- w1;
+           |               ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:32:15
+           |
+        32 |     _ = check <- w1;
+           |               ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:33:9
+           |
+        33 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:34:9
+           |
+        34 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:35:9
+           |
+        35 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:36:9
+           |
+        36 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:37:9
+           |
+        37 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:38:9
+           |
+        38 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:39:9
+           |
+        39 |     _ = <- w1;
+           |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> main.bal:40:9
+           |
+        40 |     _ = <- w1;
+           |         ^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

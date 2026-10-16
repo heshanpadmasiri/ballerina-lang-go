@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:3 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:98 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:99 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:101 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:102 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:106 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:107 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:108 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:117 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:118 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:119 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at function-call-negative-e.bal:120 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.12s)
+FAIL

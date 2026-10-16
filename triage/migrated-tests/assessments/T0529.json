@@ -1,0 +1,12 @@
+{
+  "id": "T0529",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-map-update-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; value:cloneReadOnly is absent."
+  ],
+  "reason": "The expected panic on updating m3 depends on m2.cloneReadOnly() producing a frozen map. cloneReadOnly is excluded from both the supported langlib functions and method-call list, so this essential behavior is outside subset 10.",
+  "unsupported_constructs": ["Langlib value:cloneReadOnly invoked using method syntax, including the frozen-map mutation panic it enables."],
+  "test_design_notes": ["The @panic annotation asserts failure on the final indexed map assignment."]
+}

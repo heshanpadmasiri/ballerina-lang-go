@@ -1,0 +1,14 @@
+{
+  "id": "T0084",
+  "name": "argument-parser-negative-test-706c373f17/invalid-int-array-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Module-level declarations",
+      "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"
+    }
+  ],
+  "reason": "The function declaration and required parameter are covered, but the essential behavior is command-line argument parsing: converting the supplied mixed JSON array into an int[] main parameter and rejecting it with a panic. subset10.md does not cover main-entry command-line argument conversion or its failure behavior; function-signature support alone does not specify this runtime interface.",
+  "unsupported_constructs": ["Command-line argument deserialization into an int[] main parameter and rejection of incompatible array elements (not covered)."],
+  "test_design_notes": ["The body is empty; the expected failure depends entirely on argument parsing before main executes.", "@args supplies [true, \"hi\", 5] and @panic marks the expected result; these are comment-based test markers, not Ballerina annotations or a source list constructor."]
+}

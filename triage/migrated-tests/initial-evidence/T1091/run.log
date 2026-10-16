@@ -1,0 +1,23 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "object-type-reference-test-19fd51d776/object-type-reference-1-semantics-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> object-type-reference-1-semantics-negative-e.bal:198:14
+            |
+        198 |     } body = object {
+            |              ^^^^^^^^
+        199 |         int:Unsigned8 i = 1;
+            |         ^^^^^^^^^^^^^^^^^^^^
+        200 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> object-type-reference-1-semantics-negative-e.bal:198:14
+            |
+        198 |     } body = object {
+            |              ^^^^^^^^
+        199 |         int:Unsigned8 i = 1;
+            |         ^^^^^^^^^^^^^^^^^^^^
+        200 |     };
+            |     ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

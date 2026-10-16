@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/invalid-async-send-in-foreach-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:2:5
+           |
+         2 |     worker w1 {
+           |     ^^^^^^^^^^^
+         3 |         int sum = 0;
+           |         ^^^^^^^^^^^^
+         4 |         foreach var i in 1...10 {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+         5 |             sum = sum + i;
+           |             ^^^^^^^^^^^^^^
+         6 |             "20" -> w2; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+         7 |         }
+           |         ^
+         8 |     }
+           |     ^
+         9 |     worker w2 {
+           |     ^^^^^^^^^^^
+        10 |         int j = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at main(map-closed-record-assignment-negative-p.bal:9)\n","Diagnostics":null}

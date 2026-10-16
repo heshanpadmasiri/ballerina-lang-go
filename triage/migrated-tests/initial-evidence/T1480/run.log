@@ -1,0 +1,21 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:38-38 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:40-40 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:68-68 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:70-70 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:78-78 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:81-81 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:138-138 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:150-150 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:159-159 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:178-178 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:192-192 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:195-195 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at type-narrow-2-e.bal:210-210 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at type-narrow-2-e.bal:47 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-narrow-2-e.bal:48 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-narrow-2-e.bal:49 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-narrow-2-e.bal:130 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-narrow-2-e.bal:166 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

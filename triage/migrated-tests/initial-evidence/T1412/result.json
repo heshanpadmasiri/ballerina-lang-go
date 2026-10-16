@@ -1,0 +1,14 @@
+{
+  "Name": "ternary-expression-test-915619b7bf/ternary-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/ternary-expression-test-915619b7bf/ternary-negative-e.bal",
+  "Project": false,
+  "Id": "T1412",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/ternary-expression-test-915619b7bf/ternary-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.034
+}

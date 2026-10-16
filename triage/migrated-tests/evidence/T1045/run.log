@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-union-negative-255-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'converted'
+         --> invalid-int-as-byte-union-negative-255-p.bal:3:5
+          |
+        3 |     byte|boolean converted = <byte|boolean> boxed; // @panic
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

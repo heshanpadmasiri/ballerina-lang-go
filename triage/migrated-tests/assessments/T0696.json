@@ -1,0 +1,13 @@
+{
+  "id": "T0696",
+  "name": "join-clause-test-146822e765/join-clause-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: [Query expressions] — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "## Statements: the supported statements list does not include query actions",
+    "## Expressions: [Optional field access expression]"
+  ],
+  "reason": "Most assertions exercise rejection of invalid types, join-key scope, malformed join syntax and unsafe optional field access within supported queries. However, testOuterJoinWithoutOptionalAccess2 also asserts rejection of unsafe field access inside a query action ending in a do block. Query actions/do clauses are absent from the supported lists, so the whole case requires an unsupported construct.",
+  "unsupported_constructs": ["Query action with a terminal do block in testOuterJoinWithoutOptionalAccess2"],
+  "test_design_notes": ["Negative diagnostics in supported join expressions are in scope; the unsupported query action is independently essential to one asserted diagnostic."]
+}

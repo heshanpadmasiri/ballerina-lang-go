@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "forward-referencing-global-definition-test-c1122b914e/module-var-reordering-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'name'
+         --> file02.bal:1:1
+          |
+        1 | final string name = "Jack Sparrow";
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'nestedRec'
+         --> file02.bal:3:1
+          |
+        3 | record {|record {string n = p.n;} r = {};|} nestedRec = {};
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

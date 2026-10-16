@@ -1,0 +1,1 @@
+{"Stdout":"Jack\nUSA\nCA\n25\nJane\nUSA\nemily\nemily\ndefault first name\n\n999\n","Stderr":"error: no filler value\n        at testNestedFieldDefaultVal(struct-v.bal:82)\n           main(struct-v.bal:125)\n","Diagnostics":null}

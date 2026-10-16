@@ -1,0 +1,827 @@
+{
+  "false_passes_corrected": [
+    "T0134",
+    "T0219",
+    "T0223",
+    "T0297",
+    "T0364",
+    "T0367",
+    "T0402",
+    "T0403",
+    "T0405",
+    "T0420",
+    "T0442",
+    "T0443",
+    "T0452",
+    "T0464",
+    "T0482",
+    "T0549",
+    "T0589",
+    "T0598",
+    "T0612",
+    "T0616",
+    "T0619",
+    "T0620",
+    "T0656",
+    "T0658",
+    "T0660",
+    "T0666",
+    "T0671",
+    "T0672",
+    "T0674",
+    "T0676",
+    "T0713",
+    "T0715",
+    "T0717",
+    "T0719",
+    "T0725",
+    "T0727",
+    "T0728",
+    "T0729",
+    "T0731",
+    "T0732",
+    "T0822",
+    "T0826",
+    "T0827",
+    "T0830",
+    "T0832",
+    "T0839",
+    "T0844",
+    "T0846",
+    "T0866",
+    "T0867",
+    "T0871",
+    "T0872",
+    "T0873",
+    "T0906",
+    "T0910",
+    "T0912",
+    "T0913",
+    "T0921",
+    "T0999",
+    "T1001",
+    "T1002",
+    "T1010",
+    "T1087",
+    "T1206",
+    "T1209",
+    "T1210",
+    "T1211",
+    "T1212",
+    "T1231",
+    "T1232",
+    "T1234",
+    "T1238",
+    "T1263",
+    "T1268",
+    "T1295",
+    "T1322",
+    "T1343",
+    "T1352",
+    "T1355",
+    "T1356",
+    "T1406",
+    "T1438",
+    "T1462",
+    "T1466",
+    "T1468",
+    "T1486",
+    "T1492",
+    "T1533",
+    "T1536",
+    "T1586",
+    "T1587",
+    "T1588",
+    "T1589",
+    "T1590",
+    "T1591",
+    "T1592",
+    "T1593",
+    "T1594",
+    "T1595",
+    "T1596",
+    "T1597",
+    "T1598",
+    "T1599",
+    "T1600",
+    "T1601",
+    "T1602",
+    "T1603"
+  ],
+  "workspace_cases": [
+    {
+      "id": "T0598",
+      "members": [
+        "a-provider-v"
+      ]
+    },
+    {
+      "id": "T0599",
+      "members": [
+        "global-var-function-in-bala-v",
+        "a-provider-v"
+      ]
+    },
+    {
+      "id": "T0600",
+      "members": [
+        "global-var-function-local-v"
+      ]
+    },
+    {
+      "id": "T0763",
+      "members": [
+        "foo-provider-v"
+      ]
+    },
+    {
+      "id": "T0764",
+      "members": [
+        "map-constant-equality-v",
+        "foo-provider-v"
+      ]
+    },
+    {
+      "id": "T1241",
+      "members": [
+        "readonly-object-initialization-e",
+        "readonly-objects-provider-v"
+      ]
+    },
+    {
+      "id": "T1242",
+      "members": [
+        "readonly-objects-provider-v"
+      ]
+    },
+    {
+      "id": "T1243",
+      "members": [
+        "readonly-objects-v",
+        "readonly-objects-provider-v"
+      ]
+    }
+  ],
+  "status_changes": [
+    {
+      "id": "T0134",
+      "name": "array-destructure-test-4a8c5609c2/array-destructure-test-4a8c5609c2-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0219",
+      "name": "basic-worker-test-0bffe305fe/worker-async-send-as-expression-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0223",
+      "name": "bbyte-array-value-test-e70b15d057/byte-array-value-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0297",
+      "name": "capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0364",
+      "name": "closure-test-5c6a7d056f/resource-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0367",
+      "name": "collect-clause-test-c0e4163727/cases/collect-clause-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0402",
+      "name": "cyclic-type-definitions-test-3fce5ad632/cyclic-type-definitions-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0403",
+      "name": "cyclic-type-definitions-test-3fce5ad632/tuple-type-definitions-cyclic-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0405",
+      "name": "cyclic-type-definitions-test-3fce5ad632/union-type-definitions-cyclic-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0420",
+      "name": "distinct-object-test-d9a03dbe83/distinct-object-subtyping-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0442",
+      "name": "error-binding-pattern-test-d3ff0cd2c4/error-binding-pattern-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0443",
+      "name": "error-binding-pattern-test-d3ff0cd2c4/error-binding-pattern-with-rest-binding-pattern-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0452",
+      "name": "error-query-test-72a3210769/error-query-test-72a3210769-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0464",
+      "name": "expr-bodied-function-test-d60970291b/expr-bodied-functions-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0482",
+      "name": "final-object-field-test-de73e9a2aa/final-object-fields-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0549",
+      "name": "function-pointer-invocation-test-79ce9f570b/function-pointer-invocation-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0589",
+      "name": "functions-with-rest-arguments-c77eb1b42f/mapping-type-rest-argument-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0598",
+      "name": "global-var-function-in-bala-test-943e6806ea/a-provider-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0612",
+      "name": "global-var-test-297b184697/configurable_var_decl-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0616",
+      "name": "global-var-test-297b184697/oce_depend_on_global_variable-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0619",
+      "name": "group-by-clause-test-38c059a6f0/group-by-invocation-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0620",
+      "name": "group-by-clause-test-38c059a6f0/group-by-list-ctr-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0656",
+      "name": "inter-module-public-table-type-test-63565401da/public-table-type-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0658",
+      "name": "intersection-type-test-48ac088d43/error-intersection-access-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0660",
+      "name": "intersection-type-test-48ac088d43/error-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0666",
+      "name": "isolated-object-test-4801b67a5e/isolated-objects-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0671",
+      "name": "isolated-worker-test-8e649817ff/inference-named-workers-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0672",
+      "name": "isolated-worker-test-8e649817ff/inference-start-action-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0674",
+      "name": "isolated-worker-test-8e649817ff/isolated-named-worker-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0676",
+      "name": "isolated-worker-test-8e649817ff/isolated-start-action-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0713",
+      "name": "list-binding-pattern-test-b87d28a686/list-binding-pattern-rest-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0715",
+      "name": "list-binding-pattern-test-b87d28a686/list-binding-pattern-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0717",
+      "name": "list-constant-test-204a1e5727/list-constant-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0719",
+      "name": "list-constructor-expr-test-039d73e3d9/list-constructor-infer-type-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0725",
+      "name": "list-constructor-spread-operator-test-ae223889d2/spread-operator-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0727",
+      "name": "locks-in-main-test-617c6c002d/locks-down-chain-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0728",
+      "name": "locks-in-main-test-617c6c002d/locks-functions-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0729",
+      "name": "locks-in-main-test-617c6c002d/locks-imports-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0731",
+      "name": "locks-in-main-test-617c6c002d/parallel-lock-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0732",
+      "name": "locks-in-main-test-617c6c002d/simple-lock-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0764",
+      "name": "map-constant-equality-in-bala-test-8a32c6bf8d/map-constant-equality-v",
+      "initial": "fail",
+      "corrected": "pass"
+    },
+    {
+      "id": "T0822",
+      "name": "map-to-record-assignability-test-c5ae90a3ca/map-to-record-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0826",
+      "name": "mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0827",
+      "name": "mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-with-rest-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0830",
+      "name": "mapping-constructor-expr-test-833706cb84/mapping-constructor-infer-record-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0832",
+      "name": "mapping-constructor-expr-test-833706cb84/mapping-constructor-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0839",
+      "name": "mapping-constructor-expr-test-833706cb84/spread-op-field-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0844",
+      "name": "mapping-constructor-expr-test-833706cb84/var-name-field-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0846",
+      "name": "match-guard-analysis-test-cf5a6832da/match-guard-function-method-call-mutability-analysis-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0866",
+      "name": "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0867",
+      "name": "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-with-rest-match-pattern-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0871",
+      "name": "match-stmt-mapping-match-pattern-test-9627f13a97/mapping-match-pattern-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0872",
+      "name": "match-stmt-mapping-match-pattern-test-9627f13a97/mapping-match-pattern-with-rest-match-pattern-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0873",
+      "name": "match-stmt-target-actions-test-90c95509c7/match-stmt-target-actions-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0906",
+      "name": "module-error-variable-test-718d21c637/module-error-variable-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0910",
+      "name": "module-listener-decl-test-9b9489d763/module-listener-declaration-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0912",
+      "name": "module-public-variable-test-5b1954009d/access-project-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0913",
+      "name": "module-public-variable-test-5b1954009d/module-public-var-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0921",
+      "name": "module-tuple-variable-test-4b19fdd529/module-tuple-variable-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T0999",
+      "name": "nested-actions-test-b754fe8c60/nested-actions-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1001",
+      "name": "nested-queries-with-encl-func-params-b1d65d2cdb/nested-queries-with-encl-func-params-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1002",
+      "name": "nested-retry-stmt-test-ddbe9cd95a/cases/nested-retry-statement-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1010",
+      "name": "never-type-test-35205a329e/never-type-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1087",
+      "name": "object-type-reference-test-19fd51d776/object-inclusion-with-qualifiers-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1206",
+      "name": "query-action-or-expr-test-cc451d1303/match-stmt-in-do-clause-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1209",
+      "name": "query-action-or-expr-test-cc451d1303/query-action-or-expr-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1210",
+      "name": "query-action-with-action-or-expr-59ba5e02bb/query-action-with-action-or-expr-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1211",
+      "name": "query-distinct-error-test-d5d9b08b3a/query-distinct-error-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1212",
+      "name": "query-expr-with-anon-function-exprs-8c49262154/query-expr-with-anon-function-exprs-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1231",
+      "name": "query-with-binding-pattern-var-test-aad934bf38/query_with_binding_pattern-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1232",
+      "name": "query-with-closures-test-bfc248f951/query_with_closures-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1234",
+      "name": "raw-template-literal-test-73d1c4c5ea/raw-template-literal-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1238",
+      "name": "reachability-analysis-test-a8532630b8/reachability2-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1241",
+      "name": "read-only-object-bala-test-38fd1e4394/readonly-object-initialization-e",
+      "initial": "fail",
+      "corrected": "pass"
+    },
+    {
+      "id": "T1263",
+      "name": "record-query-test-15a6dd75a6/record-query-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1268",
+      "name": "record-to-jsontest-a7c9a96935/record-to-json-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1295",
+      "name": "retry-stmt-test-5faabda7b4/retry-statement-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1322",
+      "name": "return-stmt-test-af437eb847/return-in-resource-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1343",
+      "name": "selectively-immutable-type-test-08053ceb2e/immutable-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1352",
+      "name": "stack-overflow-test-7d9240c754/stack_overflow_in_worker-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1355",
+      "name": "start-action-test-c3596ca55b/start-action-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1356",
+      "name": "start-action-test-c3596ca55b/start-type-cast-project-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1406",
+      "name": "table-value-assign-test-98960d90ac/table-value-assign-test-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1438",
+      "name": "tuple-lvalue-fill-test-201b212a3c/tuple-lvalue-fill-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1462",
+      "name": "type-cast-action-test-c72af680c1/type-cast-action-test-c72af680c1-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1466",
+      "name": "type-definitions-test-dce7ce211b/record-type-field-resolving-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1468",
+      "name": "type-descriptor-test-d6260bd9fd/typedesc-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1486",
+      "name": "type-reference-tests-fcb8264969/type-reference-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1492",
+      "name": "typedesc-negative-runtime-tests-7992ec9ed7/typedesc-negative-runtime-v",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1533",
+      "name": "wait-for-any-actions-test-def2fb9aaa/wait-for-any-actions-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1536",
+      "name": "while-stmt-test-8fe83cda27/while-stmt-infinite-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1586",
+      "name": "worker-test-0f3493dd03/01-receive-check-panic-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1587",
+      "name": "worker-test-0f3493dd03/02-sync-send-check-panic-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1588",
+      "name": "worker-test-0f3493dd03/03-send-default-before-worker-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1589",
+      "name": "worker-test-0f3493dd03/04-send-default-before-default-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1590",
+      "name": "worker-test-0f3493dd03/05-send-default-after-worker-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1591",
+      "name": "worker-test-0f3493dd03/06-send-default-after-default-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1592",
+      "name": "worker-test-0f3493dd03/07-receive-default-after-default-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1593",
+      "name": "worker-test-0f3493dd03/08-receive-default-before-default-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1594",
+      "name": "worker-test-0f3493dd03/09-receive-default-before-worker-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1595",
+      "name": "worker-test-0f3493dd03/10-receive-default-after-worker-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1596",
+      "name": "worker-test-0f3493dd03/11-future-cancel-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1597",
+      "name": "worker-test-0f3493dd03/12-future-race-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1598",
+      "name": "worker-test-0f3493dd03/13-inner-worker-panic-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1599",
+      "name": "worker-test-0f3493dd03/14-worker-inside-lock-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1600",
+      "name": "worker-test-0f3493dd03/15-worker-inside-lock-depth3-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1601",
+      "name": "worker-test-0f3493dd03/16-start-inside-lock-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1602",
+      "name": "worker-test-0f3493dd03/17-start-inside-lock-depth3-p.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    },
+    {
+      "id": "T1603",
+      "name": "worker-test-0f3493dd03/multiple-receive-action-v.bal",
+      "initial": "pass",
+      "corrected": "fail"
+    }
+  ],
+  "corrected_counts": {
+    "fail": 1174,
+    "pass": 382,
+    "excluded-java": 78,
+    "timeout": 4
+  }
+}

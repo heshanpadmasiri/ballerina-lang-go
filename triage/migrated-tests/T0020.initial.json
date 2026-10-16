@@ -1,0 +1,19 @@
+{
+  "id": "T0020",
+  "name": "anonymous-functions-test-b0ebc24edd/anonymous-functions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"Anonymous function expression\" and \"Wait action\" are listed as supported.",
+    "Statements: lists supported statements including \"Compound Assignment\", \"While\", \"Local variable declarations\" and \"Return\", but does not list named worker declarations.",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/io is absent from the list."
+  ],
+  "reason": "This is a mixed positive case. Anonymous functions, function-valued arguments and returns, calls through inferred function values, and nested mutable closures use supported anonymous-function and ordinary expression/statement facilities. However, basicWorkerTest declares two named workers, a construct not covered by the subset's supported declarations or statements. Supporting wait actions does not establish support for declaring workers. Therefore the whole case is a feature case even if the anonymous-function portions should work. The source also imports ballerina/io for its output harness, outside the enumerated import list.",
+  "unsupported_constructs": [
+    "Named worker declarations: worker w1 and worker w2 returns int.",
+    "ballerina/io import and io:println output harness are not enumerated by the import restrictions."
+  ],
+  "test_design_notes": [
+    "Worker coverage is mixed into an anonymous-function test and should be separated to isolate supported closure behavior.",
+    "All five @output markers match the apparent source computations; no obvious marker or migration defect is visible."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0462",
+  "name": "expr-bodied-function-test-d60970291b/expr-bodied-functions-checkpanic-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Expressions: [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)",
+    "Statements: [Call](https://ballerina.io/spec/lang/master/#call-stmt); [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.int lists fromString"
+  ],
+  "reason": "The expression-bodied function uses supported function-definition and checking-expression grammar. Its direct lang.int:fromString call is explicitly allowed. Parsing invalid input returns an error, and checkpanic must panic as asserted by @panic; all constructs needed to reach and propagate that panic are supported.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker asserts runtime panic behavior from invalid integer parsing; main reaches it through testCheckPanic and panicsACheck. There are no @args or @output assertions."
+  ]
+}

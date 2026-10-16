@@ -1,0 +1,16 @@
+{
+  "Name": "xmlaccess-test-873756d6ae/indexed-access-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/indexed-access-v",
+  "Project": true,
+  "Id": "T1613",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/indexed-access-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/indexed-access-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/indexed-access-v/xml-indexed-access.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.09
+}

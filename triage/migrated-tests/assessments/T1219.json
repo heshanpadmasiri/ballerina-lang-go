@@ -1,0 +1,21 @@
+{
+  "id": "T1219",
+  "name": "query-expression-with-var-type-test-15a4f3a6d1/query-expression-with-var-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Mapping constructor — Currently spread-field not supported",
+    "Expressions: Query expressions — Supports `list` and `map` as `query-constructor-type`",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions:"
+  ],
+  "reason": "The whole case requires unsupported behavior: main asserts mapping-spread query results, stream query construction and iteration, table query construction and table operations, and array/value methods outside the langlib positive lists. Supported from/where/join clauses do not extend support to these essential operations.",
+  "unsupported_constructs": [
+    "Mapping spread fields in select {...person} and select {...person, teacherId: ...}",
+    "stream query-constructor-type and stream next() iteration",
+    "table query-constructor-type and table langlib length/add/get operations",
+    "array pop/filter/reverse and value isReadOnly method calls with asserted results"
+  ],
+  "test_design_notes": [
+    "main invokes the unsupported behaviors and checks their results; io:println is only output instrumentation."
+  ]
+}

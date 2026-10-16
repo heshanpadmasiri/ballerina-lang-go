@@ -1,0 +1,19 @@
+{
+  "id": "T0035",
+  "name": "anydata-stamp-inbuilt-function-test-0c98e8d6c8/anydata-stamp-inbuilt-function-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not toJson.",
+    "Subset restrictions / Invocations / Other invocation restrictions explicitly lists 'value:cloneWithType' among functions callable with method syntax.",
+    "Expressions lists 'Type test expression' and 'Type cast expression', but does not list typeof expressions."
+  ],
+  "reason": "This positive case mixes supported cloneWithType calls with unsupported value:toJson calls and uncovered typeof expressions. The primary stamping scenarios use ordinary records, maps, arrays, tuples, unions, XML templates, checks, casts and type tests covered by the subset. However, converting the two Employee records through value:toJson exceeds the explicit lang.value allowlist. Multiple output checks also depend on typeof, which the expression coverage does not include. Those constructs make the whole case a feature gap even if individual stamping failures could be bugs.",
+  "unsupported_constructs": [
+    "value:toJson(firstEmployee) and value:toJson(secondEmployee)",
+    "typeof expressions used to inspect record, array-element, tuple and map types"
+  ],
+  "test_design_notes": [
+    "Positive @output assertions; no deliberate @error syntax.",
+    "Typedesc output markers depend on typeof and named-type rendering; these should be separated from supported cloneWithType behavior. No obvious malformed marker is present."
+  ]
+}

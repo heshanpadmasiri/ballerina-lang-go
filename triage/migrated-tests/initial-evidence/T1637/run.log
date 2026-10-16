@@ -1,0 +1,36 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	<ns0:foo xmlns:ns0="http://wso2.com/" xmlns:ns1="http://ballerinalang.org/" a="hello world" ns0:b="active"><ns1:bar1>hello1</ns1:bar1><bar2>hello2</bar2></ns0:foo>
+        	{"{http://www.w3.org/2000/xmlns/}ns0":"http://wso2.com/","a":"hello world","{http://www.w3.org/2000/xmlns/}ns1":"http://ballerinalang.org/","{http://wso2.com/}b":"active"}
+        	active
+        	<ns1:bar1 xmlns:ns1="http://ballerinalang.org/">hello1</ns1:bar1><bar2>hello2</bar2>
+        	<fname><foo>1</foo><bar>2</bar></fname><lname1><foo>3</foo><bar>4</bar></lname1><fname><foo>5</foo><bar>6</bar></fname><lname2><foo>7</foo><bar>8</bar></lname2>apple
+        	<fname><foo>1</foo><bar>2</bar></fname>
+        	<foo>1</foo><foo>5</foo>
+        	
+        	
+        	<foo>1</foo><foo>5</foo>
+        	<bar>2</bar><bar>4</bar><bar>6</bar><bar>8</bar>
+        	<foo>1</foo><bar>2</bar><foo>3</foo><bar>4</bar><foo>5</foo><bar>6</bar><foo>7</foo><bar>8</bar>
+        	<foo id="hello $5">hello</foo>
+        	<foo id="hello $$5">$hello</foo>
+        	<foo id="hello $$ 5">$$ hello</foo>
+        	<test><name>ballerina</name></test>
+        	10
+        	\u{61}
+        	\u{61}ppl\\u{65}
+        	A \u{5C} B
+        	A \\u{5C} B
+        	"\u{D800}"
+        	\u{DFFF}"\u{DFFF}"
+        	"\u{12FFFF} ABC \u{DFFF} DEF \u{DAFF}"
+        	\u{12FFFF} ABC \u{DFFFAAA} DEF \u{FFFFFFF}
+        	\u{001B[
+        	"\u{001B["
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,255 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "isolated-worker-test-8e649817ff/strand-deprecation-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> strand-deprecation-e.bal:26:16
+           |
+        26 |     var obj1 = object {
+           |                ^^^^^^^^
+        27 |         final int[] & readonly a = [1, 2, 3];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        28 |         final string b = "A";
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        29 | 
+           | 
+        30 |         function f1() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        31 |             return 10;
+           |             ^^^^^^^^^^
+        32 |         }
+           |         ^
+        33 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> strand-deprecation-e.bal:40:25
+           |
+        40 |     } & readonly obj2 = object {
+           |                         ^^^^^^^^
+        41 |         final int[] & readonly a = [1, 2, 3];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |         final string b = "A";
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        43 | 
+           | 
+        44 |         isolated function f1() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |             return 50;
+           |             ^^^^^^^^^^
+        46 |         }
+           |         ^
+        47 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> strand-deprecation-e.bal:52:24
+           |
+        52 |     ObjectType1 obj1 = client object {
+           |                        ^^^^^^^^^^^^^^^
+        53 |         final int[] & readonly a = [1, 2, 3];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        54 |         final string b = "A";
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        55 |         isolated remote function f1() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        56 |             return 20;
+           |             ^^^^^^^^^^
+        57 |         }
+           |         ^
+        58 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+          --> strand-deprecation-e.bal:18:21
+           |
+        18 |     future<int> _ = @strand {thread: "parent"} start g1(); // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+          --> strand-deprecation-e.bal:22:24
+           |
+        22 |     future<string> _ = @strand {thread: "any"} start g2(); // @error
+           |                        ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+          --> strand-deprecation-e.bal:34:21
+           |
+        34 |     future<int> _ = @strand {thread: "parent"} start obj1.f1(); // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+          --> strand-deprecation-e.bal:48:21
+           |
+        48 |     future<int> _ = @strand {thread: "any"} start obj2.f1(); // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported
+          --> strand-deprecation-e.bal:59:21
+           |
+        59 |     future<int> _ = @strand {thread: "parent"} start obj1->f1(); // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+           --> strand-deprecation-e.bal:95:5
+            |
+         95 |     final string a = "A";
+            |     ^^^^^^^^^^^^^^^^^^^^^
+         96 | 
+            | 
+         97 |     @strand {thread: "parent"} // @error
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         98 |     worker A {
+            |     ^^^^^^^^^^
+         99 |         string _ = a + arr[0];
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        100 |         future<int> _ = start g1();
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        101 |     }
+            |     ^
+        102 | 
+            | 
+        103 |     worker B {
+            |     ^^^^^^^^^^
+        104 |         string _ = globalArr[0];
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        105 |         var obj1 = object {
+            |         ^^^^^^^^^^^^^^^^^^^
+        106 |             function f1() returns string {
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        107 |                 return globalArr[0] + a;
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+        108 |             }
+            |             ^
+        109 | 
+            | 
+        110 |             function f2() returns string {
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        111 |                 return "A";
+            |                 ^^^^^^^^^^^
+        112 |             }
+            |             ^
+        113 |         };
+            |         ^^
+        114 |         future<string> _ = start obj1.f1();
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        115 |         future<string> _ = start obj1.f2();
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        116 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> strand-deprecation-e.bal:63:5
+           |
+        63 |     @strand {thread: "parent"} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        64 |     worker A {
+           |     ^^^^^^^^^^
+        65 |         _ = g1();
+           |         ^^^^^^^^^
+        66 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> strand-deprecation-e.bal:70:5
+           |
+        70 |     @strand {thread: "any"} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |     worker A {
+           |     ^^^^^^^^^^
+        72 |         _ = g1();
+           |         ^^^^^^^^^
+        73 |     }
+           |     ^
+        74 | 
+           | 
+        75 |     worker B {
+           |     ^^^^^^^^^^
+        76 |         _ = g1();
+           |         ^^^^^^^^^
+        77 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> strand-deprecation-e.bal:81:5
+           |
+        81 |     final string a = "A";
+           |     ^^^^^^^^^^^^^^^^^^^^^
+        82 |     worker A {
+           |     ^^^^^^^^^^
+        83 |         string _ = a + arr[0];
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        84 |         _ = g1();
+           |         ^^^^^^^^^
+        85 |     }
+           |     ^
+        86 | 
+           | 
+        87 |     @strand {thread: "parent"} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        88 |     worker B {
+           |     ^^^^^^^^^^
+        89 |         string _ = globalArr[0];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        90 |         _ = g1();
+           |         ^^^^^^^^^
+        91 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> strand-deprecation-e.bal:26:16
+           |
+        26 |     var obj1 = object {
+           |                ^^^^^^^^
+        27 |         final int[] & readonly a = [1, 2, 3];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        28 |         final string b = "A";
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        29 | 
+           | 
+        30 |         function f1() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        31 |             return 10;
+           |             ^^^^^^^^^^
+        32 |         }
+           |         ^
+        33 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> strand-deprecation-e.bal:40:25
+           |
+        40 |     } & readonly obj2 = object {
+           |                         ^^^^^^^^
+        41 |         final int[] & readonly a = [1, 2, 3];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        42 |         final string b = "A";
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        43 | 
+           | 
+        44 |         isolated function f1() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |             return 50;
+           |             ^^^^^^^^^^
+        46 |         }
+           |         ^
+        47 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> strand-deprecation-e.bal:52:24
+           |
+        52 |     ObjectType1 obj1 = client object {
+           |                        ^^^^^^^^^^^^^^^
+        53 |         final int[] & readonly a = [1, 2, 3];
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        54 |         final string b = "A";
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        55 |         isolated remote function f1() returns int {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        56 |             return 20;
+           |             ^^^^^^^^^^
+        57 |         }
+           |         ^
+        58 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

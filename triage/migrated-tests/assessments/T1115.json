@@ -1,0 +1,16 @@
+{
+  "id": "T1115",
+  "name": "open-record-iteration-test-4a36ef124f/open-record-iteration-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.map lists only length, keys, hasKey, get, remove.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; map entries are map:length, map:keys, map:hasKey, map:get, map:remove."
+  ],
+  "reason": "The negative test asserts callback parameter/return typing and chained result assignment diagnostics for open-record forEach, map and filter operations. These map langlib operations are absent from both the supported library-method list and permitted langlib method-call list, making essential asserted behavior outside subset 10.",
+  "unsupported_constructs": [
+    "Open-record/map langlib forEach, map and filter calls, including chained map/filter result typing"
+  ],
+  "test_design_notes": [
+    "Negative rejection tests are in scope when their grammar and type-system behavior are supported; here the core langlib operations are explicitly outside the positive lists."
+  ]
+}

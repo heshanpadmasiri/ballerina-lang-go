@@ -1,0 +1,18 @@
+{
+  "id": "T1288",
+  "name": "reg-exp-value-test-30e03bfeee/regexp-value-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; the supported expression list includes XML and string templates, but not regular-expression templates.",
+    "## Import declarations (under # Subset restrictions): \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.string` lists `Char` and string operations, but not `RegExp`."
+  ],
+  "reason": "The case asserts compile-time rejection of invalid regular-expression templates, including reversed ranges, invalid quantifiers, duplicate/conflicting flags, escapes, Unicode properties, and empty character classes. Regular-expression template syntax and its validation are outside the supported expression list; the explicitly used string:RegExp type is also absent from the allowed lang.string types. These essential unsupported features make the whole case a feature request.",
+  "unsupported_constructs": [
+    "Regular-expression template expressions (re backtick syntax) and their compile-time syntax/semantic validation",
+    "ballerina/lang.string RegExp type"
+  ],
+  "test_design_notes": [
+    "Negative tests remain in scope when exercising supported grammar or types, but these assertions specifically require unsupported regular-expression syntax and validation.",
+    "The final malformed template and trailing error marker also exercise parser recovery; this does not remove the essential regular-expression dependency."
+  ]
+}

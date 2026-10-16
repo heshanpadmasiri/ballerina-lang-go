@@ -1,0 +1,586 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "isolated-worker-test-8e649817ff/isolated-named-worker-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> isolated-named-worker-negative-e.bal:109:13
+            |
+        109 |     var _ = service object {
+            |             ^^^^^^^^^^^^^^^^
+        110 |         isolated resource function get foo() returns int[] {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        111 |             int[] a = [];
+            |             ^^^^^^^^^^^^^
+        112 |             future<int> _ = start f4(intArr); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        113 | 
+            | 
+        114 |             worker A {
+            |             ^^^^^^^^^^
+        115 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        116 |                 int[] _ = intArr; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        117 |             }
+            |             ^
+        118 | 
+            | 
+        119 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        120 | 
+            | 
+        121 |             fork {
+            |             ^^^^^^
+        122 |                 worker B {
+            |                 ^^^^^^^^^^
+        123 |                     future<int> _ = start f4(intArr); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        124 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        125 |                 }
+            |                 ^
+        126 | 
+            | 
+        127 |                 worker C {
+            |                 ^^^^^^^^^^
+        128 |                     future<int> _ = start f4(a); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        129 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        130 |                 }
+            |                 ^
+        131 |             }
+            |             ^
+        132 | 
+            | 
+        133 |             return intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        134 |         }
+            |         ^
+        135 | 
+            | 
+        136 |         isolated remote function bar() returns int[] {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        137 |             int[] a = [];
+            |             ^^^^^^^^^^^^^
+        138 |             future<int> _ = start f4(intArr); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        139 | 
+            | 
+        140 |             worker A {
+            |             ^^^^^^^^^^
+        141 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        142 |                 int[] _ = intArr; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        143 |             }
+            |             ^
+        144 | 
+            | 
+        145 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        146 | 
+            | 
+        147 |             fork {
+            |             ^^^^^^
+        148 |                 worker B {
+            |                 ^^^^^^^^^^
+        149 |                     future<int> _ = start f4(intArr); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        150 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        151 |                 }
+            |                 ^
+        152 | 
+            | 
+        153 |                 worker C {
+            |                 ^^^^^^^^^^
+        154 |                     future<int> _ = start f4(a); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        155 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        156 |                 }
+            |                 ^
+        157 |             }
+            |             ^
+        158 | 
+            | 
+        159 |             return intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        160 |         }
+            |         ^
+        161 | 
+            | 
+        162 |         isolated function bam() returns int[] {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        163 |             int[] a = [];
+            |             ^^^^^^^^^^^^^
+        164 |             future<int> _ = start f4(intArr); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        165 | 
+            | 
+        166 |             worker A {
+            |             ^^^^^^^^^^
+        167 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        168 |                 int[] _ = intArr; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        169 |             }
+            |             ^
+        170 | 
+            | 
+        171 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        172 | 
+            | 
+        173 |             fork {
+            |             ^^^^^^
+        174 |                 worker B {
+            |                 ^^^^^^^^^^
+        175 |                     future<int> _ = start f4(intArr); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        176 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        177 |                 }
+            |                 ^
+        178 | 
+            | 
+        179 |                 worker C {
+            |                 ^^^^^^^^^^
+        180 |                     future<int> _ = start f4(a); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        181 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        182 |                 }
+            |                 ^
+        183 |             }
+            |             ^
+        184 | 
+            | 
+        185 |             return intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        186 |         }
+            |         ^
+        187 |     };
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+           --> isolated-named-worker-negative-e.bal:204:9
+            |
+        204 |         fork {
+            |         ^^^^^^
+        205 |             worker B {
+            |             ^^^^^^^^^^
+        206 |                 future<int> _ = start f4(intArr); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        207 |                 int[] _ = a; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^
+        208 |             }
+            |             ^
+        209 | 
+            | 
+        210 |             worker C {
+            |             ^^^^^^^^^^
+        211 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        212 |                 int[] _ = a; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^
+        213 |             }
+            |             ^
+        214 |         }
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+           --> isolated-named-worker-negative-e.bal:230:9
+            |
+        230 |         fork {
+            |         ^^^^^^
+        231 |             worker B {
+            |             ^^^^^^^^^^
+        232 |                 future<int> _ = start f4(intArr); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        233 |                 int[] _ = a; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^
+        234 |             }
+            |             ^
+        235 | 
+            | 
+        236 |             worker C {
+            |             ^^^^^^^^^^
+        237 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        238 |                 int[] _ = a; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^
+        239 |             }
+            |             ^
+        240 |         }
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+           --> isolated-named-worker-negative-e.bal:256:9
+            |
+        256 |         fork {
+            |         ^^^^^^
+        257 |             worker B {
+            |             ^^^^^^^^^^
+        258 |                 future<int> _ = start f4(intArr); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        259 |                 int[] _ = a; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^
+        260 |             }
+            |             ^
+        261 | 
+            | 
+        262 |             worker C {
+            |             ^^^^^^^^^^
+        263 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        264 |                 int[] _ = a; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^
+        265 |             }
+            |             ^
+        266 |         }
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> isolated-named-worker-negative-e.bal:91:5
+           |
+        91 |     fork {
+           |     ^^^^^^
+        92 |         @strand {thread: "parent"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        93 |         worker sampleWorker1 {
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        94 |         }
+           |         ^
+        95 | 
+           | 
+        96 |         @strand {thread: "any"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        97 |         worker sampleWorker2 {
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        98 |         }
+           |         ^
+        99 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+           --> isolated-named-worker-negative-e.bal:194:9
+            |
+        194 |         int[] a = [];
+            |         ^^^^^^^^^^^^^
+        195 |         future<int> _ = start f4(intArr); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        196 | 
+            | 
+        197 |         worker A {
+            |         ^^^^^^^^^^
+        198 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        199 |             int[] _ = intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        200 |         }
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+           --> isolated-named-worker-negative-e.bal:220:9
+            |
+        220 |         int[] a = [];
+            |         ^^^^^^^^^^^^^
+        221 |         future<int> _ = start f4(intArr); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        222 | 
+            | 
+        223 |         worker A {
+            |         ^^^^^^^^^^
+        224 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        225 |             int[] _ = intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        226 |         }
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+           --> isolated-named-worker-negative-e.bal:246:9
+            |
+        246 |         int[] a = [];
+            |         ^^^^^^^^^^^^^
+        247 |         future<int> _ = start f4(intArr); // @error
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        248 | 
+            | 
+        249 |         worker A {
+            |         ^^^^^^^^^^
+        250 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        251 |             int[] _ = intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        252 |         }
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> isolated-named-worker-negative-e.bal:18:5
+           |
+        18 |     _ = f2();
+           |     ^^^^^^^^^
+        19 |     worker sampleWorker1 {
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        20 |         f1(msg); // @error
+           |         ^^^^^^^^^^^^^^^^^^
+        21 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> isolated-named-worker-negative-e.bal:33:5
+           |
+        33 |     _ = f2();
+           |     ^^^^^^^^^
+        34 |     worker sampleWorker1 {
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        35 |         int _ = intVal; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> isolated-named-worker-negative-e.bal:42:5
+           |
+        42 |     _ = f2();
+           |     ^^^^^^^^^
+        43 |     worker sampleWorker1 {
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        44 |         arr = [0, 1]; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        45 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> isolated-named-worker-negative-e.bal:49:5
+           |
+        49 |     _ = f2();
+           |     ^^^^^^^^^
+        50 |     int a = 12;
+           |     ^^^^^^^^^^^
+        51 |     worker sampleWorker1 {
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        52 |         int _ = a; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        53 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> isolated-named-worker-negative-e.bal:57:5
+           |
+        57 |     _ = f2();
+           |     ^^^^^^^^^
+        58 |     worker sampleWorker1 {
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        59 |         fork {
+           |         ^^^^^^
+        60 |             worker A returns int {
+           |             ^^^^^^^^^^^^^^^^^^^^^^
+        61 |                 return intVal; // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+        62 |             }
+           |             ^
+        63 |         }
+           |         ^
+        64 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> isolated-named-worker-negative-e.bal:68:5
+           |
+        68 |     _ = f2();
+           |     ^^^^^^^^^
+        69 |     worker sampleWorker1 {
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        70 |         future<()> _ = start f1(""); // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> isolated-named-worker-negative-e.bal:75:5
+           |
+        75 |     _ = f2();
+           |     ^^^^^^^^^
+        76 |     worker sampleWorker1 {
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        77 |         future<()> _ = start f3(arr); // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        78 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> isolated-named-worker-negative-e.bal:85:5
+           |
+        85 |     @strand{thread:"parent"} // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        86 |     worker sampleWorker1 {
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        87 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> isolated-named-worker-negative-e.bal:109:13
+            |
+        109 |     var _ = service object {
+            |             ^^^^^^^^^^^^^^^^
+        110 |         isolated resource function get foo() returns int[] {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        111 |             int[] a = [];
+            |             ^^^^^^^^^^^^^
+        112 |             future<int> _ = start f4(intArr); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        113 | 
+            | 
+        114 |             worker A {
+            |             ^^^^^^^^^^
+        115 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        116 |                 int[] _ = intArr; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        117 |             }
+            |             ^
+        118 | 
+            | 
+        119 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        120 | 
+            | 
+        121 |             fork {
+            |             ^^^^^^
+        122 |                 worker B {
+            |                 ^^^^^^^^^^
+        123 |                     future<int> _ = start f4(intArr); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        124 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        125 |                 }
+            |                 ^
+        126 | 
+            | 
+        127 |                 worker C {
+            |                 ^^^^^^^^^^
+        128 |                     future<int> _ = start f4(a); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        129 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        130 |                 }
+            |                 ^
+        131 |             }
+            |             ^
+        132 | 
+            | 
+        133 |             return intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        134 |         }
+            |         ^
+        135 | 
+            | 
+        136 |         isolated remote function bar() returns int[] {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        137 |             int[] a = [];
+            |             ^^^^^^^^^^^^^
+        138 |             future<int> _ = start f4(intArr); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        139 | 
+            | 
+        140 |             worker A {
+            |             ^^^^^^^^^^
+        141 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        142 |                 int[] _ = intArr; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        143 |             }
+            |             ^
+        144 | 
+            | 
+        145 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        146 | 
+            | 
+        147 |             fork {
+            |             ^^^^^^
+        148 |                 worker B {
+            |                 ^^^^^^^^^^
+        149 |                     future<int> _ = start f4(intArr); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        150 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        151 |                 }
+            |                 ^
+        152 | 
+            | 
+        153 |                 worker C {
+            |                 ^^^^^^^^^^
+        154 |                     future<int> _ = start f4(a); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        155 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        156 |                 }
+            |                 ^
+        157 |             }
+            |             ^
+        158 | 
+            | 
+        159 |             return intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        160 |         }
+            |         ^
+        161 | 
+            | 
+        162 |         isolated function bam() returns int[] {
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        163 |             int[] a = [];
+            |             ^^^^^^^^^^^^^
+        164 |             future<int> _ = start f4(intArr); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        165 | 
+            | 
+        166 |             worker A {
+            |             ^^^^^^^^^^
+        167 |                 future<int> _ = start f4(a); // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        168 |                 int[] _ = intArr; // @error
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        169 |             }
+            |             ^
+        170 | 
+            | 
+        171 |             future<int> _ = start f4(a); // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        172 | 
+            | 
+        173 |             fork {
+            |             ^^^^^^
+        174 |                 worker B {
+            |                 ^^^^^^^^^^
+        175 |                     future<int> _ = start f4(intArr); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        176 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        177 |                 }
+            |                 ^
+        178 | 
+            | 
+        179 |                 worker C {
+            |                 ^^^^^^^^^^
+        180 |                     future<int> _ = start f4(a); // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        181 |                     int[] _ = a; // @error
+            |                     ^^^^^^^^^^^^^^^^^^^^^^
+        182 |                 }
+            |                 ^
+        183 |             }
+            |             ^
+        184 | 
+            | 
+        185 |             return intArr; // @error
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        186 |         }
+            |         ^
+        187 |     };
+            |     ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

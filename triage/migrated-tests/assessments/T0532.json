@@ -1,0 +1,19 @@
+{
+  "id": "T0532",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-table-addition-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: the supported constructor list includes \"List constructor\" and \"Mapping constructor\" but does not include table constructors.",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists \"cloneWithType\", \"fromJsonWithType\", \"toString\", \"toBalString\".",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; neither value:cloneReadOnly nor table:add is listed."
+  ],
+  "reason": "The asserted panic requires cloning a keyed table as readonly and then invoking table.add on that frozen value. Table constructors, cloneReadOnly, and table.add are outside the supported positive lists, so this whole case requires unsupported features.",
+  "unsupported_constructs": [
+    "Keyed table constructor",
+    "value:cloneReadOnly method call",
+    "table:add method call and frozen-table mutation panic"
+  ],
+  "test_design_notes": [
+    "The // @panic marker asserts runtime rejection of adding a row to the readonly clone."
+  ]
+}

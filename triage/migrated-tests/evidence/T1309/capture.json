@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible type: expected [int, int, never...], got nil\n --\u003e not-enough-args-to-return-1-e.bal:2:5\n  |\n2 |     return; // @error\n  |     ^^^^^^^\n\n","Diagnostics":[{"File":"not-enough-args-to-return-1-e.bal","StartLine":2,"EndLine":2}]}

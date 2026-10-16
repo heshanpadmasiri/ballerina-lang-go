@@ -1,0 +1,14 @@
+{
+  "Name": "identifier-literal-test-7d241978d7/invalid-il-special-char-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-test-7d241978d7/invalid-il-special-char-e.bal",
+  "Project": false,
+  "Id": "T0630",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-test-7d241978d7/invalid-il-special-char-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 1.112
+}

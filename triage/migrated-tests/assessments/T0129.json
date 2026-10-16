@@ -1,0 +1,16 @@
+{
+  "id": "T0129",
+  "name": "array-access-expr-test-36e8f0c67c/incorrect-array-access-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Function definition], [Constant declarations], [Type definition]",
+    "Statements: [Assignment], [Local variable declarations], [Return]",
+    "Expressions: [Literal] — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only; [List constructor]; [Variable reference]; [Member access expression]; [lvexpr]",
+    "Operators: Unary operators — numeric ops `+`, `-`"
+  ],
+  "reason": "The case checks rejection of array indices with string or mixed finite int/string types and negative constant indices, including unary-minus expressions and indexed assignment. These are negative checks within supported type definitions, constants, member access, assignments, literals and unary numeric operators; no applicable subset restriction excludes them.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Five @error annotations assert compile-time rejection. There are no @args, @panic or @output execution assertions."
+  ]
+}

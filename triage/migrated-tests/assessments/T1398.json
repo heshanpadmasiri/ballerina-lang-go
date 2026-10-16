@@ -1,0 +1,19 @@
+{
+  "id": "T1398",
+  "name": "table-cast-test-10e69b67ad/table-cast-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive list includes ‘Type cast expression’, ‘Mapping constructor’ and ‘Member access expression’, but does not include table constructor expressions.",
+    "## Expressions: Query expressions — ‘Supports `list` and `map` as `query-constructor-type`’.",
+    "## Invocations / ### Other invocation restrictions: ‘`value:toString` and `value:toBalString`’ are supported method calls."
+  ],
+  "reason": "The essential setup and assertions construct keyed and keyless tables with table constructors, which are not covered by the supported expression list. General support for casts and member access does not establish table construction or table-key cast semantics. The four true output markers require successful table narrowing casts and keyed lookup, and the remaining call requires keyed/empty-key/keyless table casts and equality.",
+  "unsupported_constructs": [
+    "Table constructor expressions, including table key(name), table key(age), and keyless table literals",
+    "Asserted table key-constraint narrowing and empty-key/keyless cast behavior is not covered explicitly"
+  ],
+  "test_design_notes": [
+    "Four @output true markers cover the first four casts; the empty-key/keyless assertions run afterward without output markers and fail by panic if unequal.",
+    "io:println is instrumentation; toString method calls are explicitly allowed. No obvious marker mismatch."
+  ]
+}

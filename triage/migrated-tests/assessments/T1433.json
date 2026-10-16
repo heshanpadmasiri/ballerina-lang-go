@@ -1,0 +1,13 @@
+{
+  "id": "T1433",
+  "name": "tuple-destructure-test-b0950b4de8/tuple-destructure-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: [Destructuring assignment statement] — Only supports `wildcard-binding-pattern`",
+    "## Statements: [Local variable declarations]; [Return]",
+    "## Expressions: [List constructor]"
+  ],
+  "reason": "All four negative assertions require non-wildcard list destructuring assignments, including a rest binding in test2. The explicit wildcard-only restriction excludes this essential grammar, so expected tuple arity and element/rest type rejection is outside the supported subset.",
+  "unsupported_constructs": ["List destructuring assignments `[a, b, c] = x` and `[a, b] = x`", "Rest binding in destructuring assignment `[a, ...b] = x`"],
+  "test_design_notes": ["Four @error markers exercise tuple arity/type incompatibility; no @args, @panic or @output markers appear."]
+}

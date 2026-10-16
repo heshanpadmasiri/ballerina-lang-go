@@ -1,0 +1,12 @@
+{
+  "id": "T1559",
+  "name": "worker-fail-test-278d4f50a4/invalid-send-before-workers-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, including 'Local variable declarations'; named worker declarations and worker send statements are not listed.",
+    "## Expressions: lists 'Start action' and 'Wait action'; worker send and receive actions are not listed."
+  ],
+  "reason": "The negative test requires a named worker and worker messaging, including rejecting a send before the worker declaration. Named workers and worker send/receive actions are outside the subset's positive lists, so this rejection case depends on unsupported constructs.",
+  "unsupported_constructs": ["Named worker declaration: worker w1", "Worker send: i -> w1", "Worker receive: <- function"],
+  "test_design_notes": ["The send is marked @error; no runtime output, panic, or argument assertions are present."]
+}

@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at freeze-and-isfrozen-semantics-negative-e.bal:98-98 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at freeze-and-isfrozen-semantics-negative-e.bal:24 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at freeze-and-isfrozen-semantics-negative-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at freeze-and-isfrozen-semantics-negative-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at freeze-and-isfrozen-semantics-negative-e.bal:39 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at freeze-and-isfrozen-semantics-negative-e.bal:44 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at freeze-and-isfrozen-semantics-negative-e.bal:71 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

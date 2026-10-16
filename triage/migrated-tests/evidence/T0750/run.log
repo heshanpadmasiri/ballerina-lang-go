@@ -1,0 +1,19 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:48: CLI exit: exit status 1
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: -v test leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'y'
+         --> basic-main-v.bal:4:5
+          |
+        4 |     int y = x + 1;
+          |     ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'val'
+         --> basic-main-v.bal:5:5
+          |
+        5 |     string val = args[0] + args[1];
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

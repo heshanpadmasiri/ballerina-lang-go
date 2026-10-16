@@ -1,0 +1,17 @@
+{
+  "id": "T1097",
+  "name": "object-with-private-fields-negative-test-2196e80b05/private-field-access-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Import declarations; Function definition; Class definition",
+    "Module-level declarations: Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Statements: Assignment; Local variable declarations; Return",
+    "Expressions: New expression; Field access expression; Call; Variable reference",
+    "Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members"
+  ],
+  "reason": "The case checks rejection of access to the non-public ssn field of an imported module's public class, while public name access is valid. Imports, classes with public and non-public fields, constructors, methods, calls, assignments and field access are supported, with no restriction excluding field visibility checks. The negative access is within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The p.ssn access carries two @error markers on the same line; both concern the inaccessible field access."
+  ]
+}

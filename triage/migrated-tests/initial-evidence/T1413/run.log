@@ -1,0 +1,42 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:55-55 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:56-56 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:57-57 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:58-58 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:59-59 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:60-60 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:61-61 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:64-64 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:64-64 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:64-64 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:71-71 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:71-71 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:71-71 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:78-78 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:78-78 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:81-81 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:81-81 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:84-84 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:84-84 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:87-87 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:87-87 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:90-90 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:90-90 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:90-90 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:90-90 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:96-96 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:96-96 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at ternary-type-narrow-e.bal:96-96 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:15 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:16 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:17 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:66 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:73 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:74 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:75 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:92 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:98 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at ternary-type-narrow-e.bal:100 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:51: object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p: expected non-zero exit code, got 0
+    migration_triage_test.go:57: -p test "object-equivalency-test-f65632eff0/object-equivalency-inherent-type-violation-p" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

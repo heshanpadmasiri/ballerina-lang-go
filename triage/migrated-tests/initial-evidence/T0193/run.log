@@ -1,0 +1,75 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "assign-stmt-test-4075ad6286/assign-stmt-semantics-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-stmt-semantics-negative-e.bal:10:5
+           |
+        10 |     error(Foo) = error("x"); // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-stmt-semantics-negative-e.bal:11:5
+           |
+        11 |     [...Foo] = [Foo]; // @error // @error
+           |     ^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> assign-stmt-semantics-negative-e.bal:13:5
+           |
+        13 |     error(b, Foo) = error("x", data=Foo); // @error // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+         --> assign-stmt-semantics-negative-e.bal:7:5
+          |
+        7 |     [Foo, a] = [Foo, 1]; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+         --> assign-stmt-semantics-negative-e.bal:8:5
+          |
+        8 |     [[Foo], a] = [[Foo], 2]; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+         --> assign-stmt-semantics-negative-e.bal:9:5
+          |
+        9 |     [error(Foo), a] = [error("x"), 1]; // @error // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-stmt-semantics-negative-e.bal:10:5
+           |
+        10 |     error(Foo) = error("x"); // @error // @error
+           |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-stmt-semantics-negative-e.bal:11:5
+           |
+        11 |     [...Foo] = [Foo]; // @error // @error
+           |     ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> assign-stmt-semantics-negative-e.bal:13:5
+           |
+        13 |     error(b, Foo) = error("x", data=Foo); // @error // @error
+           |     ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+         --> assign-stmt-semantics-negative-e.bal:7:5
+          |
+        7 |     [Foo, a] = [Foo, 1]; // @error
+          |     ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+         --> assign-stmt-semantics-negative-e.bal:8:5
+          |
+        8 |     [[Foo], a] = [[Foo], 2]; // @error
+          |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+         --> assign-stmt-semantics-negative-e.bal:9:5
+          |
+        9 |     [error(Foo), a] = [error("x"), 1]; // @error // @error
+          |     ^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

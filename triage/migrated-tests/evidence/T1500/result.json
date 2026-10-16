@@ -1,0 +1,14 @@
+{
+  "Name": "unicode-negative-test-89728c5fba/unicode-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/unicode-negative-test-89728c5fba/unicode-negative-e.bal",
+  "Project": false,
+  "Id": "T1500",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/unicode-negative-test-89728c5fba/unicode-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.035
+}

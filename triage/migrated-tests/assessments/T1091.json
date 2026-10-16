@@ -1,0 +1,13 @@
+{
+  "id": "T1091",
+  "name": "object-type-reference-test-19fd51d776/object-type-reference-1-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'New expression' but does not list object constructor expressions",
+    "## Module-level declarations: 'Supports `object-field`, `method-defn` and `object-type-inclusion` members'",
+    "## Object/class definitions: 'Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members'"
+  ],
+  "reason": "The case includes C2's object-constructor expression (`body = object { int:Unsigned8 i = 1; }`), which is absent from the supported expression list. That initializer participates in the C2/C3 included-field override scenario, so the whole case depends on a construct not covered by subset10. The other negative object-inclusion checks are within the listed object/class member support; their intentionally illegal code alone does not make them unsupported.",
+  "unsupported_constructs": ["Object constructor expression used to initialize C2.body"],
+  "test_design_notes": ["Compile-negative case with @error markers, including inclusion cycles, non-object and unresolved inclusions, duplicate members, missing implementations and incompatible field overrides."]
+}

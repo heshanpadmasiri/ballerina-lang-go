@@ -1,0 +1,14 @@
+{
+  "Name": "string-value-record-test-97371d025a/string-value-record-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-value-record-test-97371d025a/string-value-record-v.bal",
+  "Project": false,
+  "Id": "T1369",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-value-record-test-97371d025a/string-value-record-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.082
+}

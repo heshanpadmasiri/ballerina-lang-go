@@ -1,0 +1,22 @@
+{
+  "id": "T0859",
+  "name": "match-stmt-const-pattern-test-fd23397e8d/const-pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions / Import declarations: ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString, fromHexString",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: [string:concat is absent]"
+  ],
+  "reason": "The whole case requires unsupported list and mapping match patterns, as well as lang.int MIN_VALUE/MAX_VALUE constants and string.concat method calls outside the positive langlib lists. These are exercised by assertions, so supported literal and wildcard matching elsewhere does not make the whole case a bug.",
+  "unsupported_constructs": [
+    "List match patterns [1, 2], [-2, -7], and [int:MIN_VALUE, int:MAX_VALUE]",
+    "Mapping match pattern {i: int:MIN_VALUE, j: int:MAX_VALUE}, including matching a map with extra fields",
+    "int:MIN_VALUE and int:MAX_VALUE references",
+    "string.concat method calls in foreach match tests"
+  ],
+  "test_design_notes": [
+    "io:println calls are output instrumentation and do not determine this classification.",
+    "Assertions exercise list matching, partial mapping matching, and concatenated output during string/list iteration."
+  ]
+}

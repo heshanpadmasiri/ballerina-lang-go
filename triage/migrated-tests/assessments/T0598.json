@@ -1,0 +1,19 @@
+{
+  "id": "T0598",
+  "name": "global-var-function-in-bala-test-943e6806ea/a-provider-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions — \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "## Module-level declarations — \"Module variable declarations\"",
+    "## Expressions — \"List constructor\"; \"Mapping constructor\"; \"Variable reference\"",
+    "## Statements — \"Assignment\"; \"Return\""
+  ],
+  "reason": "The provider initializes module byte arrays using base64 and base16 byte-array literals and exposes those values through getters. Byte-array literals are outside the explicitly supported literal forms, so the whole case requires an unsupported feature despite its otherwise supported globals, getters, setters and list/mapping constructors.",
+  "unsupported_constructs": [
+    "base64 byte-array literal initializing glbByteArray2",
+    "base16 byte-array literal initializing glbByteArray3"
+  ],
+  "test_design_notes": [
+    "The supplied provider has an empty main and no assertions; only its initialization and exported getter/setter behavior can be assessed from the allowed files."
+  ]
+}

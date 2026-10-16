@@ -1,0 +1,163 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "retry-stmt-with-on-fail-test-9697c09cc6/retry-on-fail-negative-unreachable-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:31:5
+           |
+        31 |     retry(3) {
+           |     ^^^^^^^^^^
+        32 |         count = count + 1;
+           |         ^^^^^^^^^^^^^^^^^^
+        33 |         fail trxError();
+           |         ^^^^^^^^^^^^^^^^
+        34 |         count = count + 1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |     } on fail error e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         return error("Custom Error");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:42:5
+           |
+        42 |     retry(3) {
+           |     ^^^^^^^^^^
+        43 |         count += 1;
+           |         ^^^^^^^^^^^
+        44 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |     } on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |         count += 1;
+           |         ^^^^^^^^^^^
+        47 |         return count;
+           |         ^^^^^^^^^^^^^
+        48 |         count += 1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        49 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:55:5
+           |
+        55 |     retry(3) {
+           |     ^^^^^^^^^^
+        56 |         count += 1;
+           |         ^^^^^^^^^^^
+        57 |         retry(2) {
+           |         ^^^^^^^^^^
+        58 |             count += 1;
+           |             ^^^^^^^^^^^
+        59 |             fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        60 |         }
+           |         ^
+        61 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        62 |     } on fail error e1 { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        63 |         count += 1;
+           |         ^^^^^^^^^^^
+        64 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>
+          --> main.bal:75:5
+           |
+        75 |     retry(3) {
+           |     ^^^^^^^^^^
+        76 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        77 |         int resB = check getTypeBError(); // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        78 |     } on fail ErrorTypeB e {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |         str += "-> Error caught : ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |         str = str.concat(e.message());
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        81 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:31:5
+           |
+        31 |     retry(3) {
+           |     ^^^^^^^^^^
+        32 |         count = count + 1;
+           |         ^^^^^^^^^^^^^^^^^^
+        33 |         fail trxError();
+           |         ^^^^^^^^^^^^^^^^
+        34 |         count = count + 1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |     } on fail error e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         return error("Custom Error");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:42:5
+           |
+        42 |     retry(3) {
+           |     ^^^^^^^^^^
+        43 |         count += 1;
+           |         ^^^^^^^^^^^
+        44 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |     } on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |         count += 1;
+           |         ^^^^^^^^^^^
+        47 |         return count;
+           |         ^^^^^^^^^^^^^
+        48 |         count += 1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        49 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:55:5
+           |
+        55 |     retry(3) {
+           |     ^^^^^^^^^^
+        56 |         count += 1;
+           |         ^^^^^^^^^^^
+        57 |         retry(2) {
+           |         ^^^^^^^^^^
+        58 |             count += 1;
+           |             ^^^^^^^^^^^
+        59 |             fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        60 |         }
+           |         ^
+        61 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        62 |     } on fail error e1 { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        63 |         count += 1;
+           |         ^^^^^^^^^^^
+        64 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented
+          --> main.bal:75:5
+           |
+        75 |     retry(3) {
+           |     ^^^^^^^^^^
+        76 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        77 |         int resB = check getTypeBError(); // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        78 |     } on fail ErrorTypeB e {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |         str += "-> Error caught : ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        80 |         str = str.concat(e.message());
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        81 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,12 @@
+{
+  "id": "T0937",
+  "name": "native-conversion-negative-test-c94381ac56/native-conversion-negative-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\".",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\", \"value:cloneWithType\" and \"value:fromJsonWithType\", but not error:detail."
+  ],
+  "reason": "The conversion functions are explicitly supported, but the asserted conversion diagnostic text is extracted with error.detail(), which is absent from both the supported lang.error methods and langlib method-call list. This unsupported operation is essential to the output assertions and cyclic-reference assertion.",
+  "unsupported_constructs": ["error.detail() in errorMessage and testConvertFromJsonWithCyclicValueReferences"],
+  "test_design_notes": ["io:println is output instrumentation; it is not the basis for classification.", "This is a runtime conversion-error test, including exact diagnostic messages and cyclic-reference behavior."]
+}

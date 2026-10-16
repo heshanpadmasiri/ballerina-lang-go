@@ -1,0 +1,22 @@
+{
+  "id": "T1496",
+  "name": "typeof-over-literal-expression-test-2703e4397a/typeof-over-literal-expression-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions, including 'Type test expression', but does not list typeof expressions.",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not cloneReadOnly or ensureType; ballerina/lang.error lists message, but not detail.",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes value:cloneWithType and value:toString, but not value:cloneReadOnly, value:ensureType or error:detail."
+  ],
+  "reason": "The case requires typeof expressions throughout and asserts their singleton/structural typedesc string representations and identity behavior; typeof is not covered by the supported expression list. Independently, essential cloneReadOnly(), ensureType() and err.detail() calls are outside the explicit langlib allowlists. Supported cloneWithType/toString calls and ordinary declarations do not make the whole case supported.",
+  "unsupported_constructs": [
+    "typeof expressions and their asserted typedesc identity/string behavior",
+    "value:cloneReadOnly method calls",
+    "value:ensureType method calls",
+    "error:detail method call"
+  ],
+  "test_design_notes": [
+    "Mixed scope: one main executes literal, mutable and readonly structural typeof checks, cloning/conversion checks and named type-reference rendering checks.",
+    "Output markers assert exact typedesc rendering, reference equality and conversion error detail text; these are behavior requirements beyond accepted signatures.",
+    "io:println is instrumentation. No obvious marker placement issue."
+  ]
+}

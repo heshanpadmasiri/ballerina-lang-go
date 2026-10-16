@@ -1,0 +1,18 @@
+{
+  "id": "T0374",
+  "name": "constant-access-negative-test-bfd16651f8/constant-access-negative-test-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\", \"Constant declarations\", \"Module variable declarations\", \"Type definition\" and \"Function definition\"",
+    "Statements: \"Assignment\", \"Local variable declarations\" and \"Return\"",
+    "Expressions: \"Variable reference\"; \"Currently `xml-qualified-names` not supported\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\""
+  ],
+  "reason": "The case tests rejection of access to a non-public imported constant, assignment to an imported constant, and incompatible assignments from string constants to int and a disjoint string-singleton union. These are negative checks within supported imports, constants, references, assignments and type definitions. The accompanying valid string and singleton-union assignments and final float module variable are also covered; no applicable restriction excludes them. The import is a local package module, not a restricted ballerina/lang.* library.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Four statements carry @error markers; remaining declarations and assignments provide valid context.",
+    "No @args, @panic or @output assertions are present."
+  ]
+}

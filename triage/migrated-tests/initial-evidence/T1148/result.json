@@ -1,0 +1,17 @@
+{
+  "Name": "operand-test-0e6612016b/operand_rest_param_only-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operand_rest_param_only-v.bal",
+  "Project": false,
+  "Id": "T1148",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operand-test-0e6612016b/operand_rest_param_only-v.bal"
+  ],
+  "Args": [
+    "Riyafa",
+    "John"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.16
+}

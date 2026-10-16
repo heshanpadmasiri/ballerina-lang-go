@@ -1,0 +1,17 @@
+{
+  "id": "T0494",
+  "name": "fork-in-function-test-c76a219e5a/fork-join-some-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes \"Return\" but does not include fork statements or named worker declarations.",
+    "## Expressions: \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\""
+  ],
+  "reason": "The asserted true output requires a fork with two named workers to run and an alternate wait to return either worker result. Although wait actions are listed, fork statements and named worker declarations are absent from the supported positive lists, so this whole case requires unsupported constructs.",
+  "unsupported_constructs": [
+    "fork statement containing named worker declarations"
+  ],
+  "test_design_notes": [
+    "The @output true assertion accepts either \"abc\" or \"xyz\", allowing either worker to complete first.",
+    "io:println only reports the assertion; no @args or @panic directives are present."
+  ]
+}

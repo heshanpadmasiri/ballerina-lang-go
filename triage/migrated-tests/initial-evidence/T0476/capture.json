@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'i'\n  --\u003e final-field-test.bal:36:5\n   |\n36 |     int i = a;\n   |     ^^^^^^^^^^\n\n","Diagnostics":[{"File":"final-field-test.bal","StartLine":36,"EndLine":36}]}

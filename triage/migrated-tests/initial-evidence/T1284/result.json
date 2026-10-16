@@ -1,0 +1,14 @@
+{
+  "Name": "ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-e.bal",
+  "Project": false,
+  "Id": "T1284",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.069
+}

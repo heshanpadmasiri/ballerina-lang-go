@@ -1,0 +1,14 @@
+{
+  "id": "T1220",
+  "name": "query-input-type-test-fa8f6cb76b/query_input_types-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: 'Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses'",
+    "Expressions: 'Supports `list` and `map` as `query-constructor-type`'",
+    "Expressions: 'List constructor', 'Mapping constructor', 'Field access expression', 'Member access expression', 'Equality expression'",
+    "Other invocation restrictions: '`array:length`'; '`value:toString` and `value:toBalString`'"
+  ],
+  "reason": "All four queries use supported from/select clauses with list results over array, map, record-array and string inputs. The assertions check result lengths, source iteration order and selected values/record fields; no query-input restriction excludes these inputs or behaviors. Array length and value toString method calls are explicitly allowed. io:println is output instrumentation.",
+  "unsupported_constructs": [],
+  "test_design_notes": []
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "while-stmt-test-8fe83cda27/while-stmt-type-narrowing-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-type-narrowing-e.bal",
+  "Project": false,
+  "Id": "T1541",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-type-narrowing-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.085
+}

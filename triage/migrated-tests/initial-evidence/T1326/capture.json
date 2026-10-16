@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at assignedAutoFilledArrayInvalidIndexAccess(sealed-array-assigned-autofill-index-p.bal:8)\n           main(sealed-array-assigned-autofill-index-p.bal:2)\n","Diagnostics":null}

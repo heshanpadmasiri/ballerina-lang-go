@@ -1,0 +1,17 @@
+{
+  "id": "T0451",
+  "name": "error-optimization-test-1dfdfc39cb/error-optimization-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Type definition; Function definition; Import declarations",
+    "Statements: Local variable declarations; Call",
+    "Expressions: Error constructor; Mapping constructor; Type test expression; Literal",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "The case uses supported type definitions, record-valued error details, error construction, union types and type tests. Its assertions check structural membership of errors and records, including equivalence of nondistinct aliases of error and discrimination by required detail fields; no applicable restriction excludes these behaviors. The imports of ballerina/test and ballerina/io are not ballerina/lang.* imports covered by the langlib restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "main invokes all seven assertion functions; their runtime assertions are essential behavior.",
+    "The sole @output annotation expects an empty printed line after successful assertions; io:println is instrumentation. There are no @args or @panic annotations."
+  ]
+}

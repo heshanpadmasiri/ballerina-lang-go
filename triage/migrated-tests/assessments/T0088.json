@@ -1,0 +1,16 @@
+{
+  "id": "T0088",
+  "name": "argument-parser-positive-test-e41e5b8a0a/char-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.string` lists `Char`."
+  ],
+  "reason": "The signature and string:Char type are supported, but the asserted behavior requires the external command-line argument parser to convert @args [\"A\"] into a string:Char main parameter and execute main. Subset 10 does not cover this execution protocol; function signature support does not establish it.",
+  "unsupported_constructs": [
+    "Command-line argument binding/conversion to the string:Char parameter of main."
+  ],
+  "test_design_notes": [
+    "@args [\"A\"] and @output A assert successful command-line parameter binding and execution. io:println is output instrumentation, not the unsupported feature."
+  ]
+}

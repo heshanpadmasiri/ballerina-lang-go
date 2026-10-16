@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN\n  --\u003e match-guard-type-checking-e.bal:25:9\n   |\n25 |         {b: 2, c: 3} if fn() =\u003e { // @error\n   |         ^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"match-guard-type-checking-e.bal","StartLine":25,"EndLine":25}]}

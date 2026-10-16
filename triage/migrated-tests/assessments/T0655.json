@@ -1,0 +1,14 @@
+{
+  "id": "T0655",
+  "name": "integer-range-operator-test-d441b901c6/integer-range-operators-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [Range expression](https://ballerina.io/spec/lang/master/#section_6.26)",
+    "Statements / Foreach: Currently only supports range, list, map, string and XML subtypes, and [iterable objects](https://ballerina.io/spec/lang/master/#section_5.8.2)",
+    "Subset restrictions / Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members",
+    "Module-level declarations / Class definition: Supports `object-field`, `method-defn` and `object-type-inclusion` members"
+  ],
+  "reason": "The range and iteration assertions are in scope, but several exercised range variables use object type descriptors containing `*object:Iterable;`. Object type inclusion is absent from the restricted supported object descriptor members; the explicit inclusion support belongs to class definitions. This essential construct makes the whole case a feature request.",
+  "unsupported_constructs": ["Object type inclusion (`*object:Iterable;`) inside anonymous object type descriptors"],
+  "test_design_notes": ["Includes closed and half-open ranges, equal/reversed bounds, integer subtypes and singleton unions, hexadecimal bounds, and iterable/iterator isolatedness assertions."]
+}

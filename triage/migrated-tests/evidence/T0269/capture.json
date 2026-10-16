@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible type: expected string, got any\n --\u003e bmap-value-validator-2-e.bal:5:13\n  |\n5 |     value = animals[\"animal1\"]; // @error\n  |             ^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"bmap-value-validator-2-e.bal","StartLine":5,"EndLine":5}]}

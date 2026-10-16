@@ -1,0 +1,16 @@
+{
+  "id": "T0190",
+  "name": "arrow-expr-test-733bf0507c/arrow-expressions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[Conditional expression](https://ballerina.io/spec/lang/master/#conditional-expr)\"",
+    "## Expressions: \"[Nil lifted expression](https://ballerina.io/spec/lang/master/#nil-lifted-expr)\""
+  ],
+  "reason": "testNillableParameter uses the Elvis expression x ?: \"John\" and main asserts its fallback result John for nil input. Elvis expressions are not included in the supported expression list; conditional and nil-lifted expressions are separately listed constructs and do not establish support for Elvis fallback semantics. This essential unsupported construct makes the whole case a feature.",
+  "unsupported_constructs": [
+    "Elvis expression (x ?: \"John\") and its nil-fallback behavior"
+  ],
+  "test_design_notes": [
+    "The @output John assertion requires execution of the Elvis fallback; supported function signatures alone cannot establish this behavior."
+  ]
+}

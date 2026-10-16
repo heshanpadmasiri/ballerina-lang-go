@@ -1,0 +1,18 @@
+{
+  "id": "T1238",
+  "name": "reachability-analysis-test-a8532630b8/reachability2-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"- [Return](https://ballerina.io/spec/lang/master/#return-stmt)\"; \"- [Panic](https://ballerina.io/spec/lang/master/#panic-stmt)\"; the supported statement list does not include fail statements.",
+    "## Expressions: \"- [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\"; \"- [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"",
+    "## Other invocation restrictions: \"- `error:message`\""
+  ],
+  "reason": "The whole case requires fail statements, which are absent from the positive list of supported statements. checkReachabilityWithFailExpr and related functions execute fail error(...) as branch termination and return errors; their tests assert the resulting error messages. Supporting error construction, check expressions and error:message does not cover fail-statement control flow.",
+  "unsupported_constructs": [
+    "fail statements and their branch-termination/error-return semantics"
+  ],
+  "test_design_notes": [
+    "The fail cases are called from main and explicitly assert error messages, so this is essential tested behavior.",
+    "Commented query-action cases do not contribute; io:println is only instrumentation."
+  ]
+}

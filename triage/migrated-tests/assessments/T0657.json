@@ -1,0 +1,16 @@
+{
+  "id": "T0657",
+  "name": "intersection-type-test-48ac088d43/distinct-error-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"",
+    "Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\"",
+    "Statements: \"[Assignment](https://ballerina.io/spec/lang/master/#assignment-stmt)\" and \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"",
+    "Expressions: \"[Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\" and \"[Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)\""
+  ],
+  "reason": "The case checks nominal assignability of distinct error types, intersections of distinct errors, and grouped distinct error descriptors, including required rejection of assignments marked @error. Type definitions, local declarations, assignments and error constructors are supported; subset10 specifies no restriction excluding these error type descriptors or their assignability rules. The object/class qualifier restriction does not apply to distinct error types.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compile-time case: assignments annotated @error are expected to be rejected, while unannotated assignments and constructors exercise accepted subtype relationships."
+  ]
+}

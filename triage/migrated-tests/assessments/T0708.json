@@ -1,0 +1,20 @@
+{
+  "id": "T0708",
+  "name": "let-expression-test-6fab6108d2/let-expression-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list does not include let expressions.",
+    "## Expressions — Query expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\".",
+    "# Subset restrictions / ## Import declarations: \"Only following lang libraries with given methods/types are supported\"; the `ballerina/lang.array` list omits `reduce`.",
+    "## Invocations / ### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; the array methods listed omit `array:reduce`."
+  ],
+  "reason": "The asserted results depend throughout on standalone let expressions, including module initialization, sequential bindings, destructuring, and captured bindings. The supported expression list does not cover let expressions; support for a query let clause does not cover this distinct expression form. In addition, testLetWithClass asserts a sum computed with the unsupported array reduce langlib method.",
+  "unsupported_constructs": [
+    "Standalone let expressions (let declarations in expression positions)",
+    "array:reduce invoked as arr.reduce(...)"
+  ],
+  "test_design_notes": [
+    "Commented transaction and record/object default-value tests are inactive.",
+    "The io:println call only reports a JSON-test error and does not determine the classification."
+  ]
+}

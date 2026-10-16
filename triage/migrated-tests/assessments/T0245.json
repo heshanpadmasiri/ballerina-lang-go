@@ -1,0 +1,20 @@
+{
+  "id": "T0245",
+  "name": "binary-bitwise-operation-test-84255fccd3/binary-bitwise-operation-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Operators: \"Bitwise ops `&`, `|`, `^`\"; \"Equality ops `==`, `!=`, `===`, `!==`\"; \"Additive ops `+`, `-`\"",
+    "## Expressions: \"Nil lifted expression\"; \"String template expression\"; \"Error constructor\"; \"Call\"",
+    "## Module-level declarations: \"Constant declarations\"; \"Module variable declarations\"; \"Type definition\"; \"Function definition\"",
+    "## Statements: \"Compound Assignment\"; \"Local variable declarations\"; \"Assignment\"; \"If/else\"; \"Return\"; \"Panic\"",
+    "## Import declarations: `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`; `ballerina/lang.value` lists `toString`",
+    "### Other invocation restrictions: \"`value:toString` and `value:toBalString`\" are supported with method call syntax"
+  ],
+  "reason": "The case exercises supported integer/byte bitwise operators over integer subtypes, singleton unions and nullable values. Its asserted numeric results, nil lifting, and eager evaluation of both operands (verified through module-variable increments) fall within the listed bitwise and nil-lifted expressions. Constants, type definitions, helper calls, equality checks and assertion panic construction are supported; the langlib subtypes and toString calls are explicitly listed. No essential unsupported construct or behavior was identified.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "All twelve @output calls expect empty output from functions returning nil; assertion failures panic. There are no @args or @panic directives.",
+    "io:println is output instrumentation.",
+    "The OR and XOR literal-only a8 results are not asserted: each mistakenly rechecks a7. Commented-out negative-singleton cases are inactive."
+  ]
+}

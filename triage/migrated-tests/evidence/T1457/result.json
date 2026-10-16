@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-dataflow-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-dataflow-negative-e.bal",
+  "Project": false,
+  "Id": "T1457",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-dataflow-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

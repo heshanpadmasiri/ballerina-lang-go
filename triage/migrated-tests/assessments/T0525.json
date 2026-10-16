@@ -1,0 +1,12 @@
+{
+  "id": "T0525",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-json-array-modification-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType; value:fromJsonWithType; value:toString and value:toBalString."
+  ],
+  "reason": "The asserted panic on writing b[8] depends on a.cloneReadOnly() producing a frozen JSON array. cloneReadOnly is absent from the supported lang.value functions and method-call allowlist, so this essential operation is outside subset 10.",
+  "unsupported_constructs": ["a.cloneReadOnly() and the resulting frozen-array mutation behavior"],
+  "test_design_notes": ["The @panic assertion exercises mutation of the cloned readonly array, including an index beyond its original length."]
+}

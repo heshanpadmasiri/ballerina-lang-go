@@ -1,0 +1,17 @@
+{
+  "id": "T0180",
+  "name": "array-stamp-inbuilt-function-test-9aeaf1be1a/array-stamp-inbuilt-function-test-9aeaf1be1a-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions including 'Type test expression' and 'Type cast expression', but does not list typeof expressions.",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes 'value:cloneWithType'."
+  ],
+  "reason": "The case essentially relies on typeof expressions and their printed typedesc representations to assert the runtime types produced by cloning. typeof expressions and the asserted typedesc rendering are not covered by subset10's positive expression list. cloneWithType itself is explicitly supported, but that does not establish support for these additional assertions.",
+  "unsupported_constructs": [
+    "typeof expressions, such as typeof (r1[0]) and typeof r10",
+    "Asserted typedesc output representations, including typedesc map<anydata>, typedesc Teacher, typedesc IntArray, and singleton-value typedesc strings"
+  ],
+  "test_design_notes": [
+    "io:println is treated as instrumentation; the decisive gap is the typeof expressions and their asserted output behavior."
+  ]
+}

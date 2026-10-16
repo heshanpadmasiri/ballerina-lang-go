@@ -1,0 +1,15 @@
+{
+  "id": "T0939",
+  "name": "native-conversion-test-4a94bbda4e/json-array-to-struct-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition]",
+    "Expressions: [List constructor]; [Type test expression]; [Method call]",
+    "Statements: [Local variable declarations]; [If/else]; [Return]; [Panic]",
+    "Subset restrictions / Import declarations: `ballerina/lang.value` — `cloneWithType`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `value:cloneWithType`"
+  ],
+  "reason": "The case converts a JSON array to the Person record using explicitly supported cloneWithType, then panics with the returned conversion error when the result is not Person. The asserted failed-conversion/panic behavior and the surrounding type definition, list construction, type test and control flow are in scope; no essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic annotation is a comment on the conversion line; the explicit panic occurs after the returned error fails the Person type test."]
+}

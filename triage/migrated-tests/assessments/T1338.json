@@ -1,0 +1,15 @@
+{
+  "id": "T1338",
+  "name": "sealed-arrays-of-arrays-test-51b52f77c7/code-analysis-negative-sealed-arrays-of-arrays-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"; \"Module variable declarations\"",
+    "Statements: \"Local variable declarations\"; \"Return\"; \"If/else\"",
+    "Expressions: \"List constructor\"; \"Mapping constructor\"; \"Anonymous function expression\"; \"Variable reference\""
+  ],
+  "reason": "The case asserts compile-time rejection of invalid inferred-length array descriptors in nested arrays, union/intersection types, function parameters and returns, tuples and maps. These are type-system checks within supported declarations, constructors and anonymous functions. The positive feature lists and restrictions impose no exclusion for inferred-length arrays or their placement rules, and the case uses no restricted library operations. Illegal negative inputs do not themselves make this a feature request.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error annotations assert rejection, including multiple errors on some lines; unmarked inferred-array declarations provide contextual valid controls."
+  ]
+}

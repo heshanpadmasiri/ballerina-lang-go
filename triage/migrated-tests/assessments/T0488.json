@@ -1,0 +1,14 @@
+{
+  "id": "T0488",
+  "name": "finite-type-test-4244068d65/finite-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"[Conditional expression](https://ballerina.io/spec/lang/master/#conditional-expr)\"",
+    "Expressions: \"[Nil lifted expression](https://ballerina.io/spec/lang/master/#nil-lifted-expr)\"; the positive expression list does not include elvis-expr.",
+    "Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\" and \"[Class definition](https://ballerina.io/spec/lang/master/#section_8.6)\"",
+    "Named and default arguments: \"Object constructor calls support named and default arguments while selecting a unique class from an object union; they do not have the atomic-target restriction above.\""
+  ],
+  "reason": "The called default-value test requires the Elvis expression `c.b ?: \"off\"`, which is absent from the supported expression list. The listed conditional-expr and nil-lifted-expr are separate constructs. This essential unsupported expression makes the whole case a feature request despite support for the surrounding type definitions, classes and constructor arguments.",
+  "unsupported_constructs": ["Elvis expression in assignFiniteValueAsDefaultParam: return c.b ?: \"off\";"],
+  "test_design_notes": ["main asserts the default-value path produces on; it therefore exercises the function containing the Elvis expression even though its fallback is not selected.", "The file contains @output assertions and no @args or @panic directives. io:println is output instrumentation and is not the classification basis."]
+}

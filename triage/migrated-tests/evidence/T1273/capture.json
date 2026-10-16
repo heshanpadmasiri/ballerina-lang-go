@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation: cannot remove required field 'name'\n        at main(record-remove-required-p.bal:13)\n","Diagnostics":null}

@@ -1,0 +1,13 @@
+{
+  "id": "T1352",
+  "name": "stack-overflow-test-7d9240c754/stack_overflow_in_worker-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists Call and Return, but does not list named worker declarations",
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\"",
+    "## Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\""
+  ],
+  "reason": "The case requires named workers w1 and w2, with w1 entering infinite recursion. Named worker declarations and stack-overflow propagation from such workers are not covered by the supported feature lists. Support for start/wait actions and annotation attachments does not establish support for named workers or their failure behavior.",
+  "unsupported_constructs": ["Named worker declarations", "Stack-overflow behavior in a named worker"],
+  "test_design_notes": ["The supplied source has no explicit assertion; its observable behavior is executing an infinitely recursive function from worker w1."]
+}

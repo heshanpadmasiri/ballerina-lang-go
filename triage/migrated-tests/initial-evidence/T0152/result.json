@@ -1,0 +1,14 @@
+{
+  "Name": "array-initializer-expr-test-8700f50634/array-initializer-expr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-initializer-expr-test-8700f50634/array-initializer-expr-v.bal",
+  "Project": false,
+  "Id": "T0152",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-initializer-expr-test-8700f50634/array-initializer-expr-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.061
+}

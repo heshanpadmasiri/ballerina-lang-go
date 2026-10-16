@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at main(array-mutability-json-boolean-p.bal:5)\n","Diagnostics":null}

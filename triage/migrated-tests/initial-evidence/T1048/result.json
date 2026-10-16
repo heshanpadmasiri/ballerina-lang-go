@@ -1,0 +1,14 @@
+{
+  "Name": "numeric-conversion-test-6b3e1e5e00/nan-float-union-as-byte-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/nan-float-union-as-byte-p.bal",
+  "Project": false,
+  "Id": "T1048",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/numeric-conversion-test-6b3e1e5e00/nan-float-union-as-byte-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.032
+}

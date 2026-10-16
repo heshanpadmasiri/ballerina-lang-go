@@ -1,0 +1,14 @@
+{
+  "Name": "anonymous-record-negative-test-493ce47c85/anon-record-isolation-analysis-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-record-negative-test-493ce47c85/anon-record-isolation-analysis-negative-e.bal",
+  "Project": false,
+  "Id": "T0026",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anonymous-record-negative-test-493ce47c85/anon-record-isolation-analysis-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

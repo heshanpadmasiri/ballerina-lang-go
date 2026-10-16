@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at return-in-resource-with-mismatching-types-e.bal:20-20 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at return-in-resource-with-mismatching-types-e.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at return-in-resource-with-mismatching-types-e.bal:9 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at return-in-resource-with-mismatching-types-e.bal:13 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

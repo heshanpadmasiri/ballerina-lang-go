@@ -1,0 +1,18 @@
+{
+  "id": "T0046",
+  "name": "argument-parser-negative-test-706c373f17/invalid-decimal-04-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\" supports \"required-params\" in the signature.",
+    "Expressions → Literal: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\".",
+    "Subset restrictions → Import declarations lists `ballerina/lang.decimal` with `fromString`."
+  ],
+  "reason": "The source declares an empty public main function with one required decimal parameter. Its only tested behavior is rejection of the command-line argument 0X1EF.A2P-2, supplied by the @args comment, with an expected panic. Function definitions and required parameters are supported, but the supplied specification does not cover executable entry-point argument binding, command-line decimal parsing, or the failure behavior of invalid command-line arguments. Support for numeric literals and decimal:fromString does not establish support for this separate invocation mechanism. Consequently the whole case depends on a not-covered feature, despite its ordinary function syntax.",
+  "unsupported_constructs": [
+    "Command-line conversion to a decimal main parameter and rejection/panic behavior for invalid input."
+  ],
+  "test_design_notes": [
+    "The hexadecimal-looking input is comment data, not a Ballerina numeric literal or deliberately malformed source syntax.",
+    "The @panic marker is on the main declaration; the empty function body contains no panic statement. No obvious migration defect is established from these two files."
+  ]
+}

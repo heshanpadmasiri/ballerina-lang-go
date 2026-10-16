@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 's'\n  --\u003e record_default_functions-v.bal:19:28\n   |\n19 | isolated function getAsInt(string s) returns int {\n   |                            ^^^^^^^^\n\n","Diagnostics":[{"File":"record_default_functions-v.bal","StartLine":19,"EndLine":19}]}

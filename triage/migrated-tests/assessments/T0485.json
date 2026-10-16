@@ -1,0 +1,17 @@
+{
+  "id": "T0485",
+  "name": "finite-type-negative-test-02a1012607/finite-type-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Constant declarations\", \"Module variable declarations\", \"Type definition\", \"Function definition\"",
+    "Statements: \"Local variable declarations\", \"Return\", \"If/else\", \"Call\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"; \"Type cast expression\"; \"List constructor\"; \"Variable reference\"",
+    "Operators: \"Additive ops `+`, `-`\"; unary \"numeric ops `+`, `-`\""
+  ],
+  "reason": "The case checks rejection of incompatible singleton/finite union assignments, numeric-kind mismatches, invalid finite-type arguments and returns, casts, and out-of-range numeric literals. These use supported type and constant definitions, literals, variable declarations, calls, casts and numeric operators. No subset restriction excludes finite types, their assignability rules, or numeric literal validation. Negative diagnostics for these supported constructs are in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "This is a compile-negative case with @error markers, including module-level declarations and function bodies; there are no @args, @panic or @output assertions.",
+    "Some invalid declarations can cause cascading diagnostics; assessment concerns supported constructs rather than exact diagnostic count or wording."
+  ]
+}

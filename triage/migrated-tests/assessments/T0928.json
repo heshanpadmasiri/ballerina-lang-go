@@ -1,0 +1,12 @@
+{
+  "id": "T0928",
+  "name": "multiple-order-by-clause-test-501ec633e3/multiple-order-by-clauses-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: [Query expressions](https://ballerina.io/spec/lang/master/#query-expr)",
+    "Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses"
+  ],
+  "reason": "The case requires a query action ending in a do clause, with join and repeated order by/limit clauses. The positive list supports query expressions and specified clauses, but does not cover query actions or do clauses. This essential unsupported construct makes the whole case a feature request even though the embedded ordering and limit clauses are listed.",
+  "unsupported_constructs": ["Query action with terminal do clause"],
+  "test_design_notes": ["The only explicit diagnostic expectation is unused variable 'op'; there is no runtime result assertion. That expectation occurs on a query action outside the documented subset."]
+}

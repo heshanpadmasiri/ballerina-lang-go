@@ -1,0 +1,17 @@
+{
+  "Name": "forward-referencing-global-definition-test-c1122b914e/multi-file-reference-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/multi-file-reference-v",
+  "Project": true,
+  "Id": "T0503",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/multi-file-reference-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/multi-file-reference-v/file01.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/multi-file-reference-v/file02.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/multi-file-reference-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.061
+}

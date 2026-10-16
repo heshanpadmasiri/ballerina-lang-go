@@ -1,0 +1,14 @@
+{
+  "Name": "lvalue-test-e2785cbb54/array-fill-failure-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/array-fill-failure-p.bal",
+  "Project": false,
+  "Id": "T0736",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/array-fill-failure-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.062
+}

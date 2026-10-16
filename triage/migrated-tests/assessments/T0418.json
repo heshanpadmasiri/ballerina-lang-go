@@ -1,0 +1,12 @@
+{
+  "id": "T0418",
+  "name": "display-annotation-test-3b487ddbc8/display_annot_negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"",
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\" (ballerina/lang.annotations and display are absent)"
+  ],
+  "reason": "The negative assertions require the built-in display annotation's declaration and value constraints: rejection of duplicate display attachments and of kind: passwordx. Although general annotation attachments are supported, display comes from ballerina/lang.annotations, which is outside the supported lang-library list. This essential dependency makes the whole case a feature.",
+  "unsupported_constructs": ["Built-in @display annotation from ballerina/lang.annotations, including its attachment multiplicity and value constraints"],
+  "test_design_notes": ["Two @error markers assert compile-time rejection; there are no @args, @panic, or @output assertions."]
+}

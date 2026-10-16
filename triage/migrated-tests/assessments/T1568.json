@@ -1,0 +1,21 @@
+{
+  "id": "T1568",
+  "name": "worker-fail-test-278d4f50a4/send-receive-failure-type-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, but does not list named worker declarations or worker sends.",
+    "## Expressions: lists 'Start action' and 'Wait action', but does not list worker receive or synchronous send actions.",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.error lists only 'message'."
+  ],
+  "reason": "The negative assertions depend on named workers and the inferred failure types of asynchronous sends, receives, and synchronous sends. These essential worker constructs and their failure propagation rules are not covered by subset 10; supported start/wait actions do not establish support for worker messaging. The explicit error:NoMessage type is also absent from the lang.error allowlist.",
+  "unsupported_constructs": [
+    "Named worker declarations with return types",
+    "Worker asynchronous send (->), receive (<-), and synchronous send (->>) actions and associated failure type inference",
+    "error:NoMessage lang.error type"
+  ],
+  "test_design_notes": [
+    "Contains multiple negative @error assertions alongside unmarked worker operations; the whole case depends on unsupported messaging semantics.",
+    "Some marked receives also mismatch the sent value type, but supported ordinary type checking does not make the worker-dependent case in scope.",
+    "println is a local empty helper; no @args, @panic, or @output behavior is asserted."
+  ]
+}

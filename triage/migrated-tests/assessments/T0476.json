@@ -1,0 +1,17 @@
+{
+  "id": "T0476",
+  "name": "final-access-test-b8abe5c420/final-access-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\", \"Function definition\", \"Module variable declarations\"",
+    "Statements: \"Local variable declarations\", \"Return\"",
+    "Expressions: \"Literal\", \"Call\", \"List constructor\", \"Variable reference\", \"Member access expression\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\""
+  ],
+  "reason": "All essential constructs and asserted behavior fall within the supported declarations, statements and expressions. The case reads explicitly typed and inferred final module/local variables, including variables initialized by calls, passes integer values as required arguments, and returns/indexes fixed tuple values. Cross-module calls use a package module covered by import declarations; no langlib restriction applies. The asserted integer and string outputs follow directly from those initializers and returns.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The fourteen @output assertions check 10/100 module values, hello/world module strings, argument passing (10 and 50), and four Ballerina local initialization results. No @args or @panic directives occur.",
+    "io:println is output instrumentation. Despite its name, testFieldAsFinalParameter uses an ordinary required parameter and does not test final parameter syntax or reassignment rejection."
+  ]
+}

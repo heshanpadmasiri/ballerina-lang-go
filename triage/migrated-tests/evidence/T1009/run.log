@@ -1,0 +1,88 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "never-type-test-35205a329e/never-type-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> never-type-negative-e.bal:125:28
+            |
+        125 |     HumanTable humanTable= table key(name)[ // @error
+            |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        126 |         { name: "DD", age: 33},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        127 |         { name: "XX", age: 34}
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        128 |     ];
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> never-type-negative-e.bal:134:37
+            |
+        134 |     SomeHumanTable someHumanTable = table [ // @error
+            |                                     ^^^^^^^^^^^^^^^^^
+        135 |         { name: "MM", age: 33},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        136 |         { name: "PP", age: 34}
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        137 |     ];
+            |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> never-type-negative-e.bal:122:17
+            |
+        122 | type HumanTable table<Human> key<never>;
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> never-type-negative-e.bal:131:21
+            |
+        131 | type SomeHumanTable table<Human> key<never|string>;
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> never-type-negative-e.bal:243:9
+            |
+        243 |     var {x: _, ...rest} = p;
+            |         ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> never-type-negative-e.bal:243:9
+            |
+        243 |     var {x: _, ...rest} = p;
+            |         ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> never-type-negative-e.bal:125:28
+            |
+        125 |     HumanTable humanTable= table key(name)[ // @error
+            |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        126 |         { name: "DD", age: 33},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        127 |         { name: "XX", age: 34}
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        128 |     ];
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> never-type-negative-e.bal:134:37
+            |
+        134 |     SomeHumanTable someHumanTable = table [ // @error
+            |                                     ^^^^^^^^^^^^^^^^^
+        135 |         { name: "MM", age: 33},
+            |         ^^^^^^^^^^^^^^^^^^^^^^^
+        136 |         { name: "PP", age: 34}
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        137 |     ];
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> never-type-negative-e.bal:122:17
+            |
+        122 | type HumanTable table<Human> key<never>;
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> never-type-negative-e.bal:131:21
+            |
+        131 | type SomeHumanTable table<Human> key<never|string>;
+            |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

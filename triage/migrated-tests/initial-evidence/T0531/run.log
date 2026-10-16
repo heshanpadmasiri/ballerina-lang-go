@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "freeze-and-is-frozen-test-c0f3b0e88b/frozen-string-array-modification-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: method not found: cloneReadOnly
+         --> frozen-string-array-modification-p.bal:3:18
+          |
+        3 |     string[] b = a.cloneReadOnly();
+          |                  ^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

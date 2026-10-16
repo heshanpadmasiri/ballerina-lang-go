@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unreachable code\n  --\u003e checked-expr-with-no-error-type-v.bal:12:5\n   |\n12 |     panic error(\"You are not supposed to reach this line\");\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"checked-expr-with-no-error-type-v.bal","StartLine":12,"EndLine":12}]}

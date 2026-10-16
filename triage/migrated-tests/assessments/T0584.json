@@ -1,0 +1,16 @@
+{
+  "id": "T0584",
+  "name": "functions-with-defaultable-parameters-test-517e580aad/check-in-parameter-default-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "## Module-level declarations: \"Supports the [`isolated`](https://ballerina.io/spec/lang/master/#isolated-qual) function qualifier\"",
+    "## Expressions: \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"; \"[Anonymous function expression](https://ballerina.io/spec/lang/master/#anonymous-function-expr)\"; \"[Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\"",
+    "## Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"; \"[Class definition](https://ballerina.io/spec/lang/master/#section_8.6)\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\""
+  ],
+  "reason": "Negative test asserting rejection of check expressions in defaultable parameter initializers across named and anonymous functions, function type descriptors, and record/class field initializers, including nested record/list expressions. The final case also checks an invalid check operand with no error member. These are static legality checks within supported function/defaultable-parameter, check-expression, anonymous-function, record, and class constructs; no subset restriction excludes their validation.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error markers assert compile-time diagnostics; illegal uses of supported constructs remain in scope. No runtime invocation or default-argument signature-retention behavior is exercised."
+  ]
+}

@@ -1,0 +1,38 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "worker-fail-test-278d4f50a4/invalid-send-with-error-return-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:4:5
+           |
+         4 |     worker w1 returns boolean|error {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         5 |         int i = 2;
+           |         ^^^^^^^^^^
+         6 |         if 0 > 1 {
+           |         ^^^^^^^^^^
+         7 |             error err = error("err", message = "err msg");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         8 |             return err;
+           |             ^^^^^^^^^^^
+         9 |         }
+           |         ^
+        10 |         i -> w2;
+           |         ^^^^^^^^
+        11 |         io:println("w1");
+           |         ^^^^^^^^^^^^^^^^^
+        12 |         return false;
+           |         ^^^^^^^^^^^^^
+        13 |     }
+           |     ^
+        14 |     worker w2 {
+           |     ^^^^^^^^^^^
+        15 |         int j = 25;
+           |         ^^^^^^^^^^^
+        16 |         j = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        17 |         io:println(j);
+           |         ^^^^^^^^^^^^^^
+        18 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

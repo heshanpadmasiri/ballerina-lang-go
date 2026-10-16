@@ -1,0 +1,14 @@
+{
+  "Name": "while-stmt-test-8fe83cda27/while-stmt-on-fail-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-on-fail-v.bal",
+  "Project": false,
+  "Id": "T1540",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-on-fail-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.055
+}

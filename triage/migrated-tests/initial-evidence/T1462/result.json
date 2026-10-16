@@ -1,0 +1,15 @@
+{
+  "Name": "type-cast-action-test-c72af680c1/type-cast-action-test-c72af680c1-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-cast-action-test-c72af680c1/type-cast-action-test-c72af680c1-v",
+  "Project": true,
+  "Id": "T1462",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-cast-action-test-c72af680c1/type-cast-action-test-c72af680c1-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/type-cast-action-test-c72af680c1/type-cast-action-test-c72af680c1-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.053
+}

@@ -1,0 +1,160 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "mapping-constructor-expr-test-833706cb84/spread-op-field-semantic-analysis-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:102:14
+            |
+        102 |     Foo _ = {...foo1, ...foo2}; // @error // @error
+            |              ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:108:15
+            |
+        108 |     Foz _ =  {...foz1, ...foz2, ...foz3, ...foz4}; // @error // @error
+            |               ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:119:18
+            |
+        119 |     Country _ = {...country1}; // @error // @error
+            |                  ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:122:18
+            |
+        122 |     Country _ = {...country2}; // @error
+            |                  ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:125:37
+            |
+        125 |     Country _ = {continent: "Asia", ...country3}; // @error
+            |                                     ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:128:61
+            |
+        128 |      record {|string name; string continent; int...;|} _ = {...country4}; // @error
+            |                                                             ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:131:53
+            |
+        131 |      record {|string name; string continent;|} _ = {...country5}; // @error
+            |                                                     ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:138:25
+            |
+        138 |     map<int> f = {i: 1, ...iv}; // @error
+            |                         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:146:22
+            |
+        146 |     map<string> f = {...b, i: "j", ...r}; // @error // @error
+            |                      ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:150:35
+            |
+        150 |     map<string|int> m = {s, i: 2, ...b, ...getFoo()}; // @error // @error // @error // @error
+            |                                   ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:160:15
+            |
+        160 |     json j = {...r, c: 2, ...m}; // @error // @error
+            |               ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:161:27
+            |
+        161 |     map<json> mj = {a: 1, ...r, ...m}; // @error // @error
+            |                           ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:174:15
+            |
+        174 |     Baz bz = {...strMap}; // @error
+            |               ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+           --> spread-op-field-semantic-analysis-negative-e.bal:175:29
+            |
+        175 |     Bar br = {s: 1, i: 2.0, ...strMap}; // @error
+            |                             ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:33:14
+           |
+        33 |     Foo f = {...s, s, i: 1, ...b}; // @error // @error
+           |              ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:41:14
+           |
+        41 |     Foo f = {...b, i: 1, ...r}; // @error // @error // @error // @error
+           |              ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:49:26
+           |
+        49 |     Foo f = {s: "hello", ...r}; // @error // @error
+           |                          ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:53:23
+           |
+        53 |     Foo f = {s, i: 2, ...b}; // @error // @error
+           |                       ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:58:14
+           |
+        58 |     Foo _ = {...rec1}; // @error
+           |              ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:61:14
+           |
+        61 |     Foo _ = {...rec2}; // @error
+           |              ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:64:14
+           |
+        64 |     Foo _ = {...rec3}; // @error
+           |              ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:67:14
+           |
+        67 |     Foo _ = {...rec4}; // @error
+           |              ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:71:14
+           |
+        71 |     Foo _ = {...rec5, ...rec6}; // @error
+           |              ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:92:36
+           |
+        92 |     record {|string street;|} _ = {...address1}; // @error
+           |                                    ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:95:17
+           |
+        95 |     Street _ = {...address2}; // @error
+           |                 ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-semantic-analysis-negative-e.bal:98:17
+           |
+        98 |     Street _ = {...address3}; // @error
+           |                 ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "tuple-mutability-test-4a07e00b3d/complex-tuple-types-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'x2'
+          --> complex-tuple-types-v.bal:16:5
+           |
+        16 |     float x2 = var1[1];
+           |     ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x4'
+          --> complex-tuple-types-v.bal:18:5
+           |
+        18 |     [int|boolean, float] x4 = var3[0];
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

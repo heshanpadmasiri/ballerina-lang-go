@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "freeze-and-is-frozen-test-c0f3b0e88b/frozen-any-array-addition-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: method not found: cloneReadOnly
+          --> frozen-any-array-addition-p.bal:10:20
+           |
+        10 |     anydata[] i2 = i1.cloneReadOnly();
+           |                    ^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

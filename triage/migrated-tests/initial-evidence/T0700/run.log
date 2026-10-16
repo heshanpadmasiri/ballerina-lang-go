@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "jsontest-d8d6aef1f4/nullable-json-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> nullable-json-v.bal:13:16
+           |
+        13 |     io:println(fieldAccessError.detail()["message"]); // @output JSON value is not a mapping
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: expression expected action found\n  --\u003e nested-actions-e.bal:35:33\n   |\n35 |     string result = f1-\u003egetName(f2-\u003egetName(f3-\u003egetName())); // @error @error\n   |                                 \n\n","Diagnostics":[{"File":"nested-actions-e.bal","StartLine":35,"EndLine":35}]}

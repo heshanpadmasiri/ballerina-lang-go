@@ -1,0 +1,14 @@
+{
+  "Name": "expr-bodied-function-test-d60970291b/expr-bodied-functions-checkpanic-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/expr-bodied-function-test-d60970291b/expr-bodied-functions-checkpanic-p.bal",
+  "Project": false,
+  "Id": "T0462",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/expr-bodied-function-test-d60970291b/expr-bodied-functions-checkpanic-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.025
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'tuple2'\n  --\u003e different-type-covariance-v.bal:23:5\n   |\n23 |     [Employee, Person] tuple2 = tuple;\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"different-type-covariance-v.bal","StartLine":23,"EndLine":23}]}

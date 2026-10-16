@@ -1,0 +1,15 @@
+{
+  "id": "T0742",
+  "name": "lvalue-test-e2785cbb54/inherent-type-violating-update-2-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Class definition; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Statements: Assignment; See supported [`lvexpr`](#expressions)",
+    "Statements: Local variable declarations",
+    "Expressions: New expression; Field access expression; lvexpr",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported"
+  ],
+  "reason": "The case uses ordinary unqualified classes, initialization, structural object assignment, and object-field updates, all within the supported constructs and restrictions. It asserts a panic when writing an int through AObj's boolean|int field view to an underlying BObj whose inherent field type is boolean. No supplied restriction excludes this inherent-type enforcement behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic marker asserts runtime rejection of the final field update."]
+}

@@ -1,0 +1,17 @@
+{
+  "Name": "module-test-be8948702c/module-test-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-test-be8948702c/module-test-v",
+  "Project": true,
+  "Id": "T0918",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-test-be8948702c/module-test-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/module-test-be8948702c/module-test-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/module-test-be8948702c/module-test-v/modules/test.math/test.math.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/module-test-be8948702c/module-test-v/modules/test.math/test.math2.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.033
+}

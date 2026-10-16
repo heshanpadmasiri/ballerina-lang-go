@@ -1,0 +1,18 @@
+{
+  "id": "T0205",
+  "name": "basic-async-operations-test-5353eae739/async-non-native-basic10-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' (the enumerated list does not include future:cancel)",
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported' (ballerina/lang.future is absent)",
+    "Expressions: '[Start action]' and '[Wait action]'",
+    "Subset restrictions > Import declarations: 'ballerina/lang.runtime' / 'sleep'"
+  ],
+  "reason": "The case requires f2.cancel() on a future and asserts a panic at wait {f1, f2} after cancellation. Future cancellation is absent from the supported langlib method list and library whitelist, so the essential cancellation and resulting panic behavior are outside the subset despite start, wait and runtime:sleep being supported.",
+  "unsupported_constructs": [
+    "Future langlib cancellation via f2.cancel() and its asserted cancellation-induced wait panic"
+  ],
+  "test_design_notes": [
+    "The // @panic annotation asserts runtime behavior after cancelling an asynchronously running infinite function; support for start/wait syntax alone does not establish this cancellation protocol."
+  ]
+}

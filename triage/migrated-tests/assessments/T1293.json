@@ -1,0 +1,12 @@
+{
+  "id": "T1293",
+  "name": "retry-stmt-test-5faabda7b4/retry-manager-negative-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: the supported statement list includes Assignment, Destructuring assignment statement, Compound Assignment, Break, Continue, Lock statement, Call, If/else, While, Local variable declarations, Return, Panic, Foreach and Match statement; it does not include retry statements.",
+    "## Module-level declarations: \"Class definition\" supports \"object-field\", \"method-defn\" and \"object-type-inclusion\" members."
+  ],
+  "reason": "The case asserts compile-time rejection of undefined retry-manager type MyRetryMgr and undefined constructor argument value in retry statements with custom retry managers. Retry statements and their manager validation are not covered by the supported statement list, so this essential negative-test behavior is outside subset 10.",
+  "unsupported_constructs": ["retry<MyRetryMgr> (\"test\") statement", "retry<MyRetryManager> (value) statement and custom retry-manager argument validation"],
+  "test_design_notes": ["The @error comments mark negative compilation expectations; the undefined names do not make the essential retry grammar supported."]
+}

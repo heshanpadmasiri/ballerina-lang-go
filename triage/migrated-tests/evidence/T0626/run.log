@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at identifier-literal-undefined-variable-e.bal:1-1 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

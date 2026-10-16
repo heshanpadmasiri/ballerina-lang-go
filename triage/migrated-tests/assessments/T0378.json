@@ -1,0 +1,16 @@
+{
+  "id": "T0378",
+  "name": "constant-expression-test-2596be1ac5/constant-expression-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Constant declarations\"; \"Type definition\"",
+    "Expressions: \"Mapping constructor\"; \"Variable reference\"; \"Nested expressions (`(expression)`)\"",
+    "Operators: \"Multiplicative ops `*`, `%`, `/`\"; \"Additive ops `+`, `-`\"; unary \"logical `!`\", \"numeric ops `+`, `-`\", \"bitwise complement `~`\""
+  ],
+  "reason": "The case exercises supported constant declarations, arithmetic and unary constant expressions, a mapping constant, constant references and type definitions. Expected rejection of division by zero, invalid unary syntax/operand types, and cyclic constant/type dependencies is within the supported grammar and type system; no essential unsupported feature is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case with @error markers; no @args, @panic or @output behavior.",
+    "The @error on -9223372036854775808 merits checking against intended integer-literal semantics; this expectation alone does not introduce an unsupported feature."
+  ]
+}

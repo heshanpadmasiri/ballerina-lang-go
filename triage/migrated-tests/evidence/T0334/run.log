@@ -1,0 +1,47 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:48 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:49 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:50 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:52 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:53 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:54 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:56 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:57 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:58 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:59 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:60 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:61 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:62 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:63 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:64 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:65 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:66 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:67 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:68 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:69 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:70 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:71 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:72 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:73 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:74 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:75 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:76 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:77 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:78 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:79 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:80 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:81 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:82 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:83 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:84 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:85 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:86 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:87 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:88 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:89 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:90 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:91 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at client-resource-path-negative-e.bal:92 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

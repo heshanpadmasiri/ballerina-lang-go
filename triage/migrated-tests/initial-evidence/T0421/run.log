@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at distinct-type-def-test-35a3bcc454-e.bal:20-20 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

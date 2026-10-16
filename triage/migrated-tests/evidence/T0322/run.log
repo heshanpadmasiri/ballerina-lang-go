@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at class-dataflow-negative-e.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at class-dataflow-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at class-dataflow-negative-e.bal:16 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at class-dataflow-negative-e.bal:17 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at class-dataflow-negative-e.bal:18 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,13 @@
+{
+  "id": "T0579",
+  "name": "function-test-6bfd4d1e14/function-stmt-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statements include Call, If/else, Local variable declarations and Return; named worker declarations are not listed.",
+    "## Expressions: Start action and Wait action are listed, but named worker declarations are not.",
+    "# Subset restrictions / ## Import declarations: ballerina/lang.runtime supports sleep, onGracefulStop and StopHandler."
+  ],
+  "reason": "The executed funcEmptyDefaultWorker function declares two named workers. Named worker declarations and their completion semantics are not covered by the subset's positive lists. The recursive call ending in runtime:sleep uses a supported runtime method, and ordinary empty functions, calls and conditionals are supported, but the workers make the whole case a feature request.",
+  "unsupported_constructs": ["Named worker declarations in funcEmptyDefaultWorker and their implicit completion behavior"],
+  "test_design_notes": ["io:println calls only expose function return values and do not independently make this a feature case."]
+}

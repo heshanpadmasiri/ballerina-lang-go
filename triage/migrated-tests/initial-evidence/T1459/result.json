@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-semantics-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-semantics-negative-e.bal",
+  "Project": false,
+  "Id": "T1459",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-semantics-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.034
+}

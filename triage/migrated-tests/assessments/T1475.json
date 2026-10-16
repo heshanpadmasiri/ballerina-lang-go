@@ -1,0 +1,19 @@
+{
+  "id": "T1475",
+  "name": "type-guard-test-74355f2266/sem-types-6-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions; value:cloneReadOnly is absent.",
+    "Module-level declarations: Supports `client`, `service`, `isolated`, `readonly` and `distinct` class-type-quals.",
+    "Subset restrictions > Object/class definitions: Only `client`, `service` and `isolated` object-type-quals / class-type-quals are supported",
+    "Expressions: Type test expression; Method call; Client remote method call action. Statements: If/else; Panic."
+  ],
+  "reason": "The credentialsConfig.cloneReadOnly() call requires a lang.value operation absent from both supported langlib lists, independently making the whole case feature scope. Type guards, ordinary and remote method calls, isolated functions, and panic have positive support. The readonly class qualifiers also encounter conflicting positive and restrictive statements, but that ambiguity does not negate the decisive unsupported langlib call.",
+  "unsupported_constructs": ["credentialsConfig.cloneReadOnly(): unlisted lang.value function and langlib method invocation"],
+  "test_design_notes": [
+    "Mixed scope: the intended type-narrowing/unreachable-panic acceptance case also includes an unsupported cloneReadOnly call.",
+    "The positive class qualifier list includes readonly, while the object/class restriction excludes it.",
+    "main is empty; enrichRequest is not invoked. No @args, @panic, or @output markers appear, so the unreachable-panic comment describes compile acceptance rather than an asserted runtime panic."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "T1415",
+  "name": "ternary-expression-test-915619b7bf/ternary-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [Conditional expression](https://ballerina.io/spec/lang/master/#conditional-expr)",
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions / Import declarations: `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString` (no `sum`)",
+    "Subset restrictions / Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The whole case includes an essential unsupported langlib call: testPredeclPrefixInTernary invokes int:sum(5, 6), whose result is asserted by @output 11, but sum is absent from the exhaustive supported ballerina/lang.int list. Conditional expressions, the query clauses used, and value string conversions have positive coverage; they do not bring int:sum into scope.",
+  "unsupported_constructs": ["int:sum(5, 6) in testPredeclPrefixInTernary, reached from main and checked by @output 11"],
+  "test_design_notes": ["Mixed scope: basic/nested ternaries and supported query/value-method scenarios are bundled with the unsupported int:sum call.", "No @args or @panic markers; @output markers assert concrete values, including the unsupported call's result. Other scenarios use assertEquals and panic on mismatch. io:println is instrumentation."]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "T1527",
+  "name": "wait-actions-negative-test-f93f239821/wait-deadlock-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: '- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)'",
+    "## Statements: lists supported statements, but does not list fork statements or worker send/receive actions",
+    "## Module-level declarations: '- [Function definition](https://ballerina.io/spec/lang/master/#function-defn)'"
+  ],
+  "reason": "Wait actions are explicitly supported, but this case essentially depends on named workers, fork statements (including a fork nested in a worker), and worker message send/receive actions. These constructs and their deadlock diagnostics are not covered by the positive feature lists. Fork alone is decisive for whole-case feature classification; supported wait syntax does not establish support for the worker interaction scenarios.",
+  "unsupported_constructs": [
+    "fork statements, including nested fork within a named worker",
+    "named worker declarations and cyclic worker-dependency analysis",
+    "worker send (->) and receive (<-) actions and their deadlock diagnostics"
+  ],
+  "test_design_notes": [
+    "Mixed scope: explicitly supported wait actions appear alongside uncovered worker/fork/message-passing constructs.",
+    "The file asserts compile-time rejection with @error markers; it has no @args, @panic, or @output runtime assertions. Negative code is not excluded merely for being illegal."
+  ]
+}

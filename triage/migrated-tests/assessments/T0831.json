@@ -1,0 +1,12 @@
+{
+  "id": "T0831",
+  "name": "mapping-constructor-expr-test-833706cb84/mapping-constructor-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\"",
+    "Expressions: \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\""
+  ],
+  "reason": "The negative case includes a mapping spread field (...c) in testFieldTypeCheckingOnUnknownType and asserts diagnostics for that initializer. Mapping constructors are supported, but spread fields are explicitly excluded, so the whole case requires unsupported syntax and diagnostic behavior.",
+  "unsupported_constructs": ["Mapping constructor spread field ...c"],
+  "test_design_notes": ["Other assertions exercise rejection of incompatible or ambiguous mapping constructor targets, unknown types, and invalid casts; negative code alone does not place those checks outside scope."]
+}

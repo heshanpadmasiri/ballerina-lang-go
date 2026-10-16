@@ -1,0 +1,18 @@
+{
+  "id": "T1169",
+  "name": "option-test-1b0c555df9/option_all_spaced-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Expressions: Field access expression",
+    "Supported language features (subset 10): Supported Ballerina code: see corpus/bal—the corpus/bal/subset10 directory contains the tests and examples that define what is supported in this subset."
+  ],
+  "reason": "The included-record parameter signature is supported, but the asserted behavior depends on command-line option parsing into main's included record. The supplied subset specification does not cover this entry-point argument conversion behavior, including spaced option values, boolean flags, repeated array options and decimal conversion.",
+  "unsupported_constructs": [
+    "Command-line option binding and conversion into main's included-record parameter"
+  ],
+  "test_design_notes": [
+    "The @args and @output directives assert CLI decoding of strings, booleans, integers, floats, decimals and repeated array values; signature support alone does not establish those behaviors.",
+    "io:println is output instrumentation and is not the reason for the feature classification."
+  ]
+}

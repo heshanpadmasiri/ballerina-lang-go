@@ -1,0 +1,64 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "tuple-variable-reference-test-b0bbe9bfef/tuple-variable-reference-dataflow-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+          --> tuple-variable-reference-dataflow-negative-e.bal:10:5
+           |
+        10 |     [f2, b2] = [2.0, false]; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+         --> tuple-variable-reference-dataflow-negative-e.bal:4:5
+          |
+        4 |     [s1, f1] = t1; // @error
+          |     ^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+         --> tuple-variable-reference-dataflow-negative-e.bal:8:5
+          |
+        8 |     [s2, [f2, b2], ...n2] = t2; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> tuple-variable-reference-dataflow-negative-e.bal:3:15
+          |
+        3 |     final var [s1, f1] = t1; // @error
+          |               ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> tuple-variable-reference-dataflow-negative-e.bal:7:47
+          |
+        7 |     final [string?, [float, boolean], int...] [s2, [f2, b2], ...n2] = t2; // @error
+          |                                               ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> tuple-variable-reference-dataflow-negative-e.bal:3:15
+          |
+        3 |     final var [s1, f1] = t1; // @error
+          |               ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> tuple-variable-reference-dataflow-negative-e.bal:7:47
+          |
+        7 |     final [string?, [float, boolean], int...] [s2, [f2, b2], ...n2] = t2; // @error
+          |                                               ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+          --> tuple-variable-reference-dataflow-negative-e.bal:10:5
+           |
+        10 |     [f2, b2] = [2.0, false]; // @error
+           |     ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+         --> tuple-variable-reference-dataflow-negative-e.bal:4:5
+          |
+        4 |     [s1, f1] = t1; // @error
+          |     ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+         --> tuple-variable-reference-dataflow-negative-e.bal:8:5
+          |
+        8 |     [s2, [f2, b2], ...n2] = t2; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

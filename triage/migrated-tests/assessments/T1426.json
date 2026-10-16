@@ -1,0 +1,20 @@
+{
+  "id": "T1426",
+  "name": "tuple-access-expr-test-f5671505a0/tuple-access-v",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Member access expression]; [List constructor]; [Anonymous function expression]; [Type test expression]; [String template expression]; [Type cast expression]",
+    "## Module-level declarations: [Type definition]; [Constant declarations]; [Module variable declarations]; [Class definition] — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "## Statements: [Local variable declarations]; [Foreach] — Currently only supports range, list, map, string and XML subtypes, and iterable objects; [Match statement] — Currently only supports const-pattern and wildcard-match-pattern",
+    "## Statements: [Destructuring assignment statement] — Only supports wildcard-binding-pattern",
+    "## Import declarations: ballerina/lang.int — fromString; ballerina/lang.array — length; ballerina/lang.value — toString",
+    "### Other invocation restrictions: Method call syntax can be used for calling ... array:length ... value:toString and value:toBalString"
+  ],
+  "reason": "The case exercises supported tuple/list member access and assignment, nested and union/readonly tuple types, finite/constant/byte indexes, local binding patterns, classes, anonymous functions, type narrowing, and supported control flow. No listed restriction excludes these tuple types or their access behavior. Binding patterns occur in variable declarations and foreach, rather than the restricted destructuring-assignment statement. All langlib calls used are explicitly allowed. Output assertions exercise tuple values, scalar formatting, object/function invocation, and supported conversions; no essential unsupported behavior is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Broad case combines tuple indexing with classes/functions, finite and readonly unions, binding patterns, and rest-tuple growth, but all are within the supplied scope.",
+    "testInvalidInsertionToTuple is defined but never called; main does not assert its possible runtime failure.",
+    "Only @output markers are present; remaining tests use a local assertEquals helper. No @args or @panic expectations occur. io:println is output instrumentation."
+  ]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: detail\n  --\u003e init-function-error-v.bal:17:20\n   |\n17 |         io:println(result.detail()[\"i\"]); // @output 24\n   |                    ^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"init-function-error-v.bal","StartLine":17,"EndLine":17}]}

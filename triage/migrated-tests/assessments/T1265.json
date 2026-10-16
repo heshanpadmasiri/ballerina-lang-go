@@ -1,0 +1,16 @@
+{
+  "id": "T1265",
+  "name": "record-rest-descriptor-equivalency-test-291bfe60e6/record-rest-descriptor-equivalency-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Function definition\"",
+    "Statements: \"Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"Mapping constructor\"; \"Currently spread-field not supported\"; \"Variable reference\"; \"Literal\""
+  ],
+  "reason": "The case checks structural assignability of records with primitive or record-valued rest descriptors, rejecting incompatible rest types and accepting equivalent float rest types. Type definitions, local declarations, assignments and empty mapping constructors are supported, with no stated restriction on record rest descriptors, defaulted fields or their structural compatibility. Negative assignments remain within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "BooleanRest actually declares float rest fields; its compatibility with FloatRest is intentionally accepted by the source assertions despite the misleading name.",
+    "Record-valued rest descriptors are tested in both assignment directions, with errors expected in both."
+  ]
+}

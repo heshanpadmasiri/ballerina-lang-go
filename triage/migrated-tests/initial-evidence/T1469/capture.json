@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: method not found: detail\n  --\u003e always-true-hint-v.bal:21:17\n   |\n21 |     byte code = x.detail().code;\n   |                 ^^^^^^^^^^\n\n","Diagnostics":[{"File":"always-true-hint-v.bal","StartLine":21,"EndLine":21}]}

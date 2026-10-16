@@ -1,0 +1,38 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	4
+        	9.9
+        	HELLO:hello WORLD..!:world..! I:i AM:am BALLERINA.!!!:ballerina.!!!
+        	0Hello 1World..! 2I 3am 4Ballerina.!!!
+        	70
+        	["a","e"]
+        	91
+        	start-a : A-b : B-c : C-d : D-e : E-end
+        	{"a":"aA","e":"eE"}
+        	start-1-2-end
+        	<p:city xmlns:p="foo">NY</p:city><q:country xmlns:q="bar">US</q:country>
+        	16
+        	["aa","bb","cc"]
+        	The start- hello abc :) bye :)  hello cde :) bye :)  hello pqr :) bye :) -The end
+        	total count 4
+        	10
+        	16
+        	2
+        	{"long_name":"1823","short_name":"1823","types":["street_number"]}
+        	{"long_name":"Bonpland","short_name":"Bonpland","types":["street_number"]}
+        	4
+        	[0,"Everyday Italian"]
+        	[1,"Harry Potter"]
+        	[2,"XQuery Kick Start"]
+        	[3,"Learning XML"]
+        	2
+        	{"asset":"BTC","free":"12","locked":"8"}
+        	{"asset":"BTC","free":"20","locked":"3"}
+        	["USD","USD","EUR","GBP","USD","EUR","GBP","USD"]
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,12 @@
+{
+  "id": "T0267",
+  "name": "bmap-value-test-f47b95ec2c/bmap-value-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.map lists length, keys, hasKey, get, remove.",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' lists map:length, map:keys, map:hasKey, map:get, map:remove."
+  ],
+  "reason": "The case requires map.removeIfHasKey and map.removeAll, neither included in the supported map langlib functions or method-call list. The asserted lengths after removing an existing key, removing the absent key again, and clearing a map depend on these unsupported operations, so the whole case is a feature request.",
+  "unsupported_constructs": ["map.removeIfHasKey", "map.removeAll"],
+  "test_design_notes": ["The @output assertions require lengths 101 after both removeIfHasKey calls and 0 after removeAll; these operations are essential to the asserted behavior."]
+}

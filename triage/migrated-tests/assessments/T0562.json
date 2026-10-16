@@ -1,0 +1,18 @@
+{
+  "id": "T0562",
+  "name": "function-pointers-test-229c021698/function-pointers-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Class definition — Supports object-field, method-defn and object-type-inclusion members",
+    "Expressions: Anonymous function expression; Variable reference; Field access expression; Type cast expression; Type test expression; Check expression; Call; New expression",
+    "Statements: Compound Assignment; Foreach; If/else; Return; Panic",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.",
+    "Invocations / Other invocation restrictions: value:toString and value:toBalString"
+  ],
+  "reason": "All exercised behavior falls within supported constructs: first-class functions passed, returned, cast from any and narrowed from unions; anonymous functions and captured-variable mutation; structurally compatible class parameter subtyping; bound method values retaining receivers and rest arguments; and a default function-valued parameter on a known function declaration. Numeric toString method calls are explicitly allowed. No applicable invocation or class restriction excludes these assertions.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println records expected results and is instrumentation only; assertions also verify bound receiver state, closure mutation, function defaults and narrowing."
+  ]
+}

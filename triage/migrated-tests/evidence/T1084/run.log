@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at object-func-reference-negative-e.bal:53-53 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object-func-reference-negative-e.bal:53-53 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object-func-reference-negative-e.bal:71-71 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object-func-reference-negative-e.bal:76-76 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at object-func-reference-negative-e.bal:94-94 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at object-func-reference-negative-e.bal:93 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-func-reference-negative-e.bal:101 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-func-reference-negative-e.bal:125 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at object-func-reference-negative-e.bal:127 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

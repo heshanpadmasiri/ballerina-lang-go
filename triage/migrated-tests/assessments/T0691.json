@@ -1,0 +1,13 @@
+{
+  "id": "T0691",
+  "name": "iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.array lists length, push, map, indexOf, remove, removeAll, toStream, toBase64, toBase16, fromBase64 and fromBase16, omitting forEach and filter.",
+    "Subset restrictions > Import declarations: ballerina/lang.map lists length, keys, hasKey, get and remove, omitting entries, map and filter.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" lists array:map and map:keys but no array:forEach, array:filter, map:entries, map:map or map:filter."
+  ],
+  "reason": "The asserted results essentially require unsupported array forEach/filter and map entries/map/filter operations, including their ordered callback side effects and captured-variable mutations. For example, testInt1 sums via array.forEach, recordTest counts filter callback executions, and testBasicMap2 transforms map entries with map/filter. These missing langlib operations suffice to classify the whole case as feature.",
+  "unsupported_constructs": ["array:forEach", "array:filter", "map:entries", "map:map", "map:filter"],
+  "test_design_notes": ["XML map/forEach/filter are explicitly listed as supported; their presence does not remove the unsupported array/map dependencies.", "io:println is output instrumentation."]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T0459",
+  "name": "error-variable-reference-test-ab01ceefa3/error-variable-reference-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern",
+    "Expressions: Error constructor"
+  ],
+  "reason": "The negative diagnostics depend on error destructuring assignments with named detail targets and rest targets, plus nested tuple destructuring. Subset 10 explicitly limits destructuring assignments to wildcard-binding-pattern, so these essential patterns are outside scope even though error constructors are supported.",
+  "unsupported_constructs": [
+    "Error destructuring assignments such as error(reason11, ...detail11) = err1 and error(reason12, message = message12, detail = detail12) = err1",
+    "Nested tuple destructuring assignment [intVar, stringVar, errorVar, [errorVar2, fooVar]] = t1"
+  ],
+  "test_design_notes": [
+    "The file asserts compile-time errors using @error markers; it has no @args, @panic, or @output assertions. Negative testing does not make unsupported destructuring patterns in scope."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "T0329",
+  "name": "client-object-test-cc3f260977/endpoint-project-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists supported expressions, including \"Type test expression\" and \"Type cast expression\", but does not list typeof expressions.",
+    "## Module-level declarations: \"Supports `remote-method-defn` for client classes and `resource-method-defn` for service classes\"",
+    "## Expressions: \"Client remote method call action\"; \"Check expression\"; \"New expression\"",
+    "### Other invocation restrictions: \"`error:message`\" and \"`value:toString` and `value:toBalString`\" are supported method calls."
+  ],
+  "reason": "The case contains `(typeof a).toString()` in the error assertion fallback. typeof expressions are not covered by the subset positive expression list, so the whole case is outside the supported subset despite its supported client class, remote calls, check propagation, and error-message assertions.",
+  "unsupported_constructs": [
+    "typeof expression in `(typeof a).toString()`"
+  ],
+  "test_design_notes": [
+    "main checks that invoke1 propagates error(\"i1\") and invoke2(\"done\") returns \"donedone\"; there are no @args, @panic, or @output annotations. The typeof expression occurs on an assertion failure path but remains part of the case."
+  ]
+}

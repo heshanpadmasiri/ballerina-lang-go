@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "error-binding-pattern-test-d3ff0cd2c4/error-type-ref-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+         --> error-type-ref-negative-e.bal:2:11
+          |
+        2 |     error error myError(b) = error("1"); // @error
+          |           ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+         --> error-type-ref-negative-e.bal:6:9
+          |
+        6 |     var error myError(b) = error("1"); // @error
+          |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> error-type-ref-negative-e.bal:2:11
+          |
+        2 |     error error myError(b) = error("1"); // @error
+          |           ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> error-type-ref-negative-e.bal:6:9
+          |
+        6 |     var error myError(b) = error("1"); // @error
+          |         ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

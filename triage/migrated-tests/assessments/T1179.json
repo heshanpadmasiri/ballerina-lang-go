@@ -1,0 +1,12 @@
+{
+  "id": "T1179",
+  "name": "option-test-1b0c555df9/option_with_nil_union-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+    "## Expressions: [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)"
+  ],
+  "reason": "The asserted output requires command-line option binding: --union=hello must populate the string-or-nil field of the included Student record parameter in main. The subset supports included-record parameter signatures and member access, but does not cover command-line argument parsing or option conversion into nullable record fields.",
+  "unsupported_constructs": ["Command-line option binding into a nullable field of main's included record parameter"],
+  "test_design_notes": ["The @args and @output directives assert runtime CLI binding, beyond acceptance of the function signature. io:println only observes the resulting field value."]
+}

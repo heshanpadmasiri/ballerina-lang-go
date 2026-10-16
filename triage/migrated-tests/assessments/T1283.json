@@ -1,0 +1,19 @@
+{
+  "id": "T1283",
+  "name": "recursive-record-type-test-1f056779f9/recursive-record-type-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Function definition\"; \"Constant declarations\"",
+    "Expressions: \"List constructor\"; \"Mapping constructor\"; \"Member access expression\"; \"Equality expression\"; \"Type test expression\"",
+    "Operators: \"Equality ops `==`, `!=`, `===`, `!==`\"",
+    "Statements: \"Local variable declarations\"; \"If/else\"; \"Return\"; \"Panic\"",
+    "Other invocation restrictions: \"`value:toString` and `value:toBalString`\""
+  ],
+  "reason": "The case constructs recursive record types through unions, tuples, maps, arrays, rest fields, optional fields and a readonly field, then checks field values and structural versus reference equality. Type definitions, constructors, access and both equality operators are supported without a restriction excluding recursive records or these field forms. Assertion helpers use supported type tests, error construction, panic and value:toString. No essential unsupported construct or asserted behavior is identified.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The equality assertions compare finite nested record values, including separately allocated equal records and shared nested references; they do not construct cyclic values.",
+    "The empty tuple initializer relies on implicit initialization of its array member; list construction has no stated restriction excluding this behavior.",
+    "The ballerina/io import is unused."
+  ]
+}

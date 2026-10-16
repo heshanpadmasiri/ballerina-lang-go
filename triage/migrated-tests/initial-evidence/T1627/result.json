@@ -1,0 +1,14 @@
+{
+  "Name": "xmlliteral-with-namespaces-test-6e799d0572/xml-literals-with-namespaces-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlliteral-with-namespaces-test-6e799d0572/xml-literals-with-namespaces-e.bal",
+  "Project": false,
+  "Id": "T1627",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlliteral-with-namespaces-test-6e799d0572/xml-literals-with-namespaces-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.08
+}

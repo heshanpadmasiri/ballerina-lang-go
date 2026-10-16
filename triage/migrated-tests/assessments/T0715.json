@@ -1,0 +1,19 @@
+{
+  "id": "T0715",
+  "name": "list-binding-pattern-test-b87d28a686/list-binding-pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: ... value:toString and value:toBalString"
+  ],
+  "reason": "The assertions require list binding match patterns, which are outside the explicitly supported constant and wildcard match patterns. They exercise exact list length matching, nested list destructuring, captured values and guard narrowing, alternative list patterns, and rest capture over tuples, arrays and json. Supported toString method calls do not remove this essential unsupported dependency.",
+  "unsupported_constructs": [
+    "List binding match patterns such as var [a] and var [a, b]",
+    "Nested and alternative list match patterns with variable capture",
+    "Rest binding match patterns such as var [a, b, ...c] and var [...i]"
+  ],
+  "test_design_notes": [
+    "The positive assertions directly exercise unsupported matching behavior throughout the case.",
+    "The disabled io:println branch is instrumentation and is not a classification basis."
+  ]
+}

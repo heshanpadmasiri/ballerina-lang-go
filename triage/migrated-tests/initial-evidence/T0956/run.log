@@ -1,0 +1,23 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	2
+        	Watson
+        	Waruna
+        	25
+        	30
+        	ABC College
+        	ABC College
+        	typedesc map<json>
+        	4
+        	4
+        	John
+        	Waruna
+        	DEF College
+        	ABC College
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

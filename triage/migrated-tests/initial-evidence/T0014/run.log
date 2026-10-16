@@ -1,0 +1,71 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "annotation-declaration-test-133dc37eee/annots-with-invalid-consts-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> annots-with-invalid-consts-e.bal:16:26
+           |
+        16 | service object {} ser2 = @v1 {
+           |                          ^^^^^
+        17 |     f: [
+           |     ^^^^
+        18 |         {s: "s", t: "t"},
+           |         ^^^^^^^^^^^^^^^^^
+        19 |         {s: s2, t: "t2"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |     ]
+           |     ^
+        21 | } service object {
+           | ^^^^^^^^^^^^^^^^^^
+        22 |     resource function get res() {}
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 | };
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> annots-with-invalid-consts-e.bal:34:26
+           |
+        34 | service object {} ser3 = @v2 {
+           |                          ^^^^^
+        35 |     st: "string value"
+           |     ^^^^^^^^^^^^^^^^^^
+        36 | } service object {
+           | ^^^^^^^^^^^^^^^^^^
+        37 |     resource function get res() {}
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> annots-with-invalid-consts-e.bal:16:26
+           |
+        16 | service object {} ser2 = @v1 {
+           |                          ^^^^^
+        17 |     f: [
+           |     ^^^^
+        18 |         {s: "s", t: "t"},
+           |         ^^^^^^^^^^^^^^^^^
+        19 |         {s: s2, t: "t2"} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |     ]
+           |     ^
+        21 | } service object {
+           | ^^^^^^^^^^^^^^^^^^
+        22 |     resource function get res() {}
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> annots-with-invalid-consts-e.bal:34:26
+           |
+        34 | service object {} ser3 = @v2 {
+           |                          ^^^^^
+        35 |     st: "string value"
+           |     ^^^^^^^^^^^^^^^^^^
+        36 | } service object {
+           | ^^^^^^^^^^^^^^^^^^
+        37 |     resource function get res() {}
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 | };
+           | ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

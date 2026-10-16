@@ -1,0 +1,19 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:316 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:339 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:359 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:363 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:367 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:376 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:382 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:384 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:386 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:388 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:394 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:398 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:400 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:439 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:446 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at query-action-or-expr-semantic-e.bal:453 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

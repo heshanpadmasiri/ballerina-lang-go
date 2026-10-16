@@ -1,0 +1,17 @@
+{
+  "Name": "argument-parser-positive-test-e41e5b8a0a/char-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/char-v",
+  "Project": true,
+  "Id": "T0088",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/char-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/char-v/main.bal"
+  ],
+  "Args": [
+    "A"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.086
+}

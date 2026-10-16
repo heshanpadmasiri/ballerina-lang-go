@@ -1,0 +1,20 @@
+{
+  "id": "T1581",
+  "name": "worker-sync-send-test-389660a47d/multiple-sync-send-with-panic-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, including Panic, but does not list named worker declarations.",
+    "## Expressions: \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" and \"[Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\" are listed; synchronous worker send and worker receive actions are not listed.",
+    "## Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"."
+  ],
+  "reason": "The case essentially requires named workers, two synchronous sends (->>) and receives (<-), and propagation of a receiving worker's panic through synchronous communication and wait. Worker declarations and communication actions, including this panic propagation behavior, are not covered by subset 10. General panic, wait, and annotation support does not establish worker communication support.",
+  "unsupported_constructs": [
+    "Named worker declarations w1 and w2",
+    "Synchronous worker sends and worker receives",
+    "Worker panic propagation across synchronous send and wait"
+  ],
+  "test_design_notes": [
+    "The @panic marker is on the error-constructor declaration in w2 immediately before panic err; the asserted outcome relies on worker panic propagation, beyond ordinary panic support.",
+    "No @args or @output markers are present."
+  ]
+}

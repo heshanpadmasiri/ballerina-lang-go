@@ -1,0 +1,57 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "bdecimal-value-test-3ff4f5d11b/bdecimal-value-test-3ff4f5d11b-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:285:54
+            |
+        285 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+            |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:286:50
+            |
+        286 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+            |                                                  ^^^^^^
+        
+        error[SEMANTIC_ERROR]: invalid float literal: 9.99E+6111
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:219:27
+            |
+        219 |     decimal a2 = <decimal>9.99E+6111;
+            |                           ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:151:19
+            |
+        151 |     var message = err.detail()["message"];
+            |                   ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:247:71
+            |
+        247 |     assertEquality("decimal range overflow", checkpanic <string|error>err.detail()["message"]);
+            |                                                                       ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:253:71
+            |
+        253 |     assertEquality("decimal range overflow", checkpanic <string|error>err.detail()["message"]);
+            |                                                                       ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:259:71
+            |
+        259 |     assertEquality("decimal range overflow", checkpanic <string|error>err.detail()["message"]);
+            |                                                                       ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:265:71
+            |
+        265 |     assertEquality("decimal range overflow", checkpanic <string|error>err.detail()["message"]);
+            |                                                                       ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> bdecimal-value-test-3ff4f5d11b-v.bal:271:71
+            |
+        271 |     assertEquality("decimal range overflow", checkpanic <string|error>err.detail()["message"]);
+            |                                                                       ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

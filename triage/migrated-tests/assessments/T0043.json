@@ -1,0 +1,18 @@
+{
+  "id": "T0043",
+  "name": "argument-parser-negative-test-706c373f17/invalid-decimal-01-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: ‘Function definition’ supports ‘required-params’ in the signature.",
+    "Subset restrictions / Import declarations: ‘ballerina/lang.decimal’ includes ‘fromString’ among supported methods/types.",
+    "Subset restrictions / Invocations / Named and default arguments: ‘Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.’"
+  ],
+  "reason": "The source declares an empty public main function with one required decimal parameter. That declaration falls within supported function definitions. The actual negative behavior, however, is supplied by the @args comment: passing the command-line text 13.24f and expecting a panic during entry-point argument conversion. The complete subset specification does not cover command-line argument parsing, main-parameter conversion, or rejection of a float suffix when parsing a decimal argument. Its support for decimal:fromString does not establish support for the launcher behavior exercised here; the source never invokes that function. Consequently the whole case tests a not-covered facility and is classified as a feature.",
+  "unsupported_constructs": [
+    "Command-line argument conversion to a decimal main parameter and its invalid-input rejection behavior."
+  ],
+  "test_design_notes": [
+    "13.24f occurs only inside a harness comment, not as a Ballerina numeric literal.",
+    "The @panic marker expects failure before the empty body runs; no explicit panic statement or deliberate syntax error is present."
+  ]
+}

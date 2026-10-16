@@ -1,0 +1,21 @@
+{
+  "id": "T0678",
+  "name": "isolation-analysis-test-71231d7fc4/analysis-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports the `isolated` function qualifier (see isolated functions)",
+    "Statements: the supported statement list does not include worker declarations or fork statements",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: (includes array:length and array:push, but not array:filter or value:clone)"
+  ],
+  "reason": "The negative isolation checks generally exercise the explicitly supported isolated qualifier, but this whole case also depends on unsupported worker/fork constructs and langlib operations. The worker and fork bodies test acceptance within isolated functions, while clone and filter calls participate in isolation-analysis scenarios. These are substantive parts of the test, so support for isolated function signatures alone does not put the entire case in scope.",
+  "unsupported_constructs": [
+    "Named worker declaration in invalidIsolatedFunctionWithWorkerDeclaration",
+    "fork statement containing a worker in invalidIsolatedFunctionWithForkStatement",
+    "value:clone via self.b.clone() and x.clone()",
+    "array:filter via self.words.filter(...)"
+  ],
+  "test_design_notes": [
+    "Negative rejection expectations involving supported isolation rules are in scope individually; the whole-case classification follows the essential unsupported constructs."
+  ]
+}

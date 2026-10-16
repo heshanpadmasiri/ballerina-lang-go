@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "future-positive-tests-d5f0d09b6f/future-positive-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'foo1'
+           --> future-positive-v.bal:217:5
+            |
+        217 |     Foo foo1 = {i: 1, "j": "hello"};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'foo2'
+           --> future-positive-v.bal:218:5
+            |
+        218 |     Foo foo2 = {i: 2, "j": "world"};
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

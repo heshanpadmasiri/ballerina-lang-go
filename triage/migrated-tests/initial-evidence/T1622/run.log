@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:50: xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal: expected non-zero exit code, got 0
+    migration_triage_test.go:52: -p test "xmlattributes-test-067a6f32b7/xmlattributes-invalid-localname-p.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

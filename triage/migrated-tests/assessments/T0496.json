@@ -1,0 +1,13 @@
+{
+  "id": "T0496",
+  "name": "fork-in-function-test-c76a219e5a/fork-workers-under-same-funtion-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes local variable declarations and return, but does not include fork statements or named worker declarations.",
+    "## Expressions: \"- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)\"",
+    "### Other invocation restrictions: \"- `map:get`\""
+  ],
+  "reason": "The asserted output 10 requires four named workers, including two declared inside a fork statement, to complete and supply their results to a multiple wait. Fork statements and named worker declarations are absent from the subset's positive support lists; supported wait actions and map:get do not establish worker/fork support.",
+  "unsupported_constructs": ["fork statement", "named worker declarations inside and outside a fork"],
+  "test_design_notes": ["The @output 10 assertion checks aggregation of all four worker return values. io:println is only output instrumentation."]
+}

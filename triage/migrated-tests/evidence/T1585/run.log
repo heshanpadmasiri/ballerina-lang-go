@@ -1,0 +1,42 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at sync-send-with-panic-in-receive-p.bal:13
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> sync-send-with-panic-in-receive-p.bal:2:5
+           |
+         2 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+         3 |     worker w1 {
+           |     ^^^^^^^^^^^
+         4 |         int a = 10;
+           |         ^^^^^^^^^^^
+         5 |         () r1 = a ->> w2;
+           |         ^^^^^^^^^^^^^^^^^
+         6 |         () r2 = a + a ->> w2;
+           |         ^^^^^^^^^^^^^^^^^^^^^
+         7 |     }
+           |     ^
+         8 | 
+           | 
+         9 |     @strand{thread:"any"}
+           |     ^^^^^^^^^^^^^^^^^^^^^
+        10 |     worker w2 {
+           |     ^^^^^^^^^^^
+        11 |         int b1 = <- w1;
+           |         ^^^^^^^^^^^^^^^
+        12 |         if 0 < 1 {
+           |         ^^^^^^^^^^
+        13 |             error err = error("err from panic from w2"); // @panic
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |             panic err;
+           |             ^^^^^^^^^^
+        15 |         }
+           |         ^
+        16 |         int b2 = <- w1;
+           |         ^^^^^^^^^^^^^^^
+        17 |     }
+           |     ^
+        
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

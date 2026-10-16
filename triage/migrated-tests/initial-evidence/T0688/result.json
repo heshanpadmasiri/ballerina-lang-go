@@ -1,0 +1,14 @@
+{
+  "Name": "iterable-operations-tests-f2b9a3e673/basic-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/iterable-operations-tests-f2b9a3e673/basic-v.bal",
+  "Project": false,
+  "Id": "T0688",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/iterable-operations-tests-f2b9a3e673/basic-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.079
+}

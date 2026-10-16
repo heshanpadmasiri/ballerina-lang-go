@@ -1,0 +1,22 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "class-test-31d1ee9eb5/simple-class-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: cannot infer type for implicit new expression
+          --> simple-class-v.bal:30:17
+           |
+        30 |     Rec r = {p: new(), s: new(1, "Guido", 1970, "Feb")};
+           |                 ^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+          --> simple-class-v.bal:82:54
+           |
+        82 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+           |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+          --> simple-class-v.bal:83:50
+           |
+        83 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+           |                                                  ^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

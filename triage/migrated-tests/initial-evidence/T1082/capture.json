@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: bad type cast\n        at testCastingRuntimeError(object-subtyping-cast-p.bal:29)\n           main(object-subtyping-cast-p.bal:34)\n","Diagnostics":null}

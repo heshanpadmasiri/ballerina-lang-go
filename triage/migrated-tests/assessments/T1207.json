@@ -1,0 +1,13 @@
+{
+  "id": "T1207",
+  "name": "query-action-or-expr-test-cc451d1303/query-action-or-expr-code-analysis-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: the supported statement list does not include named worker declarations or worker message send statements.",
+    "## Expressions: lists 'Start action' and 'Wait action' but does not list synchronous worker send or worker receive actions.",
+    "## Expressions: 'Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses'"
+  ],
+  "reason": "The case asserts diagnostics for synchronous sends, single receives, and asynchronous sends in query let/select clauses inside named workers. Although its query clauses are supported, named workers and their messaging actions are not covered by the subset's positive lists, so these essential diagnostic behaviors require unsupported concurrency constructs.",
+  "unsupported_constructs": ["Named worker declarations", "Synchronous worker send actions (->>)", "Single worker receive actions (<-)", "Asynchronous worker send statements/actions (->)"],
+  "test_design_notes": ["Negative test: @error annotations assert rejection of worker messaging within query clauses; classification considers that behavior rather than treating all illegal code as out of scope."]
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'ignored'\n  --\u003e null-json-to-map-p.bal:13:5\n   |\n13 |     map\u003cany\u003e ignored = testNullJsonToMap();\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"null-json-to-map-p.bal","StartLine":13,"EndLine":13}]}

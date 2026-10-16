@@ -1,0 +1,13 @@
+{
+  "id": "T1260",
+  "name": "record-default-functions-test-5c734f9983/record_default_functions-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Function definition\"; \"Supports the isolated function qualifier\"",
+    "Expressions: \"Call\"; \"Mapping constructor\" (\"Currently spread-field not supported\")",
+    "Statements: \"Return\"; \"Call\""
+  ],
+  "reason": "Both empty mapping constructors must obtain their record field defaults by invoking the declared isolated functions, yielding a=777 and b=hello. Type definitions, isolated functions, calls, mapping constructors and returns are supported, and no listed restriction excludes function calls in record field defaults.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["io:println only exposes the two constructed record values; it is instrumentation."]
+}

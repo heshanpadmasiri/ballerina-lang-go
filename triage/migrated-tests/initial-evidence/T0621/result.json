@@ -1,0 +1,14 @@
+{
+  "Name": "group-by-clause-test-38c059a6f0/group-by-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/group-by-clause-test-38c059a6f0/group-by-negative-e.bal",
+  "Project": false,
+  "Id": "T0621",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/group-by-clause-test-38c059a6f0/group-by-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.064
+}

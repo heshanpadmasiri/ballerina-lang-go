@@ -1,0 +1,19 @@
+{
+  "id": "T1239",
+  "name": "reachability-analysis-test-a8532630b8/unreachability_test-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statements include Return and Panic; fail and do statements are not listed.",
+    "## Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "## Expressions: Supports `group by` and `collect` clauses"
+  ],
+  "reason": "The whole case requires reachability diagnostics for unsupported fail/do statements and query actions with do bodies. In particular, many testUnreachableStatementInQueryAction functions assert unreachable-code errors inside query-action bodies, including bodies made unreachable by where false. The supported query-expression clause list does not cover query actions or do clauses, and the supported statement list omits fail and do. These constructs are essential to the asserted analysis, so the whole case is a feature request despite its many supported if/while/type-narrowing checks.",
+  "unsupported_constructs": [
+    "fail statements, including termination/reachability after fail",
+    "do statements",
+    "Query actions with do bodies and reachability analysis within those bodies"
+  ],
+  "test_design_notes": [
+    "Negative compilation test with @error assertions for unreachable code, missing returns, initialization and type errors; intentional invalid code alone does not place a test outside scope."
+  ]
+}

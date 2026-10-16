@@ -1,0 +1,14 @@
+{
+  "Name": "assign-stmt-test-4075ad6286/var-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/assign-stmt-test-4075ad6286/var-negative-e.bal",
+  "Project": false,
+  "Id": "T0195",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/assign-stmt-test-4075ad6286/var-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

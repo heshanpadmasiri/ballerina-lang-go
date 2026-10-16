@@ -1,0 +1,18 @@
+{
+  "id": "T0698",
+  "name": "jsonstamp-inbuilt-function-test-4b592e7d2b/jsonstamp-inbuilt-function-test-4b592e7d2b-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list does not include typeof expressions.",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\".",
+    "### Other invocation restrictions: permitted langlib method calls include \"error:message\" and \"value:cloneWithType\", but not error:detail."
+  ],
+  "reason": "Although cloneWithType and the map/array operations are explicitly supported, the case essentially asserts runtime type descriptions through typeof expressions and inspects conversion errors with error.detail(), which is outside the supported lang.error methods. Whole-case behavior therefore exceeds subset 10.",
+  "unsupported_constructs": [
+    "typeof expressions used to assert exact runtime typedesc strings",
+    "error.detail() calls used to assert conversion error detail messages"
+  ],
+  "test_design_notes": [
+    "The negative conversions assert exact error detail message strings, so detail() is essential behavior rather than output instrumentation."
+  ]
+}

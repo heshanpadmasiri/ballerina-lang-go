@@ -1,0 +1,14 @@
+{
+  "Name": "closed-record-test-6f9046ad8a/closed-record-invalid-delimiter-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/closed-record-invalid-delimiter-e.bal",
+  "Project": false,
+  "Id": "T0350",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/closed-record-invalid-delimiter-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.368
+}

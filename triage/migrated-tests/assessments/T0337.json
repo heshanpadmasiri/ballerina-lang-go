@@ -1,0 +1,18 @@
+{
+  "id": "T0337",
+  "name": "client-resource-access-action-test-f2b4b23dd8/client_resource_access_action-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)\"; the supported expression list does not include object-constructor-expr.",
+    "## Expressions: \"[Client resource access action](https://ballerina.io/spec/lang/master/#client-resource-access-action)\"",
+    "### Other invocation restrictions: \"Client resource access actions require an atomic client receiver. Dispatch is not supported when more than one resource method matches the access path.\""
+  ],
+  "reason": "The whole case requires an anonymous client object constructor (var myClinet = client object { ... }) in testResourceAccessOfAnObjectConstructedViaObjectCons. Object constructor expressions are not covered by the supported expression list; new expressions and class definitions do not cover this distinct syntax. Its resource calls and asserted outputs are executed from main, so this is essential behavior. One unsupported construct suffices for feature classification.",
+  "unsupported_constructs": [
+    "Anonymous client object constructor expression: client object { resource function ... }."
+  ],
+  "test_design_notes": [
+    "main invokes testResourceAccessOfAnObjectConstructedViaObjectCons, whose @output checks include resource dispatch and default arguments on the anonymous client object.",
+    "io:println is output instrumentation and is not used as a feature finding."
+  ]
+}

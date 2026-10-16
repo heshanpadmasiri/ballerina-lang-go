@@ -1,0 +1,19 @@
+{
+  "id": "T0699",
+  "name": "jsontest-d8d6aef1f4/json-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.string does not list fromJsonString, ballerina/lang.value does not list toJsonString, and ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; the list includes map:keys, map:remove and error:message but excludes fromJsonString, toJsonString and error:detail."
+  ],
+  "reason": "The case requires JSON serialization and parsing through msg.toJsonString() and jsonStr.fromJsonString(), neither of which is in the supported langlib or method-call positive lists. It also inspects malformed-input error details using detail(), which is excluded. These essential calls make the whole case a feature even though its map removal, key access, casts and constructors are supported.",
+  "unsupported_constructs": [
+    "toJsonString() JSON serialization",
+    "fromJsonString() JSON parsing, including malformed-input rejection",
+    "error.detail() and asserted parser diagnostic detail"
+  ],
+  "test_design_notes": [
+    "The malformed-input branch asserts the exact parser diagnostic message.",
+    "io:println is output instrumentation and does not determine the classification."
+  ]
+}

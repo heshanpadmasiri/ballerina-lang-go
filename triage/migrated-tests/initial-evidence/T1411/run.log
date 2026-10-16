@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "template-expression-test-eff72c820a/template-expression-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'name'
+          --> template-expression-v.bal:14:23
+           |
+        14 | function testJSONInit(string name) returns json {
+           |                       ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'variable'
+          --> template-expression-v.bal:32:29
+           |
+        32 | function testEnrichFullJSON(int variable) returns json {
+           |                             ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

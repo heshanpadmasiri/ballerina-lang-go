@@ -1,0 +1,18 @@
+{
+  "id": "T1575",
+  "name": "worker-in-function-test-bde1b19edb/worker-in-function-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations or worker send statements.",
+    "## Expressions: \"- [Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are listed, but worker receive actions are not.",
+    "## Module-level declarations: \"Supports source-only, runtime, marker and repeated annotations\""
+  ],
+  "reason": "The asserted output hello requires two named workers exchanging messages through send and receive actions. Named workers and worker messaging are not covered by subset 10; support for wait actions and annotation attachments does not establish support for this worker execution behavior.",
+  "unsupported_constructs": [
+    "Named worker declarations first and sampleWorker",
+    "Worker message send (->) and receive (<-) actions"
+  ],
+  "test_design_notes": [
+    "The @output hello marker tests successful worker message exchange and waiting for the first worker result. io:println is output instrumentation. No obvious marker issue."
+  ]
+}

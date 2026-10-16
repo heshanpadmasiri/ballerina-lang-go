@@ -1,0 +1,104 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "wait-actions-negative-test-f93f239821/after-wait-action-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> after-wait-action-negative-e.bal:22:13
+           |
+        22 |     int _ = <- w; // @error
+           |             ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> after-wait-action-negative-e.bal:18:5
+           |
+        18 |     worker w {
+           |     ^^^^^^^^^^
+        19 |         5 -> function;
+           |         ^^^^^^^^^^^^^^
+        20 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> after-wait-action-negative-e.bal:26:5
+           |
+        26 |     worker w {
+           |     ^^^^^^^^^^
+        27 |         int j = 0;
+           |         ^^^^^^^^^^
+        28 |         j -> w1;
+           |         ^^^^^^^^
+        29 |     }
+           |     ^
+        30 | 
+           | 
+        31 |     worker w1 {
+           |     ^^^^^^^^^^^
+        32 |         wait w;
+           |         ^^^^^^^
+        33 |         int _ = <- w; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        34 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> after-wait-action-negative-e.bal:38:5
+           |
+        38 |     fork {
+           |     ^^^^^^
+        39 |         worker w {
+           |         ^^^^^^^^^^
+        40 |             1 -> w2; // @error
+           |             ^^^^^^^^^^^^^^^^^^
+        41 |         }
+           |         ^
+        42 |         worker w1 {
+           |         ^^^^^^^^^^^
+        43 |             2 -> w2; // @error
+           |             ^^^^^^^^^^^^^^^^^^
+        44 |         }
+           |         ^
+        45 |     }
+           |     ^
+        46 |     worker w2 {
+           |     ^^^^^^^^^^^
+        47 |         wait w;
+           |         ^^^^^^^
+        48 |         wait w1;
+           |         ^^^^^^^^
+        49 |         int i = <- w; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        50 |         i = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^
+        51 |     }
+           |     ^
+        52 | 
+           | 
+        53 |     worker wi {
+           |     ^^^^^^^^^^^
+        54 |         fork {
+           |         ^^^^^^
+        55 |             worker wii {
+           |             ^^^^^^^^^^^^
+        56 |                 2 -> wij;
+           |                 ^^^^^^^^^
+        57 |             }
+           |             ^
+        58 |             worker wij {
+           |             ^^^^^^^^^^^^
+        59 |                 wait wii;
+           |                 ^^^^^^^^^
+        60 |                 int _ = <- wii; // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+        61 |             }
+           |             ^
+        62 |         }
+           |         ^
+        63 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> after-wait-action-negative-e.bal:22:13
+           |
+        22 |     int _ = <- w; // @error
+           |             ^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

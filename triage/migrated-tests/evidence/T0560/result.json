@@ -1,0 +1,14 @@
+{
+  "Name": "function-pointers-test-229c021698/function-pointer-native-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/function-pointer-native-v.bal",
+  "Project": false,
+  "Id": "T0560",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-test-229c021698/function-pointer-native-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.078
+}

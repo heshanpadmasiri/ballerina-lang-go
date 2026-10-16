@@ -1,0 +1,18 @@
+{
+  "id": "T0501",
+  "name": "forward-referencing-global-definition-test-c1122b914e/module-let-expression-cycle-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"Module variable declarations\"; \"Type definition\"",
+    "## Expressions: the supported expression list does not include let expressions",
+    "## Expressions: \"Query expressions\" — \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\""
+  ],
+  "reason": "The case asserts rejection of initialization dependency cycles across module variables and record defaults. Essential cycles use standalone let expressions in fieldOne, modVar, and the code field default. Standalone let expressions are absent from the supported expression list; the explicit support for query let clauses does not cover them. This makes the whole case a feature request even though its query expressions and module declarations are listed as supported.",
+  "unsupported_constructs": [
+    "Standalone let expressions in module variable initializers and a record field default"
+  ],
+  "test_design_notes": [
+    "Negative compile case uses @error markers to assert dependency-cycle rejection; illegal cycles alone do not make a supported construct out of scope.",
+    "Query let clauses are explicitly supported, but the same case also requires standalone let expressions."
+  ]
+}

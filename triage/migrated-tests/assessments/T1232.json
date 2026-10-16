@@ -1,0 +1,17 @@
+{
+  "id": "T1232",
+  "name": "query-with-closures-test-bfc248f951/query_with_closures-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > XML template expression: Supports interpolation in XML content and attributes",
+    "Expressions > XML template expression: XML sequence interpolation from a query result is not supported"
+  ],
+  "reason": "testClosuresInQueryInterpolatedInXmlInSelect interpolates an inner query's XML sequence into each outer <row> XML template and asserts the resulting nested XML. This essential asserted behavior is explicitly unsupported, so the whole case is a feature case.",
+  "unsupported_constructs": [
+    "XML sequence interpolation from a query result: ${from int j in a select xml `<num>${i}${j}</num>`}"
+  ],
+  "test_design_notes": [
+    "The XML interpolation test is invoked by main and checks concrete nested XML output; it is not merely an unused declaration.",
+    "The guarded io:println call is instrumentation and does not determine classification."
+  ]
+}

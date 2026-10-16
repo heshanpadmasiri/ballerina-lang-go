@@ -1,0 +1,17 @@
+{
+  "id": "T0375",
+  "name": "constant-access-test-53bc132680/constant-access-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Import declarations; Constant declarations; Module variable declarations; Type definition; Function definition",
+    "Statements: Local variable declarations; Return",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only; Variable reference; `Call`; List constructor; Member access expression",
+    "Operators: Unary operators — numeric ops `+`, `-`"
+  ],
+  "reason": "All exercised behavior is supported: imported public constants and singleton/union type definitions, imported function calls including module initialization, final module variables, negative numeric literals with whitespace, array/tuple construction and indexing, and assignment of an imported singleton constant to a local singleton type. The asserted outputs are the resulting numeric and string values, including integral float formatting. No applicable restriction excludes these operations.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println is output instrumentation. The @output assertions check imported values, initialization, negative values, array indexing and singleton assignment; there are no @args or @panic assertions.",
+    "Despite its name, floatIntConversion uses float literals and a float array; it does not exercise an explicit int-to-float conversion."
+  ]
+}

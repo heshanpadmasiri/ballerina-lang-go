@@ -1,0 +1,18 @@
+{
+  "id": "T0500",
+  "name": "forward-referencing-global-definition-test-c1122b914e/in-function-global-reference-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Module variable declarations]",
+    "Module-level declarations: [Function definition]; [Type definition]",
+    "Expressions: [Variable reference]; [Call]; [Mapping constructor]; [Field access expression]; [Anonymous function expression]",
+    "Statements: [Local variable declarations]; [Return]; [If/else]; [Assignment]",
+    "Operators: Additive ops `+`, `-`; Equality ops `==`, `!=`, `===`, `!==`"
+  ],
+  "reason": "The asserted outputs require module initialization to honor forward dependencies through function calls and across source files: employee depends on person, while fromFuncA depends on fromFunc, whose initializer reaches person through getPersonOuter/getPersonInner. These use supported module variables, functions, records, references, calls, mapping constructors and field access, with no applicable restriction excluding their initialization dependencies. Both printed names must be Sumedha.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println only observes the two asserted names.",
+    "The closure and its function-value invocation occur in an uncalled helper; anonymous functions and the associated statements/operators are nevertheless supported."
+  ]
+}

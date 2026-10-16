@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: incompatible type: expected boolean, got 5\n --\u003e return-type-mismatch-2-e.bal:2:26\n  |\n2 |     return [split(s), 5, 5]; // @error\n  |                          ^\n\n","Diagnostics":[{"File":"return-type-mismatch-2-e.bal","StartLine":2,"EndLine":2}]}

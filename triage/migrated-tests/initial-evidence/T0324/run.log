@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "class-test-31d1ee9eb5/class-def-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected member kind in object type descriptor
+          --> class-def-negative-e.bal:17:5
+           |
+        17 |     resource function get name() returns string;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected member kind in object type descriptor
+          --> class-def-negative-e.bal:25:5
+           |
+        25 |     resource function get name() returns string;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

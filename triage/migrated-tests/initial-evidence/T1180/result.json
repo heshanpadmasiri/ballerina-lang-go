@@ -1,0 +1,19 @@
+{
+  "Name": "option-test-1b0c555df9/option_with_operand-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_operand-v.bal",
+  "Project": false,
+  "Id": "T1180",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_operand-v.bal"
+  ],
+  "Args": [
+    "--name",
+    "Riyafa",
+    "--",
+    "--Sri Lanka"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.087
+}

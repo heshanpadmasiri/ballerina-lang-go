@@ -1,0 +1,377 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "xmlquery-expression-test-448a9347b5/xmlquery-expression-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+           --> xmlquery-expression-v.bal:237:7
+            |
+        237 |         select xml `<!--${book.title} - ${book.author}-->`;
+            |         ^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.OptionalFieldAccessExpressionNode transformed to non-action-or-expression node <nil>
+            --> xmlquery-expression-v.bal:1481:20
+             |
+        1481 |     xml x = xml `<name><fname ns:status="active">Mike</fname><fname>Jane</fname><lname>Eyre</lname></name>`;
+             |                    ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.OptionalFieldAccessExpressionNode transformed to non-action-or-expression node <nil>
+           --> xmlquery-expression-v.bal:822:105
+            |
+        822 |     xml x = xml `<name><fname ns:status="active">Mike</fname><fname>Jane</fname><lname>Eyre</lname></name>`;
+            |                                                                                                         ^^^^
+        823 | 
+            | 
+        824 |     xml res = from var fname in x/<fname>
+            |     ^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+            --> xmlquery-expression-v.bal:1460:132
+             |
+        1460 |     assertEquality(res.toString(), (xml `<data><person country="Germany">Mike</person><person country="France">Anne</person><person country="Russia">John</person></data>`).toString());
+             |                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1461 | }
+             | ^
+        1462 | 
+             | 
+        1463 | function testXMLTemplateWithQueryExpressionWithReadonly4() {
+             | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1464 |     table<Person> personTable = table key(name) [
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1465 |             {name: "Mike", country: "Germany"},
+             |
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+            --> xmlquery-expression-v.bal:1487:59
+             |
+        1487 |     assertEquality(res.toString(), (xml `<fname xmlns:ns="foo" ns:status="active">Mike</fname>`).toString());
+             |                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1488 | }
+             | ^
+        1489 | 
+             | 
+        1490 | function testQueryExpressionIteratingOverTableReturningXMLWithReadonly() {
+             | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1491 |     table<Person> personTable = table key(name) [
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> xmlquery-expression-v.bal:806:29
+            |
+        806 | function testXMLTemplateWithQueryExpression4() returns xml {
+            |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        807 |    table<Person> personTable = table key(name) [
+            |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        808 |        {name: "Mike", country: "Germany"},
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        809 |        {name:"Anne", country: "France"},
+            |        ^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> xmlquery-expression-v.bal:830:39
+            |
+        830 | function testQueryExpressionIteratingOverTableReturningXML() returns xml {
+            |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        831 |    table<Person> personTable = table key(name) [
+            |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        832 |        {name: "Mike", country: "Germany"},
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        833 |        {name:"Anne", country: "France"},
+            |        ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+            --> xmlquery-expression-v.bal:1460:104
+             |
+        1460 |     assertEquality(res.toString(), (xml `<data><person country="Germany">Mike</person><person country="France">Anne</person><person country="Russia">John</person></data>`).toString());
+             |                                                                                                        ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+            --> xmlquery-expression-v.bal:1487:31
+             |
+        1487 |     assertEquality(res.toString(), (xml `<fname xmlns:ns="foo" ns:status="active">Mike</fname>`).toString());
+             |                               ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> xmlquery-expression-v.bal:806:1
+            |
+        806 | function testXMLTemplateWithQueryExpression4() returns xml {
+            | ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> xmlquery-expression-v.bal:830:11
+            |
+        830 | function testQueryExpressionIteratingOverTableReturningXML() returns xml {
+            |           ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: transformOptionalFieldAccessExpression: unexpected QUALIFIED_NAME_REFERENCE
+            --> xmlquery-expression-v.bal:1481:27
+             |
+        1481 |     xml x = xml `<name><fname ns:status="active">Mike</fname><fname>Jane</fname><lname>Eyre</lname></name>`;
+             |                           ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: transformOptionalFieldAccessExpression: unexpected QUALIFIED_NAME_REFERENCE
+           --> xmlquery-expression-v.bal:824:2
+            |
+        824 |     xml res = from var fname in x/<fname>
+            |     ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> xmlquery-expression-v.bal:1428:7
+             |
+        1428 |     Person p3 = {name: "John", country: "Russia"};
+             |       ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> xmlquery-expression-v.bal:1439:51
+             |
+        1439 |     Person p2 = {name: "Anne", country: "France"};
+             |                                                   
+        1440 |     Person p3 = {name: "John", country: "Russia"};
+             |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> xmlquery-expression-v.bal:1452:51
+             |
+        1452 |     Person p2 = {name: "Anne", country: "France"};
+             |                                                   
+        1453 |     Person p3 = {name: "John", country: "Russia"};
+             |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> xmlquery-expression-v.bal:1466:8
+             |
+        1466 |             {name: "Anne", country: "France"},
+             |             ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> xmlquery-expression-v.bal:1492:26
+             |
+        1492 |             {name: "Mike", country: "Germany"},
+             |                          ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> xmlquery-expression-v.bal:1507:10
+             |
+        1507 |     Person p2 = {name: "Anne", country: "France"};
+             |          ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+            --> xmlquery-expression-v.bal:1527:21
+             |
+        1527 |                 <table border="1">
+             |                     ^^^^^^^^^^^^^^
+        1528 |                     <tr>
+             |
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> xmlquery-expression-v.bal:775:18
+            |
+        775 |    Person[] persons = [p1, p2, p3];
+            |                  ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> xmlquery-expression-v.bal:786:17
+            |
+        786 |    Person[] persons = [p1, p2, p3];
+            |                 ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> xmlquery-expression-v.bal:798:17
+            |
+        798 |    Person[] persons = [p1, p2, p3];
+            |                 ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> xmlquery-expression-v.bal:810:22
+            |
+        810 |        {name: "John", country: "Russia"}];
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> xmlquery-expression-v.bal:833:40
+            |
+        833 |        {name:"Anne", country: "France"},
+            |                                        ^
+        834 |        {name: "John", country: "Russia"}];
+            |        ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> xmlquery-expression-v.bal:846:43
+            |
+        846 |    Person p3 = {name: "John", country: "Russia"};
+            |                                           ^^^^^^^
+        847 |    Person[] personList = [p1, p2, p3];
+            |    ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> xmlquery-expression-v.bal:1428:7
+             |
+        1428 |     Person p3 = {name: "John", country: "Russia"};
+             |       ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> xmlquery-expression-v.bal:1439:51
+             |
+        1439 |     Person p2 = {name: "Anne", country: "France"};
+             |                                                   
+        1440 |     Person p3 = {name: "John", country: "Russia"};
+             |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> xmlquery-expression-v.bal:1452:51
+             |
+        1452 |     Person p2 = {name: "Anne", country: "France"};
+             |                                                   
+        1453 |     Person p3 = {name: "John", country: "Russia"};
+             |     ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> xmlquery-expression-v.bal:1466:8
+             |
+        1466 |             {name: "Anne", country: "France"},
+             |             ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> xmlquery-expression-v.bal:1492:26
+             |
+        1492 |             {name: "Mike", country: "Germany"},
+             |                          ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> xmlquery-expression-v.bal:1507:10
+             |
+        1507 |     Person p2 = {name: "Anne", country: "France"};
+             |          ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+            --> xmlquery-expression-v.bal:1527:21
+             |
+        1527 |                 <table border="1">
+             |                     ^^^^^^^^^^^^^^
+        1528 |                     <tr>
+             |
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> xmlquery-expression-v.bal:775:18
+            |
+        775 |    Person[] persons = [p1, p2, p3];
+            |                  ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> xmlquery-expression-v.bal:786:17
+            |
+        786 |    Person[] persons = [p1, p2, p3];
+            |                 ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> xmlquery-expression-v.bal:798:17
+            |
+        798 |    Person[] persons = [p1, p2, p3];
+            |                 ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> xmlquery-expression-v.bal:810:22
+            |
+        810 |        {name: "John", country: "Russia"}];
+            |                      ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> xmlquery-expression-v.bal:833:40
+            |
+        833 |        {name:"Anne", country: "France"},
+            |                                        ^
+        834 |        {name: "John", country: "Russia"}];
+            |        ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> xmlquery-expression-v.bal:846:43
+            |
+        846 |    Person p3 = {name: "John", country: "Russia"};
+            |                                           ^^^^^^^
+        847 |    Person[] personList = [p1, p2, p3];
+            |    ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+           --> xmlquery-expression-v.bal:309:2
+            |
+        309 |     var xmlValue = stream from Book book in bookStream
+            |     ^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+            --> xmlquery-expression-v.bal:1460:132
+             |
+        1460 |     assertEquality(res.toString(), (xml `<data><person country="Germany">Mike</person><person country="France">Anne</person><person country="Russia">John</person></data>`).toString());
+             |                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1461 | }
+             | ^
+        1462 | 
+             | 
+        1463 | function testXMLTemplateWithQueryExpressionWithReadonly4() {
+             | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1464 |     table<Person> personTable = table key(name) [
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1465 |             {name: "Mike", country: "Germany"},
+             |
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+            --> xmlquery-expression-v.bal:1487:59
+             |
+        1487 |     assertEquality(res.toString(), (xml `<fname xmlns:ns="foo" ns:status="active">Mike</fname>`).toString());
+             |                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1488 | }
+             | ^
+        1489 | 
+             | 
+        1490 | function testQueryExpressionIteratingOverTableReturningXMLWithReadonly() {
+             | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        1491 |     table<Person> personTable = table key(name) [
+             |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> xmlquery-expression-v.bal:806:29
+            |
+        806 | function testXMLTemplateWithQueryExpression4() returns xml {
+            |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        807 |    table<Person> personTable = table key(name) [
+            |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        808 |        {name: "Mike", country: "Germany"},
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        809 |        {name:"Anne", country: "France"},
+            |        ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> xmlquery-expression-v.bal:830:39
+            |
+        830 | function testQueryExpressionIteratingOverTableReturningXML() returns xml {
+            |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        831 |    table<Person> personTable = table key(name) [
+            |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        832 |        {name: "Mike", country: "Germany"},
+            |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        833 |        {name:"Anne", country: "France"},
+            |        ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+            --> xmlquery-expression-v.bal:1460:104
+             |
+        1460 |     assertEquality(res.toString(), (xml `<data><person country="Germany">Mike</person><person country="France">Anne</person><person country="Russia">John</person></data>`).toString());
+             |                                                                                                        ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+            --> xmlquery-expression-v.bal:1487:31
+             |
+        1487 |     assertEquality(res.toString(), (xml `<fname xmlns:ns="foo" ns:status="active">Mike</fname>`).toString());
+             |                               ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> xmlquery-expression-v.bal:806:1
+            |
+        806 | function testXMLTemplateWithQueryExpression4() returns xml {
+            | ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> xmlquery-expression-v.bal:830:11
+            |
+        830 | function testQueryExpressionIteratingOverTableReturningXML() returns xml {
+            |           ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

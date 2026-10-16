@@ -1,0 +1,14 @@
+{
+  "Name": "array-destructure-test-4a8c5609c2/array-destructure-test-4a8c5609c2-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-destructure-test-4a8c5609c2/array-destructure-test-4a8c5609c2-v.bal",
+  "Project": false,
+  "Id": "T0134",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-destructure-test-4a8c5609c2/array-destructure-test-4a8c5609c2-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.051
+}

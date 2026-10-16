@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: top stack frame mismatch for @panic: want array-mutability-invalid-cast-p.bal:10, got array-mutability-invalid-cast-p.bal:9
+        stderr:
+        error: no filler value
+                at main(array-mutability-invalid-cast-p.bal:9)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

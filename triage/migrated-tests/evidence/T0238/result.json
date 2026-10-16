@@ -1,0 +1,14 @@
+{
+  "Name": "bfloat-value-test-b01a6e05bd/bfloat-type-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bfloat-value-test-b01a6e05bd/bfloat-type-negative-e.bal",
+  "Project": false,
+  "Id": "T0238",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bfloat-value-test-b01a6e05bd/bfloat-type-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

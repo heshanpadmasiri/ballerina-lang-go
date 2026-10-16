@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: type inclusion must be an object type or class\n   --\u003e readonly-v.bal:169:6\n    |\n169 |     *Atom;\n    |      ^^^^\n\n","Diagnostics":[{"File":"readonly-v.bal","StartLine":169,"EndLine":169}]}

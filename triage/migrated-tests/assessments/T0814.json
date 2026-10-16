@@ -1,0 +1,20 @@
+{
+  "id": "T0814",
+  "name": "map-initializer-expr-test-3c385ec88b/map-initializer-expr-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Mapping constructor]; Currently [spread-field] not supported",
+    "Expressions: [List constructor], [Type cast expression], [Member access expression], [Equality expression], [Logical expression]",
+    "Statements: [Compound Assignment] — See supported [binary operators]",
+    "Module-level declarations: [Module variable declarations]",
+    "Operators: Additive ops `+`, `-`; Equality ops `==`, `!=`, `===`, `!==`; Logical ops `&&`, `||`",
+    "Subset restrictions / Import declarations: `ballerina/lang.map` — `length`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `map:length`"
+  ],
+  "reason": "All essential constructs and asserted behavior fall within supported mapping constructors: literal and identifier keys, computed keys, nested maps, JSON values, empty constructors, and duplicate-key resolution with side-effecting value expressions. The test also uses supported lists, casts, member access, calls, module variables, compound string assignment, equality/logical operators, and map:length. No spread field or other listed restriction applies.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The final assertion tests evaluation order and replacement behavior when computed keys collide with explicit fields; its side effects are essential to the expected string.",
+    "io:println is output instrumentation."
+  ]
+}

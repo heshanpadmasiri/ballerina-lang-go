@@ -1,0 +1,17 @@
+{
+  "id": "T0236",
+  "name": "bdecimal-value-negative-test-562a56cce5/decimal-value-negative-literal-e",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations \u2014 Function definition",
+    "## Statements \u2014 Local variable declarations",
+    "## Expressions \u2014 Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Expressions \u2014 List constructor",
+    "## Operators \u2014 Multiplicative ops `*`, `%`, `/`; Additive ops `+`, `-`; numeric ops `+`, `-`"
+  ],
+  "reason": "All essential constructs are supported: function definitions, local declarations, numeric literals (including hexadecimal integers/floats and decimal/float suffixes), list constructors, and numeric arithmetic/unary negation. The asserted errors concern decimal assignment/inference from float expressions and decimal literal overflow, which are negative checks within the supported numeric grammar and type system. No applicable subset restriction excludes these checks.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case with inline @error markers; no @args, @panic, or @output assertions. Unmarked declarations also exercise acceptance of valid decimal literals and contextual numeric inference."
+  ]
+}

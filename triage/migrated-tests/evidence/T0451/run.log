@@ -1,0 +1,250 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "error-optimization-test-1dfdfc39cb/error-optimization-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: ballerina/test
+          --> error-optimization-v.bal:18:1
+           |
+        18 | import ballerina/test;
+           | ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+           --> error-optimization-v.bal:101:5
+            |
+        101 |     test:assertFalse(errorValue is MyError);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+           --> error-optimization-v.bal:102:5
+            |
+        102 |     test:assertFalse(errorValue is YourError);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:30:5
+           |
+        30 |     test:assertFalse(someValue is MyError|YourError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:31:5
+           |
+        31 |     test:assertFalse(someValue is MyError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:32:5
+           |
+        32 |     test:assertFalse(someValue is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:49:5
+           |
+        49 |     test:assertFalse(someValue is Student);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:50:5
+           |
+        50 |     test:assertFalse(someValue is MyError|YourError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:51:5
+           |
+        51 |     test:assertFalse(someValue is MyError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:52:5
+           |
+        52 |     test:assertFalse(someValue is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:57:5
+           |
+        57 |     test:assertFalse(someValue is string);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:58:5
+           |
+        58 |     test:assertFalse(someValue is string|int);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:61:5
+           |
+        61 |     test:assertFalse(someValue is YourError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:67:5
+           |
+        67 |     test:assertFalse(err is MyError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:68:5
+           |
+        68 |     test:assertFalse(err is MyError|YourError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:75:5
+           |
+        75 |     test:assertFalse(someValue is MyError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:76:5
+           |
+        76 |     test:assertFalse(someValue is MyError|YourError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:77:5
+           |
+        77 |     test:assertFalse(someValue is MyError|error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:78:5
+           |
+        78 |     test:assertFalse(someValue is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:89:5
+           |
+        89 |     test:assertFalse(someValue is int);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertFalse
+          --> error-optimization-v.bal:90:5
+           |
+        90 |     test:assertFalse(someValue is YourError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+           --> error-optimization-v.bal:100:5
+            |
+        100 |     test:assertTrue(errorValue is error);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+           --> error-optimization-v.bal:103:5
+            |
+        103 |     test:assertTrue(errorValue is FooError);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+           --> error-optimization-v.bal:104:5
+            |
+        104 |     test:assertTrue(errorValue is FooError|BarError);
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:28:5
+           |
+        28 |     test:assertTrue(someValue is string);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:29:5
+           |
+        29 |     test:assertTrue(someValue is string|int);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:48:5
+           |
+        48 |     test:assertTrue(someValue is Person);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:59:5
+           |
+        59 |     test:assertTrue(someValue is MyError|YourError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:60:5
+           |
+        60 |     test:assertTrue(someValue is MyError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:62:5
+           |
+        62 |     test:assertTrue(someValue is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:69:5
+           |
+        69 |     test:assertTrue(err is MyError|error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:70:5
+           |
+        70 |     test:assertTrue(err is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:79:5
+           |
+        79 |     test:assertTrue(someValue is int);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:84:5
+           |
+        84 |     test:assertTrue(someValue is MyError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:85:5
+           |
+        85 |     test:assertTrue(someValue is MyError|YourError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:86:5
+           |
+        86 |     test:assertTrue(someValue is MyError|error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:87:5
+           |
+        87 |     test:assertTrue(someValue is MyError|error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:88:5
+           |
+        88 |     test:assertTrue(someValue is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:95:5
+           |
+        95 |     test:assertTrue(foo is FooError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:96:5
+           |
+        96 |     test:assertTrue(foo is BarError);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertTrue
+          --> error-optimization-v.bal:97:5
+           |
+        97 |     test:assertTrue(foo is error);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

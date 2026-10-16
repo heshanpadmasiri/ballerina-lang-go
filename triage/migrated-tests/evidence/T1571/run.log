@@ -1,0 +1,46 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "worker-fail-test-278d4f50a4/sync_send_receive_negative-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:7:5
+           |
+         7 |     worker w1 returns E1|E2? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+         8 |         if 0 > 1 {
+           |         ^^^^^^^^^^
+         9 |             return error E1(R1);
+           |             ^^^^^^^^^^^^^^^^^^^^
+        10 |         }
+           |         ^
+        11 |         100 ->> w2;
+           |         ^^^^^^^^^^^
+        12 |         if 0 < 1 {
+           |         ^^^^^^^^^^
+        13 |             return error E2(R2);
+           |             ^^^^^^^^^^^^^^^^^^^^
+        14 |         }
+           |         ^
+        15 |         "hello" ->> w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |         return;
+           |         ^^^^^^^
+        17 |     }
+           |     ^
+        18 |     worker w2 returns error? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        19 |         int _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |         if 0 < 1 {
+           |         ^^^^^^^^^^
+        21 |             return error("w2 err");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^
+        22 |         }
+           |         ^
+        23 |         string _ = <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |         return;
+           |         ^^^^^^^
+        25 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

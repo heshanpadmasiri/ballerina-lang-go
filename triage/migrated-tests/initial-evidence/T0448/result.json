@@ -1,0 +1,14 @@
+{
+  "Name": "error-destructure-negetive-test-6c1d1c393d/error_destructure_binding_pattern_error_cause-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-destructure-negetive-test-6c1d1c393d/error_destructure_binding_pattern_error_cause-e.bal",
+  "Project": false,
+  "Id": "T0448",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-destructure-negetive-test-6c1d1c393d/error_destructure_binding_pattern_error_cause-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

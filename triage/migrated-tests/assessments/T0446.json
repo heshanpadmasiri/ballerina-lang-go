@@ -1,0 +1,18 @@
+{
+  "id": "T0446",
+  "name": "error-constructor-expr-test-5e913979ca/error-constructor-expr-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr); Currently spread-field not supported",
+    "Module-level declarations: Type definition; Module variable declarations; Function definition",
+    "Statements: Local variable declarations"
+  ],
+  "reason": "The case checks rejection of invalid error constructor arguments, unknown or inappropriate error type references, ambiguous contextual error types, incompatible assignments, and missing or incorrectly typed detail fields, including nested record/list values. Error constructors and the surrounding declarations and constructors are supported, and no listed restriction excludes these grammar or type-checking behaviors. Illegal expressions remain within the supported negative-testing scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case with @error markers, including multiple diagnostics on some lines; there are no @args, @panic, or @output assertions.",
+    "Includes an omitted mapping field expression and unresolved type names as deliberate rejection cases; these do not introduce an unsupported feature."
+  ]
+}

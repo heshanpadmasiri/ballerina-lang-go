@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "object-subtyping-test-6d097e853f/object-subtyping-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'message'
+          --> modules/subtyping/objects.bal:22:26
+           |
+        22 |     public function send(string message) returns error? {}
+           |                          ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'message'
+          --> modules/subtyping/objects.bal:23:29
+           |
+        23 |     public function receive(string message) {}
+           |                             ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'message'
+          --> modules/subtyping/objects.bal:30:26
+           |
+        30 |     public function send(string message) returns error? {}
+           |                          ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'message'
+          --> modules/subtyping/objects.bal:31:29
+           |
+        31 |     public function receive(string message) {}
+           |                             ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

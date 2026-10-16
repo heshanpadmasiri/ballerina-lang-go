@@ -1,0 +1,17 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:47: CLI exit: exit status 1
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	Riyafa=Riyafa
+        	true
+        	100
+        	5.5
+        	1.0E+100
+        	[5,3]
+        	[true,true]
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

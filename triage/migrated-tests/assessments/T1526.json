@@ -1,0 +1,19 @@
+{
+  "id": "T1526",
+  "name": "wait-actions-negative-test-f93f239821/wait-actions-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: '- [Start action](https://ballerina.io/spec/lang/master/#start-action)' and '- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)'",
+    "## Statements: lists supported statements, but does not include named worker declarations",
+    "## Module-level declarations: '- [Annotation declarations and attachments](https://ballerina.io/spec/lang/master/#section_9.1)'",
+    "### Other invocation restrictions: '- `string:toLowerAscii`, `string:toUpperAscii` and `string:trim`'"
+  ],
+  "reason": "The whole case includes essential named worker declarations (Producer1/Producer2/Consumer1/Consumer2) and waits on worker futures in waitForAllTest2 and waitActionWithInvalidType. Named workers are not covered by the subset's positive lists. Explicit support for start and wait actions does not establish support for named worker declarations. This suffices for feature classification, although many earlier negative wait-result type checks exercise supported start/wait actions.",
+  "unsupported_constructs": ["Named worker declarations with return types and references to their worker futures"],
+  "test_design_notes": [
+    "Mixed scope: ordinary start/wait type-error checks coexist with named-worker-dependent checks.",
+    "The file uses @error comments; it contains no @args, @panic, or @output assertions.",
+    "Some expressions lacking @error markers (for example future<int> result4 = f1|f4) may themselves be invalid; diagnostic-marker completeness should be reviewed separately.",
+    "The helper's str.toUpperAscii() method is explicitly supported."
+  ]
+}

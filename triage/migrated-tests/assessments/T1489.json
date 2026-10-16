@@ -1,0 +1,18 @@
+{
+  "id": "T1489",
+  "name": "type-test-expr-test-70ad51e586/type-test-expr-v",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [Type test expression](https://ballerina.io/spec/lang/master/#section_6.28)",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value: cloneWithType, fromJsonWithType, toString, toBalString",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType; value:fromJsonWithType; value:toString and value:toBalString"
+  ],
+  "reason": "Although type tests are positively supported, main calls testReadOnlyArrays, which invokes arr2.cloneReadOnly() and asserts the resulting readonly array's runtime type membership. cloneReadOnly is absent from both the permitted lang.value functions and the method-call list, so an essential executed behavior exceeds subset 10.",
+  "unsupported_constructs": [
+    "main.bal:723: anydata & readonly arr3 = arr2.cloneReadOnly();"
+  ],
+  "test_design_notes": [
+    "Mixed scope: a broad suite of type-test output checks and assertion calls also depends on unsupported readonly cloning; separating that portion would allow independent assessment of the other cases.",
+    "The @output markers specify concrete type-test results and formatted strings; io:println is instrumentation. No @args or @panic markers are present."
+  ]
+}

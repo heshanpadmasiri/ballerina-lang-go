@@ -1,0 +1,19 @@
+{
+  "id": "T0710",
+  "name": "limit-clause-test-2ffd7e8897/limit-clause-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: [Query expressions](https://ballerina.io/spec/lang/master/#query-expr)",
+    "Expressions: Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Other invocation restrictions: `array:push`"
+  ],
+  "reason": "The whole case includes query actions ending in do blocks, which are absent from the supported expression/action and statement lists. The documented limit support is for query expressions and does not establish query-action support. Thus the query-action limit validation and negative-limit behavior require an uncovered feature, even though the query-expression negative checks are within supported grammar/type-system validation.",
+  "unsupported_constructs": [
+    "Query actions: from ... limit ... do { ... } in invalidQueryAction and queryActionNegativeLimit"
+  ],
+  "test_design_notes": [
+    "Explicit error markers assert rejection of boolean-valued limit operands and of a limit clause after select.",
+    "Negative integer limits appear in both expression and action helpers without explicit error markers or runtime assertions in this file.",
+    "Array push method calls are explicitly supported."
+  ]
+}

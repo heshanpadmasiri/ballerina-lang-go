@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "constant-assignment-test-2d63b3eb49/constant-assignment-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ByteArrayLiteralNode transformed to non-action-or-expression node <nil>
+          --> constant-assignment-negative-e.bal:28:20
+           |
+        28 | const string[] Y = base16 `aabb`; // @error
+           |                    ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ByteArrayLiteralNode transformed to non-action-or-expression node <nil>
+          --> constant-assignment-negative-e.bal:30:26
+           |
+        30 | const [string, int] Z =  base16 `aabb`; // @error
+           |                          ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ByteArrayLiteralNode transformed to non-action-or-expression node <nil>
+          --> constant-assignment-negative-e.bal:32:19
+           |
+        32 | const [170] Z1 =  base16 `aabb`; // @error
+           |                   ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformByteArrayLiteral unimplemented
+          --> constant-assignment-negative-e.bal:28:20
+           |
+        28 | const string[] Y = base16 `aabb`; // @error
+           |                    ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformByteArrayLiteral unimplemented
+          --> constant-assignment-negative-e.bal:30:26
+           |
+        30 | const [string, int] Z =  base16 `aabb`; // @error
+           |                          ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformByteArrayLiteral unimplemented
+          --> constant-assignment-negative-e.bal:32:19
+           |
+        32 | const [170] Z1 =  base16 `aabb`; // @error
+           |                   ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,33 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at client-resource-call-negative-e.bal:59-72 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at client-resource-call-negative-e.bal:59-72 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:30 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:31 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:33 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:35 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:36 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:37 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:38 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:39 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:40 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:41 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:42 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:43 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:44 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:45 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:48 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:49 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:50 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:51 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:52 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:53 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:54 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:77 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:80 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:82 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client-resource-call-negative-e.bal:90 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

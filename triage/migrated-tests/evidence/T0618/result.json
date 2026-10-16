@@ -1,0 +1,14 @@
+{
+  "Name": "greater-less-than-operation-test-18ca062550/greater-less-than-operation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/greater-less-than-operation-test-18ca062550/greater-less-than-operation-v.bal",
+  "Project": false,
+  "Id": "T0618",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/greater-less-than-operation-test-18ca062550/greater-less-than-operation-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.134
+}

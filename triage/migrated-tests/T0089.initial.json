@@ -1,0 +1,14 @@
+{
+  "id": "T0089",
+  "name": "argument-parser-positive-test-e41e5b8a0a/decimal-01-v",
+  "classification": "bug",
+  "spec_references": [
+    {"heading": "Module-level declarations", "quote": "[Function definition](https://ballerina.io/spec/lang/master/#function-defn)", "relevance": "The case defines public main."},
+    {"heading": "Module-level declarations", "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature", "relevance": "main has one required decimal parameter; no listed restriction excludes this signature."},
+    {"heading": "Statements", "quote": "[Call](https://ballerina.io/spec/lang/master/#call-stmt)", "relevance": "The body contains only the output call."},
+    {"heading": "Subset restrictions / Import declarations", "quote": "Only following lang libraries with given methods/types are supported", "relevance": "This limits lang libraries, not the ordinary ballerina/io instrumentation import."}
+  ],
+  "reason": "The complete case is a supported function with a required decimal parameter and a simple output call. No express restriction excludes decimal main parameters or their argument conversion, and there is no essential unsupported construct in the supplied source.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Positive argument-parser test: @args [\"10\"] supplies the required decimal argument and @output 10 checks its printed value.", "io:println is instrumentation. No mixed unsupported constructs or error markers occur."]
+}

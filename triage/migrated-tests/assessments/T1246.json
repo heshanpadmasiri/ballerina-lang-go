@@ -1,0 +1,15 @@
+{
+  "id": "T1246",
+  "name": "record-access-with-index-test-496b8706b7/record-access-with-index-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Function definition], [Constant declarations], [Type definition]",
+    "Statements: [Assignment] — See supported lvexpr; [Local variable declarations]",
+    "Expressions: [Member access expression], [Variable reference], [Mapping constructor], [Literal]"
+  ],
+  "reason": "The case checks compile-time record indexing diagnostics: undeclared variables and fields, integer or mixed string/integer indices, incompatible result assignment, and finite string indices with no field intersection on closed records. It also expects a valid finite string index on an open record to compile. These are supported member-access, assignment, declaration, record/type-definition and literal constructs; the subset specifies no restriction excluding their static type checks or finite index unions.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation case; @error comments mark expected rejection, while the unmarked foo[f3] access is expected to be accepted. Illegal indices and unresolved references test supported static checking rather than introducing unsupported features."
+  ]
+}

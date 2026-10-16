@@ -1,0 +1,14 @@
+{
+  "Name": "function-pointers-with-rest-args-negative-test-efafc56779/function-pointers-with-rest-args-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-with-rest-args-negative-test-efafc56779/function-pointers-with-rest-args-negative-e.bal",
+  "Project": false,
+  "Id": "T0569",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-with-rest-args-negative-test-efafc56779/function-pointers-with-rest-args-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

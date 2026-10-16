@@ -1,0 +1,14 @@
+{
+  "Name": "nullable-type-test-a38c1ec2a3/nullable-type-basics-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/nullable-type-test-a38c1ec2a3/nullable-type-basics-v.bal",
+  "Project": false,
+  "Id": "T1017",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/nullable-type-test-a38c1ec2a3/nullable-type-basics-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.077
+}

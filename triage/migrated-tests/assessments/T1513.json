@@ -1,0 +1,20 @@
+{
+  "id": "T1513",
+  "name": "variable-declared-with-with-var-including-error-test-1fe4adcb27/var-inferred-including-error-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Local variable declarations\" is supported; do, fail and on-fail clauses are not listed.",
+    "Expressions: \"Error constructor\", \"List constructor\" and \"Mapping constructor\" are supported; standalone let expressions are not listed.",
+    "Expressions / Query expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\" covers query let clauses, not standalone let expressions."
+  ],
+  "reason": "The whole negative case requires standalone let expressions and a do/fail/on-fail statement with an inferred error binding, neither covered by subset 10. These are essential to several asserted rejection sites. Error-inclusive inference rejection in ordinary supported declarations remains in scope, but does not make the entire mixed case supported.",
+  "unsupported_constructs": [
+    "Standalone let expressions initializing errs and errs2",
+    "do statement containing fail and an on fail var binding"
+  ],
+  "test_design_notes": [
+    "Mixed scope: ordinary module/local var inference errors coexist with unsupported let and failure-handling constructs.",
+    "Several let declarations have multiple @error markers on a single line; marker attribution may require care.",
+    "No @args, @panic or @output assertions are present."
+  ]
+}

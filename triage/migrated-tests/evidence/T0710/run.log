@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: diagnostic at limit-clause-negative-e.bal:64-64 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at limit-clause-negative-e.bal:53-57 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at limit-clause-negative-e.bal:53-57 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at limit-clause-negative-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at limit-clause-negative-e.bal:65 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

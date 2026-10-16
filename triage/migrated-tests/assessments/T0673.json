@@ -1,0 +1,13 @@
+{
+  "id": "T0673",
+  "name": "isolated-worker-test-8e649817ff/isolated-named-worker-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports the `isolated` function qualifier (see isolated functions)",
+    "Statements: the supported statement list does not include named worker declarations or fork statements",
+    "Expressions: [Start action](https://ballerina.io/spec/lang/master/#start-action)"
+  ],
+  "reason": "The negative assertions depend essentially on named workers and fork blocks, including isolation checks on captured locals, module state, non-isolated calls, and strand annotations inside workers. Named worker declarations and fork statements are absent from the subset's supported constructs. Support for isolated functions and start actions does not cover these worker-specific rejection rules.",
+  "unsupported_constructs": ["Named worker declarations and worker isolation checks", "Fork statements", "Strand annotations on named workers"],
+  "test_design_notes": ["Negative rejection tests remain in scope when their grammar and asserted checks are supported; this case depends on unsupported worker constructs."]
+}

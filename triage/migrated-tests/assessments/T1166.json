@@ -1,0 +1,12 @@
+{
+  "id": "T1166",
+  "name": "option-test-1b0c555df9/missing_option_value_before_another_option-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "### Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The included-record main signature is supported, but the asserted panic requires command-line option parsing: invoking main with --val followed by --name must reject the missing value. Subset 10 does not cover command-line option binding or its error behavior; function-call argument support does not establish that behavior.",
+  "unsupported_constructs": ["Command-line option parsing and missing-option-value rejection for an included-record main parameter"],
+  "test_design_notes": ["The @args and @panic directives assert startup argument-validation behavior; the main body is empty."]
+}

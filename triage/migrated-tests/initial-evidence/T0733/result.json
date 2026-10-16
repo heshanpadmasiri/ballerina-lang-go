@@ -1,0 +1,14 @@
+{
+  "Name": "locks-in-main-test-617c6c002d/worker-send-receive-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/worker-send-receive-negative-e.bal",
+  "Project": false,
+  "Id": "T0733",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/worker-send-receive-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

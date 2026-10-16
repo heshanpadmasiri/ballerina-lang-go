@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "type-guard-test-74355f2266/sem-types-5-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: cloneReadOnly
+          --> sem-types-5-v.bal:46:34
+           |
+        46 |         self.credentialsConfig = credentialsConfig.cloneReadOnly();
+           |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

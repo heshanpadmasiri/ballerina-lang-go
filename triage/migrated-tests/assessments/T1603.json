@@ -1,0 +1,13 @@
+{
+  "id": "T1603",
+  "name": "worker-test-0f3493dd03/multiple-receive-action-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements but does not list named worker declarations or worker send statements.",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are listed; worker receive actions, including multiple receive actions, are not listed.",
+    "## Expressions: \"[Mapping constructor]\"; ## Operators: \"Equality ops `==`, `!=`, `===`, `!==`\"."
+  ],
+  "reason": "The case requires named workers, an asynchronous worker send (100 -> w2), and a multiple receive action (<- { w1 }) that constructs a map keyed by worker name. These constructs and communication semantics are not covered by subset 10. Listed wait support does not establish support for worker declarations or communication.",
+  "unsupported_constructs": ["Named worker declarations", "Worker send statement", "Multiple receive action and worker-name-keyed result mapping"],
+  "test_design_notes": ["main invokes the test and checks that waiting for w2 returns {w1: 100}; no @args, @panic, or @output markers occur.", "Supported mapping/equality/panic scaffolding is mixed with essential uncovered worker communication."]
+}

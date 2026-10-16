@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'testString'\n  --\u003e main.bal:13:1\n   |\n13 | string testString = \"test\";\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":13,"EndLine":13}]}

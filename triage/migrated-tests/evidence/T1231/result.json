@@ -1,0 +1,14 @@
+{
+  "Name": "query-with-binding-pattern-var-test-aad934bf38/query_with_binding_pattern-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-with-binding-pattern-var-test-aad934bf38/query_with_binding_pattern-v.bal",
+  "Project": false,
+  "Id": "T1231",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-with-binding-pattern-var-test-aad934bf38/query_with_binding_pattern-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.075
+}

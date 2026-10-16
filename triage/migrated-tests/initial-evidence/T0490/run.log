@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "foreach-array-tests-6709ca3e0f/foreach-array-remove-elements-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: method not found: pop
+         --> foreach-array-remove-elements-p.bal:4:17
+          |
+        4 |         var _ = values.pop();
+          |                 ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

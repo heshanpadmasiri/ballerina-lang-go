@@ -1,0 +1,14 @@
+{
+  "Name": "error-variable-definition-test-48c425a06f/error_variable_definition-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/error-variable-definition-test-48c425a06f/error_variable_definition-e.bal",
+  "Project": false,
+  "Id": "T0455",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/error-variable-definition-test-48c425a06f/error_variable_definition-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.03
+}

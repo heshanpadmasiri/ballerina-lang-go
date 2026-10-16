@@ -1,0 +1,12 @@
+{
+  "id": "T0365",
+  "name": "code-annotation-test-df355339be/code-annotation-negative-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: 'Annotation declarations and attachments' and 'Supports source-only, runtime, marker and repeated annotations'",
+    "# Subset restrictions / ## Import declarations: 'Only following lang libraries with given methods/types are supported' (the list does not include ballerina/lang.natural or natural:code)"
+  ],
+  "reason": "The expected errors concern the specialized natural:code annotation on external function bodies: missing or empty configuration and a non-string prompt. General annotation support does not cover this unavailable lang-library annotation or its configuration validation, so the whole negative case is outside the subset.",
+  "unsupported_constructs": ["natural:code annotation and its required configuration/prompt validation"],
+  "test_design_notes": ["Three @error markers assert compile-time rejection; there are no @args, @panic, or @output assertions."]
+}

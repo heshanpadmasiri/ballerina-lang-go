@@ -1,0 +1,16 @@
+{
+  "id": "T1462",
+  "name": "type-cast-action-test-c72af680c1/type-cast-action-test-c72af680c1-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists Type cast expression, Client remote method call action, Start action, Wait action, and Check expression; does not list typeof expression.",
+    "## Module-level declarations: Class definition supports client qualifiers and remote-method-defn for client classes.",
+    "### Other invocation restrictions: method syntax supports value:toString and value:toBalString."
+  ],
+  "reason": "The cast/action paths have explicit support, but the compiled assertion helper contains typeof expected and typeof actual, an expression form not covered by subset 10's positive expression list. This makes the whole case feature-scoped even though those expressions execute only after an assertion fails. The toString calls are covered by the value langlib allowance.",
+  "unsupported_constructs": ["typeof expressions in assert's failure diagnostics"],
+  "test_design_notes": [
+    "Mixed scope: supported casts of remote-call and wait results are combined with an uncovered diagnostic expression in the assertion helper.",
+    "No @args, @panic, or @output markers appear in the supplied source."
+  ]
+}

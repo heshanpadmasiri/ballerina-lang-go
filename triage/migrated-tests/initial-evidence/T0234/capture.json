@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: invalid decimal literal: 1e10000000000000\n --\u003e main.bal:2:17\n  |\n2 |     decimal _ = 1e10000000000000; // @error\n  |                 ^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":2,"EndLine":2}]}

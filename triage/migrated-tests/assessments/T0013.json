@@ -1,0 +1,25 @@
+{
+  "id": "T0013",
+  "name": "annotation-attachment-negative-test-eefa0f3f86/annotation-attachment-negative-test-eefa0f3f86-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    {"heading": "Module-level declarations", "quote": "Annotation declarations and attachments", "detail": "Supports source-only, runtime, marker and repeated annotations; Supports annotation values evaluated from constant and runtime expressions"},
+    {"heading": "Module-level declarations", "quote": "Supports `remote-method-defn` for client classes and `resource-method-defn` for service classes"},
+    {"heading": "Expressions", "quote": "Start action", "detail": "Start actions are listed, but standalone let expressions and service object constructor expressions are not listed."},
+    {"heading": "Statements", "quote": "Local variable declarations", "detail": "Named worker declarations are not listed among supported statements."},
+    {"heading": "Operators", "quote": "Additive ops `+`, `-`"}
+  ],
+  "reason": "Mixed case: annotation declarations/attachments (including source, marker, repeated annotations), classes, services, listeners, enums, casts, ordinary expressions and start actions have spec support. The entire fixture also requires named worker declarations, a standalone let expression, a service object constructor expression, and a remote method in a service class, which are outside the enumerated support or its stated class-method scope. Whole-case classification is therefore feature, despite its primarily supported annotation-negative checks.",
+  "unsupported_constructs": [
+    "Named worker declaration worker w1 in funcWithWorker (not covered by Statements).",
+    "Standalone let expression initializing b (query let clauses are supported, but standalone let expressions are not listed).",
+    "Service object constructor expression initializing serVar (not listed under Expressions).",
+    "remote function getName in service class ServiceClass2 (remote method definitions are stated supported for client classes)."
+  ],
+  "test_design_notes": [
+    "Large combined negative fixture mixes annotation validation with unsupported host constructs; isolate supported attachment locations before treating all failures as annotation bugs.",
+    "The annotations on increment: 1 + 2 and increment: y + 1 are marked @error even though y is a const and the spec supports annotation values evaluated from constant expressions and additive operators; these appear to be stale or overbroad expected-error markers.",
+    "Repeated @tainted and @v1 attachments mark only selected occurrences; exact diagnostic placement/multiplicity cannot be established from this source and subset spec alone.",
+    "Structured binding declarations in the final section should not be equated with the separately restricted destructuring assignment statement: these are declarations, not assignments."
+  ]
+}

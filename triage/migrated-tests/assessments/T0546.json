@@ -1,0 +1,14 @@
+{
+  "id": "T0546",
+  "name": "function-overload-test-133208fdef/function-overloading-same-arg-count-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Function definition]; Supports required-params",
+    "Statements: [Return]",
+    "Operators: Additive ops `+`, `-`",
+    "Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The test expects rejection of a second module-level function named testOverloading with the same argument count but different parameter and return types. This is a negative declaration/name-conflict test within supported function definitions, rather than requiring successful overload dispatch. Both bodies use supported returns and addition; b.toString() is explicitly permitted value:toString method syntax.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @error marker is on the duplicate function declaration; no calls or runtime overload selection are asserted."]
+}

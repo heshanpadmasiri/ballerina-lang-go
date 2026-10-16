@@ -1,0 +1,34 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "read-only-object-bala-test-38fd1e4394/readonly-objects-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> readonly-objects-v/main.bal:154:54
+            |
+        154 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+            |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+           --> readonly-objects-v/main.bal:155:50
+            |
+        155 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+            |                                                  ^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> readonly-objects-v/main.bal:64:68
+           |
+        64 |                         "'(readonly_objects:Details & readonly)'", err.detail()["message"]);
+           |                                                                    ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> readonly-objects-v/main.bal:74:66
+           |
+        74 |     assertEquality("modification not allowed on readonly value", err.detail()["message"]);
+           |                                                                  ^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> readonly-objects-v/main.bal:84:66
+           |
+        84 |     assertEquality("modification not allowed on readonly value", err.detail()["message"]);
+           |                                                                  ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

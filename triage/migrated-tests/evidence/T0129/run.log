@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at incorrect-array-access-e.bal:4 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at incorrect-array-access-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at incorrect-array-access-e.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at incorrect-array-access-e.bal:25 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

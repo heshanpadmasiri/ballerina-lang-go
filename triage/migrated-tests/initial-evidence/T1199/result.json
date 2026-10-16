@@ -1,0 +1,17 @@
+{
+  "Name": "package-init-test-6480e3dbbc/init-order-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/package-init-test-6480e3dbbc/init-order-v",
+  "Project": true,
+  "Id": "T1199",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-test-6480e3dbbc/init-order-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-test-6480e3dbbc/init-order-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-test-6480e3dbbc/init-order-v/modules/a/pa.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-test-6480e3dbbc/init-order-v/modules/b/pb.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.071
+}

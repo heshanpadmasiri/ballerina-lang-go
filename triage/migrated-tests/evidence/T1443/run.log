@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "tuple-mutability-test-4a07e00b3d/different-type-covariance-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'tuple2'
+          --> different-type-covariance-v.bal:23:5
+           |
+        23 |     [Employee, Person] tuple2 = tuple;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

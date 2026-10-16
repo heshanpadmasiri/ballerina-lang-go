@@ -1,0 +1,15 @@
+{
+  "Name": "forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e",
+  "Project": true,
+  "Id": "T0498",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/forward-referencing-global-definition-test-c1122b914e/function-global-cycle-e/file01.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.036
+}

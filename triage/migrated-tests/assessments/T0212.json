@@ -1,0 +1,12 @@
+{
+  "id": "T0212",
+  "name": "basic-fork-negative-test-42150a4d90/worker-peer-communication-negative-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes Assignment, Local variable declarations and Return, but does not include fork statements or named worker declarations.",
+    "## Expressions: \"- [Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)\"; worker send and receive actions are not listed."
+  ],
+  "reason": "The negative test requires fork blocks containing named workers and validation of worker peer send/receive scope and communication. These essential constructs and behaviors are not covered by subset 10's positive lists; support for start and wait actions does not cover them.",
+  "unsupported_constructs": ["fork statements", "named worker declarations", "worker send and receive actions and peer-scope validation"],
+  "test_design_notes": ["The source marks expected compile errors with @error; it has no @args, @panic or @output assertions.", "Negative rejection remains in scope for supported syntax, but this case depends on unsupported worker constructs."]
+}

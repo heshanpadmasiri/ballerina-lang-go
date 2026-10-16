@@ -1,0 +1,14 @@
+{
+  "Name": "string-test-618b121b6c/string-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-test-618b121b6c/string-v.bal",
+  "Project": false,
+  "Id": "T1365",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-test-618b121b6c/string-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.108
+}

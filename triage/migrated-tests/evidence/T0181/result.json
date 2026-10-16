@@ -1,0 +1,14 @@
+{
+  "Name": "array-test-774a6d4802/array-cyclic-p1-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-test-774a6d4802/array-cyclic-p1-p.bal",
+  "Project": false,
+  "Id": "T0181",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-test-774a6d4802/array-cyclic-p1-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

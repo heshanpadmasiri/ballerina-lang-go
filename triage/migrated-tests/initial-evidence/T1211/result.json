@@ -1,0 +1,15 @@
+{
+  "Name": "query-distinct-error-test-d5d9b08b3a/query-distinct-error-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-distinct-error-test-d5d9b08b3a/query-distinct-error-v",
+  "Project": true,
+  "Id": "T1211",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-distinct-error-test-d5d9b08b3a/query-distinct-error-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/query-distinct-error-test-d5d9b08b3a/query-distinct-error-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.077
+}

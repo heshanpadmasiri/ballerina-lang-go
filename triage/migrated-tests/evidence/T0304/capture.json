@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: Generic Error\n        at migration/checkpanic_generic_multi_union_p:testBasicCheckpanic(main.bal:7)\n           migration/checkpanic_generic_multi_union_p:main(main.bal:2)\n","Diagnostics":null}

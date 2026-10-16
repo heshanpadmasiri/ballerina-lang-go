@@ -1,0 +1,12 @@
+{
+  "id": "T0120",
+  "name": "argument-parser-positive-test-e41e5b8a0a/rest-missing-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The asserted output requires launching main(string... args) with no command-line arguments and accepting the missing rest arguments. Subset 10 supports rest-parameter signatures and ordinary calls, but does not cover the command-line entry-point argument parsing/invocation protocol; signature support alone does not establish this behavior.",
+  "unsupported_constructs": ["Command-line invocation of main with an omitted string rest argument list"],
+  "test_design_notes": ["No @args or @panic directive is present; @output asserts that main is invoked successfully with no supplied arguments.", "io:println is output instrumentation and is not the reason for classification."]
+}

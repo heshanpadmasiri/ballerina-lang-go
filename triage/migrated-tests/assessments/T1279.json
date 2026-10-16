@@ -1,0 +1,12 @@
+{
+  "id": "T1279",
+  "name": "record-variable-reference-test-d23ea5efdc/record-variable-reference-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: [Destructuring assignment statement](https://ballerina.io/spec/lang/master/#destructuring-assignment-stmt)",
+    "## Statements: Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)"
+  ],
+  "reason": "The negative case checks duplicate variable targets in flat and nested record destructuring assignments. These record binding patterns are essential to the asserted diagnostics and fall outside the explicit wildcard-only destructuring restriction.",
+  "unsupported_constructs": ["Record destructuring assignment patterns, including nested record patterns with repeated variable targets"],
+  "test_design_notes": ["The @error annotations assert rejection; rejection tests remain in scope when their grammar is supported, but these destructuring patterns are explicitly unsupported."]
+}

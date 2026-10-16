@@ -1,0 +1,17 @@
+{
+  "id": "T1213",
+  "name": "query-expr-with-query-construct-type-test-397e030880/query-expr-query-construct-type-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Query expressions: Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions > Query expressions: Supports `list` and `map` as `query-constructor-type`"
+  ],
+  "reason": "The case checks rejection of on conflict on non-table query results, including nested queries that explicitly construct keyed tables. Although on conflict and the surrounding query clauses are supported, the essential inner table key(idx) query constructors are outside the listed list/map query constructor types, so the whole case is feature coverage.",
+  "unsupported_constructs": [
+    "Keyed table query constructors: table key(idx) from ... select ..."
+  ],
+  "test_design_notes": [
+    "The first negative query uses supported clauses alone, but later negative assertions depend on nested table query construction; one unsupported essential construct determines the whole-case classification.",
+    "Negative type-system rejection is in scope for supported constructs; the classification is based on the table query constructor dependency, not merely the presence of expected errors."
+  ]
+}

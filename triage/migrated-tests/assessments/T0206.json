@@ -1,0 +1,18 @@
+{
+  "id": "T0206",
+  "name": "basic-async-operations-test-5353eae739/async-non-native-basic11-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[Start action]\" and \"[Wait action]\"",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"",
+    "### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\""
+  ],
+  "reason": "The test requires cancellation of two running futures via f1.cancel() and f2.cancel(), then asserts a panic from waiting on them. Future cancellation is absent from the permitted lang-library methods and method-call list, so start/wait support alone does not place this cancellation-dependent panic behavior in scope.",
+  "unsupported_constructs": [
+    "future cancellation via f1.cancel() and f2.cancel() (lang.future:cancel)",
+    "Cancellation-dependent panic at wait {f1, f2}"
+  ],
+  "test_design_notes": [
+    "The @panic assertion concerns execution after cancellation, not merely acceptance of start/wait syntax. runtime:sleep is explicitly supported."
+  ]
+}

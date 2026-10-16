@@ -1,0 +1,14 @@
+{
+  "Name": "map-to-record-assignability-test-c5ae90a3ca/map-to-record-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/map-to-record-negative-e.bal",
+  "Project": false,
+  "Id": "T0821",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-to-record-assignability-test-c5ae90a3ca/map-to-record-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.056
+}

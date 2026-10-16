@@ -1,0 +1,14 @@
+{
+  "Name": "map-constant-panic-test-a85ed20eb1/array-string-new-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-constant-panic-test-a85ed20eb1/array-string-new-p.bal",
+  "Project": false,
+  "Id": "T0781",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-constant-panic-test-a85ed20eb1/array-string-new-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.06
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "lvalue-test-e2785cbb54/lvalue-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/lvalue-v.bal",
+  "Project": false,
+  "Id": "T0748",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/lvalue-test-e2785cbb54/lvalue-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.092
+}

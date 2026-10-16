@@ -1,0 +1,14 @@
+{
+  "Name": "xmltest-76e9a224a5/xml-literals-with-namespaces-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmltest-76e9a224a5/xml-literals-with-namespaces-v.bal",
+  "Project": false,
+  "Id": "T1636",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmltest-76e9a224a5/xml-literals-with-namespaces-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.052
+}

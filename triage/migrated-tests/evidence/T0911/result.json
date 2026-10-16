@@ -1,0 +1,16 @@
+{
+  "Name": "module-public-variable-test-5b1954009d/access-project-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-public-variable-test-5b1954009d/access-project-negative-e",
+  "Project": true,
+  "Id": "T0911",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-public-variable-test-5b1954009d/access-project-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/module-public-variable-test-5b1954009d/access-project-negative-e/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/module-public-variable-test-5b1954009d/access-project-negative-e/modules/module1/module1.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.022
+}

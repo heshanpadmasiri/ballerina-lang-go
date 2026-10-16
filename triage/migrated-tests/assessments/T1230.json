@@ -1,0 +1,21 @@
+{
+  "id": "T1230",
+  "name": "query-type-narrowing-test-74c51d5294/query-type-narrowing-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions: Query expressions — Supports `list` and `map` as `query-constructor-type`",
+    "Statements: enumerates supported statements, with no query action / `do` clause",
+    "Expressions: lists List constructor and Mapping constructor, but no table constructor or let expression"
+  ],
+  "reason": "The case essentially exercises query actions ending in `do` to mutate arrays and assert narrowed int/string results. Query actions and their `do` clause are outside the supported statement/clause lists. It also constructs and queries a keyed table and uses standalone let expressions inside selected records, neither covered by the expression list. Supported query expressions and type tests do not make these additional constructs supported.",
+  "unsupported_constructs": [
+    "Query actions: from ... where ... do { ... }, including a let clause before do",
+    "Keyed table constructor: table<LiftRecord> key(id) initialized with table [...]",
+    "Let expressions: labels: let Label[]? l = d.labels in (...)"
+  ],
+  "test_design_notes": [
+    "Assertions test narrowing across guards, conditional branches and query clauses, including joined string concatenation and array mutation by query actions.",
+    "io:println is output instrumentation and is not used as an unsupported-feature basis. Array length/push and value toString methods are listed as supported."
+  ]
+}

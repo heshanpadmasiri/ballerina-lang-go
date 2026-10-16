@@ -1,0 +1,15 @@
+{
+  "id": "T0952",
+  "name": "native-conversion-test-4a94bbda4e/null-json-to-array-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Type definition] and [Function definition]",
+    "## Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only; [Type test expression]",
+    "## Statements: [Local variable declarations], [If/else], [Return], [Panic]",
+    "## Import declarations: `ballerina/lang.value` — `cloneWithType`",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: `value:cloneWithType`"
+  ],
+  "reason": "The case converts nil held as json to a closed record containing a required string-array field, then panics on the conversion error. cloneWithType is explicitly supported, including method-call syntax; the nil literal, record type declaration, type test, branching and panic introduce no stated restriction. The asserted failure of converting nil to this record is within the supported conversion behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Despite the filename, the conversion target is a record with a string[] field. The @panic comment marks expected failure; the explicit panic occurs after the returned error fails the StringArray type test."]
+}

@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "argument-parser-positive-test-e41e5b8a0a/rest-missing-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'args'
+         --> main.bal:3:22
+          |
+        3 | public function main(string... args) {
+          |                      ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

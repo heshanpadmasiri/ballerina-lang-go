@@ -1,0 +1,11 @@
+{
+  "id": "T0441",
+  "name": "error-binding-pattern-test-d3ff0cd2c4/error-binding-pattern-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "Both expected diagnostics concern var error() match patterns against int and any values. Error binding match patterns are outside the expressly supported constant and wildcard match patterns, so the asserted rejection behavior requires an unsupported pattern construct.",
+  "unsupported_constructs": ["var error() binding match pattern"],
+  "test_design_notes": ["The file marks both match clauses with @error; there are no @args, @panic, or @output assertions."]
+}

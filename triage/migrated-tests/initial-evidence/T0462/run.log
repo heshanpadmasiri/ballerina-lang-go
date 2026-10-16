@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "expr-bodied-function-test-d60970291b/expr-bodied-functions-checkpanic-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'res'
+          --> expr-bodied-functions-checkpanic-p.bal:10:5
+           |
+        10 |     int res = panicsACheck();
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

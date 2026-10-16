@@ -1,0 +1,14 @@
+{
+  "Name": "undefined-functions-test-94ce8c58e9/undefined-functions-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/undefined-functions-test-94ce8c58e9/undefined-functions-e.bal",
+  "Project": false,
+  "Id": "T1499",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/undefined-functions-test-94ce8c58e9/undefined-functions-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

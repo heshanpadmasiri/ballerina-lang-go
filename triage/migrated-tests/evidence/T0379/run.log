@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "constant-expression-test-2596be1ac5/constant-expression-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+           --> constant-expression-v.bal:108:19
+            |
+        108 | const int CUI5 = -int:MAX_VALUE;
+            |                   ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.11s)
+FAIL

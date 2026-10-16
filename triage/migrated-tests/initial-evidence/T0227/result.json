@@ -1,0 +1,14 @@
+{
+  "Name": "bbyte-value-negative-test-a1f101c098/byte-value-runtime-negative-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bbyte-value-negative-test-a1f101c098/byte-value-runtime-negative-v.bal",
+  "Project": false,
+  "Id": "T0227",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bbyte-value-negative-test-a1f101c098/byte-value-runtime-negative-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.073
+}

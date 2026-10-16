@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "query-semantic-negative-tests-cfb3d21b20/multiple-from-clause-stream-type-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: query from clause currently supports only list or map collections
+          --> main.bal:23:13
+           |
+        23 |             from var person in personList.toStream()
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at modules/org_foo_baz_sn/private-fields-semantics-negative-02.bal:56-56 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at modules/org_foo_baz_sn/private-fields-semantics-negative-02.bal:56-56 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at modules/org_foo_baz_sn/private-fields-semantics-negative-02.bal:56-56 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at modules/org_foo_baz_sn/private-fields-semantics-negative-01.bal:5 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at modules/org_foo_baz_sn/private-fields-semantics-negative-01.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at modules/org_foo_baz_sn/private-fields-semantics-negative-01.bal:38 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at modules/org_foo_baz_sn/private-fields-semantics-negative-01.bal:42 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at modules/org_foo_baz_sn/private-fields-semantics-negative-02.bal:16 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at private-fields-semantics-negative2.bal:10 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

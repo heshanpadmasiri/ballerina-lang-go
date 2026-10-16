@@ -1,0 +1,210 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "if-else-stmt-test-abeec549fb/if-else-stmt-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+           --> if-else-stmt-v.bal:219:9
+            |
+        219 |         int a = 3;
+            |         ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'a'
+           --> if-else-stmt-v.bal:276:9
+            |
+        276 |         int a = 2022;
+            |         ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'a'
+           --> if-else-stmt-v.bal:279:9
+            |
+        279 |         int a = 10;
+            |         ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> if-else-stmt-v.bal:127:9
+            |
+        127 |         ONE b = a;
+            |         ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> if-else-stmt-v.bal:133:9
+            |
+        133 |         5 b = a;
+            |         ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> if-else-stmt-v.bal:220:9
+            |
+        220 |         int b = 12;
+            |         ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> if-else-stmt-v.bal:250:9
+            |
+        250 |         int b = 12;
+            |         ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> if-else-stmt-v.bal:277:9
+            |
+        277 |         int b = 12;
+            |         ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> if-else-stmt-v.bal:280:9
+            |
+        280 |         int b = 12;
+            |         ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> if-else-stmt-v.bal:317:9
+            |
+        317 |         int b = 10;
+            |         ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'c'
+           --> if-else-stmt-v.bal:113:9
+            |
+        113 |         int c = 1;
+            |         ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'c'
+           --> if-else-stmt-v.bal:116:9
+            |
+        116 |         int c = 2;
+            |         ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'c'
+           --> if-else-stmt-v.bal:129:9
+            |
+        129 |         int|boolean c = a;
+            |         ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'c'
+           --> if-else-stmt-v.bal:135:9
+            |
+        135 |         int|boolean c = a;
+            |         ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'c'
+           --> if-else-stmt-v.bal:252:13
+            |
+        252 |             int c = 2;
+            |             ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'c'
+           --> if-else-stmt-v.bal:255:13
+            |
+        255 |             int c = 2;
+            |             ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'c'
+           --> if-else-stmt-v.bal:313:13
+            |
+        313 |             int c = 10;
+            |             ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+           --> if-else-stmt-v.bal:161:13
+            |
+        161 |             () d = optionalAge;
+            |             ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+           --> if-else-stmt-v.bal:239:9
+            |
+        239 |         int d = 20;
+            |         ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+           --> if-else-stmt-v.bal:253:13
+            |
+        253 |             int d = 3;
+            |             ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+           --> if-else-stmt-v.bal:256:13
+            |
+        256 |             int d = 3;
+            |             ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+           --> if-else-stmt-v.bal:303:17
+            |
+        303 |                 int d = 2;
+            |                 ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+           --> if-else-stmt-v.bal:311:17
+            |
+        311 |                 int d = 12;
+            |                 ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'd'
+           --> if-else-stmt-v.bal:321:17
+            |
+        321 |                 int d = 12;
+            |                 ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'k'
+          --> if-else-stmt-v.bal:60:13
+           |
+        60 |             int k = -1;
+           |             ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'lambdaFunc'
+           --> if-else-stmt-v.bal:158:5
+            |
+        158 |     var lambdaFunc = function (int|string id) returns ONE {
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        159 |         int? optionalAge = 20;
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        160 |         if optionalAge == () {
+            |         ^^^^^^^^^^^^^^^^^^^^^^
+        161 |             () d = optionalAge;
+            |             ^^^^^^^^^^^^^^^^^^^
+        162 |         }
+            |         ^
+        163 | 
+            | 
+        164 |         if id != ONE {
+            |         ^^^^^^^^^^^^^^
+        165 |             return 1;
+            |             ^^^^^^^^^
+        166 |         }
+            |         ^
+        167 |         return id;
+            |         ^^^^^^^^^^
+        168 |     };
+            |     ^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'optionalName'
+           --> if-else-stmt-v.bal:157:5
+            |
+        157 |     string? optionalName = "Ballerina";
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 't'
+           --> if-else-stmt-v.bal:139:9
+            |
+        139 |         () t = s;
+            |         ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 't'
+           --> if-else-stmt-v.bal:147:9
+            |
+        147 |         () t = s;
+            |         ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'u'
+           --> if-else-stmt-v.bal:141:9
+            |
+        141 |         string u = s;
+            |         ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'u'
+           --> if-else-stmt-v.bal:145:9
+            |
+        145 |         string u = s;
+            |         ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

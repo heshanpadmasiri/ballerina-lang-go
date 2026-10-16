@@ -1,0 +1,14 @@
+{
+  "Name": "map-constant-negative-test-0be5e94915/map-constant-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-constant-negative-test-0be5e94915/map-constant-negative-e.bal",
+  "Project": false,
+  "Id": "T0767",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-constant-negative-test-0be5e94915/map-constant-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

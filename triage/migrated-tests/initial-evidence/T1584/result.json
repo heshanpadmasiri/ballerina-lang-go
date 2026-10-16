@@ -1,0 +1,14 @@
+{
+  "Name": "worker-sync-send-test-389660a47d/sync-send-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/sync-send-v.bal",
+  "Project": false,
+  "Id": "T1584",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/sync-send-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.074
+}

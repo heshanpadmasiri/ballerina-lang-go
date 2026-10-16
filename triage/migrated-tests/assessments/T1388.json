@@ -1,0 +1,16 @@
+{
+  "id": "T1388",
+  "name": "struct-negative-test-2ccd0a79e0/struct-constants-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Expressions: [Literal](https://ballerina.io/spec/lang/master/#literal) — Currently support nil-literal, boolean-literal, numeric-literal and string-literal only",
+    "Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr) — Currently spread-field not supported",
+    "Statements: [Return](https://ballerina.io/spec/lang/master/#return-stmt)"
+  ],
+  "reason": "The sole asserted error is assigning integer literal 10 to a final module variable of record type Person. This is rejection within the supported declaration/type system. The record has ordinary defaulted string, map<any>, and int fields, using supported literals and an empty mapping constructor; main uses a supported rest parameter and return. No applicable subset restriction excludes these constructs.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @error marker targets the incompatible module variable initializer. No @args, @panic, or @output assertions or mixed-scope constructs appear."]
+}

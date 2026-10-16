@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at main.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:7-7 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:8-8 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at main.bal:12-12 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at main.bal:31 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:35 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

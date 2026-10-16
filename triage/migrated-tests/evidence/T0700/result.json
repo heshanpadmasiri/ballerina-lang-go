@@ -1,0 +1,14 @@
+{
+  "Name": "jsontest-d8d6aef1f4/nullable-json-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/jsontest-d8d6aef1f4/nullable-json-v.bal",
+  "Project": false,
+  "Id": "T0700",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/jsontest-d8d6aef1f4/nullable-json-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.126
+}

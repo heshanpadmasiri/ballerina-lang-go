@@ -1,0 +1,43 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "function-nil-return-test-762593be2f/function-nil-return-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> function-nil-return-e.bal:109:26
+            |
+        109 | service object {} obj2 = service object {
+            |                          ^^^^^^^^^^^^^^^^
+        110 |     remote function foo() returns int? { // @error
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        111 |         int? a = 10;
+            |         ^^^^^^^^^^^^
+        112 |         if a is int {
+            |         ^^^^^^^^^^^^^
+        113 |             return 1;
+            |             ^^^^^^^^^
+        114 |         }
+            |         ^
+        115 |     }
+            |     ^
+        116 | };
+            | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+           --> function-nil-return-e.bal:109:26
+            |
+        109 | service object {} obj2 = service object {
+            |                          ^^^^^^^^^^^^^^^^
+        110 |     remote function foo() returns int? { // @error
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        111 |         int? a = 10;
+            |         ^^^^^^^^^^^^
+        112 |         if a is int {
+            |         ^^^^^^^^^^^^^
+        113 |             return 1;
+            |             ^^^^^^^^^
+        114 |         }
+            |         ^
+        115 |     }
+            |     ^
+        116 | };
+            | ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

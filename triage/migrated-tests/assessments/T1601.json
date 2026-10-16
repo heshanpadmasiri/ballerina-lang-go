@@ -1,0 +1,20 @@
+{
+  "id": "T1601",
+  "name": "worker-test-0f3493dd03/16-start-inside-lock-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Lock statement\"; \"Panic\"",
+    "Expressions: \"Start action\"; \"Wait action\" (no named-worker declarations or worker send/receive actions listed)",
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (future:cancel is absent)"
+  ],
+  "reason": "The whole file includes named workers and asynchronous/synchronous worker messaging, which are not covered by the subset's positive feature lists. It also calls future.cancel(), outside the allowed langlib methods. These are decisive unsupported constructs even though lock, start, wait, and panic themselves are listed.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker-to-worker/default-worker send and receive actions, including synchronous send (->>)",
+    "future.cancel()"
+  ],
+  "test_design_notes": [
+    "Mixed scope: main invokes only testPanicStartInsideLock, but the file contains many unrelated worker, messaging, cancellation, and error-propagation tests.",
+    "The sole @panic marker is inside panicStartInsideLock on the start action reached through a call under lock; it asserts dynamic start-under-lock panic behavior, rather than a direct panic statement. No @args or @output markers appear."
+  ]
+}

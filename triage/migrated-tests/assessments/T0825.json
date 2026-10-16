@@ -1,0 +1,16 @@
+{
+  "id": "T0825",
+  "name": "mapping-binding-pattern-negative-test-66fc85fc17/mapping-binding-pattern-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: [Match statement] — Currently only supports [const-pattern] and [wildcard-match-pattern]"
+  ],
+  "reason": "The expected assignment and return type errors depend on types inferred for mapping binding match patterns, their captured fields and rest mappings across maps, JSON, closed records and unions. These patterns are outside the explicitly supported match patterns. The final var x capture match pattern is also outside that list.",
+  "unsupported_constructs": [
+    "Mapping binding match patterns, including field captures, rest captures and a guarded pattern",
+    "Capture binding match pattern var x"
+  ],
+  "test_design_notes": [
+    "Negative type-error assertions require unsupported match binding inference; ordinary incompatible-assignment rejection alone does not cover the asserted behavior."
+  ]
+}

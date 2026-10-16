@@ -1,0 +1,15 @@
+{
+  "id": "T1312",
+  "name": "return-stmt-negative-test-c1f15d4b97/return-in-resource-with-mismatching-types-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Import declarations], [Service declarations], [Type definition], [Class definition]",
+    "Module-level declarations: Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Statements: [Return]",
+    "Expressions: [New expression], [Variable reference]",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "The three asserted errors reject returning int where error? is declared and returning string where explicit or implicit nil is required. Return type checking in resource methods, service declarations, classes, records and object construction are within the supported constructs. The import restriction concerns lang libraries and does not exclude ballerina/http.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Negative type errors remain in scope for the supported return statement and service grammar."]
+}

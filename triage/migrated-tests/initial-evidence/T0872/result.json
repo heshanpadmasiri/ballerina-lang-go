@@ -1,0 +1,14 @@
+{
+  "Name": "match-stmt-mapping-match-pattern-test-9627f13a97/mapping-match-pattern-with-rest-match-pattern-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-mapping-match-pattern-test-9627f13a97/mapping-match-pattern-with-rest-match-pattern-v.bal",
+  "Project": false,
+  "Id": "T0872",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-mapping-match-pattern-test-9627f13a97/mapping-match-pattern-with-rest-match-pattern-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.08
+}

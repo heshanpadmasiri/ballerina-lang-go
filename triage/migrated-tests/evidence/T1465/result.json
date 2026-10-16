@@ -1,0 +1,14 @@
+{
+  "Name": "type-definitions-negative-test-4cffd2ad3d/type-definitions-semantics-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-definitions-negative-test-4cffd2ad3d/type-definitions-semantics-negative-e.bal",
+  "Project": false,
+  "Id": "T1465",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-definitions-negative-test-4cffd2ad3d/type-definitions-semantics-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.032
+}

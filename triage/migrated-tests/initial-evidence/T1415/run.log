@@ -1,0 +1,69 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	15
+        	5
+        	large
+        	small
+        	10.5
+        	9.5
+        	if
+        	else
+        	10tenfalse
+        	10othertrue
+        	super
+        	tom
+        	1
+        	2
+        	hello world...!!
+        	hello everyone..!
+        	bax
+        	bar
+        	{"name":"tom","location":"US"}
+        	{"name":"bob","location":"UK"}
+        	morethan70
+        	morethan70
+        	morethan40
+        	morethan40
+        	morethan20
+        	morethan20
+        	lessthan20
+        	lessthan20
+        	morethan70
+        	morethan70
+        	lessthan70
+        	lessthan70
+        	morethan20
+        	morethan20
+        	lessthan20
+        	lessthan20
+        	morethan45
+        	morethan45
+        	morethan30
+        	morethan30
+        	lessthan30
+        	lessthan30
+        	morethan70
+        	morethan70
+        	morethan50
+        	morethan50
+        	lessthan50
+        	lessthan50
+        	lessthan20
+        	lessthan20
+        	morethan50
+        	morethan50
+        	morethan40
+        	morethan40
+        	lessthan40
+        	lessthan40
+        	morethan20
+        	morethan20
+        	7
+        	11
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

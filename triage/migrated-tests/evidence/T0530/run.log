@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "freeze-and-is-frozen-test-c0f3b0e88b/frozen-record-update-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: method not found: cloneReadOnly
+          --> frozen-record-update-p.bal:15:23
+           |
+        15 |     DeptEmployee e3 = e1.cloneReadOnly();
+           |                       ^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

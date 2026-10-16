@@ -1,0 +1,14 @@
+{
+  "Name": "anonymous-open-record-test-a3375985f4/anonymous-open-record-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/anonymous-open-record-test-a3375985f4/anonymous-open-record-v.bal",
+  "Project": false,
+  "Id": "T0025",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/anonymous-open-record-test-a3375985f4/anonymous-open-record-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.075
+}

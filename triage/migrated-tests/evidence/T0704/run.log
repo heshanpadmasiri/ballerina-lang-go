@@ -1,0 +1,28 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "length-of-operator-test-40bf142c3a/length-of-operator-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable '_x'
+           --> main.bal:102:27
+            |
+        102 | function lengthOfMapEmpty(int _x, int _y) returns int {
+            |                           ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable '_x'
+          --> main.bal:97:22
+           |
+        97 | function lengthOfMap(int _x, int _y) returns int {
+           |                      ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable '_y'
+           --> main.bal:102:35
+            |
+        102 | function lengthOfMapEmpty(int _x, int _y) returns int {
+            |                                   ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable '_y'
+          --> main.bal:97:30
+           |
+        97 | function lengthOfMap(int _x, int _y) returns int {
+           |                              ^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

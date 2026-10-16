@@ -1,0 +1,12 @@
+{
+  "id": "T0517",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-decimal-array-modification-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType; value:fromJsonWithType; value:toString and value:toBalString."
+  ],
+  "reason": "The expected panic when modifying the decimal array depends on d.cloneReadOnly() producing a frozen array. cloneReadOnly is absent from both the supported lang.value functions and the langlib method-call allowlist, so this essential behavior is outside the subset.",
+  "unsupported_constructs": ["lang.value cloneReadOnly invoked as d.cloneReadOnly(), including the frozen clone behavior needed for the subsequent mutation panic"],
+  "test_design_notes": ["The @panic assertion concerns modification of the clone at index 3; ordinary array assignment alone does not establish support for the freezing operation."]
+}

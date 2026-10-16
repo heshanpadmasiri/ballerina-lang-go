@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Unknown symbol: name\n --\u003e string-template-literal-negative-e.bal:2:32\n  |\n2 |     string s = string `Hello ${name}`; // @error\n  |                                ^^^^\n\n","Diagnostics":[{"File":"string-template-literal-negative-e.bal","StartLine":2,"EndLine":2}]}

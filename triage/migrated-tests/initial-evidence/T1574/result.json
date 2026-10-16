@@ -1,0 +1,14 @@
+{
+  "Name": "worker-in-action-test-5a590dbd54/worker-in-action-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-in-action-test-5a590dbd54/worker-in-action-v.bal",
+  "Project": false,
+  "Id": "T1574",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-in-action-test-5a590dbd54/worker-in-action-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

@@ -1,0 +1,15 @@
+{
+  "id": "T1500",
+  "name": "unicode-negative-test-89728c5fba/unicode-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions \u2192 Literal: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\""
+  ],
+  "reason": "The case requires rejection of surrogate code points, code points beyond Unicode range, oversized escapes, and an unterminated Unicode escape in string literals. Function definitions, local declarations, and string literals are supported; no subset restriction excludes Unicode escape validation. Negative rejection within this supported literal grammar is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "All assertions are compile-time @error markers; there are no runtime @args, @panic, or @output assertions. Multiple invalid escapes on individual lines intentionally carry multiple @error markers; no obvious mixed-scope issue."
+  ]
+}

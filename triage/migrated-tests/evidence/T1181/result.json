@@ -1,0 +1,20 @@
+{
+  "Name": "option-test-1b0c555df9/option_with_types_equals-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_types_equals-v.bal",
+  "Project": false,
+  "Id": "T1181",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_types_equals-v.bal"
+  ],
+  "Args": [
+    "--union=e-fac",
+    "--name=Riyafa",
+    "--age=25",
+    "--score=99.99",
+    "--value=1e10"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.113
+}

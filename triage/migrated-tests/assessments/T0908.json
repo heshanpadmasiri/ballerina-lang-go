@@ -1,0 +1,18 @@
+{
+  "id": "T0908",
+  "name": "module-listener-decl-test-9b9489d763/imported-module-listeners-v",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\", \"Module listener declarations\", \"Service declarations\", \"Module variable declarations\", \"Function definition\", and \"Class definition\"",
+    "Module-level declarations / Class definition: \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Expressions: \"Method call\", \"Check expression\", \"New expression\", and \"Error constructor\"",
+    "Statements: \"Compound Assignment\", \"If/else\", and \"Panic\"",
+    "Subset restrictions / Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\""
+  ],
+  "reason": "The transitive blank imports load module2, whose three module listeners use a custom listener class and have attached services. Its init function explicitly starts all three listeners and asserts that the shared start counter is exactly three. Imports, listener and service declarations, ordinary class methods, module initialization through a function definition, and the counter/assertion expressions are covered by the supported features. No listed restriction excludes this imported-module listener behavior or the service-qualified object parameter.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The only explicit assertion checks three manual start calls during module2 initialization; it does not directly assert subsequent automatic listener starts, attachment counts, shutdown behavior, or resource dispatch.",
+    "main is empty, so executing the assertion depends on transitive initialization through imports aliased as _."
+  ]
+}

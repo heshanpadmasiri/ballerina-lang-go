@@ -1,0 +1,15 @@
+{
+  "Name": "deprecated-annotation-test-e11d4104cd/deprecated-annotations-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/deprecated-annotation-test-e11d4104cd/deprecated-annotations-e",
+  "Project": true,
+  "Id": "T0411",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/deprecated-annotation-test-e11d4104cd/deprecated-annotations-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/deprecated-annotation-test-e11d4104cd/deprecated-annotations-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.065
+}

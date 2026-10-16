@@ -1,0 +1,14 @@
+{
+  "Name": "shadowing-negative-test-3ca8e22261/shadowing-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/shadowing-negative-test-3ca8e22261/shadowing-negative-e.bal",
+  "Project": false,
+  "Id": "T1345",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/shadowing-negative-test-3ca8e22261/shadowing-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.033
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: -4\n        at addMinusIndex(add-minus-index-p.bal:7)\n           main(add-minus-index-p.bal:2)\n","Diagnostics":null}

@@ -1,0 +1,14 @@
+{
+  "Name": "cyclic-type-definitions-test-3fce5ad632/tuple-type-definitions-cyclic-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/cyclic-type-definitions-test-3fce5ad632/tuple-type-definitions-cyclic-v.bal",
+  "Project": false,
+  "Id": "T0403",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/cyclic-type-definitions-test-3fce5ad632/tuple-type-definitions-cyclic-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.073
+}

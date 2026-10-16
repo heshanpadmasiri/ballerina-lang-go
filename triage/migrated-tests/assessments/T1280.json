@@ -1,0 +1,15 @@
+{
+  "id": "T1280",
+  "name": "record-variable-reference-test-d23ea5efdc/record-variable-reference-semantics-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: [Destructuring assignment statement] — Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)"
+  ],
+  "reason": "The case requires semantic diagnostics for record/mapping destructuring assignments, including nested binding patterns, rest bindings, duplicate/unknown/optional fields, incompatible target types and readonly targets. Subset 10 explicitly limits destructuring assignment to wildcard binding patterns, so this essential asserted behavior is unsupported.",
+  "unsupported_constructs": [
+    "Mapping/record binding patterns in destructuring assignments, including nested mapping/list patterns and rest bindings"
+  ],
+  "test_design_notes": [
+    "Negative rejection is tested, but the relevant non-wildcard destructuring grammar is explicitly outside the supported subset."
+  ]
+}

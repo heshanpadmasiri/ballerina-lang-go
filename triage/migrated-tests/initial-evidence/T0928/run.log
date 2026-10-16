@@ -1,0 +1,59 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "multiple-order-by-clause-test-501ec633e3/multiple-order-by-clauses-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> multiple-order-by-clauses-e.bal:34:9
+           |
+        34 |         from var customer in customerList
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |     join var person in personList
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         on customer.name equals person.lastName
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |     order by customer.noOfItems descending
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |     limit 5
+           |     ^^^^^^^
+        39 |     order by person.address
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     limit 2
+           |     ^^^^^^^
+        41 |     do {
+           |     ^^^^
+        42 |         CustomerProfileY cp = {name: person.firstName, age: person.age, noOfItems: customer.noOfItems,
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |             address: person.address};
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        44 |         customerProfileList[customerProfileList.length()] = cp;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> multiple-order-by-clauses-e.bal:34:9
+           |
+        34 |         from var customer in customerList
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |     join var person in personList
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         on customer.name equals person.lastName
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |     order by customer.noOfItems descending
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |     limit 5
+           |     ^^^^^^^
+        39 |     order by person.address
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     limit 2
+           |     ^^^^^^^
+        41 |     do {
+           |     ^^^^
+        42 |         CustomerProfileY cp = {name: person.firstName, age: person.age, noOfItems: customer.noOfItems,
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |             address: person.address};
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        44 |         customerProfileList[customerProfileList.length()] = cp;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

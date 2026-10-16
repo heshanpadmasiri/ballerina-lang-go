@@ -1,0 +1,18 @@
+{
+  "id": "T1552",
+  "name": "worker-fail-test-278d4f50a4/invalid-receive-in-foreach-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Foreach]\"; \"Currently only supports range, list, map, string and XML subtypes, and [iterable objects]\"",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are listed; named worker declarations and worker send/receive actions are not listed."
+  ],
+  "reason": "The essential negative test concerns named workers and a worker receive inside a foreach loop, with a corresponding worker send. Named workers and worker messaging are not covered by subset 10. Range foreach, integer locals, assignment and addition are supported, but cannot make the whole worker messaging case in scope.",
+  "unsupported_constructs": [
+    "Named worker declarations: worker w1 and worker w2",
+    "Worker send i -> w2 and receive <- w1, including receive-placement validation in foreach"
+  ],
+  "test_design_notes": [
+    "The @error on int j = 25 marks an otherwise ordinary supported local declaration; it may anchor a worker-related diagnostic, but the supplied files do not explain it.",
+    "No @args, @panic or @output assertions are present."
+  ]
+}

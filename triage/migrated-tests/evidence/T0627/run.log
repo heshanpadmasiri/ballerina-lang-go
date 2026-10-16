@@ -1,0 +1,19 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	IL with global var
+        	77.8
+        	99934
+        	{"name":"James","age":30}
+        	sample value
+        	සිංහල වාක්‍යක්
+        	hello
+        	hello
+        	I am an integer
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

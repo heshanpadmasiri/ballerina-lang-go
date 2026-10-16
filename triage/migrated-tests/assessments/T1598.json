@@ -1,0 +1,19 @@
+{
+  "id": "T1598",
+  "name": "worker-test-0f3493dd03/13-inner-worker-panic-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists Panic and Lock statement, but does not list named worker declarations or worker send statements.",
+    "## Expressions: lists Start action, Wait action, Error constructor, Check expression and Trap expression, but does not list worker receive actions.",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.runtime lists sleep, onGracefulStop and StopHandler; no ballerina/lang.future/cancel is listed."
+  ],
+  "reason": "main calls panicFunc, whose named worker w5 panics before sending to the default worker; the default worker receives from w5. Named workers, worker messaging and propagation of a worker panic through a receive are not covered by subset10. Support for panic, start and wait does not establish support for that essential worker behavior.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker send/receive actions, including panic propagation across worker communication.",
+    "Additional retained functions use synchronous worker sends and future.cancel(), whose langlib operation is outside the listed libraries/methods."
+  ],
+  "test_design_notes": [
+    "The file retains a broad worker test suite, including cancellation, lock interactions, lambdas and queries, although main only invokes panicFunc.",
+    "The sole @panic marker is on the error-constructor line inside w5, preceding the panic statement; the intended observed behavior is an escaping worker panic propagated through the receive, not merely construction of an error. No @args or @output markers appear."
+  ]
+}

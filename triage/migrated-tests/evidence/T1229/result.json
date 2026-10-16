@@ -1,0 +1,14 @@
+{
+  "Name": "query-type-narrowing-test-74c51d5294/query-type-narrowing-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-type-narrowing-test-74c51d5294/query-type-narrowing-negative-e.bal",
+  "Project": false,
+  "Id": "T1229",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-type-narrowing-test-74c51d5294/query-type-narrowing-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

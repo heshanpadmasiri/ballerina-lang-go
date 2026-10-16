@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @error annotation at main.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:38 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:43 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:49 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:55 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:61 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:67 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:73 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:79 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:91 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:93 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:96 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:98 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:101 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:114 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:119 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:120 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:122 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:128 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:134 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:135 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:136 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:154 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:155 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:156 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:157 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:158 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:165 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:199 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:203 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:208 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:215 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:222 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:230 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:233 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:239 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:240 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:241 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:242 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:245 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:246 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:247 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:248 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:250 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at main.bal:253 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

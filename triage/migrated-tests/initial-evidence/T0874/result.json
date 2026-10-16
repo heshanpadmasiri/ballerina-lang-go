@@ -1,0 +1,14 @@
+{
+  "Name": "match-stmt-type-narrowing-test-2f777af370/match-stmt-type-narrow-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-type-narrowing-test-2f777af370/match-stmt-type-narrow-negative-e.bal",
+  "Project": false,
+  "Id": "T0874",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-type-narrowing-test-2f777af370/match-stmt-type-narrow-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.057
+}

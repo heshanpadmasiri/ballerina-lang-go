@@ -1,0 +1,14 @@
+{
+  "id": "T0611",
+  "name": "global-var-negative-test-2de21d931c/global-variable-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Variable reference: \"Currently `xml-qualified-names` not supported\"",
+    "Module-level declarations: \"Module listener declarations\"",
+    "Module-level declarations > Class definition: \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Expressions: \"Field access expression\" and \"Mapping constructor\""
+  ],
+  "reason": "The case requires rejection of the XML-qualified field name in v.foo:x, which exercises explicitly unsupported xml-qualified-names. This essential annotated error makes the whole case a feature case, although missing required record fields, uninitialized listeners, and cyclic object inclusion otherwise concern supported constructs.",
+  "unsupported_constructs": ["XML-qualified name foo:x in field access v.foo:x"],
+  "test_design_notes": ["Negative compile case with @error markers; illegal code alone does not place supported grammar or type checks outside scope."]
+}

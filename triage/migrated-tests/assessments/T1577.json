@@ -1,0 +1,22 @@
+{
+  "id": "T1577",
+  "name": "worker-multiple-receive-test-98321dc2b9/worker-multiple-receive-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations or worker send actions.",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are listed, but worker receive and multiple receive actions are not listed.",
+    "# Subset restrictions / ## Import declarations: \"Only following lang libraries with given methods/types are supported\"; \"ballerina/lang.error\" lists only \"message\".",
+    "## Invocations / ### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\", but not error:detail."
+  ],
+  "reason": "The essential behavior is communication between named workers using sends and multiple receives, including error/panic propagation and missing-message results. Named workers, sends and receives are not covered by the positive lists; support for start/wait alone does not cover them. Conditional-send cases additionally require lang.error:NoMessage and error.detail(), outside the explicit langlib allowlist.",
+  "unsupported_constructs": [
+    "Named worker declarations and worker sends (->)",
+    "Worker receives, especially multiple receive (<- { ... }) into maps/records",
+    "Worker error/panic propagation and conditional-send NoMessage behavior",
+    "ballerina/lang.error:NoMessage and error.detail()"
+  ],
+  "test_design_notes": [
+    "The main function combines twelve worker scenarios; the entire case is feature scope even though ordinary maps, records, wait, trap, type tests, runtime:sleep and error.message have listed support.",
+    "@output markers assert missing-message error text/detail and panic selection, beyond mere function signatures. No @args or @panic markers are present. io:println is instrumentation."
+  ]
+}

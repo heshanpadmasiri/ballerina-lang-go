@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at main(covariance-boolean-or-float-or-record-p.bal:11)\n","Diagnostics":null}

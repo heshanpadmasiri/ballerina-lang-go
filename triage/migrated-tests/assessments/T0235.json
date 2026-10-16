@@ -1,0 +1,17 @@
+{
+  "id": "T0235",
+  "name": "bdecimal-value-negative-test-562a56cce5/decimal-value-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"",
+    "Statements: \"Local variable declarations\"",
+    "Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "Expressions: \"Type cast expression\"",
+    "Operators: \"numeric ops `+`, `-`\""
+  ],
+  "reason": "All tested constructs are supported: function bodies, local decimal declarations, numeric literals, unary minus and a decimal type cast. The expected compile-time rejection of malformed numeric literals, a missing semicolon and out-of-range float literals exercises supported numeric syntax and type checking. No essential unsupported feature is involved.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compilation test uses @error annotations, including multiple diagnostics for malformed literals; no @args, @panic or @output behavior is asserted."
+  ]
+}

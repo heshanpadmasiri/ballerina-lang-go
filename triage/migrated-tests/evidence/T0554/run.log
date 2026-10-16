@@ -1,0 +1,7 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at fp-type-mismatch1-negative-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fp-type-mismatch1-negative-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at fp-type-mismatch1-negative-e.bal:12-12 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at fp-type-mismatch1-negative-e.bal:2 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 4\n        at migration/checkpanic_array_index_p:testBasicCheckpanic(main.bal:7)\n           migration/checkpanic_array_index_p:main(main.bal:2)\n","Diagnostics":null}

@@ -1,0 +1,16 @@
+{
+  "Name": "global-var-function-with-pkg-test-24ccb66686/project1-get-global-float-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project1-get-global-float-v",
+  "Project": true,
+  "Id": "T0602",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project1-get-global-float-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project1-get-global-float-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-with-pkg-test-24ccb66686/project1-get-global-float-v/modules/variable/variable-def.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.079
+}

@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:57: -e test "isolated-variable-test-68724717b2/isolated-variables-isolation-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

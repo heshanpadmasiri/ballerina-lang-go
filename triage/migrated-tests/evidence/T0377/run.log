@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "constant-assignment-test-2d63b3eb49/constant-assignment-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: concat
+         --> constant-assignment-v.bal:7:30
+          |
+        7 | final string varNativeFunc = strings:concat(str, "awesome");
+          |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.10s)
+FAIL

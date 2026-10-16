@@ -1,0 +1,13 @@
+{
+  "id": "T0672",
+  "name": "isolated-worker-test-8e649817ff/inference-start-action-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists New expression, Start action, Wait action and Anonymous function expression, but does not list object constructor expressions.",
+    "## Module-level declarations: Supports the isolated function qualifier (see isolated functions)",
+    "## Object/class definitions: Only client, service and isolated object-type-quals / class-type-quals are supported"
+  ],
+  "reason": "The case requires anonymous object constructor expressions (object {...}, client object {...}, and service object {...}) to test isolation inference for started method calls and attached service methods. Object constructor expressions are absent from the supported expression list; support for class definitions and new expressions does not cover these constructors. This essential unsupported construct suffices for feature classification.",
+  "unsupported_constructs": ["Object constructor expressions, including client and service object constructors"],
+  "test_design_notes": ["Assertions inspect inferred isolated function types and structural service/client types, rather than merely executing start actions.", "The unreachable io:println call is instrumentation only."]
+}

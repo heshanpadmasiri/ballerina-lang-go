@@ -1,0 +1,17 @@
+{
+  "id": "T0662",
+  "name": "intersection-type-test-48ac088d43/readonly-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; \"ballerina/lang.error\" lists only \"message\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\", but not error:detail."
+  ],
+  "reason": "The asserted readonly-update failure and error checks require error.detail() to inspect the error's message detail. This lang.error operation is absent from the explicit supported-method lists, so the whole case requires an unsupported feature regardless of support for its intersection types.",
+  "unsupported_constructs": [
+    "error.detail() calls in testIntersectionWithMemberTypeDefinedAfter and assertError, used to assert exact runtime error detail messages"
+  ],
+  "test_design_notes": [
+    "io:println appears only in instrumentation and is not the basis for classification.",
+    "The document conflicts on readonly class qualifiers: Module-level declarations > Class definition explicitly supports readonly, while Subset restrictions > Object/class definitions allows only client, service and isolated. The independently unsupported error.detail operation suffices for feature classification."
+  ]
+}

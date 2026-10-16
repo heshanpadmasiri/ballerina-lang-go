@@ -1,0 +1,15 @@
+{
+  "Name": "basic-worker-actions-negative-test-a7033898c7/actions-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/basic-worker-actions-negative-test-a7033898c7/actions-negative-e",
+  "Project": true,
+  "Id": "T0216",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/basic-worker-actions-negative-test-a7033898c7/actions-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/basic-worker-actions-negative-test-a7033898c7/actions-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.056
+}

@@ -1,0 +1,56 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	<child attr="attr-val"/>
+        	<child attr="attr-val"/>
+        	<child attr="attr-val"/>
+        	<child attr="attr-val"/>
+        	<child attr="attr-val"/>
+        	<ns:child xmlns:ns="foo"/>
+        	<ns:child xmlns:ns="foo"/>
+        	<ns:child xmlns:ns="foo"/>
+        	<ns:child xmlns:ns="foo"/>
+        	<ns:child xmlns:ns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	0
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child xmlns="foo"/>
+        	<child>A</child><child>B</child><child>C</child>
+        	<child>A</child><child>B</child><child>C</child><it-child>D</it-child>TEXT
+        	<child>A</child><child>B</child><child>C</child><it-child>D</it-child>
+        	<child>A</child><child>B</child><child>C</child>
+        	<child>A</child><child>B</child><child>C</child>
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child>
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child><k:child xmlns="foo" xmlns:k="bar">C</k:child><it-child xmlns="foo">D</it-child>TEXT
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child><k:child xmlns="foo" xmlns:k="bar">C</k:child><it-child xmlns="foo">D</it-child>
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child>
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child>
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child><child2 xmlns="foo">D</child2>
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child><k:child xmlns="foo" xmlns:k="bar">C</k:child><child2 xmlns="foo">D</child2>
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child><k:child xmlns="foo" xmlns:k="bar">C</k:child><child2 xmlns="foo">D</child2>
+        	<child xmlns="foo">A</child><child xmlns="foo" xmlns:ns="foo">B</child><child2 xmlns="foo">D</child2>
+        	<lname>Gunae</lname><lname>Jayee</lname><lname>Kumarae</lname>
+        	<fname>Kamal</fname><lname>Gunae</lname><fname>Nimal</fname><lname>Jayee</lname><fname>Sunil</fname><lname>Kumarae</lname>
+        	<lname>Gunae</lname><lname>Jayee</lname><lname>Kumarae</lname>
+        	<fname>Kamal</fname><fname>Nimal</fname><fname>Sunil</fname>
+        	KamalGunaeNimalJayeeSunilKumarae
+        	<fname>Kamal</fname><fname>Nimal</fname><fname>Sunil</fname>
+        	<fname>Kamal</fname><fname>Nimal</fname><fname>Sunil</fname>
+        	<object xmlns="http://www.force.com/2009/06/asyncapi/dataload">Account</object>
+        	<object xmlns="http://www.force.com/2009/06/asyncapi/dataload">Account</object>
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

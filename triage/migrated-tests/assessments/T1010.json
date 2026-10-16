@@ -1,0 +1,21 @@
+{
+  "id": "T1010",
+  "name": "never-type-test-35205a329e/never-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.array lists length, push, map, indexOf, remove, removeAll, toStream, toBase64, toBase16, fromBase64 and fromBase16 (no iterator); ballerina/lang.map lists length, keys, hasKey, get and remove (no iterator); ballerina/lang.table is not listed.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; array:iterator, map:iterator and table:iterator are absent.",
+    "Statements > Foreach: \"Currently only supports range, list, map, string and XML subtypes, and iterable objects\""
+  ],
+  "reason": "The whole case requires unsupported explicit map, array and table iterator langlib calls. Assertions require iterator().next() on empty map<never>, never[] and tables to return nil, and on a populated table to return its first row. These essential behaviors exceed the langlib positive lists, regardless of support for never types, start/wait, trap, XML or query clauses.",
+  "unsupported_constructs": [
+    "map<never>.iterator() in testNeverWithIterator1 and testNeverWithIterator2",
+    "never[].iterator() in testNeverWithIterator3",
+    "Table iterator() in testNeverWithIterator5 and testNeverWithIterator6",
+    "Foreach over a table in testNeverWithForeach8 is outside the listed foreach input kinds"
+  ],
+  "test_design_notes": [
+    "Explicit iterator behavior is asserted by main-invoked tests, not incidental instrumentation.",
+    "The unused preserveIoImport io:println call does not drive classification."
+  ]
+}

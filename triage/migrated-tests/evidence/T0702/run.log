@@ -1,0 +1,58 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "large-init-build-test-d2d15f0021/large-init-split-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> modules/mod/mod.bal:248:39
+            |
+        248 |     remote function action2(string s, boolean b) returns int {
+            |                                       ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'i'
+           --> modules/mod/mod.bal:244:39
+            |
+        244 |     remote function action1(string s, int i) returns boolean {
+            |                                       ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'name'
+           --> modules/mod/mod.bal:227:58
+            |
+        227 |     public isolated function attach(service object {} s, string[]|string? name = ()) returns error? {
+            |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> modules/mod/mod.bal:227:37
+            |
+        227 |     public isolated function attach(service object {} s, string[]|string? name = ()) returns error? {
+            |                                     ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> modules/mod/mod.bal:230:37
+            |
+        230 |     public isolated function detach(service object {} s) returns error? {
+            |                                     ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> modules/mod/mod.bal:244:29
+            |
+        244 |     remote function action1(string s, int i) returns boolean {
+            |                             ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> modules/mod/mod.bal:248:29
+            |
+        248 |     remote function action2(string s, boolean b) returns int {
+            |                             ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> modules/mod/mod.bal:255:20
+            |
+        255 |     function func1(string s) {
+            |                    ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> modules/mod/mod.bal:258:20
+            |
+        258 |     function func2(string s) returns int {
+            |                    ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

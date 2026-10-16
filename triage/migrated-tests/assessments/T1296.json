@@ -1,0 +1,13 @@
+{
+  "id": "T1296",
+  "name": "retry-stmt-with-on-fail-test-9697c09cc6/retry-on-fail-negative-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes Assignment, Compound Assignment, If/else and Return, but does not include retry, fail or on-fail clauses.",
+    "## Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.string lists length, indexOf, includes, substring, equalsIgnoreCaseAscii, toLowerAscii, toUpperAscii, trim, toBytes and fromBytes, but not concat.",
+    "### Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; string:concat is not listed."
+  ],
+  "reason": "The negative cases assert rejection of incompatible error types and error binding patterns in retry/on-fail statements. Retry, fail and on-fail behavior is outside the subset's supported statements, so the essential negative diagnostics are not covered. The source also calls unsupported string:concat.",
+  "unsupported_constructs": ["retry statements", "fail statements", "on-fail clauses and their error binding/type validation", "string:concat method call"],
+  "test_design_notes": ["The @error markers assert compile-time rejection; illegal code alone does not determine classification, but these diagnostics depend on unsupported retry/on-fail constructs."]
+}

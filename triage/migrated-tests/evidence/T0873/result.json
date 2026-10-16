@@ -1,0 +1,14 @@
+{
+  "Name": "match-stmt-target-actions-test-90c95509c7/match-stmt-target-actions-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-target-actions-test-90c95509c7/match-stmt-target-actions-v.bal",
+  "Project": false,
+  "Id": "T0873",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-target-actions-test-90c95509c7/match-stmt-target-actions-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.055
+}

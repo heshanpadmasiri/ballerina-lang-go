@@ -1,0 +1,48 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "worker-fail-test-278d4f50a4/invalid-async-send-in-fork-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: generateForkStatements unimplemented
+          --> main.bal:2:5
+           |
+         2 |     fork {
+           |     ^^^^^^
+         3 |         worker w1 {
+           |         ^^^^^^^^^^^
+         4 |             int i = 20; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+         5 |         }
+           |         ^
+         6 |         worker w2 {
+           |         ^^^^^^^^^^^
+         7 |             int j = 25; // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^
+         8 |             int sum = 0;
+           |             ^^^^^^^^^^^^
+         9 |             fork {
+           |             ^^^^^^
+        10 |                 worker w3 {
+           |                 ^^^^^^^^^^^
+        11 |                     foreach var i in 1...10 {
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        12 |                         sum = sum + i;
+           |                         ^^^^^^^^^^^^^^
+        13 |                         i -> w4; // @error
+           |                         ^^^^^^^^^^^^^^^^^^
+        14 |                     }
+           |                     ^
+        15 |                 }
+           |                 ^
+        16 |                 worker w4 {
+           |                 ^^^^^^^^^^^
+        17 |                     int k = <- w3; // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+        18 |                 }
+           |                 ^
+        19 |             }
+           |             ^
+        20 |         }
+           |         ^
+        21 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

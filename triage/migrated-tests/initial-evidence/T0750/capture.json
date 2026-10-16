@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'y'\n --\u003e basic-main-v.bal:4:5\n  |\n4 |     int y = x + 1;\n  |     ^^^^^^^^^^^^^^\n\nerror[SEMANTIC_ERROR]: unused variable 'val'\n --\u003e basic-main-v.bal:5:5\n  |\n5 |     string val = args[0] + args[1];\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n","Diagnostics":null}

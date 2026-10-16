@@ -1,0 +1,17 @@
+{
+  "id": "T0608",
+  "name": "global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: [Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)",
+    "## Expressions: [New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)",
+    "### Named and default arguments: Object constructor calls support named and default arguments while selecting a unique class from an object union; they do not have the atomic-target restriction above."
+  ],
+  "reason": "The negative case includes an anonymous object constructor expression, `object {int a = 5;}`, as the initializer of a configurable object variable. Anonymous object constructor expressions are not covered by the supported expression list. The invocation restriction about selecting a unique class concerns constructor calls and does not supply support for this anonymous object expression. This essential construct is sufficient to classify the whole case as feature.",
+  "unsupported_constructs": [
+    "Anonymous object constructor expression: object {int a = 5;}"
+  ],
+  "test_design_notes": [
+    "The @error assertions test rejection of invalid configurable declarations, including forbidden types, declaration forms, and duplicate names. Negative code alone does not put the case outside the supported grammar/type system; the anonymous object expression is the specific coverage gap identified here."
+  ]
+}

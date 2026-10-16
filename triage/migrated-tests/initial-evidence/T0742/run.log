@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -p test "lvalue-test-e2785cbb54/inherent-type-violating-update-2-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: incompatible type: expected object { boolean|int i; public function init(boolean|int) returns nil }, got object { boolean i; public function init(boolean) returns nil }
+          --> inherent-type-violating-update-2-p.bal:13:14
+           |
+        13 |     AObj a = b;
+           |              ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

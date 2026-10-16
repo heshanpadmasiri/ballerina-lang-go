@@ -1,0 +1,14 @@
+{
+  "id": "T1539",
+  "name": "while-stmt-test-8fe83cda27/while-stmt-on-fail-negative-reachability-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: '- [While](https://ballerina.io/spec/lang/master/#while-stmt)'",
+    "## Statements: '- [Return](https://ballerina.io/spec/lang/master/#return-stmt)'",
+    "## Expressions: '- [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)'",
+    "## Statements lists supported statements but does not list fail statements or on fail clauses."
+  ],
+  "reason": "The essential fail statements and while on fail handlers, including reachability and handler error-type diagnostics, are not covered by subset10's supported statements. While, return and error constructors are listed, but do not establish support for the failure-handling constructs. The whole case therefore has feature scope.",
+  "unsupported_constructs": ["fail statements", "while on fail clauses and their diagnostic behavior"],
+  "test_design_notes": ["Mixed scope: testReturnWithinWhile checks missing-return rejection using supported while/return constructs, alongside unsupported failure-handling tests.", "Several @error markers are attached directly to on fail clauses, including handlers whose intended diagnostic cannot be established from the supplied subset document. No @args, @panic or @output markers occur."]
+}

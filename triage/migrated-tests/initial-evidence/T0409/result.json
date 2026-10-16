@@ -1,0 +1,14 @@
+{
+  "Name": "dataflow-analysis-test-00b490139e/uninitialized-semantics-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/uninitialized-semantics-e.bal",
+  "Project": false,
+  "Id": "T0409",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/dataflow-analysis-test-00b490139e/uninitialized-semantics-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.055
+}

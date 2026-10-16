@@ -1,0 +1,16 @@
+{
+  "id": "T0363",
+  "name": "closure-test-5c6a7d056f/closure-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.array lists length, push, map, indexOf, remove, removeAll, toStream, toBase64, toBase16, fromBase64, fromBase16, excluding forEach.",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:'; array:forEach is absent from the positive list."
+  ],
+  "reason": "testLocalVarModifyWithinClosureScope invokes fa.forEach on float[] to mutate a captured accumulator; main requires its result to print 9.9. This essential array langlib operation is outside the supported lists, so the whole case is a feature despite supported anonymous functions and closures.",
+  "unsupported_constructs": [
+    "ballerina/lang.array:forEach via fa.forEach(function (float i) { fadd = fadd + i; })"
+  ],
+  "test_design_notes": [
+    "The unsupported operation directly computes an asserted @output 9.9; io:println is only instrumentation. One decisive unsupported dependency suffices for whole-case classification."
+  ]
+}

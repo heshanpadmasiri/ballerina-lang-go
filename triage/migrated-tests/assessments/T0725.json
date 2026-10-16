@@ -1,0 +1,18 @@
+{
+  "id": "T0725",
+  "name": "list-constructor-spread-operator-test-ae223889d2/spread-operator-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\"",
+    "Expressions: \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\" / \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\" (restriction applies to mapping constructors)",
+    "Module-level declarations: \"Module variable declarations\", \"Type definition\", \"Function definition\", \"Constant declarations\"",
+    "Statements: \"Foreach\" / \"Currently only supports range, list, map, string and XML subtypes\"",
+    "Other invocation restrictions: \"array:length\" and \"value:toString\" and \"value:toBalString\""
+  ],
+  "reason": "All asserted behavior is within supported list constructors: ordered array/tuple spreading, nested spread expressions, fixed/inferred lengths, filler values, tuple rest descriptors including never/uninhabited members, compatible list types, fresh constructed lists, and module-level initialization. The spec gives no list-spread restriction; its spread-field exclusion is specific to mapping constructors. Assertion helpers use supported equality, type tests, casts, range iteration, error construction/panic, array length and value conversion.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "main invokes all test functions; comparisons check lengths and element values.",
+    "The io:println reference is instrumentation only."
+  ]
+}

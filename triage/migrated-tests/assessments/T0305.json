@@ -1,0 +1,17 @@
+{
+  "id": "T0305",
+  "name": "check-panic-expression-operator-test-baa47123b9/checkpanic-no-error-type-e",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"Check expression\" (checking-expr)",
+    "Expressions: \"Conditional expression\"",
+    "Module-level declarations: \"Type definition\"",
+    "Statements: \"If/else\", \"Local variable declarations\", \"Panic\"",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"error:message\" and \"value:toString\""
+  ],
+  "reason": "The five @error markers require rejection of checkpanic applied to non-error boolean operands, including singleton booleans and boolean unions. Checking expressions and conditional expressions are supported; no relevant restriction excludes these negative type checks. Remaining declarations, statements, error constructors, equality/string operations, and langlib method calls are covered.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-time negative case with five @error markers; no @args, @panic, or @output directives. Runtime assertions and panic statements are supporting source, not expected executed behavior."
+  ]
+}

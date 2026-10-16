@@ -1,0 +1,14 @@
+{
+  "Name": "binary-bitwise-operation-test-84255fccd3/binary-bitwise-operation-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/binary-bitwise-operation-test-84255fccd3/binary-bitwise-operation-e.bal",
+  "Project": false,
+  "Id": "T0244",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/binary-bitwise-operation-test-84255fccd3/binary-bitwise-operation-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.039
+}

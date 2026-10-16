@@ -1,0 +1,14 @@
+{
+  "Name": "match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-syntax-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-syntax-e.bal",
+  "Project": false,
+  "Id": "T0869",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-mapping-match-pattern-negative-test-20c56ef3a4/mapping-match-pattern-syntax-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.047
+}

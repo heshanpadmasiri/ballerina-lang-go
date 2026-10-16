@@ -1,0 +1,14 @@
+{
+  "Name": "template-expression-test-eff72c820a/template-expression-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/template-expression-test-eff72c820a/template-expression-v.bal",
+  "Project": false,
+  "Id": "T1411",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/template-expression-test-eff72c820a/template-expression-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

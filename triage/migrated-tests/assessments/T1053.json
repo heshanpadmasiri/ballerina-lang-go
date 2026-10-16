@@ -1,0 +1,18 @@
+{
+  "id": "T1053",
+  "name": "numeric-conversion-test-6b3e1e5e00/out-of-range-negative-decimal-union-as-int-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)",
+    "Expressions: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Operators: Unary operators \u2014 numeric ops `+`, `-`",
+    "Statements: Local variable declarations; Call",
+    "Module-level declarations: Function definition"
+  ],
+  "reason": "The case uses a supported negative decimal numeric literal, local variables, anydata storage and an explicit int cast. Its asserted panic when converting a decimal below the int range is part of the supported cast behavior; no subset restriction excludes numeric casts or casts through anydata.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The expected panic is indicated only by the inline @panic comment; the source has no explicit trap or assertion."
+  ],
+  "reviewer_name": "out-of-range-negative-decimal-union-as-int-p.bal"
+}

@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "open-record-iteration-test-4a36ef124f/open-record-iteration-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+         --> open-record-iteration-e.bal:9:17
+          |
+        9 |     foreach var [key, value, extra] in p { // @error
+          |                 ^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> open-record-iteration-e.bal:9:17
+          |
+        9 |     foreach var [key, value, extra] in p { // @error
+          |                 ^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,25 @@
+{
+  "id": "T0023",
+  "name": "anonymous-object-test-5197ee0f89/anonymous-object-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Expressions",
+      "quote": "[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)",
+      "explanation": "The positive expression list includes new expressions but does not include object-constructor expressions (object { ... }). These are distinct constructs."
+    },
+    {
+      "heading": "Object/class definitions",
+      "quote": "Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members",
+      "explanation": "Support for object type descriptors and their members does not add object-constructor expressions to the supported expression list."
+    }
+  ],
+  "reason": "Essential anonymous object-constructor expressions are not covered by the supported expression list. The first function passes object { public int k = 14; public string s = \"sameera\"; } as an argument, and many subsequent tests also require these constructors. This makes the whole case a feature request.",
+  "unsupported_constructs": [
+    "Anonymous object-constructor expressions: object { fields and method definitions }"
+  ],
+  "test_design_notes": [
+    "Mixed case includes anonymous object type descriptors, classes, initialization methods, structural assignment, records, tuples, field access and method calls; one essential uncovered construct suffices for classification.",
+    "io:println and @output comments are output instrumentation; there are no @error markers."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T1084",
+  "name": "object-type-reference-test-19fd51d776/object-func-reference-negative-e.bal",
+  "classification": "uncertain",
+  "spec_references": [
+    "Module-level declarations: Class definition — Supports `client`, `service`, `isolated`, `readonly` and `distinct` [`class-type-quals`]",
+    "Subset restrictions > Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported",
+    "Module-level declarations: Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Subset restrictions > Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members",
+    "Subset restrictions > Object/class definitions: Supports `included-record-param`, `rest-param` and `defaultable-param` in methods",
+    "Subset restrictions > Import declarations: `ballerina/lang.int` — `Signed16`"
+  ],
+  "reason": "The case asserts rejection of incompatible included-method implementations (visibility, signature, return type, remote qualifier) and missing implementations, while accepting parameter-name differences. Object inclusion, method declarations, client/remote methods, method parameters and Signed16 are covered. However, two missing-implementation assertions use readonly classes: the class-definition positive list explicitly supports readonly, while the object/class restriction explicitly excludes it. This conflict prevents a confident whole-case classification.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative annotations exercise static rejection within object inclusion and method compatibility; illegal declarations alone do not make the test unsupported.",
+    "The readonly class coverage conflict affects InvalidReadOnlyClassWithMissingImpl and InvalidReadOnlyClassWithMissingImpls."
+  ]
+}

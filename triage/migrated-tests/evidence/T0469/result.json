@@ -1,0 +1,14 @@
+{
+  "Name": "fail-stmt-test-0645288b01/fail-stmt-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/fail-stmt-test-0645288b01/fail-stmt-e.bal",
+  "Project": false,
+  "Id": "T0469",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/fail-stmt-test-0645288b01/fail-stmt-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.028
+}

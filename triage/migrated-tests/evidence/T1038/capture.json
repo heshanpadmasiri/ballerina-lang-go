@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'converted'\n --\u003e invalid-int-as-byte-256-p.bal:2:5\n  |\n2 |     byte converted = \u003cbyte\u003e value; // @panic\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"invalid-int-as-byte-256-p.bal","StartLine":2,"EndLine":2}]}

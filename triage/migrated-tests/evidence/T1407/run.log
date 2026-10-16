@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:57: -v test "table-with-record-key-specifier-test-df7e983faa/table-with-record-key-specifier-v.bal" has a runtime panic in expected stdout:
+        panic: interface conversion: *st.TokenBase is not st.NonTerminalNode: missing method ChildInBucket
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

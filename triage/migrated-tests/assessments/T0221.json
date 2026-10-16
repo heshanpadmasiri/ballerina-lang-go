@@ -1,0 +1,11 @@
+{
+  "id": "T0221",
+  "name": "bbyte-array-value-negative-test-585d57db0d/byte-array-value-negative-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions — Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only"
+  ],
+  "reason": "The case requires base16/base64 byte-array literal parsing, validation and inferred lengths, including valid literals used to test assignment and cast errors. Byte-array literals are outside the explicitly supported literal kinds, so its asserted compile-time diagnostics depend on unsupported syntax.",
+  "unsupported_constructs": ["base16 and base64 byte-array literals and their validation/type inference"],
+  "test_design_notes": ["This is a compile-negative case using @error markers; no @args, @panic or @output behavior is asserted."]
+}

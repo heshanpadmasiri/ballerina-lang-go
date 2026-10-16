@@ -1,0 +1,17 @@
+{
+  "id": "T1482",
+  "name": "type-guard-test-74355f2266/type-narrow-4-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition — Supports required-params",
+    "## Statements: If/else; Local variable declarations",
+    "## Expressions: Type test expression; Equality expression; Logical expression; Variable reference",
+    "## Operators: Equality ops ==, !=, ===, !==; Logical ops &&, ||"
+  ],
+  "reason": "The case checks static narrowing of a singleton union through type tests, equality tests and conjunction, using narrowed values in local declarations. These are supported function, statement and expression forms, with no applicable restriction excluding this narrowing behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The OK comments assert compile-time acceptance; main is empty and test1 is never called, so execution provides no runtime coverage.",
+    "No @args, @panic or @output markers occur."
+  ]
+}

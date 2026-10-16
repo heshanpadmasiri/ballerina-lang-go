@@ -1,0 +1,14 @@
+{
+  "Name": "option-compilation-test-89edd7ad99/invalid-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-compilation-test-89edd7ad99/invalid-e.bal",
+  "Project": false,
+  "Id": "T1155",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-compilation-test-89edd7ad99/invalid-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

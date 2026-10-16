@@ -1,0 +1,19 @@
+{
+  "id": "T1558",
+  "name": "worker-fail-test-278d4f50a4/invalid-receive-with-workers-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations or worker send statements.",
+    "## Expressions: \"- [Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are listed; worker receive actions are not listed."
+  ],
+  "reason": "The asserted diagnostics require named workers and worker communication: receive before worker declaration, synchronous sends, and receives after a possible non-error worker return. Named workers and worker send/receive actions are not covered by subset 10; support for start/wait does not establish support for this communication model.",
+  "unsupported_constructs": [
+    "Named worker declarations",
+    "Worker sends (-> and ->>) and receives (<-, including alternate receive <- w1|w1)",
+    "Worker communication validation around declaration order and non-error returns"
+  ],
+  "test_design_notes": [
+    "Negative compile test with @error markers; illegality alone is not the exclusion, but the essential worker grammar/behavior is outside the supported lists.",
+    "The alternate receive line has two @error markers; no @args, @panic, or @output assertions are present."
+  ]
+}

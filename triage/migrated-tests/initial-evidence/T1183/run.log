@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: stderr does not contain a runtime error message for @panic at repeated_boolean_option-p.bal:6
+        stderr:
+        error[SEMANTIC_ERROR]: unused variable 'student'
+         --> repeated_boolean_option-p.bal:6:22
+          |
+        6 | public function main(*Student student) { // @panic
+          |                      ^^^^^^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

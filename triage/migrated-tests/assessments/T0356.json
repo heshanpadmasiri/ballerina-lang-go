@@ -1,0 +1,17 @@
+{
+  "id": "T0356",
+  "name": "closed-record-test-6f9046ad8a/cyclic-record-via-fields-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"; \"[Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)\"",
+    "## Module-level declarations: \"Supports ... the isolated ... function qualifier\"",
+    "## Expressions: \"[Mapping constructor]\"; \"[Optional field access expression]\"; \"[Member access expression]\"; \"[Type test expression]\"; \"[Variable reference]\"",
+    "## Statements: \"[Call]\"; \"[If/else]\"; \"[Return]\"; \"[Panic]\"",
+    "## Operators: \"Equality ops ==, !=, ===, !==\""
+  ],
+  "reason": "The case uses supported type definitions for mutually recursive closed records, record inclusion, optional fields and defaults, plus a readonly map of function values. No stated type-definition restriction excludes these forms. Mapping construction, nested optional field access, function references, member access, function type tests and isolated functions are covered. main asserts both nested token values and that the stored function reference tests as function; all required operations are supported.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "No @args, @panic or @output directives occur. Successful execution requires both assertion functions to finish without panic."
+  ]
+}

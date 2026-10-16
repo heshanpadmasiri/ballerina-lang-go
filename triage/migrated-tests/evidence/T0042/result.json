@@ -1,0 +1,16 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/invalid-char-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-char-p.bal",
+  "Project": false,
+  "Id": "T0042",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-char-p.bal"
+  ],
+  "Args": [
+    "ABC"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.044
+}

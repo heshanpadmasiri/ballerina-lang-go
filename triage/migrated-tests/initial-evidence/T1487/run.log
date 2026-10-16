@@ -1,0 +1,36 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at type-test-expr-negative-e.bal:287-287 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:41 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:46 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:59 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:68 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:73 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:94 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:101 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:121 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:124 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:142 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:181 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:255 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:262 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:271 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:272 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:273 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:274 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:275 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:280 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:281 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:284 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:285 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:288 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:289 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:292 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:293 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:294 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:297 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:358 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at type-test-expr-negative-e.bal:359 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,12 @@
+{
+  "id": "T0256",
+  "name": "bjsonvalue-test-248ac7be19/json-values-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.error lists only 'message'.",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes 'error:message', but not error:detail."
+  ],
+  "reason": "The case requires error.detail() to extract and assert diagnostic messages for missing JSON keys, primitive/null access, invalid casts and lax error lifting. error:detail is absent from both the supported lang.error methods and the method-call whitelist, so essential asserted behavior is outside subset 10.",
+  "unsupported_constructs": ["error.detail() langlib calls, including missing.detail()[\"message\"] in main and err.detail()[\"message\"] in testJsonMapAccess"],
+  "test_design_notes": ["The @output assertions explicitly depend on detail-message extraction; io:println instrumentation is not the unsupported feature."]
+}

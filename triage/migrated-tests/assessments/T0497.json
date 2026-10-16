@@ -1,0 +1,19 @@
+{
+  "id": "T0497",
+  "name": "fork-return-any-test-a06a0399c3/fork-return-any-type-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Destructuring assignment statement\" / \"Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)\"",
+    "Statements: positive statement list does not include fork statements or named worker declarations.",
+    "Expressions: \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\""
+  ],
+  "reason": "The test requires a fork containing named workers that return tuples, then waits for both results and destructures their narrowed tuple values. Fork/named worker constructs are outside the positive supported lists, and the assignments [p, q] = t1 and [r, t] = t2 explicitly exceed the wildcard-only destructuring restriction. Supported wait actions do not establish support for these constructs.",
+  "unsupported_constructs": [
+    "fork statement with named worker declarations",
+    "List destructuring assignments [p, q] = t1 and [r, t] = t2"
+  ],
+  "test_design_notes": [
+    "The asserted output is 23 followed by aaaaa, requiring the first worker result to survive wait collection, type narrowing and tuple destructuring.",
+    "io:println is output instrumentation; it is not the feature basis."
+  ]
+}

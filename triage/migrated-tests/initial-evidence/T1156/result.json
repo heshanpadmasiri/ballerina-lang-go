@@ -1,0 +1,32 @@
+{
+  "Name": "option-compilation-test-89edd7ad99/successful-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-compilation-test-89edd7ad99/successful-v.bal",
+  "Project": false,
+  "Id": "T1156",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-compilation-test-89edd7ad99/successful-v.bal"
+  ],
+  "Args": [
+    "--a=1",
+    "--b=2.0",
+    "--c=3.0",
+    "--d=d",
+    "--m",
+    "--e=2",
+    "--f=2.0",
+    "--g=2.0",
+    "--h=h",
+    "--p=1",
+    "--p=2",
+    "--q=2.0",
+    "--q=3.0",
+    "--r=2.0",
+    "--r=3.0",
+    "--s=s",
+    "--s=t"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.076
+}

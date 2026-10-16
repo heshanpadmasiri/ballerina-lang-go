@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "table-negative-test-f923667200/table-value-any-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-value-any-negative-e.bal:18:14
+           |
+        18 |     any a2 = table key(name) [ // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        19 |         {name: "Amy", id: 1234},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |         {name: "John", id: 4567}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        21 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-value-any-negative-e.bal:25:9
+           |
+        25 |     foo(table key(name) [{name: "Amy", id: 1234}, {name: "John", id: 4567}]); // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-value-any-negative-e.bal:18:14
+           |
+        18 |     any a2 = table key(name) [ // @error
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        19 |         {name: "Amy", id: 1234},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |         {name: "John", id: 4567}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        21 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-value-any-negative-e.bal:25:9
+           |
+        25 |     foo(table key(name) [{name: "Amy", id: 1234}, {name: "John", id: 4567}]); // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

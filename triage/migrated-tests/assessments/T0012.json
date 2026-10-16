@@ -1,0 +1,21 @@
+{
+  "id": "T0012",
+  "name": "add-operation-test-7854f6d108/add-operation-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    {"heading": "Module-level declarations", "quote": "Constant declarations", "relevance": "Also explicitly lists Function definition, Module variable declarations and Type definition; the case uses each."},
+    {"heading": "Operators", "quote": "Additive ops `+`, `-`", "relevance": "Addition across numeric, string and XML operands is the central operation; no operand-specific exclusion is stated."},
+    {"heading": "Expressions", "quote": "[Nil lifted expression](https://ballerina.io/spec/lang/master/#nil-lifted-expr)", "relevance": "Covers addition with nullable operands. XML template expression, type test expression, equality expression, logical expression, list constructor and method call are also listed."},
+    {"heading": "Subset restrictions > Import declarations", "quote": "Only following lang libraries with given methods/types are supported", "relevance": "The lists include int Signed8/Signed16/Signed32/Unsigned8/Unsigned16/Unsigned32, string Char, XML Element/Text/Comment/ProcessingInstruction and length, and value toString, all used here."},
+    {"heading": "Other invocation restrictions", "quote": "`value:toString` and `value:toBalString`", "relevance": "Method syntax is expressly allowed for toString; the same list permits xml:length."},
+    {"heading": "Statements", "quote": "[Compound Assignment](https://ballerina.io/spec/lang/master/#compound-assignment-stmt)", "relevance": "Side-effect checks use +=; assignment, call, if/else, local declarations, return and panic are also explicitly supported."}
+  ],
+  "reason": "The complete case is expected supported: the positive lists cover addition, nil lifting, XML templates, declarations, helper assertions and side effects, and the used langlib types/methods satisfy the restrictions. No essential expressly unsupported or uncovered construct was found.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixed positive case: numeric and singleton/union addition, contextual numeric typing, string/Char concatenation, XML subtype concatenation, nullable arithmetic and evaluation side effects.",
+    "io:println and @output comments are output instrumentation; no @error markers occur.",
+    "Escaped 'xml module prefixes in type references are not XML qualified-name variable expressions; no query-result XML interpolation is present.",
+    "Assessment uses only the supplied source and subset10 specification, with no execution evidence."
+  ]
+}

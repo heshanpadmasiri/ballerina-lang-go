@@ -1,0 +1,64 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "closed-record-iteration-test-6ab07291d1/closed-record-iteration-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> closed-record-iteration-e.bal:23:17
+           |
+        23 |     foreach var [k, val, e] in p { // @error
+           |                 ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> closed-record-iteration-e.bal:64:13
+           |
+        64 |         var [subj, grade] = entry;
+           |             ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> closed-record-iteration-e.bal:67:13
+           |
+        67 |         var [s, g] = entry;
+           |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> closed-record-iteration-e.bal:73:13
+           |
+        73 |         var [s, status] = entry;
+           |             ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> closed-record-iteration-e.bal:76:13
+           |
+        76 |         var [s, status] = entry;
+           |             ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> closed-record-iteration-e.bal:23:17
+           |
+        23 |     foreach var [k, val, e] in p { // @error
+           |                 ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> closed-record-iteration-e.bal:64:13
+           |
+        64 |         var [subj, grade] = entry;
+           |             ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> closed-record-iteration-e.bal:67:13
+           |
+        67 |         var [s, g] = entry;
+           |             ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> closed-record-iteration-e.bal:73:13
+           |
+        73 |         var [s, status] = entry;
+           |             ^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> closed-record-iteration-e.bal:76:13
+           |
+        76 |         var [s, status] = entry;
+           |             ^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

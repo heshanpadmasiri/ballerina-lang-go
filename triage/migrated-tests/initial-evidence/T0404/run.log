@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "cyclic-type-definitions-test-3fce5ad632/type-definitions-cyclic-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> type-definitions-cyclic-negative-e.bal:106:10
+            |
+        106 | type A11 table<A11> & readonly; // @error
+            |          ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> type-definitions-cyclic-negative-e.bal:82:9
+           |
+        82 | type A2 table<B2>; // @error
+           |         ^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> type-definitions-cyclic-negative-e.bal:97:9
+           |
+        97 | type A7 table<A7>; // @error
+           |         ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> type-definitions-cyclic-negative-e.bal:106:10
+            |
+        106 | type A11 table<A11> & readonly; // @error
+            |          ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> type-definitions-cyclic-negative-e.bal:82:9
+           |
+        82 | type A2 table<B2>; // @error
+           |         ^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> type-definitions-cyclic-negative-e.bal:97:9
+           |
+        97 | type A7 table<A7>; // @error
+           |         ^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

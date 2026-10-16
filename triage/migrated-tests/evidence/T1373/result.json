@@ -1,0 +1,14 @@
+{
+  "Name": "struct-access-with-index-test-2fbf1b5e54/struct-access-with-index-non-init-array-attribute-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/struct-access-with-index-test-2fbf1b5e54/struct-access-with-index-non-init-array-attribute-p.bal",
+  "Project": false,
+  "Id": "T1373",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/struct-access-with-index-test-2fbf1b5e54/struct-access-with-index-non-init-array-attribute-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.034
+}

@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at xml_text_to_string_conversion-negative-e.bal:31 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xml_text_to_string_conversion-negative-e.bal:32 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xml_text_to_string_conversion-negative-e.bal:48 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

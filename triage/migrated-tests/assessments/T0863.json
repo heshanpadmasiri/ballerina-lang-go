@@ -1,0 +1,15 @@
+{
+  "id": "T0863",
+  "name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-qualified-reference-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\""
+  ],
+  "reason": "The asserted outputs require error match patterns that compare module-qualified constants against error messages, nested causes, and named detail fields. Error match patterns are outside the explicitly supported const-pattern and wildcard-match-pattern alternatives.",
+  "unsupported_constructs": [
+    "Error match patterns, including nested cause patterns and named detail-field patterns using qualified constants."
+  ],
+  "test_design_notes": [
+    "The seven output assertions exercise successful message/cause/detail matches and failed detail/message matches; io:println is instrumentation."
+  ]
+}

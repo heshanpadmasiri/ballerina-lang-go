@@ -1,0 +1,13 @@
+{
+  "id": "T0731",
+  "name": "locks-in-main-test-617c6c002d/parallel-lock-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"Lock statement\" is supported; named worker declarations are absent from the supported statements list.",
+    "Expressions: \"Start action\" and \"Wait action\" are supported.",
+    "Subset restrictions / Import declarations: \"ballerina/lang.runtime\" includes \"sleep\"."
+  ],
+  "reason": "The case essentially requires named workers executing concurrently, including waits on their completion and lock coordination across workers accessing shared globals and aliased arrays. Named worker declarations are not covered by the subset's positive supported-feature list, even though lock statements, start/wait actions and runtime:sleep are supported.",
+  "unsupported_constructs": ["Named worker declarations (worker w1, worker w2, etc.) and their concurrent execution"],
+  "test_design_notes": ["Several assertions depend on intermediate state after sleeps without waiting for worker completion, so they are sensitive to scheduling and timing."]
+}

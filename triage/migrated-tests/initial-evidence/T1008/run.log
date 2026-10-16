@@ -1,0 +1,4 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "never-type-test-35205a329e/never-type-is-expr-negative-e.bal" has empty expected stderr
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

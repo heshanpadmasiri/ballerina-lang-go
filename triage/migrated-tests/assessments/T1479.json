@@ -1,0 +1,21 @@
+{
+  "id": "T1479",
+  "name": "type-guard-test-74355f2266/type-narrow-1-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements including 'If/else', 'Local variable declarations' and 'Return', but does not list do statements or standalone block statements.",
+    "## Expressions: 'Type test expression'; 'Anonymous function expression'.",
+    "## Module-level declarations: 'Supports client, service, isolated, readonly and distinct class-type-quals'.",
+    "## Object/class definitions: 'Only client, service and isolated object-type-quals / class-type-quals are supported'."
+  ],
+  "reason": "The whole case includes test34's do statement and standalone block statement, neither covered by the supported statement list. These are essential to its assertions about narrowing across statement boundaries, so the case is feature despite its many supported type-test/if/return negative checks.",
+  "unsupported_constructs": [
+    "test34: do { ... } statement and standalone { ... } statement, with narrowing assertions across their boundaries"
+  ],
+  "test_design_notes": [
+    "Mixed scope: most functions exercise supported type tests, local declarations and if/return control flow, but test34 adds uncovered statement forms.",
+    "Readonly class Foo has conflicting coverage: Module-level declarations explicitly allow readonly classes, while Object/class definitions restrict qualifiers to client/service/isolated. The independent uncovered statements determine the feature classification.",
+    "Several @error markers explicitly preserve upstream narrowing issues (#34307, #30598, #33217); comments elsewhere say 'should not narrow' without @error. These markers need care as an oracle for intended semantics.",
+    "No @args, @panic or @output directives; this is a compile-time diagnostic case."
+  ]
+}

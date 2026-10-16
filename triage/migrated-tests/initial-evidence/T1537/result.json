@@ -1,0 +1,14 @@
+{
+  "Name": "while-stmt-test-8fe83cda27/while-stmt-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-negative-e.bal",
+  "Project": false,
+  "Id": "T1537",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/while-stmt-test-8fe83cda27/while-stmt-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

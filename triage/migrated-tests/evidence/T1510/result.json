@@ -1,0 +1,14 @@
+{
+  "Name": "var-ignore-test-d8823af21d/var-ignore-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/var-ignore-test-d8823af21d/var-ignore-negative-e.bal",
+  "Project": false,
+  "Id": "T1510",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/var-ignore-test-d8823af21d/var-ignore-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.036
+}

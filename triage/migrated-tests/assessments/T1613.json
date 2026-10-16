@@ -1,0 +1,18 @@
+{
+  "id": "T1613",
+  "name": "xmlaccess-test-873756d6ae/indexed-access-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists Type test expression, Member access expression, XML navigation expression, XML template expression, Trap expression and Type cast expression, but does not list typeof expression.",
+    "## Import declarations: ballerina/lang.xml supports Element, Text, Comment, ProcessingInstruction and length; ballerina/lang.value supports toString; ballerina/lang.error supports message.",
+    "### Other invocation restrictions: method call syntax supports value:toString, error:message and xml:length."
+  ],
+  "reason": "The case essentially asserts runtime XML subtype descriptors using typeof value is typedesc<xml:Element> (and Text, Comment, ProcessingInstruction). typeof expressions are not covered by the subset's positive expression list, so the whole case is feature despite supported XML indexing/navigation, interpolation, trap, casts, length and serialization operations.",
+  "unsupported_constructs": [
+    "typeof expressions used for runtime XML subtype assertions and in the assertion helper"
+  ],
+  "test_design_notes": [
+    "Mixed scope: ordinary/union XML indexing, out-of-range empty XML, negative-index panic trapping and exact error messages, XML serialization, sequence lengths, and runtime subtype assertions are combined.",
+    "Only four length results have @output markers (1, 3, 1, 2); extensive behavior is checked by local assert/assertTrue helpers. No @args or @panic markers appear. Negative-index panics are trapped and checked internally; io:println is instrumentation."
+  ]
+}

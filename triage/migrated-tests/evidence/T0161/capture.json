@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: inherent type violation\n        at main(array-mutability-boolean-float-record-p.bal:8)\n","Diagnostics":null}

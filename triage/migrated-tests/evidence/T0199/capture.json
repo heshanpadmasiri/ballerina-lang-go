@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'val'\n --\u003e invalid-any-casting-v.bal:9:5\n  |\n9 |     float val = check trap \u003cfloat\u003e abc;\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"invalid-any-casting-v.bal","StartLine":9,"EndLine":9}]}

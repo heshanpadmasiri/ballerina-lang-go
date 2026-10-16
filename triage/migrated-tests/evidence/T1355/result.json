@@ -1,0 +1,14 @@
+{
+  "Name": "start-action-test-c3596ca55b/start-action-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/start-action-test-c3596ca55b/start-action-v.bal",
+  "Project": false,
+  "Id": "T1355",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/start-action-test-c3596ca55b/start-action-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0542",
+  "name": "func-invocation-expr-test-adcfe7c191/method-call-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"[Method call]\", \"[Client remote method call action]\", \"[List constructor]\", \"[Anonymous function expression]\"",
+    "## Module-level declarations: \"Supports `client`, `service`, `isolated`, `readonly` and `distinct` [`class-type-quals`]\"; \"Supports [`remote-method-defn`] for client classes\"",
+    "## Object/class definitions: \"Supports `included-record-param`, `rest-param` and `defaultable-param` in methods\"",
+    "### Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for method calls and client remote method call actions only when the receiver type has one positive object atom.\""
+  ],
+  "reason": "The case asserts rejection of invalid positional, named and spread arguments and an incompatible result assignment in ordinary and remote method calls. Calls use a single concrete client class, whose rest/defaultable parameters and methods are supported. List/tuple spread arguments and an anonymous function returning a tuple introduce no stated exclusion; all asserted failures belong to supported invocation type checking.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative compile-time case: each @error marks an invalid invocation or incompatible assignment; runtime execution is not required."
+  ]
+}

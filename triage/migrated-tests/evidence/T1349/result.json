@@ -1,0 +1,14 @@
+{
+  "Name": "simple-constant-test-a426694281/simple-constant-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/simple-constant-test-a426694281/simple-constant-v.bal",
+  "Project": false,
+  "Id": "T1349",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/simple-constant-test-a426694281/simple-constant-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.124
+}

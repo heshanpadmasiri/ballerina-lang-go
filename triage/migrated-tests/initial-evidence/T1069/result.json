@@ -1,0 +1,14 @@
+{
+  "Name": "object-field-function-pointer-invocation-test-5833b5a158/object-field-function-pointer-invocation-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-field-function-pointer-invocation-test-5833b5a158/object-field-function-pointer-invocation-v.bal",
+  "Project": false,
+  "Id": "T1069",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-field-function-pointer-invocation-test-5833b5a158/object-field-function-pointer-invocation-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.071
+}

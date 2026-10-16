@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "function-pointers-test-229c021698/function-pointers-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'a'
+          --> function-pointers-v.bal:82:30
+           |
+        82 | function funcWithArrayParams(string[] a) returns int => 0;
+           |                              ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'k'
+           --> function-pointers-v.bal:144:19
+            |
+        144 |     function getI(int k) returns int => self.i;
+            |                   ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+           --> function-pointers-v.bal:135:70
+            |
+        135 | function getDetails(string n, function (string) returns string fn = (x) => "John") returns string => fn(n);
+            |                                                                      ^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+           --> function-pointers-v.bal:189:14
+            |
+        189 | function mat(Groups x) returns string => "chiran";
+            |              ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

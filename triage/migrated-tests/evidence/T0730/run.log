@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at locks-negative-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at locks-negative-e.bal:17-17 not covered by any @error annotation
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

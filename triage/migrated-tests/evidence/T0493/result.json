@@ -1,0 +1,14 @@
+{
+  "Name": "fork-in-function-test-c76a219e5a/fork-join-in-all-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/fork-in-function-test-c76a219e5a/fork-join-in-all-v.bal",
+  "Project": false,
+  "Id": "T0493",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/fork-in-function-test-c76a219e5a/fork-join-in-all-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.092
+}

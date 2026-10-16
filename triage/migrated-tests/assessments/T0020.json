@@ -1,0 +1,13 @@
+{
+  "id": "T0020",
+  "name": "anonymous-functions-test-b0ebc24edd/anonymous-functions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    {"heading": "Statements", "quote": "- [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)", "explanation": "The supported statement list does not include named worker declarations."},
+    {"heading": "Expressions", "quote": "- [Anonymous function expression](https://ballerina.io/spec/lang/master/#anonymous-function-expr)", "explanation": "Anonymous functions are expressly supported."},
+    {"heading": "Expressions", "quote": "- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)", "explanation": "Support for waiting does not add support for named worker declarations."}
+  ],
+  "reason": "The complete case requires named worker declarations (worker w1 and worker w2 returns int) in basicWorkerTest, a construct not covered by the supported statement list. This is decisive even though anonymous function expressions and wait actions are listed as supported.",
+  "unsupported_constructs": ["Named worker declarations in basicWorkerTest: worker w1 and worker w2 returns int"],
+  "test_design_notes": ["Mixed case: anonymous functions, function passing and nested mutable closures are combined with a worker test called from main.", "The @output comments and io:println calls are expected-output instrumentation; they are not the feature classification basis."]
+}

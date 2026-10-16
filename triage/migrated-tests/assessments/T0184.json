@@ -1,0 +1,16 @@
+{
+  "id": "T0184",
+  "name": "array-test-774a6d4802/array-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes value:cloneWithType, value:fromJsonWithType, value:toString and value:toBalString, but not cloneReadOnly."
+  ],
+  "reason": "testGetFromFrozenArray invokes array.cloneReadOnly() and main asserts its result is 4. This essential lang.value operation is absent from both supported library functions and supported langlib method calls, so the whole case exceeds subset 10.",
+  "unsupported_constructs": [
+    "array.cloneReadOnly() in testGetFromFrozenArray"
+  ],
+  "test_design_notes": [
+    "The @output 4 expectation requires the unsupported cloneReadOnly operation to execute; io:println instrumentation is not the basis of classification. One decisive unsupported operation suffices for this whole-case assessment."
+  ]
+}

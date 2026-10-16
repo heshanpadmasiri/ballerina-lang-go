@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "tuple-rest-descriptor-test-de4b52239d/tuple-rest-descriptor-index-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'tempStringC'
+         --> tuple-rest-descriptor-index-p.bal:7:5
+          |
+        7 |     string tempStringC = t[4]; // @panic
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

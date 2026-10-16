@@ -1,0 +1,12 @@
+{
+  "id": "T0837",
+  "name": "mapping-constructor-expr-test-833706cb84/spread-op-field-constant-analysis-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Mapping constructor — Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported",
+    "Module-level declarations: Constant declarations; Module variable declarations"
+  ],
+  "reason": "The expected error concerns a constant mapping initializer spreading the nonconstant module variable constFloatMap. That assertion requires constant analysis of a mapping spread field, which subset 10 explicitly excludes even though constant and module variable declarations are supported.",
+  "unsupported_constructs": ["Mapping constructor spread field ...constFloatMap in the constant initializer"],
+  "test_design_notes": ["Negative test: the const declaration is marked @error; its essential spread-field behavior is explicitly unsupported."]
+}

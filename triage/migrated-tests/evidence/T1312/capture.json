@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'conf'\n  --\u003e return-in-resource-with-mismatching-types-e.bal:20:21\n   |\n20 |     function _init_(Config conf) {}\n   |                     ^^^^^^^^^^^\n\n","Diagnostics":[{"File":"return-in-resource-with-mismatching-types-e.bal","StartLine":20,"EndLine":20}]}

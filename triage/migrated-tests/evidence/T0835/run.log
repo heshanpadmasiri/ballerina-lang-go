@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "mapping-constructor-expr-test-833706cb84/readonly-field-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+           --> readonly-field-v.bal:375:5
+            |
+        375 |     int i = 1;
+            |     ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+           --> readonly-field-v.bal:376:5
+            |
+        376 |     string s = "d5";
+            |     ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 5\n        at arrayIndexOutOfBoundTest(array-index-out-of-bounds-p.bal:4)\n           main(array-index-out-of-bounds-p.bal:8)\n","Diagnostics":null}

@@ -1,0 +1,19 @@
+{
+  "id": "T1582",
+  "name": "worker-sync-send-test-389660a47d/panic-test-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, including Panic, but does not list named worker declarations or worker send statements.",
+    "## Expressions: lists Start action and Wait action, but does not list worker receive or synchronous send actions.",
+    "## Import declarations (under Subset restrictions): `ballerina/lang.runtime` supports `sleep`."
+  ],
+  "reason": "The case requires named workers and asynchronous sends, synchronous sends, and receives between workers, including panic propagation through synchronous sends and wait. These essential worker communication constructs and their panic behavior are not covered by subset10's supported lists. Support for panic and wait individually does not establish support for this interaction. runtime:sleep is explicitly supported.",
+  "unsupported_constructs": [
+    "Named worker declarations",
+    "Worker asynchronous send (`->`), synchronous send (`->>`), and receive (`<-`) actions",
+    "Propagation of a worker panic through worker communication"
+  ],
+  "test_design_notes": [
+    "The @panic marker is on the error-constructor declaration immediately preceding `panic er3`; the asserted failure depends on worker scheduling and propagation, not merely error construction or a direct main panic."
+  ]
+}

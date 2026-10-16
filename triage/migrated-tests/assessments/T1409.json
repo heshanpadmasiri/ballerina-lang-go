@@ -1,0 +1,19 @@
+{
+  "id": "T1409",
+  "name": "tables-as-func-args-53418aff8c/tables-as-func-args-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: lists 'List constructor' and 'Mapping constructor' but does not include table constructor expressions",
+    "## Module-level declarations: 'Type definition' and 'Function definition' are supported",
+    "### Other invocation restrictions: 'value:toString' and 'value:toBalString' are supported in method call syntax"
+  ],
+  "reason": "The negative argument/return compatibility checks essentially use table constructors (table [...] and table key(age) [...]), which are not covered by the supported expression list. This decisive gap makes the whole case a feature despite support for ordinary function definitions, calls and returns. The toString method itself is explicitly supported.",
+  "unsupported_constructs": [
+    "Table constructor expressions, including keyed table constructors"
+  ],
+  "test_design_notes": [
+    "Seven @error markers assert rejection of incompatible table arguments or returns; negative tests are in scope when their grammar/types are supported, but these depend on uncovered table construction.",
+    "No @args, @panic or @output markers occur. String comparisons follow the marked erroneous calls and do not establish executable output assertions.",
+    "testNoKeyConstraintParam1 and testNoKeyConstraintParam2 duplicate the same check."
+  ]
+}

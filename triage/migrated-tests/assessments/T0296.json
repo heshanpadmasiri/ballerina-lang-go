@@ -1,0 +1,15 @@
+{
+  "id": "T0296",
+  "name": "capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements \u2192 Match statement: \"Currently only supports [const-pattern](https://ballerina.io/spec/lang/master/#const-pattern) and [wildcard-match-pattern](https://ballerina.io/spec/lang/master/#wildcard-match-pattern)\""
+  ],
+  "reason": "The negative test requires diagnostics for a match containing the capture binding pattern `var a`, which is outside the explicitly supported match patterns. Thus the whole case depends on an unsupported feature.",
+  "unsupported_constructs": [
+    "Capture binding match pattern `var a`."
+  ],
+  "test_design_notes": [
+    "Both match clauses carry @error markers; there are no @args, @panic, or @output assertions."
+  ]
+}

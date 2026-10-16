@@ -1,0 +1,15 @@
+{
+  "Name": "nested-retry-stmt-test-ddbe9cd95a/cases/nested-retry-statement-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/nested-retry-stmt-test-ddbe9cd95a/cases/nested-retry-statement-v",
+  "Project": true,
+  "Id": "T1002",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/nested-retry-stmt-test-ddbe9cd95a/cases/nested-retry-statement-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/nested-retry-stmt-test-ddbe9cd95a/cases/nested-retry-statement-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.046
+}

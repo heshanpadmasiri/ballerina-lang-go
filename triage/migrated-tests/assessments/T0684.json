@@ -1,0 +1,13 @@
+{
+  "id": "T0684",
+  "name": "isolation-analysis-test-71231d7fc4/record-field-default-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not clone.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; the list includes value:cloneWithType but not value:clone.",
+    "Supported language features (subset 10) > Expressions: the positive list includes \"New expression\" and \"Anonymous function expression\", but does not include object-constructor expressions or typeof expressions."
+  ],
+  "reason": "The case asserts isolation errors in record field defaults, including the default z.clone(). That lang.value operation is outside both supported langlib and method-call lists. The case also contains an object-constructor default and typeof r expressions, absent from the supported expression list. These essential constructs make the whole case a feature assessment even though isolation qualifiers, locks, and ordinary calls are supported.",
+  "unsupported_constructs": ["z.clone() (lang.value:clone)", "object-constructor expression used as a record field default", "typeof r expressions"],
+  "test_design_notes": ["Negative isolation diagnostics are asserted by @error comments; illegality alone does not make a supported construct out of scope."]
+}

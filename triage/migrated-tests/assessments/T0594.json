@@ -1,0 +1,18 @@
+{
+  "id": "T0594",
+  "name": "future-positive-tests-d5f0d09b6f/future-positive-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"Start action\"; \"Wait action\"; \"Check expression\"; \"Type test expression\"; \"Type cast expression\"; \"XML template expression\"",
+    "Module-level declarations: \"Class definition\"; \"Type definition\"; \"Function definition\"",
+    "Operators: \"Equality ops `==`, `!=`, `===`, `!==`\"",
+    "Subset restrictions / Import declarations: \"ballerina/lang.error\" \u2014 \"message\"; \"ballerina/lang.value\" \u2014 \"toString\"",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"error:message\"; \"value:toString` and `value:toBalString\""
+  ],
+  "reason": "The case asserts start/wait results for constrained and unconstrained futures over scalar, XML, JSON, array, record, object and error values, plus runtime future type tests after widening. Start, wait, checking, casts and type tests are supported, with no stated restriction excluding these future constraints or runtime subtype tests. Supporting constructors, class/record fields, equality, error message access and value string conversion are also covered. No essential construct or asserted behavior is excluded.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println calls record outputs; they are instrumentation.",
+    "Future type tests assert the original future constraint remains observable after assignments to wider future types and any."
+  ]
+}

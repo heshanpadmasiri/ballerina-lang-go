@@ -1,0 +1,211 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "error-variable-definition-test-48c425a06f/error_variable_definition-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:10:9
+           |
+        10 |     SMS error (reason22, detail = detail22, extra = extra22) = err2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:17:9
+           |
+        17 |     var error (reason11, ... detail11) = err1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:18:9
+           |
+        18 |     var error (reason12,
+           |         ^^^^^^^^^^^^^^^^
+        19 |         detail = detail12, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |         extra = extra12) = err1; // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:21:9
+           |
+        21 |     var error (reason11, ... detail21) = err2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:22:9
+           |
+        22 |     var error (reason22,
+           |         ^^^^^^^^^^^^^^^^
+        23 |         detail = detail22, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |         extra = extra22) = err2; // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:31:9
+           |
+        31 |     var error (reason11, ... detail11) = err1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:32:9
+           |
+        32 |     var error (reason12,
+           |         ^^^^^^^^^^^^^^^^
+        33 |         message = message12, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |         detail = detail12, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |         extra = extra12) = err1; // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:36:9
+           |
+        36 |     var error (reason13, message = message, ...rest) = err1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:37:9
+           |
+        37 |     var error (reason14, message = message, ...rest2) = err1; // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:39:9
+           |
+        39 |     var error (reason11, detail = detail11) = 12; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:51:9
+           |
+        51 |     var error (reason, message = message) = err; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+         --> error_variable_definition-e.bal:7:9
+          |
+        7 |     SMS error (reason11, ... detail11) = err1;
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+         --> error_variable_definition-e.bal:8:9
+          |
+        8 |     SMS error (reason12) = err1;
+          |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+         --> error_variable_definition-e.bal:9:9
+          |
+        9 |     SMA error (reason11, ... detail21) = err2; // @error
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> error_variable_definition-e.bal:44:9
+           |
+        44 |     var [a, error(reason, message = message)] = tuple;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:10:9
+           |
+        10 |     SMS error (reason22, detail = detail22, extra = extra22) = err2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:17:9
+           |
+        17 |     var error (reason11, ... detail11) = err1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:18:9
+           |
+        18 |     var error (reason12,
+           |         ^^^^^^^^^^^^^^^^
+        19 |         detail = detail12, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |         extra = extra12) = err1; // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:21:9
+           |
+        21 |     var error (reason11, ... detail21) = err2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:22:9
+           |
+        22 |     var error (reason22,
+           |         ^^^^^^^^^^^^^^^^
+        23 |         detail = detail22, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        24 |         extra = extra22) = err2; // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:31:9
+           |
+        31 |     var error (reason11, ... detail11) = err1;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:32:9
+           |
+        32 |     var error (reason12,
+           |         ^^^^^^^^^^^^^^^^
+        33 |         message = message12, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |         detail = detail12, // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |         extra = extra12) = err1; // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:36:9
+           |
+        36 |     var error (reason13, message = message, ...rest) = err1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:37:9
+           |
+        37 |     var error (reason14, message = message, ...rest2) = err1; // @error // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:39:9
+           |
+        39 |     var error (reason11, detail = detail11) = 12; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:44:9
+           |
+        44 |     var [a, error(reason, message = message)] = tuple;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> error_variable_definition-e.bal:51:9
+           |
+        51 |     var error (reason, message = message) = err; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> error_variable_definition-e.bal:7:9
+          |
+        7 |     SMS error (reason11, ... detail11) = err1;
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> error_variable_definition-e.bal:8:9
+          |
+        8 |     SMS error (reason12) = err1;
+          |         ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> error_variable_definition-e.bal:9:9
+          |
+        9 |     SMA error (reason11, ... detail21) = err2; // @error
+          |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

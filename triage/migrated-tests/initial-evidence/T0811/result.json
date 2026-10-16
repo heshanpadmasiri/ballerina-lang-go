@@ -1,0 +1,14 @@
+{
+  "Name": "map-constraint-table-test-5e26103df7/map-constraint-table-test-5e26103df7-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/map-constraint-table-test-5e26103df7/map-constraint-table-test-5e26103df7-v.bal",
+  "Project": false,
+  "Id": "T0811",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/map-constraint-table-test-5e26103df7/map-constraint-table-test-5e26103df7-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.034
+}

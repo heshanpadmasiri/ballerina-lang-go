@@ -1,0 +1,17 @@
+{
+  "id": "T0421",
+  "name": "distinct-type-def-test-35a3bcc454/distinct-type-def-test-35a3bcc454-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"",
+    "## Import declarations: `ballerina/lang.value` lists `cloneWithType`, `fromJsonWithType`, `toString`, and `toBalString`."
+  ],
+  "reason": "The valid supporting declaration Error1 requires value:Cloneable from ballerina/lang.value, a type absent from the explicit allowed methods/types list. This essential unsupported dependency makes the whole case a feature regardless of the distinct-type rejection checks.",
+  "unsupported_constructs": [
+    "ballerina/lang.value:Cloneable in error<map<value:Cloneable>>"
+  ],
+  "test_design_notes": [
+    "Negative test with @error annotations for invalid distinct type descriptors in type definitions, records, objects and a class. Negative rejection alone does not put a test out of scope.",
+    "No @args, @panic or @output assertions occur."
+  ]
+}

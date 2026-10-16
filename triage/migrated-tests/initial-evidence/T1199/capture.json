@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'b'\n --\u003e modules/a/pa.bal:4:1\n  |\n4 | int b = temp();\n  | ^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"modules/a/pa.bal","StartLine":4,"EndLine":4}]}

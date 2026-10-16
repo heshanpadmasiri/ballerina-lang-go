@@ -1,0 +1,15 @@
+{
+  "id": "T1075",
+  "name": "object-initializer-test-9aa531bbdf/object-initializer-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Class definition]; Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Module-level declarations: [Type definition]",
+    "Expressions: [New expression]; [Method call]; [Error constructor]; [Check expression]",
+    "Statements: [Assignment]; [Local variable declarations]; [Return]",
+    "Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members"
+  ],
+  "reason": "All exercised constructs are within the supported class, method, construction, error and type-system surface. The asserted rejections concern duplicate initializers, private initializers, assigning fallible construction to Person, invalid initializer return types (including error-only unions), and invoking init externally. These are negative semantic checks on supported constructs; no listed restriction excludes them.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Compile-negative case with inline @error markers; no runtime assertions. The unmarked self.init() call is also part of the expected accepted behavior."]
+}

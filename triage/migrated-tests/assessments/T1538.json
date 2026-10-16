@@ -1,0 +1,19 @@
+{
+  "id": "T1538",
+  "name": "while-stmt-test-8fe83cda27/while-stmt-on-fail-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"[While](https://ballerina.io/spec/lang/master/#while-stmt)\"; fail statements and on-fail clauses are not explicitly listed.",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.string list omits concat.",
+    "Subset restrictions / Invocations / Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; string:concat is absent, while error:message is listed."
+  ],
+  "reason": "The whole negative case uses str.concat(e.message()), requiring unsupported string:concat langlib method invocation. This decisive restriction makes the case feature even though rejection of illegal code within supported constructs would otherwise be in scope. The central fail/on-fail behavior is also not explicitly covered by the statement list.",
+  "unsupported_constructs": [
+    "string:concat via str.concat(e.message())",
+    "fail statements and on-fail clauses, including error binding patterns, are not explicitly covered"
+  ],
+  "test_design_notes": [
+    "Three @error markers cover incompatible on-fail types and an error-binding pattern; there are no @args, @panic, or @output markers.",
+    "Mixed scope: negative error-handler checks coexist with an unsupported string langlib call, so the expected diagnostics do not isolate supported behavior."
+  ]
+}

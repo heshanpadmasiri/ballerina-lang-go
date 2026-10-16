@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at cyclic-inclusion-via-field-negative-e.bal:1-3 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at cyclic-inclusion-via-field-negative-e.bal:18-23 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at cyclic-inclusion-via-field-negative-e.bal:10 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at cyclic-inclusion-via-field-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at cyclic-inclusion-via-field-negative-e.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at cyclic-inclusion-via-field-negative-e.bal:15 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at cyclic-inclusion-via-field-negative-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at cyclic-inclusion-via-field-negative-e.bal:27 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

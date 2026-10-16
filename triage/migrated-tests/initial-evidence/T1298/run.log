@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "retry-stmt-with-on-fail-test-9697c09cc6/retry-stmt-with-on-fail-v" has a runtime panic in expected stdout:
+        panic: interface conversion: ast.BLangNode is nil, not *ast.BLangOnFailClause
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

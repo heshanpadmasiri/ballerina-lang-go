@@ -1,0 +1,19 @@
+{
+  "id": "T0210",
+  "name": "basic-async-operations-test-5353eae739/basic-async-operations-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\" and ballerina/lang.future is absent.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (list includes error:message, but no future:cancel or error:detail).",
+    "Expressions: \"Start action\" and \"Wait action\" are supported."
+  ],
+  "reason": "Although start/wait and runtime:sleep are supported, the executed test requires future cancellation via f2.cancel(), f3.cancel(), f4.cancel() and f1.cancel(). The supported langlib lists omit ballerina/lang.future and future:cancel. testAsyncNonNativeBasic9 also checks cancellation error details with result.detail(), whereas lang.error supports only message. These essential calls make the whole case a feature request.",
+  "unsupported_constructs": [
+    "future:cancel through method syntax",
+    "error:detail through method syntax"
+  ],
+  "test_design_notes": [
+    "main asserts numeric and boolean outputs and executes cancellation behavior; testAsyncNonNativeBasic9 accepts either the cancellation error with a particular message and empty details or the alternate future result 7.",
+    "No @args or @panic directives occur; io:println serves as output instrumentation."
+  ]
+}

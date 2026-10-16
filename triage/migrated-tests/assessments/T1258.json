@@ -1,0 +1,17 @@
+{
+  "id": "T1258",
+  "name": "record-def-negative-test-2a404858e4/record-destructure-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: [Destructuring assignment statement](https://ballerina.io/spec/lang/master/#destructuring-assignment-stmt) — Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)"
+  ],
+  "reason": "The asserted negative behavior depends on mapping destructuring assignments, including nested list and mapping field patterns. Subset 10 supports destructuring assignment only with a wildcard binding pattern, so these record field binding diagnostics are outside the supported subset.",
+  "unsupported_constructs": [
+    "Mapping destructuring assignment with named field targets: {firstName:g, lastName:h, _}",
+    "Nested list/mapping destructuring assignment: {a: empOneName, age: [{b: empOneAge}]}",
+    "Nested mapping destructuring assignment: {age:empAge, name:{first:empName}}"
+  ],
+  "test_design_notes": [
+    "The @error annotations assert rejection of invalid record destructuring; negative code remains assessable, but its essential destructuring forms exceed the explicit wildcard-only restriction."
+  ]
+}

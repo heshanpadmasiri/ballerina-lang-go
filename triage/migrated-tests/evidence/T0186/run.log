@@ -1,0 +1,29 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	3
+        	1
+        	9
+        	2
+        	99
+        	string
+        	4
+        	2
+        	12
+        	6
+        	BBBBBB
+        	45
+        	27.1
+        	170
+        	ballerina
+        	false
+        	scope1
+        	Foo1
+        	Foo2
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

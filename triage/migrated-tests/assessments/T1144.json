@@ -1,0 +1,17 @@
+{
+  "id": "T1144",
+  "name": "operand-compilation-test-fbca3afc7e/successful-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Expressions: Literal — Currently support nil-literal, boolean-literal, numeric-literal and string-literal only",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The parameter declarations and literal defaults are supported, but the @args directive makes successful command-line operand binding essential: strings must populate int, float, decimal and string main parameters, with omitted nullable operands and defaultable parameters accepted. Subset 10 documents function signatures and function-call defaults but does not cover command-line main operand conversion or omission behavior.",
+  "unsupported_constructs": [
+    "Command-line operand binding/conversion for typed main parameters, including omitted nullable operands and defaultable parameters"
+  ],
+  "test_design_notes": [
+    "The empty body has no value assertions; the observable assertion is successful startup with the four supplied command-line arguments."
+  ]
+}

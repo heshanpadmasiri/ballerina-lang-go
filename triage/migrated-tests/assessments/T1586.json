@@ -1,0 +1,19 @@
+{
+  "id": "T1586",
+  "name": "worker-test-0f3493dd03/01-receive-check-panic-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list does not include named worker declarations or worker send statements.",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are listed, but worker receive actions are not listed.",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; no ballerina/lang.future or cancel is listed."
+  ],
+  "reason": "The main entry calls receiveWithCheckpanic, whose essential behavior requires named workers, inter-worker receive and send, and propagation of a worker-returned error through checkpanic and wait. Named worker declarations and worker communication are not covered by the supported positive lists; start/wait support alone does not cover them. The whole source also calls unsupported future.cancel().",
+  "unsupported_constructs": [
+    "Named worker declarations and asynchronous/synchronous worker message passing (->, ->>, <-), including error/panic propagation across workers.",
+    "Future cancellation via f1.cancel()."
+  ],
+  "test_design_notes": [
+    "Mixed scope: the source retains many unrelated worker, query, lock and future tests although main only calls receiveWithCheckpanic().",
+    "The @panic marker is on the error construction in worker w1, which returns that error; the actual panic is triggered by checkpanic in worker w2 and observed through wait. No @args or @output markers appear."
+  ]
+}

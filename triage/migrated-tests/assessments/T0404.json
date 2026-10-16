@@ -1,0 +1,18 @@
+{
+  "id": "T0404",
+  "name": "cyclic-type-definitions-test-3fce5ad632/type-definitions-cyclic-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\", \"Constant declarations\", and \"Function definition\"",
+    "Statements: \"Local variable declarations\" and \"Assignment\"",
+    "Expressions: \"Literal\" (numeric-literal and string-literal), \"List constructor\", \"Mapping constructor\", and \"Equality expression\"",
+    "Operators: \"Equality ops `==`, `!=`, `===`, `!==`\"",
+    "Subset restrictions / Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\""
+  ],
+  "reason": "This negative case exercises rejection of invalid cyclic type definitions, unresolved and duplicate type names, incompatible equality operands, and invalid list/record initializers, including cyclic filler-value checks. Type definitions and the expressions/statements involved are supported without a restriction excluding recursive types, type intersections, or the parameterized type descriptors used here. The object/class qualifier restriction does not exclude readonly intersections of these non-object types. Illegal definitions remain supported negative type-system tests.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The asserted behavior is compile-time rejection at @error markers; no @args, @panic, or @output assertions occur.",
+    "There are no imports or langlib invocations."
+  ]
+}

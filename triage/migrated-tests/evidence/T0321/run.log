@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "checking-stmt-test-a7188c6c31/checking-stmt-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unreachable code
+          --> checking-stmt-v.bal:72:5
+           |
+        72 |     return error("new msg");
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

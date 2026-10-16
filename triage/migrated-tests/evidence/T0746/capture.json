@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unsupported container type for index based access\n --\u003e lvalue-negative-e.bal:5:9\n  |\n5 |         self.s[\"one\"][0] = 1;\n  |         ^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"lvalue-negative-e.bal","StartLine":5,"EndLine":5}]}

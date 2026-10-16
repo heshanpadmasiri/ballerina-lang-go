@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'k'\n --\u003e int-overflow-by-division-p.bal:8:5\n  |\n8 |     int k = val1 / val; // @panic\n  |     ^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"int-overflow-by-division-p.bal","StartLine":8,"EndLine":8}]}

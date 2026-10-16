@@ -1,0 +1,18 @@
+{
+  "id": "T0543",
+  "name": "function-nil-return-test-762593be2f/function-nil-return-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)\" is listed; object-constructor expressions are not listed.",
+    "## Module-level declarations: \"Class definition\" supports \"remote-method-defn for client classes and resource-method-defn for service classes\".",
+    "## Statements: \"Return\", \"If/else\" and \"Match statement\" are supported."
+  ],
+  "reason": "The case asserts missing-return diagnostics and permitted implicit nil returns across many return types. Its service object constructor contains a remote method whose missing return is explicitly asserted with @error. Object-constructor expressions are absent from the supported expression list, so this asserted behavior requires an uncovered construct even though ordinary return checking is in scope.",
+  "unsupported_constructs": [
+    "Service object constructor expression: service object { remote function foo() returns int? { ... } }"
+  ],
+  "test_design_notes": [
+    "This is a negative compilation case with @error annotations, plus unannotated functions asserting acceptance of implicit nil returns.",
+    "The object-constructor method is part of the asserted diagnostics, not incidental instrumentation."
+  ]
+}

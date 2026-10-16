@@ -1,0 +1,16 @@
+{
+  "id": "T1080",
+  "name": "object-subtyping-test-6d097e853f/object-subtype-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: 'Type definition'; 'Class definition'; 'Supports `object-field`, `method-defn` and `object-type-inclusion` members'",
+    "Statements: 'Local variable declarations'",
+    "Expressions: 'New expression'; 'Literal'",
+    "Object/class definitions: 'Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members'"
+  ],
+  "reason": "The case uses supported type definitions, structural object types, a class with fields and a method, inferred construction and local declarations. It checks assignment of the class instance to unions containing a matching structural object type, and expects diagnostics for the unused local and two uninitialized class fields. These are static checks within the supported declarations and object type system; no applicable restriction excludes the behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The expected errors are the unused variable mt and uninitialized fields intField1 and intField2, not rejection of structural object-to-union assignment."
+  ]
+}

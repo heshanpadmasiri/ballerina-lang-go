@@ -1,0 +1,13 @@
+{
+  "id": "T0727",
+  "name": "locks-in-main-test-617c6c002d/locks-down-chain-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Lock statement](https://ballerina.io/spec/lang/master/#lock-stmt)\" is supported; named worker declarations are absent from the supported statement list.",
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\" and \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" are listed, but named workers are not listed.",
+    "## Module-level declarations: \"[Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)\""
+  ],
+  "reason": "The assertion depends on concurrent execution of named worker w1 and the default worker, with nested locks acquired through a function call chain serializing mutations to a shared module string. Lock statements are supported, but named worker declarations and their execution behavior are not covered by the subset's positive lists. This essential unsupported construct makes the whole case a feature request.",
+  "unsupported_constructs": ["Named worker declaration `worker w1` and concurrent named-worker execution"],
+  "test_design_notes": ["The assertion permits either serial lock ordering, accepting the returned string before w1 executes or after its complete locked append sequence."]
+}

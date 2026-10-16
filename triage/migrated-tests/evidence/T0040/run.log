@@ -1,0 +1,31 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at insufficient-args-p.bal:2
+        stderr:
+        error[SEMANTIC_ERROR]: unused variable 'i'
+         --> insufficient-args-p.bal:2:22
+          |
+        2 | public function main(int i, float f, string s, string... args) { // @panic
+          |                      ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'f'
+         --> insufficient-args-p.bal:2:29
+          |
+        2 | public function main(int i, float f, string s, string... args) { // @panic
+          |                             ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+         --> insufficient-args-p.bal:2:38
+          |
+        2 | public function main(int i, float f, string s, string... args) { // @panic
+          |                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'args'
+         --> insufficient-args-p.bal:2:48
+          |
+        2 | public function main(int i, float f, string s, string... args) { // @panic
+          |                                                ^^^^^^^^^^^^^^
+        
+        ballerina: compilation contains errors
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

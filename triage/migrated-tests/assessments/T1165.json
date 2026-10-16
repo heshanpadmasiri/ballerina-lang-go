@@ -1,0 +1,15 @@
+{
+  "id": "T1165",
+  "name": "option-test-1b0c555df9/missing_option_value-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\""
+  ],
+  "reason": "The included-record parameter signature is supported, but the asserted behavior is command-line option parsing: invoking main with --val and no value must panic. Subset 10 does not specify command-line binding or missing-option-value rejection, so this essential behavior is not covered.",
+  "unsupported_constructs": [
+    "Command-line binding of --val to an included record parameter and panic for a missing option value."
+  ],
+  "test_design_notes": [
+    "The @args [\"--val\"] and @panic directives assert launcher behavior; the empty main body contains no explicit panic."
+  ]
+}

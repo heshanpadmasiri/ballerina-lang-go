@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: redeclared symbol 'param'\n --\u003e duplicate-parameters-e.bal:1:31\n  |\n1 | function foobar(string param, int param) { // @error\n  |                               ^^^^^^^^^\n\n","Diagnostics":[{"File":"duplicate-parameters-e.bal","StartLine":1,"EndLine":1}]}

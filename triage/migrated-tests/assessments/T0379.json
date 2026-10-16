@@ -1,0 +1,19 @@
+{
+  "id": "T0379",
+  "name": "constant-expression-test-2596be1ac5/constant-expression-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"Constant declarations\"",
+    "## Operators: \"Multiplicative ops `*`, `%`, `/`\"; \"Shift ops `<<`, `>>`, `>>>`\"",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString` (does not list `MAX_VALUE`).",
+    "### Other invocation restrictions: \"`value:toString` and `value:toBalString`\""
+  ],
+  "reason": "The case requires int:MAX_VALUE in const int CUI5 = -int:MAX_VALUE and asserts its exact value through testConstUnaryExpressions() called by main. MAX_VALUE is absent from the explicitly exhaustive supported lang.int members, so this essential reference makes the whole case a feature despite supported constant declarations and arithmetic. The NaN/Infinity output and arithmetic, bitwise assertions, and supported value:toString calls do not remove that restriction.",
+  "unsupported_constructs": [
+    "ballerina/lang.int constant int:MAX_VALUE"
+  ],
+  "test_design_notes": [
+    "main executes the assertion using CUI5; this is not an unused unsupported declaration.",
+    "@output checks numeric/string results and the constant map; there are no @args or @panic directives. io:println is instrumentation."
+  ]
+}

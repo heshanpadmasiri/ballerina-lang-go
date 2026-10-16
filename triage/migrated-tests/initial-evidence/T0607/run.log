@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "global-var-negative-test-2de21d931c/configurable-global-var-decl-negative-03-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+          --> configurable-global-var-decl-negative-03-e.bal:11:1
+           |
+        11 | configurable Foo y = foo; // @error
+           | ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: configurable module variables are not supported yet
+         --> configurable-global-var-decl-negative-03-e.bal:3:1
+          |
+        3 | configurable int[][] x = [nonReadOnlyArray]; // @error
+          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

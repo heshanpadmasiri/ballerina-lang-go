@@ -1,0 +1,42 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	default
+        	
+        	
+        	
+        	
+        	LK
+        	John
+        	Doe
+        	
+        	
+        	
+        	LK
+        	default
+        	
+        	
+        	
+        	
+        	LK
+        	default
+        	
+        	
+        	
+        	{"street":"Palm Grove","city":"Colombo 3","country":"LK"}
+        	true
+        	typedesc Address3
+        	{"street":"Palm Grove","city":"Colombo 3","country":"LK"}
+        	true
+        	typedesc Address3
+        	default
+        	
+        	
+        	
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

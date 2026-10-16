@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at multiply-operation-e.bal:39-39 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at multiply-operation-e.bal:40-40 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at multiply-operation-e.bal:41-41 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at multiply-operation-e.bal:45-45 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at multiply-operation-e.bal:46-46 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at multiply-operation-e.bal:52-52 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at multiply-operation-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at multiply-operation-e.bal:14 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at multiply-operation-e.bal:51 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

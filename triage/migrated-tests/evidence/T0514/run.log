@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "freeze-and-is-frozen-test-c0f3b0e88b/frozen-any-array-update-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: unused variable 'e2'
+          --> frozen-any-array-update-p.bal:11:5
+           |
+        11 |     Employee e2 = check <Employee>i2[1];
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

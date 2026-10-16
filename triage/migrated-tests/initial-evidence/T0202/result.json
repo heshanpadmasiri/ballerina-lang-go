@@ -1,0 +1,14 @@
+{
+  "Name": "bany-type-to-int-implicit-cast-error-05e333d479/any-to-int-implicit-cast-error-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bany-type-to-int-implicit-cast-error-05e333d479/any-to-int-implicit-cast-error-e.bal",
+  "Project": false,
+  "Id": "T0202",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bany-type-to-int-implicit-cast-error-05e333d479/any-to-int-implicit-cast-error-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.028
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "client-resource-access-action-negative-test-1519220005/client-resource-path-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/client-resource-access-action-negative-test-1519220005/client-resource-path-negative-e.bal",
+  "Project": false,
+  "Id": "T0334",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/client-resource-access-action-negative-test-1519220005/client-resource-path-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.066
+}

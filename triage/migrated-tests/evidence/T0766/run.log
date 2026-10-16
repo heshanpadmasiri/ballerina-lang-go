@@ -1,0 +1,34 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "map-constant-negative-test-0be5e94915/constant-map-spread-field-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> constant-map-spread-field-negative-e.bal:20:33
+           |
+        20 | const map<string> CMS1_CLONE = {...CMS1};
+           |                                 ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> constant-map-spread-field-negative-e.bal:21:34
+           |
+        21 | const map<string> CMS12_CLONE = {...CMS1, ...CMS2}; // @error
+           |                                  ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> constant-map-spread-field-negative-e.bal:22:33
+           |
+        22 | const map<string> A = {b : "B", ...CMS1}; // @error
+           |                                 ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> constant-map-spread-field-negative-e.bal:23:24
+           |
+        23 | const map<string> B = {...CMS2, b : "B"}; // @error
+           |                        ^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> constant-map-spread-field-negative-e.bal:24:24
+           |
+        24 | const map<string> C = {...CMS2, ...CMS2}; // @error
+           |                        ^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

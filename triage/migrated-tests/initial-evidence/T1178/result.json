@@ -1,0 +1,16 @@
+{
+  "Name": "option-test-1b0c555df9/option_with_boolean_array_one-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_boolean_array_one-v.bal",
+  "Project": false,
+  "Id": "T1178",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_boolean_array_one-v.bal"
+  ],
+  "Args": [
+    "--array"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.083
+}

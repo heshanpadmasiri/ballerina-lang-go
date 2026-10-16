@@ -1,0 +1,15 @@
+{
+  "Name": "variable-definition-test-ff080c840f/duplicate-constant-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/duplicate-constant-e",
+  "Project": true,
+  "Id": "T1516",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/duplicate-constant-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/variable-definition-test-ff080c840f/duplicate-constant-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.033
+}

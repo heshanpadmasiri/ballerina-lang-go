@@ -1,0 +1,208 @@
+=== RUN   TestMigrationTriage
+panic: test timed out after 25s
+	running tests:
+		TestMigrationTriage (25s)
+
+goroutine 22 [running]:
+testing.(*M).startAlarm.func1()
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2959 +0x34a
+created by time.goFunc
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/time/sleep.go:182 +0x2d
+
+goroutine 1 [chan receive]:
+testing.(*T).Run(0x2a25a69ebd48, {0xdef9ab?, 0x2a25a6a43aa0?}, 0x196ad58)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2266 +0x4f2
+testing.runTests.func1(0x2a25a69ebd48)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2742 +0x37
+testing.tRunner(0x2a25a69ebd48, 0x2a25a6a43bc8)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2193 +0xea
+testing.runTests({0xe0c450, 0x29}, {0xe1ba11, 0x3f}, 0x2a25a672b500, {0x1a4b038, 0x1, 0x1}, {0xc2ac841ca8d53246, 0x5d3ee7f41, ...})
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2740 +0x510
+testing.(*M).Run(0x2a25a6a5a5a0)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2600 +0x6af
+main.main()
+	_testmain.go:46 +0x9b
+
+goroutine 21 [runnable]:
+github.com/ballerina-nutcracker/ballerina/parser.(*recoveryResult).pushFix(...)
+	/workspace/ballerina-lang-go/parser/error_handler.go:222
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).fixAndContinueCore(0x2a25a6a7c230, {{0xddd423?, 0x1?}, {0xde8970?, 0x2a25a6aee770?}}, 0x1, 0x3)
+	/workspace/ballerina-lang-go/parser/error_handler.go:735 +0x2a8
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).fixAndContinue(0x2a25a6a7c230, {{0xddd423?, 0x2a25a6afdbc0?}, {0xde8970?, 0x2a25a6be6dd0?}}, 0x424819?, 0x40?, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:712 +0x112
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).SeekMatch(0x2a25a6a7c200, {{0xddd423, 0x5}, {0xde8970, 0xd}}, 0x1, 0x3, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:1297 +0x6d5d
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree(0x2a25a6a7c230, {{0xddd423?, 0x80?}, {0xde8970?, 0x2a25a6be6fc8?}}, 0x1, 0x3, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:527 +0x1dc
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekInAlternativesPaths.func3(0x2a25a6add400?, 0x2a25a6be7080, 0x24?, {{0xddd423?, 0x2a25a6be7060?}, {0xde8970?, 0x54?}}, 0x2a25a6be7000?, 0x7f93c571e108?, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:640 +0x76
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekInAlternativesPaths(0x2a25a6a7c230, 0x1, 0x3, 0x0, {0x1a9dff0?, 0x20?, 0x42657c?}, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:641 +0x2d2
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInExprRelatedAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x48b4a5?}, {0xde4b4e?, 0x18fb8f0?}}, 0x1, 0x3, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2687 +0x39c8
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInStmtRelatedAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x68?}, {0xde4b4e?, 0xab32a0?}}, 0x1, 0x3, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2561 +0x59a5
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x2a25a6706808?}, {0xde4b4e?, 0x2a25a6be7598?}}, 0x1, 0x3, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2371 +0x7025
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).SeekMatch(0x2a25a6a7c200, {{0xde4b44, 0xa}, {0xde4b4e, 0xa}}, 0x1, 0x3, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:1289 +0x6dec
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree(0x2a25a6a7c230, {{0xde4b44?, 0x1?}, {0xde4b4e?, 0x17b98a0?}}, 0x1, 0x3, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:527 +0x1dc
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).fixAndContinueCore(0x2a25a6a7c230, {{0xde9eeb?, 0xdedc6e?}, {0xde9ef9?, 0xa15bdb?}}, 0x1, 0x2)
+	/workspace/ballerina-lang-go/parser/error_handler.go:730 +0x17e
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).fixAndContinue(0x2a25a6a7c230, {{0xde9eeb?, 0x2a25a6706808?}, {0xde9ef9?, 0x2a25a6be79e0?}}, 0x1?, 0x40?, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:712 +0x112
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).SeekMatch(0x2a25a6a7c200, {{0xde9eeb, 0xe}, {0xde9ef9, 0xe}}, 0x1, 0x2, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:1297 +0x6d5d
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree(0x2a25a6a7c230, {{0xde46c6?, 0x80?}, {0xdec8c0?, 0x180fc20?}}, 0x1, 0x2, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:527 +0x1dc
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekInAlternativesPaths.func3(0x2a25a6988d00?, 0x2a25a6be7c90, 0x1?, {{0xde46c6?, 0x2a25a6983e30?}, {0xdec8c0?, 0x2a25a6be7c98?}}, 0x427625?, 0x0?, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:640 +0x76
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekInAlternativesPaths(0x2a25a6a7c230, 0x1, 0x2, 0x0, {0x1a9dff0?, 0x20?, 0x1?}, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:641 +0x2d2
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInExprRelatedAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x8?}, {0xde4b4e?, 0x18fb8f0?}}, 0x1, 0x2, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2687 +0x39c8
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInStmtRelatedAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x68?}, {0xde4b4e?, 0xab32a0?}}, 0x1, 0x2, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2561 +0x59a5
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x2a25a6706808?}, {0xde4b4e?, 0x2a25a6be81a8?}}, 0x1, 0x2, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2371 +0x7025
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).SeekMatch(0x2a25a6a7c200, {{0xde4b44, 0xa}, {0xde4b4e, 0xa}}, 0x1, 0x2, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:1289 +0x6dec
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree(0x2a25a6a7c230, {{0xde4b44?, 0x1?}, {0xde4b4e?, 0x17b98a0?}}, 0x1, 0x2, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:527 +0x1dc
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).fixAndContinueCore(0x2a25a6a7c230, {{0xde9eeb?, 0xdedc6e?}, {0xde9ef9?, 0xa15bdb?}}, 0x1, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:730 +0x17e
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).fixAndContinue(0x2a25a6a7c230, {{0xde9eeb?, 0x2a25a6706808?}, {0xde9ef9?, 0x2a25a6be85f0?}}, 0x1?, 0x40?, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:712 +0x112
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).SeekMatch(0x2a25a6a7c200, {{0xde9eeb, 0xe}, {0xde9ef9, 0xe}}, 0x1, 0x1, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:1297 +0x6d5d
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree(0x2a25a6a7c230, {{0xde46c6?, 0x1?}, {0xdec8c0?, 0x180fc20?}}, 0x1, 0x1, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:527 +0x1dc
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekInAlternativesPaths.func3(0x2a25a6a7dec0?, 0x2a25a6be88a0, 0x1?, {{0xde46c6?, 0x2a25a72b37a0?}, {0xdec8c0?, 0xde4b44?}}, 0xde4b4e?, 0x1?, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:640 +0x76
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekInAlternativesPaths(0x2a25a6a7c230, 0x1, 0x1, 0x0, {0x1a9dff0?, 0x20?, 0x1?}, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:641 +0x2d2
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInExprRelatedAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x48b4a5?}, {0xde4b4e?, 0x18fb8f0?}}, 0x1, 0x1, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2687 +0x39c8
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInStmtRelatedAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x68?}, {0xde4b4e?, 0xab32a0?}}, 0x1, 0x1, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2561 +0x59a5
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInAlternativePaths(0x2a25a6a7c200, {{0xde4b44?, 0x2a25a66b5008?}, {0xde4b4e?, 0x2a25a6be8db8?}}, 0x1, 0x1, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2371 +0x7025
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).SeekMatch(0x2a25a6a7c200, {{0xde4b44, 0xa}, {0xde4b4e, 0xa}}, 0x1, 0x1, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:1289 +0x6dec
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree(0x2a25a6a7c230, {{0xde4b44?, 0x1?}, {0xde4b4e?, 0x17b98a0?}}, 0x1, 0x1, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:527 +0x1dc
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).fixAndContinueCore(0x2a25a6a7c230, {{0xde9eeb?, 0xdedc6e?}, {0xde9ef9?, 0xa15bdb?}}, 0x1, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:730 +0x17e
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).fixAndContinue(0x2a25a6a7c230, {{0xde9eeb?, 0x2a25a66b5008?}, {0xde9ef9?, 0x2a25a6be9200?}}, 0x1?, 0x40?, 0x0, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:712 +0x112
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).SeekMatch(0x2a25a6a7c200, {{0xde9eeb, 0xe}, {0xde9ef9, 0xe}}, 0x1, 0x0, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:1297 +0x6d5d
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree(0x2a25a6a7c230, {{0xde46c6?, 0x1?}, {0xdec8c0?, 0x2a25a6be93f8?}}, 0x1, 0x0, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:527 +0x1dc
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekInAlternativesPaths.func3(0x2a25a67e1180?, 0x2a25a6be94b0, 0x1?, {{0xde46c6?, 0xab32a0?}, {0xdec8c0?, 0x2a25a7195e60?}}, 0x2a25a6be9428?, 0xab3280?, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:640 +0x76
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekInAlternativesPaths(0x2a25a6a7c230, 0x1, 0x0, 0x0, {0x1a9dff0?, 0x20?, 0x40?}, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:641 +0x2d2
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInExprRelatedAlternativePaths(0x2a25a6a7c200, {{0xdf091b?, 0x2a25a6be9701?}, {0xdf092e?, 0x2?}}, 0x1, 0x0, 0x0, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2687 +0x39c8
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInStmtRelatedAlternativePaths(0x2a25a6a7c200, {{0xdf091b?, 0x2a25a6be9898?}, {0xdf092e?, 0x17b9818?}}, 0x1, 0x0, 0x0, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2561 +0x59a5
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).seekMatchInAlternativePaths(0x2a25a6a7c200, {{0xdf091b?, 0x1?}, {0xdf092e?, 0x0?}}, 0x1, 0x0, 0x0, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:2371 +0x7025
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParserErrorHandler).SeekMatch(0x2a25a6a7c200, {{0xdf091b, 0x13}, {0xdf092e, 0x13}}, 0x1, 0x0, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:1289 +0x6dec
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree(0x2a25a6a7c1f0, {{0xdf091b?, 0x2a25a6be9b78?}, {0xdf092e?, 0xde74ac?}}, 0x1, 0x0, 0x1)
+	/workspace/ballerina-lang-go/parser/error_handler.go:527 +0x1dc
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchStart.func3(0x2a25a6be9c50, {{0xdf091b?, 0x2a25a6be9c68?}, {0xdf092e?, 0x0?}}, 0x0?)
+	/workspace/ballerina-lang-go/parser/error_handler.go:511 +0x86
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).seekMatchStart(0x2a25a6a7c1f0, {{0xdf091b?, 0xdedb3c?}, {0xdf092e?, 0x2a25a68f1b30?}})
+	/workspace/ballerina-lang-go/parser/error_handler.go:512 +0x10a
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).getResolution(0x2a25a6a7c1f0, {{0xdf091b?, 0x2?}, {0xdf092e?, 0x2?}}, {0x1968d08, 0x2a25a6afdbc0})
+	/workspace/ballerina-lang-go/parser/error_handler.go:400 +0x50
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParserErrorHandlerMethods).Recover(0x2a25a6a7c1f0, {{0xdf091b?, 0x0?}, {0xdf092e?, 0x2a25a6be9f48?}}, {0x1968d08, 0x2a25a6afdbc0}, 0x0)
+	/workspace/ballerina-lang-go/parser/error_handler.go:371 +0x27e
+github.com/ballerina-nutcracker/ballerina/parser.(*abstractParser).recover(0x2a25a6bea750, {0x1968d08?, 0x2a25a6afdbc0?}, {{0xdf091b?, 0x0?}, {0xdf092e?, 0x2a25a6be9f80?}}, 0x0?)
+	/workspace/ballerina-lang-go/parser/parser.go:197 +0xe5
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).recoverWithBlockContext(0x2a25a6bea750, {0x1968d08, 0x2a25a6afdbc0}, {{0xdf091b?, 0x1a72708?}, {0xdf092e?, 0x0?}})
+	/workspace/ballerina-lang-go/parser/parser.go:14736 +0xbb
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseTerminalExpressionInner(0x2a25a6bea750, {0x195d4a8, 0x1a72708}, {0x0?, 0xa4a0af?, 0x1a50f50?}, 0x1, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/parser.go:4345 +0x8cf
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseTerminalExpressionWithAnnotations(...)
+	/workspace/ballerina-lang-go/parser/parser.go:4247
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseTerminalExpression(0x2a25a6bea750, 0x1, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/parser.go:4243 +0xa7
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseExpressionWithMatchGuard(0x2a25a6bea750, 0x15, 0x1, 0x0, 0x0, 0x0)
+	/workspace/ballerina-lang-go/parser/parser.go:4222 +0x36
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseExpressionWithConditional(...)
+	/workspace/ballerina-lang-go/parser/parser.go:4218
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseExpressionWithPrecedence(...)
+	/workspace/ballerina-lang-go/parser/parser.go:4214
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseExpression(...)
+	/workspace/ballerina-lang-go/parser/parser.go:4137
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseVarDeclRhsInner(0x2a25a6bea750, {0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0, 0x0}, {0x1959768, 0x2a25a68f1b00}, ...)
+	/workspace/ballerina-lang-go/parser/parser.go:3825 +0x13f
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseVarDeclRhsInner(0x2a25a6bea750, {0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0, 0x0}, {0x1959768, 0x2a25a68f1b00}, ...)
+	/workspace/ballerina-lang-go/parser/parser.go:3838 +0x24c
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseVariableDeclInner(0x2a25a6bea750, {0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0, 0x0}, {0x0, 0x0, ...}, ...)
+	/workspace/ballerina-lang-go/parser/parser.go:3783 +0x112
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseModuleVarDecl(0x2a25a6bea750?, {0x0?, 0x0?})
+	/workspace/ballerina-lang-go/parser/parser.go:1297 +0x45
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseTopLevelNode(0x2a25a6bea750)
+	/workspace/ballerina-lang-go/parser/parser.go:900 +0x185
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseTopLevelNode(0x2a25a6bea750)
+	/workspace/ballerina-lang-go/parser/parser.go:914 +0x289
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).parseCompUnit(0x2a25a6bea750)
+	/workspace/ballerina-lang-go/parser/parser.go:829 +0xf7
+github.com/ballerina-nutcracker/ballerina/parser.(*ballerinaParser).Parse(0x2a25a6a74360?)
+	/workspace/ballerina-lang-go/parser/parser.go:606 +0x13
+github.com/ballerina-nutcracker/ballerina/parser.GetSyntaxTree(0x2a25a6a74360, {0x2a25a6745bd8, 0x1b}, {0x2a25a6a05000, 0x70b})
+	/workspace/ballerina-lang-go/parser/parser.go:14781 +0x44a
+github.com/ballerina-nutcracker/ballerina/projects.(*documentContext).parseContent.func1(...)
+	/workspace/ballerina-lang-go/projects/document_context.go:83
+github.com/ballerina-nutcracker/ballerina/projects.(*documentContext).parseContent(0x0?, 0x0?, {0x2a25a6a05000?, 0x0?})
+	/workspace/ballerina-lang-go/projects/document_context.go:88 +0x7f
+github.com/ballerina-nutcracker/ballerina/projects.(*documentContext).parseWithStats.func1()
+	/workspace/ballerina-lang-go/projects/document_context.go:107 +0x5f
+sync.(*Once).doSlow(0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:78 +0xab
+sync.(*Once).Do(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:69
+github.com/ballerina-nutcracker/ballerina/projects.(*documentContext).parseWithStats(0x2a25a6a593b0, 0x1?)
+	/workspace/ballerina-lang-go/projects/document_context.go:105 +0x48
+github.com/ballerina-nutcracker/ballerina/projects.(*documentContext).moduleLoadRequests(0x405236?, 0x2a25a6a69080?)
+	/workspace/ballerina-lang-go/projects/document_context.go:159 +0x25
+github.com/ballerina-nutcracker/ballerina/projects.(*moduleContext).populateModuleLoadRequests(0x2a25a6752600)
+	/workspace/ballerina-lang-go/projects/module_context.go:591 +0x107
+github.com/ballerina-nutcracker/ballerina/projects.(*PackageResolution).buildModuleDependencyGraph(0x2a25a68920e0)
+	/workspace/ballerina-lang-go/projects/package_resolution.go:113 +0x377
+github.com/ballerina-nutcracker/ballerina/projects.newPackageResolution(0x2a25a6b0a008, 0x2a25a6a4e730)
+	/workspace/ballerina-lang-go/projects/package_resolution.go:69 +0x496
+github.com/ballerina-nutcracker/ballerina/projects.(*packageContext).getResolution.func1()
+	/workspace/ballerina-lang-go/projects/package_context.go:224 +0x31
+sync.(*Once).doSlow(0x0?, 0x0?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:78 +0xab
+sync.(*Once).Do(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:69
+github.com/ballerina-nutcracker/ballerina/projects.(*packageContext).getResolution(0x2a25a6b0a008)
+	/workspace/ballerina-lang-go/projects/package_context.go:222 +0x45
+github.com/ballerina-nutcracker/ballerina/projects.newPackageCompilation(0x2a25a6b0a008, {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...})
+	/workspace/ballerina-lang-go/projects/package_compilation.go:46 +0x1f
+github.com/ballerina-nutcracker/ballerina/projects.(*packageContext).getPackageCompilation.func1()
+	/workspace/ballerina-lang-go/projects/package_context.go:214 +0x69
+sync.(*Once).doSlow(0x2a25a6658045?, 0xb?)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:78 +0xab
+sync.(*Once).Do(...)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/sync/once.go:69
+github.com/ballerina-nutcracker/ballerina/projects.(*packageContext).getPackageCompilation(0x2a25a6b0a008)
+	/workspace/ballerina-lang-go/projects/package_context.go:213 +0x45
+github.com/ballerina-nutcracker/ballerina/projects.(*Package).Compilation(...)
+	/workspace/ballerina-lang-go/projects/package.go:231
+github.com/ballerina-nutcracker/ballerina/test_util/testharness.Run({0x1969280, 0x2a25a6a60008}, {{0x2a25a69f7240, 0x39}, {0x2a25a6745b80, 0x73}, {0x0, 0x0}, 0x0}, {0x1952498, ...}, ...)
+	/workspace/ballerina-lang-go/test_util/testharness/test_harness.go:513 +0x345
+github.com/ballerina-nutcracker/ballerina/test_util/testharness.TestMigrationTriage(0x2a25a6a60008)
+	/workspace/ballerina-lang-go/test_util/testharness/migration_triage_test.go:51 +0x605
+testing.tRunner(0x2a25a6a60008, 0x196ad58)
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2193 +0xea
+created by testing.(*T).Run in goroutine 1
+	/workspace/.onboarding/toolchains/go1.27.1/go/src/testing/testing.go:2258 +0x4d4

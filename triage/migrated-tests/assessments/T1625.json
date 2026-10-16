@@ -1,0 +1,19 @@
+{
+  "id": "T1625",
+  "name": "xmliteration-test-c9c3cad714/xml_iteration_negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Statements: Foreach — 'Currently only supports range, list, map, string and XML subtypes, and iterable objects'",
+    "Expressions: 'XML template expression'; 'Anonymous function expression'; 'Method call'",
+    "Subset restrictions / Import declarations: ballerina/lang.xml lists Element, Text, Comment, ProcessingInstruction, iterator and forEach; ballerina/lang.value lists toString",
+    "Invocations / Other invocation restrictions: method syntax explicitly includes 'xml:iterator', 'xml:forEach' and 'value:toString'",
+    "Statements: Destructuring assignment statement — 'Only supports wildcard-binding-pattern' (does not restrict foreach binding patterns)"
+  ],
+  "reason": "The case checks compile-time XML iteration and type incompatibilities using supported XML templates, XML subtype iteration, anonymous callbacks, xml:forEach, xml:iterator and ordinary iterator next method calls. Invalid XML type parameters and incompatible iteration/assignment types remain negative checks within the supported type system. No essential unsupported library operation or expression is present; namespace prefixes inside XML templates are not xml-qualified-name variable references.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Contains only @error expectations; no @args, @panic or @output behavior to assess.",
+    "Several @error markers occur on foreach loops over corresponding singleton XML subtypes; these expectations merit review because XML subtype iteration is explicitly supported. This is an expectation issue, not evidence of an unsupported feature.",
+    "The wildcard-only destructuring-assignment restriction does not apply to the list binding pattern in foreach."
+  ]
+}

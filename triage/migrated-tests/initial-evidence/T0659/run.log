@@ -1,0 +1,19 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at error-negative-e.bal:15-15 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:26 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:30 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:39 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:40 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:41 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:42 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at error-negative-e.bal:43 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

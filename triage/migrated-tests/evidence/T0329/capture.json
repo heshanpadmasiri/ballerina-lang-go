@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'a'\n --\u003e modules/mod.ab/pkg-a.bal:2:29\n  |\n2 |     remote function invoke1(string a) returns error? {\n  |                             ^^^^^^^^\n\n","Diagnostics":[{"File":"modules/mod.ab/pkg-a.bal","StartLine":2,"EndLine":2}]}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SYNTAX_ERROR]: expression expected action found\n --\u003e global-query-negative-e.bal:5:9\n  |\n5 | var y = from var value in intList // @error\n  |         \n\n","Diagnostics":[{"File":"global-query-negative-e.bal","StartLine":5,"EndLine":5}]}

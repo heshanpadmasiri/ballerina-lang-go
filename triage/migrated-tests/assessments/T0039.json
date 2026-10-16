@@ -1,0 +1,23 @@
+{
+  "id": "T0039",
+  "name": "argument-parser-negative-test-706c373f17/incorrect-named-arg-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    {
+      "heading": "Module-level declarations",
+      "quote": "Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature"
+    },
+    {
+      "heading": "Named and default arguments",
+      "quote": "Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+    }
+  ],
+  "reason": "The source declares a public main function with one required int parameter and an empty body, which fits supported function definitions and required parameters. Its actual negative scenario is supplied by the harness comment: command-line input -j=1 names j although the entry point requires i. The specification covers named arguments in language function calls, but does not cover command-line argument parsing, entry-point argument binding, or rejection of unknown CLI parameter names. This whole case therefore depends on a not-covered runtime facility even though its Ballerina declaration is supported. There is no language call expression or invalid syntax to assess as a supported grammar rejection.",
+  "unsupported_constructs": [
+    "Command-line named-argument parsing and rejection of an unknown entry-point parameter (-j=1)."
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported required-parameter declaration with not-covered CLI behavior.",
+    "@args and @panic are harness comments, not language annotations. The panic marker expects invocation failure; no explicit panic occurs in the function body. No obvious syntax or migration corruption is visible."
+  ]
+}

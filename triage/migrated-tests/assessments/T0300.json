@@ -1,0 +1,16 @@
+{
+  "id": "T0300",
+  "name": "check-panic-expression-operator-test-baa47123b9/checkpanic-custom-error-p",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)",
+    "## Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The case constructs a named error with a record detail field, returns it through int|MyError, and applies checkpanic in a constant-pattern match branch. Check expressions (including checkpanic), error constructors, type definitions, calls, local declarations and constant match patterns are supported; no listed restriction excludes this case. The expected panic follows when checkpanic receives the custom error.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is attached to error construction, but the actual panic occurs at checkpanic after getCustomError returns; construction itself should succeed. There are no @args or @output assertions."
+  ]
+}

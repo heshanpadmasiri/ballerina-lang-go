@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '{| age: int, name: string, anydata... |}' value cannot be converted to '{| address: string, age: int, name: string, anydata... |}': field 'address' not present in value\n        at testorg/equivalencynegative:testEqOfStructsInSamePackage03(main.bal:14)\n           testorg/equivalencynegative:main(main.bal:19)\n","Diagnostics":null}

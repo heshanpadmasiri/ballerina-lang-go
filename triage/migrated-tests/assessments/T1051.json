@@ -1,0 +1,18 @@
+{
+  "id": "T1051",
+  "name": "numeric-conversion-test-6b3e1e5e00/numeric-conversion-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Type definition; Function definition",
+    "## Expressions: Type cast expression; Type test expression; List constructor; Member access expression; Error constructor; Check expression",
+    "## Expressions — Literal: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Operators: Equality ops `==`, `!=`, `===`, `!==`; Logical ops `&&`, `||`; numeric ops `+`, `-`",
+    "## Statements: Local variable declarations; Assignment; If/else; Return"
+  ],
+  "reason": "The case asserts numeric casts among float, decimal, int and byte, including rounding, exact values, casts through union/json/anydata/any values, and finite-type sources. These are supported type-cast expressions with supported literals, type definitions, equality/type tests, tuple construction/access and ordinary control flow; no supplied restriction excludes these numeric conversion behaviors or source/target types. No unsupported langlib call is involved.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Checks conversion values and runtime numeric types, including fractional-to-integer/byte rounding, rather than only accepting cast signatures.",
+    "io:println and @output comments provide assertion instrumentation; they do not make this a feature case."
+  ]
+}

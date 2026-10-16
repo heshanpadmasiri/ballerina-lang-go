@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-statement-on-fail-test-387e0b9fcd/match-statement-on-fail-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+           --> match-statement-on-fail-negative-e.bal:120:13
+            |
+        120 |             fail error SampleComplexError("Transaction Failure", code = 20, pos = [30, 45], infoDetails = {moreInfo: "deadlock condition"});
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+           --> match-statement-on-fail-negative-e.bal:123:13
+            |
+        123 |             fail error SampleError("Transaction Failure", code = 50, reason = "deadlock condition");
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+          --> match-statement-on-fail-negative-e.bal:28:14
+           |
+        28 |              fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.FailStatementNode transformed to non-statement node <nil>
+          --> match-statement-on-fail-negative-e.bal:57:14
+           |
+        57 |              fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+           --> match-statement-on-fail-negative-e.bal:120:13
+            |
+        120 |             fail error SampleComplexError("Transaction Failure", code = 20, pos = [30, 45], infoDetails = {moreInfo: "deadlock condition"});
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+           --> match-statement-on-fail-negative-e.bal:123:13
+            |
+        123 |             fail error SampleError("Transaction Failure", code = 50, reason = "deadlock condition");
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+          --> match-statement-on-fail-negative-e.bal:28:14
+           |
+        28 |              fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformFailStatement unimplemented
+          --> match-statement-on-fail-negative-e.bal:57:14
+           |
+        57 |              fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

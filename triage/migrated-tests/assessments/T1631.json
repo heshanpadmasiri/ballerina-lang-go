@@ -1,0 +1,20 @@
+{
+  "id": "T1631",
+  "name": "xmlnstest-f41d1c0429/xmlns-prefix-v",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > Variable reference: \"Currently `xml-qualified-names` not supported\"",
+    "Module-level declarations: supported declaration list does not include xmlns declarations",
+    "Statements: supported statement list does not include local xmlns declarations",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"`value:toString` and `value:toBalString`\""
+  ],
+  "reason": "The assertions require XML qualified-name expressions such as ns1:doc, ns1:foo, and ns3:foz to produce expanded-name strings with file-specific namespace bindings. XML qualified names are explicitly unsupported. Module-level and function-local xmlns declarations are also absent from the supported declaration/statement lists. This decisive essential unsupported behavior makes the whole case a feature.",
+  "unsupported_constructs": [
+    "XML qualified-name variable-reference expressions",
+    "Module-level and function-local xmlns declarations and file-scoped namespace-prefix resolution"
+  ],
+  "test_design_notes": [
+    "Both files exercise the same unsupported namespace behavior with different bindings; no obvious mixed-scope or marker issues.",
+    "No @args, @panic, or @output markers appear in the supplied files. The assertion helper uses supported panic/error construction, string templates, and value:toString; io:println occurs only in an unused instrumentation helper."
+  ]
+}

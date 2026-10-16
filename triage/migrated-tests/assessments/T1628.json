@@ -1,0 +1,23 @@
+{
+  "id": "T1628",
+  "name": "xmlliteral-with-namespaces-test-6e799d0572/xml-literals-with-namespaces-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions > XML template expression: Supports interpolation in XML content and attributes; XML sequence interpolation from a query result is not supported",
+    "Expressions > Variable reference: Currently `xml-qualified-names` not supported",
+    "Expressions > Query expressions: Supports `list` and `map` as `query-constructor-type`",
+    "Subset restrictions > Import declarations: ballerina/lang.xml lists fromString, Element and getAttributes",
+    "Subset restrictions > Invocations > Other invocation restrictions: `value:toString` and `value:toBalString`; `xml:getAttributes`"
+  ],
+  "reason": "The case requires explicitly unsupported XML sequence interpolation from query results in testXmlInterpolationWithQuery (x1, x3 and x6), and unsupported XML-qualified-name variable references such as ns0:foo and ns1:foo in namespace declaration tests. Either restriction is decisive. XML templates/navigation and listed XML methods otherwise have positive support, but do not override these exclusions.",
+  "unsupported_constructs": [
+    "XML sequence interpolation from a query result inside XML templates",
+    "XML-qualified-name variable references used as expanded-name strings"
+  ],
+  "test_design_notes": [
+    "Mixed scope: basic XML templates, navigation, iteration, serialization and getAttributes checks share main with excluded query interpolation and qualified-name expressions.",
+    "Output markers assert exact namespace placement, prefixes, whitespace and serialization; the DOCTYPE/entity fromString check also asserts entity expansion. These are behavioral assertions beyond method availability, but the explicit syntax exclusions already decide the whole case.",
+    "Several query results are assigned directly to xml and query actions use do; these introduce additional coverage questions beyond the documented list/map query constructors and expression clauses.",
+    "No obvious output-marker mismatch; multiline expected serialization is represented by successive @output comments. io:println is instrumentation."
+  ]
+}

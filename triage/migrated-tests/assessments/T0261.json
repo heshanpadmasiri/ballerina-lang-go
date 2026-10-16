@@ -1,0 +1,16 @@
+{
+  "id": "T0261",
+  "name": "bjsonvalue-test-248ac7be19/null-json-to-int-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition",
+    "## Statements: Local variable declarations; Return",
+    "## Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Expressions: Type cast expression; Call; Variable reference"
+  ],
+  "reason": "The case uses supported function definitions, local variables, nil literal, calls and an explicit type cast. Casting a json value containing nil to int must fail with the asserted TypeCastError identifying () and int; this is runtime type-cast behavior covered by the supported type cast expression, with no applicable restriction.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic assertion checks the TypeCastError and incompatible-types message; no @args or @output directive is present."
+  ]
+}

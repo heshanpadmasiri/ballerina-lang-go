@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "type-def-with-function-type-test-89330ee852/type-def-with-function-type-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'd'
+           --> type-def-with-function-type-v.bal:117:21
+            |
+        117 | function baz(int i, int d = 100, int e = 200) returns function(int x, int y = 10, int z = 15) returns int {
+            |                     ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'e'
+           --> type-def-with-function-type-v.bal:113:82
+            |
+        113 | function foo(function(int a, int b = 10, int c = 15) returns int i, int d = 100, int e = 200) returns int {
+            |                                                                                  ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'e'
+           --> type-def-with-function-type-v.bal:117:34
+            |
+        117 | function baz(int i, int d = 100, int e = 200) returns function(int x, int y = 10, int z = 15) returns int {
+            |                                  ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'i'
+           --> type-def-with-function-type-v.bal:117:14
+            |
+        117 | function baz(int i, int d = 100, int e = 200) returns function(int x, int y = 10, int z = 15) returns int {
+            |              ^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

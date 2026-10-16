@@ -1,0 +1,14 @@
+{
+  "Name": "function-pointer-invocation-test-79ce9f570b/function-pointer-invocation-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointer-invocation-test-79ce9f570b/function-pointer-invocation-e.bal",
+  "Project": false,
+  "Id": "T0548",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointer-invocation-test-79ce9f570b/function-pointer-invocation-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.073
+}

@@ -1,0 +1,12 @@
+{
+  "id": "T0707",
+  "name": "let-expression-test-6fab6108d2/let-expression-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list does not include let expressions.",
+    "## Expressions / Query expressions: \"Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses\""
+  ],
+  "reason": "The asserted diagnostics depend on standalone let expressions, including their binding scope, initializer visibility, contextual typing and nested use. Standalone let expressions are absent from the supported expression list; the listed support for let is specifically for query clauses. This essential unsupported construct suffices for whole-case feature classification.",
+  "unsupported_constructs": ["Standalone let expressions (including nested let expressions and let binding scope/type checking)"],
+  "test_design_notes": ["This is a negative compilation case with @error assertions. Negative code is not itself grounds for feature classification; the essential let-expression grammar is outside the positive support list."]
+}

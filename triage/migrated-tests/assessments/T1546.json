@@ -1,0 +1,20 @@
+{
+  "id": "T1546",
+  "name": "worker-calling-function-f3c5c98d1c/worker-calling-function-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: enumerates supported statements; named worker declarations and worker send statements are not listed.",
+    "## Expressions: \"[Start action]\" and \"[Wait action]\" are listed; worker receive actions are not listed.",
+    "## Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\".",
+    "## Operators: \"Additive ops `+`, `-`\""
+  ],
+  "reason": "The asserted output 20 essentially requires named workers w1/sampleWorker to exchange 10 and the computed 20 through worker send/receive actions. Named workers and worker communication are not covered by the supported lists. Explicit wait-action and annotation support does not establish worker declaration or messaging support; ordinary function calls and integer addition are covered.",
+  "unsupported_constructs": [
+    "Named worker declarations (worker w1 and worker sampleWorker)",
+    "Worker send and receive actions (i -> sampleWorker, <-sampleWorker, <-w1, r -> w1)"
+  ],
+  "test_design_notes": [
+    "The @output 20 marker checks completed bidirectional worker communication and a function call executed inside a worker, rather than merely parsing a wait action.",
+    "io:println is output instrumentation. No obvious marker mismatch; supported calls/arithmetic are mixed with essential uncovered worker behavior."
+  ]
+}

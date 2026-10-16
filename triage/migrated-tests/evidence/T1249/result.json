@@ -1,0 +1,14 @@
+{
+  "Name": "record-access-with-index-test-496b8706b7/record-access-with-index-get-non-init-last-field-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-access-with-index-test-496b8706b7/record-access-with-index-get-non-init-last-field-p.bal",
+  "Project": false,
+  "Id": "T1249",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-access-with-index-test-496b8706b7/record-access-with-index-get-non-init-last-field-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.074
+}

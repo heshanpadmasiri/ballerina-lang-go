@@ -1,0 +1,41 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	2
+        	str
+        	str
+        	str
+        	str
+        	Hello World
+        	[2,2]
+        	+
+        	-
+        	
+        	Two
+        	One or Two
+        	One or Two
+        	One or Two
+        	Int or String
+        	Int or String
+        	Int or String
+        	Pattern2 Pattern4
+        	12
+        	Main Street
+        	Main Street
+        	John Smith
+        	22
+        	{"street":"Main Street","houseNo":10,"city":"Colombo","country":"Sri Lanka"}
+        	Pattern2
+        	Pattern2
+        	Not Matched
+        	Not Matched
+        	Pattern2
+        	Pattern1 Pattern3 Pattern5
+        	Pattern1 Pattern4 with error retry count:5 Pattern5 with reason:Connection failure
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.09s)
+FAIL

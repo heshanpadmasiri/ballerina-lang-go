@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 0\n        at testGetNonInitLastAttribute(record-access-with-index-get-non-init-last-field-p.bal:9)\n           main(record-access-with-index-get-non-init-last-field-p.bal:13)\n","Diagnostics":null}

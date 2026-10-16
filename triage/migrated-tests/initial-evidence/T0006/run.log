@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at modules/B/functions.bal:1-1 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at main.bal:6 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

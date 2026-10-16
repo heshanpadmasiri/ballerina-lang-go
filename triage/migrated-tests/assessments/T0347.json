@@ -1,0 +1,18 @@
+{
+  "id": "T0347",
+  "name": "closed-record-optional-fields-test-39abbdf876/optional_non_defaultable_field_cast-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition] and [Function definition]",
+    "Statements: [Local variable declarations] and [Call]",
+    "Expressions: [Mapping constructor], [Optional field access expression], [Type cast expression], and [Method call]",
+    "Subset restrictions / Import declarations: `ballerina/lang.map` includes `get`",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for `map:get`"
+  ],
+  "reason": "The whole case uses supported type definitions, closed records with default and optional fields, string singleton unions, mapping construction, optional field access, casts, and an allowed map:get method call. The empty Person3 has no adrs field; p?.adrs evaluates to nil, whose cast to Address3 must panic as asserted by @panic. No subset restriction excludes this behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic assertion is on the first cast; execution should stop there, so the following p.get(\"adrs\") cast is not exercised at runtime.",
+    "No @args or @output directives are present."
+  ]
+}

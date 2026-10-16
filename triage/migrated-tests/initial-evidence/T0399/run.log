@@ -1,0 +1,31 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "custom-function-test-2824786169/assign-value-to-object-method-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+         --> assign-value-to-object-method-e.bal:3:11
+          |
+        3 | } myObj = object {
+          |           ^^^^^^^^
+        4 |     public function getVal() returns int {
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        5 |         return 30;
+          |         ^^^^^^^^^^
+        6 |     }
+          |     ^
+        7 | };
+          | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+         --> assign-value-to-object-method-e.bal:3:11
+          |
+        3 | } myObj = object {
+          |           ^^^^^^^^
+        4 |     public function getVal() returns int {
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        5 |         return 30;
+          |         ^^^^^^^^^^
+        6 |     }
+          |     ^
+        7 | };
+          | ^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

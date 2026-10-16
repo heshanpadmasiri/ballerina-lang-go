@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at client_resource_access_action-e.bal:6-6 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at client_resource_access_action-e.bal:11-11 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at client_resource_access_action-e.bal:16-16 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at client_resource_access_action-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client_resource_access_action-e.bal:27 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at client_resource_access_action-e.bal:29 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

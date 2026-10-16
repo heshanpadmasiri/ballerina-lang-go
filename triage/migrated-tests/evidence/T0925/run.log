@@ -1,0 +1,68 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "multiple-from-clause-with-var-type-test-bff9b2c5d7/multiple-from-clause-with-var-type-test-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> multiple-from-clause-with-var-type-test-e.bal:20:18
+           |
+        20 |         from var {
+           |                  ^
+        21 |             firstName: nm1, lastName: nm2, deptAccess: d // @error unused variable 'd'
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |         } in personList
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> multiple-from-clause-with-var-type-test-e.bal:23:18
+           |
+        23 |         from var {name: deptName} in deptList
+           |                  ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> multiple-from-clause-with-var-type-test-e.bal:41:18
+           |
+        41 |         from var {
+           |                  ^
+        42 |             firstName, lastName, deptAccess // @error unused variable 'deptAccess'
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |         } in personList
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> multiple-from-clause-with-var-type-test-e.bal:44:18
+           |
+        44 |         from var {name} in deptList
+           |                  ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> multiple-from-clause-with-var-type-test-e.bal:20:18
+           |
+        20 |         from var {
+           |                  ^
+        21 |             firstName: nm1, lastName: nm2, deptAccess: d // @error unused variable 'd'
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        22 |         } in personList
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> multiple-from-clause-with-var-type-test-e.bal:23:18
+           |
+        23 |         from var {name: deptName} in deptList
+           |                  ^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> multiple-from-clause-with-var-type-test-e.bal:41:18
+           |
+        41 |         from var {
+           |                  ^
+        42 |             firstName, lastName, deptAccess // @error unused variable 'deptAccess'
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        43 |         } in personList
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> multiple-from-clause-with-var-type-test-e.bal:44:18
+           |
+        44 |         from var {name} in deptList
+           |                  ^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

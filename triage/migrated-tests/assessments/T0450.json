@@ -1,0 +1,15 @@
+{
+  "id": "T0450",
+  "name": "error-destructure-test-a5e96c7d64/error_destructure_binding_pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: [Destructuring assignment statement](https://ballerina.io/spec/lang/master/#destructuring-assignment-stmt) — Only supports [`wildcard-binding-pattern`](https://ballerina.io/spec/lang/master/#wildcard-binding-pattern)"
+  ],
+  "reason": "The asserted outputs require error destructuring assignments that capture error messages, named detail fields, and rest details. Subset 10 restricts destructuring assignments to wildcard binding patterns, so these essential assignments are unsupported.",
+  "unsupported_constructs": [
+    "Error destructuring assignments error(reason, info = info, fatal = fatal), error(reasonTwo, ...params), and error(_, detailMsg = detailMsg)"
+  ],
+  "test_design_notes": [
+    "The six @output assertions check extracted messages, detail fields, and the remaining detail map; io:println is output instrumentation. No @args or @panic directives are present."
+  ]
+}

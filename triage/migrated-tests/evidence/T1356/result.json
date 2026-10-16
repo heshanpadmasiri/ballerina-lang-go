@@ -1,0 +1,16 @@
+{
+  "Name": "start-action-test-c3596ca55b/start-type-cast-project-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/start-action-test-c3596ca55b/start-type-cast-project-v",
+  "Project": true,
+  "Id": "T1356",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/start-action-test-c3596ca55b/start-type-cast-project-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/start-action-test-c3596ca55b/start-type-cast-project-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/start-action-test-c3596ca55b/start-type-cast-project-v/modules/callee/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.029
+}

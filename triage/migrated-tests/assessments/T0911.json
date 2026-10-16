@@ -1,0 +1,16 @@
+{
+  "id": "T0911",
+  "name": "module-public-variable-test-5b1954009d/access-project-negative-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"[Import declarations](https://ballerina.io/spec/lang/master/#import-decl)\"",
+    "Module-level declarations: \"[Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)\"",
+    "Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"",
+    "Expressions: \"[Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)\""
+  ],
+  "reason": "This negative case checks rejection of public isolated module-variable and public inferred-var declarations, plus diagnostics for referencing the invalid name declaration from another module. Module variable declarations, imports, and variable references are supported, with no restriction excluding these declaration checks or cross-module visibility. Invalid declarations remain negative tests of the supported grammar/type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The supplied source marks one error on each module-variable declaration and two on the qualified reference; these include potentially cascading diagnostics from the invalid declaration."
+  ]
+}

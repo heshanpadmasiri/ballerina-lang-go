@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "constant-without-expected-type-test-645773bda1/constant_without_expected_type-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+           --> constant_without_expected_type-v.bal:147:15
+            |
+        147 | const CUI5 = -int:MAX_VALUE;
+            |               ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

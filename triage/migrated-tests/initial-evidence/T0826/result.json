@@ -1,0 +1,14 @@
+{
+  "Name": "mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-v.bal",
+  "Project": false,
+  "Id": "T0826",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/mapping-binding-pattern-test-514c7df011/mapping-binding-pattern-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.079
+}

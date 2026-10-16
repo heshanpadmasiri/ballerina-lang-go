@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -p test "lvalue-test-e2785cbb54/array-fill-failure-p.bal" expected stderr begins with a compile diagnostic; -p tests must produce a runtime panic:
+        error[SEMANTIC_ERROR]: cannot infer type for implicit new expression
+         --> array-fill-failure-p.bal:7:14
+          |
+        7 |     G[] a = [new("hello"), new("world")];
+          |              ^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

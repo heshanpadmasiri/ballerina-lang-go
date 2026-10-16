@@ -1,0 +1,16 @@
+{
+  "id": "T1174",
+  "name": "option-test-1b0c555df9/option_with_array_type_spaced_many-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+    "Expressions: [Field access expression](https://ballerina.io/spec/lang/master/#section_6.10)"
+  ],
+  "reason": "The asserted behavior requires command-line option binding: repeated spaced --array options must populate the included Student record's string array in order. subset10 supports included-record parameter signatures and field access, but does not cover command-line argument parsing or repeated array-valued options.",
+  "unsupported_constructs": [
+    "Command-line binding of repeated --array value options to an included-record parameter's string[] field"
+  ],
+  "test_design_notes": [
+    "The @args and @output annotations assert CLI parsing and ordered accumulation of e-fac and hello; io:println is output instrumentation."
+  ]
+}

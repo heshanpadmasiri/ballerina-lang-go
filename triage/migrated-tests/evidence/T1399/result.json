@@ -1,0 +1,14 @@
+{
+  "Name": "table-key-field-value-test-2f8ad88b2d/table-key-field-value-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/table-key-field-value-test-2f8ad88b2d/table-key-field-value-e.bal",
+  "Project": false,
+  "Id": "T1399",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/table-key-field-value-test-2f8ad88b2d/table-key-field-value-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T0751",
+  "name": "main-functions-test-f228557f7d/error-or-nil-returning-custom-error-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"; \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"",
+    "Statements: \"Return\"; \"Panic\"; \"Match statement\" — \"Currently only supports const-pattern and wildcard-match-pattern\"",
+    "Expressions: \"Error constructor\""
+  ],
+  "reason": "The asserted case supplies command-line arguments to main and expects returning a custom error from main to produce a panic. Subset 10 lists function definitions, returns, panic statements and error construction, but does not cover command-line entrypoint invocation or conversion of a returned main error into a process-level panic. That entrypoint behavior is essential to the assertion.",
+  "unsupported_constructs": [
+    "Command-line argument binding to main(string, int)",
+    "Returned error from error?-returning main producing the asserted panic"
+  ],
+  "test_design_notes": [
+    "The selected user_def_error branch returns an error; it does not execute the explicit fallback panic statement.",
+    "io:println is output instrumentation and does not determine the classification."
+  ]
+}

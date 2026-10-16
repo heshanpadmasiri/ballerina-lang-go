@@ -1,0 +1,16 @@
+{
+  "id": "T0425",
+  "name": "division-operation-test-be1b8193ad/int-overflow-by-division-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition; Supports required-params",
+    "## Statements: Assignment; Compound Assignment; Call; While; Local variable declarations; Return",
+    "## Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only; `Call`; Variable reference",
+    "## Operators: Multiplicative ops `*`, `%`, `/`; Relational ops `<`, `<=`, `>`, `>=`; Additive ops `+`, `-`; numeric ops `+`, `-`"
+  ],
+  "reason": "All constructs are supported: integer literals, unary negation, required-parameter function calls, local variables, while iteration, multiplication, comparison, compound addition, return and integer division. The loop computes (-2)^63 without exceeding the signed integer range; dividing that minimum integer by -1 overflows and the @panic assertion exercises supported integer division semantics. No applicable restriction excludes this behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker asserts overflow at val1 / val; earlier multiplications remain representable. There are no @args or @output assertions."
+  ]
+}

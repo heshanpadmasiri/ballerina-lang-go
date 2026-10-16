@@ -1,0 +1,58 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "client-object-test-cc3f260977/remote-basic-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'b'
+          --> remote-basic-v.bal:11:39
+           |
+        11 |     remote function action2(string s, boolean b) returns int {
+           |                                       ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'index'
+          --> remote-basic-v.bal:56:13
+           |
+        56 |     foreach var index in 1...3 {
+           |             ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'k'
+          --> remote-basic-v.bal:79:9
+           |
+        79 |         int k = i + j;
+           |         ^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+          --> remote-basic-v.bal:11:29
+           |
+        11 |     remote function action2(string s, boolean b) returns int {
+           |                             ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+          --> remote-basic-v.bal:15:20
+           |
+        15 |     function func1(string s) {
+           |                    ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+          --> remote-basic-v.bal:18:20
+           |
+        18 |     function func2(string s) returns int {
+           |                    ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 's'
+         --> remote-basic-v.bal:4:29
+          |
+        4 |     remote function action1(string s, int i) returns boolean {
+          |                             ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'y'
+          --> remote-basic-v.bal:26:5
+           |
+        26 |     TestEP y = new;
+           |     ^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'z'
+          --> remote-basic-v.bal:24:5
+           |
+        24 |     TestEP z;
+           |     ^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

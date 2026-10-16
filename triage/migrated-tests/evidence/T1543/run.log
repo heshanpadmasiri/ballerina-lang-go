@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "while-stmt-test-8fe83cda27/while-stmt-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'b'
+           --> while-stmt-v.bal:159:9
+            |
+        159 |         5 b = a;
+            |         ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

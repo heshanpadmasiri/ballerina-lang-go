@@ -1,0 +1,45 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "basic-worker-test-0bffe305fe/worker-async-send-negative-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:16:5
+           |
+        16 |     worker w1 {
+           |     ^^^^^^^^^^^
+        17 |         int result = 4;
+           |         ^^^^^^^^^^^^^^^
+        18 |         result += 5 -> w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        19 |     }
+           |     ^
+        20 | 
+           | 
+        21 |     worker w2 {
+           |     ^^^^^^^^^^^
+        22 |         int x = <- w1;
+           |         ^^^^^^^^^^^^^^
+        23 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:2:5
+           |
+         2 |     worker w1 {
+           |     ^^^^^^^^^^^
+         3 |         foreach var j in 5 -> w2 { // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         4 | 
+           | 
+         5 |         }
+           |         ^
+         6 |     }
+           |     ^
+         7 | 
+           | 
+         8 |     worker w2 {
+           |     ^^^^^^^^^^^
+         9 |         int x = <- w1;
+           |         ^^^^^^^^^^^^^^
+        10 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,14 @@
+{
+  "Name": "remote-method-call-action-negative-test-63c7b9b633/remote_method_call_action_negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/remote-method-call-action-negative-test-63c7b9b633/remote_method_call_action_negative-e.bal",
+  "Project": false,
+  "Id": "T1290",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/remote-method-call-action-negative-test-63c7b9b633/remote_method_call_action_negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.317
+}

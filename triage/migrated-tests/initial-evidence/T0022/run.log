@@ -1,0 +1,91 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "anonymous-object-test-5197ee0f89/anonymous-object-undefaultable-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> anonymous-object-undefaultable-e.bal:17:8
+           |
+        17 | } p2 = object { // @error
+           |        ^^^^^^^^^^^^^^^^^^
+        18 |     public int age = 0;
+           |     ^^^^^^^^^^^^^^^^^^^
+        19 |     public string name = "";
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        20 | };
+           | ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> anonymous-object-undefaultable-e.bal:37:12
+           |
+        37 |     } p5 = object { // @error
+           |            ^^^^^^^^^^^^^^^^^^
+        38 |         public int age = 0;
+           |         ^^^^^^^^^^^^^^^^^^^
+        39 |         public string name = "";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     };
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> anonymous-object-undefaultable-e.bal:4:8
+           |
+         4 | } p1 = object {
+           |        ^^^^^^^^
+         5 |            public int age = 0;
+           |            ^^^^^^^^^^^^^^^^^^^
+         6 |            public string name = "";
+           |            ^^^^^^^^^^^^^^^^^^^^^^^^
+         7 |            function init() {
+           |            ^^^^^^^^^^^^^^^^^
+         8 |                self.age = 1;
+           |                ^^^^^^^^^^^^^
+         9 |                self.name = "Anne";
+           |                ^^^^^^^^^^^^^^^^^^^
+        10 |            }
+           |            ^
+        11 |        };
+           |        ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> anonymous-object-undefaultable-e.bal:17:8
+           |
+        17 | } p2 = object { // @error
+           |        ^^^^^^^^^^^^^^^^^^
+        18 |     public int age = 0;
+           |     ^^^^^^^^^^^^^^^^^^^
+        19 |     public string name = "";
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        20 | };
+           | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> anonymous-object-undefaultable-e.bal:37:12
+           |
+        37 |     } p5 = object { // @error
+           |            ^^^^^^^^^^^^^^^^^^
+        38 |         public int age = 0;
+           |         ^^^^^^^^^^^^^^^^^^^
+        39 |         public string name = "";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> anonymous-object-undefaultable-e.bal:4:8
+           |
+         4 | } p1 = object {
+           |        ^^^^^^^^
+         5 |            public int age = 0;
+           |            ^^^^^^^^^^^^^^^^^^^
+         6 |            public string name = "";
+           |            ^^^^^^^^^^^^^^^^^^^^^^^^
+         7 |            function init() {
+           |            ^^^^^^^^^^^^^^^^^
+         8 |                self.age = 1;
+           |                ^^^^^^^^^^^^^
+         9 |                self.name = "Anne";
+           |                ^^^^^^^^^^^^^^^^^^^
+        10 |            }
+           |            ^
+        11 |        };
+           |        ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

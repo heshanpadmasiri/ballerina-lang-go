@@ -1,0 +1,19 @@
+{
+  "id": "T0862",
+  "name": "match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-with-rest-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: Match statement — Currently only supports const-pattern and wildcard-match-pattern",
+    "## Expressions: Error constructor"
+  ],
+  "reason": "The asserted outputs require error match patterns that inspect messages and detail fields, capture remaining detail fields, and recursively match an error cause. Match statements support only constant and wildcard patterns, so these essential error patterns fall outside subset 10 despite error constructors being supported.",
+  "unsupported_constructs": [
+    "Error match patterns with message and named detail subpatterns",
+    "Rest detail capture (...var a) in error match patterns",
+    "Nested error cause match pattern"
+  ],
+  "test_design_notes": [
+    "Outputs assert rest-map lookup values 400 and 300 plus No match fallbacks.",
+    "io:println is output instrumentation."
+  ]
+}

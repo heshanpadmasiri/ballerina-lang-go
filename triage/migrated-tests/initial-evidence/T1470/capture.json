@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'x'\n   --\u003e sem-types-1-e.bal:170:9\n    |\n170 |         error x = res; // OK\n    |         ^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"sem-types-1-e.bal","StartLine":170,"EndLine":170}]}

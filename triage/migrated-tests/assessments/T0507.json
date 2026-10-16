@@ -1,0 +1,12 @@
+{
+  "id": "T0507",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/addition-to-frozen-inner-json-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: (list omits cloneReadOnly)."
+  ],
+  "reason": "The asserted panic depends on cloneReadOnly recursively freezing the nested JSON map before adding a field. cloneReadOnly is absent from both supported langlib and method-call lists, so the essential operation and its frozen-value behavior are outside the subset.",
+  "unsupported_constructs": ["j2.cloneReadOnly() and its recursive freezing behavior"],
+  "test_design_notes": ["The final assignment is marked @panic and tests modification of the nested frozen map."]
+}

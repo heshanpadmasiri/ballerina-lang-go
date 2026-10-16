@@ -1,0 +1,35 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "worker-fail-test-278d4f50a4/invalid-receive-with-error-return-e" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> main.bal:7:5
+           |
+         7 |     worker w1 {
+           |     ^^^^^^^^^^^
+         8 |         int i = 2;
+           |         ^^^^^^^^^^
+         9 |         TrxError? success = i ->> w2; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |         io:println("w1");
+           |         ^^^^^^^^^^^^^^^^^
+        11 |     }
+           |     ^
+        12 |     worker w2 returns boolean|error {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |         int j = 25;
+           |         ^^^^^^^^^^^
+        14 |         if 0 > 1 {
+           |         ^^^^^^^^^^
+        15 |             return error("trxErr", data = "test");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |         }
+           |         ^
+        17 |         j = <- w1;
+           |         ^^^^^^^^^^
+        18 |         io:println(j);
+           |         ^^^^^^^^^^^^^^
+        19 |         return true;
+           |         ^^^^^^^^^^^^
+        20 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

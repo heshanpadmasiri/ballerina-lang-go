@@ -1,0 +1,19 @@
+{
+  "id": "T0640",
+  "name": "imports-negative-tests-a5adab46df/invalid-auto-imports-project-e",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions / Import declarations: ballerina/lang.int lists Signed8, Signed16, Signed32, Unsigned8, Unsigned16, Unsigned32, toHexString, fromString and fromHexString; min is not listed.",
+    "Module-level declarations: Import declarations",
+    "Module-level declarations / Class definition: Supports object-field, method-defn and object-type-inclusion members"
+  ],
+  "reason": "The negative case tests explicit aliases that collide with auto-import prefixes, including 'error:min where 'error explicitly aliases ballerina/lang.int. Assessing the argument error for that call requires int:min, which is outside the supported langlib member list. This essential unsupported function makes the whole case a feature despite the supported import, function, XML and class syntax.",
+  "unsupported_constructs": [
+    "ballerina/lang.int:min, invoked as 'error:min(n, ns), including its rest-argument validation"
+  ],
+  "test_design_notes": [
+    "The @error annotations assert rejection of aliased calls/type references; nonexistent members such as decimal:concat and float:Listener are negative name-resolution checks, not independently evidence of unsupported syntax.",
+    "Imports occur in one source file and aliased calls also occur in the other source file of the same package."
+  ]
+}

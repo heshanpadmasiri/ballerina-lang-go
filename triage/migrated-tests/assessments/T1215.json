@@ -1,0 +1,15 @@
+{
+  "id": "T1215",
+  "name": "query-expr-with-query-construct-type-test-397e030880/query-expr-with-query-construct-type-update-key-2-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"Supports `list` and `map` as `query-constructor-type`\""
+  ],
+  "reason": "The main function invokes testQueryConstructingTableUpdateKeyPanic2, which constructs a keyed table with a table query, retrieves a row by its composite key, casts it to a record with mutable fields, and expects a panic when updating its readonly key id. The essential table query constructor is outside the supported list/map query constructor types, so this whole case requires unsupported functionality.",
+  "unsupported_constructs": [
+    "`table key(id, name) from ... select ...` query constructor and keyed-table row/key-update behavior"
+  ],
+  "test_design_notes": [
+    "The executed test marks `r2.id = 2` with `// @panic`; the intended assertion is runtime rejection of a readonly table key update."
+  ]
+}

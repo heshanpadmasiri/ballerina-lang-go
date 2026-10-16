@@ -1,0 +1,16 @@
+{
+  "Name": "enum-test-f69b0643c8/enum-access-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enum-access-negative-e",
+  "Project": true,
+  "Id": "T0433",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enum-access-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enum-access-negative-e/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/enum-test-f69b0643c8/enum-access-negative-e/modules/enumsdef/enum-def.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.058
+}

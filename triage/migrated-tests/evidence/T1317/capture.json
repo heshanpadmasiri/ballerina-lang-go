@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unreachable code\n  --\u003e unreachable-stmt-1-e.bal:14:5\n   |\n14 |     return 1; // @error\n   |     ^^^^^^^^^\n\n","Diagnostics":[{"File":"unreachable-stmt-1-e.bal","StartLine":14,"EndLine":14}]}

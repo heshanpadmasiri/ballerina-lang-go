@@ -1,0 +1,14 @@
+{
+  "Name": "package-init-worker-test-082730fd34/package-init-worker-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/package-init-worker-test-082730fd34/package-init-worker-v.bal",
+  "Project": false,
+  "Id": "T1200",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/package-init-worker-test-082730fd34/package-init-worker-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.046
+}

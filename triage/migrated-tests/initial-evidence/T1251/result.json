@@ -1,0 +1,14 @@
+{
+  "Name": "record-assignability-test-a5cb3cb04b/record-assignability-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-assignability-test-a5cb3cb04b/record-assignability-negative-e.bal",
+  "Project": false,
+  "Id": "T1251",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-assignability-test-a5cb3cb04b/record-assignability-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.061
+}

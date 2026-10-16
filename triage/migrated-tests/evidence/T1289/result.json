@@ -1,0 +1,14 @@
+{
+  "Name": "reg-exp-value-test-30e03bfeee/regexp-value-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/reg-exp-value-test-30e03bfeee/regexp-value-v.bal",
+  "Project": false,
+  "Id": "T1289",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/reg-exp-value-test-30e03bfeee/regexp-value-v.bal"
+  ],
+  "Args": null,
+  "Status": "timeout",
+  "ExitCode": 2,
+  "Seconds": 25.025
+}

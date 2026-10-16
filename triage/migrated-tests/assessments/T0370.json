@@ -1,0 +1,12 @@
+{
+  "id": "T0370",
+  "name": "common-test-37d14c64be/option-rest-param-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Invocations / ### Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The case requires command-line binding of --name Riyafa into the included Student record and conversion of positional strings 5 and 3 into the int rest parameter. Subset 10 supports these parameter forms in signatures and describes function-call argument binding, but does not cover command-line option parsing or main argument conversion. This essential @args behavior makes the whole case a feature.",
+  "unsupported_constructs": ["CLI option binding into an included record parameter and positional CLI conversion into an int rest parameter"],
+  "test_design_notes": ["@args supplies [\"--name\", \"Riyafa\", \"5\", \"3\"]; assertions require student.name == \"Riyafa\" and ratings == [5, 3]. Signature support alone does not establish this runtime behavior."]
+}

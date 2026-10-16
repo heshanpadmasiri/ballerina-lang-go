@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "constrained-map-test-60915d9ec9/constrained-map-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> constrained-map-v.bal:205:83
+            |
+        205 |     var e = testConstrainedMapValueTypeCastNegative(); if e is error { io:println(e.detail()["message"]); // @output incompatible types: 'map<string>' cannot be cast to 'map<int>'
+            |                                                                                   ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> constrained-map-v.bal:209:83
+            |
+        209 |     var e2 = testConstrainedMapRefTypeCastNegative(); if e2 is error { io:println(e2.detail()["message"]); // @output incompatible types: 'map<PersonCM>' cannot be cast to 'map<int>'
+            |                                                                                   ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> constrained-map-v.bal:222:80
+            |
+        222 |     var e3 = testStructNotEquivalentRuntimeCast(); if e3 is error { io:println(e3.detail()["message"]); // @output incompatible types: 'map<EmployeeCM>' cannot be cast to 'map<PersonCM>'
+            |                                                                                ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> constrained-map-v.bal:224:72
+            |
+        224 |     e = testAnyMapToValueTypeRuntimeCast(); if e is error { io:println(e.detail()["message"]); // @output incompatible types: 'map' cannot be cast to 'map<int>'
+            |                                                                        ^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> constrained-map-v.bal:226:76
+            |
+        226 |     var er = testAnyMapToRefTypeRuntimeCast(); if er is error { io:println(er.detail()["message"]); // @output incompatible types: 'map' cannot be cast to 'map<EmployeeCM>'
+            |                                                                            ^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+           --> constrained-map-v.bal:241:23
+            |
+        241 |         var message = jsonError.detail()["message"];
+            |                       ^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

@@ -1,0 +1,13 @@
+{
+  "id": "T1490",
+  "name": "type-test-expr-test-746fc24e41/type-test-expr-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: [Type test expression](https://ballerina.io/spec/lang/master/#section_6.28)",
+    "# Subset restrictions / ## Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString.",
+    "## Invocations / ### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType; value:fromJsonWithType; value:toString and value:toBalString."
+  ],
+  "reason": "Although ordinary type tests are explicitly supported, the executed tuple assertions require cloneReadOnly() to create readonly values before testing tuple membership. That lang.value operation is absent from both the permitted library functions and the permitted langlib method-call list, making the whole case feature scope.",
+  "unsupported_constructs": ["anydata.cloneReadOnly() in both tuple type-test helper functions"],
+  "test_design_notes": ["Mixed scope: main asserts supported primitive/union/nil/record/json type-test outputs alongside readonly tuple assertions requiring an unsupported langlib operation.", "The @output markers agree with the straightforward main return values; additional tuple and readonly-record checks execute through assertEquals/assertTrue/assertFalse without output markers. io:println is instrumentation."]
+}

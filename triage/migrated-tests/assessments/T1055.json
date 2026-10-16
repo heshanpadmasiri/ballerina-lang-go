@@ -1,0 +1,15 @@
+{
+  "id": "T1055",
+  "name": "numeric-conversion-test-6b3e1e5e00/out-of-range-negative-float-union-as-int-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition",
+    "## Statements: Local variable declarations; Call",
+    "## Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Expressions: Type cast expression; Variable reference",
+    "## Operators: Unary operators — numeric ops `+`, `-`"
+  ],
+  "reason": "The case assigns a negative float outside the int range to anydata and asserts that casting it to int panics. Numeric literals, unary negation, local declarations, type casts and function calls are supported, with no restriction excluding this runtime numeric-cast failure. The whole case is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment expresses the expected runtime failure; the source does not explicitly catch or inspect the panic."]
+}

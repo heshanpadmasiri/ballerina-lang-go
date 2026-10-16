@@ -1,0 +1,17 @@
+{
+  "Name": "argument-parser-positive-test-e41e5b8a0a/float-08-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-08-v",
+  "Project": true,
+  "Id": "T0102",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-08-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/float-08-v/main.bal"
+  ],
+  "Args": [
+    "0XFAf1p-25"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.081
+}

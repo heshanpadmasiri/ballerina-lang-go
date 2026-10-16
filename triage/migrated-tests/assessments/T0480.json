@@ -1,0 +1,18 @@
+{
+  "id": "T0480",
+  "name": "final-object-field-test-de73e9a2aa/final-object-fields-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Class definition\"; \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"",
+    "Module-level declarations: \"Type definition\"; \"Module variable declarations\"",
+    "Statements: \"Assignment\"; \"Local variable declarations\"",
+    "Expressions: \"New expression\"; \"List constructor\"; \"Mapping constructor\"; \"Field access expression\"; \"Member access expression\"",
+    "Object/class definitions: \"Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported\"; \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\""
+  ],
+  "reason": "The case checks static rejection of reassignment to final object fields, including union receivers and nested array/object access. Class fields and methods, constructors, records, variable declarations, and assignment/access expressions are supported without a restriction excluding final fields or these receiver types. The readonly intersections here qualify record types, not object/class declarations, so the object/class qualifier restriction does not exclude them.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Five @error comments assert compile-time rejection; there are no @args, @panic or @output directives.",
+    "The unmarked mutation e.details.name uses the field's mutable declared Details type; final prevents replacing the field rather than making its contents readonly. No runtime behavior is asserted."
+  ]
+}

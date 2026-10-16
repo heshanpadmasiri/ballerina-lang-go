@@ -1,0 +1,17 @@
+{
+  "id": "T0934",
+  "name": "multiply-operation-test-50bdc62cff/multiply-operation-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Operators: \"Multiplicative ops `*`, `%`, `/`\"",
+    "## Expressions: \"[Nil lifted expression]\"",
+    "## Import declarations (Subset restrictions): \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString`."
+  ],
+  "reason": "Although multiplication and nil-lifted expressions are supported, the executed float/int and decimal/int multiplication tests obtain boundary operands through int:MAX_VALUE and int:MIN_VALUE. Neither constant is in the exhaustive supported ballerina/lang.int list, making the whole case feature work.",
+  "unsupported_constructs": [
+    "int:MAX_VALUE and int:MIN_VALUE in testMultiplyFloatInt and testMultiplyDecimalInt (lines 322\u2013323 and 757\u2013758)."
+  ],
+  "test_design_notes": [
+    "The boundary constants supply operands for asserted multiplication results; they are not output instrumentation. io:println alone is not treated as unsupported."
+  ]
+}

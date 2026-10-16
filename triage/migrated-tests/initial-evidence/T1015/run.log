@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "null-literal-usage-test-b7e4e13d5b/null_literal_usage-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'gJ'
+          --> null_literal_usage-v.bal:19:1
+           |
+        19 | json gJ = null;
+           | ^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "mapping-constructor-expr-test-833706cb84/spread-op-field-constant-analysis-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> spread-op-field-constant-analysis-negative-e.bal:19:44
+           |
+        19 | const map<float> constFloatMap2 = {a: 2.0, ...constFloatMap}; // @error
+           |                                            ^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

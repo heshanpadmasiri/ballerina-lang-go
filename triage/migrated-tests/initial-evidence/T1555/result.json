@@ -1,0 +1,15 @@
+{
+  "Name": "worker-fail-test-278d4f50a4/invalid-receive-with-check-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-with-check-e",
+  "Project": true,
+  "Id": "T1555",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-with-check-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/worker-fail-test-278d4f50a4/invalid-receive-with-check-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

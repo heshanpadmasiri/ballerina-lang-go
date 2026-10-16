@@ -1,0 +1,14 @@
+{
+  "Name": "record-def-negative-test-2a404858e4/duplicate-field-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-def-negative-test-2a404858e4/duplicate-field-negative-e.bal",
+  "Project": false,
+  "Id": "T1255",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-def-negative-test-2a404858e4/duplicate-field-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.051
+}

@@ -1,0 +1,74 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "variable-declared-with-with-var-including-error-test-1fe4adcb27/var-inferred-including-error-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> var-inferred-including-error-negative-e.bal:28:5
+           |
+        28 |     do {
+           |     ^^^^
+        29 |         fail error("error!");
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        30 |     } on fail var x { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        31 | 
+           | 
+        32 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-negative-e.bal:16:16
+           |
+        16 | error[] errs = let var e1 = error("one"), var e2 = error("two"), var e3 = [error("three")] in [e3[0]]; // @error // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.LetExpressionNode transformed to non-action-or-expression node <nil>
+          --> var-inferred-including-error-negative-e.bal:19:21
+           |
+        19 |     error[] errs2 = let var e1 = error("one"), var e2 = {a: error("two")}, var e3 = error("three") in []; // @error // @error // @error // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> var-inferred-including-error-negative-e.bal:10:9
+           |
+        10 |     var [x1, y1] = foo(); // @error
+           |         ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> var-inferred-including-error-negative-e.bal:10:9
+           |
+        10 |     var [x1, y1] = foo(); // @error
+           |         ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+         --> var-inferred-including-error-negative-e.bal:4:5
+          |
+        4 | var [x, y] = foo();
+          |     ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> var-inferred-including-error-negative-e.bal:28:5
+           |
+        28 |     do {
+           |     ^^^^
+        29 |         fail error("error!");
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        30 |     } on fail var x { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        31 | 
+           | 
+        32 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> var-inferred-including-error-negative-e.bal:16:16
+           |
+        16 | error[] errs = let var e1 = error("one"), var e2 = error("two"), var e3 = [error("three")] in [e3[0]]; // @error // @error
+           |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformLetExpression unimplemented
+          --> var-inferred-including-error-negative-e.bal:19:21
+           |
+        19 |     error[] errs2 = let var e1 = error("one"), var e2 = {a: error("two")}, var e3 = error("three") in []; // @error // @error // @error // @error
+           |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

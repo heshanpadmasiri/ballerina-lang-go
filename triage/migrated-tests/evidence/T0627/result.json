@@ -1,0 +1,14 @@
+{
+  "Name": "identifier-literal-test-7d241978d7/identifier-literal-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-test-7d241978d7/identifier-literal-v.bal",
+  "Project": false,
+  "Id": "T0627",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/identifier-literal-test-7d241978d7/identifier-literal-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.093
+}

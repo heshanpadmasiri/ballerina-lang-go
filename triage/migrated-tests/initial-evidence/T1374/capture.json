@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 0\n        at testGetNonInitAttribute(struct-access-with-index-non-init-attribute-p.bal:18)\n           main(struct-access-with-index-non-init-attribute-p.bal:22)\n","Diagnostics":null}

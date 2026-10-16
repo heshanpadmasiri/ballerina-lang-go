@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Unknown annotation: deprecated\n --\u003e anonymous-open-record-e.bal:8:1\n  |\n8 | @deprecated\n  | ^^^^^^^^^^^\n\n","Diagnostics":[{"File":"anonymous-open-record-e.bal","StartLine":8,"EndLine":8}]}

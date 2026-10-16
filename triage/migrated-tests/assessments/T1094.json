@@ -1,0 +1,13 @@
+{
+  "id": "T1094",
+  "name": "object-type-reference-test-19fd51d776/object-type-reference-cyclic-dependency-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Type definition",
+    "## Module-level declarations: Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "## Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members"
+  ],
+  "reason": "The negative test requires rejecting direct and indirect cycles formed by object type inclusions (`*Foo`, `*B`, etc.) inside object type descriptors. The subset lists object-type-inclusion for class definitions, but does not list it among supported object type descriptor members. This essential construct is therefore outside the documented subset; the general support for type definitions does not establish support for these inclusions or their cycle diagnostics.",
+  "unsupported_constructs": ["Object type inclusion members in object type descriptors, including cyclic inclusion dependencies"],
+  "test_design_notes": ["The @error markers assert compile-time rejection of direct and indirect inclusion cycles; there is no runtime behavior."]
+}

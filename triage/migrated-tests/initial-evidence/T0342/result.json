@@ -1,0 +1,19 @@
+{
+  "Name": "closed-record-equivalency-test-0e5c1beb00/closed-record-equivalency-test-0e5c1beb00-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-test-0e5c1beb00/closed-record-equivalency-test-0e5c1beb00-v",
+  "Project": true,
+  "Id": "T0342",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-test-0e5c1beb00/closed-record-equivalency-test-0e5c1beb00-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-test-0e5c1beb00/closed-record-equivalency-test-0e5c1beb00-v/closed_record_equivalency.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-test-0e5c1beb00/closed-record-equivalency-test-0e5c1beb00-v/modules/eq/eq1.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-test-0e5c1beb00/closed-record-equivalency-test-0e5c1beb00-v/modules/eq2/eq2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-test-0e5c1beb00/closed-record-equivalency-test-0e5c1beb00-v/modules/req/eq2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-equivalency-test-0e5c1beb00/closed-record-equivalency-test-0e5c1beb00-v/modules/req2/eq2.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.07
+}

@@ -1,0 +1,15 @@
+{
+  "Name": "retry-stmt-test-5faabda7b4/retry-manager-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-test-5faabda7b4/retry-manager-negative-e",
+  "Project": true,
+  "Id": "T1293",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-test-5faabda7b4/retry-manager-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/retry-stmt-test-5faabda7b4/retry-manager-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

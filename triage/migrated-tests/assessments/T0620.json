@@ -1,0 +1,19 @@
+{
+  "id": "T0620",
+  "name": "group-by-clause-test-38c059a6f0/group-by-list-ctr-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions — Query expressions: \"Supports `group by` and `collect` clauses\"; \"Supports `list` and `map` as `query-constructor-type`\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\"; `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString` (no `sum`)."
+  ],
+  "reason": "Although group-by list/map queries are supported, this whole case requires unsupported query result constructors and integer aggregation. Executed stream-output tests consume grouped streams with next() and assert [[11,15],[10,9,13],[30]]; table-output tests assert keyed grouped table results. Both stream and table query constructors fall outside the positive list. getTotal calls int:sum to determine asserted filtering results, and nested grouping queries also call int:sum, absent from the supported integer langlib list.",
+  "unsupported_constructs": [
+    "`stream from ... group by ... select ...` query constructor and stream consumption",
+    "`table key(...) from ... group by ... select ...` query constructor",
+    "`int:sum`"
+  ],
+  "test_design_notes": [
+    "The main function invokes the stream/table and aggregation-dependent tests; these are asserted behaviors, not unused signatures.",
+    "Group-by support alone does not cover the whole case; io:println instrumentation does not determine classification."
+  ]
+}

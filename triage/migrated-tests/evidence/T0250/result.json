@@ -1,0 +1,14 @@
+{
+  "Name": "birmodel-test-b91e99ce19/bir_model-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/birmodel-test-b91e99ce19/bir_model-e.bal",
+  "Project": false,
+  "Id": "T0250",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/birmodel-test-b91e99ce19/bir_model-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.046
+}

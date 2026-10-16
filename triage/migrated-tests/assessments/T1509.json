@@ -1,0 +1,13 @@
+{
+  "id": "T1509",
+  "name": "var-declr-semantic-test-d22f78a264/var-def-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Function definition; Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Statements: Local variable declarations",
+    "Expressions: Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only"
+  ],
+  "reason": "The sole expected error is assigning the string literal \"hello\" to an int local variable. This is a negative type-checking case within supported local declaration and literal syntax; main's string rest parameter is explicitly supported. No subset restriction excludes the case.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @error marker matches the invalid initializer. No mixed scope or obvious marker issue; no @args, @panic or @output behavior is asserted."]
+}

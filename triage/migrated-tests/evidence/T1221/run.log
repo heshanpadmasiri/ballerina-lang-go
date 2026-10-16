@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at query-action-with-final-clause-negative-e.bal:2-2 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at query-action-with-final-clause-negative-e.bal:10-10 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at query-action-with-final-clause-negative-e.bal:18-18 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at query-action-with-final-clause-negative-e.bal:3 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at query-action-with-final-clause-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at query-action-with-final-clause-negative-e.bal:19 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

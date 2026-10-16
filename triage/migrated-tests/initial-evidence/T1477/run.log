@@ -1,0 +1,111 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "type-guard-test-74355f2266/type-guard-semantics-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> type-guard-semantics-negative-e.bal:327:9
+            |
+        327 |         [s, i] = tupleReturningFunc(());
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> type-guard-semantics-negative-e.bal:342:9
+            |
+        342 |         {s: s, i: i, ...rest} = recordReturningFunc(2);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AssignmentStatementNode transformed to non-statement node <nil>
+           --> type-guard-semantics-negative-e.bal:354:9
+            |
+        354 |         error(s, message = message, code = code) = errorReturningFunc(());
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> type-guard-semantics-negative-e.bal:143:9
+            |
+        143 |         var [s, i] if s is string => {return "Matched with string";}
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> type-guard-semantics-negative-e.bal:144:9
+            |
+        144 |         var [s, i] if s is float => {return "Matched with float";} // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> type-guard-semantics-negative-e.bal:145:9
+            |
+        145 |         var [s, i] if i is boolean => {return "Matched with boolean";}
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> type-guard-semantics-negative-e.bal:146:9
+            |
+        146 |         var y => {return "Matched with default type - float";}
+            |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> type-guard-semantics-negative-e.bal:247:9
+            |
+        247 |         var p if p is error => {return string `${p.message()}`;} // @error
+            |         ^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> type-guard-semantics-negative-e.bal:248:9
+            |
+        248 |         var p => {return "Internal server error";}
+            |         ^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: ERROR_BINDING_PATTERN unimplemented
+           --> type-guard-semantics-negative-e.bal:352:9
+            |
+        352 |     var error(s, message = message, code = code) = errorReturningFunc(1);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+           --> type-guard-semantics-negative-e.bal:325:20
+            |
+        325 |     [string?, int] [s, i] = tupleReturningFunc("str");
+            |                    ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+           --> type-guard-semantics-negative-e.bal:340:7
+            |
+        340 |     } {s, i, ...rest} = recordReturningFunc(1);
+            |       ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> type-guard-semantics-negative-e.bal:325:20
+            |
+        325 |     [string?, int] [s, i] = tupleReturningFunc("str");
+            |                    ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> type-guard-semantics-negative-e.bal:340:7
+            |
+        340 |     } {s, i, ...rest} = recordReturningFunc(1);
+            |       ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+           --> type-guard-semantics-negative-e.bal:352:9
+            |
+        352 |     var error(s, message = message, code = code) = errorReturningFunc(1);
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> type-guard-semantics-negative-e.bal:327:9
+            |
+        327 |         [s, i] = tupleReturningFunc(());
+            |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> type-guard-semantics-negative-e.bal:342:9
+            |
+        342 |         {s: s, i: i, ...rest} = recordReturningFunc(2);
+            |         ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding-pattern assignment is not implemented
+           --> type-guard-semantics-negative-e.bal:354:9
+            |
+        354 |         error(s, message = message, code = code) = errorReturningFunc(());
+            |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

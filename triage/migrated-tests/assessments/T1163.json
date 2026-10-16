@@ -1,0 +1,12 @@
+{
+  "id": "T1163",
+  "name": "option-test-1b0c555df9/integer_option_invalid_value-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: Function definition — Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Module-level declarations: Type definition"
+  ],
+  "reason": "The record and included-record parameter signature are supported, but the assertion requires the executable launcher to parse --val=name as an integer command-line option and panic on its invalid value. Command-line option binding and its failure behavior are not covered by subset10's positive feature list; signature support alone does not establish that behavior.",
+  "unsupported_constructs": ["Command-line option binding to an included-record main parameter and rejection of an invalid integer option value"],
+  "test_design_notes": ["The @args and @panic comments assert launcher behavior before the empty main body executes."]
+}

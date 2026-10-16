@@ -1,0 +1,114 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	2
+        	typedesc IntRecord
+        	typedesc int
+        	1
+        	typedesc int
+        	2
+        	2
+        	typedesc map<json>
+        	typedesc int
+        	1
+        	typedesc int
+        	2
+        	2
+        	typedesc map<anydata>
+        	2
+        	typedesc int
+        	1
+        	typedesc int
+        	2
+        	2
+        	typedesc int
+        	1
+        	typedesc int
+        	2
+        	2
+        	typedesc string
+        	mohan
+        	typedesc string
+        	raj
+        	2
+        	typedesc string
+        	mohan
+        	typedesc string
+        	raj
+        	5
+        	typedesc Teacher
+        	Raja
+        	typedesc string
+        	25
+        	typedesc int
+        	single
+        	typedesc string
+        	LK2014
+        	typedesc string
+        	Hindu College
+        	typedesc string
+        	5
+        	typedesc map<json>
+        	Raja
+        	typedesc string
+        	25
+        	typedesc int
+        	single
+        	typedesc string
+        	LK2014
+        	typedesc string
+        	Hindu College
+        	typedesc string
+        	5
+        	typedesc map<anydata>
+        	Raja
+        	typedesc string
+        	25
+        	typedesc int
+        	single
+        	typedesc string
+        	2
+        	typedesc Employee
+        	typedesc int
+        	typedesc string
+        	typedesc Employee
+        	typedesc int
+        	typedesc string
+        	2
+        	2
+        	typedesc map<anydata>
+        	5
+        	typedesc map<anydata>
+        	5
+        	2
+        	typedesc Employee
+        	typedesc int
+        	typedesc string
+        	typedesc Employee
+        	typedesc int
+        	typedesc string
+        	2
+        	2
+        	typedesc int
+        	11
+        	2
+        	2
+        	typedesc int
+        	11
+        	2
+        	typedesc map<anydata>
+        	typedesc map<anydata>
+        	typedesc map<anydata>
+        	2
+        	typedesc map<Teacher>
+        	typedesc Teacher
+        	typedesc Teacher
+        	typedesc error
+        	'map<string>' value cannot be converted to 'EmployeeClosedRecord':
+        			field 'school' cannot be added to the closed record 'EmployeeClosedRecord'
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

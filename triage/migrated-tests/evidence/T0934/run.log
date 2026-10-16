@@ -1,0 +1,34 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "multiply-operation-test-50bdc62cff/multiply-operation-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+           --> multiply-operation-v.bal:322:13
+            |
+        322 |     int e = int:MAX_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MAX_VALUE
+           --> multiply-operation-v.bal:757:13
+            |
+        757 |     int e = int:MAX_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MIN_VALUE
+           --> multiply-operation-v.bal:323:13
+            |
+        323 |     int f = int:MIN_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: MIN_VALUE
+           --> multiply-operation-v.bal:758:13
+            |
+        758 |     int f = int:MIN_VALUE;
+            |             ^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'ans'
+          --> multiply-operation-v.bal:26:5
+           |
+        26 |     int ans = num1 * num2;
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

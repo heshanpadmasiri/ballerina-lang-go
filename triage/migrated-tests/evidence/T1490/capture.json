@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'y'\n  --\u003e type-test-expr-v.bal:51:5\n   |\n51 |     int y = 10;\n   |     ^^^^^^^^^^^\n\n","Diagnostics":[{"File":"type-test-expr-v.bal","StartLine":51,"EndLine":51}]}

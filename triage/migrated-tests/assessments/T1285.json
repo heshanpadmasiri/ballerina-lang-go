@@ -1,0 +1,14 @@
+{
+  "id": "T1285",
+  "name": "ref-equal-and-not-equal-operations-test-f18bb5cc2f/ref-equal-and-not-equal-operations-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Operators: Equality ops `==`, `!=`, `===`, `!==`",
+    "# Subset restrictions / ## Import declarations: Only following lang libraries with given methods/types are supported",
+    "## Import declarations: `ballerina/lang.value` lists `cloneWithType`, `fromJsonWithType`, `toString`, `toBalString`",
+    "## Invocations / ### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions:"
+  ],
+  "reason": "The reference equality operators are supported, but the executed testTupleJSONRefEquality calls f.mergeJson(d) and asserts that merging null returns a json value reference-equal to f. mergeJson is absent from both the supported lang.value functions and the permitted langlib method calls, so essential asserted behavior is outside this subset.",
+  "unsupported_constructs": ["lang.value mergeJson invoked as f.mergeJson(d), including its asserted identity-preserving null-merge behavior"],
+  "test_design_notes": ["The io:println calls are output instrumentation and do not determine classification."]
+}

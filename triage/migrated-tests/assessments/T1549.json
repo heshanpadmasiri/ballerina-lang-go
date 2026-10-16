@@ -1,0 +1,12 @@
+{
+  "id": "T1549",
+  "name": "worker-fail-test-278d4f50a4/invalid-actions-in-fork-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements, including 'Local variable declarations', but does not list fork statements or worker declarations.",
+    "## Expressions: '[Start action](https://ballerina.io/spec/lang/master/#start-action)' and '[Wait action](https://ballerina.io/spec/lang/master/#wait-action)' are listed; worker send and receive actions are not listed."
+  ],
+  "reason": "The expected rejection concerns a send to w3 from outside its nested fork scope. Fork statements, named workers, and worker send/receive actions are essential to this case and are not covered by the subset's positive lists. Supported start/wait actions do not establish support for worker communication or nested fork scope checking.",
+  "unsupported_constructs": ["fork statements, including nested fork", "named worker declarations", "worker send and receive actions"],
+  "test_design_notes": ["The send 'i -> w3' carries an @error marker; this is a negative compile-time case, but its essential worker/fork grammar is outside the documented subset. No @args, @panic, or @output markers are present."]
+}

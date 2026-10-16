@@ -1,0 +1,40 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "identifier-test-a7ab8ef694/error_as_identifier-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+          --> error_as_identifier-v.bal:40:20
+           |
+        40 |     assertEquality(p.'error.toString(), "error(\"bam\",message=\"new error\")");
+           |                    ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+          --> error_as_identifier-v.bal:94:54
+           |
+        94 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+           |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+          --> error_as_identifier-v.bal:95:50
+           |
+        95 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+           |                                                  ^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> error_as_identifier-v.bal:42:20
+           |
+        42 |     assertEquality(p.'error.detail()["message"], "new error");
+           |                    ^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> error_as_identifier-v.bal:50:20
+           |
+        50 |     assertEquality(ef.'error.detail()["message"], "new error");
+           |                    ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: detail
+          --> error_as_identifier-v.bal:57:32
+           |
+        57 |     error errorInCtor = <error>ef.'error.detail()["error"];
+           |                                ^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.07s)
+FAIL

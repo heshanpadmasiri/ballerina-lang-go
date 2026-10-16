@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: cannot infer type for implicit new expression\n  --\u003e final-object-fields-negative-e.bal:53:29\n   |\n53 | final Student[] students = [new (\"Amy\", 5), new (\"Jo\", 5)];\n   |                             ^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"final-object-fields-negative-e.bal","StartLine":53,"EndLine":53}]}

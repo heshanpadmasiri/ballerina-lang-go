@@ -1,0 +1,17 @@
+{
+  "id": "T1009",
+  "name": "never-type-test-35205a329e/never-type-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\" and \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\" are listed; table constructor expressions are not listed.",
+    "## Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\""
+  ],
+  "reason": "The whole case includes negative checks for never and never|string table key constraints initialized by table constructor expressions. Table constructors are absent from the supported expression list, so this asserted behavior requires an uncovered feature even though many other never-type rejection checks use supported declarations and expressions.",
+  "unsupported_constructs": [
+    "Table constructor expressions `table key(name)[...]` and `table [...]` in the never table-key-constraint rejection tests."
+  ],
+  "test_design_notes": [
+    "Negative source and @error markers are intentional rejection assertions; illegality alone does not place a test outside scope.",
+    "Classification is for the whole case; the unsupported table-constructor assertions suffice."
+  ]
+}

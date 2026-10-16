@@ -1,0 +1,14 @@
+{
+  "Name": "record-constraint-table-test-5308103ca6/record-constraint-table-test-5308103ca6-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/record-constraint-table-test-5308103ca6/record-constraint-table-test-5308103ca6-v.bal",
+  "Project": false,
+  "Id": "T1254",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/record-constraint-table-test-5308103ca6/record-constraint-table-test-5308103ca6-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.031
+}

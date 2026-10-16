@@ -1,0 +1,15 @@
+{
+  "id": "T0238",
+  "name": "bfloat-value-test-b01a6e05bd/bfloat-type-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "## Module-level declarations: \"Module variable declarations\", \"Type definition\", \"Function definition\"",
+    "## Statements: \"Assignment\", \"Local variable declarations\""
+  ],
+  "reason": "All asserted errors concern hexadecimal numeric literals in supported module/local declarations and assignments, including float and float|decimal aliases. Rejecting invalid numeric values and malformed 0x/0X literals is within the supported numeric-literal grammar and type system; no essential unsupported feature is exercised.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case: @error markers assert rejection, with two markers on each malformed bare hexadecimal prefix. There are no @args, @panic or @output assertions."
+  ]
+}

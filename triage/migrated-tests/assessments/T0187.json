@@ -1,0 +1,19 @@
+{
+  "id": "T0187",
+  "name": "arrow-expr-test-733bf0507c/arrow-expression-semantics-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"[Anonymous function expression](https://ballerina.io/spec/lang/master/#anonymous-function-expr)\"",
+    "Statements: \"Local variable declarations\", \"Assignment\", \"Return\"",
+    "Module-level declarations: \"Module variable declarations\", \"Function definition\"",
+    "Expressions: \"List constructor\", \"Variable reference\", \"Unary logical expression\", \"Call\", \"Method call\"",
+    "Operators: \"Multiplicative ops `*`, `%`, `/`\", \"Additive ops `+`, `-`\", \"logical `!`\"",
+    "Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"`array:map`\""
+  ],
+  "reason": "This negative case checks static typing, expected-type inference, parameter arity, lexical scope and closure references for arrow expressions, which are implicit anonymous function expressions covered by the supported anonymous-function-expression grammar. Its explicit anonymous function, declarations, calls, operators, list/tuple values and array map calls are also covered. Invalid operand, argument, return and binding usages remain in scope as rejection tests of supported constructs. No essential unsupported construct or execution protocol is required.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The file uses @error markers for rejection checks; it contains no @args, @panic or @output execution assertions.",
+    "testArrowExprWithUninitializedClosureVars has no @error markers on its captured uninitialized locals; do not infer an additional rejection assertion there."
+  ]
+}

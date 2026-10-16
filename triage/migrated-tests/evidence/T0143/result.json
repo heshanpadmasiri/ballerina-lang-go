@@ -1,0 +1,14 @@
+{
+  "Name": "array-fill-negative-test-3d68a15e37/array-fill-record-required-fields-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-fill-negative-test-3d68a15e37/array-fill-record-required-fields-p.bal",
+  "Project": false,
+  "Id": "T0143",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-fill-negative-test-3d68a15e37/array-fill-record-required-fields-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.049
+}

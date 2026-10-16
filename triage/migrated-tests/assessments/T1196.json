@@ -1,0 +1,15 @@
+{
+  "id": "T1196",
+  "name": "package-import-test-60d02fba3a/invalid-import-2-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Import declarations](https://ballerina.io/spec/lang/master/#import-decl)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Expressions: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "The asserted behavior is rejection of the import marked @error. Import declarations and the accompanying function/local integer declaration are supported. The lang-library restriction applies to ballerina/lang.* and does not exclude checking this bar/foo.x import; a negative import-resolution case remains within supported import handling.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The only explicit assertion is the @error marker on the import; no diagnostic wording or runtime behavior is asserted."]
+}

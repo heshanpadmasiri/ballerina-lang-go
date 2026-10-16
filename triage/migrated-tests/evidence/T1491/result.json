@@ -1,0 +1,14 @@
+{
+  "Name": "type-unification-test-b44c903fb3/map-struct-json-unified-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/type-unification-test-b44c903fb3/map-struct-json-unified-v.bal",
+  "Project": false,
+  "Id": "T1491",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/type-unification-test-b44c903fb3/map-struct-json-unified-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.119
+}

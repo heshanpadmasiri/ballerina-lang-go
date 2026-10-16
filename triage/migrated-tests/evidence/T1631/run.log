@@ -1,0 +1,52 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "xmlnstest-f41d1c0429/xmlns-prefix-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown symbol: doc
+         --> a.bal:2:19
+          |
+        2 | final string AA = ns1:doc;
+          |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: doc
+         --> b.bal:3:19
+          |
+        3 | final string BA = ns1:doc;
+          |                   ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+          --> a.bal:10:12
+           |
+        10 |     assert(ns2:foo, "{http://exampleA2.com}foo");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+          --> b.bal:11:12
+           |
+        11 |     assert(ns2:foo, "{http://exampleB2.com}foo");
+           |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+         --> a.bal:6:12
+          |
+        6 |     assert(ns1:foo, "{http://exampleA1.com}foo");
+          |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foo
+         --> b.bal:7:12
+          |
+        7 |     assert(ns1:foo, "{http://exampleB1.com}foo");
+          |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foz
+         --> a.bal:7:12
+          |
+        7 |     assert(ns3:foz, "{http://exampleA3.com}foz");
+          |            ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: foz
+         --> b.bal:8:12
+          |
+        8 |     assert(ns3:foz, "{http://exampleB3.com}foz");
+          |            ^^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

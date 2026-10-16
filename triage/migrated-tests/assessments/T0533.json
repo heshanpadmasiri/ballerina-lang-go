@@ -1,0 +1,19 @@
+{
+  "id": "T0533",
+  "name": "freeze-and-is-frozen-test-c0f3b0e88b/frozen-table-removal-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list includes List constructor and Mapping constructor, but does not include table constructors.",
+    "## Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not cloneReadOnly, and ballerina/lang.table is not listed.",
+    "### Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: the list includes value:cloneWithType and map:remove, but neither value:cloneReadOnly nor table:remove."
+  ],
+  "reason": "The asserted panic requires constructing a keyed table, cloning it as readonly, and attempting table removal. Table constructors are not in the supported expression list, and both cloneReadOnly and table remove are outside the explicit langlib allowlists. Thus the frozen-table removal behavior is outside this subset.",
+  "unsupported_constructs": [
+    "Keyed table constructor table [...]",
+    "value:cloneReadOnly invoked as empTable.cloneReadOnly()",
+    "table:remove invoked on the readonly clone, including its asserted mutation panic"
+  ],
+  "test_design_notes": [
+    "The // @panic marker asserts rejection of mutation at runtime; this depends on unsupported table and freezing operations."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "T1172",
+  "name": "option-test-1b0c555df9/option_with_array_type_equals_many-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\""
+  ],
+  "reason": "The included record parameter is supported syntax, but the asserted behavior requires command-line option binding: repeated --array=value options must populate the string[] record field in order. Command-line parsing and main argument binding are not covered by the subset positive lists.",
+  "unsupported_constructs": [
+    "Command-line binding of repeated --array=value options into an included-record main parameter array field."
+  ],
+  "test_design_notes": [
+    "The @args and @output comments assert ordered accumulation of two string options; io:println is only output instrumentation."
+  ]
+}

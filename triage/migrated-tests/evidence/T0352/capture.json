@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'e'\n --\u003e closed-record-mismatch-fields-e.bal:2:5\n  |\n2 |     FooError|BarError e = error FooError(\"message\", bar = \"bar\"); // @error\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"closed-record-mismatch-fields-e.bal","StartLine":2,"EndLine":2}]}

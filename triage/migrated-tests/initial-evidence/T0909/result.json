@@ -1,0 +1,14 @@
+{
+  "Name": "module-listener-decl-test-9b9489d763/module-listener-declaration-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/module-listener-declaration-negative-e.bal",
+  "Project": false,
+  "Id": "T0909",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/module-listener-decl-test-9b9489d763/module-listener-declaration-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.045
+}

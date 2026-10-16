@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "builtin-method-test-2384a81445/builtin-methods-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: method not found: clone
+          --> builtin-methods-v.bal:17:12
+           |
+        17 |     return m.clone();
+           |            ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: method not found: clone
+          --> builtin-methods-v.bal:22:12
+           |
+        22 |     return m.clone();
+           |            ^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

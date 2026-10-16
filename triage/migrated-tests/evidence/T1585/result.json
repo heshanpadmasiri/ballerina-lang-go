@@ -1,0 +1,14 @@
+{
+  "Name": "worker-sync-send-test-389660a47d/sync-send-with-panic-in-receive-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/sync-send-with-panic-in-receive-p.bal",
+  "Project": false,
+  "Id": "T1585",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-sync-send-test-389660a47d/sync-send-with-panic-in-receive-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

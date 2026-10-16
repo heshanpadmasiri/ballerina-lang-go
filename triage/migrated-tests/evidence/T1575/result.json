@@ -1,0 +1,14 @@
+{
+  "Name": "worker-in-function-test-bde1b19edb/worker-in-function-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-in-function-test-bde1b19edb/worker-in-function-v.bal",
+  "Project": false,
+  "Id": "T1575",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-in-function-test-bde1b19edb/worker-in-function-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.046
+}

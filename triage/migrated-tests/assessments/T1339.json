@@ -1,0 +1,17 @@
+{
+  "id": "T1339",
+  "name": "sealed-arrays-of-arrays-test-51b52f77c7/negative-sealed-arrays-of-arrays-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition; Module variable declarations",
+    "## Statements: Assignment \u2014 See supported lvexpr; If/else; Local variable declarations",
+    "## Expressions: List constructor; Mapping constructor; Member access expression; Literal \u2014 Currently support nil-literal, boolean-literal, numeric-literal and string-literal only",
+    "# Subset restrictions: no restriction excludes fixed-length or inferred-length array types, nested arrays, readonly intersections, unions, maps, or tuples"
+  ],
+  "reason": "The case asserts compile-time rejection of incompatible nested array lengths and element types, statically out-of-range fixed-array indices, and illegal inferred-length array type usage, including readonly, union, map and tuple contexts. These checks belong to the supported declaration, constructor, member-access and assignment grammar/type system; no stated restriction excludes their array forms or asserted negative behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Negative diagnostic annotations assert rejection; the intentional invalid code does not itself make the case unsupported.",
+    "The supplied file contains diagnostic markers rather than runtime assertions."
+  ]
+}

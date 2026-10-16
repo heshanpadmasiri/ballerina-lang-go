@@ -1,0 +1,71 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	2
+        	Mohan
+        	true
+        	Teacher
+        	true
+        	true
+        	5
+        	Raja
+        	true
+        	25
+        	true
+        	single
+        	true
+        	LK2014
+        	true
+        	Hindu College
+        	true
+        	2
+        	Mohan
+        	true
+        	Employee
+        	true
+        	true
+        	5
+        	Raja
+        	true
+        	25
+        	true
+        	single
+        	true
+        	LK2014
+        	true
+        	Hindu College
+        	true
+        	2
+        	Mohan
+        	true
+        	map<anydata>
+        	true
+        	true
+        	2
+        	Employee
+        	true
+        	true
+        	Employee
+        	true
+        	true
+        	4
+        	Raja
+        	true
+        	single
+        	true
+        	LK2014
+        	true
+        	Hindu College
+        	true
+        	1
+        	2
+        	1
+        	2
+        	1
+        	2
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

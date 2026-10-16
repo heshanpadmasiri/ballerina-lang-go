@@ -1,0 +1,14 @@
+{
+  "Name": "assign-stmt-test-4075ad6286/assign-stmt-values-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/assign-stmt-test-4075ad6286/assign-stmt-values-v.bal",
+  "Project": false,
+  "Id": "T0194",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/assign-stmt-test-4075ad6286/assign-stmt-values-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.084
+}

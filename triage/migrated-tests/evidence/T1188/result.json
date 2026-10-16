@@ -1,0 +1,14 @@
+{
+  "Name": "optional-field-access-test-22573a3d33/optional-field-access-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/optional-field-access-test-22573a3d33/optional-field-access-v.bal",
+  "Project": false,
+  "Id": "T1188",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/optional-field-access-test-22573a3d33/optional-field-access-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.089
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T1095",
+  "name": "object-type-reference-test-19fd51d776/object-type-reference-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.error lists only \"message\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"error:message\", but not error:detail.",
+    "Module-level declarations > Class definition: \"Supports `object-field`, `method-defn` and `object-type-inclusion` members\"."
+  ],
+  "reason": "The whole case requires unsupported lang.error detail access: testInclusionWithRemoteMethods calls err.detail() and asserts the parsing error's detail message. Although object type inclusion and remote methods are supported, this asserted behavior depends on a langlib method excluded by the explicit supported-method lists.",
+  "unsupported_constructs": [
+    "err.detail()[\"message\"] in testInclusionWithRemoteMethods: error:detail is not a supported langlib method."
+  ],
+  "test_design_notes": [
+    "The unsupported detail access is executed from main and checked by assertEquality, so it is essential asserted behavior rather than output instrumentation."
+  ]
+}

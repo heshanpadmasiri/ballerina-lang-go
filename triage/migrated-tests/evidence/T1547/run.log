@@ -1,0 +1,42 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: stderr does not contain a runtime error message for @panic at worker-cancelled-p.bal:15
+        stderr:
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> worker-cancelled-p.bal:9:5
+           |
+         9 |     worker wy {
+           |     ^^^^^^^^^^^
+        10 |         string _ = <- function;
+           |         ^^^^^^^^^^^^^^^^^^^^^^^
+        11 |         "message" -> function;
+           |         ^^^^^^^^^^^^^^^^^^^^^^
+        12 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformAsyncSendAction unimplemented
+          --> worker-cancelled-p.bal:15:5
+           |
+        15 |     "message" -> wy; // @panic
+           |     ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.AsyncSendActionNode transformed to non-action-or-expression node <nil>
+          --> worker-cancelled-p.bal:15:5
+           |
+        15 |     "message" -> wy; // @panic
+           |     ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformReceiveAction unimplemented
+          --> worker-cancelled-p.bal:16:27
+           |
+        16 |     string|error result = <- wy;
+           |                           ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.ReceiveActionNode transformed to non-action-or-expression node <nil>
+          --> worker-cancelled-p.bal:16:27
+           |
+        16 |     string|error result = <- wy;
+           |                           ^^^^^
+        
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

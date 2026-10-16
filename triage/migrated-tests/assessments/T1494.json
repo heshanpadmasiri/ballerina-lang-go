@@ -1,0 +1,21 @@
+{
+  "id": "T1494",
+  "name": "typedesc-tests-6cfb08048c/typedesc-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists \"cloneWithType\", \"fromJsonWithType\", \"toString\", \"toBalString\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" includes \"value:cloneWithType\", \"value:fromJsonWithType\", and \"value:toString and value:toBalString\", but not isReadOnly.",
+    "Supported language features (subset 10) > Expressions: lists \"Type test expression\", \"Type cast expression\", \"List constructor\" and \"Mapping constructor\"; does not list typeof or table constructors."
+  ],
+  "reason": "The whole case requires unsupported lang.value isReadOnly() calls in executed intersection-type conversion assertions. Although cloneWithType, fromJsonWithType and toString are explicitly supported, isReadOnly is absent from both the exhaustive langlib allowlist and method-syntax allowlist. This decisive restriction makes the case a feature request. It also exercises typeof expressions and a table constructor, neither covered by the positive expression list.",
+  "unsupported_constructs": [
+    "isReadOnly() langlib method calls on converted arrays and tables",
+    "typeof expressions (not covered by the expression list)",
+    "table constructor expression (not covered by the expression list)"
+  ],
+  "test_design_notes": [
+    "Mixed scope: basic typedesc declarations/casts, supported conversions and stringification are combined with unsupported readonly inspection and uncovered expressions.",
+    "Several tuple/json conversion checks initialize t1 and j1 with arr.cloneWithType(a), reusing the int-array descriptor instead of t and j; these checks do not test the intended target descriptors.",
+    "@output markers assert typedesc rendering and type tests; io:println is instrumentation. No @args or @panic markers appear."
+  ]
+}

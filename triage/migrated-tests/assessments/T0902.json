@@ -1,0 +1,14 @@
+{
+  "id": "T0902",
+  "name": "mod-operation-test-bd4a47c2f4/mod-values-v",
+  "classification": "feature",
+  "spec_references": [
+    "Operators: Multiplicative ops `*`, `%`, `/`",
+    "Expressions: [Nil lifted expression](https://ballerina.io/spec/lang/master/#nil-lifted-expr)",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions > Import declarations: `ballerina/lang.int` lists `Signed8`, `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`, `Unsigned32`, `toHexString`, `fromString`, `fromHexString`"
+  ],
+  "reason": "The case exercises supported remainder operators, including nil lifting and evaluation of both operands, but also requires int:MAX_VALUE and int:MIN_VALUE in its asserted float/int and decimal/int remainder checks. These lang.int constants are absent from the explicit supported members list, making the whole case feature work.",
+  "unsupported_constructs": ["int:MAX_VALUE", "int:MIN_VALUE"],
+  "test_design_notes": ["io:println serves only as output instrumentation. Float NaN and Infinity and the integer subtype names are explicitly allowlisted; they do not independently require feature work."]
+}

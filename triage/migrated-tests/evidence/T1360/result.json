@@ -1,0 +1,14 @@
+{
+  "Name": "string-template-constant-test-b084dbeb60/string-template-constant-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-template-constant-test-b084dbeb60/string-template-constant-v.bal",
+  "Project": false,
+  "Id": "T1360",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-template-constant-test-b084dbeb60/string-template-constant-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.04
+}

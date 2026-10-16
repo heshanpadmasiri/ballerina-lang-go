@@ -1,0 +1,14 @@
+{
+  "Name": "init-function-test-d2ccfe8a95/init-function-error-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/init-function-test-d2ccfe8a95/init-function-error-v.bal",
+  "Project": false,
+  "Id": "T0644",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/init-function-test-d2ccfe8a95/init-function-error-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.036
+}

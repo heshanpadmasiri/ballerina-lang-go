@@ -1,0 +1,327 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "table-cast-test-10e69b67ad/table-cast-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-cast-e.bal:27:21
+           |
+        27 | PersonTable1 tab1 = table key(name) [
+           |                     ^^^^^^^^^^^^^^^^^
+        28 |     { name: "AAA", age: 31, country: "LK" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        29 |     { name: "BBB", age: 34, country: "US" }
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        30 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-cast-e.bal:32:21
+           |
+        32 | PersonTable2 tab2 = table key(age) [
+           |                     ^^^^^^^^^^^^^^^^
+        33 |     { name: "AAA", age: 31, country: "LK" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |     { name: "BBB", age: 34, country: "US" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |     { name: "BBB", age: 33, school: "MIT" }
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-cast-e.bal:38:22
+           |
+        38 | CustomerTable tab3 = table key(name) [
+           |                      ^^^^^^^^^^^^^^^^^
+        39 |     { id: 13 , name: "Foo", lname: "QWER" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     { id: 13 , name: "Bar" , lname: "UYOR" }
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        41 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-cast-e.bal:43:21
+           |
+        43 | PersonTable3 tab4 = table key(age) [
+           |                     ^^^^^^^^^^^^^^^^
+        44 |     { name: "AAA", age: 31, country: "LK" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |     { name: "BBB", age: 34, country: "US" }
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:19:20
+           |
+        19 | type CustomerTable table<Customer|Teacher>;
+           |                    ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:21:19
+           |
+        21 | type PersonTable1 table<Person|Customer> key<string>;
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:23:19
+           |
+        23 | type PersonTable2 table<Person|Teacher> key<string|int>;
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:25:19
+           |
+        25 | type PersonTable3 table<Teacher> key<int> | table<Person> key<int>;
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:25:45
+           |
+        25 | type PersonTable3 table<Teacher> key<int> | table<Person> key<int>;
+           |                                             ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:49:35
+           |
+        49 |     table<Person> key<int> tab = <table<Person> key<int>> tab1; // @error
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:49:5
+           |
+        49 |     table<Person> key<int> tab = <table<Person> key<int>> tab1; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:54:36
+           |
+        54 |     table<Teacher> key(name) tab =<table<Teacher> key(name)> tab3;
+           |                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:54:5
+           |
+        54 |     table<Teacher> key(name) tab =<table<Teacher> key(name)> tab3;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:59:45
+           |
+        59 |     table<Person|Teacher> key<string> tab =<table<Person|Teacher> key<string>> tab2;
+           |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:59:5
+           |
+        59 |     table<Person|Teacher> key<string> tab =<table<Person|Teacher> key<string>> tab2;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:64:35
+           |
+        64 |     table<Teacher> key<int> tab =<table<Teacher> key<int>> tab4;
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:64:5
+           |
+        64 |     table<Teacher> key<int> tab =<table<Teacher> key<int>> tab4;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:74:28
+           |
+        74 | type CustomerEmptyKeyedTbl table<Customer2> key();
+           |                            ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:79:5
+           |
+        79 |     table<record {
+           |     ^^^^^^^^^^^^^^
+        80 |         int id;
+           |         ^^^^^^^
+        81 |         string name;
+           |         ^^^^^^^^^^^^
+        82 |         string lname;
+           |         ^^^^^^^^^^^^^
+        83 |     }> key() tbl = <table<record {
+           |     ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-cast-e.bal:83:21
+           |
+        83 |     }> key() tbl = <table<record {
+           |                     ^^^^^^^^^^^^^^
+        84 |         int id;
+           |         ^^^^^^^
+        85 |         string name;
+           |         ^^^^^^^^^^^^
+        86 |         string lname;
+           |         ^^^^^^^^^^^^^
+        87 |     }> key()>tab3;
+           |     ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-cast-e.bal:27:21
+           |
+        27 | PersonTable1 tab1 = table key(name) [
+           |                     ^^^^^^^^^^^^^^^^^
+        28 |     { name: "AAA", age: 31, country: "LK" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        29 |     { name: "BBB", age: 34, country: "US" }
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        30 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-cast-e.bal:32:21
+           |
+        32 | PersonTable2 tab2 = table key(age) [
+           |                     ^^^^^^^^^^^^^^^^
+        33 |     { name: "AAA", age: 31, country: "LK" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |     { name: "BBB", age: 34, country: "US" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        35 |     { name: "BBB", age: 33, school: "MIT" }
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-cast-e.bal:38:22
+           |
+        38 | CustomerTable tab3 = table key(name) [
+           |                      ^^^^^^^^^^^^^^^^^
+        39 |     { id: 13 , name: "Foo", lname: "QWER" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        40 |     { id: 13 , name: "Bar" , lname: "UYOR" }
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        41 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-cast-e.bal:43:21
+           |
+        43 | PersonTable3 tab4 = table key(age) [
+           |                     ^^^^^^^^^^^^^^^^
+        44 |     { name: "AAA", age: 31, country: "LK" },
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        45 |     { name: "BBB", age: 34, country: "US" }
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        46 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:19:20
+           |
+        19 | type CustomerTable table<Customer|Teacher>;
+           |                    ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:21:19
+           |
+        21 | type PersonTable1 table<Person|Customer> key<string>;
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:23:19
+           |
+        23 | type PersonTable2 table<Person|Teacher> key<string|int>;
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:25:19
+           |
+        25 | type PersonTable3 table<Teacher> key<int> | table<Person> key<int>;
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:25:45
+           |
+        25 | type PersonTable3 table<Teacher> key<int> | table<Person> key<int>;
+           |                                             ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:49:35
+           |
+        49 |     table<Person> key<int> tab = <table<Person> key<int>> tab1; // @error
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:49:5
+           |
+        49 |     table<Person> key<int> tab = <table<Person> key<int>> tab1; // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:54:36
+           |
+        54 |     table<Teacher> key(name) tab =<table<Teacher> key(name)> tab3;
+           |                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:54:5
+           |
+        54 |     table<Teacher> key(name) tab =<table<Teacher> key(name)> tab3;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:59:45
+           |
+        59 |     table<Person|Teacher> key<string> tab =<table<Person|Teacher> key<string>> tab2;
+           |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:59:5
+           |
+        59 |     table<Person|Teacher> key<string> tab =<table<Person|Teacher> key<string>> tab2;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:64:35
+           |
+        64 |     table<Teacher> key<int> tab =<table<Teacher> key<int>> tab4;
+           |                                   ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:64:5
+           |
+        64 |     table<Teacher> key<int> tab =<table<Teacher> key<int>> tab4;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:74:28
+           |
+        74 | type CustomerEmptyKeyedTbl table<Customer2> key();
+           |                            ^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:79:5
+           |
+        79 |     table<record {
+           |     ^^^^^^^^^^^^^^
+        80 |         int id;
+           |         ^^^^^^^
+        81 |         string name;
+           |         ^^^^^^^^^^^^
+        82 |         string lname;
+           |         ^^^^^^^^^^^^^
+        83 |     }> key() tbl = <table<record {
+           |     ^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-cast-e.bal:83:21
+           |
+        83 |     }> key() tbl = <table<record {
+           |                     ^^^^^^^^^^^^^^
+        84 |         int id;
+           |         ^^^^^^^
+        85 |         string name;
+           |         ^^^^^^^^^^^^
+        86 |         string lname;
+           |         ^^^^^^^^^^^^^
+        87 |     }> key()>tab3;
+           |     ^^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

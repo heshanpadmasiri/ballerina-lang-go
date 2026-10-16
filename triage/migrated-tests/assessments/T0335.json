@@ -1,0 +1,18 @@
+{
+  "id": "T0335",
+  "name": "client-resource-access-action-negative-test-1519220005/client-transactional-resource-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports the [`isolated`](https://ballerina.io/spec/lang/master/#isolated-qual) function qualifier",
+    "## Expressions: [Client resource access action](https://ballerina.io/spec/lang/master/#client-resource-access-action)"
+  ],
+  "reason": "The asserted errors depend on transactional function/resource qualifiers and restrictions on calling transactional functions outside a transaction. These transaction semantics are not covered by the subset's positive feature lists; listing client resource access actions does not establish transactional-call validation support.",
+  "unsupported_constructs": [
+    "transactional resource function qualifier",
+    "transactional function qualifier and transactional-call context validation"
+  ],
+  "test_design_notes": [
+    "Both @error markers assert transactional-call rejection: a normal resource invokes testFunction(), and the ordinary test function accesses the transactional resource.",
+    "No @args, @panic or @output directives are present."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T0656",
+  "name": "inter-module-public-table-type-test-63565401da/public-table-type-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list includes List constructor and Mapping constructor but does not include table constructors.",
+    "## Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.table is absent.",
+    "### Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; table:length is absent."
+  ],
+  "reason": "The asserted behavior requires constructing a keyed table exported by another module, checking its length, and looking up its record by key. Table constructors are not listed as supported expressions, and tab.length() requires the unlisted lang.table length function. Thus the case requires unsupported features regardless of support for module imports, public type definitions, and optional field access.",
+  "unsupported_constructs": [
+    "Table constructor: table [{ username: \"John\", id: 30 }]",
+    "Table langlib method invocation: tab.length()"
+  ],
+  "test_design_notes": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "T1502",
+  "name": "union-type-stamp-inbuilt-function-test-59ddd1d6d4/union-type-stamp-inbuilt-function-test-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: lists supported expressions, including \"Type test expression\" and \"Variable reference\", but does not list typeof/type-query expressions.",
+    "Subset restrictions > Import declarations: ballerina/lang.value includes \"cloneWithType\" and \"toString\".",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"value:cloneWithType\" and \"value:toString\" are allowed in method call syntax.",
+    "Expressions: \"XML template expression\"; \"Supports interpolation in XML content and attributes\"."
+  ],
+  "reason": "The case essentially asserts runtime type descriptors through multiple typeof expressions and exact strings such as 'typedesc Employee', 'typedesc IntMap', and 'typedesc Teacher'. The supported-expression list does not cover typeof/type-query expressions or their descriptor identity/string behavior. cloneWithType and toString themselves are explicitly supported, as are the XML templates, so their presence alone is not a feature gap; the additional type-query assertions put the whole case outside the documented subset.",
+  "unsupported_constructs": [
+    "typeof expressions and exact runtime type-descriptor string assertions"
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported union cloning, map methods, XML templates, and output checks are combined with uncovered typeof assertions.",
+    "The @output markers check cloned record/map lengths and fields, string values, tuple elements, and the resulting teacher-map length; these are consistent with the exercised cloning behavior. No @args or @panic markers occur."
+  ]
+}

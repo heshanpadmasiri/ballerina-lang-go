@@ -1,0 +1,17 @@
+{
+  "id": "T0214",
+  "name": "basic-tuple-test-df3c24eedf/tuples-e",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Module-level declarations: Annotation declarations and attachments; Supports source-only, runtime, marker and repeated annotations"
+  ],
+  "reason": "The negative annotation cases require the predefined ballerina/lang.annotations:typeParam annotation to be recognized and rejected at a tuple field attachment point. ballerina/lang.annotations and typeParam are absent from the restricted lang-library positive list, so the whole case includes essential unsupported behavior despite general annotation support.",
+  "unsupported_constructs": [
+    "Predefined ballerina/lang.annotations:typeParam annotation in tuple member descriptors, including T5's asserted annotation-not-allowed-on-field diagnostic"
+  ],
+  "test_design_notes": [
+    "This is a compile-negative case with @error markers; no @args, @panic or @output assertions occur.",
+    "Ordinary invalid tuple assignments and indices are negative checks within the supported type system; their illegality alone is not the reason for feature classification."
+  ]
+}

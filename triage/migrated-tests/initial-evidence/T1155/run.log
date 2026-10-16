@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at invalid-e.bal:26-26 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at invalid-e.bal:18 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at invalid-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at invalid-e.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at invalid-e.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at invalid-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at invalid-e.bal:23 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

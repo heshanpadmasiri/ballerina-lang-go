@@ -1,0 +1,83 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "do-stmts-test-54fb85fbab/do-stmt-negative-1-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> do-stmt-negative-1-e.bal:11:5
+           |
+        11 |     do {
+           |     ^^^^
+        12 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |     }
+           |     ^
+        15 |     on fail ErrorTypeB e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        17 |     }
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> do-stmt-negative-1-e.bal:30:5
+           |
+        30 |     do {
+           |     ^^^^
+        31 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        32 |         int _ = check getTypeAError();
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |         int _ = check getTypeBError();
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |     }
+           |     ^
+        35 |     on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         str += "-> Error caught : ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |         str = str.concat(e.message());
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> do-stmt-negative-1-e.bal:11:5
+           |
+        11 |     do {
+           |     ^^^^
+        12 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |         fail error ErrorTypeA(TYPE_A_ERROR_REASON, message = "Error Type A");
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |     }
+           |     ^
+        15 |     on fail ErrorTypeB e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |         str += "-> Error caught ! ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        17 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> do-stmt-negative-1-e.bal:30:5
+           |
+        30 |     do {
+           |     ^^^^
+        31 |         str += "Before failure throw";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        32 |         int _ = check getTypeAError();
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        33 |         int _ = check getTypeBError();
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        34 |     }
+           |     ^
+        35 |     on fail ErrorTypeA e { // @error
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        36 |         str += "-> Error caught : ";
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        37 |         str = str.concat(e.message());
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        38 |     }
+           |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

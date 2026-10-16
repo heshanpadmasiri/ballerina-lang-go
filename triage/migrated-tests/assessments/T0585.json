@@ -1,0 +1,12 @@
+{
+  "id": "T0585",
+  "name": "functions-with-defaultable-parameters-test-517e580aad/default-parameters-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: Mapping constructor — Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported",
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature"
+  ],
+  "reason": "The whole case requires an explicitly unsupported mapping spread field in a default parameter expression. testFuncWithSpreadFieldInMappingConstructorForDefaultValue constructs the default with {...r}, invokes y() with that argument omitted, and asserts 30. Support for defaultable parameters does not cover this required expression.",
+  "unsupported_constructs": ["Mapping constructor spread-field {...r} in the function-type default value"],
+  "test_design_notes": ["main calls the spread-field test, so its asserted behavior is essential to the case. One explicit unsupported construct suffices for whole-case classification."]
+}

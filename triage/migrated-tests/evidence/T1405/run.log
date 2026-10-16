@@ -1,0 +1,118 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "table-value-assign-test-98960d90ac/table-value-assign-test-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-value-assign-test-e.bal:14:14
+           |
+        14 |     var a4 = table key(id) [
+           |              ^^^^^^^^^^^^^^^
+        15 |         {"id": 1234},
+           |         ^^^^^^^^^^^^^
+        16 |         {"id": 4567}
+           |         ^^^^^^^^^^^^
+        17 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-value-assign-test-e.bal:18:15
+           |
+        18 |     var tbl = table key(id) [
+           |               ^^^^^^^^^^^^^^^
+        19 |         {"id": 1234},
+           |         ^^^^^^^^^^^^^
+        20 |         {"id": 4567}
+           |         ^^^^^^^^^^^^
+        21 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> table-value-assign-test-e.bal:7:37
+           |
+         7 |     table<Student> key(name) tbl1 = table [
+           |                                     ^^^^^^^
+         8 |         {name: "Amy", id: 1234},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         {name: "John", id: 4567}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |     ];
+           |     ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+          --> table-value-assign-test-e.bal:13:5
+           |
+        13 |     table<record {|readonly int id;|}> key(id) a3 = a2;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+         --> table-value-assign-test-e.bal:7:5
+          |
+        7 |     table<Student> key(name) tbl1 = table [
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: MAPPING_BINDING_PATTERN unimplemented
+          --> table-value-assign-test-e.bal:11:48
+           |
+        11 |     var a2 = checkpanic table key(id) from var {id} in tbl1 // @error WARNING invalid usage of the 'checkpanic' expression operator: no expression type is equivalent to error type
+           |                                                ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> table-value-assign-test-e.bal:11:48
+           |
+        11 |     var a2 = checkpanic table key(id) from var {id} in tbl1 // @error WARNING invalid usage of the 'checkpanic' expression operator: no expression type is equivalent to error type
+           |                                                ^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now
+          --> table-value-assign-test-e.bal:11:25
+           |
+        11 |     var a2 = checkpanic table key(id) from var {id} in tbl1 // @error WARNING invalid usage of the 'checkpanic' expression operator: no expression type is equivalent to error type
+           |                         ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-value-assign-test-e.bal:14:14
+           |
+        14 |     var a4 = table key(id) [
+           |              ^^^^^^^^^^^^^^^
+        15 |         {"id": 1234},
+           |         ^^^^^^^^^^^^^
+        16 |         {"id": 4567}
+           |         ^^^^^^^^^^^^
+        17 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-value-assign-test-e.bal:18:15
+           |
+        18 |     var tbl = table key(id) [
+           |               ^^^^^^^^^^^^^^^
+        19 |         {"id": 1234},
+           |         ^^^^^^^^^^^^^
+        20 |         {"id": 4567}
+           |         ^^^^^^^^^^^^
+        21 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+          --> table-value-assign-test-e.bal:7:37
+           |
+         7 |     table<Student> key(name) tbl1 = table [
+           |                                     ^^^^^^^
+         8 |         {name: "Amy", id: 1234},
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+         9 |         {name: "John", id: 4567}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |     ];
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+          --> table-value-assign-test-e.bal:13:5
+           |
+        13 |     table<record {|readonly int id;|}> key(id) a3 = a2;
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+         --> table-value-assign-test-e.bal:7:5
+          |
+        7 |     table<Student> key(name) tbl1 = table [
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,6 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: diagnostic at record-access-with-index-e.bal:7-7 not covered by any @error annotation
+    migration_triage_test.go:53: diagnostic at record-access-with-index-e.bal:57-57 not covered by any @error annotation
+    migration_triage_test.go:53: @error annotation at record-access-with-index-e.bal:9 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

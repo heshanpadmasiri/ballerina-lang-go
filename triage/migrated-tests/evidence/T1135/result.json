@@ -1,0 +1,15 @@
+{
+  "Name": "open-record-test-d43d4bfeae/nested-record-inline-init-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/nested-record-inline-init-v",
+  "Project": true,
+  "Id": "T1135",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/nested-record-inline-init-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-test-d43d4bfeae/nested-record-inline-init-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.067
+}

@@ -1,0 +1,16 @@
+{
+  "Name": "package-import-test-60d02fba3a/imports-per-file-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/imports-per-file-e",
+  "Project": true,
+  "Id": "T1194",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/imports-per-file-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/imports-per-file-e/file-negative1.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/package-import-test-60d02fba3a/imports-per-file-e/file-negative2.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.039
+}

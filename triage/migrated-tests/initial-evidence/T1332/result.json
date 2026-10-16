@@ -1,0 +1,14 @@
+{
+  "Name": "sealed-array-test-916de22362/sealed-array-listexpr-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-listexpr-e.bal",
+  "Project": false,
+  "Id": "T1332",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-listexpr-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

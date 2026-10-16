@@ -1,0 +1,25 @@
+{
+  "Name": "argument-parser-positive-test-e41e5b8a0a/multiple-typed-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/multiple-typed-v",
+  "Project": true,
+  "Id": "T0113",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/multiple-typed-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/multiple-typed-v/main.bal"
+  ],
+  "Args": [
+    "1000",
+    "1.0",
+    "Hello Ballerina",
+    "255",
+    "true",
+    "<book>Harry Potter</book>",
+    "just",
+    "the",
+    "rest"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.088
+}

@@ -1,0 +1,13 @@
+{
+  "id": "T0616",
+  "name": "global-var-test-297b184697/oce_depend_on_global_variable-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: \"[New expression](https://ballerina.io/spec/lang/master/#section_6.8.2)\" is listed, but object constructor expressions are not listed.",
+    "Module-level declarations: \"Class definition\" supports \"object-field\", \"method-defn\" and \"object-type-inclusion\" members.",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\""
+  ],
+  "reason": "The asserted behavior depends on a module-level anonymous object constructor expression (`object { ... }`) whose field initializer reads the global error-valued variable, followed by checking that the field remains an error rather than a string. Object constructor expressions are absent from the supported expression list; support for class definitions and new expressions does not establish support for this anonymous constructor form.",
+  "unsupported_constructs": ["Anonymous object constructor expression with a global-dependent field initializer and init method"],
+  "test_design_notes": ["The retained io:println call is instrumentation only. The assertion helper's toString method is explicitly supported as value:toString."]
+}

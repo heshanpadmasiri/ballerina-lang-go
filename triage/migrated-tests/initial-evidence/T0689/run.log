@@ -1,0 +1,15 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "iterable-operations-tests-f2b9a3e673/iterable-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: LIST_BINDING_PATTERN unimplemented
+          --> iterable-negative-e.bal:44:9
+           |
+        44 |     var [z, y] = s.map(function (string value) returns string { // @error
+           |         ^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented
+          --> iterable-negative-e.bal:44:9
+           |
+        44 |     var [z, y] = s.map(function (string value) returns string { // @error
+           |         ^^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

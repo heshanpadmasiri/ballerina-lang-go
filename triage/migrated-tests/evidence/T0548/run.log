@@ -1,0 +1,108 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "function-pointer-invocation-test-79ce9f570b/function-pointer-invocation-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+           --> function-pointer-invocation-e.bal:103:19
+            |
+        103 |     error? res1 = from var _ in [1, 2, 3, 4]
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        104 |         do {
+            |         ^^^^
+        105 |             function () returns int[] func = function () returns int[] {
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        106 |                 return from var i in [2] select i;
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        107 |             };
+            |             ^^
+        108 |             var a = from var x in func() select x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        109 |             assertEquals([2], a);
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        110 |         };
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> function-pointer-invocation-e.bal:68:19
+           |
+        68 |     error? res1 = from var _ in [1, 2, 3, 4]
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        69 |         do {
+           |         ^^^^
+        70 |             function () returns int[] func = function () returns int[] {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |                 return from var i in [2] select i;
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        72 |             };
+           |             ^^
+        73 |             assertEquals([2], func());
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        74 |         };
+           |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.QueryActionNode transformed to non-action-or-expression node <nil>
+          --> function-pointer-invocation-e.bal:78:19
+           |
+        78 |     error? res2 = from var _ in [1, 2, 3, 4]
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |         do {
+           |         ^^^^
+        80 |             int[] x = func1();
+           |             ^^^^^^^^^^^^^^^^^^
+        81 |             assertEquals([1, 2], x);
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        82 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+           --> function-pointer-invocation-e.bal:103:19
+            |
+        103 |     error? res1 = from var _ in [1, 2, 3, 4]
+            |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        104 |         do {
+            |         ^^^^
+        105 |             function () returns int[] func = function () returns int[] {
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        106 |                 return from var i in [2] select i;
+            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        107 |             };
+            |             ^^
+        108 |             var a = from var x in func() select x;
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        109 |             assertEquals([2], a);
+            |             ^^^^^^^^^^^^^^^^^^^^^
+        110 |         };
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> function-pointer-invocation-e.bal:68:19
+           |
+        68 |     error? res1 = from var _ in [1, 2, 3, 4]
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        69 |         do {
+           |         ^^^^
+        70 |             function () returns int[] func = function () returns int[] {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        71 |                 return from var i in [2] select i;
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        72 |             };
+           |             ^^
+        73 |             assertEquals([2], func());
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        74 |         };
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformQueryAction unimplemented
+          --> function-pointer-invocation-e.bal:78:19
+           |
+        78 |     error? res2 = from var _ in [1, 2, 3, 4]
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        79 |         do {
+           |         ^^^^
+        80 |             int[] x = func1();
+           |             ^^^^^^^^^^^^^^^^^^
+        81 |             assertEquals([1, 2], x);
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^
+        82 |         };
+           |         ^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

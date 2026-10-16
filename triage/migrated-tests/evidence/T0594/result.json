@@ -1,0 +1,14 @@
+{
+  "Name": "future-positive-tests-d5f0d09b6f/future-positive-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/future-positive-tests-d5f0d09b6f/future-positive-v.bal",
+  "Project": false,
+  "Id": "T0594",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/future-positive-tests-d5f0d09b6f/future-positive-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.059
+}

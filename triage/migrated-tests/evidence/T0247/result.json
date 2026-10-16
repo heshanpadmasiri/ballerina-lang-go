@@ -1,0 +1,14 @@
+{
+  "Name": "binary-expr-test-d0f511e6cb/binary-expr-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/binary-expr-test-d0f511e6cb/binary-expr-v.bal",
+  "Project": false,
+  "Id": "T0247",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/binary-expr-test-d0f511e6cb/binary-expr-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.074
+}

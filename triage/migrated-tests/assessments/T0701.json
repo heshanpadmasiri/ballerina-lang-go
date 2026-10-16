@@ -1,0 +1,18 @@
+{
+  "id": "T0701",
+  "name": "large-init-build-test-d2d15f0021/large-init-compilation-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"",
+    "## Module-level declarations: \"[Module variable declarations](https://ballerina.io/spec/lang/master/#module-var-decl)\"",
+    "## Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\"",
+    "## Expressions: \"[Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)\"; \"Currently [spread-field](https://ballerina.io/spec/lang/master/#spread-field) not supported\"",
+    "## Expressions: \"Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only\"",
+    "## Expressions: \"[Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)\""
+  ],
+  "reason": "The complete source uses record type definitions, module variables initialized with explicit mapping fields containing string literals or earlier module-variable references, and an empty public main function. These constructs are supported, and none uses spread fields or another restricted feature. Large record and module-initializer size alone is not excluded by subset 10. Successful compilation and initialization are therefore in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "A size-stress compilation/initialization case with no explicit value assertions; main is empty. No additional runtime behavior is inferred."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/invalid-decimal-03-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-03-p.bal",
+  "Project": false,
+  "Id": "T0045",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-decimal-03-p.bal"
+  ],
+  "Args": [
+    "0x1ef.a2"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

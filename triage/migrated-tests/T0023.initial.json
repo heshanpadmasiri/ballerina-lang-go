@@ -1,0 +1,19 @@
+{
+  "id": "T0023",
+  "name": "anonymous-object-test-5197ee0f89/anonymous-object-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: lists \"New expression\" and \"Anonymous function expression\", but does not list object-constructor expressions.",
+    "Object/class definitions: \"Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members\".",
+    "Module-level declarations: \"Class definition\" supports \"`object-field`, `method-defn` and `object-type-inclusion` members\"."
+  ],
+  "reason": "The whole case depends repeatedly on anonymous object-constructor expressions (`object { ... }` containing initialized fields and method bodies), which are not covered by the supported expression inventory. Support for object type members and named class definitions does not establish support for constructing anonymous objects. Consequently this is a feature case even though much of its surrounding grammar is supported. The test combines anonymous object parameters, local and module variables, nested object fields, initialization through self, method invocation, and structural assignment to Person. Named classes, new expressions, field access, method calls, list/mapping constructors, assignments, and arithmetic/string addition are listed as supported.",
+  "unsupported_constructs": [
+    "Anonymous object-constructor expressions with fields, init methods, and ordinary method definitions.",
+    "The harness imports ballerina/io, which is not enumerated in the import restriction list."
+  ],
+  "test_design_notes": [
+    "Positive executable case with output markers; no deliberate negative syntax or @error markers.",
+    "No obvious conflicting output markers or migration corruption is visible in the supplied source."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "access-test-42f7c8c3ea/access-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/access-test-42f7c8c3ea/access-p.bal",
+  "Project": false,
+  "Id": "T0008",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/access-test-42f7c8c3ea/access-p.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.076
+}

@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "readonly-object-test-9dae9381ef/readonly-objects-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: type inclusion must be an object type or class
+           --> readonly-objects-v.bal:220:6
+            |
+        220 |     *File;
+            |      ^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

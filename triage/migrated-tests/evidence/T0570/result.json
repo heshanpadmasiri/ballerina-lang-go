@@ -1,0 +1,14 @@
+{
+  "Name": "function-pointers-with-rest-args-test-c48bd49be9/function-pointers-with-rest-args-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-pointers-with-rest-args-test-c48bd49be9/function-pointers-with-rest-args-v.bal",
+  "Project": false,
+  "Id": "T0570",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-pointers-with-rest-args-test-c48bd49be9/function-pointers-with-rest-args-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.07
+}

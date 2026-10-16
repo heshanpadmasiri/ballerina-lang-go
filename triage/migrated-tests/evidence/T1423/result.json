@@ -1,0 +1,14 @@
+{
+  "Name": "tuple-access-expr-test-f5671505a0/finite-type-out-of-range-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/finite-type-out-of-range-p.bal",
+  "Project": false,
+  "Id": "T1423",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/finite-type-out-of-range-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.025
+}

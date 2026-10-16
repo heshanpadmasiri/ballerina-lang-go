@@ -1,0 +1,14 @@
+{
+  "id": "T1032",
+  "name": "numeric-conversion-test-6b3e1e5e00/invalid-float-as-byte-negative-1-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Function definition; Supports required-params",
+    "## Statements: Local variable declarations; Call; Panic",
+    "## Expressions: Type cast expression; Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "## Operators: Unary operators — numeric ops `+`, `-`"
+  ],
+  "reason": "The case asserts a runtime panic when casting float -1.0 to byte, whose range excludes negative values. Numeric literals, unary minus, explicit type casts, local declarations, function definitions and calls are supported, and no subset restriction excludes this conversion or its failure behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment marks the expected failure at the conversion; no explicit panic statement or external library is required."]
+}

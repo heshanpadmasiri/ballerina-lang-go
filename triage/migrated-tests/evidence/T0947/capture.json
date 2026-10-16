@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: '{| age: int, name: string, school: string, never... |}' value cannot be converted to 'never'\n        at trigger(map-incompatible-struct-p.bal:37)\n           main(map-incompatible-struct-p.bal:41)\n","Diagnostics":null}

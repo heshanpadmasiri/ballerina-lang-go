@@ -1,0 +1,19 @@
+{
+  "Name": "option-test-1b0c555df9/option_with_array_type_spaced_many-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_array_type_spaced_many-v.bal",
+  "Project": false,
+  "Id": "T1174",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/option-test-1b0c555df9/option_with_array_type_spaced_many-v.bal"
+  ],
+  "Args": [
+    "--array",
+    "e-fac",
+    "--array",
+    "hello"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.083
+}

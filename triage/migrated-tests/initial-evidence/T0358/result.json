@@ -1,0 +1,14 @@
+{
+  "Name": "closed-record-test-6f9046ad8a/sealed-record-literal-attached-functions-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/sealed-record-literal-attached-functions-e.bal",
+  "Project": false,
+  "Id": "T0358",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/closed-record-test-6f9046ad8a/sealed-record-literal-attached-functions-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

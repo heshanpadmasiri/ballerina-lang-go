@@ -1,0 +1,21 @@
+{
+  "id": "T1406",
+  "name": "table-value-assign-test-98960d90ac/table-value-assign-test-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: the positive list includes List constructor and Mapping constructor but does not include table constructors.",
+    "Expressions > Query expressions: Supports `list` and `map` as `query-constructor-type`",
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: (list excludes table:add and table:length)"
+  ],
+  "reason": "Essential behavior requires keyed and keyless table constructors and table query constructors, which are outside the documented positive list. The case additionally invokes unsupported table langlib add and length methods. Either issue suffices for feature classification, even though assignments, equality, casts, type tests and value:toString are listed as supported.",
+  "unsupported_constructs": [
+    "Table constructors, including table key(name), table key(id), and table []",
+    "Table query constructors: table key(id) from ... select and table key() from ... select; documented query constructor types are list and map",
+    "Table langlib methods add and length"
+  ],
+  "test_design_notes": [
+    "Whole case combines table assignment/equality, queries, mutation, typedesc string formatting and readonly table return behavior.",
+    "No @args, @panic or @output markers occur; main invokes all ten tests and failures are signaled by the local assertion helper."
+  ]
+}

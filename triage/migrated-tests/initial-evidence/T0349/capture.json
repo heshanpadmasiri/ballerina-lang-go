@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: ambiguous inherent type for mapping constructor\n  --\u003e closed-record-ambiguous-types-e.bal:17:24\n   |\n17 |     string s1 = _init_({}); // @error\n   |                        ^^\n\n","Diagnostics":[{"File":"closed-record-ambiguous-types-e.bal","StartLine":17,"EndLine":17}]}

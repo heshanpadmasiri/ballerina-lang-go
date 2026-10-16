@@ -1,0 +1,15 @@
+{
+  "id": "T1129",
+  "name": "open-record-optional-fields-test-44a9434c47/open_record_optional_fields_negatives-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Expressions: [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)",
+    "Expressions: [Optional field access expression](https://ballerina.io/spec/lang/master/#optional-field-access-expr)"
+  ],
+  "reason": "The negative assertions concern an optional record field illegally combined with a default initializer, omission of a required record field in an empty mapping constructor, and assignment of optional access on an open record to string. These exercise supported type definitions, local declarations, mapping constructors and optional field access; no listed restriction excludes their rejection behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The two error markers on the optional field declaration and the other error markers assert compile-time rejection; invalid source does not itself place the case outside supported scope."]
+}

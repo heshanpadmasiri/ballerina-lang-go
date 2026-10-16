@@ -1,0 +1,19 @@
+{
+  "id": "T0817",
+  "name": "map-stamp-inbuilt-function-test-c005b5172a/map-stamp-inbuilt-function-test-c005b5172a-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: the supported expression list includes 'Type test expression' and 'Type cast expression', but does not include typeof expressions.",
+    "Subset restrictions / Import declarations: 'Only following lang libraries with given methods/types are supported'; ballerina/lang.error lists only 'message'.",
+    "Subset restrictions / Invocations / Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes 'error:message', 'value:cloneWithType', and 'value:toString' but not error:detail."
+  ],
+  "reason": "The case essentially asserts runtime type-descriptor strings through many typeof expressions, which are absent from the supported expression list. It also calls r24.detail() to assert a conversion error's detail message; error:detail is excluded by the explicit langlib and method-call allowlists. Supported cloneWithType and toString do not bring these additional operations into scope.",
+  "unsupported_constructs": [
+    "typeof expressions used throughout runtime type assertions",
+    "ballerina/lang.error detail method (r24.detail())"
+  ],
+  "test_design_notes": [
+    "The negative helper replaces a conversion error with a manually constructed ConversionError, so its exact printed message does not directly validate cloneWithType's native diagnostic.",
+    "io:println is output instrumentation and is not a classification basis."
+  ]
+}

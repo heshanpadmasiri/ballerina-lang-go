@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Unknown symbol: a\n --\u003e main.bal:2:12\n  |\n2 |     return a; // @error\n  |            ^\n\n","Diagnostics":[{"File":"main.bal","StartLine":2,"EndLine":2}]}

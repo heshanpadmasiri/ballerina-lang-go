@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: Failed to retrieve the process object: fork/exec /Library/Ballerina/bin/bal: no such file or directory\n","Diagnostics":null}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Variable already defined: i\n --\u003e class-dataflow-negative-e.bal:5:9\n  |\n5 |         int i = 0;\n  |         ^^^^^^^^^^\n\n","Diagnostics":[{"File":"class-dataflow-negative-e.bal","StartLine":5,"EndLine":5}]}

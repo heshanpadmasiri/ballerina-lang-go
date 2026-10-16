@@ -1,0 +1,33 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "list-binding-pattern-test-b87d28a686/list-binding-pattern-semantics-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> list-binding-pattern-semantics-e.bal:20:9
+           |
+        20 |         var [a, a] => {} // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> list-binding-pattern-semantics-e.bal:21:9
+           |
+        21 |         var [a, [a]] => {} // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> list-binding-pattern-semantics-e.bal:27:9
+           |
+        27 |         var [p, ...oth] if p is anydata => {
+           |         ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> list-binding-pattern-semantics-e.bal:36:9
+           |
+        36 |         var [x, ...y] => {
+           |         ^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> list-binding-pattern-semantics-e.bal:39:9
+           |
+        39 |         var [z] => {
+           |         ^^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

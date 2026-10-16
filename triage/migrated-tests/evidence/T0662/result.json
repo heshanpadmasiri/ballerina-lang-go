@@ -1,0 +1,14 @@
+{
+  "Name": "intersection-type-test-48ac088d43/readonly-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/readonly-v.bal",
+  "Project": false,
+  "Id": "T0662",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/intersection-type-test-48ac088d43/readonly-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.072
+}

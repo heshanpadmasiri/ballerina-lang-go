@@ -1,0 +1,16 @@
+{
+  "id": "T1028",
+  "name": "numeric-conversion-test-6b3e1e5e00/invalid-decimal-as-byte-union-negative-1-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Type definition\"; \"Function definition\" supports \"required-params\".",
+    "Statements: \"Local variable declarations\"; \"Call\".",
+    "Expressions: \"Type cast expression\"; \"Literal\" supports \"numeric-literal\".",
+    "Operators: Unary operators: \"numeric ops `+`, `-`\"."
+  ],
+  "reason": "The case boxes decimal -1.0 in an Employee|string|decimal union and asserts a panic when casting it to byte|Employee. Type definitions, required decimal parameters, numeric literals and unary minus, local variables, calls, and type casts are supported; no stated restriction excludes this union cast or its runtime rejection. The asserted failure of an invalid numeric cast is therefore in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The // @panic marker asserts failure at the cast; the case does not assert a particular panic message."
+  ]
+}

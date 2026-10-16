@@ -1,0 +1,18 @@
+{
+  "id": "T0647",
+  "name": "init-function-test-d2ccfe8a95/init-function-project-v",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message.",
+    "Supported language features (subset 10) > Module-level declarations: Function definition; Module variable declarations; Import declarations."
+  ],
+  "reason": "The asserted outputs 110 and hello world are extracted using result.detail(). The positive langlib and method-call lists support error:message only, so error:detail is an essential unsupported operation even though error construction and ordinary function/module declarations are listed.",
+  "unsupported_constructs": [
+    "ballerina/lang.error detail via result.detail(), required to observe both asserted initialization values"
+  ],
+  "test_design_notes": [
+    "io:println is output instrumentation only.",
+    "The test asserts module init execution and dependency initialization ordering, observing the imported module's updated string from the importing module's init."
+  ]
+}

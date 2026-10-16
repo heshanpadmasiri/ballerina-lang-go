@@ -1,0 +1,13 @@
+{
+  "id": "T1580",
+  "name": "worker-sync-send-test-389660a47d/multiple-sync-send-with-panic-in-send-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Supported language features (subset 10) / Statements: lists Assignment, If/else, Local variable declarations, Return and Panic, but does not list named worker declarations.",
+    "Supported language features (subset 10) / Expressions: \"Start action\", \"Wait action\" and \"Error constructor\" are listed; synchronous worker send and worker receive actions are not listed.",
+    "Module-level declarations: \"Annotation declarations and attachments\" supports \"source-only, runtime, marker and repeated annotations\"."
+  ],
+  "reason": "Named workers and their synchronous send (->>) and receive (<-) actions are essential and not covered by subset 10. The asserted panic depends on propagation from a worker blocked across multiple synchronous interactions through wait; listing Panic and Wait action does not establish support for this worker communication behavior. No applicable restriction supplies that missing support.",
+  "unsupported_constructs": ["Named worker declarations", "Synchronous worker send and receive actions", "Panic propagation across worker communication and wait"],
+  "test_design_notes": ["The @panic marker is on the error constructor declaration before panic err, rather than on the panic statement or observing call; it appears intended to assert the eventual propagated worker panic.", "Supported ordinary declarations, arithmetic, annotations, error construction and panic are mixed with unsupported worker communication."]
+}

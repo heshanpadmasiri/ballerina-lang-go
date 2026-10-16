@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 4\n        at testArrayIndexOutOfRangeErrorWithUnionWithFiniteTypesIndex(union-finite-index-out-of-range-p.bal:8)\n           main(union-finite-index-out-of-range-p.bal:12)\n","Diagnostics":null}

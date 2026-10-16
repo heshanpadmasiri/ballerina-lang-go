@@ -1,0 +1,16 @@
+{
+  "id": "T0307",
+  "name": "check-panic-expression-operator-test-baa47123b9/checkpanic-semantic-e",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\"",
+    "Expressions: \"[Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\"",
+    "Module-level declarations: \"[Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)\"",
+    "Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\""
+  ],
+  "reason": "The checking-expr support covers checkpanic. This negative semantic case exercises checkpanic on non-error operands and assignment of its remaining string|int result to string, alongside a valid string|MyError|CustomError operand. These are checking-expression and ordinary type-checking behaviors within the supported grammar and type system; the custom error constructors and type definitions introduce no unsupported feature.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The source marks expected compile-time errors with @error, including two on one line. It has no @args, @panic, or @output assertions and does not assert runtime panic behavior."
+  ]
+}

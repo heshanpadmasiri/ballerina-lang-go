@@ -1,0 +1,12 @@
+{
+  "id": "T0735",
+  "name": "locks-with-on-fail-test-044696e74b/locks-with-on-fail-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"[Lock statement](https://ballerina.io/spec/lang/master/#lock-stmt)\" is listed, but fail statements and on-fail clauses are not listed as supported statements/behavior.",
+    "## Expressions: \"[Check expression](https://ballerina.io/spec/lang/master/#checking-expr)\""
+  ],
+  "reason": "The case requires explicit fail statements and on-fail handlers on nested locks, including error binding patterns and continuation after handled failures. Although lock statements and check expressions are listed, fail statements and on-fail handling are not covered by the supported feature list. These behaviors are essential to the asserted state changes, extracted error details, and nested-handler execution order.",
+  "unsupported_constructs": ["fail statements", "on fail clauses on lock statements, including error binding patterns"],
+  "test_design_notes": ["io:println only exposes output; it is not the reason for the feature classification.", "The assertions require handlers to extract nested cause, tuple and record details and distinguish handled inner failures from outer failures."]
+}

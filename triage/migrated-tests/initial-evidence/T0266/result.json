@@ -1,0 +1,14 @@
+{
+  "Name": "block-stmt-test-58e33229dc/block-stmt-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/block-stmt-test-58e33229dc/block-stmt-v.bal",
+  "Project": false,
+  "Id": "T0266",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/block-stmt-test-58e33229dc/block-stmt-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.042
+}

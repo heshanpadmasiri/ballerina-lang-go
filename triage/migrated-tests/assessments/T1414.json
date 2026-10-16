@@ -1,0 +1,18 @@
+{
+  "id": "T1414",
+  "name": "ternary-expression-test-915619b7bf/ternary-type-narrow-positive-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: 'Function definition'; 'Type definition'",
+    "Statements: 'Local variable declarations'; 'Call'; 'Return'; 'Destructuring assignment statement' — 'Only supports wildcard-binding-pattern'",
+    "Expressions: 'Conditional expression'; 'Type test expression'; 'Equality expression'; 'Unary logical expression'; 'Mapping constructor'; 'Nested expressions (`(expression)`) ' (parenthesized expressions)",
+    "Expressions: 'Literal' — 'Currently support nil-literal, boolean-literal, numeric-literal and string-literal only'",
+    "Operators: 'Equality ops ==, !=, ===, !=='; 'logical !'"
+  ],
+  "reason": "The case exercises type narrowing in ternary branches using type tests, boolean/nil equality and logical negation, including nested ternaries and record-union parameters. These use supported expressions, type definitions, calls and wildcard assignments; no listed restriction excludes their narrowing behavior. The output true follows the unconditional return after the calls. io:println is instrumentation and no restricted langlib operation is used.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @output true marker checks successful execution with an unconditional true return; helper functions have empty bodies, so the main coverage is acceptance of narrowed argument types rather than runtime value assertions.",
+    "Fixed local initializers and the single test2 argument set exercise only some runtime branches, though all branches require static type checking. No obvious mixed-scope or marker mismatch."
+  ]
+}

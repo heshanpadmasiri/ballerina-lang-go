@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: cannot infer type for implicit new expression\n --\u003e array-mutability-object-p.bal:7:24\n  |\n7 |     Dog[] dogs = [dog, new];\n  |                        ^^^\n\n","Diagnostics":[{"File":"array-mutability-object-p.bal","StartLine":7,"EndLine":7}]}

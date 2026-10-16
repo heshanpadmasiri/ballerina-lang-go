@@ -1,0 +1,22 @@
+{
+  "id": "T0008",
+  "name": "access-test-42f7c8c3ea/access-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    {"heading": "Module-level declarations", "quote": "- [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)"},
+    {"heading": "Module-level declarations", "quote": "- [Function definition](https://ballerina.io/spec/lang/master/#function-defn)"},
+    {"heading": "Statements", "quote": "- [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)"},
+    {"heading": "Expressions", "quote": "- [Field access expression](https://ballerina.io/spec/lang/master/#section_6.10)"},
+    {"heading": "Expressions", "quote": "- [Optional field access expression](https://ballerina.io/spec/lang/master/#optional-field-access-expr)"},
+    {"heading": "Expressions", "quote": "- [Member access expression](https://ballerina.io/spec/lang/master/#member-access-expr)"},
+    {"heading": "Expressions", "quote": "- [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)"},
+    {"heading": "Expressions", "quote": "- [Mapping constructor](https://ballerina.io/spec/lang/master/#mapping-constructor-expr)"}
+  ],
+  "reason": "All constructs are within the listed support: record type definitions with optional fields and nullable array elements, function definitions/calls, local declarations, empty list and mapping constructors, and chained field/member/optional field access. No stated subset restriction excludes this case. Indexing the empty betas array at zero should panic before optional access to s can occur.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The inline @panic marker agrees with the unconditional out-of-bounds access a.betas[0].",
+    "The panic occurs before ?.s, so this case checks evaluation/panic propagation through the access chain, not successful optional access to a nil Beta or an absent s field.",
+    "No obvious migration or marker problem is visible in the supplied source; there is no mixture of supported and unsupported constructs."
+  ]
+}

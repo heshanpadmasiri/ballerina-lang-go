@@ -1,0 +1,22 @@
+{
+  "id": "T1528",
+  "name": "wait-for-all-actions-test-ef2703e247/all-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: \"[Start action](https://ballerina.io/spec/lang/master/#start-action)\"; \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\"; \"[Trap expression](https://ballerina.io/spec/lang/master/#trap-expr)\"",
+    "## Statements: enumerated supported statements do not include fork statements or named worker declarations.",
+    "## Expressions: enumerated supported expressions/actions do not include worker send or receive actions.",
+    "## Import declarations (under # Subset restrictions): \"ballerina/lang.runtime\" includes \"sleep\".",
+    "### Other invocation restrictions: \"map:keys\" and \"array:length\" are supported method calls."
+  ],
+  "reason": "The complete case requires named workers (waitTest17\u201320), fork statements (waitTest19\u201320), and worker message send/receive actions (waitTest20), none covered by the supported lists. Those are essential to asserted outputs, including w2=\"hello world\" and w3=15, so the whole case is feature even though start/wait/trap, runtime:sleep and keys/length are listed as supported.",
+  "unsupported_constructs": [
+    "Named worker declarations and waiting on named workers in waitTest17\u201320.",
+    "fork statements in waitTest19 and waitTest20.",
+    "Worker send (a -> w2; b -> w1) and receive (<-w2; <-w1) actions in waitTest20."
+  ],
+  "test_design_notes": [
+    "Mixed scope: ordinary future start/wait result mapping and panic trapping are combined with named workers, fork, and worker messaging in a single main.",
+    "Output markers exercise actual concurrent results and trapped panic behavior (waitTest16 expects 0), not just function signatures. No obvious malformed output markers; io:println is instrumentation."
+  ]
+}

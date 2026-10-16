@@ -1,0 +1,14 @@
+{
+  "Name": "jsonstamp-inbuilt-function-test-4b592e7d2b/jsonstamp-inbuilt-function-test-4b592e7d2b-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/jsonstamp-inbuilt-function-test-4b592e7d2b/jsonstamp-inbuilt-function-test-4b592e7d2b-v.bal",
+  "Project": false,
+  "Id": "T0698",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/jsonstamp-inbuilt-function-test-4b592e7d2b/jsonstamp-inbuilt-function-test-4b592e7d2b-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.058
+}

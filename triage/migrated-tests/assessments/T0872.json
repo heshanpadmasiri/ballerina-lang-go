@@ -1,0 +1,15 @@
+{
+  "id": "T0872",
+  "name": "match-stmt-mapping-match-pattern-test-9627f13a97/mapping-match-pattern-with-rest-match-pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements > Match statement: Currently only supports const-pattern and wildcard-match-pattern"
+  ],
+  "reason": "The asserted behavior requires mapping match patterns with rest captures to select clauses, exclude matched fields from captured mappings, preserve remaining field values and types, and handle nested patterns and guards. Mapping/rest match patterns are outside the explicitly supported const and wildcard patterns.",
+  "unsupported_constructs": [
+    "Mapping match patterns with variable field captures and ...var rest captures, including nested mapping patterns and guarded clauses"
+  ],
+  "test_design_notes": [
+    "Assertions exercise rest-map contents, inferred record types, clause selection, and preservation of the input mapping; these depend directly on unsupported patterns."
+  ]
+}

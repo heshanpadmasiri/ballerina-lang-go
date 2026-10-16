@@ -1,0 +1,16 @@
+{
+  "id": "T0109",
+  "name": "argument-parser-positive-test-e41e5b8a0a/int-positive-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Invocations / Named and default arguments: \"Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature.\""
+  ],
+  "reason": "The test requires the executable entry-point protocol to parse command-line string \"10\" as int, pass it to main(int i), and print 10. Subset 10 supports required parameter signatures and ordinary invocations but does not cover command-line argument parsing or binding to main; signature support does not establish that execution behavior.",
+  "unsupported_constructs": [
+    "Command-line argument conversion and binding to typed main parameters (@args [\"10\"] -> main(int i))."
+  ],
+  "test_design_notes": [
+    "@output 10 asserts successful entry-point argument parsing; io:println is instrumentation and is not the feature gap."
+  ]
+}

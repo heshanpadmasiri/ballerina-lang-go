@@ -1,0 +1,21 @@
+{
+  "Name": "read-only-object-bala-test-38fd1e4394/readonly-objects-provider-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-objects-provider-v",
+  "Project": true,
+  "Id": "T1242",
+  "WorkspaceRoot": "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394",
+  "WorkspaceMembers": [
+    "readonly-objects-provider-v"
+  ],
+  "ExecutionPath": "/workspace/scratch/nutcracker-triage-workspaces/T1242",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-objects-provider-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/read-only-object-bala-test-38fd1e4394/readonly-objects-provider-v/constructs.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.042
+}

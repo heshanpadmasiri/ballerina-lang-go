@@ -1,0 +1,40 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "type-guard-test-74355f2266/type-narrow-1-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+           --> type-narrow-1-e.bal:536:5
+            |
+        536 |     do {
+            |     ^^^^
+        537 |         if x is int {
+            |         ^^^^^^^^^^^^^
+        538 |             return;
+            |             ^^^^^^^
+        539 |         }
+            |         ^
+        540 | 
+            | 
+        541 |         string _ = x; // OK
+            |         ^^^^^^^^^^^^^^^^^^^
+        542 |     }
+            |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+           --> type-narrow-1-e.bal:536:5
+            |
+        536 |     do {
+            |     ^^^^
+        537 |         if x is int {
+            |         ^^^^^^^^^^^^^
+        538 |             return;
+            |             ^^^^^^^
+        539 |         }
+            |         ^
+        540 | 
+            | 
+        541 |         string _ = x; // OK
+            |         ^^^^^^^^^^^^^^^^^^^
+        542 |     }
+            |     ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

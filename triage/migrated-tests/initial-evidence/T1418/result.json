@@ -1,0 +1,14 @@
+{
+  "Name": "test-error-return-f3f8de5f6c/valid-ignore-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/test-error-return-f3f8de5f6c/valid-ignore-v.bal",
+  "Project": false,
+  "Id": "T1418",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/test-error-return-f3f8de5f6c/valid-ignore-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

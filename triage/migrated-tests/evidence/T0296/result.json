@@ -1,0 +1,14 @@
+{
+  "Name": "capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-negative-e.bal",
+  "Project": false,
+  "Id": "T0296",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/capture-binding-pattern-test-cbcddb7fc4/capture-binding-pattern-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.048
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: Unknown symbol: isReadOnly\n  --\u003e is-readonly-deprecated-warning-e.bal:24:17\n   |\n24 |     boolean _ = value:isReadOnly(x); // @error\n   |                 ^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"is-readonly-deprecated-warning-e.bal","StartLine":24,"EndLine":24}]}

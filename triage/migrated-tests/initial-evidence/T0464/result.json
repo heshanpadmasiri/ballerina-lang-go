@@ -1,0 +1,14 @@
+{
+  "Name": "expr-bodied-function-test-d60970291b/expr-bodied-functions-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/expr-bodied-function-test-d60970291b/expr-bodied-functions-v.bal",
+  "Project": false,
+  "Id": "T0464",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/expr-bodied-function-test-d60970291b/expr-bodied-functions-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.055
+}

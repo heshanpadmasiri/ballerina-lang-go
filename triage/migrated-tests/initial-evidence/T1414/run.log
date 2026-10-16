@@ -1,0 +1,69 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "ternary-expression-test-915619b7bf/ternary-type-narrow-positive-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:15:14
+           |
+        15 | function aFn(A x) {} function bFn(B x) {} function cFn(C x) {} function abFn(A|B x) {}
+           |              ^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:15:35
+           |
+        15 | function aFn(A x) {} function bFn(B x) {} function cFn(C x) {} function abFn(A|B x) {}
+           |                                   ^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:15:56
+           |
+        15 | function aFn(A x) {} function bFn(B x) {} function cFn(C x) {} function abFn(A|B x) {}
+           |                                                        ^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:15:78
+           |
+        15 | function aFn(A x) {} function bFn(B x) {} function cFn(C x) {} function abFn(A|B x) {}
+           |                                                                              ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:17:111
+           |
+        17 | function intFn(int x) {} function stringFn(string x) {} function stringOptFn(string? x) {} function booleanFn(boolean x) {} function trueFn(true x) {} function falseFn(false x) {} function nilFn(() x) {}
+           |                                                                                                               ^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:17:141
+           |
+        17 | function intFn(int x) {} function stringFn(string x) {} function stringOptFn(string? x) {} function booleanFn(boolean x) {} function trueFn(true x) {} function falseFn(false x) {} function nilFn(() x) {}
+           |                                                                                                                                             ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:17:16
+           |
+        17 | function intFn(int x) {} function stringFn(string x) {} function stringOptFn(string? x) {} function booleanFn(boolean x) {} function trueFn(true x) {} function falseFn(false x) {} function nilFn(() x) {}
+           |                ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:17:169
+           |
+        17 | function intFn(int x) {} function stringFn(string x) {} function stringOptFn(string? x) {} function booleanFn(boolean x) {} function trueFn(true x) {} function falseFn(false x) {} function nilFn(() x) {}
+           |                                                                                                                                                                         ^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:17:196
+           |
+        17 | function intFn(int x) {} function stringFn(string x) {} function stringOptFn(string? x) {} function booleanFn(boolean x) {} function trueFn(true x) {} function falseFn(false x) {} function nilFn(() x) {}
+           |                                                                                                                                                                                                    ^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:17:44
+           |
+        17 | function intFn(int x) {} function stringFn(string x) {} function stringOptFn(string? x) {} function booleanFn(boolean x) {} function trueFn(true x) {} function falseFn(false x) {} function nilFn(() x) {}
+           |                                            ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+          --> ternary-type-narrow-positive-v.bal:17:78
+           |
+        17 | function intFn(int x) {} function stringFn(string x) {} function stringOptFn(string? x) {} function booleanFn(boolean x) {} function trueFn(true x) {} function falseFn(false x) {} function nilFn(() x) {}
+           |                                                                              ^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

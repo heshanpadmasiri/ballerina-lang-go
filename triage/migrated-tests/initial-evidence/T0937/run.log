@@ -1,0 +1,21 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "native-conversion-negative-test-c94381ac56/native-conversion-negative-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: ballerina/test
+         --> native-conversion-negative-v.bal:2:1
+          |
+        2 | import ballerina/test;
+          | ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> native-conversion-negative-v.bal:135:5
+            |
+        135 |     test:assertEquals(<string> checkpanic err.detail()["message"], "'map<json>' value has cyclic reference");
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: assertEquals
+           --> native-conversion-negative-v.bal:136:5
+            |
+        136 |     test:assertEquals(err.message(), "{ballerina/lang.value}ConversionError");
+            |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

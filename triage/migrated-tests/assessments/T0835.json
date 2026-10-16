@@ -1,0 +1,19 @@
+{
+  "id": "T0835",
+  "name": "mapping-constructor-expr-test-833706cb84/readonly-field-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString, but not isReadOnly; ballerina/lang.error lists only message.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; the list includes error:message and value:toString/value:toBalString, but neither error:detail nor value:isReadOnly.",
+    "Expressions: \"Mapping constructor\" with \"Currently spread-field not supported\"; \"Trap expression\" and \"Type test expression\" are supported."
+  ],
+  "reason": "The case essentially asserts readonly inference via repeated isReadOnly() calls and validates mutation panics through err.detail()[\"message\"]. Both langlib methods are outside the explicit supported lists, so the whole case requires unsupported features even though mapping constructors, traps and type tests are supported.",
+  "unsupported_constructs": [
+    "ballerina/lang.value:isReadOnly invoked as a method to assert record/map mutability",
+    "ballerina/lang.error:detail invoked as a method to assert exact readonly-mutation error details"
+  ],
+  "test_design_notes": [
+    "io:print(\"\") is instrumentation and does not determine classification.",
+    "The assertions check runtime readonly inference, prohibited mutations, preserved values and exact error-detail messages."
+  ]
+}

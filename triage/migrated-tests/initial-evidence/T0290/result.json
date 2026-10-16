@@ -1,0 +1,14 @@
+{
+  "Name": "byte-as-int-test-3342351ff8/inherent-type-violation-array-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/byte-as-int-test-3342351ff8/inherent-type-violation-array-p.bal",
+  "Project": false,
+  "Id": "T0290",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/byte-as-int-test-3342351ff8/inherent-type-violation-array-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.056
+}

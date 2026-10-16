@@ -1,0 +1,12 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:13 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:14 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:15 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:20 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:30 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:31 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at array-size-scope-negative-e.bal:32 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

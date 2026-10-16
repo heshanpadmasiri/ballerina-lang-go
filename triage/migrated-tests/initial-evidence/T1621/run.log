@@ -1,0 +1,11 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @output annotation mismatch
+        expected:
+        	attr-with-ns-val
+        	error("{ballerina/lang.xml}XMLOperationError",message="invalid xml attribute access on xml sequence")
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.08s)
+FAIL

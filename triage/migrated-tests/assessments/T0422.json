@@ -1,0 +1,17 @@
+{
+  "id": "T0422",
+  "name": "division-operation-test-be1b8193ad/division-operation-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Constant declarations; Type definition; Function definition",
+    "Statements: Local variable declarations; Assignment",
+    "Expressions: Mapping constructor; Variable reference; Literal — Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only",
+    "Operators: Multiplicative ops `*`, `%`, `/`",
+    "Subset restrictions / Import declarations: `ballerina/lang.string` — `Char`"
+  ],
+  "reason": "All essential constructs are supported. This negative case checks static rejection of division on JSON and strings, incompatible numeric unions, and mixed float/decimal/int operands, including constant-union operands. Division, declarations, literals and mapping constructors are supported; string:Char is explicitly allowed. Invalid operand combinations remain in scope as type-system rejection tests.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error comments assert compile-time rejection; there are no @args, @panic or @output assertions."
+  ]
+}

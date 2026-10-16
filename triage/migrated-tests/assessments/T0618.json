@@ -1,0 +1,19 @@
+{
+  "id": "T0618",
+  "name": "greater-less-than-operation-test-18ca062550/greater-less-than-operation-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Relational expression](https://ballerina.io/spec/lang/master/#relational-expr)",
+    "## Operators: Relational ops `<`, `<=`, `>`, `>=`",
+    "## Expressions: [List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn); [Constant declarations](https://ballerina.io/spec/lang/master/#module-const-decl)",
+    "## Import declarations: `ballerina/lang.int` lists `Signed16`, `Signed32`, `Unsigned8`, `Unsigned16`; `ballerina/lang.string` lists `Char`"
+  ],
+  "reason": "The case asserts supported relational ordering across numeric, string, boolean, list/tuple, finite, union, nullable and readonly-intersection types, including lexicographic ordering and unordered nil/NaN comparisons. Relational expressions and all four operators are expressly supported with no operand-type restriction. Its type definitions, constants, constructors, arithmetic, calls and control flow are covered; all referenced langlib subtypes are permitted. No essential unsupported construct or asserted behavior is identified.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println only reports range-test results and is instrumentation.",
+    "testUnorderedTypeComparison11 computes x16 but repeats assertFalse(x15), leaving x16 unasserted.",
+    "Several tuple and fixed-array constructors rely on implicit filler values; the asserted comparisons therefore include the resulting filled list contents."
+  ]
+}

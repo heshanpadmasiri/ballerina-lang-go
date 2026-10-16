@@ -1,0 +1,14 @@
+{
+  "id": "T1200",
+  "name": "package-init-worker-test-082730fd34/package-init-worker-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: the supported statement list does not include named worker declarations.",
+    "## Expressions: \"[Wait action](https://ballerina.io/spec/lang/master/#wait-action)\"",
+    "## Module-level declarations: \"Annotation declarations and attachments\" and \"Module variable declarations\"",
+    "# Subset restrictions / ## Import declarations: `ballerina/lang.runtime` lists `sleep`, `onGracefulStop` and `StopHandler`."
+  ],
+  "reason": "The asserted output 1 depends on named workers w1 and w2 running inside a module-variable initializer and on waiting for w1. Named worker declarations and their strand thread scheduling behavior are not covered by the supported constructs. Support for wait actions, annotations and module variables does not establish named-worker support. runtime:sleep is explicitly supported.",
+  "unsupported_constructs": ["Named worker declarations", "@strand {thread: \"any\"} worker scheduling during module initialization"],
+  "test_design_notes": ["The sole assertion checks the returned worker value through module initialization; it does not explicitly assert elapsed time or completion of w2.", "io:println is output instrumentation."]
+}

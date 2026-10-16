@@ -1,0 +1,14 @@
+{
+  "Name": "match-guard-analysis-test-cf5a6832da/match-guard-type-checking-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-guard-analysis-test-cf5a6832da/match-guard-type-checking-e.bal",
+  "Project": false,
+  "Id": "T0848",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-guard-analysis-test-cf5a6832da/match-guard-type-checking-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.021
+}

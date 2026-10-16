@@ -1,0 +1,19 @@
+{
+  "id": "T0003",
+  "name": "abstract-object-test-b4e9633034/abstract-object-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    {"heading": "Supported language features (subset 10) / Module-level declarations", "quote": "[Function definition]"},
+    {"heading": "Supported language features (subset 10) / Module-level declarations", "quote": "[Type definition]"},
+    {"heading": "Supported language features (subset 10) / Statements", "quote": "[Local variable declarations]"},
+    {"heading": "Supported language features (subset 10) / Expressions", "quote": "[New expression]"},
+    {"heading": "Subset restrictions / Object/class definitions", "quote": "Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members"}
+  ],
+  "reason": "All constructs are covered: module functions and type definitions, unqualified object type descriptors with public and non-public fields, a method declaration with required parameters, and explicit and inferred new expressions in local declarations. The case tests rejection of constructing object types and declaring an initializer in an object type. No unsupported qualifier or other excluded feature appears; expected semantic errors do not make the syntax an unsupported feature.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "This is a negative case: four new expressions and the init method declaration carry @error markers. A diagnostic on these lines is intended, rather than evidence by itself of missing support.",
+    "The comment calls Person2 an abstract object, but neither type uses an abstract qualifier; both use ordinary object type descriptors.",
+    "No mixed supported/unsupported constructs or obvious migration/marker problems are visible in the supplied source. The source alone cannot establish exact diagnostic wording or multiplicity."
+  ]
+}

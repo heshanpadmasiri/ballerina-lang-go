@@ -1,0 +1,14 @@
+{
+  "id": "T1191",
+  "name": "package-import-test-60d02fba3a/duplicate-package-import-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Import declarations](https://ballerina.io/spec/lang/master/#import-decl)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Module-level declarations: [Annotation declarations and attachments](https://ballerina.io/spec/lang/master/#section_9.1)",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported"
+  ],
+  "reason": "The asserted error is rejection of a duplicate import, within supported import declarations. The empty function and annotation attachment are also supported. The lang-library restriction applies to ballerina/lang.* and does not exclude ballerina/test imports; no test-library execution behavior is asserted here.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The second identical import carries @error; the BeforeSuite annotation supplies context without asserting suite lifecycle execution."]
+}

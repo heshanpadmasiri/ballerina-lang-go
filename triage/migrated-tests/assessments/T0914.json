@@ -1,0 +1,17 @@
+{
+  "id": "T0914",
+  "name": "module-record-variable-test-a0b146279e/cases/module-record-variable-test-a0b146279e-annotation-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: \"Annotation declarations and attachments\"; \"Supports source-only, runtime, marker and repeated annotations\"",
+    "## Module-level declarations: \"Module variable declarations\"",
+    "## Expressions: \"Mapping constructor\"",
+    "## Statements: \"Destructuring assignment statement\" / \"Only supports wildcard-binding-pattern\" (restriction applies to assignment statements, not module variable declarations)"
+  ],
+  "reason": "The case asserts rejection of @deprecated on a module-level record binding pattern. Annotation attachments and module variable declarations are supported, and no listed restriction excludes record binding patterns in module variable declarations or validation of their annotation attachment points. The wildcard-only restriction concerns destructuring assignment statements, which this declaration is not. This negative diagnostic is within the supported grammar/type-system scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error marker asserts a compile-time rejection at @deprecated; no execution is required."
+  ],
+  "reviewer_name": "module-record-variable-test-a0b146279e-annotation-negative-e.bal"
+}

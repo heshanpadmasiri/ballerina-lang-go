@@ -1,0 +1,13 @@
+{
+  "id": "T1261",
+  "name": "record-fields-access-negative-test-bbfa6baecd/record-project-access-1-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: [New expression](https://ballerina.io/spec/lang/master/#section_6.8.2); the supported expression list does not include object-constructor-expr.",
+    "## Object/class definitions: Supports `object-field-descriptor`, `method-decl`, `remote-method-decl` and `resource-method-decl` members",
+    "## Module-level declarations: Import declarations; Function definition; Type definition"
+  ],
+  "reason": "The negative assertions concern cross-module visibility of private record types and their exposure through public declarations. However, the whole case also requires compiling FooEmployee.job's anonymous object constructor in baz2.bal, an expression absent from the subset's positive support list. Support for object type members and new expressions does not cover this separate object constructor syntax, so the whole case is a feature case.",
+  "unsupported_constructs": ["Anonymous object constructor expression: object { public string desc = \"\"; public string title = \"\"; } in FooEmployee.job's default value"],
+  "test_design_notes": ["The @error annotations assert private-type accessibility/exposure diagnostics; illegal code alone does not place those assertions outside scope. The unsupported constructor occurs in a supplied module file even though the root negative functions do not directly use FooEmployee."]
+}

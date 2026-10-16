@@ -1,0 +1,17 @@
+{
+  "id": "T0278",
+  "name": "bstream-value-test-dc50cbbb1f/stream-value-v",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\" (ballerina/lang.stream is absent).",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\" (stream:next, stream:filter and stream:close are absent)."
+  ],
+  "reason": "The executed tests require stream langlib operations next, filter and close. These are outside the subset\u2019s positive langlib and method-call lists, so the asserted stream iteration, filtering and closing behavior is unsupported.",
+  "unsupported_constructs": [
+    "Stream langlib method calls .next(), .filter(...) and .close()."
+  ],
+  "test_design_notes": [
+    "main asserts thirteen true output lines plus successful completion of further stream assertions; these depend on unsupported stream methods.",
+    "io:println is output instrumentation and is not the classification basis. No @args or @panic annotations are present."
+  ]
+}

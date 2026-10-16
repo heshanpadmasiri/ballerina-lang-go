@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 5\n        at testNonInitArrayAccess(non-initialized-array-access-p.bal:3)\n           main(non-initialized-array-access-p.bal:7)\n","Diagnostics":null}

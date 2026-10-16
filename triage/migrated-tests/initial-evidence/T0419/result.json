@@ -1,0 +1,14 @@
+{
+  "Name": "distinct-object-test-d9a03dbe83/distinct-object-assignability-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/distinct-object-test-d9a03dbe83/distinct-object-assignability-e.bal",
+  "Project": false,
+  "Id": "T0419",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/distinct-object-test-d9a03dbe83/distinct-object-assignability-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.044
+}

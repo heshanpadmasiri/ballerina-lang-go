@@ -1,0 +1,22 @@
+{
+  "id": "T0927",
+  "name": "multiple-let-clause-test-b6bd5c9fd6/multiple-let-clauses-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Query expressions — Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses",
+    "Expressions: Query expressions — Supports `list` and `map` as `query-constructor-type`",
+    "Statements: Foreach — Currently only supports range, list, map, string and XML subtypes, and iterable objects",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.string lists no concat",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: [string functions listed without string:concat]"
+  ],
+  "reason": "Although multiple let clauses and nested queries are supported, this whole case requires an explicit stream query constructor and foreach iteration over a stream. It also asserts projected color strings produced by code.concat(\"FOO\"), which is outside the supported string langlib methods. These essential behaviors make the case a feature request.",
+  "unsupported_constructs": [
+    "stream query constructor in testQueryExpressionWithinLetClause",
+    "foreach over stream<Department> in getDept",
+    "string concat langlib method in testQueryInLetClauseAsAClosure3"
+  ],
+  "test_design_notes": [
+    "main executes the stream-dependent query assertions and the concatenated color assertions, so unsupported behavior is exercised.",
+    "io:println serves as output instrumentation; it is not the basis for classification."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "T1076",
+  "name": "object-initializer-test-9aa531bbdf/object-initializer-negative-project-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Import declarations; Function definition; Class definition — Supports `object-field`, `method-defn` and `object-type-inclusion` members",
+    "Statements: Local variable declarations; Assignment",
+    "Expressions: New expression; Field access expression; Literal",
+    "Object/class definitions: Only `client`, `service` and `isolated` `object-type-quals` / `class-type-quals` are supported"
+  ],
+  "reason": "The asserted error is construction of an imported public class whose initializer is not public. Imports, ordinary classes with fields and initializer methods, inferred new expressions, and local declarations are supported. Checking initializer visibility across modules is part of rejection within this supported class/type system; no essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The single @error annotation expects rejection of `inp:student _ = new` because `init` is module-private."
+  ]
+}

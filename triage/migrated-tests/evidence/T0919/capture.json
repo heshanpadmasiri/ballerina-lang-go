@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[UNIMPLEMENTED_ERROR]: binding pattern is not implemented\n --\u003e module-tuple-variable-annotation-negative-e.bal:4:13\n  |\n4 | [int, byte] [d, e] = [1, 3];\n  |             ^^^^^^\n\n","Diagnostics":[{"File":"module-tuple-variable-annotation-negative-e.bal","StartLine":4,"EndLine":4}]}

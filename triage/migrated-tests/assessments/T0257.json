@@ -1,0 +1,16 @@
+{
+  "id": "T0257",
+  "name": "bjsonvalue-test-248ac7be19/map-json-to-json-array-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: \"[Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)\"",
+    "## Expressions: \"[List constructor](https://ballerina.io/spec/lang/master/#list-constructor-expr)\"",
+    "## Statements: \"[Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)\"",
+    "## Module-level declarations: \"[Function definition](https://ballerina.io/spec/lang/master/#function-defn)\""
+  ],
+  "reason": "The case uses supported function definitions, local declarations, list construction, and a type cast. Casting json[] containing integer 2 to map<json>[] must fail with the asserted TypeCastError; no subset restriction excludes this cast or its runtime failure behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic directive asserts incompatible-types TypeCastError for json[] to map<json>[]; there are no @args or @output directives."
+  ]
+}

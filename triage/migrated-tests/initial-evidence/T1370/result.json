@@ -1,0 +1,14 @@
+{
+  "Name": "string-value-xml-test-f2ac2e01f3/string-value-xml-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/string-value-xml-test-f2ac2e01f3/string-value-xml-v.bal",
+  "Project": false,
+  "Id": "T1370",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/string-value-xml-test-f2ac2e01f3/string-value-xml-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'result'\n --\u003e try-catch-v.bal:8:5\n  |\n8 |     error? result = trap nilValueAssignment(y);\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"try-catch-v.bal","StartLine":8,"EndLine":8}]}

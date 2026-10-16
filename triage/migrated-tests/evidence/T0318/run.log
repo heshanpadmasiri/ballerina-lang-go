@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "checked-expression-operator-test-30b071e6cd/checked-expr-with-no-error-type-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unreachable code
+          --> checked-expr-with-no-error-type-v.bal:12:5
+           |
+        12 |     panic error("You are not supposed to reach this line");
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

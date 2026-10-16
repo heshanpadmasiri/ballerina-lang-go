@@ -1,0 +1,14 @@
+{
+  "Name": "worker-on-fail-test-7287699041/worker-on-fail-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/worker-on-fail-test-7287699041/worker-on-fail-v.bal",
+  "Project": false,
+  "Id": "T1579",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/worker-on-fail-test-7287699041/worker-on-fail-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.031
+}

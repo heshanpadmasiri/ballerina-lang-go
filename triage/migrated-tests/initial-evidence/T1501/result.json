@@ -1,0 +1,14 @@
+{
+  "Name": "unicode-test-80455220ef/unicode-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/unicode-test-80455220ef/unicode-v.bal",
+  "Project": false,
+  "Id": "T1501",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/unicode-test-80455220ef/unicode-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.034
+}

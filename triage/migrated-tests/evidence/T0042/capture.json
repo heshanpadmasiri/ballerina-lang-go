@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'c'\n --\u003e invalid-char-p.bal:2:22\n  |\n2 | public function main(string:Char c) { // @panic\n  |                      ^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n","Diagnostics":null}

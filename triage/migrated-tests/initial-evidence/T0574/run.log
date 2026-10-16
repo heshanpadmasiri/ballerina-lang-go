@@ -1,0 +1,39 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "function-signature-negative-test-2746ef5bfb/extern-resource-function-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+         --> extern-resource-function-negative-e.bal:2:1
+          |
+        2 | service object {
+          | ^^^^^^^^^^^^^^^^
+        3 |     resource function get foo() returns error? = external; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        4 | 
+          | 
+        5 |     resource function put bar() = external; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        6 | 
+          | 
+        7 |     resource function post baz(float f) = external; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        8 | };
+          | ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+         --> extern-resource-function-negative-e.bal:2:1
+          |
+        2 | service object {
+          | ^^^^^^^^^^^^^^^^
+        3 |     resource function get foo() returns error? = external; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        4 | 
+          | 
+        5 |     resource function put bar() = external; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        6 | 
+          | 
+        7 |     resource function post baz(float f) = external; // @error
+          |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        8 | };
+          | ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

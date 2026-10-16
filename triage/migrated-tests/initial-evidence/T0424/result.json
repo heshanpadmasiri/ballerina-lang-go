@@ -1,0 +1,14 @@
+{
+  "Name": "division-operation-test-be1b8193ad/int-divide-by-zero-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/division-operation-test-be1b8193ad/int-divide-by-zero-p.bal",
+  "Project": false,
+  "Id": "T0424",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/division-operation-test-be1b8193ad/int-divide-by-zero-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.081
+}

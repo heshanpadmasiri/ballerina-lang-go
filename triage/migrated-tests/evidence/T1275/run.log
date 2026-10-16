@@ -1,0 +1,113 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	2
+        	Peter
+        	true
+        	4
+        	Peter
+        	29
+        	Y
+        	true
+        	2
+        	Peter
+        	29
+        	Y
+        	5
+        	Peter
+        	true
+        	1000
+        	PG
+        	Colombo 10
+        	3
+        	John
+        	20
+        	PG
+        	2
+        	JohnDoePeterYYMMDD
+        	50
+        	Jack Jill
+        	Peter Parker
+        	true
+        	2
+        	SE
+        	99
+        	MM
+        	true
+        	1
+        	1990
+        	1
+        	SE
+        	5
+        	Peter
+        	29
+        	Y
+        	true
+        	SE
+        	5
+        	James
+        	30
+        	N
+        	false
+        	later
+        	7
+        	Mark
+        	1
+        	1
+        	1990
+        	1
+        	Mark
+        	1
+        	1
+        	1990
+        	3
+        	A
+        	B
+        	A
+        	C
+        	1996
+        	Z
+        	4
+        	C
+        	1996
+        	22
+        	Z
+        	3
+        	A
+        	B
+        	A
+        	C
+        	1996
+        	Z
+        	4
+        	D
+        	1998
+        	20
+        	A
+        	3
+        	50
+        	51.1
+        	UnionOne
+        	stringP1
+        	4
+        	A
+        	B
+        	
+        	
+        	2
+        	John
+        	30
+        	{"name":"John","age":{"age":30,"format":"YY","year":1990},"married":true,"work":"SE"}
+        	5
+        	true
+        	false
+        	true
+        	false
+        	true
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.10s)
+FAIL

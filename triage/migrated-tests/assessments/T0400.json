@@ -1,0 +1,13 @@
+{
+  "id": "T0400",
+  "name": "custom-function-test-2824786169/duplicate-function-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Function definition]; Supports required-params ... in the signature",
+    "Statements: [Local variable declarations], [Assignment], [Return]",
+    "Expressions: [Literal] — Currently support nil-literal, boolean-literal, numeric-literal and string-literal only; [Variable reference]"
+  ],
+  "reason": "This negative test expects rejection of a second module-level function named foobar. Duplicate-name rejection is within the supported function-declaration grammar and type system; both function bodies use supported statements and expressions. No essential unsupported construct is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The second declaration carries @error; there are no @args, @panic or @output assertions."]
+}

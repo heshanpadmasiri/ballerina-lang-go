@@ -1,0 +1,14 @@
+{
+  "Name": "locks-in-main-test-617c6c002d/parallel-lock-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/parallel-lock-v.bal",
+  "Project": false,
+  "Id": "T0731",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/locks-in-main-test-617c6c002d/parallel-lock-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.021
+}

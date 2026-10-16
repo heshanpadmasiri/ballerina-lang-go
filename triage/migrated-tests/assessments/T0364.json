@@ -1,0 +1,17 @@
+{
+  "id": "T0364",
+  "name": "closure-test-5c6a7d056f/resource-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: the supported expression list includes 'List constructor' and 'Mapping constructor' but does not include table constructor expressions.",
+    "## Expressions / Query expressions: 'Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses'; 'Supports `list` and `map` as `query-constructor-type`'."
+  ],
+  "reason": "The asserted resource results require constructing keyed and unkeyed table values with table [...] and querying them. Table constructor expressions are absent from the supported expression list, so this whole case requires an unsupported construct even though anonymous functions and the from/where/select clauses are listed.",
+  "unsupported_constructs": [
+    "Table constructor expressions: table [{...}] and table [{id: 1, status: false}, ...]."
+  ],
+  "test_design_notes": [
+    "main asserts captured status, one matching lift, and the two true-status object IDs; these assertions depend on table construction.",
+    "There are no @args, @panic, or @output directives."
+  ]
+}

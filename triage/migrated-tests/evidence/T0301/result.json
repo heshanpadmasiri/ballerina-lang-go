@@ -1,0 +1,15 @@
+{
+  "Name": "check-panic-expression-operator-test-baa47123b9/checkpanic-float-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-float-v",
+  "Project": true,
+  "Id": "T0301",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-float-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/check-panic-expression-operator-test-baa47123b9/checkpanic-float-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.066
+}

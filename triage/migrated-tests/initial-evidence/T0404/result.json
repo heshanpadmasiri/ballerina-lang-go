@@ -1,0 +1,14 @@
+{
+  "Name": "cyclic-type-definitions-test-3fce5ad632/type-definitions-cyclic-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/cyclic-type-definitions-test-3fce5ad632/type-definitions-cyclic-negative-e.bal",
+  "Project": false,
+  "Id": "T0404",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/cyclic-type-definitions-test-3fce5ad632/type-definitions-cyclic-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.067
+}

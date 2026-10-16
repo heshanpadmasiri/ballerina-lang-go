@@ -1,0 +1,16 @@
+{
+  "id": "T0415",
+  "name": "deprecation-annotation-test-5a4ffa9c53/deprecation-annotation-crlf-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: 'Constant declarations'",
+    "Module-level declarations: 'Annotation declarations and attachments'; 'Supports source-only, runtime, marker and repeated annotations'",
+    "Module-level declarations: 'Class definition'; 'Supports `object-field`, `method-defn` and `object-type-inclusion` members'",
+    "Expressions: 'Variable reference'"
+  ],
+  "reason": "The case attaches @deprecated to a string constant and asserts a diagnostic at its reference in a public class field initializer. Constants, marker annotation attachments, classes, object fields and variable references are supported; no stated restriction excludes deprecation diagnostics or this use.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The only assertion is the inline @error on the deprecated constant reference; there are no @args, @panic or @output assertions."
+  ]
+}

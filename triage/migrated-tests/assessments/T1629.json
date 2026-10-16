@@ -1,0 +1,13 @@
+{
+  "id": "T1629",
+  "name": "xmlnstest-f41d1c0429/xmlns-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: lists Constant declarations, Function definition and Type definition, but does not list XML namespace declarations.",
+    "## Statements: lists supported statements but does not list XML namespace declaration statements.",
+    "## Expressions: 'XML template expression' and 'XML navigation expression' are supported; under Variable reference, 'Currently `xml-qualified-names` not supported'."
+  ],
+  "reason": "The essential assertions concern invalid module-level and local xmlns declarations (non-string, undefined, and empty namespace values). XML namespace declarations are not covered by either positive declaration or statement list. Support for XML expressions does not establish support for namespace declarations, so this whole case is a feature despite its supported constant-declaration negative checks.",
+  "unsupported_constructs": ["Module-level XML namespace declarations", "Local XML namespace declarations and their namespace-value validation"],
+  "test_design_notes": ["Mixed scope: const X = G and const Z = K also assert invalid constant references independently of xmlns support.", "const Z = K has two @error markers on one line; the precise intended diagnostic count is not specified by the source.", "No @args, @panic or @output behavior is asserted."]
+}

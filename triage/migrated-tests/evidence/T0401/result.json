@@ -1,0 +1,14 @@
+{
+  "Name": "custom-function-test-2824786169/duplicate-parameters-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/custom-function-test-2824786169/duplicate-parameters-e.bal",
+  "Project": false,
+  "Id": "T0401",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/custom-function-test-2824786169/duplicate-parameters-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.022
+}

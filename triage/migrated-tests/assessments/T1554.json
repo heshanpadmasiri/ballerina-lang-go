@@ -1,0 +1,13 @@
+{
+  "id": "T1554",
+  "name": "worker-fail-test-278d4f50a4/invalid-receive-in-if-e",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists ‘If/else’ and ‘Local variable declarations’ but does not list named worker declarations or worker send statements.",
+    "## Expressions: lists ‘Start action’ and ‘Wait action’ but does not list worker receive actions.",
+    "## Operators: ‘Relational ops `<`, `<=`, `>`, `>=`’"
+  ],
+  "reason": "The negative test requires named workers and message send/receive validation, including rejecting a receive inside an if body. Named worker declarations and worker send/receive actions are not covered by subset 10's supported lists; start/wait support does not establish worker messaging support. This essential unsupported scope determines the whole case despite supported if, integer declarations and comparison.",
+  "unsupported_constructs": ["Named worker declarations", "Worker message send (`i -> w2`)", "Worker receive action (`<- w1`) and its placement validation"],
+  "test_design_notes": ["The sole @error marker is on the receive inside the if body; no @args, @panic or @output assertions occur."]
+}

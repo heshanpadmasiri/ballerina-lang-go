@@ -1,0 +1,14 @@
+{
+  "id": "T1455",
+  "name": "tuple-variable-definition-test-6b1e019355/tuple-variable-definition-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Local variable declarations",
+    "Expressions: Method call",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: value:cloneWithType; value:fromJsonWithType; value:toString and value:toBalString"
+  ],
+  "reason": "The executed testTupleVariableWithAnonymousRecordType calls getPersonDetails().ensureType() under checkpanic and asserts successful tuple/record destructuring. ensureType is absent from both the allowed lang.value functions and the langlib method-call whitelist, so the whole case requires an unsupported feature even though local declarations, tuple construction, ordinary classes and the other asserted tuple values are covered by the positive feature lists.",
+  "unsupported_constructs": ["Langlib method call ensureType() in testTupleVariableWithAnonymousRecordType"],
+  "test_design_notes": ["Mixed scope: many basic tuple-binding output checks are combined with error binding, readonly tuple binding and the unsupported ensureType call, all invoked by main.", "The @output markers assert tuple lengths and contents; no obvious marker discrepancy is apparent. io:println is instrumentation."]
+}

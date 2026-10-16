@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'x'\n  --\u003e readonly-object-initialization-e/main.bal:20:5\n   |\n20 |     readonly_objects:CustomController \u0026 readonly x = new; // @error\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"readonly-object-initialization-e/main.bal","StartLine":20,"EndLine":20}]}

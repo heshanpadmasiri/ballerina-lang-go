@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: @error annotation at map-constant-negative-e.bal:34 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at map-constant-negative-e.bal:46 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

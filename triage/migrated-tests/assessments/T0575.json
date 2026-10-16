@@ -1,0 +1,14 @@
+{
+  "id": "T0575",
+  "name": "function-signature-negative-test-2746ef5bfb/function-with-two-rest-params-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Statements: Return",
+    "Expressions: List constructor",
+    "Expressions: Variable reference"
+  ],
+  "reason": "The negative test requires rejection of a function signature containing two rest parameters, with an additional error marker on the return using those parameters. Function definitions and rest parameters are explicitly supported, so rejection of this invalid signature and resulting body errors is within the supported grammar/type system. The return list uses only parameter references; no essential unsupported behavior is present.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Both the invalid signature and its return statement carry @error markers; the latter may be a cascading diagnostic."]
+}

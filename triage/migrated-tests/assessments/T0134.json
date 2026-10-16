@@ -1,0 +1,17 @@
+{
+  "id": "T0134",
+  "name": "array-destructure-test-4a8c5609c2/array-destructure-test-4a8c5609c2-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern"
+  ],
+  "reason": "The case requires list destructuring assignments to named variables, including rest, nested list and nested record patterns. The subset explicitly restricts destructuring assignment to wildcard binding patterns, so the essential asserted array-destructuring behavior is unsupported.",
+  "unsupported_constructs": [
+    "Named list destructuring assignment: [a, b, c, d] = intArray",
+    "Rest list destructuring assignment: [...a] = intArray",
+    "Nested record/rest and nested list destructuring assignments"
+  ],
+  "test_design_notes": [
+    "main invokes all seven tests; conditional panics assert successful destructuring and resulting element/field values. There are no @args, @panic or @output directives."
+  ]
+}

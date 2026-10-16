@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 6\n        at main(open-array-const-out-of-range-p.bal:4)\n","Diagnostics":null}

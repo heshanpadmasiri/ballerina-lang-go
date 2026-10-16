@@ -1,0 +1,13 @@
+{
+  "id": "T1122",
+  "name": "open-record-negative-test-5c62171999/open-record-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions > Import declarations: \"Only following lang libraries with given methods/types are supported\"; ballerina/lang.value lists cloneWithType, fromJsonWithType, toString and toBalString.",
+    "Subset restrictions > Invocations > Other invocation restrictions: \"Method call syntax can be used for calling the following langlib functions:\"; value:toValue is absent.",
+    "Expressions: \"Mapping constructor\", \"Optional field access expression\", \"Member access expression\" and \"Error constructor\" are supported."
+  ],
+  "reason": "The whole case includes an asserted rejection of p.toValue() in testLangFuncOnRecord. This explicitly tests a langlib operation outside both the supported library-function list and the method-call list. That essential unsupported behavior suffices for feature classification; the other negative record typing and undefined-type checks use supported grammar and remain in scope.",
+  "unsupported_constructs": ["Langlib toValue invocation via method syntax (p.toValue()), including its asserted diagnostic."],
+  "test_design_notes": ["The source marks expected compile-time errors with @error; illegal record assignments and the undefined Animal type do not by themselves make the case unsupported."]
+}

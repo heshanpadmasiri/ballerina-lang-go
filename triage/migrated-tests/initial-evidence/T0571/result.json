@@ -1,0 +1,14 @@
+{
+  "Name": "function-signature-negative-test-2746ef5bfb/cyclic-functions-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-signature-negative-test-2746ef5bfb/cyclic-functions-negative-e.bal",
+  "Project": false,
+  "Id": "T0571",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-signature-negative-test-2746ef5bfb/cyclic-functions-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.054
+}

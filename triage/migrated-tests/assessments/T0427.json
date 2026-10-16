@@ -1,0 +1,11 @@
+{
+  "id": "T0427",
+  "name": "do-stmts-test-54fb85fbab/do-stmt-negative-2-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes Assignment, Compound Assignment, Local variable declarations and Return, but does not include do statements, fail statements or on fail clauses."
+  ],
+  "reason": "Both negative cases essentially require do statements with on fail clauses and explicit fail statements, none of which appear in the subset's positive statement list. Their rejection checks therefore exercise unsupported constructs.",
+  "unsupported_constructs": ["do statement", "fail statement", "on fail clause"],
+  "test_design_notes": ["The @error markers assert rejection of a non-error fail operand, a string on-fail binding, and access from an on-fail clause to variable d declared inside the do body. There are no @args, @panic or @output directives."]
+}

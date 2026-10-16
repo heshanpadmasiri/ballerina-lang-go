@@ -1,0 +1,14 @@
+{
+  "id": "T1390",
+  "name": "struct-test-5119d420d4/nested-struct-inline-init-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Module variable declarations\"; \"Type definition\"; \"Function definition\"",
+    "Expressions: \"List constructor\"; \"Mapping constructor\"; \"Variable reference\"; \"Literal\"",
+    "Statements: \"Local variable declarations\"; \"Return\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\""
+  ],
+  "reason": "The case exercises record field defaults, including a nested record mapping default and an array default referencing a final module variable. These fall within supported type definitions, module variables, constructors, and variable references, with no applicable restriction. The output asserts that omitted fields acquire their defaults recursively and that the explicit lname and spouse values are retained; this is supported record-construction behavior. io:println is instrumentation, not a restricted ballerina/lang.* invocation.",
+  "unsupported_constructs": [],
+  "test_design_notes": []
+}

@@ -1,0 +1,19 @@
+{
+  "Name": "open-record-equivalency-test-edf964e784/open-record-equivalency-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-test-edf964e784/open-record-equivalency-v",
+  "Project": true,
+  "Id": "T1113",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-test-edf964e784/open-record-equivalency-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-test-edf964e784/open-record-equivalency-v/modules/eq/eq1.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-test-edf964e784/open-record-equivalency-v/modules/eq2/eq2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-test-edf964e784/open-record-equivalency-v/modules/req/eq2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-test-edf964e784/open-record-equivalency-v/modules/req2/eq2.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-test-edf964e784/open-record-equivalency-v/open_record_equivalency.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.097
+}

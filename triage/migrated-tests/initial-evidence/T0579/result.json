@@ -1,0 +1,14 @@
+{
+  "Name": "function-test-6bfd4d1e14/function-stmt-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/function-test-6bfd4d1e14/function-stmt-v.bal",
+  "Project": false,
+  "Id": "T0579",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/function-test-6bfd4d1e14/function-stmt-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.071
+}

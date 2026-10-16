@@ -1,0 +1,71 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "client-resource-access-action-negative-test-1519220005/client-resource-access-return-type-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.ObjectConstructorExpressionNode transformed to non-action-or-expression node <nil>
+          --> client-resource-access-return-type-negative-e.bal:8:25
+           |
+         8 |     var successClient = client object {
+           |                         ^^^^^^^^^^^^^^^
+         9 |         resource function get stringParamPath(string a) returns string { return "string"; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |         resource function get intParamPath(int a) returns int { return 1; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |         resource function get booleanParamPath(boolean a) returns boolean { return true; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        12 |         resource function get floatParamPath(float a) returns float { return 1.2f; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |         resource function get decimalPath(decimal a) returns decimal { return 2.3d; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |         resource function get recordParamPath(record {int a;} a) returns record {int a;} { return {a: 1}; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |         resource function get xmlParamPath(xml a) returns xml { return xml `<a></a>`; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |         resource function get mapParamPath(map<string> a) returns map<string> { return {a: "string value"}; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        17 |         resource function get arrayParamPath(int[] a) returns int[] { return [1, 2, 3]; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        18 |         resource function get customTypeParamPath(CustomRecord a) returns CustomRecord { return customRecord; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        19 |         resource function get customIntTypeParamPath(CustomIntegerType a) returns CustomIntegerType {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |             return customIntegerType;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        21 |         }
+           |         ^
+        22 |     };
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformObjectConstructorExpression unimplemented
+          --> client-resource-access-return-type-negative-e.bal:8:25
+           |
+         8 |     var successClient = client object {
+           |                         ^^^^^^^^^^^^^^^
+         9 |         resource function get stringParamPath(string a) returns string { return "string"; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        10 |         resource function get intParamPath(int a) returns int { return 1; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        11 |         resource function get booleanParamPath(boolean a) returns boolean { return true; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        12 |         resource function get floatParamPath(float a) returns float { return 1.2f; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        13 |         resource function get decimalPath(decimal a) returns decimal { return 2.3d; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        14 |         resource function get recordParamPath(record {int a;} a) returns record {int a;} { return {a: 1}; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        15 |         resource function get xmlParamPath(xml a) returns xml { return xml `<a></a>`; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        16 |         resource function get mapParamPath(map<string> a) returns map<string> { return {a: "string value"}; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        17 |         resource function get arrayParamPath(int[] a) returns int[] { return [1, 2, 3]; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        18 |         resource function get customTypeParamPath(CustomRecord a) returns CustomRecord { return customRecord; }
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        19 |         resource function get customIntTypeParamPath(CustomIntegerType a) returns CustomIntegerType {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        20 |             return customIntegerType;
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        21 |         }
+           |         ^
+        22 |     };
+           |     ^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

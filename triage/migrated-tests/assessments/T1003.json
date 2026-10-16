@@ -1,0 +1,13 @@
+{
+  "id": "T1003",
+  "name": "never-type-test-35205a329e/never-call-stmt-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Function definition\"",
+    "Statements: \"Call\", \"Local variable declarations\", \"Panic\"",
+    "Expressions: \"Error constructor\"; literals support \"string-literal\""
+  ],
+  "reason": "The case calls a function returning never, constructs an error, and panics. Function definitions, call statements, local declarations, error construction, string literals and panic statements are supported; no listed restriction excludes never return types or propagation of the panic through the call.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The @panic comment marks the expected panic behavior; it is not an annotation attachment."]
+}

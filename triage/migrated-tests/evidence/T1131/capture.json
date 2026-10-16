@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'b'\n  --\u003e open_record_optional_fields_optional_non_def_field3-p.bal:13:5\n   |\n13 |     anydata b = p.get(\"adrs\"); // @panic\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"open_record_optional_fields_optional_non_def_field3-p.bal","StartLine":13,"EndLine":13}]}

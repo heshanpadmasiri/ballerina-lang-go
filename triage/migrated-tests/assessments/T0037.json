@@ -1,0 +1,20 @@
+{
+  "id": "T0037",
+  "name": "anydata-test-09f359d581/anydata-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: ‘Only following lang libraries with given methods/types are supported’; ballerina/lang.regexp and RegExp are absent.",
+    "Subset restrictions / Import declarations: ballerina/lang.error lists only ‘message’.",
+    "Invocations / Other invocation restrictions: supported method syntax includes ‘error:message’ and ‘value:toString’ and ‘value:toBalString’, but not error:detail."
+  ],
+  "reason": "This positive runtime case mixes ordinary anydata assignments, records, tuples, maps, unions, XML templates, casts, narrowing and readonly intersections with unsupported library surface. Its DataType alias references regexp:RegExp through an explicit ballerina/lang.regexp import, outside the exhaustive supported langlib list. testAnytoAnydataTypeCast also calls err.detail(), whereas only error:message is supported. These restrictions suffice for whole-case feature classification, independently of the many supported core constructs. Table constructors and table typing additionally appear throughout, although table constructors are not covered by the Expressions list.",
+  "unsupported_constructs": [
+    "ballerina/lang.regexp import and regexp:RegExp type",
+    "error.detail() langlib method",
+    "Table constructors (not covered by listed expressions)"
+  ],
+  "test_design_notes": [
+    "No @error markers: this is a positive case with inline @output expectations and assertion helpers.",
+    "Exact type-cast error text and collection/XML rendering are asserted, making some expectations formatting-sensitive. No obvious misplaced marker is visible."
+  ]
+}

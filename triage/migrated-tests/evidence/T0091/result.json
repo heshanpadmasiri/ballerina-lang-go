@@ -1,0 +1,17 @@
+{
+  "Name": "argument-parser-positive-test-e41e5b8a0a/decimal-03-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/decimal-03-v",
+  "Project": true,
+  "Id": "T0091",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/decimal-03-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-positive-test-e41e5b8a0a/decimal-03-v/main.bal"
+  ],
+  "Args": [
+    "10.123e1423"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.097
+}

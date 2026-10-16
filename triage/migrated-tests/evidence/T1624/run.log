@@ -1,0 +1,34 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "xmliteration-test-c9c3cad714/xml_iteration-v.bal" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+           --> xml_iteration-v.bal:126:78
+            |
+        126 |     xml seq = xml `<root>${v1} text1 text2<foo>123</foo><bar></bar></root>text2${v1}<!--comment${v1}-->text3<?foo?>`;
+            |                                                                              ^^^^^
+        
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+          --> xml_iteration-v.bal:13:78
+           |
+        13 |     xml seq = xml `<root>${v1} text1 text2<foo>123</foo><bar></bar></root>text2${v1}<!--comment${v1}-->text3<?foo?>`;
+           |                                                                              ^^^^^
+        
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+          --> xml_iteration-v.bal:22:78
+           |
+        22 |     xml seq = xml `<root>${v1} text1 text2<foo>123</foo><bar></bar></root>text2${v1}<!--comment${v1}-->text3<?foo?>`;
+           |                                                                              ^^^^^
+        
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+          --> xml_iteration-v.bal:31:78
+           |
+        31 |     xml seq = xml `<root>${v1} text1 text2<foo>123</foo><bar></bar></root>text2${v1}<!--comment${v1}-->text3<?foo?>`;
+           |                                                                              ^^^^^
+        
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+          --> xml_iteration-v.bal:47:75
+           |
+        47 |     xml seq = xml `<root>${v1} text1<foo>100</foo><foo>200</foo></root>text2${v1}<!--comment${v1}--><?foo?>`;
+           |                                                                           ^^^^^
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

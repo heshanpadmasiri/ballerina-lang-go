@@ -1,0 +1,14 @@
+{
+  "Name": "operator-precedence-test-11513bd793/operator-precedence-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operator-precedence-test-11513bd793/operator-precedence-v.bal",
+  "Project": false,
+  "Id": "T1154",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operator-precedence-test-11513bd793/operator-precedence-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.094
+}

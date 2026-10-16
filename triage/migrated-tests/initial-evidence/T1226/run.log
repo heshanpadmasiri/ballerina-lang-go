@@ -1,0 +1,9 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "query-negative-tests-39b4ca8ff2/query-with-mismatch-return-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[UNIMPLEMENTED_ERROR]: mapping constructor spread field not implemented
+          --> query-with-mismatch-return-e.bal:45:5
+           |
+        45 |     ...fs,
+           |     ^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

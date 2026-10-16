@@ -1,0 +1,16 @@
+{
+  "id": "T1181",
+  "name": "option-test-1b0c555df9/option_with_types_equals-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "## Expressions: Member access expression"
+  ],
+  "reason": "The signature and record member accesses are supported, but the asserted behavior depends on entry-point command-line processing: converting --field=value options into an included Student record, including nullable string, integer, float and decimal values. Subset 10 does not cover command-line option parsing or main argument binding; signature support alone does not establish this behavior.",
+  "unsupported_constructs": [
+    "Command-line --field=value option parsing and typed conversion into an included-record main parameter"
+  ],
+  "test_design_notes": [
+    "The @args directive is essential to the asserted outputs; io:println is observation instrumentation."
+  ]
+}

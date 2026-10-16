@@ -1,0 +1,14 @@
+{
+  "id": "T0904",
+  "name": "module-error-variable-test-718d21c637/module-error-variable-annotation-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Annotation declarations and attachments] — Supports source-only, runtime, marker and repeated annotations",
+    "Module-level declarations: [Module variable declarations]",
+    "Expressions: [Error constructor]",
+    "Statements: [Destructuring assignment statement] — Only supports wildcard-binding-pattern"
+  ],
+  "reason": "The case expects rejection of a deprecated annotation on a module error-binding variable declaration. Module variable declarations, annotation attachments, and error constructors are supported. The wildcard-only restriction applies to destructuring assignment statements, not variable declarations; no stated restriction excludes this negative annotation applicability check.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Negative compile-time case; the source comment states that the deprecated annotation is not allowed. No runtime assertion is present."]
+}

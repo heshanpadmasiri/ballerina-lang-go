@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at const-pattern-negative-e.bal:107 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at const-pattern-negative-e.bal:125 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at const-pattern-negative-e.bal:170 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at const-pattern-negative-e.bal:185 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at const-pattern-negative-e.bal:208 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.04s)
+FAIL

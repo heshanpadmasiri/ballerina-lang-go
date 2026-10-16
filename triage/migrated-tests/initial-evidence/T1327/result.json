@@ -1,0 +1,14 @@
+{
+  "Name": "sealed-array-test-916de22362/sealed-array-assigned-index-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-assigned-index-p.bal",
+  "Project": false,
+  "Id": "T1327",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/sealed-array-test-916de22362/sealed-array-assigned-index-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.073
+}

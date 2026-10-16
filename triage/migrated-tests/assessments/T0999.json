@@ -1,0 +1,13 @@
+{
+  "id": "T0999",
+  "name": "nested-actions-test-b754fe8c60/nested-actions-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: [Client remote method call action], [Start action], [Wait action], [Check expression] and [New expression] are listed as supported.",
+    "## Expressions: the supported expression list does not include typeof expressions.",
+    "### Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The asserted asynchronous remote call returning foo uses supported actions and client classes, but the whole case also contains typeof expected and typeof actual in its assertion helper. typeof expressions are not covered by the supported expression list, so this case requires an unsupported construct.",
+  "unsupported_constructs": ["typeof expressions in the assertion helper"],
+  "test_design_notes": ["The typeof expressions occur only in assertion-failure diagnostics; removing those diagnostics would leave the central start/remote-call/wait assertion within the listed feature coverage."]
+}

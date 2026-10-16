@@ -1,0 +1,16 @@
+{
+  "Name": "argument-parser-negative-test-706c373f17/invalid-float-03-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-03-p.bal",
+  "Project": false,
+  "Id": "T0058",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/argument-parser-negative-test-706c373f17/invalid-float-03-p.bal"
+  ],
+  "Args": [
+    "0x1ef.a2pa5"
+  ],
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.046
+}

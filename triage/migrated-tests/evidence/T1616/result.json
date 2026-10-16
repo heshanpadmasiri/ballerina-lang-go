@@ -1,0 +1,15 @@
+{
+  "Name": "xmlaccess-test-873756d6ae/nav-access-type-check-negative-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-type-check-negative-e",
+  "Project": true,
+  "Id": "T1616",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-type-check-negative-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/xmlaccess-test-873756d6ae/nav-access-type-check-negative-e/main.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.025
+}

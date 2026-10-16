@@ -1,0 +1,14 @@
+{
+  "Name": "iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-v.bal",
+  "Project": false,
+  "Id": "T0691",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/iterable-operations-with-var-mutability-tests-161bbbc0e0/basic-iterable-with-variable-mutability-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.074
+}

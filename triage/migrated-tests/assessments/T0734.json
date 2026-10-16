@@ -1,0 +1,13 @@
+{
+  "id": "T0734",
+  "name": "locks-with-on-fail-test-044696e74b/locks-with-on-fail-negative-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: \"[Lock statement](https://ballerina.io/spec/lang/master/#lock-stmt)\"",
+    "Statements: the supported statement list does not include fail statements.",
+    "Expressions: \"[Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\""
+  ],
+  "reason": "The asserted diagnostic concerns an error binding pattern in a lock's on-fail clause with a union of errors originating in two fail statements. Although lock statements and error constructors are supported, fail statements are absent from the supported statement list. This essential failure-propagation behavior therefore falls outside the documented subset.",
+  "unsupported_constructs": ["fail statements feeding the on-fail clause"],
+  "test_design_notes": ["Negative test expects rejection of error(msg) when the inferred failure type is SampleComplexError|SampleError; classification is based on the essential unsupported fail statements, not merely on the code being invalid."]
+}

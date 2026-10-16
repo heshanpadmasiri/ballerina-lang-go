@@ -1,0 +1,16 @@
+{
+  "id": "T0604",
+  "name": "global-var-function-with-pkg-test-24ccb66686/project2-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: \"Import declarations\", \"Function definition\", \"Module variable declarations\"",
+    "Statements: \"Local variable declarations\", \"Return\"",
+    "Expressions: \"Literal\", \"Call\", \"Variable reference\"",
+    "Subset restrictions / Import declarations: \"Only following lang libraries with given methods/types are supported\""
+  ],
+  "reason": "The entire case uses supported imports between package modules, public functions, integer/string module variables, calls, local declarations and returns. The asserted unused-local diagnostics concern supported local declarations; no essential unsupported construct or behavior is present. The import restriction concerns lang libraries, not these package modules.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The supplied sources assert unused variable errors for val and value using @error comments. They contain no runtime assertions; assess these diagnostics and package/module compilation rather than infer runtime test expectations."
+  ]
+}

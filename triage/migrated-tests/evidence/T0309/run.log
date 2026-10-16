@@ -1,0 +1,80 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:57: -e test "checked-expr-negative-test-764bc995e0/checked-error-return-type-mismatch-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.DoStatementNode transformed to non-statement node <nil>
+          --> checked-error-return-type-mismatch-e.bal:74:9
+           |
+        74 |         do {
+           |         ^^^^
+        75 |             function _ = function() {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        76 |                 string _ = check getVal(""); // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        77 |             };
+           |             ^^
+        78 |         } on fail {
+           |         ^^^^^^^^^^^
+        79 |         }
+           |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> checked-error-return-type-mismatch-e.bal:20:5
+           |
+        20 |     worker w1 returns error? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        21 |         if (0 < 1) {
+           |         ^^^^^^^^^^^^
+        22 |             return error("generic error");
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        23 |         }
+           |         ^
+        24 | 
+           | 
+        25 |         5 -> w2;
+           |         ^^^^^^^^
+        26 |     }
+           |     ^
+        27 | 
+           | 
+        28 |     worker w2 returns E1? {
+           |     ^^^^^^^^^^^^^^^^^^^^^^^
+        29 |         int _ = check <- w1; // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        30 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented
+          --> checked-error-return-type-mismatch-e.bal:88:5
+           |
+        88 |     string[] s = [];
+           |     ^^^^^^^^^^^^^^^^
+        89 |     worker A {
+           |     ^^^^^^^^^^
+        90 |         s.forEach(function(string k) {
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        91 |             string _ = check getVal2(); // @error
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        92 |         });
+           |         ^^^
+        93 |     } on fail {
+           |     ^^^^^^^^^^^
+        94 |     }
+           |     ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformDoStatement unimplemented
+          --> checked-error-return-type-mismatch-e.bal:74:9
+           |
+        74 |         do {
+           |         ^^^^
+        75 |             function _ = function() {
+           |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        76 |                 string _ = check getVal(""); // @error
+           |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        77 |             };
+           |             ^^
+        78 |         } on fail {
+           |         ^^^^^^^^^^^
+        79 |         }
+           |         ^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unused variable 'person1'\n  --\u003e valid-tuple-assignment-v.bal:18:1\n   |\n18 | Person person1 = {name: \"John\"};\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"valid-tuple-assignment-v.bal","StartLine":18,"EndLine":18}]}

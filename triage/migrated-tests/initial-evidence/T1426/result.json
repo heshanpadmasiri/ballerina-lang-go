@@ -1,0 +1,15 @@
+{
+  "Name": "tuple-access-expr-test-f5671505a0/tuple-access-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/tuple-access-v",
+  "Project": true,
+  "Id": "T1426",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/tuple-access-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/tuple-access-expr-test-f5671505a0/tuple-access-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.05
+}

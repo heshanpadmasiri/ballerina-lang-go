@@ -1,0 +1,17 @@
+{
+  "Name": "xmlnstest-f41d1c0429/xmlns-prefix-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-prefix-v",
+  "Project": true,
+  "Id": "T1631",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-prefix-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-prefix-v/a.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-prefix-v/b.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/xmlnstest-f41d1c0429/xmlns-prefix-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.049
+}

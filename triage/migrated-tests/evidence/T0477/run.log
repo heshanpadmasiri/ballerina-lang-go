@@ -1,0 +1,16 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:55: valid/panic case did not compile successfully
+    migration_triage_test.go:57: -v test "final-access-test-b8abe5c420/final-local-no-init-var-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+          --> main.bal:55:54
+           |
+        55 |     string expectedValAsString = expected is error ? expected.toString() : expected.toString();
+           |                                                      ^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: incompatible type for argument: expected 'any', got 'error'
+          --> main.bal:56:50
+           |
+        56 |     string actualValAsString = actual is error ? actual.toString() : actual.toString();
+           |                                                  ^^^^^^
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

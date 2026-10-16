@@ -1,0 +1,17 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:8 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:9 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:10 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:11 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:12 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:15 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:17 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:19 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:21 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at bfloat-value-negative-e.bal:30 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

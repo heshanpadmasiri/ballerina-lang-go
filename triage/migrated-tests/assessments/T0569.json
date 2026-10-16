@@ -1,0 +1,17 @@
+{
+  "id": "T0569",
+  "name": "function-pointers-with-rest-args-negative-test-efafc56779/function-pointers-with-rest-args-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt)",
+    "Statements: [Return](https://ballerina.io/spec/lang/master/#return-stmt)",
+    "Expressions: [Variable reference](https://ballerina.io/spec/lang/master/#variable-reference-expr)",
+    "Invocations / Named and default arguments: Named arguments and omitted defaultable arguments are supported for function calls when the callee has an atomic function type with a known parameter signature."
+  ],
+  "reason": "The asserted rejection concerns assigning foo, whose second parameter is a rest parameter of int elements, to a function variable whose second parameter is a required int array. Function values, local declarations, required parameters and rest parameters are within the supported grammar/type system; no listed restriction excludes this assignability check.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The // @error marker asserts a compile-time assignment error; the test does not invoke either function."
+  ]
+}

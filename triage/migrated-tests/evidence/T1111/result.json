@@ -1,0 +1,14 @@
+{
+  "Name": "open-record-equivalency-rules-test-7770622aa6/open-to-open-missing-age-p.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-rules-test-7770622aa6/open-to-open-missing-age-p.bal",
+  "Project": false,
+  "Id": "T1111",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/open-record-equivalency-rules-test-7770622aa6/open-to-open-missing-age-p.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.042
+}

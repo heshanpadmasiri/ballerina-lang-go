@@ -1,0 +1,141 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "global-var-function-in-bala-test-943e6806ea/global-var-function-in-bala-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: Unknown import: testorg/foo
+         --> main.bal:2:1
+          |
+        2 | import testorg/foo;
+          | ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbArray
+          --> main.bal:46:13
+           |
+        46 |     return [foo:getGlbArray().length(), foo:getGlbSealedArray().length(), foo:getGlbSealedArray2().length(), x.length(), x[0].length(),
+           |             ^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbByte
+          --> main.bal:28:12
+           |
+        28 |     return foo:getGlbByte();
+           |            ^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbByteArray1
+          --> main.bal:32:12
+           |
+        32 |     return foo:getGlbByteArray1();
+           |            ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbByteArray2
+          --> main.bal:36:12
+           |
+        36 |     return foo:getGlbByteArray2();
+           |            ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbByteArray3
+          --> main.bal:40:12
+           |
+        40 |     return foo:getGlbByteArray3();
+           |            ^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbSealed2DArray
+          --> main.bal:44:19
+           |
+        44 |     int[2][3] x = foo:getGlbSealed2DArray();
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbSealed2DArray2
+          --> main.bal:45:19
+           |
+        45 |     int[3][] x1 = foo:getGlbSealed2DArray2();
+           |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbSealedArray
+          --> main.bal:46:41
+           |
+        46 |     return [foo:getGlbArray().length(), foo:getGlbSealedArray().length(), foo:getGlbSealedArray2().length(), x.length(), x[0].length(),
+           |                                         ^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbSealedArray2
+          --> main.bal:46:75
+           |
+        46 |     return [foo:getGlbArray().length(), foo:getGlbSealedArray().length(), foo:getGlbSealedArray2().length(), x.length(), x[0].length(),
+           |                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarAny
+         --> main.bal:5:78
+          |
+        5 |     return [foo:getGlbVarInt(), foo:getGlbVarString(), foo:getGlbVarFloat(), foo:getGlbVarAny()];
+          |                                                                              ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarAny
+         --> main.bal:9:38
+          |
+        9 |     return foo:getGlbVarInt() + <int>foo:getGlbVarAny();
+          |                                      ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarFloat
+         --> main.bal:5:56
+          |
+        5 |     return [foo:getGlbVarInt(), foo:getGlbVarString(), foo:getGlbVarFloat(), foo:getGlbVarAny()];
+          |                                                        ^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarFloat1
+          --> main.bal:18:12
+           |
+        18 |     return foo:getGlbVarFloat1();
+           |            ^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarFloatChange
+          --> main.bal:14:12
+           |
+        14 |     return foo:getGlbVarFloatChange();
+           |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarFloatLater
+          --> main.bal:24:34
+           |
+        24 |     return [foo:getGlbVarJson(), foo:getGlbVarFloatLater()];
+           |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarInt
+         --> main.bal:5:13
+          |
+        5 |     return [foo:getGlbVarInt(), foo:getGlbVarString(), foo:getGlbVarFloat(), foo:getGlbVarAny()];
+          |             ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarInt
+         --> main.bal:9:12
+          |
+        9 |     return foo:getGlbVarInt() + <int>foo:getGlbVarAny();
+          |            ^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarJson
+          --> main.bal:24:13
+           |
+        24 |     return [foo:getGlbVarJson(), foo:getGlbVarFloatLater()];
+           |             ^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: getGlbVarString
+         --> main.bal:5:33
+          |
+        5 |     return [foo:getGlbVarInt(), foo:getGlbVarString(), foo:getGlbVarFloat(), foo:getGlbVarAny()];
+          |                                 ^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: setGlbVarFloatChange
+          --> main.bal:13:5
+           |
+        13 |     foo:setGlbVarFloatChange(77.0 + <float>addVal);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: setGlbVarFloatLater
+          --> main.bal:23:5
+           |
+        23 |     foo:setGlbVarFloatLater(3432.3423);
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        error[SEMANTIC_ERROR]: Unknown symbol: setGlbVarJson
+          --> main.bal:22:5
+           |
+        22 |     foo:setGlbVarJson({"name": "James", "age": 30});
+           |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.05s)
+FAIL

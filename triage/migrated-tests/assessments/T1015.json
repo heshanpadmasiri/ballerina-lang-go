@@ -1,0 +1,13 @@
+{
+  "id": "T1015",
+  "name": "null-literal-usage-test-b7e4e13d5b/null_literal_usage-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported",
+    "Subset restrictions / Import declarations: ballerina/lang.value lists cloneWithType, fromJsonWithType, toString, toBalString",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: ... value:toString and value:toBalString"
+  ],
+  "reason": "The case asserts that a nil json value's toJsonString() returns the text null. toJsonString is absent from both the supported lang.value functions and the langlib method-call allowlist, so this essential asserted serialization behavior is outside subset 10.",
+  "unsupported_constructs": ["json.toJsonString() in testNullStringRepresentation2"],
+  "test_design_notes": ["The io:println calls serve as output assertions; they are not the reason for feature classification."]
+}

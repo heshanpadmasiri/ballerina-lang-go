@@ -1,0 +1,12 @@
+{
+  "id": "T0250",
+  "name": "birmodel-test-b91e99ce19/bir_model-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive list includes 'List constructor' and 'Mapping constructor' but does not include table constructor expressions.",
+    "## Expressions / Query expressions: 'Supports `list` and `map` as `query-constructor-type`'"
+  ],
+  "reason": "newTable constructs a table<Employee> using a table constructor (table [{id: 1, name: ...}, ...]). Table constructors are absent from the supported expression list, so the whole case requires an unsupported feature.",
+  "unsupported_constructs": ["Table constructor expression in newTable"],
+  "test_design_notes": ["No @args, @panic, or @output assertions are present. The inline @error comment does not remove the table constructor from whole-case assessment."]
+}

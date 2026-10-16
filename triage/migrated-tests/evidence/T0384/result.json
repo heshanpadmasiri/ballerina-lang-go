@@ -1,0 +1,14 @@
+{
+  "Name": "constant-without-expected-type-test-645773bda1/constant_without_expected_type-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/constant-without-expected-type-test-645773bda1/constant_without_expected_type-v.bal",
+  "Project": false,
+  "Id": "T0384",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/constant-without-expected-type-test-645773bda1/constant_without_expected_type-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.041
+}

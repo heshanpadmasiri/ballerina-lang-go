@@ -1,0 +1,14 @@
+{
+  "Name": "selectively-immutable-type-test-08053ceb2e/immutable-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/selectively-immutable-type-test-08053ceb2e/immutable-negative-e.bal",
+  "Project": false,
+  "Id": "T1342",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/selectively-immutable-type-test-08053ceb2e/immutable-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.028
+}

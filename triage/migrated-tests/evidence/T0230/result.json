@@ -1,0 +1,14 @@
+{
+  "Name": "bdd-optimization-test-43a20088cf/bdd-optimization-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bdd-optimization-test-43a20088cf/bdd-optimization-v.bal",
+  "Project": false,
+  "Id": "T0230",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bdd-optimization-test-43a20088cf/bdd-optimization-v.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.049
+}

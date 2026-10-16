@@ -1,0 +1,14 @@
+{
+  "Name": "bstring-object-test-e70c52a9d3/bstring-object-test-v.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bstring-object-test-e70c52a9d3/bstring-object-test-v.bal",
+  "Project": false,
+  "Id": "T0282",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bstring-object-test-e70c52a9d3/bstring-object-test-v.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.066
+}

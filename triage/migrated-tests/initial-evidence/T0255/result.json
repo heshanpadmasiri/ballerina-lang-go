@@ -1,0 +1,14 @@
+{
+  "Name": "bjsonvalue-test-248ac7be19/json-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/json-negative-e.bal",
+  "Project": false,
+  "Id": "T0255",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/bjsonvalue-test-248ac7be19/json-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.025
+}

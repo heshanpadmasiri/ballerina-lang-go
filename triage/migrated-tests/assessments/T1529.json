@@ -1,0 +1,19 @@
+{
+  "id": "T1529",
+  "name": "wait-for-all-actions-test-ef2703e247/wait-test-13-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Expressions: [Start action](https://ballerina.io/spec/lang/master/#start-action)",
+    "## Expressions: [Wait action](https://ballerina.io/spec/lang/master/#wait-action)",
+    "## Expressions: [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)",
+    "## Statements: [Panic](https://ballerina.io/spec/lang/master/#panic-stmt)",
+    "## Module-level declarations: Annotation declarations and attachments — Supports source-only, runtime, marker and repeated annotations",
+    "## Module-level declarations: [Type definition](https://ballerina.io/spec/lang/master/#module-type-defn)"
+  ],
+  "reason": "The case starts an annotated asynchronous function, waits for its future in a record-shaped wait-all action, and expects the worker panic to propagate. Start, wait, annotation attachments, panic, error construction, type definitions, while, compound assignment and return are supported, with no applicable subset restriction excluding this behavior.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker appears at the originating worker panic; the asserted runtime behavior is propagation through wait {id: f1} to main. The union field accepting error does not itself trap a panic.",
+    "No obvious mixed-scope constructs or conflicting markers."
+  ]
+}

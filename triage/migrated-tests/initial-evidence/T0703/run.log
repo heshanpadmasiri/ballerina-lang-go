@@ -1,0 +1,27 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "length-of-operator-test-40bf142c3a/length-of-operator-negative-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: unused variable '_x'
+         --> main.bal:1:41
+          |
+        1 | function arrayLengthAccessNullArrayCase(int _x, int _y) returns int {
+          |                                         ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable '_y'
+         --> main.bal:1:49
+          |
+        1 | function arrayLengthAccessNullArrayCase(int _x, int _y) returns int {
+          |                                                 ^^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'x'
+         --> main.bal:8:39
+          |
+        8 | function arrayLengthAccessNullMapCase(int x, int y) returns int {
+          |                                       ^^^^^
+        
+        error[SEMANTIC_ERROR]: unused variable 'y'
+         --> main.bal:8:46
+          |
+        8 | function arrayLengthAccessNullMapCase(int x, int y) returns int {
+          |                                              ^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

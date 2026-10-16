@@ -1,0 +1,19 @@
+{
+  "id": "T0559",
+  "name": "function-pointers-test-229c021698/fps-hiding-block-scope-symbols-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Anonymous function expression](https://ballerina.io/spec/lang/master/#anonymous-function-expr)",
+    "Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "Module-level declarations: Supports required-params, defaultable-params, included-record-param and rest-param in the signature",
+    "Statements: Local variable declarations; Return",
+    "Expressions: Variable reference; Call",
+    "Operators: Additive ops `+`, `-`"
+  ],
+  "reason": "The case checks rejection of anonymous-function parameters and locals that hide enclosing block-scope parameters, while permitting hiding of a module variable. It also checks invalid defaultable parameters in nested function-type descriptors. Explicit and arrow anonymous functions, function signatures, local declarations, variable references and integer addition are within the positive feature list; no applicable restriction excludes these scope or signature diagnostics. Illegal signatures are negative checks within the supported function type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Compile-negative case: @error comments identify expected diagnostics; unmarked module-variable hiding examples serve as accepted controls.",
+    "Only error locations are supplied; exact diagnostic wording and counts are not asserted in this file."
+  ]
+}

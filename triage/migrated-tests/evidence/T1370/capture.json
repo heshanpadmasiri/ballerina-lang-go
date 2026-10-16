@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment\n  --\u003e string-value-xml-v.bal:74:35\n   |\n74 |                         \u003c!--Price: $${ 40 / 5 + 4 }--\u003e\n   |                                   ^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"string-value-xml-v.bal","StartLine":74,"EndLine":74}]}

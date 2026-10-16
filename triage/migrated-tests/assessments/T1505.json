@@ -1,0 +1,20 @@
+{
+  "id": "T1505",
+  "name": "value-type-cast-expr-test-98fa22439c/value-type-cast-expr-test-98fa22439c-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Expressions: Type cast expression; Check expression; Trap expression; Type test expression; Method call",
+    "Subset restrictions / Import declarations: Only following lang libraries with given methods/types are supported; ballerina/lang.error lists only message",
+    "Subset restrictions / Invocations / Other invocation restrictions: Method call syntax can be used for calling the following langlib functions: error:message",
+    "Subset restrictions / Import declarations: ballerina/lang.float and ballerina/lang.int list fromString; ballerina/lang.value lists toString; ballerina/lang.string lists substring"
+  ],
+  "reason": "The case requires floatResult.detail()[\"message\"] to inspect the failed float conversion and produce an asserted error-detail message. error:detail is absent from both the supported lang.error methods and the langlib method-call whitelist, making the whole case feature scope despite supported casts and other conversions.",
+  "unsupported_constructs": [
+    "lang.error detail() method call and its asserted conversion-error detail message"
+  ],
+  "test_design_notes": [
+    "Mixed scope: supported primitive casts, check/trap, fromString, toString and substring share this case with unsupported error detail access.",
+    "The error-message @output marker is inside a conditional; it asserts the failed-conversion path and exact message. io:println is instrumentation. No obvious marker defect otherwise."
+  ],
+  "reviewer_name": "value-type-cast-expr-test-98fa22439c"
+}

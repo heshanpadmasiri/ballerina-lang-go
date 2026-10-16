@@ -1,0 +1,14 @@
+{
+  "Name": "query-action-or-expr-test-cc451d1303/query-action-or-expr-semantic-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/query-action-or-expr-test-cc451d1303/query-action-or-expr-semantic-e.bal",
+  "Project": false,
+  "Id": "T1208",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/query-action-or-expr-test-cc451d1303/query-action-or-expr-semantic-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.058
+}

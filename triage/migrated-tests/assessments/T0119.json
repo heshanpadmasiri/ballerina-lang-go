@@ -1,0 +1,17 @@
+{
+  "id": "T0119",
+  "name": "argument-parser-positive-test-e41e5b8a0a/params-second-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports required-params, defaultable-params, included-record-param and rest-param in the signature\"",
+    "Expressions: \"Conditional expression\"",
+    "Operators: \"Relational ops `<`, `<=`, `>`, `>=`\"; \"Additive ops `+`, `-`\""
+  ],
+  "reason": "The asserted output 105 requires the execution protocol to parse @args [\"100\", \"50.1\"] into main(int i, float f). The subset documents parameter signatures, conditional expressions and arithmetic, but does not cover command-line argument binding/conversion for main. Signature support alone does not establish that protocol.",
+  "unsupported_constructs": [
+    "Command-line argument parsing and binding to typed main parameters (int and float)."
+  ],
+  "test_design_notes": [
+    "io:println is output instrumentation. With correctly bound arguments, the supported expression selects i + 5 and yields 105. No @panic assertion is present."
+  ]
+}

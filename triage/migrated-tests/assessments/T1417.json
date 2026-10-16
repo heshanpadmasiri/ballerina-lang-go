@@ -1,0 +1,14 @@
+{
+  "id": "T1417",
+  "name": "test-error-return-f3f8de5f6c/error-return-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "Statements: Destructuring assignment statement — Only supports wildcard-binding-pattern",
+    "Expressions: Error constructor; Check expression; Trap expression; Type test expression; List constructor",
+    "Statements: Panic",
+    "Other invocation restrictions: value:toString and value:toBalString; error:message"
+  ],
+  "reason": "The essential tuple destructuring assignment [a, b, c, d] = check testReturnError() uses a list binding pattern, whereas destructuring assignment supports only wildcard-binding-pattern. That restriction suffices to classify the whole case as feature. Error construction, check/trap/panic, type tests, toString and error.message are otherwise positively covered.",
+  "unsupported_constructs": ["Non-wildcard list destructuring assignment to [a, b, c, d]"],
+  "test_design_notes": ["Mixed scope: supported error-return and trapped-panic behavior is combined with unsupported destructuring assignment. Output markers assert float string conversion and the trapped error message; the relevant langlib methods are explicitly supported. io:println is instrumentation. No obvious marker inconsistency."]
+}

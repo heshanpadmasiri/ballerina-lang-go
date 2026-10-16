@@ -1,0 +1,16 @@
+{
+  "Name": "top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e",
+  "Project": true,
+  "Id": "T1419",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/top-level-nodes-test-5e3c4a168f/duplicate-top-level-nodes-e/tests/main_test.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.04
+}

@@ -1,0 +1,17 @@
+{
+  "Name": "object-with-private-fields-negative-test-2196e80b05/private-object-access1-e",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-e",
+  "Project": true,
+  "Id": "T1098",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-e/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-e/modules/org_foo_baz/private-fields-negative-01.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-e/modules/org_foo_baz/private-fields-negative-02.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/object-with-private-fields-negative-test-2196e80b05/private-object-access1-e/private-fields-negative1.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.074
+}

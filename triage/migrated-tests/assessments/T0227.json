@@ -1,0 +1,15 @@
+{
+  "id": "T0227",
+  "name": "bbyte-value-negative-test-a1f101c098/byte-value-runtime-negative-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: [Type cast expression](https://ballerina.io/spec/lang/master/#type-cast-expr)",
+    "Expressions: [Trap expression](https://ballerina.io/spec/lang/master/#trap-expr)",
+    "Expressions: [Check expression](https://ballerina.io/spec/lang/master/#checking-expr)",
+    "Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt); [Return](https://ballerina.io/spec/lang/master/#return-stmt)",
+    "Operators: Unary operators — numeric ops `+`, `-`"
+  ],
+  "reason": "All essential constructs are supported. Each out-of-range int-to-byte cast (-12, -257, 12345) must panic with NumberConversionError; trap captures it and check returns it from the error? function. The three @output assertions check those returned errors, including the formatted value '12,345'. No applicable subset restriction excludes these cast failures or their error messages.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["io:println is output instrumentation. The case checks runtime conversion failure and error rendering, rather than rejection of invalid byte literals."]
+}

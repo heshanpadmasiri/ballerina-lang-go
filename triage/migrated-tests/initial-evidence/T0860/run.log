@@ -1,0 +1,261 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "match-stmt-error-match-pattern-test-5fc17488fc/error-match-pattern-negative-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:15:9
+           |
+        15 |         error() => {} // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:20:9
+           |
+        20 |         error() => {} // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:25:9
+           |
+        25 |         error MyError2(y = 4) => {} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:32:19
+           |
+        32 |         error() | error() => {} // @error
+           |                   ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:32:9
+           |
+        32 |         error() | error() => {} // @error
+           |         ^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:33:28
+           |
+        33 |         error("Message") | error("Message") => {} // @error
+           |                            ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:33:9
+           |
+        33 |         error("Message") | error("Message") => {} // @error
+           |         ^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:34:20
+           |
+        34 |         error(_) | error(_) => {} // @error
+           |                    ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:34:9
+           |
+        34 |         error(_) | error(_) => {} // @error
+           |         ^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:35:24
+           |
+        35 |         error(var a) | error(var b) => {} // @error
+           |                        ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:35:9
+           |
+        35 |         error(var a) | error(var b) => {} // @error
+           |         ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:36:42
+           |
+        36 |         error("Message", error("foo")) | error("Message", error("foo")) => {} // @error
+           |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:36:9
+           |
+        36 |         error("Message", error("foo")) | error("Message", error("foo")) => {} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:37:49
+           |
+        37 |         error("Message", error("Msg"), x = 2) | error("Message", error("Msg"), x = 2) => {} // @error
+           |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:37:9
+           |
+        37 |         error("Message", error("Msg"), x = 2) | error("Message", error("Msg"), x = 2) => {} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:38:49
+           |
+        38 |         error("Message", error("Msg"), x = 4) | error("Message", error("Msg"), x = 3) => {}
+           |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:38:9
+           |
+        38 |         error("Message", error("Msg"), x = 4) | error("Message", error("Msg"), x = 3) => {}
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:39:44
+           |
+        39 |         error MyError1("Message", x = 4) | error MyError1("Message", x = 4) => {} // @error
+           |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN
+          --> error-match-pattern-negative-e.bal:39:9
+           |
+        39 |         error MyError1("Message", x = 4) | error MyError1("Message", x = 4) => {} // @error
+           |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> error-match-pattern-negative-e.bal:102:9
+            |
+        102 |         var errorA if v1 is MyError9 => { } // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> error-match-pattern-negative-e.bal:103:9
+            |
+        103 |         var errorB if v1 is MyError10 => { } // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> error-match-pattern-negative-e.bal:108:9
+            |
+        108 |         var errorC if v2 is MyError9 => { } // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+           --> error-match-pattern-negative-e.bal:109:9
+            |
+        109 |         var errorD if v2 is MyError10 => { } // @error
+            |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:46:9
+           |
+        46 |         var errorA if v1 is MyError1 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:47:9
+           |
+        47 |         var errorB if v1 is MyError2 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:52:9
+           |
+        52 |         var errorC if v2 is MyError1 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:53:9
+           |
+        53 |         var errorD if v2 is MyError2 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:60:9
+           |
+        60 |         var errorA if v1 is MyError3 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:61:9
+           |
+        61 |         var errorB if v1 is MyError4 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:66:9
+           |
+        66 |         var errorC if v2 is MyError3 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:67:9
+           |
+        67 |         var errorD if v2 is MyError4 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:74:9
+           |
+        74 |         var errorA if v1 is MyError5 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:75:9
+           |
+        75 |         var errorB if v1 is MyError6 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:80:9
+           |
+        80 |         var errorC if v2 is MyError5 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:81:9
+           |
+        81 |         var errorD if v2 is MyError6 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:88:9
+           |
+        88 |         var errorA if v1 is MyError7 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:89:9
+           |
+        89 |         var errorB if v1 is MyError8 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:94:9
+           |
+        94 |         var errorC if v2 is MyError7 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: unexpected match pattern kind: TYPED_BINDING_PATTERN
+          --> error-match-pattern-negative-e.bal:95:9
+           |
+        95 |         var errorD if v2 is MyError8 => { } // @error
+           |         ^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+          --> error-match-pattern-negative-e.bal:10:16
+           |
+        10 | type MyError10 distinct error|int;
+           |                ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+         --> error-match-pattern-negative-e.bal:7:15
+          |
+        7 | type MyError7 distinct error & readonly;
+          |               ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+         --> error-match-pattern-negative-e.bal:8:15
+          |
+        8 | type MyError8 distinct error & readonly;
+          |               ^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: anonymous distinct types not supported
+         --> error-match-pattern-negative-e.bal:9:15
+          |
+        9 | type MyError9 distinct error|int;
+          |               ^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

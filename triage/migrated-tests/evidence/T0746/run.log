@@ -1,0 +1,5 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at lvalue-negative-e.bal:5-5 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at lvalue-negative-e.bal:2 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

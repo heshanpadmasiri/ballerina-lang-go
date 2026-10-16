@@ -1,0 +1,19 @@
+{
+  "id": "T0924",
+  "name": "multiple-from-clause-test-c70b0738f9/multiple-from-clauses-v.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: 'Query expressions' — 'Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses'; 'Supports `list` and `map` as `query-constructor-type`",
+    "Subset restrictions / Import declarations: '`ballerina/lang.array`' includes '`length`' and '`toStream`'",
+    "Subset restrictions / Invocations / Other invocation restrictions: 'Method call syntax can be used for calling the following langlib functions:' includes '`array:length`' and '`array:toStream`'",
+    "Statements: 'Foreach' — 'Currently only supports range, list, map, string and XML subtypes, and iterable objects'; 'Break'; 'Return'; 'Local variable declarations'",
+    "Expressions: 'List constructor'; 'Mapping constructor' — 'Currently spread-field not supported'; 'Field access expression'; 'Member access expression'; 'Equality expression'; 'Logical expression'; 'Conditional expression'; 'Type test expression'",
+    "Module-level declarations: 'Type definition'; 'Function definition'; 'Import declarations'"
+  ],
+  "reason": "All exercised behavior is within the listed subset: multiple from clauses produce ordered Cartesian products over arrays and toStream results; record and nested tuple typed bindings, where and let clauses feed list-valued select results. The assertions check lengths, ordered fields, tuple-filter equality, open-record rest fields, record-to-map type tests and record values. No query binding-pattern restriction is stated; the wildcard-only restriction applies specifically to destructuring assignment statements, which this case does not use. Both invoked array langlib methods are explicitly supported.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "io:println supplies assertion instrumentation; its import alone does not make this a feature case.",
+    "The foreach blocks intentionally break after their first iteration while checking the remaining result elements by index."
+  ]
+}

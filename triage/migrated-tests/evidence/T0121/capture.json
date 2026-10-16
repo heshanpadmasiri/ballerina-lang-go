@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 0\n        at migration/rest_provided:main(main.bal:4)\n","Diagnostics":null}

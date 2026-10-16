@@ -1,0 +1,16 @@
+{
+  "id": "T0110",
+  "name": "argument-parser-positive-test-e41e5b8a0a/int16-v",
+  "classification": "feature",
+  "spec_references": [
+    "Module-level declarations: \"Supports [`required-params`](https://ballerina.io/spec/lang/master/#required-params), [`defaultable-params`](https://ballerina.io/spec/lang/master/#defaultable-params), [`included-record-param`](https://ballerina.io/spec/lang/master/#included-record-param) and [`rest-param`](https://ballerina.io/spec/lang/master/#rest-param) in the signature\"",
+    "Subset restrictions / Import declarations: \"`ballerina/lang.int`\" lists \"`Signed16`\"."
+  ],
+  "reason": "The Signed16 type and required parameter signature are supported, but this case asserts command-line execution: @args [\"10\"] must be converted to a Signed16 main parameter and print 10. The subset does not cover command-line argument parsing or main-entry argument binding; signature support does not establish that execution protocol.",
+  "unsupported_constructs": [
+    "Command-line string argument conversion and binding to main(int:Signed16 i)."
+  ],
+  "test_design_notes": [
+    "@output 10 depends on successful CLI argument binding; io:println is instrumentation. No @panic assertion."
+  ]
+}

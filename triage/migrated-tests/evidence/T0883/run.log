@@ -1,0 +1,69 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: compilation produced a fatal diagnostic; this is not a successful compile or expected runtime panic
+    migration_triage_test.go:58: @output annotation mismatch
+        expected:
+        	Matched Values : S, 23, 5.6
+        	Matched Values : S, 23, 5.6
+        	Matched Values : S, [23,5.6]
+        	Matched with single var : 66.6
+        	Matched with two vars : Hello, 12
+        	Matched with two vars : 4.5, true
+        	Matched with three vars : 6.7, Test, false
+        	Matched with single var : 66.6
+        	Matched with two vars : Hello, 34
+        	Matched with four vars : 66.6, Test, 456, true
+        	Matched with three vars : 5.6, Ballerina, false
+        	Matched with single var : ["Bal",543,object NoFillerObject]
+        	Default
+        	Matched with two vars : Hello, 34
+        	Matched with three vars : 66.6, Test, [true,456]
+        	Matched with three vars : 5.6, Ballerina, false
+        	Matched with single var : 66.6
+        	Matched with two vars : Hello, 34
+        	Matched with four vars : 66.6, Test, 456, true
+        	Matched with three vars : 5.6, Ballerina, false
+        	Matched with single var : ["Bal",543,object NoFillerObject]
+        	Default
+        	Matched with two vars : Hello, 34
+        	Matched with three vars : 66.6, Test, [true,456]
+        	Matched with three vars : 5.6, Ballerina, false
+        	Matched with string : Hello added text with 45
+        	Matched with float : 9.0 with true
+        	Matched with int : false with 3460
+        	Matched with boolean : 455, true
+        	Matched with default type - float : 5.6
+        	Matched with string : Hello added text with 45
+        	Matched with float : 10.2 with true and 67
+        	Matched with int : true with 3523 and 7.8
+        	Matched with boolean : 678, false
+        	Default
+        	Matched with string : Hello added text with 50 with 11.0
+        	Matched with float : 10.2 and boolean with true and 67
+        	Matched with boolean : true and int with 3523 and float with 7.8
+        	Matched with boolean : 678, false
+        	Default
+        	Matched with FooRec and BarRec : {"s":"S","i":23,"f":5.6} , {"b":12,"f":{"s":"S","i":23,"f":5.6}}
+        	Matched with FooRec and float : {"s":"S","i":23,"f":5.6} , 4.5
+        	Matched with BarRec and FooRec : {"b":12,"f":{"s":"S","i":23,"f":5.6}} , {"s":"S","i":23,"f":5.6}
+        	Matched with BarRec and int : {"b":12,"f":{"s":"S","i":23,"f":5.6}} , 543
+        	Matched with float and FooRec : 5.2 , {"s":"S","i":23,"f":5.6}
+        	Matched with int and BarRec : 15 , {"b":12,"f":{"s":"S","i":23,"f":5.6}}
+        	Default
+        	Default
+        	Matched with string : Hello added text with 50 with 11.0
+        	Matched with float : 10.2 and boolean with true and 67
+        	Matched with boolean : true and int with 3523 and float with 7.8
+        	Matched with boolean : 678, false
+        	Matched with int : 876
+        	Default
+        	Matched with empty array
+        	Matched with i: 1
+        	Matched with i: 1, j: 2
+        	Matched with i: 1, j: 2, k: 3
+        	Matched with default
+        	
+        
+        got:
+        	(empty)
+--- FAIL: TestMigrationTriage (0.09s)
+FAIL

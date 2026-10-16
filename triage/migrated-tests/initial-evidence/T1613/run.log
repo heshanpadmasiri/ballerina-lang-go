@@ -1,0 +1,273 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -v test "xmlaccess-test-873756d6ae/indexed-access-v" leaked a compile diagnostic to stderr:
+        error[SEMANTIC_ERROR]: interpolation is not allowed in xml comment
+          --> xml-indexed-access.bal:70:96
+           |
+        70 |     xml seq = xml `<root>${v1} text1 text2<foo>123</foo><bar></bar></root>text2${v1}<!--comment${v1}-->text3<?foo?>`;
+           |                                                                                                ^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:458:16
+            |
+        458 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:461:16
+            |
+        461 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:466:16
+            |
+        466 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:469:16
+            |
+        469 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:474:16
+            |
+        474 |     assertTrue(typeof value is typedesc<xml:ProcessingInstruction>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:477:16
+            |
+        477 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:482:16
+            |
+        482 |     assertTrue(typeof value is typedesc<xml:Comment>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:485:16
+            |
+        485 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:490:16
+            |
+        490 |     assertTrue(typeof value is typedesc<xml:Comment>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:495:16
+            |
+        495 |     assertTrue(typeof value is typedesc<xml:ProcessingInstruction>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:500:16
+            |
+        500 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:505:16
+            |
+        505 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:510:16
+            |
+        510 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:515:16
+            |
+        515 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:518:16
+            |
+        518 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:523:16
+            |
+        523 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:528:16
+            |
+        528 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:531:16
+            |
+        531 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:536:16
+            |
+        536 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:539:16
+            |
+        539 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:593:34
+            |
+        593 |         typedesc<anydata> expT = typeof expected;
+            |                                  ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TypeofExpressionNode transformed to non-action-or-expression node <nil>
+           --> xml-indexed-access.bal:594:34
+            |
+        594 |         typedesc<anydata> actT = typeof actual;
+            |                                  ^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:458:16
+            |
+        458 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:461:16
+            |
+        461 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:466:16
+            |
+        466 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:469:16
+            |
+        469 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:474:16
+            |
+        474 |     assertTrue(typeof value is typedesc<xml:ProcessingInstruction>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:477:16
+            |
+        477 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:482:16
+            |
+        482 |     assertTrue(typeof value is typedesc<xml:Comment>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:485:16
+            |
+        485 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:490:16
+            |
+        490 |     assertTrue(typeof value is typedesc<xml:Comment>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:495:16
+            |
+        495 |     assertTrue(typeof value is typedesc<xml:ProcessingInstruction>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:500:16
+            |
+        500 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:505:16
+            |
+        505 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:510:16
+            |
+        510 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:515:16
+            |
+        515 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:518:16
+            |
+        518 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:523:16
+            |
+        523 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:528:16
+            |
+        528 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:531:16
+            |
+        531 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:536:16
+            |
+        536 |     assertTrue(typeof value is typedesc<xml:Element>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:539:16
+            |
+        539 |     assertTrue(typeof value is typedesc<xml:Text>);
+            |                ^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:593:34
+            |
+        593 |         typedesc<anydata> expT = typeof expected;
+            |                                  ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTypeofExpression unimplemented
+           --> xml-indexed-access.bal:594:34
+            |
+        594 |         typedesc<anydata> actT = typeof actual;
+            |                                  ^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.06s)
+FAIL

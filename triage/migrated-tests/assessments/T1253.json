@@ -1,0 +1,17 @@
+{
+  "id": "T1253",
+  "name": "record-constraint-table-test-5308103ca6/record-constraint-table-test-5308103ca6-e.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Expressions: positive list includes 'List constructor' and 'Mapping constructor' but does not include table constructor expressions.",
+    "## Module-level declarations: 'Type definition'",
+    "## Expressions / Query expressions: 'Supports `list` and `map` as `query-constructor-type`'"
+  ],
+  "reason": "The asserted diagnostics require duplicate-key detection in keyed table constructors, including composite keys, structurally equal map-valued keys, and shorthand constant fields. Table constructor expressions and their duplicate-key behavior are not covered by the supported expression list. General support for type definitions and mapping constructors does not cover the enclosing table constructors.",
+  "unsupported_constructs": [
+    "Keyed table constructor expressions and duplicate-key rejection"
+  ],
+  "test_design_notes": [
+    "Negative compilation case: @error marks repeated keys in module and local table initializers. Rejection is essential asserted behavior, but it depends on an uncovered table construct."
+  ]
+}

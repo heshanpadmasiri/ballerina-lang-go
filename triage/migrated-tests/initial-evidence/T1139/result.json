@@ -1,0 +1,14 @@
+{
+  "Name": "operand-compilation-test-fbca3afc7e/invalid-array-order-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/operand-compilation-test-fbca3afc7e/invalid-array-order-e.bal",
+  "Project": false,
+  "Id": "T1139",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/operand-compilation-test-fbca3afc7e/invalid-array-order-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.068
+}

@@ -1,0 +1,17 @@
+{
+  "id": "T1231",
+  "name": "query-with-binding-pattern-var-test-aad934bf38/query_with_binding_pattern-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: lists supported statements but does not list query actions.",
+    "## Expressions: Query expressions \u2014 Supports `from`, `where`, `let`, `join` (including outer join), `order by`, `limit`, `on conflict` and `select` clauses; Supports `group by` and `collect` clauses."
+  ],
+  "reason": "The case asserts execution of query actions with terminal do clauses, including nested query actions that capture destructured variables. Query actions/do clauses are absent from the supported statement and query-expression positive lists, so essential asserted behavior is outside subset 10.",
+  "unsupported_constructs": [
+    "Query actions using from ... do { ... }, including nested query actions and captured binding-pattern variables."
+  ],
+  "test_design_notes": [
+    "testQueryActionWithBindingVar asserts count == 75; testClosureInQueryActionInDoWithBindingVar asserts the array produced by nested do actions. These require query-action execution, not merely parsing supported query expressions.",
+    "The unreachable io:println call is instrumentation and does not determine classification."
+  ]
+}

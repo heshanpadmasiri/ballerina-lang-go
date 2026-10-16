@@ -1,0 +1,14 @@
+{
+  "Name": "object-type-reference-test-19fd51d776/object-out-of-order-inclusion-negative-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-out-of-order-inclusion-negative-e.bal",
+  "Project": false,
+  "Id": "T1088",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/object-type-reference-test-19fd51d776/object-out-of-order-inclusion-negative-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.043
+}

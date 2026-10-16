@@ -1,0 +1,15 @@
+{
+  "Name": "match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-with-rest-match-pattern-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-with-rest-match-pattern-v",
+  "Project": true,
+  "Id": "T0867",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-with-rest-match-pattern-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/match-stmt-list-match-pattern-test-f7dbb6076c/list-match-pattern-with-rest-match-pattern-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.095
+}

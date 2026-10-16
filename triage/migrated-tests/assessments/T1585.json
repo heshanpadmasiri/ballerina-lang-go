@@ -1,0 +1,19 @@
+{
+  "id": "T1585",
+  "name": "worker-sync-send-test-389660a47d/sync-send-with-panic-in-receive-p.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: \"- [Panic](https://ballerina.io/spec/lang/master/#panic-stmt)\"; named worker declarations are not listed.",
+    "## Expressions: \"- [Wait action](https://ballerina.io/spec/lang/master/#wait-action)\" and \"- [Error constructor](https://ballerina.io/spec/lang/master/#error-constructor-expr)\"; worker synchronous send and receive actions are not listed.",
+    "## Module-level declarations: \"- [Annotation declarations and attachments](https://ballerina.io/spec/lang/master/#section_9.1)\""
+  ],
+  "reason": "Essential named workers and synchronous worker messaging (->> and <-), including propagation of a receiving worker panic to a blocked synchronous sender and the waiting caller, are not covered by subset10. Supported panic, wait, error construction and annotations do not establish support for this worker protocol.",
+  "unsupported_constructs": [
+    "Named worker declarations",
+    "Synchronous worker send (->>) and receive (<-) actions",
+    "Panic propagation through synchronous worker communication"
+  ],
+  "test_design_notes": [
+    "The @panic marker is attached to error construction rather than the panic statement; expected failure nevertheless depends on worker communication and panic propagation."
+  ]
+}

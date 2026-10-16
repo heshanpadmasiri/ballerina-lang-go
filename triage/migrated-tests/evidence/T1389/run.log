@@ -1,0 +1,10 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at structs-negative-e.bal:1-1 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at structs-negative-e.bal:22-22 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at structs-negative-e.bal:27-27 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at structs-negative-e.bal:33-33 not covered by any @error annotation
+    migration_triage_test.go:58: diagnostic at structs-negative-e.bal:38-38 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at structs-negative-e.bal:14 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at structs-negative-e.bal:29 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

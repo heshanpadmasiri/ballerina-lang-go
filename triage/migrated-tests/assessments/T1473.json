@@ -1,0 +1,17 @@
+{
+  "id": "T1473",
+  "name": "type-guard-test-74355f2266/sem-types-4-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: Type definition; Constant declarations; Function definition",
+    "## Statements: If/else; Local variable declarations",
+    "## Expressions: Type test expression",
+    "## Expressions: Currently support `nil-literal`, `boolean-literal`, `numeric-literal` and `string-literal` only"
+  ],
+  "reason": "The case exercises structural record types with inclusion and recursive union references, a nil singleton constant used as a type, and union narrowing through successive type tests. Type definitions, constants, type tests, branches and local declarations are supported, and no listed restriction excludes these types or their narrowing. The marked incompatible-assignment diagnostic is negative testing within the supported type system.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "Mixed positive and negative checks: f1/f2 assignments are labeled OK, while f3 has one @error marker; no runtime @args, @panic or @output assertions occur.",
+    "The f3 comment asserts that VarRefExpr remains after the tests, although VarRefExpr and OtherExpr declare different qNamePos types (int versus string); the expected diagnostic merits checking rather than assuming that comment establishes correct narrowing behavior."
+  ]
+}

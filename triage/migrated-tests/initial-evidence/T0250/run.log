@@ -1,0 +1,51 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:52: -e test "birmodel-test-b91e99ce19/bir_model-e.bal" expected stderr is not a compile diagnostic (`error[...]: ...`):
+        fatal[INTERNAL_ERROR]: syntax node *st.TableConstructorExpressionNode transformed to non-action-or-expression node <nil>
+           --> bir_model-e.bal:132:37
+            |
+        132 |     table<Employee> employeeTable = table [
+            |                                     ^^^^^^^
+        133 |             {id: 1, name: "Employee1"},
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        134 |             {id: 2, name: "Employee2"}
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        135 |         ];
+            |         ^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> bir_model-e.bal:131:29
+            |
+        131 | function newTable() returns table<Employee> {
+            |                             ^^^^^^^^^^^^^^^
+        
+        fatal[INTERNAL_ERROR]: syntax node *st.TableTypeDescriptorNode is not a type descriptor
+           --> bir_model-e.bal:132:5
+            |
+        132 |     table<Employee> employeeTable = table [
+            |     ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableConstructorExpression unimplemented
+           --> bir_model-e.bal:132:37
+            |
+        132 |     table<Employee> employeeTable = table [
+            |                                     ^^^^^^^
+        133 |             {id: 1, name: "Employee1"},
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        134 |             {id: 2, name: "Employee2"}
+            |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        135 |         ];
+            |         ^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> bir_model-e.bal:131:29
+            |
+        131 | function newTable() returns table<Employee> {
+            |                             ^^^^^^^^^^^^^^^
+        
+        fatal[UNIMPLEMENTED_ERROR]: transformTableTypeDescriptor unimplemented
+           --> bir_model-e.bal:132:5
+            |
+        132 |     table<Employee> employeeTable = table [
+            |     ^^^^^^^^^^^^^^^
+--- FAIL: TestMigrationTriage (0.01s)
+FAIL

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error: invalid array index: 9\n        at main(closed-array-finite-out-of-range-p.bal:5)\n","Diagnostics":null}

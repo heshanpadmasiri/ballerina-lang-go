@@ -1,0 +1,55 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:58: diagnostic at sem-types-1-e.bal:170-170 not covered by any @error annotation
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:29 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:37 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:54 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:204 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:222 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:230 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:241 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:253 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:260 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:261 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:272 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:278 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:292 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:300 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:313 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:323 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:333 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:344 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:345 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:354 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:355 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:379 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:385 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:393 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:399 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:425 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:431 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:439 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:445 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:462 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:478 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:486 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:508 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:543 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:550 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:557 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:567 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:575 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:585 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:602 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:609 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:615 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:622 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:630 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:639 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:649 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:656 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:660 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:666 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:672 is not covered by any diagnostic
+    migration_triage_test.go:58: @error annotation at sem-types-1-e.bal:678 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.02s)
+FAIL

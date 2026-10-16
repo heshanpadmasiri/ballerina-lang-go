@@ -1,0 +1,14 @@
+{
+  "id": "T1044",
+  "name": "numeric-conversion-test-6b3e1e5e00/invalid-int-as-byte-union-negative-1-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Function definition]; Supports required-params",
+    "## Statements: [Local variable declarations]; [Call]",
+    "## Expressions: [Type cast expression]; [Literal] — Currently support nil-literal, boolean-literal, numeric-literal and string-literal only",
+    "## Operators: Unary operators — numeric ops +, -"
+  ],
+  "reason": "The case requires a runtime panic when casting an int|boolean containing -1 to byte|boolean. Function calls, local declarations, numeric literals, unary negation and type casts are supported, with no restriction excluding casts between these unions or byte range failures. The asserted failed cast is therefore within scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["The // @panic marker asserts runtime rejection of the out-of-range integer cast; no unsupported library calls are involved."]
+}

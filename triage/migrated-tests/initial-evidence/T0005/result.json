@@ -1,0 +1,14 @@
+{
+  "Name": "access-levels-negative-test-4f8066db20/private-access-level-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-access-level-e.bal",
+  "Project": false,
+  "Id": "T0005",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/access-levels-negative-test-4f8066db20/private-access-level-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.067
+}

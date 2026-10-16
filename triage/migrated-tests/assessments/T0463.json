@@ -1,0 +1,13 @@
+{
+  "id": "T0463",
+  "name": "expr-bodied-function-test-d60970291b/expr-bodied-functions-negative-e.bal",
+  "classification": "bug",
+  "spec_references": [
+    "## Module-level declarations: [Function definition](https://ballerina.io/spec/lang/master/#function-defn)",
+    "## Statements: [Local variable declarations](https://ballerina.io/spec/lang/master/#local-var-decl-stmt); [Return](https://ballerina.io/spec/lang/master/#return-stmt)",
+    "## Operators: Additive ops `+`, `-`"
+  ],
+  "reason": "The case asserts rejection of malformed expression-bodied function definitions: a block, external body, and local declaration placed after =>. Function definitions are supported without a body-form restriction; rejecting these invalid combinations is within the supported grammar. No unsupported execution behavior is required.",
+  "unsupported_constructs": [],
+  "test_design_notes": ["Compile-negative case with @error markers only; no @args, @panic, or @output assertions. The external token is an invalid expression-body input, not a requirement to execute an external function."]
+}

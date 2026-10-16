@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"fatal[INTERNAL_ERROR]: syntax node *st.RemoteMethodCallActionNode transformed to non-expression node *ast.BLangRemoteMethodCallAction\n  --\u003e main.bal:15:24\n   |\n15 |     string s = \u003cstring\u003efoo-\u003egetValue(); // @panic\n   |                        ^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":15,"EndLine":15}]}

@@ -1,0 +1,1 @@
+{"Stdout":"","Stderr":"error[SEMANTIC_ERROR]: unsupported container type for index based access\n --\u003e main.bal:4:12\n  |\n4 |     return info[\"address\"][\"country\"]; // @error\n  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n","Diagnostics":[{"File":"main.bal","StartLine":4,"EndLine":4}]}

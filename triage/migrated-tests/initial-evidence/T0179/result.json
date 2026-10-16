@@ -1,0 +1,14 @@
+{
+  "Name": "array-size-definition-test-a34088ca39/array-size-test-positive-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/array-size-definition-test-a34088ca39/array-size-test-positive-e.bal",
+  "Project": false,
+  "Id": "T0179",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/array-size-definition-test-a34088ca39/array-size-test-positive-e.bal"
+  ],
+  "Args": null,
+  "Status": "pass",
+  "ExitCode": 0,
+  "Seconds": 0.07
+}

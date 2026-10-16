@@ -1,0 +1,16 @@
+{
+  "id": "T1530",
+  "name": "wait-for-all-actions-test-ef2703e247/wait-test-14-p.bal",
+  "classification": "bug",
+  "spec_references": [
+    "Expressions: \"Start action\"; \"Wait action\"; \"Error constructor\"; \"Mapping constructor\"; \"Field access expression\"",
+    "Statements: \"Panic\"; \"While\"; \"Compound Assignment\"; \"Local variable declarations\"; \"Return\"",
+    "Module-level declarations: \"Annotation declarations and attachments\" and \"Supports annotation values evaluated from constant and runtime expressions\"",
+    "Operators: \"Relational ops `<`, `<=`, `>`, `>=`\"; \"Additive ops `+`, `-`\""
+  ],
+  "reason": "The case starts two futures with strand annotations, waits for both into a record, and exercises a panic in one asynchronous function. Start, wait, panic, annotations, constructors, field access, calls and the delay loop are positively supported, with no applicable restriction. The panic assertion concerns the supported asynchronous wait/panic behavior, not merely supported signatures.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @panic marker is inside the started function; main only receives the wait result and makes no value assertions. Its expected observable failure therefore depends on panic propagation through wait. No mixed unsupported scope is evident."
+  ]
+}

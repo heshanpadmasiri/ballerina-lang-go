@@ -1,0 +1,13 @@
+{
+  "id": "T1012",
+  "name": "not-so-basic-worker-test-0fe9cb09ab/void-workers-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: the supported statement list does not include named worker declarations.",
+    "## Expressions: \"Start action\" and \"Wait action\" are listed; named worker declarations and their lifecycle semantics are not listed.",
+    "# Subset restrictions / ## Import declarations: \"ballerina/lang.runtime\" supports \"sleep\", \"onGracefulStop\" and \"StopHandler\"."
+  ],
+  "reason": "The asserted output 10 depends on named workers in void-returning functions executing concurrently and on function/worker completion timing: the immediate worker sets i to 10 while a delayed worker later invokes another worker-bearing function that sets i to 5. Named worker declarations and their lifecycle behavior are not covered by the supported feature lists. runtime:sleep itself is explicitly supported.",
+  "unsupported_constructs": ["Named worker declarations in testVoid and testNew, including their concurrent execution and completion semantics in void-returning functions"],
+  "test_design_notes": ["The expected output is timing-dependent and uses sleeps of 1500, 3000 and 2000 milliseconds to distinguish worker execution order.", "io:println only exposes the result and is not the feature basis."]
+}

@@ -1,0 +1,14 @@
+{
+  "Name": "custom-function-test-2824786169/duplicate-function-e.bal",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/custom-function-test-2824786169/duplicate-function-e.bal",
+  "Project": false,
+  "Id": "T0400",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/custom-function-test-2824786169/duplicate-function-e.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.06
+}

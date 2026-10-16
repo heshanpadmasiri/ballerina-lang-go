@@ -1,0 +1,24 @@
+{
+  "Name": "global-var-function-in-bala-test-943e6806ea/global-var-function-in-bala-v",
+  "Path": "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/global-var-function-in-bala-v",
+  "Project": true,
+  "Id": "T0599",
+  "WorkspaceRoot": "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea",
+  "WorkspaceMembers": [
+    "global-var-function-in-bala-v",
+    "a-provider-v"
+  ],
+  "ExecutionPath": "/workspace/scratch/nutcracker-triage-workspaces/T0599",
+  "JavaEvidence": [],
+  "Sources": [
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/a-provider-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/a-provider-v/main.bal",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/global-var-function-in-bala-v/Ballerina.toml",
+    "/workspace/scratch/jballerina-migration/migration-results/global-var-function-in-bala-test-943e6806ea/global-var-function-in-bala-v/main.bal"
+  ],
+  "Args": null,
+  "Status": "fail",
+  "ExitCode": 1,
+  "Seconds": 0.035
+}

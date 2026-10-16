@@ -1,0 +1,8 @@
+=== RUN   TestMigrationTriage
+    migration_triage_test.go:53: @error annotation at xmlns-negative-e.bal:22 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xmlns-negative-e.bal:23 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xmlns-negative-e.bal:25 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xmlns-negative-e.bal:28 is not covered by any diagnostic
+    migration_triage_test.go:53: @error annotation at xmlns-negative-e.bal:36 is not covered by any diagnostic
+--- FAIL: TestMigrationTriage (0.03s)
+FAIL

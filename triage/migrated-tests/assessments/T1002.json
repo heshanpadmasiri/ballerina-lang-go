@@ -1,0 +1,19 @@
+{
+  "id": "T1002",
+  "name": "nested-retry-stmt-test-ddbe9cd95a/cases/nested-retry-statement-v",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes Return and Panic, but does not include retry or fail statements.",
+    "### Other invocation restrictions: `value:toString` and `value:toBalString`"
+  ],
+  "reason": "The assertions require nested retry blocks to restart after fail, preserve the expected accumulated attempt trace, and propagate returns from inner and middle retry blocks. Retry and fail statements are absent from the subset's positive supported-statement list, so this essential behavior is outside the subset. The toString method calls are explicitly supported.",
+  "unsupported_constructs": [
+    "Nested retry<MyRetryManager> (3) statements and retry-manager-driven re-execution",
+    "fail trxError() statements",
+    "Return propagation through nested retry blocks"
+  ],
+  "test_design_notes": [
+    "Checks exact retry attempt traces and that an inner or middle return exits the enclosing function without reaching deeper retry blocks."
+  ],
+  "reviewer_name": "nested-retry-statement-v"
+}

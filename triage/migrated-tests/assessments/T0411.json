@@ -1,0 +1,18 @@
+{
+  "id": "T0411",
+  "name": "deprecated-annotation-test-e11d4104cd/deprecated-annotations-e",
+  "classification": "bug",
+  "spec_references": [
+    "Module-level declarations: [Annotation declarations and attachments]; Supports source-only, runtime, marker and repeated annotations",
+    "Module-level declarations: [Type definition], [Constant declarations], [Function definition], [Class definition]",
+    "Module-level declarations: Supports object-field, method-defn and object-type-inclusion members",
+    "Expressions: [Error constructor], [New expression], [Mapping constructor], [Method call], [Field access expression]"
+  ],
+  "reason": "The case attaches the built-in deprecated marker to declarations, fields and parameters, declares and uses a deprecated annotation, and expects diagnostics on deprecated uses. Annotation declarations and attachments, including marker annotations, are explicitly supported. The surrounding type, class, record, constant, function, construction and access forms have no applicable subset restriction. The whole case is in scope.",
+  "unsupported_constructs": [],
+  "test_design_notes": [
+    "The @error comments assert compile-time diagnostics; there are no @args, @panic or @output expectations.",
+    "Deprecation normally produces warning diagnostics; representing all deprecated uses with @error may conflate diagnostic severity. This is a harness expectation concern rather than an unsupported language construct.",
+    "The opening comment mentions documentation metadata, but the supplied source contains no direct metadata assertions."
+  ]
+}

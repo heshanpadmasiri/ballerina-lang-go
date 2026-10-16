@@ -1,0 +1,18 @@
+{
+  "id": "T0470",
+  "name": "fail-stmt-test-0645288b01/fail-stmt-v.bal",
+  "classification": "feature",
+  "spec_references": [
+    "## Statements: supported statement list includes \"Return\" and \"Panic\", but does not include fail statements.",
+    "## Expressions: \"Error constructor\"",
+    "### Other invocation restrictions: \"error:message\""
+  ],
+  "reason": "The case requires fail err to terminate testFailStmt and return the error so main prints its message. Fail statements are absent from the supported Statements positive list, making the essential asserted behavior outside subset 10.",
+  "unsupported_constructs": [
+    "fail statement (fail err;)"
+  ],
+  "test_design_notes": [
+    "The @output assertion expects Custom error thrown explicitly. and therefore exercises fail propagation, not merely error construction.",
+    "Error construction and error.message() are listed as supported; io:println is output instrumentation."
+  ]
+}
