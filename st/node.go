@@ -522,6 +522,27 @@ func (n *NodeList[T]) Iterator() iter.Seq[T] {
 	}
 }
 
+// UncachedIterator yields facades for the list members without caching them in the list,
+// so each member's facade subtree can be collected once the caller is done with it.
+func (n *NodeList[T]) UncachedIterator() iter.Seq[T] {
+	return func(yield func(T) bool) {
+		position := n.nonTerminalNode.Position()
+		for i := range n.size {
+			internalChild := n.internalListNode.ChildInBucket(i)
+			if !IsSTNodePresent(internalChild) {
+				continue
+			}
+			childPosition := position
+			position += int(internalChild.WidthWithMinutiae())
+			if val, ok := internalChild.CreateFacade(childPosition, n.nonTerminalNode).(T); ok {
+				if !yield(val) {
+					return
+				}
+			}
+		}
+	}
+}
+
 type DocumentMemberDeclarationNode struct {
 	NonTerminalNodeBase
 }

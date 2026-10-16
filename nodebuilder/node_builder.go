@@ -1317,7 +1317,7 @@ func (n *nodeBuilder) transformModulePart(modulePartNode *st.ModulePart) ast.BLa
 
 	// Generate other module-level declarations
 	members := modulePartNode.Members()
-	for member := range members.Iterator() {
+	for member := range members.UncachedIterator() {
 		// Dispatch to transformSyntaxNode which handles all node types
 		var memberNode st.Node = member
 		if memberNode.HasDiagnostics() && n.mode != nodeBuilderModeRecover {
