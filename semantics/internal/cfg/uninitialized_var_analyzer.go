@@ -17,7 +17,7 @@
 package cfg
 
 import (
-	"maps"
+	"slices"
 	"sync"
 
 	"github.com/ballerina-nutcracker/ballerina/ast"
@@ -26,90 +26,109 @@ import (
 	"github.com/ballerina-nutcracker/ballerina/semantics/internal/common"
 )
 
-// varInitState tracks which variables are definitely initialized
+// varInitState tracks which variables are definitely initialized, using dense
+// per-function variable indices. A variable is tracked if its bit is set in
+// tracked, and definitely initialized if its bit is also set in initialized.
 type varInitState struct {
-	initVars map[model.SymbolRef]bool // true = definitely initialized
+	tracked     bitset
+	initialized bitset
 }
 
-// newVarInitState creates an empty initialization state
 func newVarInitState() *varInitState {
-	return &varInitState{
-		initVars: make(map[model.SymbolRef]bool),
-	}
+	return &varInitState{}
 }
 
-// clone creates a deep copy of the state
 func (s *varInitState) clone() *varInitState {
-	newState := newVarInitState()
-	maps.Copy(newState.initVars, s.initVars)
-	return newState
+	return &varInitState{
+		tracked:     slices.Clone(s.tracked),
+		initialized: slices.Clone(s.initialized),
+	}
 }
 
-func mergeStates(s1, s2 *varInitState) *varInitState {
-	// If one state is empty (unvisited block), use the other state
-	// This handles the fixed-point iteration where some blocks haven't been analyzed yet
-	if len(s1.initVars) == 0 {
-		return s2.clone()
-	}
-	if len(s2.initVars) == 0 {
-		return s1.clone()
-	}
+func (s *varInitState) isEmpty() bool {
+	return s.tracked.isEmpty()
+}
 
-	result := newVarInitState()
-
-	// Merge variables from both states
-	// Collect all variables from both states
-	allVars := make(map[model.SymbolRef]bool)
-	for symRef := range s1.initVars {
-		allVars[symRef] = true
+// mergeFrom merges other into s in place. A variable is initialized only if it is
+// initialized in both states; a variable tracked in only one state is treated as
+// uninitialized. If either state is empty (unvisited block), the other state wins.
+func (s *varInitState) mergeFrom(other *varInitState) {
+	if other.isEmpty() {
+		return
 	}
-	for symRef := range s2.initVars {
-		allVars[symRef] = true
+	if s.isEmpty() {
+		s.tracked = append(s.tracked[:0], other.tracked...)
+		s.initialized = append(s.initialized[:0], other.initialized...)
+		return
 	}
+	s.tracked.unionWith(other.tracked)
+	s.initialized.intersectWith(other.initialized)
+}
 
-	// For each variable, it's initialized only if initialized in ALL paths
-	for symRef := range allVars {
-		init1, exists1 := s1.initVars[symRef]
-		init2, exists2 := s2.initVars[symRef]
+func (s *varInitState) markInitialized(idx int) {
+	s.tracked.set(idx)
+	s.initialized.set(idx)
+}
 
-		if exists1 && exists2 {
-			// Variable in both states - initialized if both are initialized
-			result.initVars[symRef] = init1 && init2
-		} else {
-			// Variable in one state but not the other - treat as uninitialized
-			// This handles variables that may be in different scopes
-			result.initVars[symRef] = false
+func (s *varInitState) markUninitialized(idx int) {
+	s.tracked.set(idx)
+	s.initialized.clear(idx)
+}
+
+func (s *varInitState) isTracked(idx int) bool {
+	return s.tracked.has(idx)
+}
+
+func (s *varInitState) isInitialized(idx int) bool {
+	return s.initialized.has(idx)
+}
+
+type bitset []uint64
+
+func (b bitset) has(i int) bool {
+	w := i >> 6
+	return w < len(b) && b[w]&(1<<(uint(i)&63)) != 0
+}
+
+func (b *bitset) set(i int) {
+	w := i >> 6
+	if w >= len(*b) {
+		*b = append(*b, make([]uint64, w+1-len(*b))...)
+	}
+	(*b)[w] |= 1 << (uint(i) & 63)
+}
+
+func (b bitset) clear(i int) {
+	w := i >> 6
+	if w < len(b) {
+		b[w] &^= 1 << (uint(i) & 63)
+	}
+}
+
+func (b bitset) isEmpty() bool {
+	for _, w := range b {
+		if w != 0 {
+			return false
 		}
 	}
-
-	return result
+	return true
 }
 
-// markInitialized marks a variable as definitely initialized
-func (s *varInitState) markInitialized(symRef model.SymbolRef) {
-	s.initVars[symRef] = true
+func (b *bitset) unionWith(other bitset) {
+	if len(other) > len(*b) {
+		*b = append(*b, make([]uint64, len(other)-len(*b))...)
+	}
+	for i, w := range other {
+		(*b)[i] |= w
+	}
 }
 
-// markUninitialized marks a variable as declared but not initialized
-func (s *varInitState) markUninitialized(symRef model.SymbolRef) {
-	s.initVars[symRef] = false
-}
-
-// isTracked returns true if we're tracking this variable
-func (s *varInitState) isTracked(symRef model.SymbolRef) bool {
-	_, exists := s.initVars[symRef]
-	return exists
-}
-
-// isInitialized returns true if the variable is definitely initialized
-func (s *varInitState) isInitialized(symRef model.SymbolRef) bool {
-	return s.initVars[symRef]
-}
-
-// blockState tracks initialization state at entry and exit of a basic block
-type blockState struct {
-	entry *varInitState // State when entering block
-	exit  *varInitState // State when exiting block
+func (b bitset) intersectWith(other bitset) {
+	n := min(len(b), len(other))
+	for i := range n {
+		b[i] &= other[i]
+	}
+	clear(b[n:])
 }
 
 // uninitVarAnalyzer performs data flow analysis for uninitialized variables
@@ -117,39 +136,56 @@ type uninitVarAnalyzer struct {
 	ctx               *context.CompilerContext
 	fn                ast.BLangNode
 	fcfg              *functionCFG
-	states            map[int]*blockState
+	exitStates        []*varInitState
+	varIndices        map[model.SymbolRef]int
 	implicitInitState *varInitState // vars initialized by language constructs, used as entry state baseline
 }
 
 // newUninitVarAnalyzer creates a new analyzer for a function
 func newUninitVarAnalyzer(ctx *context.CompilerContext, fn ast.BLangNode, fcfg *functionCFG) *uninitVarAnalyzer {
 	analyzer := &uninitVarAnalyzer{
-		ctx:               ctx,
-		fn:                fn,
-		fcfg:              fcfg,
-		states:            make(map[int]*blockState),
-		implicitInitState: buildImplicitInitState(fn),
+		ctx:        ctx,
+		fn:         fn,
+		fcfg:       fcfg,
+		exitStates: make([]*varInitState, len(fcfg.bbs)),
+		varIndices: make(map[model.SymbolRef]int),
 	}
-
-	// Initialize block states
-	for i := range fcfg.bbs {
-		analyzer.states[i] = &blockState{
-			entry: newVarInitState(),
-			exit:  newVarInitState(),
-		}
+	analyzer.implicitInitState = analyzer.buildImplicitInitState(fn)
+	for i := range analyzer.exitStates {
+		analyzer.exitStates[i] = newVarInitState()
 	}
-
 	return analyzer
 }
 
-func buildImplicitInitState(fn ast.BLangNode) *varInitState {
-	state := newVarInitState()
-	ast.Walk(&implicitVarMarker{state: state}, fn)
-	return state
+// varIndex returns the dense index of symRef, assigning a new one if needed.
+func (a *uninitVarAnalyzer) varIndex(symRef model.SymbolRef) int {
+	if idx, ok := a.varIndices[symRef]; ok {
+		return idx
+	}
+	idx := len(a.varIndices)
+	a.varIndices[symRef] = idx
+	return idx
+}
+
+func (a *uninitVarAnalyzer) isTracked(state *varInitState, symRef model.SymbolRef) bool {
+	idx, ok := a.varIndices[symRef]
+	return ok && state.isTracked(idx)
+}
+
+func (a *uninitVarAnalyzer) isInitialized(state *varInitState, symRef model.SymbolRef) bool {
+	idx, ok := a.varIndices[symRef]
+	return ok && state.isInitialized(idx)
+}
+
+func (a *uninitVarAnalyzer) buildImplicitInitState(fn ast.BLangNode) *varInitState {
+	marker := &implicitVarMarker{analyzer: a, state: newVarInitState()}
+	ast.Walk(marker, fn)
+	return marker.state
 }
 
 type implicitVarMarker struct {
-	state *varInitState
+	analyzer *uninitVarAnalyzer
+	state    *varInitState
 }
 
 func (m *implicitVarMarker) Visit(node ast.BLangNode) ast.Visitor {
@@ -157,7 +193,7 @@ func (m *implicitVarMarker) Visit(node ast.BLangNode) ast.Visitor {
 		return nil
 	}
 	if foreach, ok := node.(*ast.BLangForeach); ok && foreach.VariableDef != nil {
-		m.state.markInitialized(foreach.VariableDef.Var.Symbol())
+		m.state.markInitialized(m.analyzer.varIndex(foreach.VariableDef.Var.Symbol()))
 	}
 	return m
 }
@@ -170,36 +206,28 @@ func (a *uninitVarAnalyzer) analyze() {
 	}
 	for _, i := range a.fcfg.topoOrder {
 		bb := &a.fcfg.bbs[i]
-		entry := a.mergePredecessors(bb)
-		a.states[i].entry = entry
-		exit := a.analyzeBlock(bb, entry.clone())
-		a.states[i].exit = exit
+		a.exitStates[i] = a.analyzeBlock(bb, a.mergePredecessors(bb))
 	}
 }
 
 // mergePredecessors merges the exit states of all non-backedge predecessors.
 func (a *uninitVarAnalyzer) mergePredecessors(bb *basicBlock) *varInitState {
-	backedgeSet := make(map[int]bool, len(bb.backedgeParents))
-	for _, p := range bb.backedgeParents {
-		backedgeSet[p] = true
-	}
 	result := (*varInitState)(nil)
 	for _, parentID := range bb.parents {
-		if backedgeSet[parentID] {
+		if slices.Contains(bb.backedgeParents, parentID) {
 			continue
 		}
 		if result == nil {
-			result = a.states[parentID].exit.clone()
+			result = a.exitStates[parentID].clone()
 		} else {
-			result = mergeStates(result, a.states[parentID].exit)
+			result.mergeFrom(a.exitStates[parentID])
 		}
 	}
 	if result == nil {
 		result = newVarInitState()
 	}
-	for symRef := range a.implicitInitState.initVars {
-		result.markInitialized(symRef)
-	}
+	result.tracked.unionWith(a.implicitInitState.tracked)
+	result.initialized.unionWith(a.implicitInitState.initialized)
 	return result
 }
 
@@ -215,12 +243,12 @@ func (a *uninitVarAnalyzer) analyzeBlock(bb *basicBlock, state *varInitState) *v
 func (a *uninitVarAnalyzer) analyzeNode(node ast.Node, state *varInitState) {
 	switch n := node.(type) {
 	case *ast.BLangVariableDef:
-		symRef := n.Var.Symbol()
+		idx := a.varIndex(n.Var.Symbol())
 		if n.Var.Expr != nil {
 			a.checkExpression(n.Var.Expr, state)
-			state.markInitialized(symRef)
-		} else if !state.isInitialized(symRef) {
-			state.markUninitialized(symRef)
+			state.markInitialized(idx)
+		} else if !state.isInitialized(idx) {
+			state.markUninitialized(idx)
 		}
 	case *ast.BLangAssignment:
 		a.checkExpression(n.Expr, state)
@@ -249,9 +277,8 @@ func (a *uninitVarAnalyzer) markAssignmentTarget(expr ast.BLangExpression, state
 
 	// For simple variable references, mark as initialized
 	if nodeWithSymbol, ok := expr.(ast.NodeWithSymbol); ok {
-		symRef := nodeWithSymbol.Symbol()
-		if state.isTracked(symRef) {
-			state.markInitialized(symRef)
+		if idx, ok := a.varIndices[nodeWithSymbol.Symbol()]; ok && state.isTracked(idx) {
+			state.markInitialized(idx)
 		}
 		return
 	}
@@ -269,11 +296,11 @@ func (a *uninitVarAnalyzer) checkExpression(expr ast.BLangActionOrExpression, st
 
 // checkVariableReference checks if a variable is initialized before use
 func (a *uninitVarAnalyzer) checkVariableReference(symRef model.SymbolRef, node ast.Node, state *varInitState) {
-	if !state.isTracked(symRef) {
+	if !a.isTracked(state, symRef) {
 		return
 	}
 
-	if !state.isInitialized(symRef) {
+	if !a.isInitialized(state, symRef) {
 		// Variable is tracked but not initialized - report error
 		a.ctx.SemanticError("variable may not be initialized", node.GetPosition())
 	}
