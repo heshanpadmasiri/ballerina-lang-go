@@ -41,6 +41,12 @@ func sameSemType(t1, t2 SemType) bool {
 	return !IsZero(t1) && !IsZero(t2) && sameComplexSemType(t1, t2)
 }
 
+// IsIdentical reports whether t1 and t2 share the same representation. It can
+// return false for types that are equal, so it must only be used to reuse work.
+func IsIdentical(t1, t2 SemType) bool {
+	return sameSemType(t1, t2)
+}
+
 func cellAtomType(atom atom) *cellAtomicType {
 	ta := atom.(*typeAtom)
 	atomicType := ta.AtomicType

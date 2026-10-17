@@ -4608,9 +4608,11 @@ func resolveTypeTestExpr(t typeResolver, chain *binding, e *ast.BLangTypeTestExp
 	testedTy := e.Type.Type
 
 	var resultTy semtypes.SemType
-	if semtypes.IsSubtype(t.typeContext(), exprTy, testedTy) {
+	diffTy := semtypes.Diff(exprTy, testedTy)
+	var intersectTy semtypes.SemType
+	if semtypes.IsEmpty(t.typeContext(), diffTy) {
 		resultTy = semtypes.BooleanConst(!e.IsNegation())
-	} else if semtypes.IsEmpty(t.typeContext(), semtypes.Intersect(exprTy, testedTy)) {
+	} else if intersectTy = semtypes.Intersect(exprTy, testedTy); semtypes.IsEmpty(t.typeContext(), intersectTy) {
 		resultTy = semtypes.BooleanConst(e.IsNegation())
 	} else {
 		resultTy = semtypes.Boolean
@@ -4624,11 +4626,17 @@ func resolveTypeTestExpr(t typeResolver, chain *binding, e *ast.BLangTypeTestExp
 	}
 	tx := t.symbolType(ref)
 	ref = t.unnarrowedSymbol(ref)
-	testTy := e.Type.Type
-	trueTy := semtypes.Intersect(tx, testTy)
+	if !semtypes.IsIdentical(tx, exprTy) {
+		diffTy = semtypes.Diff(tx, testedTy)
+		intersectTy = semtypes.SemType{}
+	}
+	if semtypes.IsZero(intersectTy) {
+		intersectTy = semtypes.Intersect(tx, testedTy)
+	}
+	trueTy := intersectTy
 	trueSym := narrowSymbol(t, ref, trueTy)
 	trueChain := &binding{ref: ref, narrowedSymbol: trueSym, prev: chain}
-	falseTy := semtypes.Diff(tx, testTy)
+	falseTy := diffTy
 	falseSym := narrowSymbol(t, ref, falseTy)
 	falseChain := &binding{ref: ref, narrowedSymbol: falseSym, prev: chain}
 	functionSignatures, ok := typeTestFunctionSignatureRefs(t, e.Type.TypeDescriptor, e.GetPosition())
