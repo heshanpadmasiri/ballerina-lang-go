@@ -201,7 +201,6 @@ func ContextFrom(env Env) Context {
 		_streamImplementorMemo: make(map[streamImplementorMemoKey]SemType),
 		_listenerMemo:          make(map[listenerMemoKey]SemType),
 		_semtypeInterner:       NewSemtypeInterner(),
-		_conjunctions:          make([]conjunction, 0, 64),
 	}
 }
 

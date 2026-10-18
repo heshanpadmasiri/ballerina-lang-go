@@ -212,10 +212,8 @@ func analyzeFunction(ctx *context.CompilerContext, fn *ast.BLangFunction) functi
 }
 
 func analyzeFunctionBody(ctx *context.CompilerContext, body ast.FunctionBodyNode) functionCFG {
-	tyCtx := semtypes.ContextFrom(ctx.GetTypeEnv())
 	analyzer := functionControlFlowAnalyzer{
-		ctx:   ctx,
-		tyCtx: tyCtx,
+		ctx: ctx,
 	}
 	return analyzer.analyzeBody(body)
 }
@@ -344,7 +342,7 @@ func (analyzer *functionControlFlowAnalyzer) analyzeStatement(curBB bbRef, stmt 
 		return analyzer.analyzePanic(curBB, s)
 	case *ast.BLangExpressionStmt:
 		analyzer.addNode(curBB, stmt)
-		if expr, ok := s.Expr.(ast.BLangExpression); ok && alwaysTerminatesViaCheck(analyzer.tyCtx, expr) {
+		if expr, ok := s.Expr.(ast.BLangExpression); ok && analyzer.alwaysTerminatesViaCheck(expr) {
 			analyzer.bbs[curBB].panics = isCheckPanic(expr)
 			return terminatedEffect()
 		}
@@ -392,7 +390,7 @@ func (analyzer *functionControlFlowAnalyzer) analyzeStatement(curBB bbRef, stmt 
 func (analyzer *functionControlFlowAnalyzer) analyzeReturn(curBB bbRef, stmt *ast.BLangReturn) stmtEffect {
 	analyzer.addNode(curBB, stmt)
 	if expr, ok := stmt.Expr.(ast.BLangExpression); ok && isCheckPanic(expr) {
-		analyzer.bbs[curBB].panics = alwaysTerminatesViaCheck(analyzer.tyCtx, expr)
+		analyzer.bbs[curBB].panics = analyzer.alwaysTerminatesViaCheck(expr)
 	}
 	// Return terminates execution - current block has no children
 	return terminatedEffect()
@@ -413,7 +411,7 @@ func (analyzer *functionControlFlowAnalyzer) analyzePanic(curBB bbRef, stmt *ast
 // `checkpanic` whose operand is statically a subtype of error. In that case the
 // `check` always returns from the enclosing function and the `checkpanic`
 // always panics, so following statements are unreachable.
-func alwaysTerminatesViaCheck(tyCtx semtypes.Context, expr ast.BLangExpression) bool {
+func (analyzer *functionControlFlowAnalyzer) alwaysTerminatesViaCheck(expr ast.BLangExpression) bool {
 	var inner ast.BLangExpression
 	switch e := expr.(type) {
 	case *ast.BLangCheckPanickedExpr:
@@ -428,7 +426,7 @@ func alwaysTerminatesViaCheck(tyCtx semtypes.Context, expr ast.BLangExpression) 
 	if inner == nil {
 		return false
 	}
-	return semtypes.IsSubtype(tyCtx, inner.GetDeterminedType(), semtypes.Error)
+	return semtypes.IsSubtype(analyzer.typeCtx(), inner.GetDeterminedType(), semtypes.Error)
 }
 
 // Branching statement handlers
@@ -471,11 +469,11 @@ func (analyzer *functionControlFlowAnalyzer) analyzeIf(curBB bbRef, stmt *ast.BL
 }
 
 func (analyzer *functionControlFlowAnalyzer) isFalse(node ast.BLangExpression) bool {
-	return semtypes.IsSameType(analyzer.tyCtx, node.GetDeterminedType(), falseTy)
+	return semtypes.IsSameType(analyzer.typeCtx(), node.GetDeterminedType(), falseTy)
 }
 
 func (analyzer *functionControlFlowAnalyzer) isTrue(node ast.BLangExpression) bool {
-	return semtypes.IsSameType(analyzer.tyCtx, node.GetDeterminedType(), trueTy)
+	return semtypes.IsSameType(analyzer.typeCtx(), node.GetDeterminedType(), trueTy)
 }
 
 func (analyzer *functionControlFlowAnalyzer) analyzeWhile(curBB bbRef, stmt *ast.BLangWhile) stmtEffect {
@@ -674,4 +672,11 @@ func (analyzer *functionControlFlowAnalyzer) removeBlocksAndReindex(toRemove []i
 		bb.children = remapRefs(bb.children, oldToNew)
 	}
 	analyzer.bbs = newBbs
+}
+
+func (analyzer *functionControlFlowAnalyzer) typeCtx() semtypes.Context {
+	if analyzer.tyCtx == nil {
+		analyzer.tyCtx = semtypes.ContextFrom(analyzer.ctx.GetTypeEnv())
+	}
+	return analyzer.tyCtx
 }
