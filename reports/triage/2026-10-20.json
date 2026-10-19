@@ -1,0 +1,871 @@
+{
+  "generated_at": "2026-10-19T23:46:03Z",
+  "upstream_main": "2dbc40ee48fc7606c01538bf748911fba42c4177",
+  "issues": [
+    {
+      "number": 1345,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1345",
+      "title": "[Bug]: record field defaults in lambda return types and class field types fail at runtime",
+      "reproducible": true,
+      "reproducer": "// case 1 (repro/1345/a.bal)\nimport ballerina/io;\n\nfunction mk() returns function () returns record {| int b = 2; |} {\n    return function () returns record {| int b = 2; |} { return {}; };\n}\n\npublic function main() {\n    var f = mk();\n    io:println(f().b); // @output 2\n}\n\n// case 2 (repro/1345/b.bal)\nimport ballerina/io;\n\nclass C {\n    record {| int b = 2; |} r = {};\n}\n\npublic function main() {\n    C c = new;\n    io:println(c.r.b); // @output 2\n}",
+      "output": "case 1:\nerror: runtime error: invalid memory address or nil pointer dereference\n        at main(a.bal:4)\n           main(a.bal:9)\ncase 2:\nerror: runtime error: invalid memory address or nil pointer dereference\n        at C.init(b.bal:4)\n           main(b.bal:8)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Both cases compile and then fail at runtime with a nil-pointer error instead of printing 2. The issue traces this to desugar (walkLambdaFunction only generates default closures when needsDefaultClosures is set), so the BIR is missing the default function. That makes it a lowering bug, not an interpreter bug. The nil deref happens while the program runs, not in the compiler, so frontend_crash is false. Spec review: Default values on fields of inline/anonymous record type descriptors are allowed (5.4.x record types: an individual-field-descriptor may carry a default-expression). A mapping constructor {} with that contextually expected type fills b with 2 (6.x mapping constructor, default values). Both cases should print 2. A nil-pointer runtime crash is an implementation bug, not spec-permitted behaviour. Related issues: Related but distinct: #1161 (record field default reading captured locals, wrong frame), #1151, #1074 (closure-based record defaults). No exact duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1336,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1336",
+      "title": "[Bug]: Variables and fork workers declared after an else-less `if` are not visible to named workers",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction b1(boolean b) returns int {\n    if b {\n        io:println(\"x\");\n    }\n    int v = 10;\n    fork {\n        worker f returns int {\n            return 1;\n        }\n    }\n    worker n returns int {\n        int x = wait f;\n        return x + v;\n    }\n    int y = wait n;\n    return y;\n}\n\npublic function main() {\n    io:println(b1(false)); // expected: 11\n}",
+      "output": "fatal[UNIMPLEMENTED_ERROR]: named worker declarators are not implemented\n  --> a.bal:4:5\n   |\n 4 |     if b {\n ...\nballerina: compilation contains errors\n(A simpler variant without fork, using only a named worker reading v after an else-less if, gives the same UNIMPLEMENTED_ERROR.)",
+      "duplicate_of": null,
+      "parent_issue": 930,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main still rejects this valid program, but with 'named worker declarators are not implemented', not the 'Unknown symbol' errors the issue reports. The reported scoping bug only shows up after the unmerged worker PRs land, so whether this counts as reproducible on main depends on how that is read. If it is a real bug, it is a frontend scoping problem (the node builder's synthetic block after an else-less if). Spec review: Spec 7.x Function bodies grammar: `{ [default-worker-init named-worker-decl+] default-worker }`. default-worker-init can hold any statements (the if, `int v`, the fork). Variables declared there are in scope in named workers, and a fork worker name is in scope after the fork-stmt in its block (Fork statement), so n can `wait f` and use v. The result is 1 + 10 = 11. Not implementing named workers is a missing feature for a valid program. Minor caveat: whether f's scope reaches into n's body is only implied by the 'block containing the fork-stmt' wording. Related issues: On main, named workers (#930, umbrella #929) and fork (#931) are not implemented yet. The issue only applies once PR #1238/#978 are merged. #1112 (worker message actions after an else-less if) comes from the same synthetic-block wrapping of statements after an else-less if, but it is a different symptom.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1335,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1335",
+      "title": "[Bug]: annotation attach points not checked on enums and enum members",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nconst annotation constOnly on source const;\nannotation typeOnly on type;\n\n@constOnly // @error constOnly is not allowed on type (enum decl)\nenum E {\n    @typeOnly P, // @error typeOnly is not allowed on const (enum member)\n    Q\n}\n\npublic function main() {\n    E e = P;\n    io:println(e, Q);\n}",
+      "output": "PQ",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main compiles the program and prints PQ. Per spec \u00a79.1 it should report attach-point errors on the enum declaration (lines 6) and on the enum member (line 8). This is a missing semantic diagnostic, so frontend. Spec review: Spec 'Annotations' section: annot-attach-points specify the constructs an annotation can be attached to. The attach-point table maps 'type' to module-type-defn, module-enum-decl and type-cast-expr, and 'source const' to module-const-decl and enum-member. So @constOnly on the enum decl and @typeOnly on an enum member are both misplaced and must be compile errors, but the implementation accepted them and printed 'PQ'. Related issues: #1251 (annotations on enum declarations are lost at runtime) may share a cause but is a different symptom. #1239 (annotation values on classes/services not type-checked) is in the same area.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1334,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1334",
+      "title": "[Bug]: annotation values omit record field defaults",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Info record {|\n    string name = \"def\";\n|};\n\nannotation Info info on type;\nannotation Info[] rep on type;\n\n@info\ntype T1 int;\n\n@info {}\ntype T2 int;\n\n@rep {}\ntype T3 int;\n\npublic function main() {\n    io:println(T1.@info); // @output {\"name\":\"def\"}\n    io:println(T2.@info); // @output {\"name\":\"def\"}\n    io:println(T3.@rep); // @output [{\"name\":\"def\"}]\n    io:println(T1.@info is Info); // @output true\n}",
+      "output": "{}\n{}\n[{}]\nfalse",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main builds the annotation values without the record field defaults, printing {} / [{}] and 'is Info' false. Expected {\"name\":\"def\"} and true. The annotation value's mapping constructor is lowered without the inherent record type's defaults, so this is frontend. Spec review: Spec 9.1 Annotations: when the annotation value type is a mapping type M and no mapping-constructor-expr is given, it defaults to { }. The value comes from evaluating the mapping constructor with M as the contextually expected type, which fills the field default name=\"def\". For the M[] tag `rep`, the effective value is an array of those values. So the outputs are {\"name\":\"def\"} twice, [{\"name\":\"def\"}], and `T1.@info is Info` is true. The observed {} and false are non-conforming. Related issues: Similar symptom in other places: #895 (const mapping constructors ignore record field defaults), #1103 (readonly record constructor ignores defaults), #1250 (annotation values not immutable). None of them covers annotation values.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1333,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1333",
+      "title": "[Bug]: 'is' type test is rejected in constant expressions",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nconst A = 5;\nconst B = A is int;\nconst C = A !is string;\nconst D = \"s\" is int;\n\npublic function main() {\n    io:println(B); // @output true\n    io:println(C); // @output true\n    io:println(D); // @output false\n}",
+      "output": "error[SEMANTIC_ERROR]: expression is not a constant expression\n --> a.bal:4:11\n  |\n4 | const B = A is int;\n  |           ^^^^^^^^\n(same error at 5:11 `A !is string` and 6:11 `\"s\" is int`)\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects is-expr in const declarations with 'expression is not a constant expression'. Spec \u00a76.4 lists is-expr as a const-expr, so the program should compile and print true/true/false. Rejecting a valid program at compile time makes this frontend. Spec review: Spec 6.4 lists is-expr as a form of const-expr, so `A is int`, `A !is string` and `\"s\" is int` are valid constant expressions evaluated at compile time. Section 6.28 imposes no compile-time error when the operand type and the tested type are disjoint. The results are true, true and false, so rejecting them as 'not a constant expression' is non-conforming. Related issues: #893 'Fix issues in constant folding' is a vague open umbrella with no body. It might be a parent, but not with enough confidence to report.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1332,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1332",
+      "title": "[Bug]: type cast that casts away an error is not a compile error",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction get(boolean ok) returns int|error {\n    return ok ? 1 : error(\"boom\");\n}\n\npublic function main() {\n    int|error r = get(true);\n    int i = <int>r; // @error cast away error\n    any a = <any>r; // @error cast away error\n    io:println(i, a);\n}\n",
+      "output": "11\n(with get(false) variant: error: bad type cast: cannot cast &{{2147483712 0 []} boom <nil> 0x59116e3dd10 } to int\n        at main(b.bal:9))",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main compiles <int>r and <any>r on int|error with no diagnostics and prints 11. The spec requires a compile error. The type checker is missing a diagnostic, so this is frontend. The runtime cast-failure message that prints a Go struct is a separate, smaller backend formatting problem. Spec review: Spec 6.20 (Type cast expression): 'It is a compile-time error to attempt to use a type cast to cast away an error: if the intersection of TE and error is non-empty, then the intersection of T and error must also be non-empty.' TE is int|error, and both int and any have an empty intersection with error, so both casts are compile-time errors. Compiling them and panicking at runtime deviates from the spec. Related issues: Related but not a duplicate: #1130 (type cast static type is the target type, not the intersection). No existing issue found for the missing cast-away-error diagnostic.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1331,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1331",
+      "title": "[Bug]: empty xml value fails 'is xml<T>' type test at runtime",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml x = xml ``;\n    io:println(x is xml<never>); // @output true\n    io:println(x is xml<xml:Element>); // @output true\n    xml z = (xml `<a/>`)/<b>;\n    io:println(z is xml<never>); // @output true\n}\n",
+      "output": "false\nfalse\nfalse",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main prints false for the empty xml value tested against xml<never> and xml<xml:Element>, and for an empty navigation result. All three should be true. The program compiles, and the runtime type test on an empty xml sequence gives the wrong result, so this is backend. Spec review: Spec (never type / XML types): 'xml<never> describes an xml type that has no constituents, i.e. the empty xml value'. xml<T> is the set of sequences of T items, so the empty sequence also belongs to xml<xml:Element>. xml `` is empty, and (xml `<a/>`)/<b> is empty because <a/> has no children. All three tests should print true. Related issues: Possibly related to #853 (xml<never> is represented at runtime as an empty XMLText), as the issue notes. Not a duplicate.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1327,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1327",
+      "title": "[Bug]: initializer cycle through an inferred module variable is reported as an internal error",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype A record {| int x; |};\ntype B record {| string x; |};\n\nA|B g = {x: s};\nvar s = g is A ? \"a\" : \"b\";\n\npublic function main() {\n    io:println(g);\n}\n",
+      "output": "fatal[INTERNAL_ERROR]: invalid cycle detected for g\n --> a.bal:6:5\n  |\n6 | A|B g = {x: s};\n  |     ^\n\nfatal[INTERNAL_ERROR]: module init dependency ordering failed\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main reports a user-level init cycle as two fatal INTERNAL_ERRORs. It should be a single SEMANTIC_ERROR 'invalid cycle detected for g'. The front end gives the wrong kind of diagnostic, so this is frontend. Spec review: Spec review: the spec does not define semantics for cyclic module-variable initializers, so rejecting at compile time is reasonable; but reporting a user-level cycle as two fatal[INTERNAL_ERROR] diagnostics (instead of a normal semantic error) is a compiler defect. Frontend diagnostic issue. Related issues: Found while designing #1319 (parent #1308) but deferred from that work. No duplicate found. Loosely related to the module init ordering issue #1282.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1326,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1326",
+      "title": "[Bug]: inferred typedesc argument is not taken from the mapping constructor field type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype B record {| string x; |};\n\nfunction f(B p = {x: conv(\"s\")}) returns boolean {\n    return p is B;\n}\n\nfunction conv(string v, typedesc<string> t = <>) returns t = external;\n\npublic function main() {\n    io:println(f());\n}\n",
+      "output": "error[SEMANTIC_ERROR]: cannot infer typedesc argument for parameter 't': no contextually expected type\n --> a.bal:5:22\n  |\n5 | function f(B p = {x: conv(\"s\")}) returns boolean {\n  |                      ^^^^^^^^^\n(same error for `B p = {x: conv(\"s\")};` inside main, at b.bal:8:15)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects a valid program. It does not use the mapping-constructor field type as the expected type when inferring the typedesc argument, both in parameter defaults and in function bodies. The front end rejects a valid program because of wrong typing, so this is frontend. Spec review: Spec function-signature, inferred-typedesc-default (`<>`): the typedesc argument is inferred from the contextually expected type of the call. In `{x: conv(\"s\")}` with contextual type B, the mapping constructor gives field x the contextual type string, so t = string and the call has static type string. This holds both in the parameter default expression and in a local initializer. The program is well-formed, and f() should return true (no explicit expected comment; the implied output is true). Related issues: Found while designing #1319 (parent #1308). No duplicate found. Similar in kind to #1274 (inferring implicit new in list and mapping members).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1325,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1325",
+      "title": "[Bug]: record field default fails when the field's record type refers back to the enclosing record",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype A record {| int x; R? next = (); |};\n\ntype R record {|\n    A f = {x: 1};\n|};\n\npublic function main() {\n    R r = {};\n    io:println(r.f.x); // @output 1\n}\n",
+      "output": "panic: runtime error: invalid memory address or nil pointer dereference\n[signal SIGSEGV: segmentation violation code=0x1 addr=0x20 pc=0x5f79b9]\n\ngoroutine 1 [running]:\ngithub.com/ballerina-nutcracker/ballerina/semtypes.mappingFormulaIsEmpty(...)\n\t/home/user/ballerina/semtypes/mapping_ops.go:49 +0x159\n...\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.selectMappingInherentType(...)\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:5051\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.contextualizeMappingConstructor(...)\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:4951",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main panics with SIGSEGV in the type resolver while contextualizing the field-default mapping constructor {x: 1} for a record that refers back to the enclosing record. It should print 1. The panic is in semantics/internal/types before any diagnostic is reported, so this is a frontend crash. Spec review: Mutually recursive record types with default values are well-formed. Default field expressions are evaluated when the record is constructed without that field (5.4.2.x record default values / 6.x mapping constructor). `R r = {}` sets f to {x: 1, next: ()}; there is no infinite recursion because next defaults to nil, so r.f.x prints 1. The compiler segfault is an implementation bug. Related issues: Crashes at the same place as open #1295 (nil dereference in semtypes.mappingFormulaIsEmpty on an incomplete recursive mapping definition), but reaches it another way: through selectMappingInherentType for a field-default mapping constructor, while #1295 goes through the subtype check in resolveBTypeInner. The root cause may be the same, but I am not confident enough to call it a duplicate. #913 (closed) is the list-constructor version of this bug.",
+      "labels_to_add": [
+        "frontend",
+        "frontend-crash"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1324,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1324",
+      "title": "[Bug]: union constructor candidate trials replace member-expression errors with 'no applicable inherent type'",
+      "reproducible": false,
+      "reproducer": "import ballerina/io;\n\ntype A record {| int x; |};\ntype B record {| string x; |};\n\nfunction f(int i) returns string => i.toString();\n\npublic function main() {\n    A|B g = {x: f(\"bad\")}; // @error incompatible type for argument: expected 'int', got '\"bad\"'\n    io:println(g is B);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type for argument: expected 'int', got '\"bad\"'\n --> a.bal:9:19\n(variant {x: val.bogus()} -> error[SEMANTIC_ERROR]: method not found: bogus --> b.bal:8:17)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": null,
+      "reasoning": "Does not reproduce on upstream main: Main reports the exact member-expression diagnostic at the sub-expression, which is the behaviour the issue expects. The regression exists only on the unmerged #1308 stack, where it would be a frontend (type checker) issue. The issue itself states it only reproduces on the unmerged #1308 stack, so it should stay open for that work rather than be closed as fixed; recommend keeping it out of the main-branch triage (no category label) and revisiting once #1308 merges.",
+      "labels_to_add": [],
+      "remove_triage": false,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1323,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1323",
+      "title": "[Bug]: `value:ensureType` is not available",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nanydata val = \"s\";\n\npublic function main() {\n    string s = checkpanic val.ensureType(string);\n    io:println(s); // expected: s\n}\n",
+      "output": "error[SEMANTIC_ERROR]: method not found: ensureType\n --> a.bal:6:27\nballerina: compilation contains errors\n(function form value:ensureType(val, string) -> error[SEMANTIC_ERROR]: Unknown symbol: ensureType --> b.bal:7:27)",
+      "duplicate_of": null,
+      "parent_issue": 582,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects both the method form and the function-call form of ensureType because lang.value does not declare it. The program should print 's'. This is a missing lang library function, so langlib. Spec review: lang.value defines public isolated function ensureType(any|error v, typedesc<any> t = <>) returns t|error. The spec also refers to it in 6.33 (Checking expression, lax case: val:ensureType). So val.ensureType(string) is a valid method-call-style langlib call and should print 's'. 'Method not found' and 'unknown symbol' mean this function is missing. Related issues: #582 'Migrate lang.value' is the natural parent for missing lang.value functions (see also #1337 clone/cloneReadOnly).",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1322,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1322",
+      "title": "[Bug]: calling a later-declared function-typed module variable in a module initializer crashes at runtime",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype B record {| string x; |};\n\nB g = {x: fp()};\nfinal function () returns string fp = foo;\n\nfunction foo() returns string { return \"s\"; }\n\npublic function main() {\n    io:println(g); // @output {\"x\":\"s\"}\n}\n",
+      "output": "error: interface conversion: values.BalValue is nil, not *values.Function\n        at init(a.bal:5)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main crashes at runtime during module init because fp() is not recorded as a dependency of g, so the initializers run in source order. Expected output is {\"x\":\"s\"}. The cause is init ordering in the desugar dependency visitor (wrong lowering), so frontend. Spec review: Spec 8 Module-level declarations: apart from imports, the order of top-level declarations is not constrained, and the scope of a module-var-decl is the entire module (8.x Module variable declaration). So g's initializer may legally refer to fp, declared later. The spec does not spell out a dependency-ordered initialization algorithm, but its intent is that this works and gives {\"x\":\"s\"}. A Go nil-interface crash is not a conforming outcome. Related issues: Closely related to #1282 (module initializer order ignores function global dependencies), which covers the transitive case. This issue is the direct case of calling a function-typed module variable, so it is not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1321,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1321",
+      "title": "[Bug]: typedesc parameter accepted as a type outside a dependently-typed return type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction test(typedesc<int> td, any v) returns boolean {\n    return v is td; // @error typedesc parameter can only be referenced in the return type of a dependently-typed function\n}\n\npublic function main() {\n    io:println(test(int, 1));\n}\n",
+      "output": "false\n(cast variant <td>v -> error[SEMANTIC_ERROR]: incompatible type: expected int, got typedesc<int> --> b.bal:4:12)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: `v is td` compiles and prints false because it tests against typedesc<int>. The cast variant gives a misleading type-mismatch error. Both should give an invalid typedesc-parameter-reference error. This is a missing or wrong type-checker diagnostic, so frontend. Spec review: Spec 6.28: is-expr takes a type-descriptor, and per the function-type rules (dependently-typed signatures) a type-reference may refer to a typedesc parameter name only inside the return-type-descriptor. `v is td` in the body is therefore a compile-time error, but the implementation accepted it and printed 'false'. The exact error wording in the comment is implementation-specific, not mandated by the spec. Related issues: Related to closed #831 (parameter reference in a return type) and closed #1052, but neither is the same bug.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1302,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1302",
+      "title": "fix: accept anonymous iterable object types in foreach",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\npublic function main() {\n    object {\n        *object:Iterable;\n        public function iterator() returns object {\n            public isolated function next() returns record {| int value; |}?;\n        };\n    } values = 1 ... 2;\n    foreach var value in values { io:println(value); } // expected: 1 then 2\n}\n",
+      "output": "error[SEMANTIC_ERROR]: foreach collection must be subtype of object:Iterable\n --> r.bal:9:26\n  |\n9 |     foreach var value in values { io:println(value); } // expected: 1 then 2\n  |                          ^^^^^^\n\nballerina: compilation contains errors  (exit 1)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main accepts the 1 ... 2 initializer for the anonymous object type that includes *object:Iterable. It then rejects foreach over that value as not a subtype of object:Iterable, where 1 and 2 should print. This is a wrong semantic diagnostic, so frontend. Spec review: The declared type includes `*object:Iterable` (the distinct Iterable type, \u00a711.3.10). Its iterator() returns an object whose next() returns record{| int value; |}?, so the type is Iterable<int,()> under \u00a75.8.2. \u00a76.31 (foreach) only requires the static type to be iterable with completion type nil, so the error 'foreach collection must be subtype of object:Iterable' is wrong. Caveat: \u00a76.26 only says the range result belongs to Iterable<int,()> and does not say whether next() is isolated, so it is underspecified whether `1 ... 2` can be assigned to a type requiring `isolated next()`. The implementation did not reject that assignment, though. Expected output '1 then 2' is correct. Related issues: #291 (closed) added foreach desugaring for iterable objects. #490 and #1086 are other foreach issues. None covers anonymous object types that include object:Iterable.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1301,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1301",
+      "title": "[Bug]: parser recovery fails to finish regex and table inputs",
+      "reproducible": true,
+      "reproducer": "// Copyright (c) 2022 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.\n//\n// WSO2 Inc. licenses this file to you under the Apache License,\n// Version 2.0 (the \"License\"); you may not use this file except\n// in compliance with the License.\n// You may obtain a copy of the License at\n//\n// http://www.apache.org/licenses/LICENSE-2.0\n//\n// Unless required by applicable law or agreed to in writing,\n// software distributed under the License is distributed on an\n// \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n// KIND, either express or implied.  See the License for the\n// specific language governing permissions and limitations\n// under the License.\n\nfunction testRegExpNegative() {\n    string:RegExp _ = re `[z-a]`; // @error\n    string:RegExp _ = re `A{5,2}`; // @error\n    string:RegExp _ = re `[z-a]{5}`; // @error\n    string:RegExp _ = re `[z-a]{5,}`; // @error\n    string:RegExp _ = re `(?i-i:A)`; // @error\n    string:RegExp _ = re `(?im-ms:A)`; // @error\n    string:RegExp _ = re `(?i-msi:A)`; // @error\n    string:RegExp _ = re `(?imsi:A)`; // @error\n    var _ = re `(?s-ism:A)`; // @error\n    var _ = re `(?s-ism:[z-a]{5,2})`; // @error\n    var _ = re `[z-a]A{4,2}[a-bf-F]{1,}(?im-ms:[c-a](?ixmx:[z-a](?ixm-xs:[r-m])))`; // @error\n    string:RegExp _ = re `Dd\\csdgfdsdfs`; // @error\n    string:RegExp _ = re `[$^$\\r\\n\\^z-a]`; // @error\n    _ = re `[\\\\uD834\\\\uDF06-\\\\uD834\\\\uDF08z-a]`; // @error\n    _ = re `[\\p{sc=Katakana}-\\p{sc=Hiragana}]`; // @error\n    _ = re `([^a-b${b-a}])`; // @error\n    string:RegExp _ = re `[]`; // @error\n    string:RegExp _ = re `(([abc])|([]))`; // @error\n    string:RegExp _ = re `(?: [])`; // @error\n    _ = re `\\p{Lz}`; // @error\n    _ = re `\\p{NNz}`; // @error\n    _ = re `\\p{NN}`; // @error\n    _ = re `[AB\\p{gc=Lu}]+` ? `; // @error\n}\n// @error",
+      "output": "Pinned T1288 (regexp-value-negative-e.bal, the 41-line reproducer above): runs ~28s, then 'fatal[UNIMPLEMENTED_ERROR]: Regexp parser not implemented' (exit 1). T1287 regexp-type-v.bal: ~59s, then the same UNIMPLEMENTED_ERROR. T1400 table-key-field-value-v.bal: ~53s, then the same. T1289 regexp-value-v.bal: stopped by timeout 60 (exit 124). A SIGQUIT dump of T1289 at 20s shows goroutine 1 deep in recursive parser recovery: parser.(*abstractParserErrorHandlerMethods).seekMatchInSubTree -> seekInAlternativesPaths -> (*ballerinaParserErrorHandler).SeekMatch -> seekMatchInExprRelatedAlternativePaths -> seekMatchInStmtRelatedAlternativePaths. Even a function containing only `string:RegExp _ = re `abc`;` takes ~4.5s.",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main still spends 28s to over 60s in parser error recovery (seekMatch/seekInAlternativesPaths) on these inputs before it reports the regexp UNIMPLEMENTED_ERROR. The issue expects parsing to finish in bounded time. Parser performance is a frontend issue. Spec review: The spec makes most of these lines compile-time errors. Per \u00a76.6.3 and the RegExp grammar in \u00a710 (via ECMAScript 2022 early errors): out-of-order ranges like [z-a] and {5,2}, duplicate flags in ReFlagsOnOff (stated explicitly as an error), \\c (not a valid ReEscape), class escapes used as range endpoints, invalid general-category names (Lz/NNz/NN), the undefined variable in ${b-a}, and the unterminated backtick string on the last line. A conforming implementation must report diagnostics. Hanging in parser recovery and then crashing with 'fatal: Regexp parser not implemented' does not satisfy that. Caveat: the three lines using `[]` (empty character class) are not errors under the spec, because ReCharSet is optional in `[ [^] [ReCharSet] ]` and ECMAScript accepts `[]`, so those three @error annotations are wrong. Related issues: #870 (regex template support, open) is the feature these inputs need, and regex templates seem to push the parser into error recovery. #1042 is a benchmark task for programs with errors. #1139 and #1235 cover nodebuilder and bad-node recovery. None tracks unbounded parser recovery time, so this is not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1300,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1300",
+      "title": "[Bug]: XML attribute map accepts an empty local name",
+      "reproducible": true,
+      "reproducer": "import ballerina/lang.'xml;\nimport ballerina/io;\npublic function main() {\n    xml x = xml `<root/>`;\n    map<string> attrs = (<'xml:Element>x).getAttributes();\n    attrs[\"{http://sample.com/wso2/e}\"] = \"bar\"; // expected: panic (empty local name)\n    io:println(\"no panic\");\n}\n",
+      "output": "no panic  (exit 0)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": false,
+      "reasoning": "Reproduces on main (Assigning attrs[\"{http://sample.com/wso2/e}\"] on the map from lang.xml Element.getAttributes() succeeds without error. A runtime panic is expected for an expanded name with an empty local part. The check belongs in the lang.xml attribute map, so langlib; it could be backend if that map is the generic runtime map.) but a clean-context spec review judged the expected behaviour is not required by the spec: getAttributes (lang.xml, \u00a711.3) returns a map<string> keyed by expanded names. \u00a75.3.2.1 describes the expanded-name format but sets no runtime check or panic when an arbitrary string key is written into that map. A malformed name with an empty local name would at most matter when the value is converted to an XML infoset or serialized. Printing 'no panic' therefore does not violate the spec, and the expected panic is not required.",
+      "labels_to_add": [],
+      "remove_triage": true,
+      "close": true,
+      "close_reason": "Not a bug per the spec: getAttributes (lang.xml, \u00a711.3) returns a map<string> keyed by expanded names. \u00a75.3.2.1 describes the expanded-name format but sets no runtime check or panic when an arbitrary string key is written into that map. A malformed name with an empty local name would at most matter when the value is converted to an XML infoset or serialized. Printing 'no panic' therefore does not violate the spec, and the expected panic is not required."
+    },
+    {
+      "number": 1299,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1299",
+      "title": "[Bug]: record type tests ignore values of readonly nullable fields",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\npublic function main() {\n    record {| readonly int? b; int...; |} e = {b: 1};\n    io:println(e is record { int a?; int b; }); // expected: true\n}\n",
+      "output": "false  (exit 0)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main prints false for `e is record { int a?; int b; }`, where e's readonly int? field b holds 1. The expected result is true, because a readonly field's value cannot change and its shape is int. This is the runtime type-test membership check, so backend. Spec review: \u00a75.1.2 says a value belongs to a type if it looks like the type and will necessarily continue to look like it however it is mutated. \u00a75.4.4 (Record types) says a readonly field must have its read-only bit set. Here b is a required readonly field holding 1, so it can never change or be removed and always satisfies `int b`. Field a and any other fields can only ever hold int, which satisfies `int a?` and the anydata rest of the inclusive record. So `e is record { int a?; int b; }` should be true, and observed 'false' deviates. Minor caveat: it is ambiguous whether an implementation may decide this from the inherent field type (int?) alone, but the spec's value-based belongs-to definition favours true. Related issues: #1044 (open; type test ignores the shape of immutable lists and maps) is the same kind of bug, shape-based membership for immutable parts, but for wholly immutable values. #1134 is about the static type of readonly fields. Neither is a confident duplicate or parent.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1298,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1298",
+      "title": "[Bug]: cloneWithType accepts object arguments despite anydata input",
+      "reproducible": true,
+      "reproducer": "import ballerina/lang.value;\nclass C { public int x = 1; }\npublic function main() {\n    C c = new;\n    json|error r = value:cloneWithType(c, json); // @error object is not anydata\n    if r is error { panic r; }\n}\n",
+      "output": "error: 'object { public function init() returns nil; public int x }' value cannot be converted to 'json'\n        at main(main.bal:6)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: On main the call compiles without a diagnostic and then fails at runtime with a conversion error. A class instance is not anydata, so the compiler should reject the argument to cloneWithType(anydata v, ...). This is missing argument type checking in the front end, so the category is frontend. Spec review: lang.value cloneWithType is declared as `cloneWithType(anydata v, typedesc<anydata> t = <>) returns t|error`. An object of class C is not a subtype of anydata, so passing `c` is a static type error under function-call argument typing (6.x function call / 5.x anydata). The spec requires a compile-time error, but the implementation compiled the program and failed at runtime. Related issues: Search API is blocked (403), so I grepped all 737 issue titles from the repo issues endpoint instead. #1026, #1136 and #657 cover cloneWithType conversion semantics, not argument type checking. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1297,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1297",
+      "title": "[Bug]: imported classes can call non-public initializers",
+      "reproducible": true,
+      "reproducer": "// Ballerina.toml\n// [package]\n// org = \"test\"\n// name = \"object_initializer_negative_project\"\n// version = \"0.1.0\"\n\n// modules/initializers/init.bal\npublic class student {\n    public int age = 20;\n    function init() {}\n}\n\n// main.bal\nimport ballerina/io;\nimport object_initializer_negative_project.initializers as inp;\npublic function main() {\n    inp:student s = new; // @error init is not public, cannot be called from another module\n    io:println(s.age);\n}\n",
+      "output": "20\n(exit 0, no diagnostics)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: I ran it as a project with `bal run <projdir>`. `new` on an imported class whose init is module-private compiles and runs, printing 20. The issue expects a compile-time visibility diagnostic, so this is a missing front-end check. Spec review: Spec 5.6.3.6 (Visibility) says a method declared without public has module-level visibility and can be accessed only in its module. Spec 6.8.2 says new calls the class's init method, and 5.x says init cannot be private but may be public or module-level. Calling new on inp:student from another module therefore uses an init that is not visible there and should be rejected. The spec does not say this restriction applies to the implicit init call in new-expr; the error is inferred from the visibility rule, not stated outright. Related issues: #1216 covers private field access, #1252 covers init being treated as part of the object type, and #1028 (named in the issue) covers member visibility. None of them is about initializer visibility across modules.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1296,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1296",
+      "title": "[Bug]: class field defaults can reference other fields without self",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nclass C {\n    int a = 12;\n    int b = a; // @error instance field not in scope without self\n}\npublic function main() {\n    C c = new;\n    io:println(c.b);\n}\n",
+      "output": "(empty line printed; exit 0, no diagnostics)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: On main, the unqualified reference to the sibling field `a` resolves without error. The program prints an empty line where an int was expected, so the generated code is also wrong. The issue expects an undefined-symbol compile error, so this is a front-end scoping bug. Spec review: In an object field initializer, other fields are not in scope as bare identifiers: fields are reached only through `self`, and field default expressions cannot refer to self. The spec's symbol spaces/scoping rules give no variable named `a` (there is no module-level `a`), so `int b = a;` is an undefined-identifier compile error. Compiling and printing an empty line deviates from the spec. Related issues: #1117 covers type checking of record field defaults, and #1345 and #1161 cover runtime handling of record defaults. None of them covers field-default scope for class fields.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1295,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1295",
+      "title": "fix: resolve recursive optional record fields without panic",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\npublic type ClientCredentialsGrantConfig record {|\n    string tokenUrl;\n    ClientConfiguration clientConfig = {};\n|};\ntype AnydataConfig record {| anydata auth?; |};\npublic type ClientConfiguration record {| *AnydataConfig; ClientAuth auth?; |};\npublic type ClientAuth ClientCredentialsGrantConfig;\npublic function main() {\n    ClientCredentialsGrantConfig c = {tokenUrl: \"x\"};\n    io:println(c); // expected: {\"tokenUrl\":\"x\",\"clientConfig\":{}}\n}\n",
+      "output": "panic: runtime error: invalid memory address or nil pointer dereference\n[signal SIGSEGV: segmentation violation code=0x1 addr=0x20 pc=0x5f79b9]\n\ngoroutine 1 [running]:\ngithub.com/ballerina-nutcracker/ballerina/semtypes.mappingFormulaIsEmpty(...)\n\t/home/user/ballerina/semtypes/mapping_ops.go:49 +0x159\ngithub.com/ballerina-nutcracker/ballerina/semtypes.bddEvery(...)\n...\ngithub.com/ballerina-nutcracker/ballerina/semtypes.IsSubtype(...)\n\t/home/user/ballerina/semtypes/core.go:254\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBTypeInner-range1(...)\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:8567",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: The front end panics with a Go nil-pointer error in the semtypes subtype check, called from the semantics type resolver, before any diagnostic is reported. The issue expects these valid recursive types to resolve and the program to run. Spec review: The types are well-formed. ClientAuth/ClientCredentialsGrantConfig is a recursive closed record of anydata, so the auth field that overrides the included anydata auth? field is a subtype of it (record type inclusion override rule). The default {} is valid for the all-optional ClientConfiguration. println uses ToString (5.9.5), which gives {\"tokenUrl\":\"x\",\"clientConfig\":{}}. The SIGSEGV in the type checker is a bug. Related issues: #1325 is related: a recursive record type through a field default also gives a nil-pointer panic on main. #1295 differs because it goes through included-field subtype checking in resolveBTypeInner, so it may share a root cause but I am not confident it is a duplicate. #913 (closed) concerns a list-constructor default, and #1204 and #1192 are other recursive-type crashes.",
+      "labels_to_add": [
+        "frontend",
+        "frontend-crash"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1294,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1294",
+      "title": "fix: lower resource signatures in object type descriptors",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\ntype ServiceObject service object {\n    resource function get name() returns string;\n};\npublic function main() {\n    io:println(\"ok\"); // expected: ok\n}\n",
+      "output": "fatal[INTERNAL_ERROR]: unexpected member kind in object type descriptor\n --> main.bal:3:5\n  |\n3 |     resource function get name() returns string;\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: A valid program with a resource method declaration in an object type descriptor fails with INTERNAL_ERROR: unexpected member kind. The issue expects the signature to be lowered and checked. The front end rejects a valid program with an internal-error diagnostic rather than a Go panic, so frontend_crash is false. Spec review: n/a Related issues: #287 (closed) added remote/resource declarations in general. #653, #825 and #826 cover resource invocation, dependent typing and missing externs. None covers resource method declarations in object type descriptors.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1293,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1293",
+      "title": "feat: resolve xml qualified-name expressions to expanded names",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nxmlns \"urn:example\" as ns;\npublic function main() {\n    io:println(ns:foo); // expected: {urn:example}foo\n}\n",
+      "output": "error[SEMANTIC_ERROR]: Unknown symbol: foo\n --> main.bal:4:16\n  |\n4 |     io:println(ns:foo); // expected: {urn:example}foo\n  |                ^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects `ns:foo` (an xmlns prefix in a variable-reference expression) with SEMANTIC_ERROR 'Unknown symbol: foo'. It should evaluate to the expanded-name string '{urn:example}foo' (spec 6.9). This is a symbol resolution/lowering gap in the compiler, so frontend. Spec review: Spec 6.9 lets a variable-reference be an xml-qualified-name. When the prefix is declared by an xmlns-decl, evaluating it yields the string `{namespace-uri}local-name`, so `ns:foo` evaluates to \"{urn:example}foo\". Reporting 'Unknown symbol' is non-conforming. Related issues: Checked by title: closed #524 and #417 are about xmlns bindings and constants, #1222 is about qualified field access, and #281 is too broad. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1292,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1292",
+      "title": "feat: support explicit stream query constructors",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\npublic function main() {\n    stream<int> values = stream from int i in [1, 2] select i;\n    record {| int value; |}? a = values.next();\n    io:println(a); // expected: {\"value\":1}\n}\n",
+      "output": "fatal[UNIMPLEMENTED_ERROR]: only map query construct type is supported for now\n --> main.bal:3:26\n  |\n3 |     stream<int> values = stream from int i in [1, 2] select i;\n  |                          ^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main fails with fatal[UNIMPLEMENTED_ERROR] 'only map query construct type is supported for now' on `stream from ... select ...` instead of building a stream. Lowering for the stream query construct type is missing, so frontend. Spec review: Stream query expressions (query expression section; the construct type is the stream keyword) are core spec features. stream<int>'s next() returns record {| int value; |}? (lang.stream / 5.x stream type), so the program is well-typed and should print {\"value\":1}. Supporting only map query construct types is a missing feature. Related issues: Open #615 tracks stream/iterable query sources, not building a stream as the query result. #1316 is about candidate selection. Related but not a duplicate, and no confident parent.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1291,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1291",
+      "title": "feat: provide built-in deprecated and display annotations",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n@deprecated\ntype Foo record {| int i; |};\npublic function main() {\n    Foo f = {i: 1};\n    io:println(f); // expected: {\"i\":1}\n}\n",
+      "output": "error[SEMANTIC_ERROR]: Unknown annotation: deprecated\n --> main.bal:2:1\n  |\n2 | @deprecated\n  | ^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main reports SEMANTIC_ERROR 'Unknown annotation: deprecated' for unprefixed @deprecated (the issue says @display fails the same way; only @deprecated was run). These jBallerina platform annotations should resolve and the program should print {\"i\":1}. The predeclared annotation symbols are missing from name resolution, so frontend. Spec review: Spec 8.x Annotations: unqualified annotation tags are those the compilation environment supplies. That environment is the auto-imported lang.annotations module, which defines `deprecated` with `type` among its attachment points. The program is well-formed. io:println of a record uses toString, which gives {\"i\":1}. Rejecting it with 'Unknown annotation: deprecated' is non-conforming. Caveat: the spec text only defers to the compilation environment and does not list `deprecated` itself. Related issues: Closed #528 covers general annotations. #1080, #1239, #1251 and #1335 are different annotation problems. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1290,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1290",
+      "title": "feat: support error match patterns",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\npublic function main() {\n    error e = error(\"failed\");\n    match e {\n        error(\"failed\") => {\n            io:println(\"matched\"); // expected: matched\n        }\n        _ => {\n            io:println(\"default\");\n        }\n    }\n}\n",
+      "output": "fatal[INTERNAL_ERROR]: unexpected match pattern kind: ERROR_MATCH_PATTERN\n --> main.bal:5:9\n  |\n5 |         error(\"failed\") => {\n  |         ^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main emits fatal[INTERNAL_ERROR] 'unexpected match pattern kind: ERROR_MATCH_PATTERN' for `error(\"failed\") =>` instead of matching and printing 'matched'. The compiler cannot lower error match patterns. This is a diagnostic, not a Go panic, so frontend_crash is false. Category: frontend. Spec review: Spec 7.21.1 (Match patterns) defines error-match-pattern := error [error-type-reference] ( error-arg-list-match-pattern ), and the message pattern may be a const-pattern. error(\"failed\") is well-formed and matches an error whose message is \"failed\", so 'matched' must print. The internal compiler error is an implementation defect. Related issues: Related feature issues: #1286 (list match patterns) and #1288 (mapping match patterns). #162 is typed match patterns and closed #1085 is the var binding pattern. None is a duplicate, and no umbrella issue was found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1289,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1289",
+      "title": "fix: allow record inclusion recursion guarded by fields",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\ntype Foo record {| Bar x?; |};\ntype Bar record {| *Foo; |};\npublic function main() {\n    Foo f = {};\n    f.x = f;\n    io:println(f.x is Bar); // expected: true\n}\n",
+      "output": "error[SEMANTIC_ERROR]: invalid cycle detected for type definition Foo\n --> main.bal:2:1\n  |\n2 | type Foo record {| Bar x?; |};\n  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main reports SEMANTIC_ERROR 'invalid cycle detected for type definition Foo' for Foo{Bar x?} / Bar{*Foo}. That is recursion through a field, not an inclusion cycle, so it should compile and print true. The wrong cycle diagnostic comes from type resolution, so frontend. Spec review: Bar includes Foo through record-type-inclusion, while Foo only refers to Bar as a field type. No record includes itself directly or indirectly (spec record-type-inclusion), so the recursive type is legal and 'invalid cycle' is wrong. Assigning f.x = f is fine because Foo and Bar have the same shape. Per 6.10, `f.x` on an optional non-nil field of a non-lax record is treated as optional field access, of type Bar?. Its value is f, which belongs to Bar, so the output is true. Related issues: Open #1295 is a related crash on recursive included optional record fields, with a different symptom. #1279 is about object inclusion cycles and closed #654 is a different case. No duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1288,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1288",
+      "title": "feat: support mapping match patterns",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    map<int> m = {a: 20};\n    match m {\n        {a: 20} => {\n            io:println(\"matched\"); // expected: matched\n        }\n        _ => {\n            io:println(\"default\");\n        }\n    }\n}\n",
+      "output": "fatal[INTERNAL_ERROR]: unexpected match pattern kind: MAPPING_MATCH_PATTERN\n --> r.bal:6:9\n  |\n6 |         {a: 20} => {\n  |         ^^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects a mapping match pattern with fatal[INTERNAL_ERROR] instead of compiling it (expected output: 'matched'). The front end cannot lower this pattern kind. The error is a diagnostic, not a Go panic, so frontend_crash is false. Spec review: Mapping match patterns are part of the match statement (7.21). A mapping-match-pattern matches a mapping value when each listed field is present and matches its sub-pattern, and `{a: 20}` matches a map<int> with a = 20. The program is well-formed and must print \"matched\". The internal compiler error is an implementation gap. Related issues: Related but not duplicates: #753 (mapping binding patterns), #751 (all binding patterns), #162 (type match patterns), #1085 (closed; var binding match pattern INTERNAL_ERROR). Sibling issues: #1286 (list match patterns) and #1290 (error match patterns). I found no umbrella issue for match patterns.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1287,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1287",
+      "title": "fix: permit readonly object intersections in type inclusions",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype File readonly & object { public function filename() returns string; };\n\npublic readonly class VirtualFile {\n    *File;\n    public function filename() returns string => \"File Name\";\n}\n\npublic function main() {\n    File file = new VirtualFile();\n    io:println(file.filename()); // expected: File Name\n}\n",
+      "output": "error[SEMANTIC_ERROR]: type inclusion must be an object type or class\n --> r.bal:6:6\n  |\n6 |     *File;\n  |      ^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects the inclusion of a 'readonly & object {...}' type with a wrong semantic error. The spec allows it, so the program should print 'File Name'. This is a type-checking bug in the front end that rejects a valid program. Spec review: Spec 5.6.3.8 allows the type-reference in an object-type-inclusion to be an intersection-type-descriptor, and readonly & object{...} is a subtype of object. Spec 8.x (Class definition) also says that in a readonly class an inclusion may reference a readonly type descriptor. So *File is allowed in the readonly class, VirtualFile is a subtype of File, and the program should print 'File Name'. Related issues: Related but not duplicates: #537 (readonly & distinct object), #1043 (readonly class values not treated as readonly), #1130 (cast static type with intersection), #1279 (object inclusion cycles). I found no exact match.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1286,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1286",
+      "title": "feat: support list match patterns",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int[] l = [1, 2];\n    match l {\n        [1, 2] => {\n            io:println(\"matched\"); // expected: matched\n        }\n        _ => {\n            io:println(\"default\");\n        }\n    }\n}\n",
+      "output": "fatal[INTERNAL_ERROR]: unexpected match pattern kind: LIST_MATCH_PATTERN\n --> r.bal:6:9\n  |\n6 |         [1, 2] => {\n  |         ^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects a list match pattern with fatal[INTERNAL_ERROR] instead of compiling it (expected output: 'matched'). The front end cannot lower this pattern kind. The error is a diagnostic, not a Go panic. Spec review: Spec Match statement / List match pattern: `[1, 2]` is a list-match-pattern of const patterns and is allowed against a value of static type int[]. It matches the list value [1, 2], so 'matched' is printed. The implementation's internal compiler error is a defect. Related issues: Related but not duplicates: #752 (list binding patterns), #751 (all binding patterns), #162 (type match patterns), #1085 (closed; var binding match pattern). Sibling issues: #1288 (mapping match patterns) and #1290 (error match patterns). I found no umbrella issue.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1285,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1285",
+      "title": "fix: allow unreachable panic statements",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    if checkpanic true {\n        io:println(\"returned\"); // expected: returned\n        return;\n    }\n    panic error(\"unreachable\"); // panic is exempt from unreachable-code error (spec 7.4.3)\n}\n",
+      "output": "error[SEMANTIC_ERROR]: unreachable code\n --> r.bal:8:5\n  |\n8 |     panic error(\"unreachable\"); // panic is exempt from unreachable-code error (spec 7.4.3)\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main reports 'unreachable code' on a panic statement, but spec \u00a77.4.3 exempts panic statements from that error. The program should compile and print 'returned'. This is a wrong diagnostic in the front end's reachability analysis. Spec review: Spec 7.4.3 (Unreachability): 'It is a compile error if a statement other than a panic-stmt is not reachable.' checkpanic on a non-error-typed expression is allowed (6.33; its static type is T). Even if the analysis decides the if-block always returns, the trailing panic statement is exempt. The program must compile and print 'returned'. Related issues: Related but not duplicates: #1236 (definite assignment in unreachable code), #1249 and #976 (match exhaustiveness). I found no exact match.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1284,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1284",
+      "title": "feat: support retry statements",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int count = 0;\n    error? res = trap f(count);\n    io:println(res is error); // expected: true\n}\n\nfunction f(int c) returns error? {\n    int count = c;\n    retry {\n        count += 1;\n        fail error(\"attempt failed\");\n    }\n}\n",
+      "output": "fatal[UNIMPLEMENTED_ERROR]: transformRetryStatement unimplemented\n  --> r.bal:11:5\n   |\n11 |     retry {\n   |     ^^^^^^^\n...\nfatal[INTERNAL_ERROR]: syntax node *st.RetryStatementNode transformed to non-statement node <nil>\n  --> r.bal:11:5",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main stops at AST transformation with UNIMPLEMENTED_ERROR followed by INTERNAL_ERROR, so retry statements are not supported at all. The front end cannot build the AST or BIR for them. These are diagnostics, not a Go panic. Spec review: Spec 7.24.3 Retry statement: when the type-parameter is omitted, the retry manager defaults to error:DefaultRetryManager. After shouldRetry returns false, execution continues with the fail. The failure therefore propagates out of f as its returned error value. `trap` of a call that returns an error without panicking yields that error, so `res is error` prints true. The program is well-formed, and the 'unimplemented' internal error is a missing feature. Related issues: Related: #782 (transaction statement), #862 (fail statements), #863 (on-fail). I found no existing retry issue.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1283,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1283",
+      "title": "fix: lower inferred array length descriptors",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    boolean[*] flags = [false, true];\n    io:println(flags.length()); // expected: 2\n}\n",
+      "output": "fatal[UNIMPLEMENTED_ERROR]: transformBasicLiteral unimplemented\n --> main.bal:4:13\n4 |     boolean[*] flags = [false, true];\nfatal[INTERNAL_ERROR]: syntax node *st.BasicLiteralNode transformed to non-action-or-expression node <nil>\nballerina: compilation contains errors (exit 1)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: main still fails to compile `boolean[*] flags = [false, true];` because the AST transformer has no lowering for the `*` length marker (UNIMPLEMENTED_ERROR); expected: length inferred as 2. Front-end lowering gap, reported as a diagnostic, not a crash. Spec review: Spec 5.4.1.1 allows inferred-array-length `*` when the array type descriptor gives the type of a variable that has an initializer, such as a local-init-var-decl-stmt. In that case it means the same as an explicit length, so `boolean[*] flags = [false, true]` is `boolean[2]` and length() returns 2. The program is valid and the implementation simply hasn't implemented the feature. Related issues: No issue about the `[*]` inferred-length marker found in a scan of all 737 issue titles (open+closed). #1205/#1109 concern fixed-length lists but not `[*]` lowering. (search/issues endpoint is blocked by proxy; scanned titles via repos/.../issues listing.)",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1281,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1281",
+      "title": "[Bug]: object field writes ignore the inherent field type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass ObjectWithAnyTypeVariables {\n    public any x;\n    public any y;\n\n    function init() {\n        self.x = \"B\";\n        self.y = 100;\n    }\n}\n\nclass ObjectWithoutAnyTypeVariables {\n    public string x;\n    public int y;\n\n    function init() {\n        self.x = \"A\";\n        self.y = 12;\n    }\n}\n\npublic function main() {\n    ObjectWithoutAnyTypeVariables o1 = new;\n    ObjectWithAnyTypeVariables o2 = o1;\n    o2.x = (); // @panic\n    io:println(\"not reached\");\n}\n",
+      "output": "not reached\n(exit 0; expected an inherent-type-violation panic at o2.x = ())",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: main accepts `o2.x = ()` through the wider `any`-typed view and keeps going; expected a runtime panic because the object's actual field type is string. The program is valid and the needed check is a runtime one (execObjectStore/Object.Put stores without checking the type), so the category is backend. Spec review: Object types are subtyped structurally (Object types; init is not part of the type), so ObjectWithoutAnyTypeVariables is a subtype of ObjectWithAnyTypeVariables and the assignment o2 = o1 compiles. The value's inherent type still has field x: string. Storing () into it is a mutation that violates the inherent type, and the spec (Fields / inherent type, Assignment) requires that to panic. Printing 'not reached' and exiting 0 deviates from the spec. Related issues: Closely related: #1196 (final class field can be updated at runtime through a non-final object type). Same pattern of writing through a wider object view with no runtime check, but that issue is about finality, not the field's inherent type. Not a dup.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1280,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1280",
+      "title": "[Bug]: map.remove does not panic when the key is absent",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction testMapRemoveNegative() {\n    map<any> namesMap = {fname: \"Supun\", lname: \"Setunga\", sname: \"Kevin\", tname: \"Ratnasekera\"};\n    _ = namesMap.remove(\"fname2\"); // @panic\n    io:println(\"not reached\");\n}\n\npublic function main() {\n    testMapRemoveNegative();\n}\n",
+      "output": "not reached\n(exit 0; expected panic from map:remove on missing key)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: lang.map remove(\"fname2\") on a map that lacks the key returns normally; the spec requires a panic. The bug is in the lang.map langlib implementation (mapRemove ignores the not-found result). Spec review: lang.map remove() doc in the spec langlib: 'This removes the member of m with key k and returns it. It panics if there is no such member.' Removing the missing key \"fname2\" must panic, so 'not reached' must not print. Related issues: No existing map.remove issue found in a scan of all issue titles.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1279,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1279",
+      "title": "fix: diagnose overlapping object inclusion cycles without crashing",
+      "reproducible": true,
+      "reproducer": "type A object { *B; };\ntype B object { *C; };\ntype C object { *D; *E; };\ntype D object { *A; };\ntype E object { *C; };\npublic function main() {}\n",
+      "output": "runtime: goroutine stack exceeds 1000000000-byte limit\nfatal error: stack overflow\n...\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFields(...)\n\t/home/user/ballerina/semantics/internal/symbols/symbol_resolver.go:2107\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/symbols.collectTransitiveFieldsFromTypeDefn(...)\n\t/home/user/ballerina/semantics/internal/symbols/symbol_resolver.go:2155\n(exit 2)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: The overlapping object-inclusion cycles (A->B->C->D->A, C->E->C) make the symbol resolver recurse forever in collectTransitiveFields, ending in a Go stack overflow before any diagnostic. Expected: an `invalid cycle detected` diagnostic. Spec review: The object type inclusions form a cycle (A->B->C->D->A, and C<->E). This cannot be resolved into a finite set of members (spec 'Object types', object-type-inclusion). The spec states the self-inclusion error explicitly only for records, but the same logic applies here. A conforming implementation must reject the program with a diagnostic (or at worst handle it), not overflow the stack during compilation. No expected output is given; the complaint is that the compiler crashes. Related issues: #1114 is a stack overflow from union-alias cycles in type resolution, a different code path. #654/#994 are closed and unrelated. No equivalent found.",
+      "labels_to_add": [
+        "frontend",
+        "frontend-crash"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1278,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1278",
+      "title": "fix: diagnose function names used as parameter types",
+      "reproducible": true,
+      "reproducer": "function Listener(string x, Listener e) { // @error function name used as type\n    e.message = x;\n}\npublic function main() {}\n",
+      "output": "runtime: goroutine stack exceeds 1000000000-byte limit\nfatal error: stack overflow\n...\ngithub.com/ballerina-nutcracker/ballerina/ast.Walk(...) ast/walk.go:36\nsemantics/internal/types.setOtherNodesAsNever(...) type_resolver.go:2613\nsemantics/internal/types.resolveBTypeInner(...) type_resolver.go:8388\nsemantics/internal/types.resolveBType(...) type_resolver.go:8230\nsemantics/internal/types.resolveSimpleVariableInner(...) type_resolver.go:3868\nsemantics/internal/types.resolveInvokableSignature(...) type_resolver.go:995\n(exit 2)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main still crashes with a Go stack overflow in semantics/internal/types type resolution when a function name is used as a parameter type; expected a diagnostic. Front-end crash before any diagnostic. Spec review: `Listener` names a function, not a type defined by a module type definition or class, so using it as a parameter's type-descriptor is a compile-time error (type references must refer to types; 5.x type-reference / 6.9 variable reference symbol kinds). The spec requires a diagnostic. The implementation's stack overflow crash in the compiler is not conforming behaviour. Related issues: Searched titles of all ~737 issues; #1114 (union alias cycle stack overflow) is a different recursion path. No duplicate found.",
+      "labels_to_add": [
+        "frontend",
+        "frontend-crash"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1277,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1277",
+      "title": "feat: support annotations on start actions",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nfunction one() returns int { return 1; }\npublic function main() {\n    future<int> result = @strand {thread: \"any\"} start one();\n    int v = checkpanic wait result;\n    io:println(v); // expected: 1\n}\n",
+      "output": "fatal[UNIMPLEMENTED_ERROR]: annotations on start actions are not yet supported\n --> a.bal:4:26\n4 |     future<int> result = @strand {thread: \"any\"} start one();\nballerina: compilation contains errors\n(exit 1)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects annotated start actions with UNIMPLEMENTED_ERROR; expected the annotation to be accepted and the program to print 1. Missing front-end support (AST/annotation resolution). Spec review: Spec 7.6 gives the grammar start-action := [annots] start call-action-or-expr. The annotation attach-point table (annotations section) lists the 'worker' attach point as covering named-worker-decl and start-action. Section 7.2 explicitly lets implementations use annotations to place a strand on a separate thread. The program is well-formed and should print 1, so 'not yet supported' is a missing feature. Related issues: No issue on annotated start actions found; #1244 is about start under cast/query select, #930 is named workers.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1276,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1276",
+      "title": "fix: recognize object filler values with defaultable init arguments",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nclass Age {\n    public int age;\n    public function init(int age = 5) { self.age = age; }\n}\npublic function main() {\n    Age[2] y = [];\n    y[1] = new(10);\n    io:println(y[0].age); // expected: 5\n    io:println(y[1].age); // expected: 10\n}\n",
+      "output": "error[SEMANTIC_ERROR]: missing required member at index 0: type 'object { public int age; public function init(int) returns nil }' has no filler value\n --> a.bal:7:16\n7 |     Age[2] y = [];\nballerina: compilation contains errors\n(exit 1)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main reports a compile-time 'no filler value' error for a class whose init has only defaultable params; expected fillers via zero-arg init (prints 5 then 10). Wrong semantic diagnostic, so frontend (filler computation may also need backend support). Spec review: Spec 'Filler values' table: for an object, the filler is `new T()` if T is a class and the static type of T's init method allows no arguments and does not include error. Age.init(int age = 5) can be called with no arguments and returns nil, so Age has a filler value and `Age[2] y = []` is well-formed: y[0] gets new Age() (age 5). Expected output 5 and 10 is correct. The diagnostic 'has no filler value' is wrong. Related issues: Related but distinct: #1050 (filler values ignore record field default expressions), #1205 (union list filler selection), #1147 (record list filler at index==length). None covers class init with defaultable params.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1275,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1275",
+      "title": "fix: support addition between xml and string values",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nfunction xmlStringAdd() returns xml {\n    xml a = xml `abc`;\n    string b = \"def\";\n    return a + b;\n}\nfunction stringXmlAdd() returns xml {\n    string a = \"def\";\n    xml b = xml `abc`;\n    return a + b;\n}\npublic function main() {\n    io:println(xmlStringAdd()); // expected: abcdef\n    io:println(stringXmlAdd()); // expected: defabc\n}\n",
+      "output": "error[SEMANTIC_ERROR]: both operands must belong to same basic type\n --> a.bal:5:12\n5 |     return a + b;\nerror[SEMANTIC_ERROR]: both operands must belong to same basic type\n --> a.bal:10:12\n10 |     return a + b;\nballerina: compilation contains errors\n(exit 1)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main rejects xml + string and string + xml with 'both operands must belong to same basic type'; spec allows it (string converted to xml text), expected abcdef / defabc. Wrong type checking in the front end. Spec review: Spec 6.24 (Additive expression) explicitly allows one operand to be a subtype of xml and the other a subtype of string; the result's static type is xml. The 'both operands must belong to same basic type' rejection therefore violates the spec. The concatenations give xml text 'abcdef' and 'defabc', and println shows them as the expected output. Related issues: #533 covers xml/string concatenation via query expressions (different path); #281 is a generic 'XML basic type' umbrella with empty body, not a confident parent.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1274,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1274",
+      "title": "fix: infer implicit new expressions in list and mapping members",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nclass Animal { public string name = \"\"; }\nclass Dog { public string name = \"\"; public int age = 0; }\ntype Rec record { Dog p; };\npublic function main() {\n    Animal animal = new;\n    Dog dog = new;\n    Dog[] dogs = [dog, new];\n    io:println(dogs.length()); // expected: 2\n    Rec r = {p: new()};\n    io:println(r.p.age); // expected: 0\n    Animal[] animals = dogs;\n    animals[0] = animal; // expected runtime panic (inherent type violation)\n}\n",
+      "output": "error[SEMANTIC_ERROR]: cannot infer type for implicit new expression\n --> a.bal:8:24\n8 |     Dog[] dogs = [dog, new];\nerror[SEMANTIC_ERROR]: cannot infer type for implicit new expression\n  --> a.bal:10:17\n10 |     Rec r = {p: new()};\nballerina: compilation contains errors\n(exit 1)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main fails to propagate the expected type into implicit new expressions inside list and mapping constructors (both cases fail); expected Dog/record field class inferred. Front-end type inference issue. Spec review: Spec 6.x implicit-new-expr: implicit `new` is equivalent to explicit new with the applicable contextually expected type, which here is Dog (list member of Dog[]) and Dog (record field p). Both are classes, so the program is well-formed and the 'cannot infer type' errors are wrong. The expected outputs follow: 2 and 0. Dog[] is a subtype of Animal[] (structural object typing), and storing an Animal that lacks field age into a list whose inherent type is Dog[] must panic (inherent type violation on list member assignment). Related issues: No issue on implicit new in list/mapping constructors found; #1108 (closed) is about anonymous functions passed to new, #1106 about inferred anonymous function members.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1262,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1262",
+      "title": "[Bug]: no singleton typing for multiplicative, shift and bitwise ops",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    byte mask = 1 << 7;\n    byte half = 300 >> 1;\n    byte prod = 10 * 10;\n    byte quot = 500 / 2;\n    byte rem = 1000 % 7;\n    int:Signed8 neg = -64 >> 1;\n    byte both = (256 | 1) ^ 256;\n    byte sum = 200 + 50;\n    io:println(mask, \" \", half, \" \", prod, \" \", quot, \" \", rem, \" \", neg, \" \", both, \" \", sum); // @output 128 150 100 250 6 -32 1 250\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected int:Unsigned8, got int --> main.bal:4:17\nerror[SEMANTIC_ERROR]: incompatible type: expected int:Unsigned8, got int:Unsigned16 --> main.bal:5:17\nerror[SEMANTIC_ERROR]: incompatible type: expected int:Unsigned8, got int --> main.bal:6:17\nerror[SEMANTIC_ERROR]: incompatible type: expected int:Unsigned8, got int --> main.bal:7:17\nerror[SEMANTIC_ERROR]: incompatible type: expected int:Unsigned8, got int --> main.bal:8:16\nerror[SEMANTIC_ERROR]: incompatible type: expected int:Signed8, got int --> main.bal:9:23\nerror[SEMANTIC_ERROR]: incompatible type: expected int:Unsigned8, got int:Unsigned16 --> main.bal:10:17\nballerina: compilation contains errors\n(smaller forms also fail: `4 a = 8 >> 1` -> expected 4, got int:Unsigned8; `1 e = 7 % 3` -> got int; `2 j = 6 & 3` -> got int:Unsigned8; `2.5 f = 5.0 / 2.0` -> got float)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main still rejects constant `*`, `/`, `%`, shift and bitwise expressions assigned to narrower int or singleton types, because those operators get no singleton typing (only `+` and `-` do). It is a type-checker typing bug, so frontend. Spec review: Multiplicative (6.23), additive (6.24), shift (6.25) and binary bitwise (6.30) expressions all type their result as the basic type 'modified by the usual singleton typing rules' (6.2.4). When every operand is a literal (singleton type), the static type is the singleton of the compile-time value, e.g. 1<<7 has type 128, which is a subtype of byte. So every declaration type-checks, and the expected values (128 150 100 250 6 -32 1 250) are arithmetically correct. The smaller forms in the note (e.g. `4 a = 8 >> 1`, `2.5 f = 5.0 / 2.0`) should also compile. Related issues: No duplicate found. #1046 and #1096 are related singleton-typing issues for unary operators. #893 ('Fix issues in constant folding') is a vague, empty-body umbrella, so I did not use it as a parent. The search API is blocked in this session, so I checked titles from a full listing of the repo's issues (open and closed).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1261,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1261",
+      "title": "[Bug]: x.f accepted for an optional field whose type includes nil",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype R record {|\n    int a;\n    int? c?;\n|};\n\npublic function main() {\n    R r = {a: 1};\n    int? x = r.c; // @error\n    io:println(x);\n}\n",
+      "output": "(compiles and prints an empty line; no diagnostic)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main accepts `r.c` for the optional field `int? c?` and gives (). \u00a76.10 requires a compile error here because the field type includes nil. The diagnostic is missing in the type checker, so frontend. Spec review: Spec 6.10 (Field access expression): x.k on a non-lax record is turned into optional field access only when M, the member type, does not include nil. Here M is int?, which includes nil, so that exception does not apply. The general rule then requires K to be a required key type for T, and c is optional, so the program has a compile-time error. Accepting it without a diagnostic deviates from the spec. Related issues: No duplicate found among the field-access issues. #1260 is a sibling issue about the same \u00a76.10 rule, but a distinct case: a nilable container rather than a nil-including optional field.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1260,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1260",
+      "title": "[Bug]: field access x.f is accepted on a nilable record type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype R record {|\n    int a;\n|};\n\npublic function main() {\n    R? r = ();\n    int? x = r.a; // @error\n    io:println(x);\n    r.a = 5; // @error\n}\n",
+      "output": "\nerror: missing key: \"a\"\n        at main(main.bal:11)",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main compiles both `r.a` (rvalue, which gives ()) and `r.a = 5` on `R?`, then panics at runtime with `missing key`. A compile error is expected on both lines (\u00a76.10, \u00a77.15.1). The type checker is missing the check, so frontend. Spec review: Spec 6.x Field access expression: when T (here R?) is not lax and not an object type, T must be a subtype of the mapping basic type. R? includes nil, so `r.a` is a compile-time error; optional access needs `?.`. Field-access lvexpr (7.x Assignment, lvexprs) is only defined when the static type is a subtype of object or mapping, so `r.a = 5` is also an error. The implementation compiled the program and panicked at runtime, which deviates from the spec. Related issues: No duplicate found. #1261 is a sibling issue about the same \u00a76.10 rule. #1051 (closed) is about compound assignment nil lifting and is unrelated.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1259,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1259",
+      "title": "[Bug]: xml toString/toBalString ignore the spec's expression and informal forms",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml x = xml `<d>t</d>`;\n    io:println(x.toBalString()); // @output xml`<d>t</d>`\n    xml[] arr = [x];\n    io:println(arr.toString()); // @output [`<d>t</d>`]\n    io:println(arr.toBalString()); // @output [xml`<d>t</d>`]\n}\n",
+      "output": "<d>t</d>\n[<d>t</d>]\n[<d>t</d>]",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: Main renders xml in the direct form everywhere. It should use xml`...` for toBalString and `...` inside lists and maps under toString. This is the value:toString/toBalString lang-library rendering, so langlib; the corpus golden tobalstring-v.bal will need updating. Spec review: Spec 5.9.5 (ToString) table: xml in expression style is xml`<d>t</d>` and in informal style is `<d>t</d>`; arrays in direct style (toString) render members in informal style, and toBalString uses expression style for members. So the expected outputs xml`<d>t</d>`, [`<d>t</d>`] and [xml`<d>t</d>`] are exactly what the spec requires. The observed output prints members in direct style, which is wrong. Related issues: Related but not a duplicate: #979 (object rendering in toString/toBalString, another part of \u00a75.9.5) and #532 (xml serialization in general).",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    },
+    {
+      "number": 1258,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1258",
+      "title": "[Bug]: nested prefixed xml element lacks synthesized xmlns attribute",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml parent = xml `<p:r xmlns:p=\"urn:p\"><p:b/></p:r>`;\n    xml child = parent/*;\n    xml standalone = xml `<p:b xmlns:p=\"urn:p\"/>`;\n    io:println(child == standalone); // @output true\n    foreach xml:Element e in child.elements() {\n        io:println(e.getAttributes()); // @output {\"{http://www.w3.org/2000/xmlns/}p\":\"urn:p\"}\n    }\n    io:println(child); // @output <p:b xmlns:p=\"urn:p\"/>\n}\n",
+      "output": "false\n{}\n<b xmlns=\"urn:p\"/>",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "valid": true,
+      "reasoning": "Reproduces on main: With an xml template, the nested <p:b> gets no synthesized xmlns:p entry. The same input through xml:fromString does get it (prints {\"{http://www.w3.org/2000/xmlns/}p\":\"urn:p\"} and <p:b xmlns:p=\"urn:p\"/>), so the runtime parser (values/xml_parse.go addInherited) is correct. Template elements are lowered by birgen/bir_gen.go xmlElementLiteral, which emits only the element's own expr.Namespaces, so the front end generates incomplete BIR (frontend, although the issue says Runtime). Spec review: Spec 5.3.2.1 (XML namespaces) says the attributes map gets a synthesized namespace attribute for every non-xml prefix used by the element that is not declared in its own [namespace attributes]. This ensures prefixes are not lost when the element is extracted. So child p:b carries {\"{http://www.w3.org/2000/xmlns/}p\":\"urn:p\"}, making it deep-equal to the standalone element (true). Serialization then finds prefix p already declared in [namespace attributes] and uses it, giving <p:b xmlns:p=\"urn:p\"/>. The observed {}, false and <b xmlns=\"urn:p\"/> all deviate from this. Related issues: #532 (xml serialization per spec, open) is related but broader, and this issue mentions it. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": ""
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1304,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1304",
+      "reasoning": "Reproduces (all three @natural:code external functions compile without diagnostics, even with no import for the `natural` prefix). However the spec review judged the expected diagnostics (missing configuration / prompt / non-string prompt) are not language-spec requirements: `natural:code` is a natural-programming library/compiler-plugin feature. The spec does make the program ill-formed (unresolved prefix `natural`), so silently compiling is still wrong. Decide whether this is `triage-lib` (natural-programming library feature) or `frontend` (unresolved annotation prefix not diagnosed)."
+    },
+    {
+      "number": 1303,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1303",
+      "reasoning": "Reproduces on main (`typedesc descriptor = [...values];` is rejected with 'list type not found in expected type'). The clean-context spec review judged it invalid: a list-constructor-expr always constructs a list value (\u00a76.7.1), and `values` is a variable, not a type, so a spread of it cannot form a tuple type descriptor; the compile error is consistent with the spec. However, the spec's handling of list constructors where a typedesc is expected (tuple type descriptor vs list constructor ambiguity) deserves a maintainer look before closing. If accepted as invalid, close as not planned; if it is a wanted extension, it is `frontend`."
+    },
+    {
+      "number": 1282,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1282",
+      "reasoning": "Reproduces on main (prints 0,1,2 instead of 2,1,2), but a clean-context spec review found the spec does not define intra-module initialization order or dependency ordering through function calls; the expected 2,1,2 matches jBallerina's dependency-ordered init, which is not authoritative. If the team decides dependency-ordered init is intended (cf. #1322, which also relies on it), label `frontend` (init ordering is computed when lowering the module init function)."
+    }
+  ],
+  "skipped": [],
+  "notes": "First triage report (no previous reports under reports/triage/, so nothing skipped). 50 open `triage` issues processed. Reproduced with a CLI built from upstream main. Validity was judged by clean-context subagents given only the reproducer and observed output, against the Ballerina spec (not jBallerina). The REST search/issues endpoint was blocked (403) for some agents; duplicate checks then fell back to scanning all issue titles. Several issues titled 'feat:'/'fix:' are feature gaps on main; they are categorized like bugs."
+}
