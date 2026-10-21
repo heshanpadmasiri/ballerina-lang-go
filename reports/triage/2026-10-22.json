@@ -1,0 +1,394 @@
+{
+  "generated_at": "2026-10-21T23:46:40Z",
+  "upstream_main": "f7c4c58d4691085b57f0c2634c8bb597f3ccaaea",
+  "issues": [
+    {
+      "number": 1353,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1353",
+      "title": "runtime: native code cannot read record field annotations of a resource parameter's declared type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Meta record {|\n    string name;\n|};\n\nannotation Meta meta on record field;\n\ntype Headers record {|\n    @meta {name: \"X-Id\"}\n    string id;\n|};\n\nservice class Svc {\n    resource function get items(Headers h) returns string => h.id;\n}\n\npublic function main() {\n    // Through a typedesc value, the field annotation is visible.\n    io:println(describe(Headers));\n    // Through the resource parameter's declared type, it is not.\n    io:println(describeParam(new Svc()));\n}\n\nfunction describe(typedesc<anydata> td) returns string = external;\n\nfunction describeParam(Svc svc) returns string = external;\n",
+      "output": "corpus/extern harness (go test ./corpus/extern -run TestReproParamFieldAnnotations -update):\n[id@meta]\nh []",
+      "valid": true,
+      "reasoning": "Reproduced with the issue's corpus/extern harness test on main: the typedesc path prints [id@meta] but the resource-parameter path prints 'h []'. extern.Parameter (runtime/extern/handle.go) carries only a semtypes.SemType, so natives can't reach a parameter's declared record field annotations. This is a runtime/extern API gap, not a spec question. The standalone .bal fails with 'function not found: describe' only because the externs need the Go harness.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1354,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1354",
+      "title": "runtime: types lose their declared names (conversion errors, typedesc printing, native access)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Person record {|\n    string name;\n    int age;\n|};\n\ntype Colour \"RED\"|\"GREEN\";\n\npublic function main() {\n    json j = {name: \"a\"};\n    Person|error p = j.cloneWithType();\n    io:println(p is error ? p.message() : \"ok\");\n    Colour|error c = \"BLUE\".cloneWithType();\n    io:println(c is error ? c.message() : \"ok\");\n    typedesc<anydata> t = Person;\n    io:println(t);\n}\n",
+      "output": "'{| json... |}' value cannot be converted to '{| age: int, name: string, never... |}': field 'age' not present in value\n'\"BLUE\"' value cannot be converted to '\"GREEN\"|\"RED\"'\ntypedesc\n",
+      "valid": true,
+      "reasoning": "Reproduces exactly as described. The spec leaves conversion-error text and a typedesc's string form implementation-defined (clean-context check). Still, runtime TypeDesc values keep no declared type name: errors print types structurally, a typedesc prints as bare 'typedesc', and natives have no Type.getName() equivalent. That is a real runtime gap blocking the http port. Possibly related to #1350 (error type name printing).",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1355,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1355",
+      "title": "interpreter: return-type annotations are not type-checked and never reach the runtime",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Meta record {|\n    string name;\n|};\n\nannotation Meta onReturn on return;\nannotation Meta onParam on parameter;\n\nfunction good() returns @onReturn {name: \"ok\"} int => 1;\n\nfunction wrongValue() returns @onReturn {name: 1} int => 2;\n\nfunction wrongPoint() returns @onParam {name: \"x\"} int => 3;\n\npublic function main() {\n    io:println(good() + wrongValue() + wrongPoint());\n}\n",
+      "output": "error[SEMANTIC_ERROR]: annotation 'onParam' is not allowed on return\n  --> 1355_0.bal:14:31\n   |\n14 | function wrongPoint() returns @onParam {name: \"x\"} int => 3;\n   |                               ^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: only the attach-point error is reported, and the {name: 1} value on a return-type annotation is accepted. The clean-context spec check agrees (\u00a79.1): the annotation value must have the tag's static type, so line 12 is a compile error. Separately, bir.BIRFunction / extern.FunctionMetadata have no field for return annotations, so the runtime half is a backend gap.",
+      "labels_to_add": [
+        "frontend",
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1356,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1356",
+      "title": "frontend: unused function parameters are reported as unused variables",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction greet(string name, int unused) returns string => \"hello \" + name;\n\npublic function main() {\n    io:println(greet(\"a\", 1));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: unused variable 'unused'\n --> 1356_0.bal:3:29\n  |\n3 | function greet(string name, int unused) returns string => \"hello \" + name;\n  |                             ^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: 'unused variable unused' is reported for a function parameter. The spec has no rule about unused parameters. A parameter is a required-param that is part of the function type, not a local variable, so the clean-context check found the diagnostic spurious. Related to #1155 (unused-variable errors block running).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1360,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1360",
+      "title": "interpreter: annotations declared 'on service remote function' are rejected on remote methods",
+      "reproducible": true,
+      "reproducer": "type Cfg record {| string name; |};\n\nannotation Cfg RemoteCfg on service remote function;\n\nservice class Svc {\n    @RemoteCfg {name: \"x\"}\n    remote function ping() {\n    }\n}\n\npublic function main() {\n}\n",
+      "output": "error[SEMANTIC_ERROR]: annotation 'RemoteCfg' is not allowed on objectfunction\n --> 1360_0.bal:6:5\n  |\n6 |     @RemoteCfg {name: \"x\"}\n  |     ^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: 'annotation RemoteCfg is not allowed on objectfunction' on a remote method of a service class. The clean-context check says it should compile: per the \u00a79.1 attach-point table, 'service remote function' covers a method-defn with the remote qualifier on a service object. The resolver checks every method against the objectfunction attach point only.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1361,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1361",
+      "title": "interpreter: method annotations never reach BIR and cannot be read from native code",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Cfg record {|\n    string name;\n|};\n\nannotation Cfg MethodCfg on object function;\n\nservice class Svc {\n    @MethodCfg {name: \"x\"}\n    remote function ping() returns string => \"pong\";\n\n    @MethodCfg {name: \"y\"}\n    function helper() returns string => \"help\";\n}\n\npublic function main() {\n    Svc s = new;\n    io:println(s.helper());\n}\n",
+      "output": "help\n",
+      "valid": true,
+      "reasoning": "The program runs ('help'), but bir.BIRFunction has no annotations field (bir/model.go: only parameters and class defs carry Annotations), and extern.FunctionMetadata exposes parameter annotations only. Method annotations are therefore dropped before BIR and can't be read by natives. This is a runtime/extern API gap; birgen must carry the values too. Related to #1355 and #1360.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1365,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1365",
+      "title": "langlib: lang.array pop, shift, unshift, reduce and sort are not available",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nimport ballerina/lang.array;\n\npublic function main() {\n    int[] values = [3, 1, 2];\n    values.unshift(0);\n    io:println(values.pop(), \" \", values.shift(), \" \", values);\n    io:println(values.reduce(isolated function(int acc, int v) returns int => acc + v, 0));\n    io:println(values.sort(array:DESCENDING));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: Unknown symbol: DESCENDING\n --> 1365_0.bal:9:28\n  |\n9 |     io:println(values.sort(array:DESCENDING));\n  |                            ^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: lang.array unshift/pop/shift/reduce/sort and array:DESCENDING are missing ('method not found' / 'Unknown symbol'). The clean-context check confirms the program is valid and prints '2 0 [3,1]', '4', '[3,1]'.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 565
+    },
+    {
+      "number": 1366,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1366",
+      "title": "langlib: lang.string startsWith, toCodePointInt and fromCodePointInt are not available",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() returns error? {\n    string s = \"Ballerina\";\n    io:println(s.startsWith(\"Ball\"), \" \", \"A\".toCodePointInt(), \" \", check string:fromCodePointInt(66));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: Unknown symbol: fromCodePointInt\n --> 1366_0.bal:5:76\n  |\n5 |     io:println(s.startsWith(\"Ball\"), \" \", \"A\".toCodePointInt(), \" \", check string:fromCodePointInt(66));\n  |                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: string:fromCodePointInt is 'Unknown symbol'. startsWith and toCodePointInt are also missing. The clean-context check confirms it is valid and should print 'true 65 B'.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 605
+    },
+    {
+      "number": 1367,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1367",
+      "title": "langlib: lang.map entries() is not available",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    map<string> m = {a: \"x\"};\n    foreach [string, string] entry in m.entries() {\n        io:println(entry[0], \"=\", entry[1]);\n    }\n}\n",
+      "output": "error[SEMANTIC_ERROR]: method not found: entries\n --> 1367_0.bal:5:39\n  |\n5 |     foreach [string, string] entry in m.entries() {\n  |                                       ^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: 'method not found: entries' for map. The clean-context check confirms it is valid (entries() returns map<[string,string]>) and should print 'a=x'.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 573
+    },
+    {
+      "number": 1368,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1368",
+      "title": "langlib: lang.value toJsonString() is not available",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    json j = {name: \"a\", vals: [1, 2]};\n    io:println(j.toJsonString());\n}\n",
+      "output": "error[SEMANTIC_ERROR]: method not found: toJsonString\n --> 1368_0.bal:5:16\n  |\n5 |     io:println(j.toJsonString());\n  |                ^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: 'method not found: toJsonString'. The clean-context check confirms it is valid; the exact whitespace is implementation-defined.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 582
+    },
+    {
+      "number": 1369,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1369",
+      "title": "frontend: qualified error:message(e) call reports 'Unknown symbol'",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    error e = error(\"failed\");\n    io:println(error:message(e));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: Unknown symbol: message\n --> 1369_0.bal:5:16\n  |\n5 |     io:println(error:message(e));\n  |                ^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: 'Unknown symbol: message' for error:message(e). The same call works with an explicit `import ballerina/lang.'error as err;`, and string:length works through its predeclared prefix. So resolution of the predeclared 'error' prefix (a keyword) fails, which is a front-end symbol-resolution bug. The clean-context check confirms it is valid (spec: error is a predeclared prefix) and should print 'failed'.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1370,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1370",
+      "title": "frontend: module variable used only from another file is reported unused",
+      "reproducible": true,
+      "reproducer": "// consts.bal\nfinal map<string> & readonly escapes = {\"n\": \"\\n\"};\n\n// main.bal\nimport ballerina/io;\n\npublic function main() {\n    io:println(escapes.hasKey(\"n\"));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: unused variable 'escapes'\n --> consts.bal:1:1\n  |\n1 | final map<string> & readonly escapes = {\"n\": \"\\n\"};\n  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced with a two-file package: 'unused variable escapes' even though main.bal uses it. Module-level declarations are visible across all files of the module, so the clean-context check found the diagnostic a false positive; it should print 'true'. Related to #1120 and #1155 but distinct (here the variable is used).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1372,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1372",
+      "title": "frontend: local variable shadowing a class field is 'already defined'",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass Buffer {\n    string lexeme = \"abc\";\n\n    function take() returns string {\n        string lexeme = self.lexeme;\n        self.lexeme = \"\";\n        return lexeme;\n    }\n}\n\npublic function main() {\n    io:println(new Buffer().take());\n}\n",
+      "output": "error[SEMANTIC_ERROR]: Variable already defined: lexeme\n --> 1372_0.bal:7:9\n  |\n7 |         string lexeme = self.lexeme;\n  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: 'Variable already defined: lexeme'. Object fields are only reachable through self., so they are not in the lexical variable scope. The clean-context check says it should compile and print 'abc'.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1374,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1374",
+      "title": "frontend: error constructor rejects a non-readonly detail argument",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Detail record {\n    json actual;\n};\n\ntype ComposeError error<Detail>;\n\nfunction generate(json actual) returns ComposeError => error(\"failed\", actual = actual);\n\npublic function main() {\n    io:println(generate({a: 1}));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected nil|boolean|int|float|decimal|string|readonly&[json...]|readonly&{| json... |}, got json\n --> 1374_0.bal:9:81\n  |\n9 | function generate(json actual) returns ComposeError => error(\"failed\", actual = actual);\n  |                                                                                 ^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: the error constructor rejects a json (non-readonly) named detail arg. Per the clean-context check (\u00a76.17), named args only need to be subtypes of Cloneable and are ImmutableClone'd, so it should compile. Related to #1131 (the runtime ImmutableClone half).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1376,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1376",
+      "title": "io: DEFAULT_ENCODING constant is not declared",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() returns error? {\n    io:ReadableByteChannel byteChannel = check io:createReadableChannel(\"a\\nb\".toBytes());\n    io:ReadableCharacterChannel charChannel = new (byteChannel, io:DEFAULT_ENCODING);\n    io:println(check charChannel.readAllLines());\n}\n",
+      "output": "error[SEMANTIC_ERROR]: Unknown symbol: DEFAULT_ENCODING\n --> 1376_0.bal:5:65\n  |\n5 |     io:ReadableCharacterChannel charChannel = new (byteChannel, io:DEFAULT_ENCODING);\n  |                                                                 ^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": true,
+      "reasoning": "Reproduced: 'Unknown symbol: DEFAULT_ENCODING'. lib/stdlibs/ballerina/io/.../io.bal declares no DEFAULT_ENCODING constant, though ballerina/io's public API has it. This is a std-library API gap.",
+      "labels_to_add": [
+        "triage-lib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1392,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1392",
+      "title": "[Bug]: query `limit` clause keeps pulling frames through `where` after the limit is reached",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction w(int x) returns boolean {\n    io:println(\"w\", x);\n    return true;\n}\n\nfunction s(int x) returns int {\n    io:println(\"s\", x);\n    return x;\n}\n\npublic function main() {\n    // Limit clause (6.35.6): \"for each input frame f, while n is greater\n    // than 0 ...\". Clauses pull lazily (6.35), so once n reaches 0 the\n    // limit clause must not pull further frames from the where clause.\n    int[] r = from var x in [1, 2, 3]\n        where w(x)\n        limit 1\n        select s(x);\n    // @output w1\n    // @output s1\n    io:println(r); // @output [1]\n\n    // Same issue, observable without side-effect tracing: pulling frame\n    // x = 2 through the where clause would panic with division by zero.\n    int[] r2 = from var x in [1, 2, 3]\n        where 10 / (2 - x) != 0\n        limit 1\n        select x;\n    io:println(r2); // @output [1]\n}\n",
+      "output": "w1\ns1\nw2\nw3\n[1]\nerror: divide by zero\n        at main(1392_0.bal:28)\n",
+      "valid": true,
+      "reasoning": "Reproduced: w2 and w3 are printed after the limit is reached, and the second query panics with divide by zero. The clean-context check (\u00a76.35 lazy pull, \u00a76.35.6 limit) expects w1, s1, [1], [1]. It noted a minor wording ambiguity but concluded that the lazy-pull model rules out pulling more frames. The limit is desugared into a counter over the materialised rows (desugar/query_expression.go applyQueryLimitClauseToRows), so the generated code is wrong, which makes this a front-end (desugar) issue. Related to #1129.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1393,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1393",
+      "title": "[Bug]: list const-pattern in `match` narrows a mutable target to the constant's type (unsound)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nconst L = [1, 2];\n\npublic function main() {\n    int[] a = [1, 2];\n    int[]|string v = a;\n    match v {\n        L => {\n            [1, 2] x = v; // @error v is narrowed to T &ro L = int[] (mutable list uniform type kept whole), not [1, 2]\n            io:println(x);\n        }\n    }\n}\n",
+      "output": "[1,2]\n",
+      "valid": true,
+      "reasoning": "Reproduced: the program compiles and prints [1,2]. The clean-context check says line 10 must be a compile error: by \u00a77.21.2, the target narrows to T &ro L, which keeps the whole mutable int[] part, and int[] is not a subtype of [1, 2]. This is unsound narrowing in the type checker.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1394,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1394",
+      "title": "[Bug]: calling a function-typed object field with method-call syntax panics \"function not found\"",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass W {\n    function () returns int f;\n\n    function init(function () returns int f) {\n        self.f = f;\n    }\n}\n\npublic function main() {\n    W w = new (function () returns int {\n        return 42;\n    });\n    io:println(w.f()); // @output 42\n}\n",
+      "output": "error: function not found: f\n        at main(1394_0.bal:15)\n",
+      "valid": true,
+      "reasoning": "Reproduced: it compiles, then fails at runtime with 'function not found: f'. The clean-context check (\u00a76.16) says w.f() must call the function-valued field and print 42. Front end: the method-call expr is lowered to a call of a non-existent method f instead of a field load plus function-value call, so the generated BIR is invalid. Related to #1215.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1395,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1395",
+      "title": "[Bug]: reading a potentially uninitialized field in `init` is not rejected at compile time",
+      "reproducible": true,
+      "reproducer": "class A {\n    int x;\n    int y;\n    function init() {\n        self.y = self.x + 1; // @error x is potentially uninitialized here\n        self.x = 1;\n    }\n}\n\npublic function main() {\n    A _ = new;\n}\n\n// second case\nclass A {\n    int x;\n    function init(boolean b) {\n        if b {\n            self.x = 1;\n        }\n        int z = self.x; // @error x is potentially uninitialized here\n        self.x = z;\n    }\n}\n\npublic function main() {\n    A _ = new (false);\n}\n",
+      "output": "error: unsupported type combination: <nil> + int64\n        at A.init(1395_0.bal:5)\n           main(1395_0.bal:11)\n--- 1395b (new(false)) exit=0, no output\n",
+      "valid": true,
+      "reasoning": "Reproduced: the first case compiles and fails at runtime with 'unsupported type combination: <nil> + int64'; the second compiles and silently stores nil. The clean-context check says both reads of self.x are compile errors under the init-method rule (a field is accessed while potentially uninitialized). This is a missing definite-assignment check in the front end.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1373,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1373",
+      "title": "frontend: wildcard clause after an exhaustive enum match is rejected",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nenum Context {\n    START,\n    END\n}\n\nfunction describe(Context c) returns string {\n    match c {\n        START => {\n            return \"start\";\n        }\n        END => {\n            return \"end\";\n        }\n        _ => {\n            return \"invalid\";\n        }\n    }\n}\n\npublic function main() {\n    io:println(describe(END));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: unreachable match clause\n  --> 1373_0.bal:16:9\n   |\n16 |         _ => {\n   |         ^^^^^^\n17 |             return \"invalid\";\n   |             ^^^^^^^^^^^^^^^^^\n18 |         }\n   |         ^\n\nerror[SEMANTIC_ERROR]: unmatchable match clause\n  --> 1373_0.bal:16:9\n   |\n16 |         _ => {\n   |         ^^^^^^\n17 |             return \"invalid\";\n   |             ^^^^^^^^^^^^^^^^^\n18 |         }\n   |         ^\n\nballerina: compilation contains errors\n",
+      "valid": false,
+      "reasoning": "Not a bug. The clean-context spec check (\u00a77.21.2 match clause reachability plus \u00a77.4.3: a statement other than panic that is not reachable is a compile error) found that the `_` clause after START/END covers no remaining part of the target type Context, so its `return \"invalid\";` is unreachable and the program must be rejected. Nutcracker's current rejection matches the spec; jBallerina accepting it is not authoritative. The ballerina/yaml port should drop the wildcard arm, or use a panic statement, which is allowed to be unreachable.",
+      "labels_to_add": [],
+      "remove_triage": true,
+      "close": true,
+      "close_reason": "Works as specified: by spec \u00a77.21.2/\u00a77.4.3 the wildcard clause after an exhaustive enum match is unreachable, so it's a compile error. Drop the arm or make it a `panic`.",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1375,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1375",
+      "title": "frontend: distinct over a union of error types is rejected",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype ParseError distinct error;\n\ntype FormatError distinct error;\n\ntype InputError distinct (ParseError|FormatError);\n\npublic function main() {\n    InputError e = error ParseError(\"bad input\");\n    io:println(e is ParseError, \" \", e.message());\n}\n",
+      "output": "error[SYNTAX_ERROR]: only object and error types can be distinct\n --> 1375_0.bal:7:17\n  |\n7 | type InputError distinct (ParseError|FormatError);\n  |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors\n",
+      "valid": false,
+      "reasoning": "Not a bug in the rejection itself. The clean-context check found that `distinct T` requires T to be definite. ParseError|FormatError induces different type-id sets, so it is not definite and line 7 is a compile error. Line 10 is also invalid: a ParseError value lacks InputError's fresh type-id, so it isn't a subtype of InputError, and the issue's expected output is wrong. Nutcracker rejects the program correctly. Its wording ('only object and error types can be distinct', reported as SYNTAX_ERROR) is misleading but not wrong in outcome; consider a follow-up on the message. Note that the ported public type `distinct (io:Error|file:Error)` is invalid under the spec.",
+      "labels_to_add": [],
+      "remove_triage": true,
+      "close": true,
+      "close_reason": "Works as specified: distinct requires a definite type, and a union of distinct error types is not definite (spec distinct-type-descriptor), so rejecting it is correct. The diagnostic wording could be improved separately.",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1371,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1371",
+      "reasoning": "Reproduced: 'unused variable i' for a foreach loop variable that is never read (`foreach int i in 1 ... 2`). The spec mandates no unused-variable diagnostics; nutcracker reports unused locals as errors by design (#1155). Whether a foreach binding counts is a project policy decision, not a spec question. The binding really is unused, and `foreach int _ in ...` is an available workaround. If the policy exempts loop variables (as jBallerina does), it's a frontend fix; otherwise close. Best tracked under #1155."
+    }
+  ],
+  "skipped": [
+    1304,
+    1303,
+    1282
+  ],
+  "notes": "22 new triage issues processed (#1353-#1395). #1282, #1303 and #1304 were skipped: they are unchanged since the 2026-10-20 report. GitHub search/issues is blocked by the session proxy, so duplicate detection used a local title match over all 780 repo issues fetched through repos/.../issues; no exact duplicates were found. Parents were set for the langlib issues (#565 array, #605 string, #573 map, #582 value). #1373 and #1375 are recommended for closing as works-as-specified, per spec analysis that contradicts the issues' jBallerina-based expectations. No frontend-crash: none of the reproducers crash the front end."
+}
