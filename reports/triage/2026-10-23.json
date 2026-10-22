@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-10-22T23:43:25Z",
+  "upstream_main": "72d94f9b509dd8831dc887db56f058c6a8859f6b",
+  "issues": [
+    {
+      "number": 1400,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1400",
+      "title": "[Bug]: foreach accepts an iterable object whose completion type includes error",
+      "reproducible": true,
+      "reproducer": "class EIter {\n    public isolated function next() returns record {| int value; |}|error? {\n        return error(\"boom\");\n    }\n}\n\nclass ERange {\n    *object:Iterable;\n\n    public function iterator() returns object {\n        public isolated function next() returns record {| int value; |}|error?;\n    } {\n        return new EIter();\n    }\n}\n\npublic function main() {\n    ERange e = new;\n    foreach int x in e { // @error\n        _ = x;\n    }\n}\n",
+      "output": "error: boom\n        at main(i1400.bal:19)",
+      "valid": true,
+      "reasoning": "Reproduces on main: the program compiles and then panics at run time. Spec \u00a77.22.1 requires the foreach iterable's iteration completion type to be nil. Here it is error?, so the foreach line must be a compile-time error. A clean-context spec check agreed (high confidence). The type checker is missing the check and no crash occurs, so this is frontend and not frontend-crash. No duplicate found. #1302 is the opposite case.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1401,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1401",
+      "title": "[Bug]: xml:slice requires endIndex although it is defaultable",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml x = xml `<a/><b/><c/>`;\n    io:println(x.slice(1)); // @output <b/><c/>\n    io:println(xml:slice(x, 2)); // @output <c/>\n}\n",
+      "output": "error[SEMANTIC_ERROR]: missing required parameter 'endIndex'\n --> i1401.bal:5:16\nerror[SEMANTIC_ERROR]: missing required parameter 'endIndex'\n --> i1401.bal:6:16\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces on main. lang.xml declares slice(xml x, int startIndex, int endIndex = x.length()), so slice(1) and xml:slice(x, 2) must compile and print <b/><c/> and <c/>. A clean-context spec check agreed (high confidence). This is a lang library declaration issue: the opaque registry entry is missing the default. No duplicate found. #910, which covered opaque defaults, is closed.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1402,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1402",
+      "title": "[Bug]: float:toBitsInt returns different results for the single NaN value",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    float a = float:NaN;\n    float b = checkpanic float:fromString(\"NaN\");\n    float c = -float:NaN;\n    io:println(a === b); // @output true\n    io:println(a.toBitsInt() == b.toBitsInt()); // @output true\n    io:println(a.toBitsInt() == c.toBitsInt()); // @output true\n}\n",
+      "output": "true\nfalse\nfalse",
+      "valid": true,
+      "reasoning": "Reproduces on main. Spec \u00a75.2.4.1 says all IEEE NaN bit patterns are a single Ballerina value, and === agrees (it prints true). toBitsInt is a function of that value, so it must return one int for every NaN. A clean-context spec check agreed (medium-high confidence: the spec does not name which canonical bit pattern to use). This is lang.float. No duplicate found. #391 and #394 are about NaN equality.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1403,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1403",
+      "title": "[Bug]: decimal % panics when the integer quotient exceeds 34 digits",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    decimal x = 1E+35d;\n    io:println(x % 7d); // @output 5\n    decimal y = 1E+40d;\n    io:println(y % 3d); // @output 1\n}\n",
+      "output": "error: not a valid decimal\n        at main(i1403.bal:5)",
+      "valid": true,
+      "reasoning": "Reproduces on main: the program panics at run time. The spec defines decimal % as the exact x - y*n rounded once, with no exceptions for finite operands. 10^35 mod 7 = 5 and 10^40 mod 3 = 1 are both exact. A clean-context spec check agreed (high confidence). The remainder operator fails in the runtime, so this is backend. No duplicate found. #1347 (decimal division exponent) is a different bug.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1408,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1408",
+      "title": "[Bug]: return-type annotation values are not type-checked",
+      "reproducible": false,
+      "reproducer": "import ballerina/io;\n\ntype Meta record {|\n    string name;\n|};\n\nannotation Meta onReturn on return;\n\nfunction wrongValue() returns @onReturn {name: 1} int => 2;\n\npublic function main() {\n    io:println(wrongValue());\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected string, got 1\n --> i1408.bal:9:48\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "No longer reproduces on main @72d94f9b. The annotation value {name: 1} on the return type is now rejected with a type error at 9:48, which is the expected behaviour. Recommend closing as fixed. It is a sub-issue of #1355; the remaining part of #1355 is tracked by #1409.",
+      "labels_to_add": [],
+      "remove_triage": true,
+      "close": true,
+      "close_reason": "Fixed on main @72d94f9b: the return-type annotation value is now type-checked (\"incompatible type: expected string, got 1\").",
+      "duplicate_of": null,
+      "parent_issue": 1355
+    },
+    {
+      "number": 1409,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1409",
+      "title": "[Bug]: return-type annotations are not encoded in BIR or exposed to native code",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Meta record {|\n    string name;\n|};\n\nannotation Meta onReturn on return;\n\nfunction good() returns @onReturn {name: \"ok\"} int => 1;\n\npublic function main() {\n    io:println(good());\n}\n",
+      "output": "1\n(program runs; bir.BIRFunction (bir/model.go:119) has no return-annotation field, and extern.FunctionMetadata (runtime/extern/handle.go:58) exposes only Params/RestParam)",
+      "valid": true,
+      "reasoning": "Reproduces on main by code inspection. The AST has ReturnAnnotationAttachments, but BIRFunction has no field for them and extern.FunctionMetadata does not expose them, so native code cannot read the return annotation. Runtime-visible annotations must survive into the compiled form, which makes this valid. BIR generation drops the data and there is no crash, so this is frontend. It is already a sub-issue of #1355, and #1361 is the sibling issue for method annotations. I did not run a clean-context subagent because the reproducer's printed output cannot show the defect; validity was judged from the code.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 1355
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1304,
+    1303,
+    1282
+  ],
+  "notes": "Reproduced against upstream main @72d94f9b. #1304, #1303 and #1282 were skipped: they were already reported (2026-10-20, as undetermined) and have not been updated since. The search/issues REST endpoint is blocked by the session proxy (HTTP 403), so duplicates were checked by scanning the titles of all 790 issues, open and closed, from the repos/.../issues endpoint. None of the new issues reported a frontend crash."
+}
