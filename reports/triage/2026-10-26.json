@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-10-25T23:42:48Z",
+  "upstream_main": "47f4de21aa0d12a7f050599bb97d19daf1692f7a",
+  "issues": [
+    {
+      "number": 1423,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1423",
+      "title": "[Bug]: annotation on a local variable declaration crashes the compiler (INTERNAL_ERROR: expression type not resolved for *ast.BLangLiteral)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nconst annotation varMeta on source var;\n\npublic function main() {\n    @varMeta\n    int w = 2;\n    io:println(w); // @output 2\n}\n\n// invalid variant:\nimport ballerina/io;\n\nannotation x on type;\n\npublic function main() {\n    @x\n    int w = 2;\n    io:println(w);\n}\n",
+      "output": "valid variant:\nfatal[INTERNAL_ERROR]: expression type not resolved\n --> i1423.bal:6:5\n\ninvalid variant (annotation x on type; @x on local var):\nfatal[INTERNAL_ERROR]: expression type not resolved\n --> i1423b.bal:6:5\n(the same annotation on a module-level var correctly reports: error[SEMANTIC_ERROR]: annotation 'x' is not allowed on var)",
+      "valid": true,
+      "reasoning": "Reproduces on main (message text now lacks the '*ast.BLangLiteral' suffix). Spec 2024R1 \u00a77.11 allows [annots] on local-init-var-decl-stmt and \u00a79.1 lists local-var-decl-stmt under the source-only 'var' attach point, so the first program must compile and print 2; the second must give a normal attach-point diagnostic. Clean-context spec check agreed. The front end fails during type resolution of the annotation on a local var decl and cannot produce BIR -> frontend. Not frontend-crash: it is an INTERNAL_ERROR diagnostic, not a Go panic. No duplicate found among existing issues (related annotation issues #1335, #1239 cover other attach points).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1424,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1424",
+      "title": "[Bug]: rest parameter list is created read-only (push/assignment panics with \"cannot mutate readonly value\")",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction addOne(int... xs) returns int[] {\n    xs.push(99);\n    return xs;\n}\n\nfunction setFirst(int... xs) returns int[] {\n    xs[0] = 42;\n    return xs;\n}\n\nfunction id(int... xs) returns int[] {\n    return xs;\n}\n\npublic function main() {\n    io:println(id(1) is readonly); // @output false\n    io:println(setFirst(1, 2)); // @output [42,2]\n    io:println(addOne(1, 2)); // @output [1,2,99]\n}\n",
+      "output": "true\nerror: inherent type violation: cannot mutate readonly value\n        at setFirst(i1424.bal:9)\n           main(i1424.bal:19)",
+      "valid": true,
+      "reasoning": "Reproduces on main. Spec \u00a77.3.1: the rest param is initialised to a newly created list whose inherent type is T[] (not readonly); 'implicitly final' only forbids reassigning the parameter variable. Clean-context spec check agreed. Root cause is in the interpreter: runtime/internal/exec/terminators.go:358 and runtime/internal/exec/executor.go:100 call values.NewList(..., true /*readonly*/, ...) for the rest list -> backend. No duplicate found; #471 (closed, rest-arg list type creation in runtime) is related but distinct.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1425,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1425",
+      "title": "[Bug]: spreading a variable-length list into a tuple with a minimum length is not rejected (creates a list shorter than its inherent type)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int[] x = [];\n    [int, int...] c = [...x]; // @error spread of int[] may contribute 0 members, but [int, int...] requires at least 1\n    io:println(c[0]);\n}\n",
+      "output": "compiles without error, then:\nerror: invalid array index: 0\n        at main(i1425.bal:6)",
+      "valid": true,
+      "reasoning": "Reproduces on main. Spec \u00a76.7.1: if a spread member's type is not fixed length, the minimum number of members it and previous members may add must be >= the inherent type's minimum length; int[] contributes min 0 but [int, int...] needs 1, so a compile-time error is required. Clean-context spec check agreed. Missing semantic check, so the front end emits BIR for an invalid program -> frontend (no crash). No duplicate; #1109 (open) is the opposite case (fixed-length spread wrongly rejected) in the same list-constructor spread check and could be fixed together.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1304,
+    1282
+  ],
+  "notes": "Skipped #1304 and #1282: already in earlier reports (undetermined in 2026-10-20) with no updates since. REST search/issues is blocked by the session proxy (HTTP 403), and --paginate breaks on the repositories/{id} Link URLs, so the duplicate check was done by paging repos/.../issues?state=all with page=N (799 issues) and matching titles by keyword."
+}
