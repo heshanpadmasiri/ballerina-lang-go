@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-10-26T18:19:51Z",
+  "base": "47f4de21aa0d12a7f050599bb97d19daf1692f7a",
+  "time_used_minutes": 48,
+  "setup_notes": "Fork main was already up to date with upstream (fast-forward was a no-op). The first make test run hit a 10-minute background-command limit and was rerun; the rerun passed.",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "status": "confirmed",
+      "title": "Resolving a large enum or string-literal union type is O(N^2) in time and memory",
+      "issue": "nodebuilder.transformEnumDeclaration turns the N enum members into a left-leaning chain of binary BLangUnionTypeNodes. The parser builds the same kind of chain for `T1|T2|...|Tn`. TypeResolver.resolveBTypeInner (BLangUnionTypeNode case) resolves Lhs and Rhs recursively and calls semtypes.Union at every node, so the chain does N-1 pairwise unions. For string subtypes each union goes stringOps.Union -> enumerableSubtypeUnion -> enumerableListUnion. That function merges into a brand-new sorted slice holding the whole accumulated set, so the total work is ~N^2/2 element copies and comparisons. On top of that, the result slice starts nil and grows by append, so every merge reallocates and copies its output several times (growslice was ~22% of union CPU samples). At N=8000, enumerableListUnion accounted for ~96% of allocated bytes (~1.8 GB) and ~1.8s of a ~2.2s compile; peak RSS was ~1 GB. Top-Level Type Resolution time grows quadratically: 47ms at N=1000, 154ms at 2000, 567ms at 4000, 2084ms at 8000. Int unions are not affected.",
+      "locations": [
+        "semtypes/enumerable_subtype.go:enumerableListUnion",
+        "semtypes/enumerable_subtype.go:enumerableSubtypeUnion",
+        "semtypes/string_ops.go:Union",
+        "semantics/internal/types/type_resolver.go:resolveBTypeInner (BLangUnionTypeNode case)",
+        "nodebuilder/node_builder.go:transformEnumDeclaration"
+      ],
+      "reproducer": {
+        "generator": "#!/usr/bin/env python3\n\"\"\"Generate a Ballerina file with one large enum (N members).\n\nUsage: gen_enum.py N OUT.bal\nEnum type resolution folds members into a left-deep chain of binary union\nnodes, and each semtypes.Union copies the whole accumulated sorted string list,\nso top-level type resolution is O(N^2).\n\"\"\"\nimport sys\n\nn = int(sys.argv[1])\nout = sys.argv[2]\nmembers = \",\\n\".join(f\"    CODE_{i:05d}\" for i in range(n))\nwith open(out, \"w\") as f:\n    f.write(\"import ballerina/io;\\n\\n\")\n    f.write(f\"enum Code {{\\n{members}\\n}}\\n\\n\")\n    f.write(\"public function main() {\\n\")\n    f.write(\"    Code c = CODE_00000;\\n\")\n    f.write(\"    io:println(c);\\n\")\n    f.write(\"}\\n\")\n",
+        "source": null,
+        "command": "python3 gen_enum.py 8000 enum_8000.bal && /usr/bin/time -f 'wall %es rss %MKB' go run ./cli/cmd run --stats enum_8000.bal ; benchmark: ./bin/benchmark --mode time|memory --runs 5 --warmup 1 main <branch> enum_8000.bal"
+      },
+      "baseline": "On main, enum_8000.bal (8000-member enum): Top-Level Type Resolution 2030-2260ms, total compile 2160-2650ms, wall 2.2-2.55s, peak RSS 0.96-1.14 GB. All other stages together take <150ms. Benchmark-tool means: 2517 ms and 1076 MiB.",
+      "improvement": {
+        "summary": "enum_8000.bal: wall time -49% (2517ms to 1280ms) and peak memory -44% (1076 MiB to 605 MiB). Top-Level Type Resolution went from ~2256ms to ~1061ms. Smaller cases: enum_4000 545ms to 256ms; a 4000-member string-literal union 0.66s/299MB to 0.35s/195MB. The prototype only removes the constant factor; the cost is still O(N^2).",
+        "time_summary": "### Improvements\n\n- `enum_8000.bal` -49.16% (2517.379 ms \u2192 1279.887 ms, 9.00 sigma) \u2014 unreliable: worst CV 7.7%\n\n_A case is reported when it moves at least 1 combined standard deviation and at least 1%; a measurement is unreliable once its coefficient of variation reaches 5%. With 3 runs the standard deviation is a weak estimate. The sigma multiple above and the \u00b1 column in the table are different quantities._\n",
+        "memory_summary": "### Improvements\n\n- `enum_8000.bal` -43.76% (1076.010 MiB \u2192 605.189 MiB, 10.69 sigma) \u2014 unreliable: worst CV 4.0%\n\n_A case is reported when it moves at least 1 combined standard deviation and at least 1%; a measurement is unreliable once its coefficient of variation reaches 3%. With 3 runs the standard deviation is a weak estimate. The sigma multiple above and the \u00b1 column in the table are different quantities._\n"
+      },
+      "fix_approach": "The prototype adds one line, `*result = slices.Grow(*result, len1+len2)`, at the top of enumerableListUnion, so each merge allocates its output once instead of growing it through append. The merge logic is unchanged, so types, diagnostics and goldens are identical, and make test passes. This removes the repeated growslice reallocation (about half the time and memory) but leaves the O(N^2) shape. The remaining cost comes from the left-leaning chain: every intermediate union node gets a fully built type holding the union of all members before it, which adds up to N^2/2 elements whatever merge strategy is used. A complete fix should flatten the union chain in resolveBTypeInner, or have the nodebuilder build an n-ary or balanced union for enums, and union all members in one pass (collect, sort, dedupe, or do a balanced pairwise fold, O(N log N)). To get the full win it must avoid building types for the synthetic intermediate nodes, or derive them cheaply. Check which consumers read types on intermediate BLangUnionTypeNodes (enum chains are synthetic and probably have none; user-written `A|B|C` chains may be read by diagnostics or goldens). Do pre-size the slices in the sibling enumerableListIntersect and enumerableListDiff as well.",
+      "prototype_diff": "diff --git a/semtypes/enumerable_subtype.go b/semtypes/enumerable_subtype.go\nindex 7993a1d8..c5f17d3f 100644\n--- a/semtypes/enumerable_subtype.go\n+++ b/semtypes/enumerable_subtype.go\n@@ -16,7 +16,10 @@\n \n package semtypes\n \n-import \"math\"\n+import (\n+\t\"math\"\n+\t\"slices\"\n+)\n \n type enumerableSubtype[T any] interface {\n \tAllowed() bool\n@@ -74,6 +77,7 @@ func enumerableListUnion[T any](v1 []enumerableType[T], v2 []enumerableType[T],\n \ti2 := 0\n \tlen1 := len(v1)\n \tlen2 := len(v2)\n+\t*result = slices.Grow(*result, len1+len2)\n \tfor {\n \t\tif i1 >= len1 {\n \t\t\tif i2 >= len2 {\n",
+      "attempts": 1,
+      "reason": ""
+    }
+  ],
+  "notes": "Hypotheses from earlier nights were excluded. Other candidates the exploration found but skipped because they overlap earlier reports: long else-if chains are quadratic in symbol resolution; sequential while loops hit varInitState.clone and lookupBindingInner. The prototype branch claude/perf-20261026-H1 exists only locally and was not pushed."
+}
