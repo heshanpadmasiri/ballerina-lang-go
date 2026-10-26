@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-10-26T23:42:40Z",
+  "upstream_main": "00d6965be8f8e514c11d2897066c9030467ef82c",
+  "issues": [
+    {
+      "number": 1440,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1440",
+      "title": "[Bug]: aggregated variable accepted outside an aggregated-variable-reference",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int[] xs = [1, 2, 3];\n    int n = from var x in xs\n        let int y = x * 2\n        collect y.length();\n    io:println(n);\n\n    int[] r = from var x in xs\n        let int n2 = x + 10\n        group by x\n        select n2[0] + n2.length();\n    io:println(r);\n}\n",
+      "output": "Compiles and runs without diagnostics; prints:\n3\n[12,13,14]",
+      "valid": true,
+      "reasoning": "Reproduces on main 00d6965: the program compiles and prints 3 and [12,13,14]. A clean-context spec check (2024R1 spec \u00a76.35.7, \u00a76.9) found that aggregated variables (y from collect, n2 after group by) may be referenced only through an aggregated-variable-reference, which is a spread-list-member or a rest-arg. So y.length(), n2[0] and n2.length() must be rejected as semantic errors. The front end's semantic checker accepts an invalid program, so this is frontend. It is not a crash. There is no duplicate: #1068 (a valid rest-arg use is rejected) and #1225 (re-aggregation flattens or panics) are related aggregated-variable bugs with different symptoms, and neither is a natural parent.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1425,
+    1424,
+    1423,
+    1304,
+    1282
+  ],
+  "notes": "Only #1440 is new or updated since the 2026-10-26 report. #1423-1425 were triaged in 2026-10-26.json. #1304 and #1282 are still undetermined from 2026-10-20.json and have had no updates. Related issues: #1068, #1225. The search/issues REST endpoint is blocked by the session proxy, so duplicate search used a title scan of all issues."
+}
