@@ -1,0 +1,178 @@
+{
+  "generated_at": "2026-10-27T23:43:56Z",
+  "upstream_main": "c2feffcce510ab2b8dba5a9b025e01418e164b9f",
+  "issues": [
+    {
+      "number": 1450,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1450",
+      "title": "[Bug]: toBalString of negative infinity produces invalid expression `float:-Infinity`",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    float x = -float:Infinity;\n    io:println(x.toBalString());\n    io:println([x].toBalString());\n}\n",
+      "output": "float:-Infinity\n[float:-Infinity]",
+      "valid": true,
+      "reasoning": "lang.value toBalString (expression-style ToString, spec §5.9.5) must yield a valid Ballerina expression; `float:-Infinity` does not parse, correct is `-float:Infinity`. Clean-context spec check: VALID-BUG. Note: corpus tobalstring-v.bal:71 and its txtar codify the wrong output and need updating with the fix. No duplicate found.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1451,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1451",
+      "title": "[Bug]: float:round(x, fractionDigits) rounds the decimal string instead of the exact binary value",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    io:println((2.675).round(2));\n    io:println((0.15).round(1));\n    io:println((0.35).round(1));\n}\n",
+      "output": "2.68\n0.2\n0.4",
+      "valid": true,
+      "reasoning": "lang.float round(x, fractionDigits) must round the exact binary value (closest multiple of 10^-fractionDigits to x); 2.675/0.15/0.35 are strictly below the midpoint so 2.67/0.1/0.3 are expected. Clean-context spec check: VALID-BUG. Related to but distinct from #1029 (another round(fractionDigits) precision bug); not a duplicate.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1452,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1452",
+      "title": "[Bug]: Including an inclusive (open) record in an exclusive record drops the implicit `anydata...` rest descriptor",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype OpenBase record {\n    int x;\n};\n\ntype Derived record {|\n    *OpenBase;\n    string y;\n|};\n\npublic function main() {\n    Derived d = {x: 1, y: \"hello\", \"z\": 3};\n    io:println(d);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected never, got 3\n  --> i1452.bal:13:41\n   |\n13 |     Derived d = {x: 1, y: \"hello\", \"z\": 3};\n   |                                         ^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "§5.4.2.2: an included inclusive record is treated as having an explicit `anydata...` rest descriptor which is carried into the including type unless overridden, so Derived is open and `\"z\": 3` is valid. Type checker rejects a valid program (`expected never`). Clean-context spec check: VALID-BUG. Issue reports the runtime inherent type is also closed; root cause is the type resolution of the inclusion. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1453,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1453",
+      "title": "[Bug]: XML template drops whitespace text that follows a processing instruction",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml x = xml `<?p q?>   x`;\n    io:println(\"[\", x, \"]\");\n    xml y = xml `<r><?p q?> <c/></r>`;\n    io:println(y);\n    io:println((y/*).length());\n}\n",
+      "output": "[<?p q?>x]\n<r><?p q?><c/></r>\n2",
+      "valid": true,
+      "reasoning": "§6.6.2: xml template content is parsed with the XML `content` production, so whitespace after a PI is CharData and must be kept as a text item. xml:fromString keeps it, so the bug is in the template parsing/lowering path in the front end. Clean-context spec check: VALID-BUG. Related XML-template issues (#1091, #1226, #1412) cover other cases; not duplicates.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1454,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1454",
+      "title": "[Bug]: range expression used as a value crashes the compiler (INTERNAL_ERROR: unexpected binary operator kind: ..<)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    var r = 1 ..< 3;\n    io:println(r is object:Iterable);\n}\n",
+      "output": "fatal[INTERNAL_ERROR]: unexpected binary operator kind: ..<\n --> i1454.bal:4:13\n  |\n4 |     var r = 1 ..< 3;\n  |             ^^^^^^^\n\nballerina: BIR generation failed",
+      "valid": true,
+      "reasoning": "§6.26: a range-expr yields an object belonging to Iterable<int,()> and may be used outside foreach. BIR generation fails with fatal[INTERNAL_ERROR] on a valid program. That is a diagnostic, not a Go panic, so frontend-crash is not added. Clean-context spec check: VALID-BUG. Related: #1349 (foreach over range binding type) and #1302; neither is a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1455,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1455",
+      "title": "[Bug]: isolated class accepts non-private fields that are not isolated (only `public` fields are checked)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nisolated class Counter {\n    int count = 0;\n    final int[] items = [];\n    private int total = 0;\n\n    isolated function bump() {\n        lock {\n            self.total += 1;\n        }\n    }\n}\n\npublic function main() {\n    Counter c = new;\n    c.count = 5;\n    c.items.push(1);\n    io:println(c.count);\n}\n",
+      "output": "5",
+      "valid": true,
+      "reasoning": "§8.6 + §6.8.1: in an isolated class, any field that is not isolated (final with a readonly/isolated-object type) must be private. `int count` and `final int[] items` must be rejected, but the program compiles and prints 5. Clean-context spec check: VALID-BUG. #1431/#1432 touch the same check in the opposite direction (too strict); not duplicates.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1456,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1456",
+      "title": "[Bug]: source text is not normalized: CR/CRLF kept inside string templates and a leading BOM is a syntax error",
+      "reproducible": true,
+      "reproducer": "// --- i1456a.bal (CRLF line endings)\nimport ballerina/io;\n\npublic function main() {\n    string s = string `a\nb`;\n    io:println(s.length());\n    io:println(s.toBytes());\n}\n\n// --- i1456b.bal (starts with UTF-8 BOM)\n﻿import ballerina/io;\n\npublic function main() {\n    io:println(\"ok\");\n}\n",
+      "output": "// --- i1456a.bal\n4\n[97,13,10,98]\n\n// --- i1456b.bal\nerror[SYNTAX_ERROR]: invalid token\n --> i1456b.bal:1:4\n  |\n1 | ﻿import ballerina/io;\n  |    ^^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Spec lexical structure: a leading BOM must be removed and CR/CRLF normalized to LF before parsing. Both are missing: a CRLF template keeps CR (length 4) and a BOM gives SYNTAX_ERROR. Clean-context spec check: VALID-BUG (both parts). No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1457,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1457",
+      "title": "[Bug]: relational and `==`/`!=` expressions on singleton operands are not singleton-typed",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nconst int MIN = 1;\nconst int MAX = 10;\n\npublic function main() {\n    true ordered = MIN < MAX;\n    io:println(ordered);\n\n    true same = MIN == 1;\n    io:println(same);\n\n    false lt = 2.0 < 1.0;\n    io:println(lt);\n\n    string label = MIN <= MAX ? \"ordered\" : 0;\n    io:println(label);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected true, got boolean\n --> i1457.bal:7:20\n  |\n7 |     true ordered = MIN < MAX;\n  |                    ^^^^^^^^^\n\nerror[SEMANTIC_ERROR]: incompatible type: expected true, got boolean\n  --> i1457.bal:10:17\n   |\n10 |     true same = MIN == 1;\n   |                 ^^^^^^^^\n\nerror[SEMANTIC_ERROR]: incompatible type: expected false, got boolean\n  --> i1457.bal:13:16\n   |\n13 |     false lt = 2.0 < 1.0;\n   |                ^^^^^^^^^\n\nerror[SEMANTIC_ERROR]: incompatible type: expected string, got 0|\"ordered\"\n  --> i1457.bal:16:20\n   |\n16 |     string label = MIN <= MAX ? \"ordered\" : 0;\n   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "§6.2.4/§6.27/§6.29/§6.32: relational and ==/!= expressions with singleton operands must have a singleton boolean type, and a conditional whose condition has type `true` takes the true branch's type. The type checker gives plain boolean and rejects the valid program. Clean-context spec check: VALID-BUG. Same rule as #1262 (multiplicative/shift/bitwise ops), which is a sibling rather than a duplicate. A shared parent could be considered, but none exists.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1458,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1458",
+      "title": "[Bug]: service declaration evaluates all listener expressions before constructing the service and attaching",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass L {\n    string n;\n\n    function init(string n) {\n        self.n = n;\n        io:println(\"listener init \", n);\n    }\n\n    public function attach(service object {} svc, () attachPoint = ()) returns error? {\n        var _ = svc;\n        var _ = attachPoint;\n        return error(\"attach failed \" + self.n);\n    }\n\n    public function detach(service object {} svc) returns error? {\n        var _ = svc;\n    }\n\n    public function 'start() returns error? {\n    }\n\n    public function gracefulStop() returns error? {\n    }\n\n    public function immediateStop() returns error? {\n    }\n}\n\nservice on new L(\"one\"), new L(\"two\") {\n}\n\npublic function main() {\n}\n",
+      "output": "listener init one\nlistener init two\nerror: attach failed one",
+      "valid": true,
+      "reasoning": "§8.3.2: the service object is constructed first, then each listener expression is evaluated and attached in turn; a failed attach fails module init before later listener expressions are evaluated. Nutcracker evaluates all listeners first, because desugar/desugar.go hoistInlineServiceListeners hoists them into module listener variables. Desugaring is part of the front end and the generated BIR has the wrong evaluation order. Clean-context spec check: VALID-BUG. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1440,
+    1425,
+    1424,
+    1423,
+    1304,
+    1282
+  ],
+  "notes": "Skipped issues already appear in earlier reports and have not been updated since. All 9 new issues reproduce on main. A clean-context subagent judged each reproducer against the spec, and all are valid. The duplicate search used the repo-scoped issue listing (817 issues) because the search/issues endpoint is blocked by the session proxy (HTTP 403); it found no duplicates or parents. No frontend-crash labels: #1454 is an INTERNAL_ERROR diagnostic, not a Go panic."
+}
