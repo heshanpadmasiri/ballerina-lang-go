@@ -1,0 +1,157 @@
+{
+  "generated_at": "2026-10-28T23:44:51Z",
+  "upstream_main": "f6f47d1818daa0ec31245361b5be983b7d3375e8",
+  "issues": [
+    {
+      "number": 1468,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1468",
+      "title": "[Bug]: `trap` around a query expression whose clause panics crashes the interpreter (Go index out of range)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction zero() returns int => 0;\n\npublic function main() {\n    int[]|error r = trap from int x in [1, 2] select x / zero();\n    io:println(r is error); // @output true\n}\n",
+      "output": "error: runtime error: index out of range [18] with length 11\n        at main(i1468.bal:6)",
+      "valid": true,
+      "reasoning": "Reproduces on main. Clean-context spec check: VALID. Integer division by zero panics (\u00a76 multiplicative expr), the panic propagates out of the query (\u00a76.35), and trap turns it into an error value (\u00a76.34), so `true` is expected. Compilation succeeds and the crash happens while interpreting. --dump-bir shows the trap error-table entry [bb1,bb7] -> bb8 with result operand %1 (relative address in the function frame), but the query loop body does PushScopeFrame inside the trapped range. When the panic happens inside the scope frame, setRecoveredError (runtime/internal/exec/executor.go) resolves the relative operand against the inner scope frame, so no scope frames are unwound and bb8 runs in the inner frame -> index out of range. Classified backend (the executor does not restore the trap's frame depth); the fix might instead encode the depth in the error entry in birgen. Not frontend-crash (runtime crash). No duplicate found (#1168 is a different trap/lock issue).",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1469,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1469",
+      "title": "[Bug]: store to an object field through a wider object type is not checked, then fails with internal \"unsupported type combination\"",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype A object {\n    int|string v;\n};\n\nclass C {\n    *A;\n    int v = 3;\n}\n\npublic function main() {\n    C c = new;\n    A a = c;\n    a.v = \"x\"; // @panic impermissible store: field v of C only holds int\n    int n = c.v;\n    io:println(n + 1);\n}\n",
+      "output": "error: unsupported type combination: string + int64\n        at main(i1469.bal:17)",
+      "valid": true,
+      "reasoning": "Reproduces on main. Clean-context spec check: VALID: C <: A by covariant field override; the store a.v = \"x\" must be checked at runtime against C's field type int and panic (\u00a77 lvalues, impermissible store). Duplicate of open #1281 ('object field writes ignore the inherent field type', labelled runtime), whose reproducer (store nil through a wider object view) still exits 0 without a panic on current main: same missing runtime store check on object fields. The internal 'unsupported type combination' error is a downstream symptom of the same bug. Suggest closing as duplicate of #1281 (optionally add this reproducer there).",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": true,
+      "close_reason": "Duplicate of #1281: object field stores through a wider object type are not checked against the field's inherent type.",
+      "duplicate_of": 1281,
+      "parent_issue": null
+    },
+    {
+      "number": 1470,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1470",
+      "title": "[Bug]: computed-name field in a mapping constructor does not override a specific field with the same name (ignored or panics \"duplicate key\")",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype R record { int a; string b = \"dflt\"; };\n\npublic function main() {\n    string k = \"z\";\n    map<int> m1 = {[k]: 1, \"z\": 3};\n    io:println(m1); // @output {\"z\":1}\n\n    map<int> m2 = {\"q\": 2, [k.substring(0, 0) + \"q\"]: 3};\n    io:println(m2); // @output {\"q\":3}\n\n    string kb = \"b\";\n    R r = {a: 1, [kb]: \"computed\"};\n    io:println(r); // @output {\"a\":1,\"b\":\"computed\"}\n}\n",
+      "output": "{\"z\":3}\nerror: duplicate key 'q' in mapping constructor\n        at main(i1470.bal:10)",
+      "valid": true,
+      "reasoning": "Reproduces on main. Clean-context spec check (fetched \u00a76.7.2): all three expectations VALID: the mapping is first built without computed-name fields, then computed fields modify members in order, so the computed value wins and there is no duplicate-key panic. The 'duplicate key' panic is raised by the interpreter (runtime/internal/exec/non_terminators.go:58) and the computed-first case simply applies fields in source order, so this is backend. Related but not duplicate: #987 (computed key retypes the key variable), #856 (spread/shorthand fields).",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1471,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1471",
+      "title": "[Bug]: `value:fromJsonWithType` does not convert a JSON string to `xml` (inverse of `toJson`)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    json j = \"<a>hi</a>\";\n    xml|error x = j.fromJsonWithType();\n    io:println(x is error); // @output false\n    io:println(x); // @output <a>hi</a>\n}\n",
+      "output": "true\nerror {ballerina/lang.value}ConversionError (\"'\\\"<a>hi</a>\\\"' value cannot be converted to 'xml'\",message=\"'\\\"<a>hi</a>\\\"' value cannot be converted to 'xml'\")",
+      "valid": true,
+      "reasoning": "Reproduces on main. Clean-context spec check: VALID: fromJsonWithType does the inverse of toJson, which converts xml to a string via toString, so a JSON string must be parsed to xml when the target type is xml. lang.value function -> langlib. Related but not duplicate: #1026 (fromJsonWithType ignores record defaults), #657.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1475,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1475",
+      "title": "[Bug]: record field default referring to its own type reports an invalid cycle",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype B record {|\n    int x = 1;\n    boolean y = (<anydata>3) is B;\n|};\n\npublic function main() {\n    B b = {};\n    io:println(b);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: invalid cycle detected for type definition B\n --> i1475.bal:3:1\n(the `type A B|int;` variant now reports the same diagnostic instead of the nil-pointer panic mentioned in the issue)",
+      "valid": true,
+      "reasoning": "Reproduces on main (both variants). Clean-context spec check: VALID: a field default is an expression evaluated at construction, not part of the type's shape, so `is B` inside B's default is not a type-definition cycle; expected output {\"x\":1,\"y\":false}. Front end rejects a valid program -> frontend. Not frontend-crash: on current main both variants produce a SEMANTIC_ERROR diagnostic (the union-case panic in the issue no longer occurs). Related to #1325 (record default whose type refers back to the enclosing record; different symptom) but not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1483,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1483",
+      "title": "[Bug]: module variable initialization cycle through a function parameter default is not detected",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nint g = f();\n\nfunction f(int x = g) returns int {\n    return x;\n}\n\npublic function main() {\n    io:println(g);\n}\n",
+      "output": "0",
+      "valid": true,
+      "reasoning": "Reproduces on main: compiles and prints 0, i.e. reads g before it is initialized. Clean-context spec check: BUG: g depends on f via the call and f's default reads g, so there is no valid initialization order; reading an uninitialized variable is never defined, and it is inconsistent with the existing check for `int a = b; int b = a;`. (The issue itself notes the 2024R1 spec has no explicit rule; either way printing 0 is wrong.) Front-end dependency analysis -> frontend. Same root cause as open #1282 (initializer dependency analysis does not follow called functions' globals); suggested as parent_issue since a fix that follows calls would cover both.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 1282
+    },
+    {
+      "number": 1484,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1484",
+      "title": "[Bug]: parameter defaults of isolated dependently-typed functions are not checked for isolation",
+      "reproducible": true,
+      "reproducer": "int counter = 0;\n\nfunction next() returns int {\n    counter += 1;\n    return counter;\n}\n\nisolated function f(int y = next(), typedesc<anydata> td = <>) returns td = external;\n\npublic function main() {\n}\n",
+      "output": "(compiles and runs, no output; the same default on a non-dependently-typed `isolated function h(int y = next())` gives error[SEMANTIC_ERROR]: invocation of a non-isolated function)",
+      "valid": true,
+      "reasoning": "Reproduces on main. Clean-context spec check: INVALID-PROGRAM expected, i.e. the issue is valid: defaults of an isolated function must satisfy the isolated-function rules, so calling non-isolated next() there is a compile error; external body / dependent typing doesn't exempt it. Missing semantic check -> frontend. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1485,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1485",
+      "reasoning": "Not a reproducible language bug: a tracking checklist of open language-server review items from PR #1421 (release archive missing bal-language-server, a latent snapshot race, AGENTS.md nits, unused/test-only symbols). None of langlib/triage-lib/frontend/backend fits; it belongs to the language server (ls/) and build tooling. Valid as an improvement tracker; suggest removing `triage` and labelling with whatever area label the team uses for the language server. Related: #1466, #1449, #1472."
+    }
+  ],
+  "skipped": [
+    1282,
+    1304,
+    1423,
+    1424,
+    1425,
+    1440,
+    1450,
+    1451,
+    1452,
+    1453,
+    1454,
+    1455,
+    1456,
+    1457,
+    1458
+  ],
+  "notes": "Skipped issues were in earlier reports (latest 2026-10-28, generated_at 2026-10-27T23:43:56Z) with no updates since. REST search/issues is blocked by the session proxy (403), so duplicate checks were done by listing all ~830 issues via repos/.../issues?state=all (manual page= pagination, since --paginate's next link uses a blocked repositories/{id} path) and grepping titles, then reading candidates. Validity decided by clean-context subagents given only the reproducer; most answered from spec knowledge without fetching the spec (1470's fetched \u00a76.7.2)."
+}
