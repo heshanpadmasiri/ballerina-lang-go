@@ -1,0 +1,215 @@
+{
+  "generated_at": "2026-10-29T23:46:33Z",
+  "upstream_main": "0d25a71274a80c37f83d6f8a2ee26e7dbae97a4d",
+  "issues": [
+    {
+      "number": 1498,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1498",
+      "title": "[Improvement]: Preserve inferred typedesc annotations in parameter defaults",
+      "reproducible": true,
+      "reproducer": "(issue's corpus/extern Go test + .bal, run with go test ./corpus/extern -run TestReproInferredDefaultParam)\nannotation mark on record field;\ntype P record {| @mark string name; |};\nfunction observe(typedesc<anydata> td = <>) returns td|error = external;\nfunction consume(P|error p) {\n    if p is P { string name = p.name; _ = name; }\n}\nfunction take(P|error p = observe()) { consume(p); }\npublic function main() {\n    take();\n    take(observe(P));\n}\n",
+      "output": "=== RUN   TestReproInferredDefaultParam\n    repro_inferred_default_param_test.go:31: call 1: missing @mark on P.name\n--- FAIL: TestReproInferredDefaultParam",
+      "valid": true,
+      "reasoning": "Reproduces on main with the issue's corpus/extern test: the inferred-typedesc call loses @mark field annotations, explicit observe(P) keeps them. Not a spec violation (spec doesn't mandate annotation provenance on inferred typedescs), but a valid consistency improvement. The typedesc for `<>` is built during type checking/BIR generation, so frontend. Child of the umbrella #1136.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 1136
+    },
+    {
+      "number": 1497,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1497",
+      "title": "[Improvement]: Preserve inferred typedesc annotations in constructor arguments",
+      "reproducible": true,
+      "reproducer": "type P record {| string name; |};\nfunction observe(typedesc<anydata> td = <>) returns td|error = external;\nclass H {\n    function init(P|error p) { _ = p; }\n}\npublic function main() {\n    H h = new H(observe());\n    _ = h;\n}\n",
+      "output": "panic: DependentlyTypedFunctionSymbol must be Monomorphized\n\ngoroutine 51 [running]:\ngithub.com/ballerina-nutcracker/ballerina/model.(*dependentlyTypedFunctionSymbol).Type(0x1b2463c64c60?)\n\t/home/user/ballerina/model/symbol.go:1670 +0x25\ngithub.com/ballerina-nutcracker/ballerina/context.(*CompilerContext).SymbolType(0x21daf40?, {0x1b2463999830?, 0x1b2463c8faa0?})\n\t/home/user/ballerina/context/context.go:154 +0x1f\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).symbolType(0x1b246380a900, {0x1b2463aaef50?, 0xa3af06?})\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:286 +0x79\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*packageTypeResolver).ensureResolved(0x1b246380a900, {0x1, 0xb4}, 0x0)\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:714 +0x6c\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.(*functionTypeResolver).ensureResolved(0x1b2463c64c60, {0x1b2463c8faa0?, 0x21c4470?}, 0x0)",
+      "valid": true,
+      "reasoning": "Worse than the title says: on current main the issue's reproducer doesn't get to the annotation check. The front end crashes with a Go panic `DependentlyTypedFunctionSymbol must be Monomorphized` (model/symbol.go:1670, reached from resolveObjectNewExpr -> resolveTrialDependencies) whenever a dependently-typed function call with an inferred `<>` typedesc is an argument to `new C(...)`. It also crashes with the langlib `new H(value:fromJsonWithType({name: \"a\"}))`. Clean-context spec check: VALID-BUG. The program is valid and td should be inferred as P from init's parameter type P|error. This is a panic before any diagnostic, so frontend-crash. Child of #1136. The annotation-preservation part can only be checked once the crash is fixed.",
+      "labels_to_add": [
+        "frontend",
+        "frontend-crash"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 1136
+    },
+    {
+      "number": 1496,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1496",
+      "title": "[Improvement]: Preserve inferred typedesc annotations in rest arguments",
+      "reproducible": true,
+      "reproducer": "(issue's corpus/extern Go test + .bal, run with go test ./corpus/extern -run TestReproInferredRest)\nannotation mark on record field;\ntype P record {| @mark string name; |};\nfunction observe(typedesc<anydata> td = <>) returns td|error = external;\nfunction consume(P|error p) {\n    if p is P { string name = p.name; _ = name; }\n}\nfunction take((P|error)... ps) { _ = ps; }\npublic function main() {\n    take(error(\"first\"), observe());\n    take(error(\"first\"), observe(P));\n}\n",
+      "output": "=== RUN   TestReproInferredRest\n    repro_inferred_rest_test.go:31: call 1: missing @mark on P.name\n--- FAIL: TestReproInferredRest",
+      "valid": true,
+      "reasoning": "Reproduces on main with the issue's corpus/extern test: an inferred typedesc for an argument matched to a rest parameter loses the @mark field annotations. Valid consistency improvement, not a spec violation. Frontend (typedesc inference). Child of #1136.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 1136
+    },
+    {
+      "number": 1494,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1494",
+      "title": "[Bug]: list and mapping constant declarations are accepted where the corpus tests expect an error",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nconst boolean a = [1, 2] == [1, 2];\nconst b = {x: 1, y: 2};\nconst boolean c = {a: 1} == {a: 1};\n\npublic function main() {\n    io:println(a);\n    io:println(b);\n    io:println(c);\n}\n",
+      "output": "true\n{\"x\":1,\"y\":2}\ntrue",
+      "valid": false,
+      "reasoning": "Behaviour matches the issue (compiles and prints the values). Clean-context spec check: NOT-A-BUG. The spec's 'Constant expressions' section lists structural-constructor-expr and equality-expr as const-expr forms. 'Module constant declaration' only requires an anydata, non-never type that contains the expression's static type. So these declarations are legal, and the corpus tests subset8/08-list/6-e, 17-e and 08-mapping/6-e, 7-e are wrong and should be converted to -v tests.",
+      "labels_to_add": [],
+      "remove_triage": true,
+      "close": true,
+      "close_reason": "Not a bug: list/mapping constructors and == of them are valid const-exprs per spec; convert the four corpus -e tests to -v instead.",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1493,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1493",
+      "title": "[Bug]: field access on a narrowed record union uses the un-narrowed member types",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype A readonly & record {|\n    int|string a;\n|};\n\ntype B readonly & record {|\n    int|boolean a;\n|};\n\npublic function main() {\n    A|B y = {a: true};\n    if y is A {\n        return;\n    }\n    readonly & record {| boolean a; |} r = y;\n    io:println(r);\n    boolean b = y.a;\n    io:println(b);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected boolean, got boolean|int\n  --> i1493.bal:18:17\n   |\n18 |     boolean b = y.a;\n   |                 ^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces. Clean-context spec check: VALID-BUG. After `if y is A { return; }`, y is (A|B) \u2212ro A = readonly & record {| boolean a; |}, which the accepted assignment to r confirms. Field access member type is defined over shapes, so y.a is boolean. Type checker (semantic error on a valid program), so frontend. No duplicate found; narrowing issues #974/#967 are different.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1488,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1488",
+      "title": "[Bug]: `const T[] X = ...` with a user-defined type reference is a syntax error",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\ntype T int;\nconst T[] X = [1, 2];\npublic function main() {\n    io:println(X);\n}\n",
+      "output": "error[SYNTAX_ERROR]: missing type desc\n --> i1488.bal:3:8\n  |\n3 | const T[] X = [1, 2];\n  |        \n\nerror[SYNTAX_ERROR]: missing equal token\n --> i1488.bal:3:8\n  |\n3 | const T[] X = [1, 2];\n  |        \n\n\n(const T? Y = ();)\nerror[SYNTAX_ERROR]: invalid token\n --> i1488b.bal:3:10\n  |\n3 | const T? Y = ();\n  |          ^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces for both `const T[]` and `const T?`. Clean-context spec check: VALID-BUG. module-const-decl takes a general type-descriptor, and T[]/T? are anydata subtypes, so a SYNTAX_ERROR rejects a valid program. Parser, so frontend. Related to #892 but not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1487,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1487",
+      "title": "[Bug]: `var` declarations infer the precise singleton type instead of the broad type (`var c = 0; c = c + 1;` is rejected)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nvar count = 0;\nvar name = \"a\";\n\npublic function main() {\n    count = count + 1;\n    name = \"b\";\n    io:println(count);\n    io:println(name);\n}\n\n// local variant:\nimport ballerina/io;\n\npublic function main() {\n    var c = 0;\n    c = c + 1;\n    io:println(c);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected 0, got 1\n --> i1487.bal:7:13\n  |\n7 |     count = count + 1;\n  |             ^^^^^^^^^\n\nerror[SEMANTIC_ERROR]: incompatible type: expected \"a\", got \"b\"\n --> i1487.bal:8:12\n  |\n8 |     name = \"b\";\n  |            ^^^\n\n\n(local)\nerror[SEMANTIC_ERROR]: incompatible type: expected 0, got 1\n --> i1487b.bal:5:9\n  |\n5 |     c = c + 1;\n  |         ^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces for both module and local `var`. Clean-context spec check: VALID-BUG. Per 'Precise and broad types', module-var-decl and local-var-decl, a non-final `var` uses the broad type (int/string). Type checker, so frontend. Related to #1457 and #1262, not duplicates.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1486,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1486",
+      "title": "[Bug]: closure after `group by` treats an aggregated variable as a single list, breaking type safety and crashing",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int[] xs = [1, 2, 3, 4];\n    int[][] r = from var x in xs\n        let int m = x % 2\n        group by m\n        let function () returns int[] f = function () returns int[] { return [x]; }\n        select f();\n    io:println(r);\n    int v = r[0][0];\n    io:println(v + 1);\n}\n",
+      "output": "[[[1,3]],[[2,4]]]\nerror: unsupported type combination: *values.List + int64\n        at main(i1486.bal:12)",
+      "valid": true,
+      "reasoning": "Reproduces. Clean-context spec check: VALID-BUG. An aggregated variable reference in a list constructor is an implicit spread, so [x] in the closure should be [1,3]. If the reference were illegal it would need a compile error. Either way, compiling to an ill-typed value (int[] function returning int[][]) means the generated BIR is invalid, so frontend. The crash is during interpretation, so not frontend-crash. Related to #1440 (suspected same root: aggregated vars treated as plain lists) and #1225.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1454,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1454",
+      "title": "[Bug]: range expression used as a value crashes the compiler (INTERNAL_ERROR: unexpected binary operator kind: ..<)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    var r = 1 ..< 3;\n    io:println(r is object:Iterable);\n}\n",
+      "output": "fatal[INTERNAL_ERROR]: unexpected binary operator kind: ..<\n --> i1454b.bal:4:13\n  |\n4 |     var r = 1 ..< 3;\n  |             ^^^^^^^\n\nballerina: BIR generation failed",
+      "valid": true,
+      "reasoning": "Re-checked because of a new maintainer comment. It still reproduces on main, so the triage is unchanged from 2026-10-28 (frontend, INTERNAL_ERROR diagnostic, not frontend-crash). The comment notes that a fix requires special-casing range expressions in foreach. Related: #1349, #1302.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1282,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1282",
+      "title": "[Bug]: module initializer order ignores function global dependencies",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass C {\n    function get() returns int {\n        return 9;\n    }\n}\n\nint n = f();\nint[] xs = [1, 2, 3];\n\nint m = g();\nC c = new;\n\nfunction f() returns int {\n    return xs.length();\n}\n\nfunction g() returns int {\n    return c.get();\n}\n\npublic function main() {\n    io:println(n);\n    io:println(m);\n}\n\n// cycle variant:\nimport ballerina/io;\n\nint a = f();\n\nfunction f() returns int {\n    return a + 1;\n}\n\npublic function main() {\n    io:println(a);\n}\n",
+      "output": "error: interface conversion: values.BalValue is nil, not *values.Object\n        at g(i1282a.bal:20)\n           init(i1282a.bal:12)\n\n(cycle variant)\n1",
+      "valid": true,
+      "reasoning": "Re-triaged after a new comment with variants. Previously undetermined because the spec doesn't define init order. The new variant changes that: initializing in source order lets the interpreter read an uninitialized module variable and crash with a Go interface-conversion error (or produce values not belonging to the declared type). Clean-context spec check: VALID-BUG for the dependency variant, since the spec doesn't constrain declaration order and a valid dependency order exists. The cycle variant (`int a = f(); f reads a` prints 1) is UNCLEAR per spec, which has no explicit cycle rule; a cycle error is the most defensible behaviour. Init ordering is computed in desugar (dependencyVisitor/toplogicallySortInits), so frontend. The crash happens at runtime, so not frontend-crash. Related: #1483, #1322, #1327.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1492,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1492",
+      "reasoning": "Reproduces (each line compiles, then panics at runtime: arithmetic overflow / divide by zero / arithmetic overflow / bad type cast). Clean-context spec check: NOT required by spec. These are not const-expr contexts, and the arithmetic sections say int overflow and division by zero panic. But 'Singleton typing' says the static type is computed by compile-time evaluation and doesn't say what happens when that evaluation panics, so a compile error is also defensible. The decimal case depends on the implementation's exponent range. This needs a team/spec decision: if compile errors are wanted, label frontend (related #1262, #1130); otherwise close and fix the corpus -e tests."
+    },
+    {
+      "number": 1485,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1485",
+      "reasoning": "Re-checked after a new comment, which adds four more nvim-harness nits (compiler-tools/ls-nvim-harness: Harness.request false handling, probe.sh quoting, empty replacement text, README prerequisite). Still a language-server/tooling tracker, not a language bug. None of langlib/triage-lib/frontend/backend fits. Suggest removing triage and applying the team's language-server/tooling label."
+    }
+  ],
+  "skipped": [
+    1484,
+    1483,
+    1475,
+    1471,
+    1470,
+    1469,
+    1468,
+    1458,
+    1457,
+    1456,
+    1455,
+    1453,
+    1452,
+    1451,
+    1304
+  ],
+  "notes": "The REST search/issues endpoint is blocked by the session proxy (403), so duplicate/parent search grepped titles of all 840 issues listed via repos/.../issues?state=all. Skipped #1451, #1452, #1455, #1457 and #1458: their updated_at changed only because the `simple` label was added (no new comments or body edits). #1497's reproducer now hits a front-end Go panic before the annotation check, so it is flagged frontend-crash. #1496/#1498 were reproduced with the issues' corpus/extern Go tests, which were added temporarily and then removed."
+}
