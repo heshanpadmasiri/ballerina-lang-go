@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-11-01T23:40:33Z",
+  "upstream_main": "cc62d6d68b9330e342c17d466d915e5064b02528",
+  "issues": [
+    {
+      "number": 1500,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1500",
+      "title": "[Bug]: `check` in a class field initializer compiles when init can't return an error, then `new` crashes with a Go interface-conversion error",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction parse(string s) returns int|error {\n    return int:fromString(s);\n}\n\nclass A {\n    int x = check parse(\"zz\"); // @error check-fail not allowed: init cannot return an error\n\n    function init() {\n    }\n}\n\nclass B {\n    int x = check parse(\"zz\"); // @error check-fail not allowed: class has no init returning an error\n}\n\npublic function main() {\n    A a = new;\n    io:println(a.x);\n    B b = new;\n    io:println(b.x);\n}\n",
+      "output": "error: interface conversion: values.BalValue is *values.Error, not *values.Object\n        at main(r1500.bal:20)",
+      "valid": true,
+      "reasoning": "Reproduces on main. A clean-context spec review agreed: init() returns nil (explicit in A, implicit for B per \u00a76.8.1.5), so per \u00a76.8.2 `new` has static type A/B and the check-fail from the field initializer has nowhere legal to go (\u00a76.2: a normally completed result must belong to the static type). The front end should reject the `check` (or the `new`). Instead it compiles, the error value is stored in `a`, and reading a field crashes with a Go type assertion. The root cause is the missing front-end check. Not frontend-crash: compilation succeeds and the crash is at runtime. Related to #1219 (check in parameter/record field defaults), not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1501,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1501",
+      "title": "[Bug]: conditional expression is never treated as an isolated expression (rejected when returned from a lock in an isolated class)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nisolated class Stack {\n    private int[] items = [];\n\n    isolated function push(int v) {\n        lock {\n            self.items.push(v);\n        }\n    }\n\n    isolated function top() returns int[] {\n        lock {\n            return self.items.length() > 0 ? [self.items[self.items.length() - 1]] : [];\n        }\n    }\n}\n\npublic function main() {\n    Stack s = new;\n    io:println(s.top()); // @output []\n    s.push(4);\n    io:println(s.top()); // @output [4]\n}\n",
+      "output": "error[SEMANTIC_ERROR]: not an isolated expression\n  --> r1501.bal:14:20",
+      "valid": true,
+      "reasoning": "Reproduces on main. \u00a76.2.6: a conditional-expr or list-constructor-expr is isolated if all its subexpressions are isolated, and readonly-typed expressions are isolated. Here the condition is boolean and the branch members are int, so the return expression is isolated and \u00a77.23 is satisfied. Expected output is [] then [4]. The front end wrongly rejects a valid program. Related to #1429 (same diagnostic for a different construct), not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1502,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1502",
+      "title": "[Bug]: resource methods whose paths diverge at a non-singleton segment are not rejected",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclient class C {\n    resource function get users/[int id]() returns int {\n        return id;\n    }\n\n    resource function get users/[string name]() returns int { // @error diverges from users/[int] at a non-singleton segment\n        return name.length();\n    }\n\n    resource function get items/[int id]() returns int {\n        return id;\n    }\n\n    resource function get items/[int... ids]() returns int { // @error diverges from items/[int] (member vs rest)\n        return ids.length();\n    }\n}\n\npublic function main() {\n    C c = new;\n    int a = c->/users/[\"bob\"];\n    int b = c->/items/[1]/[2];\n    io:println(a + b);\n}\n",
+      "output": "5",
+      "valid": true,
+      "reasoning": "Reproduces on main. \u00a75.6.3.5: [\"users\", int] vs [\"users\", string], and [\"items\", int] vs [\"items\", int...], diverge at position 2 without a singleton string member there, so each pair is a compile-time error. The front end is missing this check. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1503,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1503",
+      "title": "[Bug]: including a `service`/`client` object type with `*T` is accepted without the matching qualifier",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Svc service object {\n    function name() returns string;\n};\n\ntype Cl client object {\n    remote function ping() returns string;\n};\n\nclass Impl {\n    *Svc; // @error including a service object type requires the service qualifier\n    function name() returns string {\n        return \"impl\";\n    }\n}\n\ntype Plain object {\n    *Cl; // @error including a client object type requires the client qualifier\n};\n\npublic function main() {\n    Impl i = new;\n    Plain? p = ();\n    io:println(i.name(), i is Svc, p is ());\n}\n",
+      "output": "implfalsetrue",
+      "valid": true,
+      "reasoning": "Reproduces on main. \u00a75.6.3.8: if a referenced object type or class has an isolated, service or client qualifier Q, the referencing object type descriptor must also have Q. `type Plain object { *Cl; }` is definitely an error. `class Impl { *Svc; }` is very likely an error too (a class describes an object type, \u00a78.6, and the isolated equivalent is already enforced for classes). The runtime result `i is Svc == false` is consistent with Impl not being a service object, so the bug is the missing front-end diagnostic. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1498,
+    1497,
+    1496,
+    1494,
+    1493,
+    1492,
+    1488,
+    1487,
+    1486,
+    1485,
+    1484,
+    1483,
+    1475,
+    1471,
+    1470,
+    1469,
+    1468,
+    1458,
+    1457,
+    1456,
+    1455,
+    1454,
+    1453,
+    1452,
+    1451,
+    1304,
+    1282
+  ],
+  "notes": "Only #1500-#1503 were new since the 2026-10-30 report (generated_at 2026-10-29T23:46:33Z). All other open triage issues are already covered by earlier reports and have not been updated since. All 4 still reproduce on main cc62d6d. Validity was confirmed by a clean-context agent that saw only the reproducer and output and reasoned from the spec. No duplicates were found."
+}
