@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-11-02T23:43:14Z",
+  "upstream_main": "fb67e6e53730b6d658883c35937e01b8a183ca9a",
+  "issues": [
+    {
+      "number": 1511,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1511",
+      "title": "[Bug]: toString/println ignore an object's own toString() method and print `object`",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass Point {\n    int x = 3;\n    public function toString() returns string {\n        return \"P(\" + self.x.toString() + \")\";\n    }\n}\n\npublic function main() {\n    Point p = new;\n    any a = p;\n    io:println(a.toString()); // @output P(3)\n    io:println(p); // @output P(3)\n    any[] arr = [p];\n    io:println(arr.toString()); // @output [P(3)]\n}\n",
+      "output": "object\nobject\n[object]",
+      "valid": true,
+      "reasoning": "Reproduces on main. A clean-context spec review, which saw only the reproducer, found it VALID: \u00a75.9.5 says an object with a toString method renders as S, the result of calling toString, in both informal and direct style. lang.value:toString uses direct style and lists render their members in informal style, so the expected outputs are P(3) and [P(3)]. The runtime ToString in values/values.go:231/284 returns the literal \"object\" for every *Object. The user-method invoker that #979 says was added in #839 is no longer wired up, so this is a runtime issue: backend. Related to #979 (objects without toString), not a duplicate.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1512,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1512",
+      "title": "[Bug]: error values print the constructor's type name (alias/intersection) instead of their type-ids",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype MyErr distinct error;\ntype Other distinct error;\ntype Alias MyErr;\ntype Both MyErr & Other;\n\npublic function main() {\n    Alias a = error Alias(\"x\");\n    io:println(a); // @output error MyErr (\"x\")\n    Both b = error Both(\"y\");\n    io:println(b); // @output error MyErr&Other (\"y\")\n}\n",
+      "output": "error Alias (\"x\")\nerror Both (\"y\")",
+      "valid": true,
+      "reasoning": "Reproduces on main. The clean-context spec review found it PARTLY VALID. Under \u00a75.1.5 a non-distinct alias induces no type-id, and under \u00a75.7.8 an intersection induces the union of type-ids, so `error MyErr (\"x\")` is required. For Both, the spec does not fix the order of D1&D2, so `Other&MyErr` is equally conforming. The wrong name is produced at BIR generation: birgen/bir_gen.go:1695 (errorConstructorTypeName) puts the error-constructor reference name (expr.ErrorTypeRef.TypeName) into the NewError BIR instruction instead of the type-ids. The BIR is therefore wrong, so the category is frontend; the runtime only prints what it is given. Follow-up to closed #1350. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1513,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1513",
+      "title": "[Bug]: xml:strip drops whitespace-only text adjacent to a comment/PI instead of merging chunks first",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml x = xml `a<!--c--> `;\n    io:println(\"[\", x.strip(), \"]\"); // @output [a ]\n    xml y = xml ` <?p?>b`;\n    io:println(\"[\", y.strip(), \"]\"); // @output [ b]\n    xml z = xml `<e/> <!--c--> x <!--d--> <f/>`;\n    io:println(\"[\", z.strip(), \"]\"); // @output [<e/>  x  <f/>]\n}\n",
+      "output": "[a]\n[b]\n[<e/> x <f/>]",
+      "valid": true,
+      "reasoning": "Reproduces on main. The clean-context spec review found it VALID. lang.xml strip first removes comments and PIs, then removes text items that are entirely whitespace. Under \u00a75.3, consecutive text items merge when the value is constructed, so the results are \"a \", \" b\" and \"  x  \", and all of them are kept. The bug is in the lang.xml native strip (lib/langlibs/go/lang.xml/xml.go:278), so the category is langlib. Distinct from #1453, which is in the parser. No duplicate found.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1514,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1514",
+      "title": "[Bug]: xml value interpolated into an xml template is re-parsed, taking the outer default namespace and losing identity",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml:Element inner = xml `<i/>`;\n    xml wrapped = xml `<o xmlns=\"urn:o\">${inner}</o>`;\n    if wrapped is xml:Element {\n        xml:Element child = <xml:Element>wrapped.getChildren().get(0);\n        io:println(child.getName()); // @output i\n        io:println(child === inner); // @output true\n    }\n}\n",
+      "output": "{urn:o}i\nfalse",
+      "valid": true,
+      "reasoning": "Reproduces on main. The clean-context spec review found it VALID. Under \u00a76.6.2 only the template's literal part is copied, and the interpolated values are inserted as they are. So `inner` keeps its expanded name `i` and its storage identity (\u00a75.3.2), and `child === inner` is true. The BIR is a valid `evalTemplate[xml](\"<o xmlns=\\\"urn:o\\\">\", inner, \"</o>\")`. The runtime then serializes `inner` into the template text and re-parses it, so the category is backend. Same mechanism as closed #1092. No duplicate found.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1503,
+    1502,
+    1501,
+    1500,
+    1498,
+    1497,
+    1496,
+    1494,
+    1493,
+    1492,
+    1488,
+    1487,
+    1486,
+    1485,
+    1484,
+    1483,
+    1475,
+    1471,
+    1470,
+    1469,
+    1468,
+    1458,
+    1457,
+    1456,
+    1455,
+    1454,
+    1453,
+    1452,
+    1304,
+    1282
+  ],
+  "notes": "#1511-#1514 are new since the 2026-11-02 report (generated_at 2026-11-01T23:40:33Z). #1484 and #1500 were updated after that report, but the only change was an added `simple` label, with no comments or edits, so they are skipped. All other open triage issues were covered by earlier reports and have not been updated since. #1451 is no longer open with the triage label. All 4 new issues still reproduce on main. Validity was checked by a clean-context agent that saw only the reproducers. No duplicates or parents were found."
+}
