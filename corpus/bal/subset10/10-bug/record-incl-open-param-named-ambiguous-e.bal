@@ -14,14 +14,19 @@
 // specific language governing permissions and limitations
 // under the License.
 
-type Options record {
+type Labels record {
+    never labels?;
+};
+
+type Size record {
     int width = 1;
 };
 
-function area(*Options options) returns int {
-    return options.width;
+function draw(*Labels labels, *Size size) {
+    _ = labels;
+    _ = size;
 }
 
 public function main() {
-    _ = area(height = 3); // @error
+    draw(color = "red"); // @error
 }

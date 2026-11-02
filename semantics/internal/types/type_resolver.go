@@ -2134,6 +2134,9 @@ func validateIncludedRecordParamMetadata(t typeResolver, ref model.FunctionSigna
 			return false
 		}
 		metadata := &model.IncludedRecordMetadata{}
+		if rest, ok := recSym.RestField(); ok && !semtypes.IsNever(rest.MemberType()) {
+			metadata.IsOpen = true
+		}
 		for name, field := range recSym.Fields() {
 			if semtypes.IsNever(field.MemberType()) {
 				metadata.NeverFields = append(metadata.NeverFields, name)
@@ -2167,9 +2170,6 @@ func validateIncludedRecordParamMetadata(t typeResolver, ref model.FunctionSigna
 				return false
 			}
 			fieldOrigin[name] = i
-		}
-		if rest, ok := recSym.RestField(); ok && !semtypes.IsNever(rest.MemberType()) && len(metadata.RequiredFields) == 0 {
-			metadata.IsOpen = true
 		}
 		includedRecords[i] = metadata
 		updated = true

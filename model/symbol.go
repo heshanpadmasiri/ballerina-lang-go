@@ -626,6 +626,10 @@ Outer:
 	case 0:
 		return -1, ParamIndexNotFound
 	case 1:
+		if len(explicitMatches) == 0 && len(sig.IncludedRecordMetadata[candidates[0]].RequiredFields) > 0 {
+			// Spec §6.15: a named arg binds to a rest descriptor only if the record has no other field descriptors
+			return -1, ParamIndexNotFound
+		}
 		return candidates[0], ParamIndexFound
 	default:
 		return -1, ParamIndexAmbiguous
