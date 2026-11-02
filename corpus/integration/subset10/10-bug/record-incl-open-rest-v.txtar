@@ -1,0 +1,4 @@
+-- stdout --
+{"x":1,"y":"hello","z":3,"extra":[1,2]}
+{"x":2,"y":"world","z":3}
+-- stderr --

@@ -1,0 +1,7 @@
+-- stdout --
+-- stderr --
+error[SEMANTIC_ERROR]: incompatible type: expected int, got "str"
+  --> record-incl-rest-override-e.bal:31:46
+   |
+31 |     IncludesImplicitOverride b = {y: 1, "s": "str"}; // @error
+   |                                              ^^^^^

@@ -1,0 +1,30 @@
+(isDerived
+  (bb0 () ()
+    (return
+      (type-test-expr is
+        (simple-var-ref value)
+        (user-defined-type Derived)))
+  )
+)
+(main
+  (bb0 () ()
+    (var-def
+      (variable r (type
+        (record-type
+          (field x
+            (value-type int))
+          (field y
+            (value-type string)))) (expr
+        (mapping-constructor-expr
+          (key-value
+            (literal x)
+            (literal 1))
+          (key-value
+            (literal y)
+            (literal hello))))))
+    (expression-stmt
+      (invocation io println (
+        (invocation isDerived (
+          (simple-var-ref r))))))
+  )
+)

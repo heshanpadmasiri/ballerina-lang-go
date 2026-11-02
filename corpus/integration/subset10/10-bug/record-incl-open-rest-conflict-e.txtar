@@ -1,0 +1,13 @@
+-- stdout --
+-- stderr --
+error[SEMANTIC_ERROR]: included rest type declared in multiple type inclusions must be overridden
+  --> record-incl-open-rest-conflict-e.bal:26:14
+   |
+26 | type Derived record {|
+   |              ^^^^^^^^^
+27 |     *OpenBase;
+   |     ^^^^^^^^^^
+28 |     *IntRest; // @error
+   |     ^^^^^^^^^^^^^^^^^^^
+29 | |};
+   | ^^

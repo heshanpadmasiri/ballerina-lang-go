@@ -1,0 +1,26 @@
+(package
+  (import-package ballerina io (as io))
+  (type-definition Options
+    (record-type
+      (field options optional
+        (value-type never))))
+  (function show (
+    (variable options (type
+      (user-defined-type Options)))) (
+    (value-type null))
+    (block-function-body
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref options))))))
+  (function main () (
+    (value-type null))
+    (block-function-body
+      (expression-stmt
+        (invocation show (
+          (mapping-constructor-expr
+            (key-value
+              (literal width)
+              (literal 3))
+            (key-value
+              (literal label)
+              (literal wide)))))))))

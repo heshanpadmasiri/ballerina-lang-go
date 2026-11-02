@@ -1,0 +1,22 @@
+module $anon.. v 0.0.0;
+show({| options: never, anydata... |}) -> nil{
+  bb0 {
+    %2 = println(options) -> bb1;
+  }
+  bb1 {
+    return;
+  }
+}
+main() -> nil{
+  bb0 {
+    %1 = ConstantLoad width
+    %2 = ConstantLoad 3
+    %3 = ConstantLoad label
+    %4 = ConstantLoad wide
+    %5 = newMap {| options: never, anydata... |}{%1=%2, %3=%4}
+    %6 = show(%5) -> bb1;
+  }
+  bb1 {
+    return;
+  }
+}

@@ -1,0 +1,20 @@
+(main
+  (bb0 () ()
+    (expression-stmt
+      (invocation show (
+        (mapping-constructor-expr
+          (key-value
+            (literal width)
+            (literal 3))
+          (key-value
+            (literal label)
+            (literal wide))))))
+  )
+)
+(show
+  (bb0 () ()
+    (expression-stmt
+      (invocation io println (
+        (simple-var-ref options))))
+  )
+)

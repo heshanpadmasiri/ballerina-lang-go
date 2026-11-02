@@ -1,0 +1,40 @@
+(compilation-unit
+(package-id $anon . 0.0.0)
+  (import-package ballerina io (as io))
+  (type-definition IntRest
+    (record-type
+      (field a
+        (value-type int))
+      (rest
+        (value-type int))))
+  (type-definition StringRest
+    (record-type
+      (field b
+        (value-type string))
+      (rest
+        (value-type string))))
+  (type-definition OpenOverride
+    (record-type))
+  (type-definition Derived
+    (record-type))
+  (function main () (
+    (value-type null))
+    (block-function-body
+      (var-def
+        (variable d (type
+          (user-defined-type Derived)) (expr
+          (mapping-constructor-expr
+            (key-value
+              (literal a)
+              (literal 1))
+            (key-value
+              (literal b)
+              (literal s))
+            (key-value
+              (literal z)
+              (list-constructor-expr
+                (literal 1)
+                (literal 2)))))))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref d)))))))

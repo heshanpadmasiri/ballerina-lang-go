@@ -2723,6 +2723,7 @@ func getMemberCarrier(t typeResolver, ref model.SymbolRef) model.MemberCarrier {
 func recordTypeMembers(t typeResolver, td *ast.BLangRecordType) []model.InclusionMember {
 	var members []model.InclusionMember
 	directFields := make(map[string]bool)
+	ownRest, hasOwnRest := recordOwnRestType(t, td)
 
 	// Add direct fields, leaving out those whose type failed to resolve
 	for name, field := range td.FieldPtrs() {
@@ -2749,6 +2750,9 @@ func recordTypeMembers(t typeResolver, td *ast.BLangRecordType) []model.Inclusio
 				}
 				members = append(members, member)
 			case *model.RestTypeDescriptor:
+				if hasOwnRest {
+					continue
+				}
 				members = append(members, member)
 			default:
 				t.internalError("unexpected member kind", td.GetPosition())
@@ -2756,13 +2760,24 @@ func recordTypeMembers(t typeResolver, td *ast.BLangRecordType) []model.Inclusio
 		}
 	}
 
-	// Add rest type from this record's own rest type
-	if td.RestType != nil {
+	if hasOwnRest {
 		rd := model.NewRestTypeDescriptor()
-		rd.SetMemberType(td.RestType.Type())
+		rd.SetMemberType(ownRest)
 		members = append(members, &rd)
 	}
 	return members
+}
+
+// recordOwnRestType returns the rest type a record type descriptor declares itself, which overrides any included
+// rest type. An inclusive record type has an implicit anydata rest type (spec §5.4.2.2).
+func recordOwnRestType(t typeResolver, td *ast.BLangRecordType) (semtypes.SemType, bool) {
+	if td.RestType != nil {
+		return td.RestType.Type(), true
+	}
+	if td.IsOpen {
+		return semtypes.CreateAnydata(t.typeContext()), true
+	}
+	return semtypes.SemType{}, false
 }
 
 // objectTypeMembers accumulate members both added by type inclusion and defined in the type desc itself
@@ -8661,7 +8676,7 @@ func resolveRecordInclusions(t typeResolver, chain *binding, recordTy *ast.BLang
 			includedFields[member.MemberName()] = append(includedFields[member.MemberName()], *member)
 		case *model.RestTypeDescriptor:
 			restTy := member.MemberType()
-			if !semtypes.IsZero(includedRest) {
+			if !semtypes.IsZero(includedRest) && !semtypes.IsSameType(t.typeContext(), includedRest, restTy) {
 				needsRestOverride = true
 			}
 			includedRest = restTy

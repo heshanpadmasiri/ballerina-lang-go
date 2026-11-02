@@ -1,0 +1,17 @@
+(main
+  (bb0 () ()
+    (var-def
+      (variable a (type
+        (user-defined-type IncludesExplicitOverride)) (expr
+        (mapping-constructor-expr
+          (key-value
+            (literal x)
+            (literal 1))
+          (key-value
+            (literal s)
+            (literal str))))))
+    (expression-stmt
+      (invocation io println (
+        (simple-var-ref a))))
+  )
+)
