@@ -13,21 +13,16 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-
 type OpenBase record {
-    int y;
+    int x;
 };
 
-type OverridesImplicit record {|
+type Derived record {|
     *OpenBase;
-    int...;
-|};
-
-type IncludesImplicitOverride record {|
-    *OverridesImplicit;
 |};
 
 public function main() {
-    IncludesImplicitOverride b = {y: 1, "s": "str"}; // @error
-    _ = b;
+    Derived d = {x: 1};
+    record {| int x; |} c = d; // @error
+    _ = c;
 }

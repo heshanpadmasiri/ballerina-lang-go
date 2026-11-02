@@ -1,0 +1,7 @@
+-- stdout --
+-- stderr --
+error[SEMANTIC_ERROR]: incompatible type: expected {| x: int, never... |}, got {| x: int, anydata... |}
+  --> record-incl-open-not-closed-e.bal:26:29
+   |
+26 |     record {| int x; |} c = d; // @error
+   |                             ^

@@ -2134,9 +2134,6 @@ func validateIncludedRecordParamMetadata(t typeResolver, ref model.FunctionSigna
 			return false
 		}
 		metadata := &model.IncludedRecordMetadata{}
-		if rest, ok := recSym.RestField(); ok && !semtypes.IsNever(rest.MemberType()) {
-			metadata.IsOpen = true
-		}
 		for name, field := range recSym.Fields() {
 			if semtypes.IsNever(field.MemberType()) {
 				metadata.NeverFields = append(metadata.NeverFields, name)
@@ -2170,6 +2167,9 @@ func validateIncludedRecordParamMetadata(t typeResolver, ref model.FunctionSigna
 				return false
 			}
 			fieldOrigin[name] = i
+		}
+		if rest, ok := recSym.RestField(); ok && !semtypes.IsNever(rest.MemberType()) && len(metadata.RequiredFields) == 0 {
+			metadata.IsOpen = true
 		}
 		includedRecords[i] = metadata
 		updated = true
@@ -8293,22 +8293,23 @@ func resolveBTypeInner(t typeResolver, chain *binding, btype ast.BType, depth in
 			fields = append(fields, semtypes.FieldFrom(name, fd.MemberType(), fd.IsReadonly(), fd.IsOptional()))
 		}
 
-		var rest semtypes.SemType
 		if ty.RestType != nil {
 			var ok bool
-			rest, chain, ok = resolveBType(t, chain, ty.RestType, depth+1)
-			if !ok {
+			if _, chain, ok = resolveBType(t, chain, ty.RestType, depth+1); !ok {
 				return semtypes.SemType{}, chain, false
 			}
-		} else if ty.IsOpen {
-			rest = semtypes.CreateAnydata(t.typeContext())
-		} else if result.multpleRestTy {
-			t.semanticError("included rest type declared in multiple type inclusions must be overridden", ty.GetPosition())
-			rest = semtypes.Never
-		} else if !semtypes.IsZero(result.includedRestTy) {
-			rest = result.includedRestTy
-		} else {
-			rest = semtypes.Never
+		}
+		rest, hasOwnRest := recordOwnRestType(t, ty)
+		if !hasOwnRest {
+			switch {
+			case result.multpleRestTy:
+				t.semanticError("included rest type declared in multiple type inclusions must be overridden", ty.GetPosition())
+				rest = semtypes.Never
+			case !semtypes.IsZero(result.includedRestTy):
+				rest = result.includedRestTy
+			default:
+				rest = semtypes.Never
+			}
 		}
 		semType := d.Define(t.typeEnv(), fields, rest)
 		mat := semtypes.ToMappingAtomicType(t.typeContext(), semType)

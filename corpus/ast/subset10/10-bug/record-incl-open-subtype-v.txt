@@ -1,0 +1,40 @@
+(compilation-unit
+(package-id $anon . 0.0.0)
+  (import-package ballerina io (as io))
+  (type-definition OpenBase
+    (record-type
+      (field x
+        (value-type int))))
+  (type-definition Derived
+    (record-type
+      (field y
+        (value-type string))))
+  (function main () (
+    (value-type null))
+    (block-function-body
+      (var-def
+        (variable r (type
+          (record-type
+            (field x
+              (value-type int))
+            (field y
+              (value-type string))
+            (rest
+              (value-type anydata)))) (expr
+          (mapping-constructor-expr
+            (key-value
+              (literal x)
+              (literal 1))
+            (key-value
+              (literal y)
+              (literal a))
+            (key-value
+              (literal z)
+              (literal 3))))))
+      (var-def
+        (variable d (type
+          (user-defined-type Derived)) (expr
+          (simple-var-ref r))))
+      (expression-stmt
+        (invocation io println (
+          (simple-var-ref d)))))))
