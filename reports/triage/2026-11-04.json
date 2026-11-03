@@ -1,0 +1,258 @@
+{
+  "generated_at": "2026-11-03T23:46:58Z",
+  "upstream_main": "603fd1b2192c95da9bcceb05f720db84eebb9cf9",
+  "issues": [
+    {
+      "number": 1520,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1520",
+      "title": "[Bug]: closed record with an optional `never` field is not a subtype of the same record without it",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype R2 record {| int a; |};\ntype R3 record {| int a; never b?; |};\n\npublic function main() {\n    R3 r3 = {a: 1};\n    R2 r2 = r3;\n    io:println(r2);\n}\n\n// ---\nimport ballerina/io;\n\ntype R2 record {| int a; |};\ntype R3 record {| int a; never b?; |};\n\npublic function main() {\n    R3 r3 = {a: 1};\n    any v = r3;\n    io:println(v is R2);\n    R3 & readonly r4 = {a: 1};\n    any w = r4;\n    io:println(w is R2);\n}\n",
+      "output": "1520a: error[SEMANTIC_ERROR]: incompatible type: expected {| a: int, never... |}, got {| a: int, b: never, never... |} (8:13)\n1520b: false\ntrue",
+      "valid": true,
+      "reasoning": "Spec \u00a75.4.2.2: an optional field only constrains the field if it is present, so `never b?` forbids `b`. R3 has the same shapes as R2, so R3 is a subtype of R2 (\u00a75.1). A mutable value belongs to R2 iff its inherent type is a subtype (\u00a75.3), so `v is R2` must be true. The bug is in the semtype subtype check. It shows up mainly as a front-end type-check rejection, and the same check gives the wrong runtime type test. The diagnostic also prints `b: never` without the `?`.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1521,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1521",
+      "title": "[Bug]: list returned by `map:keys()` has no filler value (storing past the end panics \"no filler value\")",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    map<int> m = {a: 1};\n    string[] ks = m.keys();\n    ks[3] = \"z\";\n    io:println(ks);\n}\n",
+      "output": "error: no filler value\n        at main(1521.bal:6)",
+      "valid": true,
+      "reasoning": "`map:keys()` returns a fresh `string[]`, which has no fixed length. FillMember (\u00a77.15.1, \u00a75.9.1) fills the gap with `\"\"`. The list built by the langlib has no filler information.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1522,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1522",
+      "title": "[Bug]: `array:fromBase64` / `array:fromBase16` reject whitespace allowed by Base64/Base16 literals",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nimport ballerina/lang.array;\n\npublic function main() {\n    io:println(array:fromBase64(\"3q2+ 7w==\"));\n    io:println(array:fromBase64(\"3q2+\\n7w==\"));\n    io:println(array:fromBase16(\"de ad\\tbe\\nef\"));\n    io:println(array:fromBase16(\"dead\\nbeef\"));\n}\n",
+      "output": "error(\"failed to decode base64 string\")\n[222,173,190,239]\nerror(\"failed to decode base16 string\")\nerror(\"failed to decode base16 string\")",
+      "valid": true,
+      "reasoning": "The lang.array docs for fromBase64 and fromBase16 allow whitespace as permitted by Base64Literal/Base16Literal. That grammar allows WS (tab, LF, CR, space) between characters, so all four calls should return [222,173,190,239].",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1523,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1523",
+      "title": "[Bug]: type cast does not pass its contextually expected type to an inferred `<>` typedesc call",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    anydata v = 7;\n    float|error h = <float|error> v.cloneWithType();\n    io:println(h);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: cannot infer typedesc argument for parameter 't': no contextually expected type (5:35)",
+      "valid": true,
+      "reasoning": "\u00a76.20: the operand of a type cast has as its contextually expected type the intersection of the outer expected type and the cast type (float|error). So `t` should be inferred as float. This is a type-checker gap. It is related to #1385 (the same symptom under `trap`) but is a separate code path.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1524,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1524",
+      "title": "[Bug]: function with more than one `<>` inferred typedesc parameter is accepted",
+      "reproducible": true,
+      "reproducer": "function g(typedesc<anydata> t = <>, typedesc<anydata> u = <>) returns t|u|error = external;\n\npublic function main() {\n}\n",
+      "output": "(compiles with no diagnostic, exit 0)",
+      "valid": true,
+      "reasoning": "The spec on defaultable-param says `<>` \"is allowed for at most one parameter in a function\". A declaration with two must be a compile error, and it is not reported.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1525,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1525",
+      "title": "[Bug]: unused-variable error hides the initializer's incompatible-type error",
+      "reproducible": true,
+      "reproducer": "public function main() {\n    int x = \"abc\";\n}\n\n// ---\npublic function main() {\n    map<json> j = {};\n    json y = j.a;\n}\n",
+      "output": "1525a: error[SEMANTIC_ERROR]: unused variable 'x' (2:5) \u2014 no incompatible-type error\n1525b: error[SEMANTIC_ERROR]: unused variable 'y' (3:5) \u2014 no incompatible-type error",
+      "valid": true,
+      "reasoning": "The initializer's static type must be a subtype of the declared type (\u00a77.11), so an incompatible-type error must be reported whether or not the variable is used. Unused-variable errors are raised in stage 3 and stop the pipeline before stage 5 type-checks function bodies. Parent: #1155 (unused variables should be warnings and must not block compilation), whose fix would also fix this.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 1155
+    },
+    {
+      "number": 1526,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1526",
+      "title": "[Bug]: XML template expression is rejected in a constant expression",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nconst X = xml `<a/>`;\nconst Z = xml `<a/>` == xml `<a/>`;\n\npublic function main() {\n    io:println(X);\n    io:println(Z);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: expression is not a constant expression (3:16)\nerror[SEMANTIC_ERROR]: expression is not a constant expression (4:16)",
+      "valid": true,
+      "reasoning": "\u00a76.4 lists template-expr (and equality-expr) as const-expr. \u00a76.6.2 says an xml template in a const-expr builds a read-only xml value. A valid program is rejected.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1527,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1527",
+      "title": "[Bug]: including a recursive record drops the included field defaults",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Tree record {|\n    Tree? left = ();\n    int n = 5;\n|};\n\ntype Ext record {|\n    *Tree;\n    string s;\n|};\n\npublic function main() {\n    Ext e = {s: \"a\"};\n    io:println(e);\n    Tree t = {};\n    io:println(t);\n}\n",
+      "output": "{\"s\":\"a\"}\n{\"left\":null,\"n\":5}",
+      "valid": true,
+      "reasoning": "\u00a75.4.2.2: included fields mean the same as if written out, and default closures are copied in. So Ext must get Tree's defaults `left` and `n`. Compilation succeeds, but the generated record-construction code leaves out the included defaults when the included record is recursive, and the resulting value violates its own type. Related: #1289.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1528,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1528",
+      "title": "[Bug]: time:utcAddSeconds rounds sub-nanosecond fractions instead of preserving them",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nimport ballerina/time;\n\npublic function main() {\n    io:println(time:utcAddSeconds([0, 0], 0.9999999999));\n}\n",
+      "output": "[1,0]",
+      "valid": true,
+      "reasoning": "Utc is [int, decimal]. 0.9999999999 is exact in decimal, and adding 0 seconds should give [0,0.9999999999]. The native conversion to whole nanoseconds rounds it up into the next second. The package README lists this API as supported with no precision limitation, so this is valid: either keep decimal precision or document the limitation.",
+      "labels_to_add": [
+        "triage-lib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1529,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1529",
+      "title": "[Bug]: time:utcAddSeconds wraps around at int max instead of panicking with NumberOverflow",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nimport ballerina/time;\n\npublic function main() {\n    time:Utc u = time:utcAddSeconds([9223372036854775807, 1.5], 0);\n    io:println(u);\n}\n",
+      "output": "[-9223372036854775808,0.5]",
+      "valid": true,
+      "reasoning": "Ballerina int arithmetic never wraps. Overflow is a panic. Normalising [maxint, 1.5] silently wraps to minint inside the native ballerina/time implementation, when it should raise an overflow panic or error.",
+      "labels_to_add": [
+        "triage-lib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1530,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1530",
+      "title": "[Bug]: repeated xml:fromString gets progressively slower (new mapping type per element)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nimport ballerina/time;\n\npublic function main() returns error? {\n    string doc = \"<root>\";\n    foreach int i in 0 ..< 60 {\n        doc += string `<item id=\"${i}\">v${i}</item>`;\n    }\n    doc += \"</root>\";\n    foreach int b in 0 ..< 5 {\n        decimal t0 = time:monotonicNow();\n        foreach int _ in 0 ..< 60 {\n            _ = check xml:fromString(doc);\n        }\n        io:println(\"batch \", b, \": \", time:monotonicNow() - t0, \"s\");\n    }\n}\n",
+      "output": "batch 0: 0.407507053s\nbatch 1: 1.068748409s\nbatch 2: 1.807960348s\nbatch 3: 2.484603163s\nbatch 4: 3.419406009s",
+      "valid": true,
+      "reasoning": "Every batch does the same work, yet the time per batch grows linearly. State builds up across calls: per the issue, NewXMLStringMap defines a new mapping semtype for each element. The spec sets no performance requirements, so this is a quality-of-implementation defect, not a conformance one, but it is still valid (unbounded slowdown and memory growth). `xml:fromString` is lang.xml, so it is categorised as langlib (values/xml.go).",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1531,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1531",
+      "reasoning": "Test-infrastructure flakiness, not a language or runtime bug, so none of langlib/triage-lib/frontend/backend applies. Did not reproduce locally: task-* corpus tests passed with -count=3 and again with -count=5 under 6 busy-loop CPU hogs on 4 cores, and TestSerialOpenCloseDuringCompilation passed with -count=10 under load. The code confirms the cause described in the issue: fixed runtime:sleep windows in corpus/lib/subset3/task-*.bal and hard-coded time.After(5*time.Second) in ls/core/compile/open_close_race_test.go:77,99. Looks valid as a test-reliability issue. Suggest a test/CI label."
+    },
+    {
+      "number": 1532,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1532",
+      "reasoning": "Reproduced: `go test -race -tags debug ./projects/` reports 315 `WARNING: DATA RACE`. common.WithSuppressedDebug (common/debug_debug.go:56) mutates the global debugFlags while other goroutines read it in DebugWriteLazy. It is called from projects/document_context.go:86. Valid, but it is a debug-build tooling bug (release builds use a no-op), not a language-behaviour bug. The closest category is frontend (it happens during parsing). Suggest frontend or a tooling label."
+    },
+    {
+      "number": 1533,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1533",
+      "reasoning": "Reproduced: the command at doc/guides/DEVELOPING.md:104 includes ./bir/... and ./semantics/..., where packages don't register -update (`go test ./bir/ -update` \u2192 `flag provided but not defined: -update`). It also omits ./nodebuilder and ./birgen, which register -update for the corpus/ast and corpus/bir goldens. Valid documentation bug, but no language category applies. Suggest a docs label."
+    }
+  ],
+  "skipped": [
+    1514,
+    1513,
+    1512,
+    1511,
+    1503,
+    1502,
+    1501,
+    1500,
+    1498,
+    1497,
+    1496,
+    1494,
+    1493,
+    1492,
+    1488,
+    1487,
+    1486,
+    1485,
+    1484,
+    1483,
+    1475,
+    1471,
+    1470,
+    1469,
+    1468,
+    1458,
+    1457,
+    1456,
+    1455,
+    1454,
+    1453,
+    1452,
+    1304,
+    1282
+  ],
+  "notes": "Reproduced with a binary built from upstream main (go build ./cli/cmd; equivalent to go run ./cli/cmd run). 14 new issues triaged and 34 skipped (already reported, no updates since). No duplicates found by REST search. Validity was checked by a clean-context subagent that saw only the reproducers and outputs. It judged 1528 and 1530 'unclear/lean bug' (stdlib precision; performance is not a spec matter). I mark both valid with reasoning."
+}
