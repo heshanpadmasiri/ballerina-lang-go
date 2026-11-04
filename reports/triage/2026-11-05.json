@@ -1,0 +1,319 @@
+{
+  "generated_at": "2026-11-04T23:44:07Z",
+  "upstream_main": "61fb6bf42fb746f800b851d6ec55d52cb02752c5",
+  "issues": [
+    {
+      "number": 1538,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1538",
+      "title": "[Bug]: string:indexOf/includes find the empty string when startIndex is past the end",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    string s = \"abc\";\n    io:println(s.indexOf(\"\", 3));\n    io:println(s.indexOf(\"\", 4) is ());\n    io:println(s.includes(\"\", 4));\n    io:println(s.indexOf(\"\", 100) is ());\n}\n",
+      "output": "3\nfalse\ntrue\nfalse",
+      "valid": true,
+      "reasoning": "Reproduces on main (prints 3/false/true/false). The lang.string docs say indexOf returns the first occurrence >= startIndex or (), and includes returns true only for an occurrence at an index >= startIndex. The empty string occurs in \"abc\" only at 0..3, so startIndex 4 or 100 must give () and false. The subagent judged it a bug. The fix is in the lang.string implementation.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1539,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1539",
+      "title": "[Bug]: type narrowing that yields never keeps the previous type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction d(int|string x) returns int {\n    if x is int {\n        return 1;\n    } else if x is string {\n        return 2;\n    } else {\n        boolean b = x;\n        return b ? 3 : 4;\n    }\n}\n\nfunction e(int|string x) returns int {\n    if x is int && x is string {\n        boolean b = x;\n        return b ? 1 : 2;\n    }\n    return 0;\n}\n\npublic function main() {\n    io:println(d(3));\n    io:println(e(3));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected boolean, got string\n --> 1539.bal:9:21\n  |\n9 |         boolean b = x;\n  |                     ^\n\nerror[SEMANTIC_ERROR]: incompatible type: expected boolean, got int|string\n  --> 1539.bal:16:21\n   |\n16 |         boolean b = x;\n   |                     ^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces: valid code is rejected with 'expected boolean, got string' and 'got int|string'. Under \u00a77.12, the final else narrows x to (int|string) -ro int -ro string = never, and x is int && x is string narrows it to int & string = never. never is a subtype of boolean. The type checker keeps a non-empty type instead. The subagent judged it a bug.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1540,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1540",
+      "title": "[Bug]: while true loop without break does not narrow to never for type narrowing",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction a(int|string x) returns string {\n    if x is int {\n        while true {\n            io:println(\"loop\");\n        }\n    }\n    string s = x;\n    return s;\n}\n\npublic function main() {\n    io:println(a(\"q\"));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected string, got int|string\n --> 1540.bal:9:16\n  |\n9 |     string s = x;\n  |                ^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces: 'expected string, got int|string' at `string s = x;`. Under \u00a77.12/\u00a77.22.2, `while true` with no break cannot complete normally, so that branch contributes never and x narrows to string after the if. The type checker rejects a valid program. The subagent judged it a bug. Related to #1539 (never narrowing) but a different mechanism (completion analysis), so not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1541,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1541",
+      "title": "[Bug]: computed-name fields in a map constructor are not added after the other fields",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    string k = \"b\";\n    map<int> m = {[k]: 1, a: 2, \"c\": 3};\n    io:println(m.keys());\n    io:println(m);\n}\n",
+      "output": "[\"b\",\"a\",\"c\"]\n{\"b\":1,\"a\":2,\"c\":3}",
+      "valid": true,
+      "reasoning": "Reproduces: prints [\"b\",\"a\",\"c\"]. \u00a76.7.2 says computed-name fields are added after all other fields when the inherent type is a map, so the expected order is a,c,b. The BIR (`newMap {| int... |}{[k]=%3, %4=%5, %6=%7}`) keeps the computed entry marked, so the runtime newMap can apply the ordering. Classified backend, consistent with related #1470 (computed-name field override, labelled runtime). It could also be fixed by reordering in desugar/BIR gen. The subagent judged it a bug.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1553,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1553",
+      "title": "[Bug]: error constructor accepts named args not declared in the detail record",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype OpenDetail record {\n    int count?;\n};\n\npublic function main() {\n    error<OpenDetail> e = error(\"open\", extra = true);\n    io:println(e);\n}\n",
+      "output": "error(\"open\",extra=true)",
+      "valid": true,
+      "reasoning": "Reproduces: compiles and prints error(\"open\",extra=true). \u00a76.17: every named arg must name an individual field of the detail record, unless it has none. OpenDetail declares `count`, so `extra` must be a compile error. The subagent judged it a bug. Missing semantic check.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1555,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1555",
+      "title": "[Bug]: action nested inside an expression is accepted",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction one() returns int => 1;\n\npublic function main() {\n    future<int> f = start one();\n    int x = (<int> checkpanic wait f) + 1;\n    io:println(x);\n}\n",
+      "output": "2",
+      "valid": true,
+      "reasoning": "Reproduces: compiles and prints 2. \u00a77.1: an action cannot be nested inside an expression. `( action-or-expr )` is not an expression, so `(<int> checkpanic wait f) + 1` must be rejected. The subagent judged it a bug. Missing semantic/syntactic check. Related: #1244 (start action in cast/select), which is the converse case (valid positions crash).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1556,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1556",
+      "title": "[Bug]: action as a query let initializer panics the type resolver",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction one() returns int => 1;\n\npublic function main() {\n    int[] r = from int _ in [1] let future<int> f = start one() select checkpanic wait f;\n    io:println(r);\n}\n",
+      "output": "panic: interface conversion: *ast.BLangStartAction is not ast.BLangExpression: missing method expressionNode\n\ngoroutine 73 [running]:\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveQueryIntermediateClauses({0x2291168, 0x33d5543acab0}, 0x2263520?, 0x33d553c6b128, 0x2)\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:5374 +0x45b\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveQueryExpr({0x2291168, 0x33d5543acab0}, 0x0, 0x33d554225e60, {0x0?, 0x0?, {0x33d553d2b5c0?, 0x0?, 0x0?}})\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:4950 +0x7ee\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveExpressionInner({0x2291168, 0x33d5543acab0}, 0x0, {0x226a508, 0x33d554225e60}, {0x80000000, 0x2000, {0x33d553d2b5c0, 0x1, 0x1}})\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:3856 +0x2998\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveActionOrExpression({0x2291168, 0x33d5543acab0}, 0x0, {0x226a508, 0x33d554225e60}, {0x80000000, 0x2000, {0x33d553d2b5c0, 0x1, 0x1}})\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:3733 +0xc5\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveVariableDefStmt({0x2291168, 0x33d5543acab0}, 0x0?, 0x0?)\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:3450 +0x257\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveStatement({0x2291168, 0x33d5543acab0}, 0x0, {0x2264cb8, 0x33d5543eb5e0})\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:1838 +0x4c5\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveBlockStatements({0x2291168, 0x33d5543acab0}, 0x0, {0x33d5543eb640, 0x2, 0x2})\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:1688 +0x9a\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.resolveFunctionBody(0x33d553ebb2c0, {0x2286420, 0x33d5541eb380})\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:1115 +0x776\ngithub.com/ballerina-nutcracker/ballerina/semantics/internal/types.ResolvePrivateNodes.func2(0x1, {0x2286420?, 0x33d5541eb380?})\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:855 +0x6c\ncreated by github.com/ballerina-nutcracker/ballerina/semantics/internal/types.ResolvePrivateNodes in goroutine 71\n\t/home/user/ballerina/semantics/internal/types/type_resolver.go:853 +0x3f1",
+      "valid": true,
+      "reasoning": "Reproduces: the front end dies with a Go panic (interface conversion: *ast.BLangStartAction is not ast.BLangExpression) in semantics/internal/types.resolveQueryIntermediateClauses (type_resolver.go:5374), before any diagnostic. \u00a77.1 allows let-action-var-decl := typed-binding-pattern = action-or-expr, so the program is valid and should print [1]. The subagent agreed. Related to #1244 (start action in cast/select crashes the compiler), but this is a different clause and a different crash site, so not marked as a duplicate.",
+      "labels_to_add": [
+        "frontend",
+        "frontend-crash"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1557,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1557",
+      "title": "[Bug]: type cast does not give its operand the cast type as expected type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    float f = <float>99999999999999999999;\n    io:println(f);\n}\n",
+      "output": "-9.223372036854776e18",
+      "valid": true,
+      "reasoning": "Reproduces, and is worse than reported: current main prints -9.223372036854776e18 (the issue says 9.22e18). Spec type cast: the operand's expected type is the intersection with the cast type (float). So the literal is a float literal, 1e20. The type checker does not pass the cast type as the expected type for literal typing. The subagent judged it a bug.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1545,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1545",
+      "title": "[Improvement]: lexer allocates new trivia nodes for every token",
+      "reproducible": true,
+      "reproducer": "Generated by gen_tokens.py in the issue (200 functions x 500 statements), run with `bal run --stats`.",
+      "output": "Not re-measured; code inspection on main 61fb6bf confirms per-token CreateMinutiae allocation (st/st_node.go:444).",
+      "valid": true,
+      "reasoning": "Not timed (the perf numbers come from a 2.4M-token file). Code confirms the cause: st.CreateMinutiae (st/st_node.go:444) always allocates a new STMinutiae, and the lexer builds new trivia lists per token. Performance is not a conformance matter, but this is a valid quality-of-implementation issue in a front-end (compile-time) stage. I categorised it as frontend by component, as earlier reports did for perf issues; reclassify if you prefer a perf label.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1546,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1546",
+      "title": "[Improvement]: AST build keeps every syntax-node facade alive for the whole compilation",
+      "reproducible": true,
+      "reproducer": "Generated by gen_repro.py in the issue (20000 functions), run with `bal run --stats`.",
+      "output": "Not re-measured; code inspection on main confirms facade caching in st/node.go:426-427.",
+      "valid": true,
+      "reasoning": "Not timed. Code confirms the cause: NonTerminalNodeBase.ChildInBucket (st/node.go:417-428) caches every created facade in the parent's childBuckets, so facades on the project-held RootNode live for the whole compile. Performance is not a conformance matter, but this is a valid quality-of-implementation issue in a front-end (compile-time) stage. I categorised it as frontend by component, as earlier reports did for perf issues; reclassify if you prefer a perf label.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1547,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1547",
+      "title": "[Improvement]: global mutex in the BDD key interner serialises parallel type resolution",
+      "reproducible": true,
+      "reproducer": "Generated by gen_multimodule.py in the issue (8 modules x 600 functions).",
+      "output": "Not re-measured; code inspection confirms global mutex at semtypes/canonical_key.go:46,64.",
+      "valid": true,
+      "reasoning": "Not timed (needs a multi-core comparison). Code confirms a single process-wide sync.Mutex in bddKeyInterner (semtypes/canonical_key.go:46-71) taken on every BDD node key intern. Performance is not a conformance matter, but this is a valid quality-of-implementation issue in a front-end (compile-time) stage. I categorised it as frontend by component, as earlier reports did for perf issues; reclassify if you prefer a perf label.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1548,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1548",
+      "title": "[Improvement]: a new type-check context per function body, lambda and match discards subtype results",
+      "reproducible": true,
+      "reproducer": "Generated by gen.py in the issue (10000 functions), run with GOMAXPROCS=1 bal run --stats.",
+      "output": "Not re-measured; ContextFrom call sites confirmed in semantics/internal/types/type_resolver.go.",
+      "valid": true,
+      "reasoning": "Not timed. Code confirms semtypes.ContextFrom is called per body, lambda and match in type_resolver.go (lines 694, 820, 1094, 2362, 2459, 8767, 8832). Related #1363 (per-function mutex in CFG build). Performance is not a conformance matter, but this is a valid quality-of-implementation issue in a front-end (compile-time) stage. I categorised it as frontend by component, as earlier reports did for perf issues; reclassify if you prefer a perf label.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1549,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1549",
+      "title": "[Improvement]: uninitialized-variable analysis is quadratic in blocks x locals",
+      "reproducible": true,
+      "reproducer": "gen_uninit.py from the issue: one function with N initialized locals, each followed by if/else.",
+      "output": "N=1000: CFG Analysis 441.67ms, Total 551.53ms; N=2000: CFG Analysis 1775.04ms, Total 1961.99ms",
+      "valid": true,
+      "reasoning": "Reproduced quadratic scaling: CFG Analysis 441.67 ms at N=1000 and 1775.04 ms at N=2000 (about 4x for 2x N). Open PR #1237 already claims to fix it. Performance is not a conformance matter, but this is a valid quality-of-implementation issue in a front-end (compile-time) stage. I categorised it as frontend by component, as earlier reports did for perf issues; reclassify if you prefer a perf label.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1550,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1550",
+      "title": "[Improvement]: type checking is quadratic in the number of lambdas in a function",
+      "reproducible": true,
+      "reproducer": "gen_closures.py from the issue: one function with N lambdas capturing a local, then N calls.",
+      "output": "N=1000: Local Type Resolution 141.43ms; N=2000: 515.50ms",
+      "valid": true,
+      "reasoning": "Reproduced superlinear scaling: Local Type Resolution 141.43 ms at N=1000 and 515.50 ms at N=2000 (about 3.6x for 2x N). Same root cause as #1551 (capture entries on the narrowing chain); a fix for one likely covers much of the other. Performance is not a conformance matter, but this is a valid quality-of-implementation issue in a front-end (compile-time) stage. I categorised it as frontend by component, as earlier reports did for perf issues; reclassify if you prefer a perf label.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1551,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1551",
+      "title": "[Improvement]: type checking is quadratic in the number of loops in a function",
+      "reproducible": true,
+      "reproducer": "gen_loops.py from the issue: one function with N sequential while loops.",
+      "output": "N=1000: Local Type Resolution 282.52ms, Total 369.40ms; N=2000: 1107.41ms, Total 1250.46ms",
+      "valid": true,
+      "reasoning": "Reproduced quadratic scaling: Local Type Resolution 282.52 ms at N=1000 and 1107.41 ms at N=2000 (about 3.9x for 2x N). Same chain-walk root cause as #1550. Performance is not a conformance matter, but this is a valid quality-of-implementation issue in a front-end (compile-time) stage. I categorised it as frontend by component, as earlier reports did for perf issues; reclassify if you prefer a perf label.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1552,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1552",
+      "title": "[Improvement]: every range expression rebuilds the same iterator type",
+      "reproducible": true,
+      "reproducer": "gen_range_repro.py from the issue (3000 functions x 8 range foreach loops).",
+      "output": "3000x8 range file: Total 3424.53ms; createIteratorType per range at semantics/internal/types/type_resolver.go:5987",
+      "valid": true,
+      "reasoning": "Code confirms resolveRangeExpr calls createIteratorType(t.typeEnv(), semtypes.Int, semtypes.Nil) for every range expression (type_resolver.go:5987). A 3000-function x 8-range file compiled and ran in 3.4 s total. A list-based comparison was not completed (my generated variant failed to compile for unrelated reasons). Performance is not a conformance matter, but this is a valid quality-of-implementation issue in a front-end (compile-time) stage. I categorised it as frontend by component, as earlier reports did for perf issues; reclassify if you prefer a perf label.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1542,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1542",
+      "reasoning": "Reproduced: regenerating st/st_node_gen.go and st_node_util_gen.go with compiler-tools/tree-gen from st/nodes.json swaps LhsExpression and OnExpression between STCompoundAssignmentStatementNode and STOnClauseNode (diff at st_node_gen.go:614/639/661/7870/7894; util file also differs). Valid. It is a code-generator/source-of-truth bug with no current behavioural effect, so no language category fits cleanly; the closest is frontend (parser syntax-tree definitions). Suggest frontend or a tooling label."
+    },
+    {
+      "number": 1543,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1543",
+      "reasoning": "Confirmed by code inspection on main: utf16Offset (ls/server/documents.go:55-65) loops up to position.Line, and nextLineStart (line 93-96) returns (start, true) once start >= len(text). A huge client line number therefore spins for up to ~4.3e9 iterations. Valid language-server bug (DoS-like CPU spin from client input), but no language category applies. Suggest a language-server label."
+    },
+    {
+      "number": 1554,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1554",
+      "reasoning": "Reproduced on main with the issue's temporary test (go test ./corpus/extern -run TestListenerStartFailureShutdown -count=30): the run panicked with 'panic: invalid lifecycle transition from stopped -> gracefulStopping' at runtime/lifecycle.go:129 (from setupSignalListeners, lifecycle.go:315). Valid. The trigger is the test harness sending a stop signal after shutdown has completed, but the panicking code is the runtime lifecycle, which shares its root with #1341 (SIGTERM during main gives the same panic, labelled runtime). Suggest backend/runtime with #1341 as related or parent, or a test label if the fix is harness-only."
+    }
+  ],
+  "skipped": [
+    1304,
+    1485,
+    1531,
+    1532
+  ],
+  "notes": "Reproduced with a binary built from upstream main 61fb6bf (go build ./cli/cmd; same as go run ./cli/cmd run). 19 issues triaged; 4 skipped (already reported, no updates since). All 8 language reproducers still reproduce. A clean-context subagent that saw only the reproducers and outputs judged all 8 to be bugs per the spec. REST search found no duplicates. Related but distinct: #1244 (for 1555/1556), #1470 (1541), #1341 (1554), PR #1237 (1549). 1556 is the only frontend-crash (Go panic in type resolver). Perf issues 1545-1552 are classified frontend by component; 1549-1551 were re-measured and scale quadratically, and the others were confirmed by code inspection only. 1557 now prints -9.223372036854776e18, which differs from the 9.22e18 the issue reports."
+}
