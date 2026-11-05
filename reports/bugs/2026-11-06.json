@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-11-05T23:16:02Z",
+  "upstream_main": "fd93c6a3fa564e776bf8d5ce3364cce24d63fb15",
+  "spec_fetch_ok": true,
+  "areas_explored": [
+    "query expressions",
+    "numeric operators and literals",
+    "match statement / type tests / narrowing",
+    "records, mapping/list constructors, filler values",
+    "classes and objects",
+    "XML",
+    "strings, templates and langlib conversions",
+    "functions, parameters and invocations",
+    "errors, check/trap and type casts",
+    "workers/start/wait (stopped early when the candidate limit was reached)"
+  ],
+  "candidates": [
+    {
+      "action": "file",
+      "existing_issue": null,
+      "title": "[Bug]: named argument rejected for the implicit rest field of an inclusive included-record parameter",
+      "body": "### Description\nA named argument whose name is not a parameter name should go to the rest descriptor of an included record parameter. When that record type is an inclusive (open) record with an implicit `anydata...` rest descriptor, the compiler rejects the named argument with `no included record parameter accepts named argument 'count'`. The same program works when the rest descriptor is written out explicitly in an exclusive record (`record {| never name?; never extra?; int...; |}`), which prints `a {\"count\":3}`.\n\n### Steps to Reproduce\n```ballerina\nimport ballerina/io;\n\ntype Extra record {\n    never name?;\n    never extra?;\n};\n\nfunction describe(string name, *Extra extra) returns string {\n    return name + \" \" + extra.toString();\n}\n\npublic function main() {\n    io:println(describe(\"a\", count = 3)); // @output a {\"count\":3}\n    io:println(describe(\"b\")); // @output b {}\n}\n```\n\nActual:\n```\nerror[SEMANTIC_ERROR]: no included record parameter accepts named argument 'count'\n  --> r2.bal:13:30\n```\nExpected: the program compiles and prints\n```\na {\"count\":3}\nb {}\n```\n\nSpec reasoning (2024R1):\n- \u00a75.4.2.2 (record types): \"A type descriptor `record { F };` is thus equivalent to `record {| F; anydata...; |}`\". So `Extra` has an implicit `anydata` rest descriptor.\n- \u00a76.15 (function call, named args): a named-arg may correspond to a field of an included-record-param that \"is described by a record-rest-descriptor, either explicitly as part of an exclusive-record-type-descriptor or implicitly as part of an inclusive-record-type-descriptor\". The conditions also hold:\n  - Every parameter name (`name`, `extra`) has an optional `never` field.\n  - There are no other individual fields.\n  - There is no other included-record-param with a rest descriptor.\n- `subset10.md` supports `included-record-param` and named arguments for callees with a known atomic signature. `describe` is a module-level function, so it qualifies.\n\n### Affected Version(s)\nmain @ fd93c6a3f\n\n### OS, DB, other environment details and versions\nBallerina dev (Nutcracker), built from `ballerina-nutcracker/ballerina` main @ fd93c6a3f, run with `go run ./cli/cmd run <file>.bal`. Linux.\n\n### Related area\nType checker\n\n### Related issue(s) (optional)\n#488 (closed: exclusive record with explicit rest descriptor) and #1452 (an exclusive record that includes an open record loses the implicit `anydata...` rest). These are likely related.\n",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1043,
+      "title": "[Bug]: readonly class values are not treated as readonly",
+      "body": "Another case of the missing read-only bit, in the opposite direction. An object of a **mutable** class that has the same structure as a `readonly class` passes an `is` test against the readonly class type.\n\n```ballerina\nimport ballerina/io;\n\nreadonly class R {\n    int x = 1;\n}\n\nclass S {\n    int x = 1;\n}\n\npublic function main() {\n    any s = new S();\n    io:println(s is R); // @output false\n}\n```\n\nActual: `true`. Expected: `false`.\n\n\u00a78.6 (class definitions): \"If class-type-quals contains readonly, then an object constructed using the class will have its read-only bit set ...; furthermore, an object shape belongs to the class's type only if its read-only bit is set.\" `new S()` does not have its read-only bit set, so it must not belong to `R`. Checked on main @ fd93c6a3f.\n",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1054,
+      "title": "[Bug]: out-of-range int literal is clamped instead of rejected",
+      "body": "Update on main @ fd93c6a3f: the hex case no longer crashes with `INTERNAL_ERROR`. It now compiles and silently produces `-9223372036854775808`, which is not even the two's-complement value (`-1`). The same wrong value comes back when the literal has no `int` expected type (`var`, and an untyped `const`):\n\n```ballerina\nimport ballerina/io;\n\nconst C = 9223372036854775808;\n\npublic function main() {\n    int h = 0xFFFFFFFFFFFFFFFF; // @error out-of-range int literal\n    io:println(h);\n    var v = 9223372036854775808; // @error out-of-range int literal\n    io:println(v);\n    io:println(C);\n}\n```\n\nActual output:\n```\n-9223372036854775808\n-9223372036854775808\n-9223372036854775808\n```\nExpected: a compile error for each out-of-range literal.\n- \u00a76.5: with no expected type, int is the first candidate selected for an int-literal.\n- \u00a75.2.3: int holds only -2^63 .. 2^63-1.\n",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1393,
+      "title": "[Bug]: list const-pattern in `match` narrows a mutable target to the constant's type (unsound)",
+      "body": "Two more symptoms of the same narrowing problem, with a `const int[] L = [1, 2];` pattern and a target of type `int[]|string`.\n\n1. **Valid code is rejected.** Mutating the matched mutable list inside the clause fails with `incompatible type: expected 1, got 5`:\n```ballerina\nimport ballerina/io;\n\nconst int[] L = [1, 2];\n\nfunction f(int[]|string x) {\n    match x {\n        L => {\n            x[0] = 5;\n            io:println(x); // @output [5,2]\n        }\n        _ => {\n            io:println(\"other\");\n        }\n    }\n}\n\npublic function main() {\n    int[] a = [1, 2];\n    f(a);\n    io:println(a); // @output [5,2]\n}\n```\nExpected: compiles and prints `[5,2]` twice.\n\n2. **Unsound code is accepted.** The clause also lets a mutable value be bound to a readonly-typed variable. This compiles, and at runtime `r is readonly` prints `false`:\n```ballerina\nimport ballerina/io;\n\nconst int[] L = [1, 2];\n\nfunction f(int[]|string x) {\n    match x {\n        L => {\n            int[] & readonly r = x; // @error x is a mutable int[] here\n            io:println(r is readonly);\n        }\n        _ => {\n        }\n    }\n}\n\npublic function main() {\n    f([1, 2]);\n}\n```\n\nReasoning, from \u00a77.21.2 and the definition of `&ro`: in the clause, `x` is narrowed to `T &ro L`. For the mutable list uniform type, `TU &ro SU` is `TU` when `TU & SU` is non-empty. So `x` should have type `int[]`: not readonly, and with no singleton member types. Checked on main @ fd93c6a3f.\n",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1557,
+      "title": "[Bug]: type cast does not give its operand the cast type as expected type",
+      "body": "The same root cause also produces a spurious compile error. When the cast type is a union containing `int` and `decimal`, a floating-point literal operand is typed as float instead of decimal, and the cast is rejected as impossible:\n\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    int|decimal x = <int|decimal>2.5;\n    io:println(x); // @output 2.5\n    io:println(x is decimal); // @output true\n}\n```\n\nActual:\n```\nerror[SEMANTIC_ERROR]: impossible type conversion, intersection is empty\n --> c1.bal:4:21\n```\n`any y = <int|decimal>2.5;` fails the same way. `<decimal>2.5` and `<decimal|string>2.5` work.\n\nExpected: prints `2.5` then `true`.\n- \u00a76.20: the contextually expected type of the operand is the intersection with `int|decimal`.\n- \u00a76.5: for a floating-point-literal the candidates are float and decimal. float is eliminated because its intersection with `int|decimal` is empty. So the literal is decimal `2.5`, which already belongs to the cast type.\n\nChecked on main @ fd93c6a3f.\n",
+      "crash": false
+    }
+  ],
+  "notes": "Stopped after reaching 5 confirmed candidates (about 15 minutes in), well within the time limit. Spec: https://ballerina.io/spec/lang/master/ was fetched, but validators found it serves an older preview without group by/collect, so they cross-checked against https://ballerina.io/spec/lang/2024R1/. Many confirmed bugs were dropped as duplicates of open issues with essentially the same reproducers: #1223, #1394, #1046, #1110, #1047, #1149, #1225, #1044, #1050, #1103, #1453, #1091, #1259, #1132, #1249, #163 (match-guard call restriction), #1424, #1166, #1070, #1332, #1511, #1153. Dropped after validation: a non-Cloneable named arg (`f = function() {}`) in an error constructor. A validator called it a bug, but \u00a75 says functions are inherently immutable, so the value is readonly and therefore Cloneable. Not pursued (weak or likely intentional): `string:indexOf(\"\", startIndex > length)` returns the length instead of nil (jBallerina probably matches); unused function parameters, non-public module variables and constants are reported as `unused variable` errors (looks deliberate, but it is not listed under spec deviations in subset10.md); a possible minor follow-up for #1511 is that `toBalString` also ignores an object's `toString`. The workers/start/wait hunter was stopped before it reported anything."
+}
