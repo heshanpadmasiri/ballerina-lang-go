@@ -1,0 +1,231 @@
+{
+  "generated_at": "2026-11-05T23:45:37Z",
+  "upstream_main": "fd93c6a3fa564e776bf8d5ce3364cce24d63fb15",
+  "issues": [
+    {
+      "number": 1572,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1572",
+      "title": "[Bug]: readonly initializer reentry can mutate a constructed object",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nreadonly class Counter {\n    public int n;\n\n    function init(int n) {\n        self.n = n;\n    }\n\n    public function reset(int n) {\n        self.init(n);\n    }\n}\n\npublic function main() {\n    Counter counter = new (1);\n    counter.reset(2);\n    io:println(counter.n);\n}\n",
+      "output": "2\n(exit 0)",
+      "valid": true,
+      "reasoning": "Reproduces on main: prints 2. Clean-context spec check: self.init from a method is legal (\u00a76.8.1.5), but readonly-class objects are read-only (\u00a78.6) and the read-only bit is fixed once constructed (\u00a75.1), so the store through self.init must not succeed. The spec doesn't say whether that's a compile error or a runtime panic. Classed as backend because the runtime store into a read-only object does not panic. Proposed parent: #1043 (readonly class values are not treated as readonly at runtime). Related: #1196.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": 1043
+    },
+    {
+      "number": 1571,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1571",
+      "title": "[Bug]: nil value for an optional field is rejected in a mapping constructor",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype R record {|\n    int a?;\n    int b;\n|};\n\npublic function main() {\n    int? maybe = ();\n    R r1 = {a: maybe, b: 2};\n    io:println(r1); // @output {\"b\":2}\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected int, got nil|int\n  --> main.bal:10:16\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces: SEMANTIC_ERROR 'expected int, got nil|int'. \u00a76.7.2 lets the value of an optional non-nil field be nil, in which case the field is not added; expected {\"b\":2}. The type checker rejects a valid program. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1570,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1570",
+      "title": "[Bug]: module variable operand is read after a later call in the same expression changes it",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nint v = 1;\n\nfunction change() returns int {\n    v = 100;\n    return 9;\n}\n\npublic function main() {\n    map<int> m = {a: v, other: change()};\n    io:println(m); // @output {\"a\":1,\"other\":9}\n    v = 1;\n    int[] l = [v, change()];\n    io:println(l); // @output [1,9]\n    v = 1;\n    int s = v + change();\n    io:println(s); // @output 10\n}\n",
+      "output": "{\"a\":100,\"other\":9}\n[100,9]\n109",
+      "valid": true,
+      "reasoning": "Reproduces: {\"a\":100,...}, [100,9], 109. Clean-context spec check: the list case is clearly required (\u00a76.7.1 evaluates members in order), so [100,9] is wrong. For the mapping constructor and '+', the spec doesn't state the order explicitly, though the natural left-to-right reading supports the issue. Root cause is BIR generation: module-variable loads are emitted as operand refs and read after later calls in the same expression, so the generated BIR is wrong (frontend). Related: #1217 (compound assignment lvexpr order), not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1569,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1569",
+      "title": "[Bug]: unary - and ~ on a nil-lifted singleton keep the singleton type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype One 1|();\ntype NegOne -1|();\n\npublic function main() {\n    One a = 1;\n    NegOne r = -a; // @error incompatible types: expected 'NegOne', found 'int?'\n    io:println(r);\n}\n",
+      "output": "-1 (compiles, exit 0)",
+      "valid": true,
+      "reasoning": "Reproduces: compiles and prints -1. A nil-lifted unary '-' on a 1|() operand has type int? with no singleton typing (\u00a76.2.5/\u00a76.22.1), so assigning it to -1|() must be a compile error. Type checker bug. #1090 (closed) is different.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1565,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1565",
+      "title": "[Bug]: string template with non-string interpolations is not singleton-typed",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    \"ab\" s1 = string `a${\"b\"}`;\n    \"a1\" s2 = string `a${1}`;\n    string:Char c = string `${7}`;\n    io:println(s1, s2, c); // @output aba17\n}\n",
+      "output": "error[SEMANTIC_ERROR]: incompatible type: expected \"a1\", got string\n --> main.bal:5:15\nerror[SEMANTIC_ERROR]: incompatible type: expected string:Char, got string\n --> main.bal:6:21",
+      "valid": true,
+      "reasoning": "Reproduces: two SEMANTIC_ERRORs. \u00a76.6.1 plus \u00a76.2.4 singleton typing make string `a${1}` have type \"a1\" and `${7}` have type \"7\" (a string:Char), so the program is valid. Type checker bug. Related singleton-typing issues: #1262, #1457, #1046.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1564,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1564",
+      "title": "[Bug]: `readonly & T` has no filler value (list filling panics with \"no filler value\")",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    (readonly & int[])[] a = [];\n    a[1] = [7];\n    io:println(a); // @output [[],[7]]\n    any first = a[0];\n    io:println(first is readonly); // @output true\n}\n",
+      "output": "error: no filler value\n        at main(main.bal:5)",
+      "valid": true,
+      "reasoning": "Reproduces: runtime panic 'no filler value' at a[1] = [7]. The filler for readonly & T is the read-only filler of T (\u00a75.8.1/\u00a75.9.1 FillMember), so it should print [[],[7]] then true. The reproducer fails in the runtime (values/list.go), so classed as backend. The issue also notes the compile-time tuple variant ('[int, readonly & int[]] t = [1]' rejected in semantics/internal/common), which needs a matching frontend fix.",
+      "labels_to_add": [
+        "backend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1563,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1563",
+      "title": "[Bug]: cloneWithType/fromJsonWithType with a union of structural types picks a member that needs lossy conversion over an exact match",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype U record {| int a; |}|record {| float a; |};\ntype L int[]|float[];\n\npublic function main() returns error? {\n    anydata m = {a: 1.5};\n    U u = check m.cloneWithType(U);\n    io:println(u); // @output {\"a\":1.5}\n\n    anydata l = [1.5];\n    L ls = check l.cloneWithType(L);\n    io:println(ls); // @output [1.5]\n\n    json j = {a: 1.5};\n    U uj = check j.fromJsonWithType(U);\n    io:println(uj); // @output {\"a\":1.5}\n}\n",
+      "output": "{\"a\":2}\n[2]\n{\"a\":2}",
+      "valid": true,
+      "reasoning": "Reproduces: {\"a\":2}, [2], {\"a\":2} (1.5 silently rounded into the int member). Clean-context spec check against lang.value cloneWithType/fromJsonWithType: the core claim holds and lossy rounding is wrong. But under the doc's rule (the member must be determinable as for list/mapping constructors), both members fit, so the strict result is an error, not the {\"a\":1.5} annotated in the reproducer. The fix should settle this (the issue itself acknowledges the strict reading). Related: #657 (declaration-order ambiguity).",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1562,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1562",
+      "title": "[Bug]: 'self' is accepted in a class field initializer",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass C {\n    int foo = 1;\n    int bar = self.foo; // @error undefined symbol 'self'\n}\n\npublic function main() {\n    io:println(new C().bar);\n}\n",
+      "output": "1 (compiles, exit 0)",
+      "valid": true,
+      "reasoning": "Reproduces: compiles and prints 1. self is bound only within a method-defn-body (\u00a76.8.1.2); a field initializer is not one, so this must be a compile error ('undefined symbol self'). Front end accepts an invalid program.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1561,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1561",
+      "title": "[Bug]: 'service on' an error value crashes with a Go interface conversion",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass L {\n    string n;\n    function init(string n) { self.n = n; }\n    public function attach(service object {} svc, () attachPoint = ()) returns error? {\n        var _ = svc;\n        var _ = attachPoint;\n        io:println(\"attach \", self.n);\n    }\n    public function detach(service object {} svc) returns error? {\n        var _ = svc;\n    }\n    public function 'start() returns error? { io:println(\"start \", self.n); }\n    public function gracefulStop() returns error? {}\n    public function immediateStop() returns error? {}\n}\n\nfunction mk() returns L|error {\n    return error(\"bad listener\");\n}\n\nfinal L|error fe = mk();\n\nservice on fe { // @panic bad listener\n}\n\npublic function main() {\n    io:println(\"main\");\n}\n",
+      "output": "error: interface conversion: values.BalValue is *values.Error, not *values.Object\n        at init(main.bal:25)",
+      "valid": true,
+      "reasoning": "Reproduces: runtime crash 'interface conversion: values.BalValue is *values.Error, not *values.Object' at init. \u00a78.3.2: if a service-decl 'on' expression evaluates to an error, module initialization fails with that error. Compilation succeeds and the crash is during interpretation, so not frontend-crash. Listener registration and attach are generated in desugar (desugar/desugar.go buildServiceInitStmts) without an error check, so the generated code is wrong (frontend). Could be argued backend.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1560,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1560",
+      "title": "[Bug]: a listener registered more than once is started once per registration",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass L {\n    string n;\n    function init(string n) { self.n = n; }\n    public function attach(service object {} svc, () attachPoint = ()) returns error? {\n        var _ = svc;\n        var _ = attachPoint;\n        io:println(\"attach \", self.n);\n    }\n    public function detach(service object {} svc) returns error? {\n        var _ = svc;\n    }\n    public function 'start() returns error? { io:println(\"start \", self.n); }\n    public function gracefulStop() returns error? {}\n    public function immediateStop() returns error? {}\n}\n\nlistener L ll = new (\"ll\");\n\nfunction get() returns L {\n    return ll;\n}\n\nservice on get(), (ll) {\n}\n\npublic function main() {\n    io:println(\"main\");\n}\n",
+      "output": "attach ll\nattach ll\nmain\nstart ll\nstart ll\nstart ll",
+      "valid": true,
+      "reasoning": "Reproduces: 'start ll' printed 3 times. \u00a78.3.2: registering the same object multiple times is the same as registering it once. Registration into $moduleListeners is emitted by desugar (buildListenerRegistration) with no identity dedupe, so frontend. Same area as #1559/#1561 (all from the #1516 review), not duplicates.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1559,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1559",
+      "title": "[Bug]: listener in a non-listener variable used in 'service on' is never started",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass L {\n    string n;\n    function init(string n) { self.n = n; }\n    public function attach(service object {} svc, () attachPoint = ()) returns error? {\n        var _ = svc;\n        var _ = attachPoint;\n        io:println(\"attach \", self.n);\n    }\n    public function detach(service object {} svc) returns error? {\n        var _ = svc;\n    }\n    public function 'start() returns error? { io:println(\"start \", self.n); }\n    public function gracefulStop() returns error? {}\n    public function immediateStop() returns error? {}\n}\n\nfinal L fx = new (\"final-var\");\n\nservice on fx {\n}\n\npublic function main() {\n    io:println(\"main\"); // @output attach final-var\n                        // @output main\n                        // @output start final-var\n}\n",
+      "output": "attach final-var\nmain\n(`start final-var` never printed; process keeps running)",
+      "valid": true,
+      "reasoning": "Reproduces: 'attach final-var', 'main', then 'start final-var' is never printed. Every service-decl 'on' value is registered as a module listener (\u00a78.3.2) and started in the listening phase (\u00a78.3). Desugar only registers module 'listener' declarations, and service 'on' values that aren't such declarations never reach $moduleListeners, so frontend. Same area as #1560/#1561.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1557,
+    1556,
+    1555,
+    1554,
+    1553,
+    1552,
+    1551,
+    1550,
+    1549,
+    1548,
+    1547,
+    1546,
+    1545,
+    1543,
+    1542,
+    1541,
+    1540,
+    1539,
+    1538,
+    1532,
+    1531,
+    1485,
+    1304
+  ],
+  "notes": "Upstream main fd93c6a3 (go build ./cli/cmd). 11 new issues triaged; the 23 others are unchanged since the 2026-11-05 report (generated 2026-11-04T23:44:07Z) and are skipped. All 11 reproduce. Each validity verdict came from a clean-context subagent given only the reproducer. 1570's map/'+' parts rest on an implied left-to-right order, and 1563's exact expected output is disputed (the strict reading gives an error). No frontend-crash cases: 1561 crashes at runtime after compilation succeeds."
+}
