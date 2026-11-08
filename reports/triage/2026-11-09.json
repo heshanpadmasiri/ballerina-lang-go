@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-11-08T23:43:17Z",
+  "upstream_main": "ea2bcd4391f3397aa471894bd1af058e4ca2a4f1",
+  "issues": [
+    {
+      "number": 1577,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1577",
+      "title": "[Bug]: method reference 'self.f' as a function value fails with undefined member",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass A {\n    function f() returns int {\n        return 1;\n    }\n\n    function g() returns function () returns int {\n        return self.f;\n    }\n}\n\npublic function main() {\n    A a = new;\n    function () returns int fn = a.g();\n    io:println(fn()); // @output 1\n}\n",
+      "output": "error[SEMANTIC_ERROR]: undefined member 'f'\n --> i1577.bal:9:21\n  |\n9 |         return self.f;\n  |                     ^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces on main: the type checker rejects `self.f` (symbol_resolver.go 'undefined member'), so no BIR is produced -> frontend. It is a diagnostic, not a Go panic, so no frontend-crash. A clean-context spec check found the program VALID: \u00a76.10 says a field access naming an object method gives a new function value bound to the object, and the expected output is `1`. Related but not a duplicate: #1215 (open, frontend). There `a.get` from outside the class compiles but crashes at runtime with an interface-conversion error; I verified it still does on main. Both need method-value support for field access, so a fix should cover both. Consider linking them.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1575,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1575",
+      "title": "[Bug]: a variable read in an expression sees changes made by a later sub-expression",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nint v = 1;\n\nfunction bump() returns int {\n    v = 99;\n    return 2;\n}\n\nfunction pair(int a, int b) returns int[] {\n    return [a, b];\n}\n\npublic function main() {\n    map<int> m = {x: v, y: bump()};\n    io:println(m);\n\n    v = 1;\n    int[] l = [v, bump()];\n    io:println(l);\n\n    v = 1;\n    io:println(pair(v, bump()));\n\n    v = 1;\n    io:println(v + bump());\n\n    int local = 1;\n    var change = function() returns int {\n        local = 99;\n        return 2;\n    };\n    int[] c = [local, change()];\n    io:println(c);\n}\n",
+      "output": "{\"x\":99,\"y\":2}\n[99,2]\n[99,2]\n101\n[99,2]",
+      "valid": true,
+      "reasoning": "Reproduces on main. The BIR is wrong: for `[v, bump()]`, --dump-bir shows `%1 = bump()` and then `newArray [...]{v, %1}`, so the module variable `v` is read after the call. BIR generation does not snapshot the variable into a temporary, so this is frontend (invalid BIR), not runtime. A clean-context spec check found the list constructor (\u00a76.7.1), the function arguments (\u00a76.15) and the closure-captured local all definitely violate the spec; each must print [1,2]. For the mapping constructor and binary `+`, the spec text does not strictly state an evaluation order, though left-to-right is the clear intent. One root cause covers every case. No duplicate found. Related but distinct evaluation-order issues: #1217 (compound member assignment), #511 (check desugaring reorders operands) and #1166 (named args evaluated in parameter order).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1573,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1573",
+      "title": "[Bug]: named argument rejected for the implicit rest field of an inclusive included-record parameter",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\ntype Extra record {\n    never name?;\n    never extra?;\n};\n\nfunction describe(string name, *Extra extra) returns string {\n    return name + \" \" + extra.toString();\n}\n\npublic function main() {\n    io:println(describe(\"a\", count = 3)); // @output a {\"count\":3}\n    io:println(describe(\"b\")); // @output b {}\n}\n",
+      "output": "error[SEMANTIC_ERROR]: no included record parameter accepts named argument 'count'\n  --> i1573.bal:13:30\n   |\n13 |     io:println(describe(\"a\", count = 3)); // @output a {\"count\":3}\n   |                              ^^^^^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces on main: SEMANTIC_ERROR 'no included record parameter accepts named argument' on a valid program, so frontend. It is a diagnostic, not a crash. A clean-context spec check found the program VALID: \u00a75.4.2.2 says `record { F }` is equivalent to `record {| F; anydata...; |}`, and the \u00a76.15 conditions all hold (a never-optional field for each parameter name, no other fields, only one included-record-param). Expected output is `a {\"count\":3}` then `b {}`. Not a duplicate. Related: #488 (closed, explicit-rest case, now works) and #1452 (open, a different path where an inclusive record included in an exclusive record loses its implicit rest). Both likely share a helper that ignores the implicit rest of inclusive records.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1563,
+    1554,
+    1543,
+    1542,
+    1532,
+    1531,
+    1485,
+    1304
+  ],
+  "notes": "Processed only #1573, #1575 and #1577, which are new since the 2026-11-06 report. The other open triage issues are in earlier reports and have had no updates since. All three reproduce on main ea2bcd439 and are frontend bugs; none is a front-end crash. Related issues (not duplicates): #1577 and #1215; #1573 and #1452; #1575 and #1217/#511/#1166."
+}
