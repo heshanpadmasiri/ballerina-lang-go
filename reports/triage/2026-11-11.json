@@ -1,0 +1,249 @@
+{
+  "generated_at": "2026-11-10T23:45:30Z",
+  "upstream_main": "a0d9acbe902af2c526594e49ec6a8b9140574ecc",
+  "issues": [
+    {
+      "number": 1587,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1587",
+      "title": "[Bug]: XML template with a mismatched end tag is accepted",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml x = xml `<a></b>`;\n    io:println(x);\n}\n",
+      "output": "<a/>",
+      "valid": true,
+      "reasoning": "Spec 6.6.2 parses the template with the XML `content` production; XML WFC Element Type Match is violated, so this must be a compile-time error. Nutcracker's front end accepts it and silently drops the bad end tag. Clean-context spec check agreed (high confidence). No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1588,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1588",
+      "title": "[Bug]: duplicate attribute in an XML template is accepted and the last value wins",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml x = xml `<a b=\"1\" b=\"2\"/>`;\n    io:println(x);\n}\n",
+      "output": "<a b=\"2\"/>",
+      "valid": true,
+      "reasoning": "XML WFC Unique Att Spec (and Namespaces in XML \u00a76.3) is violated, so the template must be rejected at compile time (spec 6.6.2). The front end accepts it and the last value wins. Per the issue, the interpolated variant panics at runtime instead, which is a consequence of the same missing front-end check. Clean-context spec check agreed (high). No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1589,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1589",
+      "title": "[Bug]: predefined `xml` prefix rejected in XML templates (`xml:lang`)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nimport ballerina/lang.'xml as xmllib;\n\npublic function main() {\n    xmllib:Element e = xml `<a xml:lang=\"en\"/>`;\n    io:println(e.getAttributes());\n    io:println(e);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: undefined XML namespace prefix 'xml'\n --> 1589.bal:5:32\n  |\n5 |     xmllib:Element e = xml `<a xml:lang=\"en\"/>`;\n  |                                ^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "The `xml` prefix is bound by definition (Namespaces in XML \u00a73), and the Ballerina spec excludes it from the synthesized namespace attributes. The front end rejects it with a SEMANTIC_ERROR. Clean-context spec check agreed (medium-high). Related to #1226 (xmlns=\"\" in templates) but that is a different problem, so this is not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1590,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1590",
+      "title": "[Bug]: XML attribute values are not whitespace-normalized (tab/newline kept)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nimport ballerina/lang.'xml as xmllib;\n\npublic function main() {\n    xmllib:Element e = xml `<a c=\"p\tq\"/>`;\n    io:println(e.getAttributes());\n}\n",
+      "output": "{\"c\":\"p\\tq\"}",
+      "valid": true,
+      "reasoning": "Spec 6.6.2 uses the attribute's Infoset [normalized value], and XML \u00a73.3.3 normalizes a literal TAB to a space. The template is parsed statically, so the literal value comes from the front end and this is categorised as frontend. Note: per the issue, xml:fromString has the same defect, which would be a langlib follow-up. Clean-context spec check agreed (medium-high). Related to #1091, which covers a different rule.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1591,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1591",
+      "title": "[Bug]: `new C(args)` with an isolated init is not an isolated expression (rejected as isolated variable initializer)",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass Box {\n    int n;\n\n    isolated function init(int n) {\n        self.n = n;\n    }\n}\n\nisolated Box box = new Box(3);\n\npublic function main() {\n    lock {\n        box.n += 1;\n        io:println(box.n);\n    }\n}\n",
+      "output": "error[SEMANTIC_ERROR]: initializer of an isolated variable must be an isolated expression\n  --> 1591.bal:11:20\n   |\n11 | isolated Box box = new Box(3);\n   |                    ^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Spec 6.8.2 says explicit-new-expr is isolated when init is isolated and all arguments are isolated, so this is a valid initializer for an isolated module variable (\u00a78.7). The front end rejects the valid program. Clean-context spec check agreed (high). Related to #1076, #1429 and #1501 (other expression kinds not recognised as isolated), but none of them duplicates this.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1592,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1592",
+      "title": "[Bug]: init method can be called on a receiver other than self",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass A {\n    int x = 1;\n    function init() {\n        io:println(\"init\");\n    }\n}\n\npublic function main() {\n    A a = new;\n    a.init();\n}\n",
+      "output": "init\ninit",
+      "valid": true,
+      "reasoning": "Spec 6.8.1.5: init can be called in a method-call-expr only when the receiver is `self`. The type checker accepts `a.init()` and re-runs init. Clean-context spec check agreed (high). Related to #1572 (self.init reentry), but that is a different case.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1593,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1593",
+      "title": "[Bug]: operators reject a variable narrowed by removing a mutable structured type",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfunction f(int[]|int x) returns int {\n    if x is int[] {\n        return 0;\n    }\n    return x + 1;\n}\n\nfunction g(int[]|string x) returns boolean {\n    return x !is int[] && x > \"a\";\n}\n\npublic function main() {\n    io:println(f(4));\n    io:println(g(\"b\"));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: union types not supported for +\n --> 1593.bal:7:12\n  |\n7 |     return x + 1;\n  |            ^^^^^\n\nerror[SEMANTIC_ERROR]: values are not comparable\n  --> 1593.bal:11:27\n   |\n11 |     return x !is int[] && x > \"a\";\n   |                           ^^^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Under \u00a77.12 narrowing, (int[]|int) minus int[] gives int and (int[]|string) minus int[] gives string, so the + and > operators are valid. The type checker rejects the valid program. Clean-context spec check agreed (high). No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1594,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1594",
+      "title": "[Bug]: removing an already-returned list member during foreach skips members and panics",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int[] b = [1, 2, 3];\n    foreach int x in b {\n        io:println(x);\n        if x == 1 {\n            _ = b.remove(0);\n        }\n    }\n    io:println(b);\n}\n",
+      "output": "1\n3\nerror: invalid array index: 2\n        at main(1594.bal:5)",
+      "valid": true,
+      "reasoning": "\u00a75.7.1 allows removing a member the iterator has already returned, so next() must not panic and should continue with 2 and 3. The program compiles, but the interpreter skips 2 and panics with an index error. Clean-context spec check agreed (no panic: high; exact 1,2,3 sequence: medium-high). Related to #1218 (the opposite direction), not a duplicate. The issue also notes corpus test to-stream-shrink-p.bal may encode the wrong expectation.",
+      "labels_to_add": [
+        "runtime"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1595,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1595",
+      "title": "[Bug]: untyped listener declaration rejected when initializer type includes error",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass L {\n    string n;\n\n    function init(string n) {\n        self.n = n;\n    }\n\n    public function attach(service object {} svc, () attachPoint = ()) returns error? {\n        var _ = svc;\n        var _ = attachPoint;\n    }\n\n    public function detach(service object {} svc) returns error? {\n        var _ = svc;\n    }\n\n    public function 'start() returns error? {\n    }\n\n    public function gracefulStop() returns error? {\n    }\n\n    public function immediateStop() returns error? {\n    }\n}\n\nfunction mk(string n) returns L|error {\n    return new L(n);\n}\n\npublic listener a = mk(\"a\");\n\npublic function main() {\n    L x = a;\n    io:println(x.n);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: listener initializer is not a listener\n  --> 1595.bal:33:1\n   |\n33 | public listener a = mk(\"a\");\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "\u00a78.3.1 allows a listener-decl expression of static type L|E, and without a type-descriptor the variable has type L. The front end rejects the valid program with 'listener initializer is not a listener'. Clean-context spec check agreed (high). No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1616,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1616",
+      "title": "[Bug]: computed key in a constant mapping constructor gives UNIMPLEMENTED_ERROR",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nconst M = {[\"a\"]: 1};\n\npublic function main() {\n    io:println(M);\n}\n",
+      "output": "fatal[UNIMPLEMENTED_ERROR]: constant computed mapping key not implemented\n --> 1616.bal:3:13\n  |\n3 | const M = {[\"a\"]: 1};\n  |             ^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "A mapping constructor is a structural-constructor-expr allowed in a const-expr, and the computed key \"a\" is itself a const-expr, so the program is valid and should print {\"a\":1}. The front end emits fatal[UNIMPLEMENTED_ERROR], which is a diagnostic and not a crash, so frontend-crash does not apply. Clean-context spec check agreed (medium-high). Open PR #1193 (computed mapping keys) lists this as a non-goal. Related to #987, not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1603,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1603",
+      "title": "[Bug]: http setTextPayload on a received response keeps the backend Content-Length",
+      "reproducible": true,
+      "reproducer": "// backend: python HTTP server on 127.0.0.1:19701 answering GET /big with 20000 bytes, Content-Length: 20000\n// service (svc.bal):\nimport ballerina/http;\n\nfinal http:Client backend = check new (\"http://127.0.0.1:19701\", {httpVersion: http:HTTP_1_1});\n\nservice / on new http:Listener(19702) {\n    resource function get textNoRead() returns http:Response|error {\n        http:Response res = check backend->get(\"/big\");\n        res.setTextPayload(\"hello\");\n        return res;\n    }\n\n    resource function get textAfterRead() returns http:Response|error {\n        http:Response res = check backend->get(\"/big\");\n        _ = check res.getTextPayload();\n        res.setTextPayload(\"hello\");\n        return res;\n    }\n}\n\n// client (client.bal):\nimport ballerina/http;\nimport ballerina/io;\n\npublic function main() returns error? {\n    http:Client c = check new (\"http://127.0.0.1:19702\", {httpVersion: http:HTTP_1_1, timeout: 10});\n    foreach string p in [\"/textNoRead\", \"/textAfterRead\"] {\n        http:Response r = check c->get(p);\n        string|error body = r.getTextPayload();\n        io:println(p, \" cl=\", check r.getHeader(\"content-length\"), \" body=[\", body is string ? body : \"ERR:\" + body.message(), \"]\");\n    }\n}\n",
+      "output": "/textNoRead cl=20000 body=[ERR:unexpected EOF]\n/textAfterRead cl=20000 body=[ERR:unexpected EOF]",
+      "valid": true,
+      "reasoning": "ballerina/http standard library bug: setTextPayload replaces the entity, but the stale backend Content-Length is still forwarded, so clients see a truncated body (RFC 9110 \u00a78.6). Reproduced on current main with a local backend. No duplicate found.",
+      "labels_to_add": [
+        "triage-lib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1617,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1617",
+      "title": "[Bug]: TOML parser hangs on a crafted Ballerina.toml",
+      "reproducible": true,
+      "reproducer": "# Ballerina.toml\ne\"k\"'k'.1\"k\"1\"k\"n\"k\"\n[package]\norg = \"t\"\nname = \"p\"\nversion = \"0.1.0\"\n\n// main.bal\npublic function main() {}\n\n// run: bal run .",
+      "output": "(no output; killed by `timeout 30`, exit=124: hang)",
+      "valid": true,
+      "reasoning": "The TOML parser loops forever on malformed Ballerina.toml instead of reporting a syntax error, so the project can never be compiled to BIR. This is categorised as frontend (project loading/parsing). It hangs rather than crashing, so frontend-crash is not added. The issue identifies a probable cause: the unbounded lookahead in looksLikeTableHeader/lookAheadForCloseBracket against peekK's 20-token cap. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1604,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1604",
+      "reasoning": "Valid and confirmed on main: doc/guides/DEVELOPING.md line 149 says golangci-lint v2.13, while .github/workflows/golangci-lint.yml:21 and DEVELOPING.md line 168 use v2.15.0. It is a documentation fix that fits none of langlib/triage-lib/frontend/runtime. Suggest removing `triage` and applying a docs label if one exists."
+    },
+    {
+      "number": 1605,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1605",
+      "reasoning": "Valid and confirmed on main: there are 126 files under corpus/bir/library, corpus/desugared/library and corpus/integration/08-comparable. No Go code references these paths, corpus/bal has no `library` dir, and the live goldens are in corpus/integration/subset8/08-comparable. This is test-infrastructure cleanup that fits none of the four categories. Suggest removing `triage` and treating it as an improvement/cleanup."
+    }
+  ],
+  "skipped": [
+    1586,
+    1577,
+    1575,
+    1573,
+    1563,
+    1554,
+    1543,
+    1542,
+    1532,
+    1531,
+    1485,
+    1304
+  ],
+  "notes": "All 14 new triage issues reproduce on upstream main. 12 open triage issues were skipped because earlier reports cover them and they have not been updated since. Validity of the 10 language issues was checked by a clean-context subagent that saw only the reproducers and reasoned from the spec. All 10 were judged valid. No duplicates or parent issues were found. No issue qualifies for frontend-crash: #1617 is a hang, and #1616 is an UNIMPLEMENTED_ERROR diagnostic."
+}
