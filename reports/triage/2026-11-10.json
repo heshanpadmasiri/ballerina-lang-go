@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-11-10T00:19:30Z",
+  "upstream_main": "ea2bcd4391f3397aa471894bd1af058e4ca2a4f1",
+  "issues": [
+    {
+      "number": 1586,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1586",
+      "title": "[Bug]: HTTP/2 client upload hangs past timeout when the server stops reading",
+      "reproducible": true,
+      "reproducer": "import ballerina/http;\nimport ballerina/io;\n\npublic function main() returns error? {\n    http:Client c = check new (\"http://127.0.0.1:19681\", {httpVersion: http:HTTP_2_0, timeout: 2});\n    byte[] b = [];\n    b[8388607] = 1;\n    http:Response|error r = c->post(\"/stall\", b);\n    io:println(r is error ? \"error: \" + r.message() : \"status \" + r.statusCode.toString());\n}\n\n// Backend (Go, h2c on 127.0.0.1:19681):\n/*\npackage main\nimport \"net/http\"\nfunc stall(w http.ResponseWriter, r *http.Request) {\n\trc := http.NewResponseController(w)\n\t_ = rc.EnableFullDuplex()\n\tw.Header().Set(\"Content-Length\", \"2\")\n\tw.WriteHeader(200)\n\tw.Write([]byte(\"ok\"))\n\trc.Flush()\n\t<-r.Context().Done()\n}\nfunc main() {\n\tmux := http.NewServeMux(); mux.HandleFunc(\"/stall\", stall)\n\tp := new(http.Protocols); p.SetHTTP1(true); p.SetUnencryptedHTTP2(true)\n\ts := &http.Server{Addr: \"127.0.0.1:19681\", Handler: mux, Protocols: p}\n\tpanic(s.ListenAndServe())\n}\n*/\n",
+      "output": "HTTP/2 (httpVersion: HTTP_2_0, timeout: 2): no output; still blocked after 45 s, and SIGTERM did not stop it, so it had to be SIGKILLed (exit 137). When it was later killed in an earlier run, the runtime also panicked: 'panic: invalid lifecycle transition from stopped -> gracefulStopping' (runtime/lifecycle.go:129, from setupSignalListeners). The same program with HTTP_1_1 prints 'status 200' in about 1 s.",
+      "valid": true,
+      "reasoning": "Reproduces on main ea2bcd439. ClientConfiguration.timeout is documented in the http module README ('Request timeout | Supported') as bounding the request, and the HTTP/1.1 path honours it, so the HTTP/2 hang is a real bug in the ballerina/http std library's Go implementation (the HTTP/2 body writer blocks in flow control and ignores context cancellation). It is not a front end or core interpreter problem: compilation succeeds and the fault is in the library's native code, so the label is triage-lib. A side observation, worth a separate issue: when SIGTERM arrives while the program is blocked, graceful shutdown does not finish, and an extra signal after stop panics with an invalid lifecycle transition (stopped -> gracefulStopping). Searches turned up no duplicate or parent issue; it was found while reviewing PR #1411.",
+      "labels_to_add": [
+        "triage-lib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1577,
+    1575,
+    1573,
+    1563,
+    1554,
+    1543,
+    1542,
+    1532,
+    1531,
+    1485,
+    1304
+  ],
+  "notes": "Only #1586 was new or updated since the previous report (2026-11-09, generated 2026-11-08T23:43:17Z). The other open triage issues were skipped as unchanged. Possible follow-up from #1586: the runtime panics with 'invalid lifecycle transition from stopped -> gracefulStopping' when a signal arrives after stop."
+}
