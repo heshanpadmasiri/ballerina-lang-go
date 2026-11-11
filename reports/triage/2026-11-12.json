@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-11-11T23:43:29Z",
+  "upstream_main": "008256345f394cc66d5cab6f0409101709094b27",
+  "issues": [
+    {
+      "number": 1618,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1618",
+      "title": "[Bug]: compiler crashes (index out of range [-1]) on a function type with an unnamed parameter before a defaultable parameter",
+      "reproducible": true,
+      "reproducer": "// 1618a\nimport ballerina/io;\n\ntype F function (int, int b = 3) returns int;\n\nfunction add(int x, int y) returns int => x + y;\n\npublic function main() {\n    F f = add;\n    io:println(f(1, 1));\n    io:println(f(1));\n}\n\n\n// 1618b\nimport ballerina/io;\n\nfunction add(int x, int y) returns int => x + y;\n\npublic function main() {\n    function (int, int b = 3) returns int f = add;\n    io:println(f(1, 1));\n    io:println(f(1));\n}\n",
+      "output": "// 1618a\npanic: runtime error: index out of range [-1]\n\ngoroutine 1 [running]:\ngithub.com/ballerina-nutcracker/ballerina/projects.(*PackageCompilation).compileModulesInternal(0x3a45844330e0)\n\t/home/user/ballerina/projects/package_compilation.go:174 +0xfab\nsync.(*Once).doSlow(0x0?, 0x0?)\n\t/root/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/sync/once.go:78 +0xab\nsync.(*Once).Do(...)\n\t/root/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/sync/once.go:69\ngithub.com/ballerina-nutcracker/ballerina/projects.(*PackageCompilation).compile(...)\n\t/home/user/ballerina/projects/package_compilation.go:63\ngithub.com/ballerina-nutcracker/ballerina/projects.newPackageCompilation(0x3a4584616008, {0x0, 0x0, 0x0, 0x2, 0x2, 0x2, 0x0, 0x2, 0x0, ...})\n\n// 1618b\nfatal[INTERNAL_ERROR]: panic during desugaring: runtime error: index out of range [-1]\n --> 1618b.bal:5:1\n  |\n5 | public function main() {\n  | ^^^^^^^^^^^^^^^^^^^^^^^^\n6 |     function (int, int b = 3) returns int f = add;\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n7 |     io:println(f(1, 1));\n  |     ^^^^^^^^^^^^^^^^^^^^\n8 |     io:println(f(1));\n  |     ^^^^^^^^^^^^^^^^^\n9 | }",
+      "valid": true,
+      "reasoning": "Reproduces on main. Module-level type F: the process dies with an uncaught Go panic `panic: runtime error: index out of range [-1]` (projects/package_compilation.go:174 re-panics the desugar panic), with a goroutine trace and no diagnostic. The local-variable variant gives `fatal[INTERNAL_ERROR]: panic during desugaring`. The clean-context spec check says the program is valid (§5.6.2 allows omitting param names in a function-type-descriptor; §6.15 takes the default from the declared type) and should print 2 then 4. The crash happens in the front end (desugaring) before BIR, so frontend + frontend-crash. Related but not duplicates: #1227, #1232.",
+      "labels_to_add": [
+        "frontend",
+        "frontend-crash"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1619,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1619",
+      "title": "[Bug]: lexer treats non-ASCII characters as hex digits (INTERNAL_ERROR on `0x1Ł`, invalid `\\u{Ł}` escape accepted)",
+      "reproducible": true,
+      "reproducer": "// 1619a\nimport ballerina/io;\n\npublic function main() {\n    int i = 0x1Ł;\n    io:println(i);\n}\n\n\n// 1619b\nimport ballerina/io;\n\npublic function main() {\n    io:println(\"\\u{Ł}\");\n}\n\n\n// 1619c\nimport ballerina/io;\n\npublic function main() {\n    int \\u{Ł} = 1;\n    io:println(\\u{Ł});\n}\n",
+      "output": "// 1619a\nfatal[INTERNAL_ERROR]: failed to parse numeric literal\n --> 1619a.bal:4:13\n  |\n4 |     int i = 0x1Ł;\n  |             ^^^^^\n\nballerina: compilation contains errors\n\n// 1619b\n\\u{Ł}\n\n// 1619c\n1",
+      "valid": true,
+      "reasoning": "Reproduces on main: `0x1Ł` gives `fatal[INTERNAL_ERROR]: failed to parse numeric literal` (a diagnostic, not a Go panic, so no frontend-crash). `\"\\u{Ł}\"` compiles and prints `\\u{Ł}`, and `int \\u{Ł}` compiles and prints 1. The clean-context spec check says all three must be compile errors (HexDigit is ASCII only; NumericEscape needs HexDigit+). Cause confirmed in the code: `isHexDigit(byte(reader.Peek()))` in parser/lexer.go (also xml_lexer.go and documentation_lexer.go). Lexer bug → frontend. Related: #1054 (same INTERNAL_ERROR text, different cause), #1348 (closed).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1620,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1620",
+      "title": "[Bug]: methods named `map`, `join` or `start` are rejected with a syntax error",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nclass Box {\n    int v = 2;\n\n    function map(int k) returns int {\n        return self.v * k;\n    }\n\n    function join(string sep) returns string {\n        return \"a\" + sep + \"b\";\n    }\n\n    function start() returns string {\n        return \"go\";\n    }\n}\n\npublic function main() {\n    Box b = new;\n    io:println(b.map(3));\n    io:println(b.join(\"-\"));\n    io:println(b.start());\n}\n",
+      "output": "error[SYNTAX_ERROR]: missing function name\n --> 1620.bal:6:14\n  |\n6 |     function map(int k) returns int {\n  |              \n\nerror[SYNTAX_ERROR]: invalid token\n --> 1620.bal:6:17\n  |\n6 |     function map(int k) returns int {\n  |                 ^\n",
+      "valid": true,
+      "reasoning": "Reproduces on main: `SYNTAX_ERROR: missing function name` / `invalid token` at each method definition. The clean-context spec check says the program is valid (§5.6.3.3 special-method-name := map | join | start) and prints 6, a-b, go. Parser rejects a valid program → frontend. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1621,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1621",
+      "title": "[Bug]: `toString()`/`toBalString()` method call on an object-typed receiver gives \"method not found\"",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\nimport ballerina/lang.value;\n\nclass Plain {\n    int x = 1;\n}\n\npublic function main() {\n    Plain q = new;\n    io:println(q.toString() == value:toString(q));\n    io:println(q.toBalString() == value:toBalString(q));\n}\n",
+      "output": "error[SEMANTIC_ERROR]: method not found: toString\n  --> 1621.bal:10:16\n   |\n10 |     io:println(q.toString() == value:toString(q));\n   |                ^^^^^^^^^^^^\n\nerror[SEMANTIC_ERROR]: method not found: toBalString\n  --> 1621.bal:11:16\n   |\n11 |     io:println(q.toBalString() == value:toBalString(q));\n   |                ^^^^^^^^^^^^^^^\n",
+      "valid": true,
+      "reasoning": "Reproduces on main: `SEMANTIC_ERROR: method not found: toString` / `toBalString`. The clean-context spec check says the program is valid (§6.16 falls back to lang.value when the object type has no member of that name and lang.object has no such function) and prints true twice. The failure is in method-call resolution in the type checker, not in the lang.value implementation → frontend rather than langlib. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1622,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1622",
+      "title": "[Bug]: default expressions in function type descriptors are not type-checked or isolation-checked",
+      "reproducible": true,
+      "reproducer": "// 1622a\nimport ballerina/io;\n\ntype F function (int a = \"s\") returns int;\n\nfunction k(int a = 0) returns int => a;\n\npublic function main() {\n    F f = k;\n    int r = f();\n    io:println(r);\n}\n\n\n// 1622b\nimport ballerina/io;\n\nint gv = 5;\n\ntype IF isolated function (int a = gv) returns int;\n\nisolated function k(int a = 0) returns int => a;\n\npublic function main() {\n    IF f = k;\n    io:println(f());\n    gv = 6;\n}\n",
+      "output": "// 1622a\ns\n\n// 1622b\n5",
+      "valid": true,
+      "reasoning": "Reproduces on main: `function (int a = \"s\")` compiles and prints `s` (a string bound to an int parameter); `isolated function (int a = gv)` with a mutable module var compiles and prints 5. The clean-context spec check says both must be compile errors: the default must belong to the parameter type, and §5.6.2 requires an isolated function type's defaults to meet isolated-function rules (§7.3.5). Missing semantic checks → frontend. Sibling of #1119 (the same gap for method declarations in object types) and related to #1117, #1227; not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1627,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1627",
+      "title": "[Bug]: isolated function and method calls with isolated arguments are not isolated expressions",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nisolated function pair(int n) returns int[] => [n, n + 1];\n\nisolated class Factory {\n    isolated function make(int n) returns int[] => [n];\n}\n\nfinal Factory factory = new;\n\nisolated int[] fromCall = pair(1);\nisolated int[] fromMethod = factory.make(2);\n\npublic function main() {\n    lock {\n        io:println(fromCall);\n    }\n    lock {\n        io:println(fromMethod);\n    }\n}\n",
+      "output": "error[SEMANTIC_ERROR]: initializer of an isolated variable must be an isolated expression\n  --> 1627.bal:11:27\n   |\n11 | isolated int[] fromCall = pair(1);\n   |                           ^^^^^^^\n\nerror[SEMANTIC_ERROR]: initializer of an isolated variable must be an isolated expression\n  --> 1627.bal:12:29\n   |\n12 | isolated int[] fromMethod = factory.make(2);\n   |                             ^^^^^^^^^^^^^^^\n",
+      "valid": true,
+      "reasoning": "Reproduces on main: `initializer of an isolated variable must be an isolated expression` for `pair(1)` and `factory.make(2)`. The clean-context spec check says the program is valid (§6.15 and §6.16 isolated function/method-call rules) and prints [1,2] then [2]. Semantic analysis rejects a valid program → frontend. Siblings, not duplicates: #1591 (`new C(args)`), #1429 (langlib call), #1501 (conditional expr).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1628,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1628",
+      "title": "[Bug]: template expressions with isolated interpolations are not isolated expressions",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfinal int n = 1;\n\nisolated xml element = xml `<a>${n}</a>`;\n\npublic function main() {\n    lock {\n        io:println(element);\n    }\n}\n",
+      "output": "error[SEMANTIC_ERROR]: initializer of an isolated variable must be an isolated expression\n --> 1628.bal:5:24\n  |\n5 | isolated xml element = xml `<a>${n}</a>`;\n  |                        ^^^^^^^^^^^^^^^^^\n\nballerina: compilation contains errors",
+      "valid": true,
+      "reasoning": "Reproduces on main: `initializer of an isolated variable must be an isolated expression` for xml `<a>${n}</a>` with `final int n`. The clean-context spec check says the program is valid (§6.2.6 template-expr is isolated if all its subexpressions are isolated) and prints <a>1</a>. Semantic analysis rejects a valid program → frontend. Sibling of #1501, #1591, #1627; not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1629,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1629",
+      "title": "[Bug]: isolated class field initializer can alias a mutable module-level value",
+      "reproducible": true,
+      "reproducer": "import ballerina/io;\n\nfinal int[] g = [1];\n\nisolated class H {\n    private int[] arr = g;\n\n    isolated function first() returns int {\n        lock {\n            return self.arr[0];\n        }\n    }\n}\n\npublic function main() {\n    H h = new;\n    g[0] = 99;\n    io:println(h.first());\n}\n",
+      "output": "99",
+      "valid": true,
+      "reasoning": "Reproduces on main: it compiles and prints 99, so the isolated object's private state is mutated outside a lock. The clean-context spec check says it must be a compile error: §8.6 applies the explicitly-isolated object-constructor rules, and §6.8.1 says every field-initializer must be an isolated expression; `g: int[]` is not one. Missing semantic check → frontend. Sibling of #940 (the same rule for field assignments in init), not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1563,
+    1554,
+    1543,
+    1542,
+    1532,
+    1531,
+    1485,
+    1304
+  ],
+  "notes": "Skipped issues were in earlier reports and have not been updated since. All 8 new issues reproduce on main and are valid by the spec; every one is a frontend issue, and #1618 also crashes the front end with a Go panic. Validity was decided by a clean-context subagent that saw only the reproducers. No duplicates found."
+}
