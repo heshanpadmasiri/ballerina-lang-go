@@ -1,0 +1,217 @@
+{
+  "generated_at": "2026-11-12T23:44:57Z",
+  "upstream_main": "d69c341a58ce66f78559965ddfe27877a34f31d0",
+  "issues": [
+    {
+      "number": 1646,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1646",
+      "title": "[Bug]: record type inclusion of a type alias reports \"included type is not a record type\"",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\ntype Plain record { int value; };\n\ntype Alias Plain;\n\ntype WithAlias record {| *Alias; boolean flag; |};\n\npublic function main() {\n    WithAlias w = {value: 5, flag: true};\n    io:println(w.value, \" \", w.flag);\n}\n",
+      "output": "error[SEMANTIC_ERROR]: included type is not a record type\n --> i1646.bal:7:27\n  |\n7 | type WithAlias record {| *Alias; boolean flag; |};\n  |                           ^^^^^\n\nballerina: compilation contains errors",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Record inclusion through a type alias of a record rather than the record name itself.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces on main: valid program rejected with SEMANTIC_ERROR 'included type is not a record type' (no BIR). Spec 5.4.2: inclusion 'includes fields from a named record type'; Alias names the type described by Plain's record-type-descriptor, so it should compile and print '5 true'. Clean-context check: ambiguous under a strictly literal reading but leans valid. No duplicate found (related: #1289, #1295).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1643,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1643",
+      "title": "[Bug]: object field is in scope without self in a method body",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "class Counter {\n    int n = 0;\n    function get() returns int {\n        return n; // @error undefined symbol 'n'\n    }\n}\n\npublic function main() {\n    Counter c = new;\n    int v = c.get();\n    if v != 0 {\n        panic error(\"unexpected\");\n    }\n}\n",
+      "output": "error: unexpected\n        at main(i1643.bal:12)",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": false,
+      "edge_case_reason": "Ordinary class method referencing a field name (common mistake that must be diagnosed).",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces: compiles and main panics 'unexpected'. BIR for get() emits '%0 = n; return;' (bare n, return value never set) \u2014 missing diagnostic, so frontend. Spec 6.8.1: fields are not implicitly in scope in a method body; expected 'undefined symbol n' at line 4. Clean-context check confirms. Related but different: #1296, #1562.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1637,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1637",
+      "title": "[Bug]: module init can call a function that reads a module variable before it is assigned",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\nint value;\n\nfunction init() {\n    show();\n    value = 5;\n}\n\nfunction show() {\n    io:println(value);\n}\n\npublic function main() {\n    io:println(value);\n}\n",
+      "output": "0\n5",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Definite assignment of a no-init module variable across a call from the module init function.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces: compiles, prints 0 then 5. Spec 8.7: module-no-init-var must be definitely assigned at each reference; show() reads value before init assigns it. Spec does not pin the error location across calls (clean-context check: medium-high confidence the program must be rejected). Missing diagnostic \u2192 frontend. Related: #972 (same rule, direct reads in init; open, could serve as parent), #1636.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1636,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1636",
+      "title": "[Bug]: module variable initializer can read a module variable before init assigns it",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\nint value;\nint other = value + 1; // @error variable 'value' is not initialized\n\nfunction init() {\n    value = 5;\n}\n\npublic function main() {\n    io:println(value, other);\n}\n",
+      "output": "51",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "A module variable initializer reading a module-no-init variable that is only assigned in init.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces: compiles, prints 51 (other computed from zero value). Spec 8.7 + module initialization order (initializers run before init) \u2192 compile error expected at line 4. Missing diagnostic \u2192 frontend. Clean-context check confirms. Related: #972 (possible parent), #1637, #1282, #1483.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1635,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1635",
+      "title": "[Bug]: re-narrowing after an in-loop assignment hides the assignment to a variable narrowed outside the loop (unsound)",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int|string|() x = 1;\n    if x is int {\n        int i = 0;\n        while i < 2 {\n            int y = x;\n            io:println(y);\n            x = \"s\"; // @error assignment reaches the loop top while x is narrowed outside the loop\n            if x is () {\n                return;\n            }\n            i += 1;\n        }\n    }\n}\n",
+      "output": "1\ns",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Variable narrowed outside a loop, reassigned in the loop body, then re-narrowed by a type test with an abrupt branch.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces: compiles, prints 1 then s (an int-typed y holds a string \u2014 unsound). Spec 7.12 forbids an in-loop assignment to a variable narrowed outside the loop when the block can complete normally afterward. Missing diagnostic in the type checker \u2192 frontend. Clean-context check confirms. Regression gap of closed #992.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1634,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1634",
+      "title": "[Bug]: member access evaluates the key expression before the container expression",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\nfunction container() returns int[] {\n    io:println(\"container\");\n    return [10, 20];\n}\n\nfunction key() returns int {\n    io:println(\"key\");\n    return 1;\n}\n\nfunction mapContainer() returns map<int> {\n    io:println(\"map\");\n    return {a: 1};\n}\n\nfunction mapKey() returns string {\n    io:println(\"mapKey\");\n    return \"a\";\n}\n\npublic function main() {\n    int x = container()[key()];\n    io:println(x);\n    int? y = mapContainer()[mapKey()];\n    io:println(y);\n}\n",
+      "output": "key\ncontainer\n20\nmapKey\nmap\n1",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Observable only when both the container and key expressions have side effects.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces: prints key before container. Dumped BIR calls key() (bb0) before container() (bb1), so the BIR is wrong for the source \u2192 frontend (BIR gen, indexBasedAccess). Spec member-access-expr: container is evaluated before key. Clean-context check confirms. Related but different: #1217.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1633,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1633",
+      "title": "[Bug]: xml:elements / xml:elementChildren panic \"invalid XML element name filter\" when the name matches no element",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    xml x = xml `<a/><b>t</b>`;\n    io:println(x.elements(\"ns:a\").length()); // @output 0\n    io:println(x.elements(\"\").length()); // @output 0\n    io:println(x.elementChildren(\"p:t\").length()); // @output 0\n    io:println(x.elements(\"a\")); // @output <a/>\n}\n",
+      "output": "error: invalid XML element name filter\n        at main(i1633.bal:5)",
+      "bir_ok": true,
+      "frontend_internal_error": false,
+      "edge_case": false,
+      "edge_case_reason": "",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces: panics 'invalid XML element name filter' at line 5. lang.xml elements/elementChildren are pure filters by expanded name; a name that matches no element should yield an empty sequence (expected 0,0,0,<a/>). Lang library behaviour \u2192 langlib. Clean-context check confirms. No duplicate found.",
+      "labels_to_add": [
+        "langlib"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1644,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1644",
+      "reasoning": "Valid, reproducible Type/Bug: building ls/cmd and sending didOpen for 'import ballerina/task; ... task:Error? e = ();' on main d69c341a5 publishes 'Unknown import: ballerina/task' and 'Unknown symbol: Error', while the CLI runs the same program and prints true. It is a language-server package-resolution bug (ls/server/packages.go), which fits none of langlib/library/frontend/runtime. No duplicate; it is the 'Verify' item for ballerina/task in tracker #1645 (not a formal sub-issue). Suggest an LS area label if one exists."
+    },
+    {
+      "number": 1645,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1645",
+      "reasoning": "Type/Improvement tracker of open review items from LS completion PR #1567 (ls/core/completion, ls/server). Nothing to reproduce; it is language-server code-quality work, which fits none of the allowed area labels. No sub-issues; #1644 corresponds to one of its items and could be linked as a sub-issue."
+    },
+    {
+      "number": 1632,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1632",
+      "reasoning": "Type/Task (already Priority/Low, cleanup): unify BLangGroupExpr handling across AST passes; no behaviour change, so nothing to reproduce or validate against the spec. The type rules only cover Bug/New Feature/Improvement. If an area label is wanted, it is front-end (AST/node builder) work \u2192 `frontend`; the triage label can probably be removed."
+    }
+  ],
+  "skipped": [
+    1629,
+    1628,
+    1627,
+    1622,
+    1621,
+    1620,
+    1619,
+    1618,
+    1563,
+    1554,
+    1543,
+    1542,
+    1532,
+    1531,
+    1485,
+    1304
+  ],
+  "notes": "10 new triage issues processed; all reproduced on main d69c341a5. Validity of the 7 compiler/runtime bugs checked by a clean-context subagent from reproducers only (spec 2024R1/master); all valid, #1646 judged ambiguous-leaning-valid. #1636 and #1637 are siblings of open #972 (module var read before definite assignment); consider making #972 their parent. 16 issues skipped: already in the 2026-11-12 report with no updates since."
+}
