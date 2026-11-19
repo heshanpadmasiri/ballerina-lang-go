@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-11-19T18:18:02+00:00",
+  "base": "79afe31d9e918d3572cbc356f09df47f5878dd62",
+  "time_used_minutes": 46,
+  "setup_notes": "Fork main fast-forwarded to upstream and pushed. All tools installed. The CLI has no --stats flag; stage timings came from the debug build's --trace output.",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "status": "confirmed",
+      "title": "Nested  expressions re-walk their whole argument subtree for trial dependencies at every level, making stage 5 O(depth^2)",
+      "issue": "semantics/internal/types/type_resolver.go:resolveObjectNewExpr calls resolveTrialDependencies(t, e.ArgsExprs) for every non-ephemeral  before calling constructibleAlternatives or checking the candidate count. resolveTrialDependencies -> walks.go:collectTrialDependencyRefs does a full ast.Walk over every argument subtree, including nested constructors and lambda bodies. It then calls t.ensureResolved(ref, 0) for every collected var/const/type/method reference, duplicates included, and each call goes through CompilerContext.SymbolType -> GetSymbol under an RWMutex read lock. That pre-resolution is only needed before candidate trials, which run only when there are 2 or more constructible candidates. The list and mapping constructors already return on len(candidates)==1 before the walk. With a single class candidate (the common case), finishObjectNew/resolveObjectInitArgs then resolve the args in normal (non-trial) mode, so every nested  in the arguments repeats the walk over its own subtree. For nesting depth d that is O(d^2) node visits and ensureResolved calls. Example:  linked-list/builder chains, and deeply nested object construction in general.",
+      "locations": [
+        "semantics/internal/types/type_resolver.go:resolveObjectNewExpr",
+        "semantics/internal/types/type_resolver.go:resolveTrialDependencies",
+        "semantics/internal/types/walks.go:collectTrialDependencyRefs",
+        "semantics/internal/types/walks.go:(*trialDependencyRefCollector).Visit",
+        "semantics/internal/types/type_resolver.go:finishObjectNew/resolveObjectInitArgs (cause the per-level repeat)"
+      ],
+      "reproducer": {
+        "generator": "import sys\nN=int(sys.argv[1])\no=[\"import ballerina/io;\",\"class Node {\",\" int v;\",\" Node? next;\",\" function init(int v, Node? next) { self.v = v; self.next = next; }\",\"}\"]\ne=\"()\"\nfor i in range(N): e=f\"new Node({i}, {e})\"\no.append(\"public function main() {\\n Node n = \" + e + \";\\n io:println(n.v);\\n}\")\nprint(\"\\n\".join(o))\n",
+        "source": null,
+        "command": "python3 gen_new_chain.py 4000 > new-chain-4000.bal; go build -tags debug -o bal-debug ./cli/cmd; bal-debug run --trace=t.json new-chain-4000.bal (read the 'Local Type Resolution' span), or /usr/bin/time bal run new-chain-4000.bal; ./bin/benchmark --mode time --runs 5 --warmup 1 main <branch> new-chain-4000.bal"
+      },
+      "baseline": "Local Type Resolution (stage 5) on main: depth 2000: 333 ms (wall 0.44 s); depth 4000: 1389 ms (wall 1.56 s); depth 8000: 5282 ms (wall 5.61 s). It quadruples per doubling; every other stage stays linear and under 100 ms. Max RSS 139-166 MB at depth 4000.",
+      "improvement": {
+        "summary": "Stage 5 went from quadratic to linear in depth: 333->74 ms (2000), 1389->125 ms (4000, -91%), 5282->258 ms (8000, -95%). Wall time at depth 4000 is -79% (1478 -> 312 ms, benchmark tool, 17 sigma). Memory is unchanged: an unreliable +3.8% within noise, not a regression.",
+        "time_summary": "### Improvements\n\n- `new-chain-4000.bal` -78.90% (1477.612 ms \u2192 311.818 ms, 17.13 sigma) \u2014 unreliable: worst CV 7.0%\n\n_A case is reported when it moves at least 1 combined standard deviation and at least 1%; a measurement is unreliable once its coefficient of variation reaches 5%. With 3 runs the standard deviation is a weak estimate. The sigma multiple above and the \u00b1 column in the table are different quantities._\n",
+        "memory_summary": "### Unreliable measurements\n\n- `new-chain-4000.bal` worst CV 5.3% (150.671 MiB \u2192 156.356 MiB, +3.77%)\n\n_A case is reported when it moves at least 1 combined standard deviation and at least 1%; a measurement is unreliable once its coefficient of variation reaches 3%. With 3 runs the standard deviation is a weak estimate. The sigma multiple above and the \u00b1 column in the table are different quantities._\n"
+      },
+      "fix_approach": "In resolveObjectNewExpr, move the  block after constructibleAlternatives and the  early return. This matches resolveListConstructorExpr/resolveMappingConstructorExpr. With one candidate the args are resolved in normal mode and references resolve on demand, so the up-front walk is redundant. constructibleAlternatives only inspects the object type and class method table, not argument refs, so the reorder is safe. One subtle ordering change: a  on a non-constructible type now reports its own error before resolving argument references. No corpus golden changed and make test passes. With multiple candidates (union of classes) the walk still runs once per trial root. A possible follow-up is to dedupe collected refs or skip already-resolved ones.",
+      "prototype_diff": "diff --git a/semantics/internal/types/type_resolver.go b/semantics/internal/types/type_resolver.go\nindex ec664186..107c0a88 100644\n--- a/semantics/internal/types/type_resolver.go\n+++ b/semantics/internal/types/type_resolver.go\n@@ -4360,11 +4360,6 @@ func resolveNewExpr(t typeResolver, chain *binding, e *ast.BLangNewExpression, e\n }\n \n func resolveObjectNewExpr(t typeResolver, chain *binding, e *ast.BLangNewExpression, determinedTy semtypes.SemType) (semtypes.SemType, expressionEffect, bool) {\n-\t// An expression inside a trial is part of the root of an outer trial, whose dependencies were resolved before that\n-\t// trial started.\n-\tif !t.isEphemeral() && !resolveTrialDependencies(t, e.ArgsExprs) {\n-\t\treturn semtypes.SemType{}, expressionEffect{}, false\n-\t}\n \tcandidates, ok := constructibleAlternatives(t, e, determinedTy)\n \tif !ok {\n \t\treturn semtypes.SemType{}, expressionEffect{}, false\n@@ -4372,6 +4367,11 @@ func resolveObjectNewExpr(t typeResolver, chain *binding, e *ast.BLangNewExpress\n \tif len(candidates) == 1 {\n \t\treturn finishObjectNew(t, chain, e, determinedTy, candidates[0])\n \t}\n+\t// An expression inside a trial is part of the root of an outer trial, whose dependencies were resolved before that\n+\t// trial started.\n+\tif !t.isEphemeral() && !resolveTrialDependencies(t, e.ArgsExprs) {\n+\t\treturn semtypes.SemType{}, expressionEffect{}, false\n+\t}\n \tselected, outcome := selectCandidate(t, candidates, func(candidate constructibleAlternative) bool {\n \t\t_, _, _, ok := resolveObjectInitArgs(t, chain, e, candidate.alternative, candidate.table)\n \t\treturn ok\n",
+      "attempts": 1,
+      "reason": ""
+    }
+  ],
+  "notes": "Other observations from exploration, not pursued: (1) Stage 1 parsing is fully serial for multi-module packages, because projects/module_context.go:populateModuleLoadRequests parses every document sequentially during package resolution, leaving parseDocumentsParallel only cached trees (3.9 s of 14.5 s on corpus/bench/10-bench/default-heavy-project-v). This is in projects/, out of frontend scope. (2) Object-type inclusion with N methods is quadratic in stage 4 via validateInclusionMemberVisibility -> semtypes.ObjectMemberVisibility, a variant of the earlier record member lookup finding."
+}
