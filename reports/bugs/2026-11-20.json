@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-11-19T23:26:18Z",
+  "upstream_main": "222c3007635fe096bbf771d3e79d5a39754214e5",
+  "spec_fetch_ok": true,
+  "areas_explored": [
+    "int arithmetic/shift/bitwise, int subtypes, range expressions",
+    "float/decimal arithmetic and lang.float/lang.decimal",
+    "query expressions (join, limit, group by, order by, on conflict)",
+    "match statement, type test, type cast",
+    "strings, string templates, toString/toBalString",
+    "error constructor, check/checkpanic, trap",
+    "XML templates, navigation, lang.xml",
+    "records, maps, cloneWithType/fromJsonWithType",
+    "classes/objects, closures, workers/start/wait",
+    "lists, tuples, filler values, constants, enums",
+    "control flow, equality, evaluation order",
+    "annotations, typedesc, isolated functions",
+    "recursive/union types, function types, streams",
+    "services, listeners, client resource access",
+    "named workers, wait, lock (stopped early: candidate limit reached)"
+  ],
+  "candidates": [
+    {
+      "action": "file",
+      "existing_issue": null,
+      "title": "[Bug]: expression-bodied function result is not checked against the declared return type (Go interface-conversion crash)",
+      "body": "### Description\nAn expression-bodied function (`=> E`) is not type-checked against its declared return type. The program compiles, and the wrongly typed value then crashes the interpreter with a Go runtime error (`interface conversion: values.BalValue is int64, not string`).\n\nThis affects module-level functions, methods, and anonymous functions with an explicit signature. The only form that is checked is an anonymous function with inferred parameter types (`function (int) returns string f = x => x;` is correctly rejected). The equivalent block-body form `{ return x; }` is correctly rejected with `incompatible type: expected string, got int`.\n\n### Steps to Reproduce\nRuntime crash:\n```ballerina\nimport ballerina/io;\n\nfunction g(int x) returns string => x;\n\npublic function main() {\n    string s = g(3);\n    io:println(s);\n    io:println(s.length());\n}\n```\nActual (`bal run`):\n```\n3\nerror: interface conversion: values.BalValue is int64, not string\n        at main(ae.bal:8)\n```\nExpected: a compile error at line 3 (`function g(int x) returns string => x;`): incompatible type, expected `string`, got `int`.\n\nCompile-time checks missing on every marked line (this compiles and exits 0):\n```ballerina\nfunction strAsInt() returns int => \"hello\"; // @error\n\nfunction intAsString(int x) returns string => x; // @error\n\nclass C {\n    function m(int x) returns string => x; // @error\n}\n\npublic function main() {\n    var f = function (int x) returns string => x; // @error\n    _ = f;\n}\n```\n`function strAsInt() returns int => \"hello\";` also compiles, and calling it returns a string.\n\nSpec, [§7.3.3 Expression-bodied functions](https://ballerina.io/spec/lang/master/#expr-function-body): \"An expr-function-body of the form `=> E` is short for a block-function-body `{ return E}`.\" So each `=> E` body must be checked like `return E`, which the return statement requires to be a subtype of the declared return type.\n\n### Affected Version(s)\n`main` @ 222c3007635fe096bbf771d3e79d5a39754214e5\n\n### OS, DB, other environment details and versions\nLinux, Go 1.27.1, `go run ./cli/cmd run <file>`\n\n### Related area\nType checker\n\n### Related issue(s) (optional)\n#1122 (closed, anonymous function vs. expected function type) is different: it is about the function type, not about checking the body against its own return type.",
+      "crash": true
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1707,
+      "title": "[Bug]: trap checkpanic after a completed if block crashes or re-panics",
+      "body": "Another variant of this. Here the `trap checkpanic` is at the function's top level, *after* an `if` block that has already finished (not inside it), and it still breaks. There are two different symptoms.\n\n1. A Go index-out-of-range crash:\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    int|error e = error(\"b\");\n    if true {\n        io:println(\"before\");\n    }\n    int|error v = trap (1 + checkpanic e);\n    io:println(v);\n}\n```\nActual:\n```\nbefore\nerror: runtime error: index out of range [7] with length 6\n        at main(o1.bal:8)\n```\nExpected: `before`, `error(\"b\")`, exit 0.\n\n2. The trap returns the error, and then the same panic is raised again anyway:\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    int|error e = error(\"b\");\n    if true {\n        io:println(\"before\");\n    }\n    int|error v = trap checkpanic e;\n    io:println(v);\n}\n```\nActual (exit 1):\n```\nbefore\nerror(\"b\")\nerror: b\n```\nExpected: `before`, `error(\"b\")`, exit 0.\n\nRemoving the `if` block makes both programs work. Spec §6.34: \"If evaluation completes abruptly with panic with associated value e, then result of trap-exp is e\". Tested on `main` @ 222c3007635f.\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "crash": true
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1753,
+      "title": "[Bug]: casting a mapping constructor to readonly & map<T> (or a list to <readonly>) panics with bad type cast",
+      "body": "The mapping-constructor form panics in the same way, as does a plain `<readonly>` cast:\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    var m = <readonly & map<int>>{x: 2};\n    io:println(m);\n}\n```\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    readonly r = <readonly>[1, 2];\n    io:println(r);\n}\n```\nBoth fail at runtime with `error: bad type cast` at the cast line. Expected output: `{\"x\":2}` and `[1,2]`.\n\nSpec §6.20: \"The contextually expected type for expression is the intersection of the contextually expected type of the type-cast-expr and the type described by the type-descriptor\". It also says \"a type-cast-expr of `<readonly>` can be used both to cause constructors within the expression to construct values with the read-only bit on and to verify...\" §6.7.2 adds: \"If the applicable contextually expected type is a subtype of readonly, then the mapping will be constructed with its read-only bit on.\" Tested on `main` @ 222c3007635f.\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1130,
+      "title": "[Bug]: <readonly>[1, 2] assigned to anydata is rejected because the cast type is not intersected",
+      "body": "Another instance where `T = readonly`. The cast's static type comes out as the whole `readonly` type rather than its intersection with the operand's type, so a valid program is rejected:\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    anydata b = <readonly>[1, 2];\n    io:println(b);\n}\n```\nActual:\n```\nerror[SEMANTIC_ERROR]: incompatible type: expected anydata, got nil|boolean|int|float|decimal|string|error|typedesc|handle|function|regexp|readonly|readonly|table|xml<...>|readonly\n```\nExpected: compiles and prints `[1,2]`. Per §6.20 the operand's contextually expected type is `anydata & readonly`, so the list constructor's static type is a read-only list of anydata. The cast's static type is \"the intersection of T and TE'\", which is a subtype of `anydata`. (Once this is fixed, it will still hit the runtime `bad type cast` from #1753 / #1557.) Tested on `main` @ 222c3007635f.\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1351,
+      "title": "[Bug]: escaped identifiers in resource path segments keep their backslash",
+      "body": "The same missing `IdentifierEscape` decoding also affects resource path segment names, in both client resource access and service attach points.\n\n1. The raw source spelling reaches a path-parameter resource:\n```ballerina\nimport ballerina/io;\n\nclient class C {\n    resource function get [string s]() returns string {\n        return s;\n    }\n}\n\npublic function main() {\n    C c = new;\n    string b = c->/foo\\-bar;\n    io:println(b);\n    string d = c->/foo\\u{2D}bar;\n    io:println(d);\n}\n```\nActual: `foo\\-bar`, then `foo\\u{2D}bar`. Expected: `foo-bar`, then `foo-bar`.\n\n2. Two different escape spellings of the same name do not match:\n```ballerina\nimport ballerina/io;\n\nclient class C {\n    resource function get foo\\-bar() returns string {\n        return \"foo-bar\";\n    }\n}\n\npublic function main() {\n    C c = new;\n    string d = c->/foo\\u{2D}bar;\n    io:println(d);\n}\n```\nActual: `error[SEMANTIC_ERROR]: no matching resource method 'get'`. Expected: compiles and prints `foo-bar`.\n\n3. The service attach point keeps the backslash. With `service /foo\\-bar on new L() {}`, where `L.attach` prints its `attachPoint`, the output is `[\"foo\\\\-bar\"]` with `attachPoint[0].length()` = 8. Expected: `[\"foo-bar\"]` with length 7.\n\nSpec §2: \"The IdentifierEscape syntax allows an arbitrary non-empty string to be treated as an identifier\". `resource-path-segment-name := identifier`, and §8.3.2 says the attach point is \"an array of strings, with one string for each resource-path-segment-name\". (Quoted `'foo` vs `foo` in resource paths is tracked in #1116.) Tested on `main` @ 222c3007635f.\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "crash": false
+    }
+  ],
+  "notes": "Hit the 5-candidate limit, so the run stopped early (about 20 minutes of wall-clock time). The spec was fetched from ballerina.io/spec/lang/master/ without problems. About 30 other reproducible deviations were dropped as duplicates of open issues, including #1169, #1046, #1454, #1047, #1392, #1044, #1511, #1347, #1132, #1091, #1374, #1214, #1026, #1452, #1043, #1223, #1253, #1050, #1564, #1166, #1217, #1250, #1076, #1559, #1116 and #1520. Other candidates were dropped or left out: decimal:round(1.5d, 34) panicking (spec ambiguous; the corpus deliberately expects a panic) and toString control-character escapes like \\x01 (UNCERTAIN; a partial overlap with #1387). A possible comment on #1250 was cut to stay within the limit: a non-const annotation value keeps aliasing a mutable module list, so arr.push is visible through T.@a. Corpus test corpus/bal/subset9/09-value/fromjsonwithtype-negative-v.bal deliberately encodes the cloneWithType-defaults gap (#1026). subset10.md contradicts itself on `readonly` class qualifiers (line 23 vs line 347). Possible new leads not run through the pipeline: in an isolated function, `new` of a class with no init where a field initializer reads mutable module state is accepted (inverse of #1076; #1657 may cover it), and adding members to a list or map during foreach does not panic (spec 5.8.2)."
+}
