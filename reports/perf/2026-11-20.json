@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-11-20T18:29:39+00:00",
+  "base": "857eb863a4c13dc1ecb2b12d878c8bc21ab3e57f",
+  "time_used_minutes": 58,
+  "setup_notes": "Fork main fast-forwarded to upstream 857eb863 and pushed. The `--stats` flag referenced by the routine does not exist; used /usr/bin/time and debug-build --cpuprofile instead.",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "status": "rejected",
+      "title": "Parser error recovery is superlinear on deeply nested cascading syntax errors",
+      "issue": "For N-deep nested inline record types where each nested field lacks a name (cascading syntax errors), parser error recovery takes ~O(N^2.3): N=20 1.43s, N=40 4.35s, N=80 14.3s. ~51% is in parser/error_handler.go recovery search (fixAndContinue -> seekInAlternativesPaths -> seekMatchInSubTree -> SeekMatch), ~21% in getCtxStackSnapshot, which copies the whole O(depth) context stack per explored alternative path, and ~30% GC (those copies plus traceRecovery closures that escape even with tracing off).",
+      "locations": [
+        "parser/error_handler.go:seekMatchInSubTree",
+        "parser/error_handler.go:getCtxStackSnapshot",
+        "parser/error_handler.go:fixAndContinue"
+      ],
+      "reproducer": {
+        "generator": "#!/usr/bin/env python3\n\"\"\"Generators for H1 candidates.\n  gen.py recovery N  -> repro_recovery_N.bal : N-deep nested inline record types, each nested field\n                        missing its name (syntax errors; parser error recovery cost grows ~N^2.3)\n  gen.py defaults N  -> repro_defaults_N.bal : one function with N defaultable params, called N times\n                        with one named arg (valid; cost is dominated by birgen, O(N^3))\n\"\"\"\nimport sys\nkind, n = sys.argv[1], int(sys.argv[2])\nif kind == \"recovery\":\n    src = \"type R \" + \"record { int a; \" * n + \"}\" * n + \";\\npublic function main() { }\\n\"\nelif kind == \"defaults\":\n    s = [\"function f(\" + \",\".join(f\"int p{i} = {i}\" for i in range(n)) + \") returns int { return \" + \"+\".join(f\"p{i}\" for i in range(n)) + \"; }\",\n         \"public function main() { int t = 0;\"]\n    s += [f\"  t += f(p{i % n} = 1);\" for i in range(n)]\n    s.append(\"if t == 0 {} }\")\n    src = \"\\n\".join(s) + \"\\n\"\nelse:\n    sys.exit(\"unknown kind\")\nopen(f\"repro_{kind}_{n}.bal\", \"w\").write(src)\n",
+        "source": null,
+        "command": "python3 gen.py recovery 40 && go build -o bal ./cli/cmd && /usr/bin/time -v ./bal run repro_recovery_40.bal"
+      },
+      "baseline": "N=20 1.43s, N=40 4.35s, N=80 14.27s, RSS ~33MB flat",
+      "improvement": null,
+      "fix_approach": "",
+      "prototype_diff": null,
+      "attempts": 0,
+      "reason": "Needs input with syntax errors, so `bal run` exits 1 and the benchmark tool (hyperfine and /usr/bin/time modes) cannot measure it; no valid-code reproducer. Possibly worth a look for language-server responsiveness. Out-of-scope side findings: birgen generateCallSite/snapshotIfNeeded is ~O(N^3) for N defaultable params called N times (N=200: 8s/4.5GB); 1000-deep nested else-less if panics in diagnostics with a negative startOffset (projects/package_compilation.go:245)."
+    },
+    {
+      "id": "H2",
+      "status": "confirmed",
+      "title": "BDD op memo keyed by node pointer makes subtype checks against unions of N distinct error types O(2^N)",
+      "issue": "semtypes BDD operations (bddUnionWithMemo/bddIntersectWithMemo/bddDiffWithMemo in semtypes/bdd_common_ops.go) memoize on bddOpMemoKey{B1 bdd, B2 bdd}: interface values compared by pointer identity. bddDiffInner with cmp>0 recurses twice, on diff(b1, union(b2.left, b2.middle)) and diff(b1, union(b2.right, b2.middle)). Every bddUnion/bddCreate result is a freshly allocated node, so structurally equal sub-BDDs reached by different paths never hit the memo, and the recursion branches 2-way per level of a union's middle chain. A union of N `distinct` error types (stdlib pattern: type Error distinct error<Detail>; type E_i distinct Error; type U E0|...|E_{N-1}) has one distinct-id atom per member, so `U u = error E0(...)` (stage 6 semantics/internal/analysis/constructors.go:validateErrorConstructor -> expressions.go:validateResolvedType -> semtypes.IsSubtype -> errorOps.Diff -> bddSubtypeDiff) costs O(2^N) time and memory: about 4x per 2 extra members, and N=22 takes 18.8s/3.06GB. Each node already has a hash-consed structural identity, canonicalKey() (bddKey, interned by internBddNodeKey when the node is built), which the memo ignores.",
+      "locations": [
+        "semtypes/bdd_common_ops.go:bddOpMemoKey",
+        "semtypes/bdd_common_ops.go:bddDiffWithMemo",
+        "semtypes/bdd_common_ops.go:bddDiffInner",
+        "semtypes/bdd_common_ops.go:bddUnionWithMemo",
+        "semtypes/bdd_common_ops.go:bddIntersectWithMemo",
+        "semantics/internal/analysis/constructors.go:validateErrorConstructor"
+      ],
+      "reproducer": {
+        "generator": "#!/usr/bin/env python3\n\"\"\"Generate a stdlib-style distinct error hierarchy and a union of N members.\nUsage: python3 gen.py N > repro.bal\"\"\"\nimport sys\nn = int(sys.argv[1]) if len(sys.argv) > 1 else 20\no = [\"type Detail record { string code; };\", \"type Error distinct error<Detail>;\"]\no += [f\"type E{i} distinct Error;\" for i in range(n)]\no.append(\"type U \" + \"|\".join(f\"E{i}\" for i in range(n)) + \";\")\no.append('public function main() { U u = error E0(\"m\", code=\"x\"); if u.message() != \"m\" { panic u; } }')\nprint(\"\\n\".join(o))\n",
+        "source": "type Detail record { string code; };\ntype Error distinct error<Detail>;\ntype E0 distinct Error;\ntype E1 distinct Error;\ntype E2 distinct Error;\ntype E3 distinct Error;\ntype E4 distinct Error;\ntype E5 distinct Error;\ntype E6 distinct Error;\ntype E7 distinct Error;\ntype E8 distinct Error;\ntype E9 distinct Error;\ntype E10 distinct Error;\ntype E11 distinct Error;\ntype E12 distinct Error;\ntype E13 distinct Error;\ntype E14 distinct Error;\ntype E15 distinct Error;\ntype E16 distinct Error;\ntype E17 distinct Error;\ntype U E0|E1|E2|E3|E4|E5|E6|E7|E8|E9|E10|E11|E12|E13|E14|E15|E16|E17;\npublic function main() { U u = error E0(\"m\", code=\"x\"); if u.message() != \"m\" { panic u; } }\n",
+        "command": "python3 gen.py 18 > repro18.bal && ./bin/benchmark --mode time --runs 5 --warmup 1 main <branch> repro18.bal (or: go build -o bal ./cli/cmd && /usr/bin/time -v ./bal run repro18.bal)"
+      },
+      "baseline": "main: N=16 0.22s/80MB, N=18 0.83s/221MB, N=20 4.05s/783MB, N=22 18.8s/3.06GB. Profile at N=20: 66% cum under validateErrorConstructor->IsSubtype->bddDiffWithMemo (bddUnionWithMemo 38%, newBddNodeImpl 8%, internBddNodeKey 5%), ~33% GC.",
+      "improvement": {
+        "summary": "repro (N=18): time -96.5% (853ms -> 30ms), peak RSS -83% (214 -> 36 MiB); N=22: 18.8s/3.06GB -> 0.11s/37MB, now roughly linear in N. huge-project-v: -11.5% but noisy (CV 10.8%), so no regression observed.",
+        "time_summary": "### Improvements\n\n- `repro18.bal` -96.50% (852.592 ms \u2192 29.823 ms, 20.29 sigma)\n\n_A case is reported when it moves at least 1 combined standard deviation and at least 1%; a measurement is unreliable once its coefficient of variation reaches 5%. With 3 runs the standard deviation is a weak estimate. The sigma multiple above and the \u00b1 column in the table are different quantities._\n",
+        "memory_summary": "### Improvements\n\n- `repro18.bal` -83.07% (213.514 MiB \u2192 36.151 MiB, 45.91 sigma)\n\n_A case is reported when it moves at least 1 combined standard deviation and at least 1%; a measurement is unreliable once its coefficient of variation reaches 3%. With 3 runs the standard deviation is a weak estimate. The sigma multiple above and the \u00b1 column in the table are different quantities._\n"
+      },
+      "fix_approach": "Key the per-operation memo on the operands' structural keys instead of node identity: bddOpMemoKey{B1, B2 bddKey}, built from b1.canonicalKey()/b2.canonicalKey(), used in all three *WithMemo functions. This is sound because bddKey is hash-consed from {atom key (index, gen, rec), left, middle, right}; leaves have fixed keys (nothing=1, all=2) and interned keys start at 3, so equal keys mean equal structure. canonicalKey() is a precomputed field read, so the common path gets no extra cost, and the map key shrinks from two interfaces to two ints. The memos map operand pair to result only (no in-progress markers), so the change is safe. Possible extras not prototyped: share one memo through bddComplement/bddCreate, which call bddUnion with a fresh memo, or hash-cons nodes so pointer equality equals structural equality. make test passed.",
+      "prototype_diff": "diff --git a/semtypes/bdd_common_ops.go b/semtypes/bdd_common_ops.go\nindex 7cd35fab..05f09712 100644\n--- a/semtypes/bdd_common_ops.go\n+++ b/semtypes/bdd_common_ops.go\n@@ -16,9 +16,16 @@\n \n package semtypes\n \n+// bddOpMemoKey identifies an operation's operands by structure rather than by\n+// node identity, so structurally equal BDDs reached by different paths share\n+// a memo entry.\n type bddOpMemoKey struct {\n-\tB1 bdd\n-\tB2 bdd\n+\tB1 bddKey\n+\tB2 bddKey\n+}\n+\n+func bddOpMemoKeyOf(b1, b2 bdd) bddOpMemoKey {\n+\treturn bddOpMemoKey{B1: b1.canonicalKey(), B2: b2.canonicalKey()}\n }\n \n type bddOpMemo struct {\n@@ -40,7 +47,7 @@ func bddUnion(b1 bdd, b2 bdd) bdd {\n }\n \n func bddUnionWithMemo(memoTable *bddOpMemo, b1 bdd, b2 bdd) bdd {\n-\tkey := bddOpMemoKey{B1: b1, B2: b2}\n+\tkey := bddOpMemoKeyOf(b1, b2)\n \tmemoized, ok := memoTable.UnionMemo[key]\n \tif ok {\n \t\treturn memoized\n@@ -86,7 +93,7 @@ func bddIntersect(b1 bdd, b2 bdd) bdd {\n }\n \n func bddIntersectWithMemo(memo *bddOpMemo, b1 bdd, b2 bdd) bdd {\n-\tkey := bddOpMemoKey{B1: b1, B2: b2}\n+\tkey := bddOpMemoKeyOf(b1, b2)\n \tmemoized, ok := memo.IntersectionMemo[key]\n \tif ok {\n \t\treturn memoized\n@@ -132,7 +139,7 @@ func bddDiff(b1 bdd, b2 bdd) bdd {\n }\n \n func bddDiffWithMemo(memo *bddOpMemo, b1 bdd, b2 bdd) bdd {\n-\tkey := bddOpMemoKey{B1: b1, B2: b2}\n+\tkey := bddOpMemoKeyOf(b1, b2)\n \tmemoized, ok := memo.DiffMemo[key]\n \tif ok {\n \t\treturn memoized\n",
+      "attempts": 1,
+      "reason": ""
+    }
+  ],
+  "notes": "H2 prototype kept local on branch claude/perf-20261120-H2 (not pushed)."
+}
