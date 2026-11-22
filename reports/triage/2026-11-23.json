@@ -1,0 +1,194 @@
+{
+  "generated_at": "2026-11-22T23:44:29Z",
+  "upstream_main": "e64ff12f6e1e947ed7a473363507f34bf16a6eb0",
+  "issues": [
+    {
+      "number": 1753,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1753",
+      "title": "[Bug]: casting a list constructor to a readonly intersection type panics with \"bad type cast\"",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int[] ro = <int[] & readonly>[1, 2];\n    io:println(ro); // expected [1,2]\n}\n\n// ----\nimport ballerina/io;\n\npublic function main() {\n    var m = <readonly & map<int>>{x: 2};\n    io:println(m);\n}\n\n// ----\nimport ballerina/io;\n\npublic function main() {\n    readonly r = <readonly>[1, 2];\n    io:println(r);\n}\n",
+      "output": "All three (list to int[] & readonly, mapping to readonly & map<int>, list to readonly): `error: bad type cast at main(...:4)` at runtime.",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": false,
+      "edge_case_reason": "Casting a list or mapping constructor to a readonly type is ordinary code.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Re-triaged because a comment added the mapping-constructor and plain `<readonly>` forms; all still reproduce on main. Spec check (clean-context subagent, reproducers only): \u00a76.20 makes the operand's expected type the intersection with the cast type, and \u00a76.7.1/\u00a76.7.2 construct the value with its read-only bit on, so all three casts must succeed and print `[1,2]` / `{\"x\":2}` / `[1,2]`. The cast's type is the operand's contextually expected type, so the constructors must build read-only values; the BIR builds a mutable value and then casts, so the BIR is wrong -> frontend (same as the 2026-11-20 report). Related #1130, #1148, #1044; not duplicates.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1755,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1755",
+      "title": "[Bug]: expression-bodied function result is not checked against the declared return type (Go interface-conversion crash)",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\nfunction g(int x) returns string => x;\n\npublic function main() {\n    string s = g(3);\n    io:println(s);\n    io:println(s.length());\n}\n\n// ----\nfunction strAsInt() returns int => \"hello\"; // @error\n\nfunction intAsString(int x) returns string => x; // @error\n\nclass C {\n    function m(int x) returns string => x; // @error\n}\n\npublic function main() {\n    var f = function (int x) returns string => x; // @error\n    _ = f;\n}\n",
+      "output": "1755a: prints `3` then `error: interface conversion: values.BalValue is int64, not string at main(1755a.bal:8)`; 1755b compiles with no diagnostics. BIR of g: `%0 = x; return;` with declared return string.",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": false,
+      "edge_case_reason": "Expression-bodied functions with a declared return type are common syntax.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces. Spec check: an expr-function-body `=> E` is short for `{ return E; }` (\u00a77.3.3), so each marked line in 1755b must be a compile error; the observed acceptance is wrong. Missing type-check diagnostic, so the front end emits ill-typed BIR and the interpreter's Go crash is a consequence -> frontend (not runtime-crash). No duplicate found (#1122 is different).",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1760,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1760",
+      "title": "[Bug]: reference to a closure that reads a module variable is reported as an initialization cycle",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\nfunction () returns int a = b;\nfunction () returns int b = function () returns int {\n    any x = a;\n    return x is int ? 1 : 2;\n};\n\npublic function main() {\n    io:println(b());\n}\n",
+      "output": "error[SEMANTIC_ERROR]: invalid cycle detected for a --> 1760.bal:3:25",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Module variable initialised to a closure that reads another module variable referencing it; unusual cycle shape.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces. Spec check: no spec rule makes this a cycle; building the closure for `b` does not evaluate the reference to `a`, so initialising b then a works and the program should print `2` (the spec says little on module-variable ordering, so this is a judgement from first principles). A valid program is rejected by the front end -> frontend. Opposite case of #1750 (there the closure is called, so the cycle is real); `var` form hits the INTERNAL_ERROR tracked by #1327. Not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1762,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1762",
+      "title": "[Bug]: const with an unfoldable XML-template or computed-key record default is reported as not a constant expression",
+      "type": "Type/Bug",
+      "reproducible": false,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\nconst NAME = \"x\";\n\ntype Doc record {|\n    xml value = xml `<a>${NAME}</a>`;\n|};\n\nconst Doc D = {};\n\npublic function main() {\n    io:println(D);\n}\n\n// ----\nimport ballerina/io;\n\nconst K = \"k\";\n\ntype M record {|\n    map<int> m = {[K]: 9};\n|};\n\nconst M D = {};\n\npublic function main() {\n    io:println(D);\n}\n",
+      "output": "On main both programs compile and print `{}` (BIR: `ConstantLoad {}`); the record default is dropped. The reported `expression is not a constant expression` only appears at the head of the unmerged PR #925.",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Constant of a record type whose field default is an XML template or computed-key mapping.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "The issue as written does not reproduce on main: it describes the diagnostic at the head of open PR #925 (record defaults in constant mappings), which is not merged. On main the same programs are accepted and print `{}`, silently dropping the record defaults, which is the gap #925 fixes. Spec check: printing `{}` is wrong in any case: the closed record requires the field, \u00a76.7.2 fills defaults in a mapping constructor whose inherent type is a record, and \u00a78.8 requires the constant's value to belong to its declared type. Expected `{\"value\":`<a>x</a>`}` / `{\"m\":{\"k\":9}}`, or an (unimplemented) compile error, never `{}`. Keep it open as a follow-up to #925 (it becomes reproducible when #925 lands); wrong/missing diagnostic -> frontend.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1764,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1764",
+      "title": "[Bug]: match guards are not checked for definite assignment",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    int v = 1;\n    int y;\n    match v {\n        1 if y == 0 => {\n            io:println(\"one\");\n        }\n        _ => {\n            io:println(\"other\");\n        }\n    }\n}\n\n// ----\nimport ballerina/io;\n\nfunction call(function () returns int f) returns int {\n    return f();\n}\n\npublic function main() {\n    int v = 1;\n    int y;\n    match v {\n        1 if call(function () returns int { return y; }) == 0 => {\n            io:println(\"one\");\n        }\n        _ => {\n            io:println(\"other\");\n        }\n    }\n}\n\n// ----\nimport ballerina/io;\n\nint m;\n\nfunction init() {\n    int v = 1;\n    match v {\n        1 if m == 0 => {\n            io:println(\"one\");\n        }\n        _ => {\n            io:println(\"other\");\n        }\n    }\n    m = 1;\n}\n\npublic function main() {\n    io:println(m);\n}\n",
+      "output": "1764a: prints `other`; 1764b: prints `other`; 1764c: prints `one` then `1`. All compile with no diagnostics.",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Reading a not-yet-assigned variable inside a match guard is a rare construct.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces. Spec check: \u00a77 local variables and \u00a78.7 module variables must be definitely assigned wherever referenced; the guards reference y / m before assignment, so all three programs must be rejected. Missing definite-assignment diagnostic -> frontend. Related #1638 (module-variable reads in init) and #1765; not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1765,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1765",
+      "title": "[Bug]: uninitialized stream variable used as a method receiver compiles and crashes at runtime",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    stream<int> s;\n    var r = s.next();\n    io:println(r);\n}\n",
+      "output": "Compiles, then `error: interface conversion: values.BalValue is nil, not *values.Stream at main(1765.bal:5)`. BIR: `%2 = streamNext s` on unassigned s.",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Calling a method on a never-assigned stream variable is an unusual program.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Reproduces. Spec check: `s.next()` references the uninitialised local `s`, violating definite assignment; must be a compile error. Missing definite-assignment diagnostic for a stream method receiver; the runtime Go crash follows from accepting the program -> frontend. Related #1764, #1638; not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    }
+  ],
+  "undetermined": [
+    {
+      "number": 1763,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1763",
+      "reasoning": "Reproduces on main e64ff12f6 (compiles, prints `2`), but validity is doubtful. The clean-context spec check (reproducer only) judged the observed behaviour CORRECT: \u00a78.6 says a readonly class sets the object's read-only bit and intersects each field's type with readonly; it does not make fields `final`. \u00a75.6.3's 'cannot be changed after the object has been constructed' does not cover assignments inside init, and 'assigned exactly once' applies only to fields declared `final`. The issue's claim that readonly-class fields are implicitly final follows jBallerina, not the spec text. Needs a maintainer decision: if it is accepted as a policy, label frontend (has reproducer, no internal error, edge_case false) and it is fixed by open PR #1053; otherwise close as not a bug."
+    },
+    {
+      "number": 1757,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1757",
+      "reasoning": "Reproduces on main e64ff12f6 (LSP client against bal start-language-server, package from the issue): with `undefinedFn();` in modules/util/util.bal, publishDiagnostics for main.bal is `[]`; with it removed, main.bal gets `unused variable 'local'` and `unused variable 'n'`. Valid Type/Bug in the language server (ls/core/compile/multimodule.go dependencyErrored marks the importer phase1Errored and never compiles it). It is language-server tooling, not langlib/library/frontend/runtime; closest is frontend. Suggest frontend or a language-server label; if frontend: has reproducer, no internal error, edge_case false. Related #1485, #1567; not a duplicate."
+    },
+    {
+      "number": 1767,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1767",
+      "reasoning": "Type/Improvement (already labelled) for CI workflows. Confirmed on main e64ff12f6: release.yml still uses actions/download-artifact@v4 and softprops/action-gh-release@v2; benchmark-pr-*-prepare.yml use upload-artifact@v4, benchmark-pr-*-comment.yml use download-artifact@v4 and github-script@v7, wasm-ci.yml uses setup-node@v4. Valid, but it is CI infrastructure, so none of langlib/library/frontend/runtime applies; suggest a CI/infra label and removing triage. No duplicate found."
+    }
+  ],
+  "skipped": [
+    1754,
+    1752,
+    1751,
+    1750,
+    1748,
+    1742,
+    1732,
+    1729,
+    1728,
+    1727,
+    1726,
+    1725,
+    1563,
+    1554,
+    1542,
+    1532,
+    1485,
+    1304
+  ],
+  "notes": "9 issues triaged (8 new since the 2026-11-20 report, plus #1753 re-triaged after a new comment). There was no 2026-11-21 report; all issues updated before 2026-11-19T23:44:16Z were skipped as unchanged. Validity of the reproducers was checked from the spec by a clean-context subagent that saw only the programs. #1762 targets the unmerged PR #925 and does not reproduce on main as written. #1763 is expected to be fixed by open PR #1053; #1764/#1765 interact with open PR #1638."
+}
