@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-11-24T23:16:47Z",
+  "upstream_main": "be382dae3b045fa9708ee3354d10bd019d746c49",
+  "spec_fetch_ok": true,
+  "areas_explored": [
+    "numeric langlib string conversions (float/decimal/int/boolean fromString, toBitsInt, toFixedString, round)",
+    "assignment, compound assignment and lvexpr evaluation order",
+    "isolated functions/classes/variables and lock statement",
+    "equality and relational operators",
+    "foreach and iteration (ranges, iterable objects, mutation during iteration)",
+    "field / optional field / member access and nil lifting",
+    "dependently-typed functions, cloneWithType/fromJsonWithType",
+    "match statement, const-patterns, constant expressions, type casts",
+    "function call argument binding (named/default/rest/included-record params)",
+    "array/map/string langlib (stopped early: candidate limit reached)"
+  ],
+  "candidates": [
+    {
+      "action": "file",
+      "existing_issue": null,
+      "title": "[Bug]: nested member-access lvexpr evaluates the outer key after the inner key (wrong evaluation order)",
+      "body": "### Description\nIn a nested member-access lvexpr such as `a[i()][j()] = v`, the interpreter evaluates the inner lvexpr's key (`i()`) before the outer key (`j()`). Spec \u00a77.15.1 prescribes the opposite order for `member-access-lvexpr := lvexpr [ expression ]`:\n\n> It is evaluated as follows: evaluate expression to get a string or int k; evaluate lvexpr to get lvalue lv; perform a filling-read operation on lv to get a list or mapping value v; the result is an lvalue referring to the member of c with key k.\n\nFor the outermost node, `expression` is `f(\"inner\", 0)` and `lvexpr` is `a[f(\"outer\", 1)]`. So `inner` must be evaluated before `outer`. The RHS comes first under \u00a77.15.2 (\"execute action-or-expr to get a value v; evaluate lvexpr to get an lvalue lv; ...\"), and the interpreter already gets that part right.\n\nThe difference only shows up with nested lvexprs. In a single-level `v[k()] = ...` the container is a plain variable, so the order can't be observed.\n\n### Steps to Reproduce\n```ballerina\nimport ballerina/io;\n\nfunction f(string s, int v) returns int {\n    io:println(s);\n    return v;\n}\n\npublic function main() {\n    int[][] a = [[1, 2], [3, 4]];\n    a[f(\"outer\", 1)][f(\"inner\", 0)] = f(\"rhs\", 9);\n    // @output rhs\n    // @output inner\n    // @output outer\n    io:println(a); // @output [[1,2],[9,4]]\n}\n```\nRun `go run ./cli/cmd run nested-lvexpr-order-v.bal`.\n\nActual output:\n```\nrhs\nouter\ninner\n[[1,2],[9,4]]\n```\nExpected output:\n```\nrhs\ninner\nouter\n[[1,2],[9,4]]\n```\n\n### Affected Version(s)\n`main` @ be382dae\n\n### OS, DB, other environment details and versions\nLinux, Go toolchain from go.mod\n\n### Related area\nInterpreter\n\n### Related issue(s) (optional)\n- #1634: rvalue member access evaluates the key before the container. That issue notes that the lvexpr order is key-first per \u00a77.15.1, but nested lvexprs currently evaluate container-first.\n- #1217: compound assignment evaluates the lvexpr before the RHS.\n\n### Suggested label(s) (optional)\nArea/Interpreter\n",
+      "crash": false
+    },
+    {
+      "action": "file",
+      "existing_issue": null,
+      "title": "[Bug]: chained relational operators (`a < b < c`) are accepted although relational operators are non-associative",
+      "body": "### Description\nRelational operators (`<`, `<=`, `>`, `>=`) are non-associative according to the spec's expression precedence table, but the parser treats them as left-associative. A chained comparison such as `a < b < b` compiles, is parsed as `(a < b) < b`, and runs.\n\nSpec, \u00a76 (Expressions), precedence table (\"The following table shows the various types of expression in decreasing order of precedence, together with associativity\"):\n- `x < y`, `x > y`, `x <= y`, `x >= y`, `x is y`, `x !is y`: associativity **non**\n- `x == y`, `x != y`, `x === y`, `x !== y`: associativity **left**\n\nWith non-associativity, `a < b < b` has no valid parse, so it should be rejected at compile time. Only the equality operators are declared left-associative.\n\n### Steps to Reproduce\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    boolean a = false;\n    boolean b = true;\n    io:println(a < b < b); // @error\n}\n```\nRun `go run ./cli/cmd run relational-nonassoc-e.bal`.\n\nActual: compiles and prints `false`, which is the result of `(a < b) < b`.\n\nExpected: a compile-time (syntax) error at the chained comparison.\n\nNote: the spec doesn't spell out in prose what \"non\" associativity means. The usual reading is that the operator cannot be chained without parentheses. jBallerina was not checked here; the parser is derived from jBallerina's, so it may accept this too.\n\n### Affected Version(s)\n`main` @ be382dae\n\n### OS, DB, other environment details and versions\nLinux, Go toolchain from go.mod\n\n### Related area\nParser\n\n### Suggested label(s) (optional)\nArea/Parser\n",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1431,
+      "title": "[Bug]: public final isolated-object field of an isolated class is rejected",
+      "body": "The `public` field check has the same root cause, now confirmed. In an isolated class, a `public final` field whose type is an isolated object type is rejected:\n\n```ballerina\nimport ballerina/io;\n\nisolated class B {\n    private int n = 1;\n\n    isolated function get() returns int {\n        lock {\n            return self.n;\n        }\n    }\n}\n\nisolated class A {\n    public final B b = new; // currently rejected\n}\n\npublic function main() {\n    A a = new;\n    io:println(a.b.get()); // @output 1\n}\n```\n\nActual:\n```\nerror[SEMANTIC_ERROR]: public field of an isolated object must be \"final\" and have a type that is a subtype of \"readonly\"\n  --> pubfinal-v.bal:14:5\n```\n\nExpected: the program compiles and prints `1`. The relevant spec text:\n\n- \u00a76.8.1.1: \"An object field is isolated if it is declared as final and has a type-descriptor that is a subtype of readonly or isolated object {} ... any field that is not isolated must be declared as private.\"\n- \u00a78.6 applies the same rules to isolated classes.\n\n`b` is `final` and `B` is a subtype of `isolated object {}`, so `b` is an isolated field and may be `public`. The diagnostic also omits `isolated object {}` from the allowed types.\n",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1260,
+      "title": "[Bug]: member-access assignment on a nilable map compiles and panics with 'missing key'",
+      "body": "The member-access lvexpr form has the same problem: assigning to a key of a nilable map compiles and then panics with a misleading `missing key` error.\n\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    map<int>? m = ();\n    m[\"k\"] = 3; // @error\n    io:println(m);\n}\n```\n\nActual: compiles, then panics at runtime:\n```\nerror: missing key: \"k\"\n        at main(nilmap-e.bal:5)\n```\n\nExpected: a compile error. \u00a77.15.1, member-access-lvexpr: \"The static type of lvexpr must be either a subtype of the mapping basic type or a subtype of the list basic type.\" `map<int>?` is neither. Reading `m[\"k\"]` is allowed under \u00a76.14, because a member-access read may take a container whose type includes nil, but the lvexpr rule does not include nil.\n\nThe two cases are already handled inconsistently. A store through a nilable list (`int[]? l = (); l[0] = 3;`) is rejected at compile time with \"unsupported container type for index based access\", but a nilable map gets through.\n",
+      "crash": false
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1557,
+      "title": "[Bug]: `<decimal>` cast of a float literal loses precision/trailing zeros and breaks const-pattern match",
+      "body": "The same root cause also gives silently wrong values for a plain `<decimal>` cast of a floating-point literal. The operand is typed as a `float` literal and then converted, so precision and trailing zeros are lost, and a const-pattern built this way stops matching:\n\n```ballerina\nimport ballerina/io;\n\nconst K = <decimal>0.12345678901234567890123;\n\npublic function main() {\n    io:println(K); // @output 0.12345678901234567890123\n    decimal d = 0.12345678901234567890123;\n    match d {\n        K => {\n            io:println(\"K\"); // @output K\n        }\n        _ => {\n            io:println(\"other\");\n        }\n    }\n    io:println(<decimal>1.10); // @output 1.10\n}\n```\n\nActual:\n```\n0.12345678901234568\nother\n1.1\n```\nExpected:\n```\n0.12345678901234567890123\nK\n1.10\n```\n\nSpec references:\n- \u00a76.20: \"The contextually expected type for expression is the intersection of the contextually expected type of the type-cast-expr and the type described by the type-descriptor.\"\n- \u00a76.5: \"Any candidate basic type N such that the intersection of N with the contextually expected type is empty is eliminated\". This rule eliminates `float`, so the literal is the decimal `0.12345678901234567890123`, with a 23-digit coefficient that is exactly representable.\n\nFor comparison:\n- `decimal x = 1.10; io:println(x)` prints `1.10`.\n- `const decimal C = 0.12345678901234567890123;` keeps all digits.\n- `decimal e = <decimal>1.10;` prints `1.1`.\n\nAn earlier comment here says \"`<decimal>2.5` ... work\", but that is only because 2.5 is exactly representable as a float.\n",
+      "crash": false
+    }
+  ],
+  "notes": "Spec fetched OK from ballerina.io/spec/lang/master. Stopped at the 5-confirmed-candidate limit (~25 min). Many other spec-confirmed findings were dropped as duplicates of open issues: #1218 (foreach mutation), #1169 (max...max overflow), #1454 (range expr as value INTERNAL_ERROR), #1217 (compound assignment order), #1153 (float:fromString overflow), #1402 (NaN toBitsInt, closed not_planned), #1629/#1455/#940 (isolated class field rules), #1076 (new without init in isolated fn), #1501 (conditional expr not isolated), #1260 (field access on R?), #1457 (relational singleton typing; while-reachability symptom not mentioned there), #1134 (readonly field qualifier not making value readonly), #1471 (fromJsonWithType string->xml), #1166 (named-arg order), #1151/#1227 (default-expr capture crashes), #1127 (default referring to later param), #1659 (self in default), #1249 (`if true` guard), #1753 (readonly cast of list constructor). Not confirmed: decimal round with huge negative fractionDigits panicking (exponent range is implementation-defined). Unverified side observations: rest-arg spread `f(...xs)` gives UNIMPLEMENTED_ERROR although subset10 lists Call without restriction; defaultable param after included-record param is accepted; cloneWithType ignores record field defaults (documented in repo as not yet supported). The O (non-associativity) candidate was not cross-checked against jBallerina."
+}
