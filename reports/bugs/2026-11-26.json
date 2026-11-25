@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-11-25T23:29:04Z",
+  "upstream_main": "1bcb85b9ea0554153cc96a20aaad9dc9a5357a31",
+  "spec_fetch_ok": true,
+  "areas_explored": [
+    "lang.string langlib, string literals and templates",
+    "error values, error constructor, lang.error",
+    "closures, anonymous functions and function types",
+    "lang.array langlib",
+    "query group by / collect",
+    "optional field access and records",
+    "list/mapping constructor inherent types and filler values",
+    "classes/objects (init, readonly classes, remote methods)",
+    "control flow, reachability and definite assignment",
+    "lang.map langlib, foreach over maps, equality",
+    "singleton/finite types and numeric casts",
+    "type narrowing in conditions",
+    "numeric literal lexing and typing",
+    "bitwise/shift/arithmetic operator static typing",
+    "recursive/intersection types (stopped early: candidate limit reached)",
+    "named workers/start/wait (stopped early)",
+    "parser ambiguities (stopped early)",
+    "inferred anonymous functions (stopped early)"
+  ],
+  "candidates": [
+    {
+      "action": "file",
+      "existing_issue": null,
+      "title": "[Bug]: local variable is in scope inside its own initializer (self-recursive closure crashes at runtime / INTERNAL_ERROR)",
+      "body": "## Description\nA local variable is in scope inside its own initializer. Nutcracker compiles such programs, and they then crash at runtime with Go-level errors or a compiler INTERNAL_ERROR. The spec (\u00a77.11 Local variable declaration statement, https://ballerina.io/spec/lang/master/#local-var-decl-stmt) says: \"The scope of variables declared in a local-var-decl-stmt starts immediately after the statement and continues to the end of the statement block in which it occurs.\" So a reference to the variable inside its own initializer, including inside an anonymous function in the initializer, refers to an undefined symbol and must be a compile error.\n\n## Steps to Reproduce\nTyped self-recursive closure: it compiles, then crashes at runtime.\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    function (int) returns int fact = function (int n) returns int {\n        return n <= 1 ? 1 : n * fact(n - 1); // @error\n    };\n    io:println(fact(5));\n}\n```\nActual:\n```\nerror: interface conversion: values.BalValue is nil, not *values.Function\n        at main(r2.bal:5)\n           main(r2.bal:7)\n```\n\n`var` version: the compiler crashes.\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    var fact = function (int n) returns int {\n        return n <= 1 ? 1 : n * fact(n - 1); // @error\n    };\n    io:println(fact(5));\n}\n```\nActual:\n```\nfatal[INTERNAL_ERROR]: expression type not resolved\n --> r2b.bal:5:38\n```\n\nSimplest form:\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    int z = z + 1; // @error\n    io:println(z);\n}\n```\nActual: it compiles, then fails with `error: unsupported type combination: <nil> + int64 at main(z.bal:4)`.\n\nExpected for all three: a compile error (undefined symbol) on the self-reference.\n\n## Affected Version(s)\nupstream main @ 1bcb85b9\n\n## OS, DB, other environment details and versions\nLinux, `go run ./cli/cmd run <file.bal>`\n\n## Related area\nSemantics\n\n## Related issue(s) (optional)\nSimilar runtime symptoms, different causes: #1151 (parameter default reads a captured local), #1322 (module-level function variable called before it is initialized), #1423 (same INTERNAL_ERROR text, different trigger).\n\n## Suggested label(s) (optional)\nType/Bug\n",
+      "crash": true
+    },
+    {
+      "action": "file",
+      "existing_issue": null,
+      "title": "[Bug]: remote method of a client object with return type `never` is not rejected",
+      "body": "## Description\nA client object's remote method may declare return type `never`, and nutcracker accepts it. Spec \u00a75.6.3.4 Remote methods (https://ballerina.io/spec/lang/master/#section_5.6.3.4): \"A remote method of a client object can only be invoked by a client-remote-method-call-action. The return type of the remote method of a client object must not be never.\" Neither the spec deviations nor the subset restrictions in subset10.md mention this case. Client classes (`remote-method-defn`) and `remote-method-decl` in object type descriptors are both listed as supported.\n\n## Steps to Reproduce\nClient class:\n```ballerina\nclient class Cl {\n    remote function r() returns never { // @error\n        panic error(\"x\");\n    }\n}\n\npublic function main() {\n}\n```\nClient object type descriptor:\n```ballerina\ntype CT client object {\n    remote function r() returns never; // @error\n};\n\npublic function main() {\n}\n```\nActual: both compile and run, exiting with code 0.\nExpected: a compile error on each remote method declaration.\n\n## Affected Version(s)\nupstream main @ 1bcb85b9\n\n## OS, DB, other environment details and versions\nLinux, `go run ./cli/cmd run <file.bal>`\n\n## Related area\nSemantics\n\n## Suggested label(s) (optional)\nType/Bug\n",
+      "crash": false
+    },
+    {
+      "action": "file",
+      "existing_issue": null,
+      "title": "[Bug]: `c ? x is int : y` is misparsed as qualified identifier `int:` (syntax error or INTERNAL_ERROR \"Unexpected builtin type kind\")",
+      "body": "## Description\nWhen a type test against a built-in type name (`int`, `string`, ...) is the middle operand of a conditional expression `c ? a : b`, the parser reads `int : ...` as a qualified identifier, even though there is whitespace around the colon. Depending on what follows, this gives a bogus syntax error or crashes the compiler with an INTERNAL_ERROR. With a user-defined type name (`x is T : false`), or with the type test in parentheses (`b ? (x is int) : x is string`), the program works.\n\nSpec: a qualified identifier is `qualified-identifier := module-prefix NoSpaceColon identifier`, and the lexical structure section says: \"When NoSpaceColon is used in a production, TokenWhiteSpace is not allowed immediately before or after the colon.\" So `int : true` cannot be a qualified identifier and must parse as the `:` of the conditional expression (\u00a76.x Conditional expression, https://ballerina.io/spec/lang/master/#conditional-expr).\n\n## Steps to Reproduce\nCompiler crash:\n```ballerina\nimport ballerina/io;\n\nfunction f(int|string x, boolean b) returns string {\n    if b ? x is int : x is string {\n        return \"yes\";\n    }\n    return \"no\";\n}\n\npublic function main() {\n    io:println(f(1, true)); // @output yes\n}\n```\nActual:\n```\nfatal[INTERNAL_ERROR]: Unexpected builtin type kind\n --> cond-is-builtin2.bal:4:17\n  |\n4 |     if b ? x is int : x is string {\n  |                 ^^^\n```\n\nBogus syntax error:\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    int|string x = 1;\n    boolean b = true;\n    boolean r = b ? x is string : true;\n    io:println(r); // @output false\n}\n```\nActual:\n```\nerror[SYNTAX_ERROR]: missing slash asterisk token\n --> cond-is-builtin1.bal:6:33\n```\n\nExpected: both programs compile; they print `yes` and `false`.\n\n## Affected Version(s)\nupstream main @ 1bcb85b9\n\n## OS, DB, other environment details and versions\nLinux, `go run ./cli/cmd run <file.bal>`\n\n## Related area\nParser\n\n## Related issue(s) (optional)\n#1726 (also a parser problem with NoSpaceColon and prefixed names, in a different construct)\n\n## Suggested label(s) (optional)\nType/Bug\n",
+      "crash": true
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1054,
+      "title": "[Bug]: int literal beyond float64 range crashes the compiler even in a valid decimal context",
+      "body": "This still reproduces on current main (1bcb85b9), and it also affects **valid** programs in a `decimal` context. An int-literal whose value is beyond float64 range but well within decimal range (decimal goes up to about 9.99E+6144) crashes the compiler instead of producing a decimal value:\n\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    decimal x = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000; // 1 followed by 400 zeros\n    io:println(x); // @output 1E+400\n}\n```\n\nActual:\n```\nfatal[INTERNAL_ERROR]: failed to parse numeric literal\n --> dec400-v.bal:4:17\n```\n\nExpected: prints `1E+400`. `decimal x = 1e400d;` already prints `1E+400`. Per spec \u00a76.3 (numeric-literal), with expected type `decimal` an int-literal's int and float candidates are dropped and the literal denotes the decimal value, so it should never go through float64 at all. The program should compile and run, not crash and not report an out-of-range error. Literals beyond decimal range (e.g. `1` followed by 7000 zeros) crash the same way, where an out-of-range compile error is expected.\n",
+      "crash": true
+    },
+    {
+      "action": "comment",
+      "existing_issue": 1096,
+      "title": "[Bug]: static singleton type of `+`/`-` on int literals wraps around on overflow",
+      "body": "The same wraparound also happens on the binary additive path, not only for unary `-`. The static singleton type of `+`/`-` on int-literal operands is computed with two's-complement wraparound, so an addition that always panics with overflow is typed as the wrapped singleton:\n\n```ballerina\nimport ballerina/io;\n\npublic function main() {\n    -9223372036854775808|error r = trap (9223372036854775807 + 1); // @error\n    io:println(r is error);\n    9223372036854775807|error s = trap (-9223372036854775807 - 2); // @error\n    io:println(s is error);\n}\n```\n\nActual (main @ 1bcb85b9): compiles and prints `true` twice. The checker types `9223372036854775807 + 1` as the singleton `-9223372036854775808`, and `-9223372036854775807 - 2` as the singleton `9223372036854775807`. At runtime both operations panic, as they should.\n\nExpected: the wrapped value should not be the static type. \u00a76.2.4 says the singleton subtype \"is computed by evaluating the expression at compile-time with operands whose values belong to the corresponding singleton types\", and for int \"+ performs integer addition; a panic will occur on overflow\". Evaluating these expressions produces no value, so the singleton refinement should not apply and the type should fall back to `int`. Then the assignments above are compile errors (a plain type mismatch, not a compile-time overflow error, so this is not the case closed in #1492).\n\nThis needs its own overflow check in the additive singleton computation (`additiveSingletonType` in `semantics/internal/types/type_resolver.go`) in addition to the one `negateNumericType` needs for this issue.\n",
+      "crash": false
+    }
+  ],
+  "notes": "Stopped after 5 confirmed candidates (~35 min). Many other spec mismatches were found but dropped as duplicates of existing issues: #1225 (double group by), #1456 (CRLF in templates), #1217 (compound assignment order), #1522 (fromBase16/64 whitespace), #1214/#1044 (shape-based type tests), #1131/#1374 (error constructor detail ImmutableClone/readonly), #1649 (bare isolated function type), #1134/#1425/#1564 (readonly record fields, spread min length, readonly filler), #1260 (field access on nilable record), #1253 (nested list store on optional member), #1050 (filler ignores defaults), #1043 (readonly class fields), #1395 (self use in init), #1650 (disallowed code points in literals). Dropped as not confirmed or intentional: a variable that becomes a grouping key in a second group by is still spread (the spec is ambiguous); unreachable panic statements rejected (#1285 was closed as not planned); narrowing carried past while/lock/match (deliberate and sound, but not listed as a deviation in subset10.md); nil stores through a wider map view delete an optional field (jBallerina-style design); collect after group by flattening (the corpus expects it). Possible follow-ups not pursued: array:removeAll can't be used as a function value (UNIMPLEMENTED diagnostic); a Go runtime index error leaks from array:map when the callback shrinks the list; int r = boom() where boom() returns never is rejected (may relate to #1785). The master spec has no group-by/collect text, so the 2024R1 spec was used for those."
+}
