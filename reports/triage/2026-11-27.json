@@ -1,0 +1,142 @@
+{
+  "generated_at": "2026-11-26T23:42:54Z",
+  "upstream_main": "1bcb85b9ea0554153cc96a20aaad9dc9a5357a31",
+  "issues": [
+    {
+      "number": 1816,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1816",
+      "title": "[Bug]: local variable is in scope inside its own initializer (self-recursive closure crashes at runtime / INTERNAL_ERROR)",
+      "type": "Type/Bug",
+      "sub_issues": [],
+      "valid": true,
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\npublic function main() {\n    function (int) returns int fact = function (int n) returns int {\n        return n <= 1 ? 1 : n * fact(n - 1);\n    };\n    io:println(fact(5));\n}\n\n// --- var variant ---\nimport ballerina/io;\n\npublic function main() {\n    var fact = function (int n) returns int {\n        return n <= 1 ? 1 : n * fact(n - 1);\n    };\n    io:println(fact(5));\n}\n\n// --- simplest ---\nimport ballerina/io;\n\npublic function main() {\n    int z = z + 1;\n    io:println(z);\n}\n",
+      "output": "typed: error: interface conversion: values.BalValue is nil, not *values.Function at main(a1.bal:5)\nvar: fatal[INTERNAL_ERROR]: expression type not resolved --> a2.bal:5:38\nint z = z + 1: error: unsupported type combination: <nil> + int64 at main(a3.bal:4)",
+      "bir_ok": false,
+      "frontend_internal_error": true,
+      "edge_case": true,
+      "edge_case_reason": "Self-reference to a local inside its own initializer (self-recursive closure / `int z = z + 1`) is invalid, unusual code.",
+      "reasoning": "All three variants reproduce on main 1bcb85b9. Clean-context spec check: \u00a77.11 says the scope of a local-var-decl starts immediately after the statement, so the self-reference is an undefined symbol and every variant must be a compile error. Nutcracker's symbol resolution puts the variable in scope too early: two variants compile to invalid BIR and fail at runtime, and the `var` variant gives INTERNAL_ERROR. Frontend (missing diagnostic + internal error). Not a duplicate: #1423 has the same INTERNAL_ERROR text but a different trigger (annotation on local var).",
+      "labels_to_add": [
+        "frontend"
+      ]
+    },
+    {
+      "number": 1817,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1817",
+      "title": "[Bug]: remote method of a client object with return type `never` is not rejected",
+      "type": "Type/Bug",
+      "sub_issues": [],
+      "valid": true,
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "client class Cl {\n    remote function r() returns never {\n        panic error(\"x\");\n    }\n}\n\npublic function main() {\n}\n\n// --- object type descriptor ---\ntype CT client object {\n    remote function r() returns never;\n};\n\npublic function main() {\n}\n",
+      "output": "Both compile and run with no output (exit 0); no diagnostic reported.",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Declaring a client remote method with return type `never` is a rarely used construct.",
+      "reasoning": "Reproduces on main 1bcb85b9: both programs are accepted. Clean-context spec check: \u00a75.6.3.4 says 'The return type of the remote method of a client object must not be never', a static constraint on the declaration, so both must be compile errors. Missing semantic diagnostic, so frontend. No duplicate found.",
+      "labels_to_add": [
+        "frontend"
+      ]
+    },
+    {
+      "number": 1818,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1818",
+      "title": "[Bug]: `c ? x is int : y` is misparsed as qualified identifier `int:` (syntax error or INTERNAL_ERROR \"Unexpected builtin type kind\")",
+      "type": "Type/Bug",
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\nfunction f(int|string x, boolean b) returns string {\n    if b ? x is int : x is string {\n        return \"yes\";\n    }\n    return \"no\";\n}\n\npublic function main() {\n    io:println(f(1, true));\n}\n\n// --- syntax-error variant ---\nimport ballerina/io;\n\npublic function main() {\n    int|string x = 1;\n    boolean b = true;\n    boolean r = b ? x is string : true;\n    io:println(r);\n}\n",
+      "output": "c1: fatal[INTERNAL_ERROR]: Unexpected builtin type kind --> c1.bal:4:17 (at `int`)\nc2: error[SYNTAX_ERROR]: missing slash asterisk token --> c2.bal:6:33",
+      "bir_ok": false,
+      "frontend_internal_error": true,
+      "edge_case": false,
+      "edge_case_reason": "A type test against a builtin type as the middle operand of an ordinary conditional expression is common code.",
+      "sub_issues": [],
+      "valid": true,
+      "reasoning": "Both variants reproduce on main 1bcb85b9. Clean-context spec check: a qualified identifier uses NoSpaceColon, which allows no whitespace around ':'. The ternary uses a literal ':'. `is` binds tighter than ?:. So `b ? x is int : x is string` is valid, and the programs should print `yes` and `false`. The parser wrongly treats `int :` / `string :` as a module prefix: a bogus syntax error in one case and INTERNAL_ERROR in the other. Frontend (parser). Related to #1726 (another NoSpaceColon parse problem, different construct), but not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ],
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null
+    },
+    {
+      "number": 1819,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1819",
+      "title": "[Bug]: tcp:Caller passed to a tcp service fails `is tcp:Caller`",
+      "type": "Type/Bug",
+      "sub_issues": [],
+      "valid": true,
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "reproducible": false,
+      "issue_has_reproducer": true,
+      "reproducer": "(issue's program; requires ballerina/tcp, which exists only on unmerged PR #701)",
+      "output": "Not runnable on main 1bcb85b9: lib/stdlibs/ballerina has no tcp module. PR #701 (feat(tcp): port ballerina/tcp standard library) is still open and unmerged.",
+      "bir_ok": null,
+      "frontend_internal_error": false,
+      "edge_case": false,
+      "edge_case_reason": "",
+      "reasoning": "Standard library (ballerina/tcp) issue, so category library + triage-lib. It cannot be reproduced on main because ballerina/tcp is not merged yet (it lives on open PR #701). The expected behaviour is clearly valid: a value passed as a `tcp:Caller` parameter must belong to `tcp:Caller`, and the issue explains the cause (native code builds the object with the top `object` type). The fix depends on #1797 (open). You may prefer to keep it attached to PR #701 rather than treat it as a main-branch bug.",
+      "labels_to_add": [
+        "library",
+        "triage-lib"
+      ]
+    },
+    {
+      "number": 1861,
+      "url": "https://github.com/ballerina-nutcracker/ballerina/issues/1861",
+      "title": "[Bug]: self.init() in a class without an init method re-runs field initializers",
+      "type": "Type/Bug",
+      "sub_issues": [],
+      "valid": true,
+      "remove_triage": true,
+      "close": false,
+      "close_reason": "",
+      "duplicate_of": null,
+      "parent_issue": null,
+      "reproducible": true,
+      "issue_has_reproducer": true,
+      "reproducer": "import ballerina/io;\n\nclass N {\n    int x = 1;\n\n    function reset() {\n        self.x = 5;\n        self.init();\n    }\n}\n\npublic function main() {\n    N n = new;\n    n.reset();\n    io:println(n.x);\n}\n",
+      "output": "1   (expected 5)\nBIR: class N `init()` body contains `self[x] = 1` (field initializer), and reset() calls `self.init()`",
+      "bir_ok": false,
+      "frontend_internal_error": false,
+      "edge_case": true,
+      "edge_case_reason": "Explicitly calling self.init() from an ordinary method of a class with no declared init is a rarely used construct.",
+      "reasoning": "Reproduces on main 1bcb85b9 (prints 1). Clean-context spec check: \u00a78.6 makes field initialization a separate step from calling init, and \u00a76.8.1.5 says a missing init is equivalent to an empty one and may be called via self. So the program prints 5, or under a stricter reading it is rejected at compile time. Printing 1 is wrong under both readings. The dumped BIR folds the field initializers into the user-callable `init` method, so the BIR is wrong for the source: frontend (BIR gen). Related to #1252 (init in object shape; its fix would make this a compile error), #1572 and #1592, but not a duplicate.",
+      "labels_to_add": [
+        "frontend"
+      ]
+    }
+  ],
+  "undetermined": [],
+  "skipped": [
+    1563,
+    1554,
+    1542,
+    1532,
+    1485,
+    1304
+  ],
+  "notes": "Triaged 5 new issues (1816, 1817, 1818, 1819, 1861). Skipped 6 issues that were already in earlier reports and have not been updated since. 1819 cannot be reproduced on main because ballerina/tcp only exists on open PR #701. It is recorded as library/triage-lib with reproducible=false. No duplicates found and no sub-issues."
+}
