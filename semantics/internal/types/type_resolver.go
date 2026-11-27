@@ -8738,6 +8738,10 @@ func resolveFixedArraySize(t typeResolver, lenExp ast.BLangExpression) (int, boo
 	if !ok {
 		return 0, false
 	}
+	if isNonConstantReference(t, lenExp) {
+		t.semanticError(notConstantExpressionMessage, lenExp.GetPosition())
+		return 0, false
+	}
 	sizeTy := sizeResult.ty
 	if semtypes.IsZero(sizeTy) || !semtypes.IsSubtype(t.typeContext(), sizeTy, semtypes.Int) {
 		t.semanticError("fixed-length array size must be a singleton int", lenExp.GetPosition())
@@ -9809,7 +9813,9 @@ func functionTypeTypedSignature(t typeResolver, chain *binding, fnType *ast.BLan
 	return model.TypedFunctionSignature{ParamTypes: paramTypes, ReturnType: returnType, RestParamType: restType, Flags: flags}, true
 }
 
-func isValidConstPatternExpr(t typeResolver, expr ast.BLangExpression) bool {
+// isNonConstantReference reports whether expr is a variable reference whose symbol
+// is not a constant.
+func isNonConstantReference(t typeResolver, expr ast.BLangExpression) bool {
 	var ref model.SymbolRef
 	switch e := expr.(type) {
 	case *ast.BLangVarRef:
@@ -9817,10 +9823,10 @@ func isValidConstPatternExpr(t typeResolver, expr ast.BLangExpression) bool {
 	case *ast.BLangConstRef:
 		ref = e.Symbol()
 	default:
-		return true
+		return false
 	}
 	sym := t.getSymbol(ref)
-	return sym != nil && sym.Kind() == model.SymbolKindConstant
+	return sym == nil || sym.Kind() != model.SymbolKindConstant
 }
 
 func resolveMatchPattern(t typeResolver, chain *binding, pattern ast.BLangMatchPattern, expectedTy semtypes.SemType) (semtypes.SemType, bool) {
@@ -9831,7 +9837,7 @@ func resolveMatchPattern(t typeResolver, chain *binding, pattern ast.BLangMatchP
 			return semtypes.SemType{}, false
 		}
 		ty := tyResult.ty
-		if !isValidConstPatternExpr(t, p.Expr) {
+		if isNonConstantReference(t, p.Expr) {
 			t.semanticError("match pattern variable reference must refer to a constant", p.Expr.GetPosition())
 			return semtypes.SemType{}, false
 		}
