@@ -1,0 +1,10 @@
+{
+  "feature": "replay-1741b",
+  "seq": 1,
+  "base": "f65871f221887efc4371e9168ad54c5f663c9a6f",
+  "parent": "03eb2791bde4dfbabfb69681b6344490c383eec8",
+  "status": "slice-ready",
+  "slice": 1,
+  "skills_source": "carried over",
+  "created": "2026-11-27T01:51:09+00:00"
+}

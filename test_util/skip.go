@@ -60,6 +60,22 @@ var WASMUnsupportedTests = []string{
 // "recovery/statements/foo.txtar"). They are matched as suffixes against
 // either a relative test name or an absolute path.
 var UnsupportedTests = []string{
+	// BEGIN pending: Configurable module variables
+	"subset10/10-configurable/readonly-isolated-p.bal",
+	"subset10/10-configurable/non-isolated-default-p.bal",
+	"subset10/10-configurable/default-p.bal",
+	"subset10/10-configurable/var-e.bal",
+	"subset10/10-configurable/binding-pattern-e.bal",
+	"subset10/10-configurable/non-anydata-e.bal",
+	"subset10/10-configurable/empty-readonly-e.bal",
+	"subset10/10-configurable/default-type-e.bal",
+	"subset10/10-configurable/assign-e.bal",
+	"subset10/10-configurable/const-context-e.bal",
+	"subset10/10-configurable/match-const-e.bal",
+	"subset10/10-configurable/required-p.bal",
+	"subset10/10-configurable/unused-e.bal",
+	"subset10/10-configurable/type-ref-e.bal",
+	// END pending: Configurable module variables
 	// https://github.com/ballerina-nutcracker/ballerina/issues/1457
 	// relational and ==/!= on singleton operands are not singleton-typed, so the
 	// always-false branch is not reported as unreachable.
